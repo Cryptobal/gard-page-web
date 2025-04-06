@@ -170,6 +170,40 @@ async function generateSitemap() {
     }
   }
 
+  // Landing pages dinámicas
+  // Definimos servicios e industrias prioritarias para SEO
+  const serviciosPrioritarios = [
+    'guardias-privados', 
+    'camaras-seguridad', 
+    'alarmas', 
+    'control-acceso', 
+    'monitoreo-remoto'
+  ];
+  
+  const industriasPrioritarias = [
+    'retail', 
+    'industrial', 
+    'corporativo', 
+    'educacion', 
+    'hospitales', 
+    'mineria', 
+    'construccion',
+    'logistica'
+  ];
+  
+  // Crear todas las combinaciones posibles entre servicios e industrias prioritarias
+  const landingDinamicas = [];
+  for (const servicio of serviciosPrioritarios) {
+    for (const industria of industriasPrioritarias) {
+      landingDinamicas.push({
+        url: `${baseUrl}/landing-dinamico/${industria}/${servicio}`,
+        lastModified: new Date().toISOString(),
+        changeFrequency: 'monthly',
+        priority: 0.8, // Alta prioridad para landing pages de conversión
+      });
+    }
+  }
+
   const allUrls = [
     ...staticPages, 
     ...servicePages, 
@@ -178,7 +212,8 @@ async function generateSitemap() {
     ...blogPostPages, 
     ...blogPaginationPages,
     ...blogTagPages,
-    ...blogTagPaginationPages
+    ...blogTagPaginationPages,
+    ...landingDinamicas
   ];
   
   // Filtrar URLs para incluir solo las que devuelven código 200
