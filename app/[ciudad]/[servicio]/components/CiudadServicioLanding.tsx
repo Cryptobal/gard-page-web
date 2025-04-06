@@ -23,6 +23,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import CotizacionForm from '@/app/cotizar/components/CotizacionForm';
 import CloudflareImage from '@/components/CloudflareImage';
+import ClientesCarrusel from '@/components/ClientesCarrusel';
 
 interface CiudadServicioLandingProps {
   content: CiudadServicioContent;
@@ -562,98 +563,8 @@ export default function CiudadServicioLanding({ content, params }: CiudadServici
         </div>
       </section>
       
-      {/* Testimonios - Social Proof */}
-      <section className="bg-gray-50 dark:bg-gray-800 py-20 md:py-28 overflow-hidden">
-        <div className="container mx-auto px-4 lg:px-8">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={staggerContainer}
-            className="space-y-16"
-          >
-            <motion.div variants={fadeInUp} className="text-center max-w-3xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                Clientes Satisfechos en {params.ciudad.replace('-', ' ')}
-              </h2>
-              <p className="text-lg text-gray-600 dark:text-gray-400">
-                Lo que dicen nuestros clientes sobre nuestro servicio
-              </p>
-            </motion.div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <motion.div
-                variants={fadeInUp}
-                className="bg-white dark:bg-gray-900 rounded-2xl shadow-md p-6"
-              >
-                <div className="flex items-center gap-2 mb-4">
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <svg key={star} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                    </svg>
-                  ))}
-                </div>
-                <p className="text-gray-700 dark:text-gray-300 mb-4">
-                  "El servicio de seguridad en nuestras oficinas de {params.ciudad.replace('-', ' ')} ha sido excepcional. Personal altamente capacitado y respuesta inmediata ante cualquier situación."
-                </p>
-                <div className="flex items-center justify-between border-t border-gray-100 dark:border-gray-800 pt-4 mt-4">
-                  <div>
-                    <h4 className="font-semibold">Carlos Martínez</h4>
-                    <p className="text-sm text-gray-500">Gerente de Operaciones</p>
-                  </div>
-                  <div className="h-10 w-10 bg-gray-100 dark:bg-gray-800 rounded-full"></div>
-                </div>
-              </motion.div>
-              
-              <motion.div
-                variants={fadeInUp}
-                className="bg-white dark:bg-gray-900 rounded-2xl shadow-md p-6"
-              >
-                <div className="flex items-center gap-2 mb-4">
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <svg key={star} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                    </svg>
-                  ))}
-                </div>
-                <p className="text-gray-700 dark:text-gray-300 mb-4">
-                  "Implementamos su sistema de {params.servicio.replace('-', ' ')} en nuestras instalaciones y ha mejorado significativamente nuestra seguridad. El equipo de soporte local en {params.ciudad.replace('-', ' ')} es muy profesional."
-                </p>
-                <div className="flex items-center justify-between border-t border-gray-100 dark:border-gray-800 pt-4 mt-4">
-                  <div>
-                    <h4 className="font-semibold">María Sánchez</h4>
-                    <p className="text-sm text-gray-500">Directora Administrativa</p>
-                  </div>
-                  <div className="h-10 w-10 bg-gray-100 dark:bg-gray-800 rounded-full"></div>
-                </div>
-              </motion.div>
-              
-              <motion.div
-                variants={fadeInUp}
-                className="bg-white dark:bg-gray-900 rounded-2xl shadow-md p-6"
-              >
-                <div className="flex items-center gap-2 mb-4">
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <svg key={star} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                    </svg>
-                  ))}
-                </div>
-                <p className="text-gray-700 dark:text-gray-300 mb-4">
-                  "Excelente atención y rapidez en la instalación. El conocimiento del equipo sobre las particularidades de seguridad en {params.ciudad.replace('-', ' ')} fue clave para adaptarse a nuestras necesidades."
-                </p>
-                <div className="flex items-center justify-between border-t border-gray-100 dark:border-gray-800 pt-4 mt-4">
-                  <div>
-                    <h4 className="font-semibold">Roberto Gómez</h4>
-                    <p className="text-sm text-gray-500">Gerente de Seguridad</p>
-                  </div>
-                  <div className="h-10 w-10 bg-gray-100 dark:bg-gray-800 rounded-full"></div>
-                </div>
-              </motion.div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      {/* Carrusel de clientes */}
+      <ClientesCarrusel />
       
       {/* FAQs Section */}
       <section 
