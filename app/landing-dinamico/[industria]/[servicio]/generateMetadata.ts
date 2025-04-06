@@ -21,8 +21,25 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
   const industriaFormatted = industria.charAt(0).toUpperCase() + industria.slice(1).replace(/-/g, ' ');
   const servicioFormatted = servicio.charAt(0).toUpperCase() + servicio.slice(1).replace(/-/g, ' ');
   
-  // Título dinámico optimizado para SEO
-  const title = `${servicioFormatted} para ${industriaFormatted} | Gard Security`;
+  // Título dinámico optimizado para SEO con variación según industria
+  let title = '';
+
+  // Crear título único basado en la combinación específica
+  if (industria === 'construccion') {
+    title = `${servicioFormatted} Profesional para ${industriaFormatted} | Gard Security`;
+  } else if (industria === 'hospitales') {
+    title = `${servicioFormatted} Especializado para ${industriaFormatted} y Clínicas | Gard Security`;
+  } else if (industria === 'mineria') {
+    title = `${servicioFormatted} Industrial para ${industriaFormatted} | Gard Security`;
+  } else if (industria === 'retail') {
+    title = `${servicioFormatted} para ${industriaFormatted} y Tiendas | Gard Security`;
+  } else if (industria === 'logistica') {
+    title = `${servicioFormatted} para Empresas de ${industriaFormatted} | Gard Security`;
+  } else if (industria === 'industrial') {
+    title = `${servicioFormatted} para Plantas ${industriaFormatted}es | Gard Security`;
+  } else {
+    title = `${servicioFormatted} para ${industriaFormatted} | Servicio Profesional | Gard Security`;
+  }
   
   // Descripción dinámica optimizada con palabras clave
   const description = `Protección profesional para ${industriaFormatted} con tecnología avanzada en ${servicioFormatted.toLowerCase()}. Solicita tu cotización sin compromiso y asegura tu negocio con expertos.`;
