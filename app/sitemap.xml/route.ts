@@ -1,13 +1,14 @@
 import { industries } from '../data/industries';
 import { getAllPosts, POSTS_PER_PAGE, getAllTags, getPostsByTag } from '@/lib/blog';
 import { isValidUrl } from '@/lib/utils';
+import { getCiudades } from '@/lib/data/ciudad-data';
 
 // Función para verificar y filtrar URLs
 async function filterValidUrls(urls: { url: string; lastModified: string; changeFrequency: string; priority: number; }[]) {
   console.log(`Verificando ${urls.length} URLs...`);
   
   // Agrupar las URLs en lotes para procesarlas de forma más eficiente
-  const batchSize = 10; // Procesar 10 URLs a la vez
+  const batchSize = 20; // Incrementamos a 20 URLs a la vez para mejorar rendimiento
   const validUrls: { url: string; lastModified: string; changeFrequency: string; priority: number; }[] = [];
   
   // Función para procesar un lote de URLs
@@ -59,6 +60,7 @@ async function generateSitemap() {
     '/politica-ambiental',
     '/reclutamiento',
     '/blog',
+    '/ciudades'
   ].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date().toISOString(),
@@ -79,7 +81,7 @@ async function generateSitemap() {
     '/servicios/guardias-de-seguridad',
     '/servicios/drones-seguridad',
     '/servicios/seguridad-electronica',
-    '/servicios/monitoreo',
+    '/servicios/central-monitoreo',
     '/servicios/seguridad-perimetral',
     '/servicios/auditoria-seguridad',
     '/servicios/consultoria',
@@ -90,6 +92,30 @@ async function generateSitemap() {
     changeFrequency: 'monthly',
     priority: 0.7,
   }));
+
+  // Páginas de ciudades
+  const ciudades = getCiudades();
+  const ciudadesPages = ciudades.map((ciudad) => ({
+    url: `${baseUrl}/ciudades/${ciudad.slug}`,
+    lastModified: new Date().toISOString(),
+    changeFrequency: 'monthly',
+    priority: 0.7,
+  }));
+
+  // Servicios en ciudades
+  const serviciosSlug = ['guardias-de-seguridad', 'seguridad-electronica', 'central-monitoreo'];
+  const ciudadesServicios = [];
+  
+  for (const ciudad of ciudades) {
+    for (const servicio of serviciosSlug) {
+      ciudadesServicios.push({
+        url: `${baseUrl}/ciudades/${ciudad.slug}/${servicio}`,
+        lastModified: new Date().toISOString(),
+        changeFrequency: 'monthly',
+        priority: 0.65,
+      });
+    }
+  }
 
   // Páginas de industrias dinámicas
   const industryPages = industries.map((industry) => {
@@ -222,7 +248,9 @@ async function generateSitemap() {
 
   const allUrls = [
     ...staticPages, 
-    ...servicePages, 
+    ...servicePages,
+    ...ciudadesPages,
+    ...ciudadesServicios,
     ...industryPages,
     ...combinacionesPages, 
     ...blogPostPages, 

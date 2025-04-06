@@ -6,12 +6,15 @@ Allow: /
 # Permitir explícitamente landing pages dinámicas
 Allow: /landing-dinamico/
 Allow: /landing-dinamico/*/*
+Allow: /ciudades/
+Allow: /ciudades/*
 
 # Archivos específicos a no indexar
 Disallow: /*.json$
 Disallow: /*_buildManifest.js$
 Disallow: /*_ssgManifest.js$
 Disallow: /*.js.map$
+Disallow: /*.css.map$
 
 # No indexar páginas de paginación más allá de la página 2
 Disallow: /blog/page/[3-9]

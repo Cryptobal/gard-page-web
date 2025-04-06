@@ -6,8 +6,7 @@
  * El problema: Next.js en desarrollo a veces tiene problemas para aplicar correctamente los metadatos
  * definidos en los archivos metadata.ts, especialmente cuando hay jerarquías complejas de rutas.
  * 
- * Esta implementación ahora no solo importa los metadatos, sino que también intenta aplicarlos
- * directamente en el DOM para solucionar los problemas de detección.
+ * Esta implementación revisada evita la duplicación de etiquetas.
  * 
  * No se usa en producción, solo es un hack para desarrollo.
  */
@@ -63,50 +62,68 @@ export function forceMetadataImport() {
   return allMetadata;
 }
 
-// Función para aplicar los metadatos directamente al DOM
+// Función para aplicar los metadatos directamente al DOM, evitando duplicaciones
 function applyMetadata(path: string, metadata: Metadata) {
   console.log(`[force-metadata] Aplicando metadatos para ruta ${path}`);
   
-  // Título
+  // Título - Eliminamos cualquier título existente antes de establecer uno nuevo
   if (metadata.title && typeof metadata.title === 'string') {
     document.title = metadata.title;
   }
   
-  // Description
+  // Description - Verificamos si existe antes de crear uno nuevo
   if (metadata.description) {
     const desc = metadata.description.toString();
     let descMeta = document.querySelector('meta[name="description"]');
+    
     if (!descMeta) {
       descMeta = document.createElement('meta');
       descMeta.setAttribute('name', 'description');
       document.head.appendChild(descMeta);
+    } else {
+      // Si ya existe, actualizamos su contenido
+      descMeta.setAttribute('content', desc);
     }
-    descMeta.setAttribute('content', desc);
   }
   
-  // Keywords
+  // Keywords - Verificamos si existe antes de crear uno nuevo
   if (metadata.keywords) {
     const keywords = Array.isArray(metadata.keywords) 
       ? metadata.keywords.join(', ') 
       : metadata.keywords.toString();
       
     let keywordsMeta = document.querySelector('meta[name="keywords"]');
+    
     if (!keywordsMeta) {
       keywordsMeta = document.createElement('meta');
       keywordsMeta.setAttribute('name', 'keywords');
       document.head.appendChild(keywordsMeta);
+    } else {
+      // Si ya existe, actualizamos su contenido
+      keywordsMeta.setAttribute('content', keywords);
     }
-    keywordsMeta.setAttribute('content', keywords);
   }
   
-  // Función auxiliar para crear o actualizar metatags
+  // Función auxiliar para crear o actualizar metatags, verificando duplicación
   const setMetaTag = (property: string, content: string) => {
+    // Eliminamos cualquier meta tag duplicado
+    const duplicates = document.querySelectorAll(`meta[property="${property}"]`);
+    
+    if (duplicates.length > 1) {
+      // Si hay más de un meta tag con la misma propiedad, elimina todos excepto el primero
+      for (let i = 1; i < duplicates.length; i++) {
+        duplicates[i].remove();
+      }
+    }
+    
     let meta = document.querySelector(`meta[property="${property}"]`);
+    
     if (!meta) {
       meta = document.createElement('meta');
       meta.setAttribute('property', property);
       document.head.appendChild(meta);
     }
+    
     meta.setAttribute('content', content);
   };
   
@@ -148,12 +165,25 @@ function applyMetadata(path: string, metadata: Metadata) {
   // Canonical URL
   if (metadata.alternates && metadata.alternates.canonical) {
     const canonical = metadata.alternates.canonical.toString();
+    
+    // Eliminar enlaces canónicos duplicados
+    const duplicateCanonicals = document.querySelectorAll('link[rel="canonical"]');
+    
+    if (duplicateCanonicals.length > 1) {
+      // Si hay más de un enlace canónico, elimina todos excepto el primero
+      for (let i = 1; i < duplicateCanonicals.length; i++) {
+        duplicateCanonicals[i].remove();
+      }
+    }
+    
     let link = document.querySelector('link[rel="canonical"]');
+    
     if (!link) {
       link = document.createElement('link');
       link.setAttribute('rel', 'canonical');
       document.head.appendChild(link);
     }
+    
     link.setAttribute('href', canonical);
   }
 } 

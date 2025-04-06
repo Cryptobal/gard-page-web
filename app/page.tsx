@@ -18,12 +18,15 @@ import IndustriasGridPage from './components/IndustriasGridPage';
 import CtaFinal from '@/components/ui/shared/CtaFinal';
 import type { Metadata } from 'next';
 
+// Define metadatos específicos para la página de inicio que sobrescriben los metadatos globales
 export const metadata: Metadata = {
   title: 'Gard Security | Empresa Líder en Seguridad Privada en Chile',
   description: 'Servicios profesionales de guardias de seguridad, monitoreo y tecnología de vigilancia para empresas. Soluciones integrales de protección a medida en Chile.',
+  // Importante: definir una URL canónica correcta
   alternates: {
     canonical: 'https://gard.cl',
   },
+  // Personalización del open graph para esta página
   openGraph: {
     title: 'Gard Security | Empresa Líder en Seguridad Privada en Chile',
     description: 'Servicios profesionales de guardias de seguridad, monitoreo y tecnología de vigilancia para empresas. Soluciones integrales de protección a medida en Chile.',

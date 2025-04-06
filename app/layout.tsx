@@ -25,6 +25,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" suppressHydrationWarning>
+      <head>
+        {/* Aseguramos que no hay duplicación de meta charset */}
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        {/* Next.js se encargará de insertar los metadatos aquí */}
+      </head>
       <body className={`${inter.variable} ${poppins.variable}`}>
         {/* Sistema de gestión de consentimiento de cookies */}
         <CookieConsent>
