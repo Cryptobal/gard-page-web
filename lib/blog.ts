@@ -40,9 +40,8 @@ export async function getPostBySlug(slug: string): Promise<BlogPost> {
   // Usar gray-matter para parsear la sección de metadatos
   const { data, content } = matter(fileContents);
   
-  // Por ahora utilizamos un ID de imagen genérico conocido
-  // Esto evitará errores 404 hasta que se configuren correctamente las imágenes
-  const imageId = cloudflareImages.sections.services;
+  // Usar el imageId del frontmatter si existe, de lo contrario usar un ID genérico
+  const imageId = data.imageId || cloudflareImages.sections.services;
   
   return {
     slug,
