@@ -1,6 +1,9 @@
 import { NextResponse } from 'next/server';
 import { getAllPosts } from '@/lib/blog';
 
+// Configuración para indicar que esta ruta es dinámica
+export const dynamic = 'force-dynamic';
+
 export async function GET(request: Request) {
   try {
     // Obtener la URL y extraer el parámetro limit
