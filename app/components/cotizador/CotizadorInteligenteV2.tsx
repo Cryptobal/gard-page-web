@@ -44,6 +44,7 @@ import {
 } from '@/lib/calculadora-costos';
 import { Loader } from '@googlemaps/js-api-loader';
 import API_URLS from '@/app/config/api';
+import { trackFormSubmission } from '@/lib/analytics/formTracking';
 
 // Opciones predefinidas para los controles de selección
 const OPCIONES_TIPO_TURNO: TipoTurno[] = ['2x5', '5x2', '4x4', '7x7', '14x14'];
@@ -455,34 +456,14 @@ export default function CotizadorInteligenteV2() {
           comentarios: ''
         });
         
-        // Obtener parámetros UTM de sessionStorage
-        const utmSource = sessionStorage.getItem('utm_source') || '';
-        const utmMedium = sessionStorage.getItem('utm_medium') || '';
-        const utmCampaign = sessionStorage.getItem('utm_campaign') || '';
-        const utmTerm = sessionStorage.getItem('utm_term') || '';
-        const utmContent = sessionStorage.getItem('utm_content') || '';
-        
-        // Google Tag Manager event - Añadir logs de depuración
-        console.log('ANTES: Intentando enviar evento GA4 - submit_form_cotizacion_inteligente');
-        console.log('DataLayer existe:', typeof window !== 'undefined' && !!window.dataLayer);
-        
-        if (typeof window !== 'undefined') {
-          window.dataLayer = window.dataLayer || [];
-          console.log('DataLayer actual:', window.dataLayer);
-          window.dataLayer.push({
-            event: "submit_form_cotizacion_inteligente",
-            form_type: "cotizador_inteligente",
-            page_path: window.location.pathname,
-            utm_source: utmSource,
-            utm_medium: utmMedium,
-            utm_campaign: utmCampaign,
-            utm_term: utmTerm,
-            utm_content: utmContent
-          });
-          console.log('DESPUÉS: Evento enviado a GA4');
-        } else {
-          console.log('ERROR: window no está definido');
-        }
+        // Evento de formulario enviado usando el helper centralizado
+        trackFormSubmission({
+          formType: 'cotizador_inteligente',
+          additionalData: {
+            costo_total: costoTotal,
+            roles_cantidad: roles.length
+          }
+        });
       } else {
         console.error('Error al enviar formulario:', response.statusText);
       }

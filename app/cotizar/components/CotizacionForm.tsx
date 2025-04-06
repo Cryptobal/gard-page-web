@@ -20,6 +20,7 @@ import {
 import { Loader } from '@googlemaps/js-api-loader';
 import { useGtmEvent } from '../../components/EventTracker';
 import API_URLS from '@/app/config/api';
+import { trackFormSubmission } from '@/lib/analytics/formTracking';
 
 // Declaración simplificada para Google Maps API
 declare global {
@@ -187,24 +188,12 @@ export default function CotizacionForm() {
         sessionStorage.removeItem('user_service_slug');
         sessionStorage.removeItem('user_industry_slug');
         
-        // Obtener parámetros UTM de sessionStorage
-        const utmSource = sessionStorage.getItem('utm_source') || '';
-        const utmMedium = sessionStorage.getItem('utm_medium') || '';
-        const utmCampaign = sessionStorage.getItem('utm_campaign') || '';
-        const utmTerm = sessionStorage.getItem('utm_term') || '';
-        const utmContent = sessionStorage.getItem('utm_content') || '';
-        
-        // Google Tag Manager event
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({
-          event: "submit_form_quotation",
-          form_type: "cotizacion",
-          page_path: window.location.pathname,
-          utm_source: utmSource,
-          utm_medium: utmMedium,
-          utm_campaign: utmCampaign,
-          utm_term: utmTerm,
-          utm_content: utmContent
+        // Evento de formulario enviado usando el helper centralizado
+        trackFormSubmission({
+          formType: 'cotizacion',
+          additionalData: {
+            tipo_industria: data.tipoIndustria
+          }
         });
       } else {
         setFormStatus('error');

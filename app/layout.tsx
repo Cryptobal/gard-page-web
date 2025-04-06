@@ -1,4 +1,6 @@
-import React from 'react';
+'use client';
+
+import React, { useState, useEffect } from 'react';
 import type { Metadata } from 'next';
 import { inter, poppins } from './fonts';
 import './globals.css';
@@ -11,6 +13,7 @@ import GoogleTagManager from './components/GoogleTagManager';
 import CookieConsent from './components/cookie/CookieConsent';
 import { GoogleAnalytics } from './components/cookie/ConsentAwareScript';
 import dynamic from 'next/dynamic';
+import { captureUtmParameters } from '@/lib/analytics/formTracking';
 
 // Importación forzada de metadatos en desarrollo - ahora debe hacerse en componentes cliente
 // Eliminamos la importación directa que estaba causando errores
@@ -86,6 +89,11 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  // Capturar UTMs en la carga inicial
+  useEffect(() => {
+    captureUtmParameters();
+  }, []);
+
   return (
     <html lang="es" suppressHydrationWarning>
       <body className={`${inter.variable} ${poppins.variable}`}>

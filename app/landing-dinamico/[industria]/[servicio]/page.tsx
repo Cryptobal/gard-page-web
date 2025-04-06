@@ -444,43 +444,6 @@ const DynamicLandingPage = () => {
       
       {/* Botón flotante para móviles */}
       <FloatingButton />
-      
-      {/* Script para Google Tag Manager */}
-      <script 
-        dangerouslySetInnerHTML={{ 
-          __html: `
-            // Función para crear y enviar eventos de dataLayer
-            function sendDataLayerEvent(eventName, params) {
-              if (typeof window !== 'undefined' && window.dataLayer) {
-                window.dataLayer.push({
-                  event: eventName,
-                  ...params
-                });
-              }
-            }
-            
-            // Registrar vista de página de landing dinámica
-            sendDataLayerEvent('view_landing_page', {
-              industria: '${industria}',
-              servicio: '${servicio}'
-            });
-            
-            // Capturar envío del formulario
-            document.addEventListener('DOMContentLoaded', function() {
-              const formulario = document.getElementById('cotizacion-form');
-              if (formulario) {
-                formulario.addEventListener('submit', function() {
-                  sendDataLayerEvent('form_submission', {
-                    industria: '${industria}',
-                    servicio: '${servicio}',
-                    landing: 'landing_dinamico'
-                  });
-                });
-              }
-            });
-          `
-        }}
-      />
     </>
   );
 }

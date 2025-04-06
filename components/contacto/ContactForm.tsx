@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { Send } from 'lucide-react';
 import API_URLS from '@/app/config/api';
+import { trackFormSubmission } from '@/lib/analytics/formTracking';
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -47,24 +48,12 @@ export default function ContactForm() {
         setEnviado(true);
         setFormData({ nombre: '', email: '', telefono: '', mensaje: '' });
         
-        // Obtener parámetros UTM de sessionStorage
-        const utmSource = sessionStorage.getItem('utm_source') || '';
-        const utmMedium = sessionStorage.getItem('utm_medium') || '';
-        const utmCampaign = sessionStorage.getItem('utm_campaign') || '';
-        const utmTerm = sessionStorage.getItem('utm_term') || '';
-        const utmContent = sessionStorage.getItem('utm_content') || '';
-        
-        // Google Tag Manager event
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({
-          event: "submit_form_contacto",
-          form_type: "contacto",
-          page_path: window.location.pathname,
-          utm_source: utmSource,
-          utm_medium: utmMedium,
-          utm_campaign: utmCampaign,
-          utm_term: utmTerm,
-          utm_content: utmContent
+        // Evento de formulario enviado usando el helper centralizado
+        trackFormSubmission({
+          formType: 'contacto',
+          additionalData: {
+            has_phone: !!formData.telefono
+          }
         });
       } else {
         setError('Hubo un problema al enviar el mensaje. Por favor, inténtelo de nuevo.');

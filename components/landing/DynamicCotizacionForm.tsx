@@ -7,6 +7,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { AlertCircle, Loader2, CheckCircle, ArrowRight } from 'lucide-react';
 import { Loader } from '@googlemaps/js-api-loader';
+import { trackFormSubmission } from '@/lib/analytics/formTracking';
 
 // Declaración para Google Maps API
 declare global {
@@ -185,14 +186,12 @@ export default function DynamicCotizacionForm({
         throw new Error('Error al enviar el formulario');
       }
       
-      // Lanzar evento de GA4 para conversión
-      if (typeof window !== 'undefined' && 'gtag' in window) {
-        (window as any).gtag('event', 'form_submission', {
-          industria,
-          servicio,
-          landing: 'landing_dinamico'
-        });
-      }
+      // Lanzar evento de formulario enviado usando el helper centralizado
+      trackFormSubmission({
+        formType: 'landing_dinamico',
+        industria,
+        servicio
+      });
       
       // Mostrar mensaje de éxito
       setSuccessMessage('¡Formulario enviado! Nos pondremos en contacto contigo a la brevedad.');

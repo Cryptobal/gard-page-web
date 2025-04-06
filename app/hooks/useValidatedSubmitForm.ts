@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from 'react';
+import { trackFormSubmission } from '@/lib/analytics/formTracking';
 
 interface SubmitOptions<T> {
   endpoint: string;
@@ -114,16 +115,11 @@ export function useValidatedSubmitForm() {
 
         // Push event to GTM if configured
         if (gtmEventName) {
-          window.dataLayer = window.dataLayer || [];
-          window.dataLayer.push({
-            event: gtmEventName,
-            form_type: gtmFormType || 'form',
-            page_path: window.location.pathname,
-            utm_source: utmSource,
-            utm_medium: utmMedium,
-            utm_campaign: utmCampaign,
-            utm_term: utmTerm,
-            utm_content: utmContent
+          trackFormSubmission({
+            formType: gtmFormType || 'form',
+            additionalData: {
+              ...payloadWithUtm.utm
+            }
           });
         }
 
