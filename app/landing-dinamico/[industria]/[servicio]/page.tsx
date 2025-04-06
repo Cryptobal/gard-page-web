@@ -184,7 +184,7 @@ const DynamicLandingPage = () => {
               Seguridad para {industria.replace(/-/g, ' ')}
             </span>
             <h1 className="text-4xl font-bold md:text-5xl text-white">
-              {servicio.charAt(0).toUpperCase() + servicio.slice(1).replace(/-/g, ' ')} para {industria.replace(/-/g, ' ')}
+              {servicio.charAt(0).toUpperCase() + servicio.slice(1).replace(/-/g, ' ')} para {industria.replace(/-/g, ' ')}: Soluciones de Seguridad Personalizadas
             </h1>
             <p className="text-xl text-gray-300">
               {landingText.subtitle}

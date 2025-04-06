@@ -89,10 +89,10 @@ export default function CiudadServicioPage({ params }: { params: { ciudad: strin
   const servicioSlugDatos = traducirSlugServicio(params.servicio);
   
   // Obtener textos genéricos del servicio desde los datos correctos
-  const servicioGenerico = getLandingText(params.servicio, servicioSlugDatos);
+  const servicioFormatted = getLandingText(params.servicio, servicioSlugDatos);
   
   // Obtener el contenido personalizado para ciudad-servicio
-  const contenido = getCiudadServicioContent(params.ciudad, servicioSlugDatos, ciudad, servicioGenerico);
+  const contenido = getCiudadServicioContent(params.ciudad, servicioSlugDatos, ciudad, servicioFormatted);
   
   // Obtener FAQs para este servicio
   const faqs = getFAQsByService(params.servicio);
@@ -203,7 +203,7 @@ export default function CiudadServicioPage({ params }: { params: { ciudad: strin
                 Seguridad en {ciudad.nombre}
               </span>
               <h1 className="text-4xl font-bold md:text-5xl text-white">
-                {contenido.title}
+                {`${params.servicio.replace(/-/g, ' ').charAt(0).toUpperCase() + params.servicio.replace(/-/g, ' ').slice(1)} de Seguridad en ${ciudad.nombre} para Empresas`}
               </h1>
               <p className="text-xl text-gray-300">
                 {contenido.subtitle}

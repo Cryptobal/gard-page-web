@@ -44,13 +44,11 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
   const ciudadFormatted = ciudad.nombre;
   const servicioFormatted = servicioSlug.charAt(0).toUpperCase() + servicioSlug.slice(1).replace(/-/g, ' ');
   
-  // Título dinámico optimizado para SEO
-  const title = `${servicioFormatted} en ${ciudadFormatted} | Gard Security`;
+  // Título dinámico con la nueva estructura optimizada para SEO
+  const title = `${servicioFormatted} en ${ciudadFormatted} | Servicios Profesionales de Seguridad | Gard Security`;
   
-  // Descripción dinámica para SEO
-  const description = contenido.description.length > 150 
-    ? contenido.description.substring(0, 150) + '...'
-    : contenido.description;
+  // Descripción dinámica con llamado a la acción clara y directa
+  const description = `Contrata ${servicioSlug.replace(/-/g, ' ')} en ${ciudadFormatted} con Gard Security. Protección confiable, rápida y personalizada para tu empresa o proyecto.`;
   
   // URL canónica
   const url = `https://gard.cl/ciudades/${ciudadSlug}/${servicioSlug}`;
@@ -162,7 +160,7 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
     title,
     description,
     openGraph: {
-      title: `${title} | Empresa Líder en Seguridad`,
+      title,
       description,
       url,
       siteName: 'Gard Security Chile',
@@ -179,7 +177,7 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${title} | Seguridad Profesional`,
+      title,
       description,
       images: [ogImage],
       creator: '@GardSecurity',
@@ -205,9 +203,9 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
       'og:locale': 'es_CL',
       'og:type': 'website',
       'twitter:site': '@GardSecurity',
-      'og:title': `${title} | Empresa Líder en Seguridad`,
+      'og:title': title,
       'og:image:alt': `${servicioFormatted} profesional en ${ciudadFormatted} - Gard Security Chile`,
-      'twitter:title': `${title} | Seguridad Profesional`,
+      'twitter:title': title,
       'twitter:image:alt': `${servicioFormatted} profesional en ${ciudadFormatted} - Gard Security Chile`,
       'author': 'Gard Security Chile',
       'og:site_name': 'Gard Security Chile',

@@ -36,17 +36,34 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
   
+  // Título y descripción con el formato solicitado
+  const title = `${servicio.name} para ${industry.name} | Protección Avanzada | Gard Security`;
+  const description = `Soluciones de ${servicio.name.toLowerCase()} para el sector ${industry.name.toLowerCase()}. Seguridad profesional con Gard Security.`;
+  
   return {
-    title: `${servicio.name} para ${industry.name} | Gard Security`,
-    description: `Servicio de ${servicio.name.toLowerCase()} especializado para el sector ${industry.name}. Soluciones de seguridad adaptadas a las necesidades específicas de esta industria.`,
+    title,
+    description,
     keywords: [
       `${servicio.name.toLowerCase()} para ${industry.name}`,
       `seguridad en ${industry.name}`,
       `${servicio.name.toLowerCase()} ${params.industria}`,
       'seguridad especializada',
       'servicios de protección',
-      `empresa de seguridad para ${industry.name}`
-    ]
+      `empresa de seguridad para ${industry.name}`,
+      `protección ${industry.name}`
+    ],
+    openGraph: {
+      title,
+      description,
+      url: `https://gard.cl/servicios/${params.slug}/${params.industria}`,
+      siteName: 'Gard Security Chile',
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+    }
   };
 }
 
@@ -91,7 +108,7 @@ export default function ServicioIndustriaPage({ params }: PageProps) {
         
         <div className="relative z-20 h-full flex flex-col justify-center items-center text-center px-4">
           <h1 className="text-white text-4xl md:text-5xl font-bold leading-tight max-w-4xl mb-6">
-            {servicio.name} para {industry.name}
+            {servicio.name} para {industry.name}: Seguridad Privada de Alto Nivel
           </h1>
           <p className="text-white text-xl max-w-2xl mb-8">
             Soluciones de {servicio.name.toLowerCase()} especializadas para el sector {industry.name}
