@@ -3,11 +3,20 @@ export function GET() {
 User-agent: *
 Allow: /
 
+# Permitir explícitamente landing pages dinámicas
+Allow: /landing-dinamico/
+Allow: /landing-dinamico/*/*
+
 # Archivos específicos a no indexar
 Disallow: /*.json$
 Disallow: /*_buildManifest.js$
 Disallow: /*_ssgManifest.js$
 Disallow: /*.js.map$
+
+# No indexar páginas de paginación más allá de la página 2
+Disallow: /blog/page/[3-9]
+Disallow: /blog/page/[1-9][0-9]
+Disallow: /blog/tag/*/page/
 
 # Sitemap
 Sitemap: https://www.gard.cl/sitemap.xml
