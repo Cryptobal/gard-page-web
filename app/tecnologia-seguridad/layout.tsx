@@ -1,10 +1,24 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Tecnología para Seguridad Empresarial | Gard Security',
-  description: 'Soluciones tecnológicas avanzadas para seguridad privada: sistemas de monitoreo, control de rondas, vigilancia inteligente y detección proactiva de amenazas.',
+  title: 'Tecnología de Seguridad Avanzada | Gard Security Chile',
+  description: 'Sistemas de monitoreo inteligente, control de rondas, vigilancia con IA y soluciones tecnológicas de vanguardia para la seguridad de tu empresa.',
   alternates: {
     canonical: 'https://gard.cl/tecnologia-seguridad',
+  },
+  openGraph: {
+    title: 'Tecnología de Seguridad Avanzada | Gard Security Chile',
+    description: 'Sistemas de monitoreo inteligente, control de rondas, vigilancia con IA y soluciones tecnológicas de vanguardia para la seguridad de tu empresa.',
+    url: 'https://gard.cl/tecnologia-seguridad',
+    siteName: 'Gard Security',
+    images: [{
+      url: 'https://gard.cl/images/og-tecnologia.jpg',
+      width: 1200,
+      height: 630,
+      alt: 'Tecnología de Vanguardia para Seguridad Privada'
+    }],
+    locale: 'es_CL',
+    type: 'website',
   },
 };
 
