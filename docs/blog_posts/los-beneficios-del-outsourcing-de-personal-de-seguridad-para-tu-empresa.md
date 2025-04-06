@@ -1,5 +1,5 @@
 ---
-title: Los Beneficios del Outsourcing de Personal de Seguridad para tu Empresa
+title: 'Outsourcing de Personal de Seguridad | Beneficios'
 slug: los-beneficios-del-outsourcing-de-personal-de-seguridad-para-tu-empresa
 date: '2024-06-04'
 description: >-

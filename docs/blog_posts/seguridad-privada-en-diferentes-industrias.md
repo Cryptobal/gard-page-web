@@ -1,5 +1,5 @@
 ---
-title: 'Gard Security: Protección Integral para Diversas Industrias'
+title: 'Seguridad Privada por Industrias | Guía Completa'
 slug: seguridad-privada-en-diferentes-industrias
 date: '2024-07-25'
 description: >-

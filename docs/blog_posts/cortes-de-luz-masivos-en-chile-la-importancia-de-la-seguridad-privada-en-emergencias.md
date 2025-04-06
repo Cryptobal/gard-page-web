@@ -1,7 +1,5 @@
 ---
-title: >-
-  Cortes de luz masivos en Chile: La importancia de la seguridad privada en
-  emergencias
+title: 'Seguridad Privada Durante Cortes de Luz en Chile'
 slug: >-
   cortes-de-luz-masivos-en-chile-la-importancia-de-la-seguridad-privada-en-emergencias
 date: '2025-02-26'

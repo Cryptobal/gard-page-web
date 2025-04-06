@@ -1,5 +1,5 @@
 ---
-title: 'Control Migratorio con Drones: Innovación en la Vigilancia Fronteriza'
+title: 'Drones en Control Migratorio | Innovación Fronteriza'
 slug: control-migratorio
 date: '2024-09-09'
 description: >-

@@ -1,5 +1,5 @@
 ---
-title: 'Ranking 2025: Las Empresas de Guardias de Seguridad Más Confiables en Chile'
+title: 'Top Empresas de Guardias 2025 | Ranking Chile'
 slug: ranking-2025-las-empresas-de-guardias-de-seguridad-mas-confiables-en-chile
 date: '2025-03-06'
 description: >-

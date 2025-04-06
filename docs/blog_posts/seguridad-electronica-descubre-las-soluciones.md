@@ -1,5 +1,5 @@
 ---
-title: 'Seguridad Electrónica: Claves para Prevenir Incidentes en tus Instalaciones'
+title: 'Seguridad Electrónica | Soluciones Innovadoras'
 slug: seguridad-electronica-descubre-las-soluciones
 date: '2024-05-29'
 description: "Descubre como la Seguridad Electrónica previene delitos \_   Introducción   En un mundo donde la tecnología avanza rápidamente, la seguridad electrónica se ha co..."

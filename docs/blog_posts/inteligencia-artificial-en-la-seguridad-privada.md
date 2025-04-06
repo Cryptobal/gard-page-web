@@ -1,5 +1,5 @@
 ---
-title: 'Inteligencia Artificial en Seguridad: Transformando la Vigilancia Privada'
+title: 'IA en Seguridad Privada | Innovación Gard'
 slug: inteligencia-artificial-en-la-seguridad-privada
 date: '2024-04-28'
 description: >-

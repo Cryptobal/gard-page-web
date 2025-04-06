@@ -1,5 +1,5 @@
 ---
-title: Claves para Elegir la Mejor Empresa de Seguridad para Trabajar
+title: 'Trabajo de Guardia de Seguridad | Profesión Gard'
 slug: trabajo-de-guarida-de-seguridad
 date: '2024-04-23'
 description: >-

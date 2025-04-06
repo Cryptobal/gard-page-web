@@ -1,5 +1,5 @@
 ---
-title: Los cambios claves de la nueva Ley de Seguridad Privada
+title: 'Nueva Ley de Seguridad Privada | Análisis Gard'
 slug: nueva-ley-de-seguridad-privada
 date: '2024-04-10'
 description: >-

@@ -1,7 +1,5 @@
 ---
-title: >-
-  Consejos Prácticos para Garantizar la Seguridad en Fiestas Patrias y Eventos
-  Masivos
+title: 'Seguridad en Fiestas Patrias | Protección Gard'
 slug: seguridad-en-fiestas-patrias
 date: '2024-09-04'
 description: >-

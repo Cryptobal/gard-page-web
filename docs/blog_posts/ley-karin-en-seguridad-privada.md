@@ -1,5 +1,5 @@
 ---
-title: Ley Karin &#8211; Impacto en Recursos Humanos y Seguridad Privada
+title: 'Ley Karin y Seguridad Privada | Implicaciones'
 slug: ley-karin-en-seguridad-privada
 date: '2024-07-23'
 description: >-

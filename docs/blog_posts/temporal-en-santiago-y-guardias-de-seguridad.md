@@ -1,5 +1,5 @@
 ---
-title: La Importancia de la Seguridad Privada Durante Temporales de Viento y Lluvia
+title: 'Guardias en Temporales de Santiago | Servicios'
 slug: temporal-en-santiago-y-guardias-de-seguridad
 date: '2024-08-05'
 description: >-

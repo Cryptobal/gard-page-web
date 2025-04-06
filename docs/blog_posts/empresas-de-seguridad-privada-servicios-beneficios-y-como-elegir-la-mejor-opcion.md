@@ -1,7 +1,5 @@
 ---
-title: >-
-  Empresas de Seguridad Privada: Servicios, Beneficios y Cómo Elegir la Mejor
-  Opción
+title: 'Empresas de Seguridad: Servicios y Cómo Elegir'
 slug: >-
   empresas-de-seguridad-privada-servicios-beneficios-y-como-elegir-la-mejor-opcion
 date: '2024-05-21'

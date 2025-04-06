@@ -1,7 +1,5 @@
 ---
-title: >-
-  Inteligencia Artificial en Seguridad Privada: Revolucionando la Protección y
-  Vigilancia
+title: 'IA en Protección y Vigilancia | Tecnología Gard'
 slug: >-
   inteligencia-artificial-en-seguridad-privada-revolucionando-la-proteccion-y-vigilancia
 date: '2024-06-22'

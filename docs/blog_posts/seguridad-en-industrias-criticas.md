@@ -1,7 +1,5 @@
 ---
-title: >-
-  Guía completa sobre la seguridad en industrias críticas: minería y transporte
-  de carga
+title: 'Protección para Industrias Críticas | Gard'
 slug: seguridad-en-industrias-criticas
 date: '2024-08-26'
 description: >-

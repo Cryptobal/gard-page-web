@@ -1,5 +1,5 @@
 ---
-title: La Importancia de la Central de Monitoreo en la Seguridad de Empresas
+title: 'Centrales de Monitoreo: Claves en Seguridad'
 slug: la-importancia-de-la-central-de-monitoreo-en-la-seguridad-de-empresas
 date: '2024-06-04'
 description: "Descubre la importancia de la\_central de monitoreo\_en una empresa, sus funciones clave y cómo mejora la seguridad y eficiencia operativa.    Introducción   En e..."

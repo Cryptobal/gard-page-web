@@ -1,7 +1,5 @@
 ---
-title: >-
-  10 Consejos Clave para Proteger tu Empresa de Robos en la Actual Crisis de
-  Delincuencia
+title: '10 Consejos Ante la Crisis de Delincuencia | Gard'
 slug: crisis-de-delincuencia
 date: '2024-08-26'
 description: >-

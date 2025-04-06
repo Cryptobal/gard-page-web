@@ -1,7 +1,5 @@
 ---
-title: >-
-  Control de Rondas Online: Beneficios y Transparencia en la Seguridad Privada
-  con Gard
+title: 'Control de Rondas Online: Ventajas en Seguridad'
 slug: >-
   control-de-rondas-online-beneficios-y-transparencia-en-la-seguridad-privada-con-gard
 date: '2024-06-11'

@@ -1,7 +1,5 @@
 ---
-title: >-
-  Cómo la Seguridad Privada y los Guardias de Seguridad Pueden Ayudar Durante
-  Temporales de Lluvia
+title: 'Seguridad Privada en Temporales | Protección Gard'
 slug: >-
   como-la-seguridad-privada-y-los-guardias-de-seguridad-pueden-ayudar-durante-temporales-de-lluvia
 date: '2024-05-20'

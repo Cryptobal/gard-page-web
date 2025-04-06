@@ -1,7 +1,5 @@
 ---
-title: >-
-  Estrategias Efectivas para Mejorar la Vigilancia: Un Esfuerzo Compartido entre
-  Seguridad Privada y Pública
+title: 'Vigilancia Compartida | Seguridad Colaborativa'
 slug: la-vigilancia-actual-un-esfuerzo-compartido
 date: '2024-04-11'
 description: >-

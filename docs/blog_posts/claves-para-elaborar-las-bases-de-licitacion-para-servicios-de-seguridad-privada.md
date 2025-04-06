@@ -1,7 +1,5 @@
 ---
-title: >-
-  Claves para Elaborar las Bases de Licitación para Servicios de Seguridad
-  Privada
+title: 'Guía para Licitaciones de Seguridad Privada | Gard'
 slug: >-
   claves-para-elaborar-las-bases-de-licitacion-para-servicios-de-seguridad-privada
 date: '2024-05-10'

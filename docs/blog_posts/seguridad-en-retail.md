@@ -1,5 +1,5 @@
 ---
-title: 10 Claves Efectivas para Evitar Robos en la Industria del Retail
+title: 'Seguridad en Retail | Soluciones Especializadas'
 slug: seguridad-en-retail
 date: '2024-08-26'
 description: >-

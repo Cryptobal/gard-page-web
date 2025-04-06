@@ -1,7 +1,5 @@
 ---
-title: >-
-  El Papel Clave de los Guardias de Seguridad en Restaurantes: Prevención de
-  Incidentes como el Caso de Denisse Campos
+title: 'Guardias de Seguridad en Restaurantes | Protección'
 slug: guardias-de-seguridad-en-restaurantes
 date: '2025-02-12'
 description: >-

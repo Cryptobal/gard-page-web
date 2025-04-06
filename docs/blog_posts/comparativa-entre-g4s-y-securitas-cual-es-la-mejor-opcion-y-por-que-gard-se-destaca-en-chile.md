@@ -1,7 +1,5 @@
 ---
-title: >-
-  Comparativa entre G4S y Securitas: ¿Cuál es la Mejor Opción y por Qué Gard se
-  Destaca en Chile?
+title: 'G4S vs Securitas vs Gard: Comparativa en Chile'
 slug: >-
   comparativa-entre-g4s-y-securitas-cual-es-la-mejor-opcion-y-por-que-gard-se-destaca-en-chile
 date: '2024-06-22'
