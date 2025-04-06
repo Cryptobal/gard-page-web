@@ -97,8 +97,8 @@ export default function Header() {
                 <CloudflareImage
                   imageId={isDarkMode ? cloudflareImages.logo.darkMobile : cloudflareImages.logo.default}
                   alt="Gard Security Logo"
-                  width={scrolled ? 120 : 140}
-                  height={scrolled ? 34 : 40}
+                  width={scrolled ? 80 : 90}
+                  height={scrolled ? 22 : 28}
                   priority
                   className="transition-all duration-300 ease-in-out"
                 />
