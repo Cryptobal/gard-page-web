@@ -1,16 +1,14 @@
 'use client';
 
 import React from 'react';
-import { Mail, Phone, MapPin, Clock, MessageSquare } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock, MessageSquare, Shield, Users, HeadphonesIcon } from 'lucide-react';
 import Link from 'next/link';
 import ContactForm from './ContactForm';
-import CanonicalUrl from '@/components/seo/CanonicalUrl';
 import SEODevPanel from '@/components/seo/SEODevPanel';
 
 export default function ContactoLandingClient() {
   return (
     <>
-      <CanonicalUrl />
       <SEODevPanel />
       <div className="gard-container py-20 pt-32">
         <h1 className="text-heading-2 mb-6">Contacto directo con expertos en seguridad</h1>
@@ -21,6 +19,33 @@ export default function ContactoLandingClient() {
           brindarle asesoramiento personalizado sobre soluciones de seguridad adaptadas a sus 
           necesidades específicas.
         </p>
+
+        <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl mb-10">
+          <h2 className="text-heading-4 mb-4">Departamentos especializados</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="flex items-start">
+              <Shield className="h-6 w-6 text-[#F97316] mr-3 mt-1 flex-shrink-0" />
+              <div>
+                <h3 className="font-semibold mb-1">Servicios de Guardias</h3>
+                <p className="text-sm text-muted-foreground">Consultas sobre personal de seguridad, cobertura y servicios especiales.</p>
+              </div>
+            </div>
+            <div className="flex items-start">
+              <Users className="h-6 w-6 text-[#F97316] mr-3 mt-1 flex-shrink-0" />
+              <div>
+                <h3 className="font-semibold mb-1">Recursos Humanos</h3>
+                <p className="text-sm text-muted-foreground">Reclutamiento, capacitación y desarrollo profesional.</p>
+              </div>
+            </div>
+            <div className="flex items-start">
+              <HeadphonesIcon className="h-6 w-6 text-[#F97316] mr-3 mt-1 flex-shrink-0" />
+              <div>
+                <h3 className="font-semibold mb-1">Atención al Cliente</h3>
+                <p className="text-sm text-muted-foreground">Soporte técnico y resolución de incidencias 24/7.</p>
+              </div>
+            </div>
+          </div>
+        </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
           <div>
@@ -111,6 +136,14 @@ export default function ContactoLandingClient() {
                 Este servicio garantiza respuesta inmediata ante cualquier incidente de seguridad.
               </p>
             </div>
+
+            <div>
+              <h3 className="font-semibold mb-2">¿Cómo se maneja la confidencialidad de mi información?</h3>
+              <p className="text-muted-foreground">
+                Toda la información proporcionada es tratada con estricta confidencialidad siguiendo protocolos de seguridad informática avanzados. 
+                Trabajamos de acuerdo con la normativa vigente de protección de datos y aseguramos que su información solo se utiliza para los fines específicos de su consulta.
+              </p>
+            </div>
           </div>
           
           <div className="mt-8 bg-primary/5 p-6 rounded-xl">
@@ -130,6 +163,22 @@ export default function ContactoLandingClient() {
                 </Link>
               </div>
             </div>
+          </div>
+        </div>
+
+        <div className="mt-16 border-t pt-8">
+          <h2 className="text-heading-4 mb-6">Nuestra ubicación</h2>
+          <div className="aspect-video w-full rounded-xl overflow-hidden">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3137.1231600930986!2d-70.78127958447793!3d-33.357197580810674!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662c8ce0cb09517%3A0xa05f4ac0dd11a119!2sCamino%20Los%20Trapenses%202140%2C%20Lo%20Barnechea%2C%20Regi%C3%B3n%20Metropolitana!5e0!3m2!1ses!2scl!4v1656959262521!5m2!1ses!2scl" 
+              width="100%" 
+              height="100%" 
+              style={{ border: 0 }} 
+              allowFullScreen 
+              loading="lazy" 
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Ubicación de oficinas Gard Security"
+            ></iframe>
           </div>
         </div>
       </div>
