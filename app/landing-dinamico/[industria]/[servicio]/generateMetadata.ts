@@ -41,8 +41,50 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
     title = `${servicioFormatted} para ${industriaFormatted} | Servicio Profesional | Gard Security`;
   }
   
-  // Descripción dinámica optimizada con palabras clave
-  const description = `Protección profesional para ${industriaFormatted} con tecnología avanzada en ${servicioFormatted.toLowerCase()}. Solicita tu cotización sin compromiso y asegura tu negocio con expertos.`;
+  // Descripción dinámica optimizada con palabras clave y específica por industria y servicio
+  let description = '';
+  
+  // Construir descripciones específicas por combinación de industria/servicio
+  if (servicio.includes('guardias')) {
+    if (industria === 'retail') {
+      description = `Guardias de seguridad especializados en retail. Prevenimos robos, controlamos accesos y protegemos tiendas con personal capacitado. Soluciones 24/7 para comercios en Chile.`;
+    } else if (industria === 'construccion') {
+      description = `Guardias especializados para obras y faenas de construcción. Control de acceso, vigilancia de materiales y prevención de robos. Servicio certificado y confiable 24/7.`;
+    } else if (industria === 'mineria') {
+      description = `Guardias de seguridad capacitados para yacimientos mineros. Control de acceso, vigilancia perimetral y monitoreo de activos críticos. Personal certificado para entornos de alto riesgo.`;
+    } else if (industria === 'hospitales') {
+      description = `Guardias de seguridad para hospitales y clínicas. Control de visitas, protección de areas restringidas y seguridad para pacientes y personal médico. Servicio 24/7 discreto y eficiente.`;
+    } else if (industria === 'logistica') {
+      description = `Guardias de seguridad para bodegas y centros de distribución. Controlamos accesos, supervisamos carga/descarga y protegemos inventario. Servicio profesional para empresas de logística.`;
+    } else {
+      description = `Guardias de seguridad profesionales para ${industriaFormatted}. Personal capacitado que asegura la protección de tus instalaciones, control de acceso y vigilancia permanente 24/7.`;
+    }
+  } else if (servicio.includes('camaras') || servicio.includes('cctv')) {
+    if (industria === 'retail') {
+      description = `Sistemas de cámaras de seguridad para retail. Vigilancia de tiendas, detección de robos y analítica para prevención de pérdidas. Monitoreo remoto 24/7 para comercios.`;
+    } else if (industria === 'construccion') {
+      description = `Cámaras de seguridad para obras en construcción. Vigilancia de materiales, monitoreo de personal y prevención de intrusiones. Sistemas adaptados a entornos de construcción.`;
+    } else if (industria === 'mineria') {
+      description = `Cámaras de seguridad industriales para minería. Vigilancia de perímetros extensos, monitoreo de operaciones y zonas críticas. Equipos resistentes para condiciones extremas.`;
+    } else {
+      description = `Sistemas de cámaras de seguridad para ${industriaFormatted}. Monitoreo continuo, detección temprana de incidentes y videoanálisis inteligente con respaldo en la nube.`;
+    }
+  } else if (servicio.includes('alarmas')) {
+    if (industria === 'retail') {
+      description = `Sistemas de alarma para tiendas y comercios. Detección de intrusos, botones de pánico y conexión directa a central de monitoreo. Protección integral para negocios retail.`;
+    } else if (industria === 'industrial') {
+      description = `Alarmas industriales de alta seguridad. Detección temprana de intrusiones, sistemas contra incendios y sensores especializados para plantas industriales. Monitoreo 24/7.`;
+    } else {
+      description = `Sistemas de alarma profesionales para ${industriaFormatted}. Detectamos intrusiones, alertamos en tiempo real y coordinamos respuesta inmediata con nuestra central de monitoreo.`;
+    }
+  } else if (servicio.includes('monitoreo')) {
+    description = `Central de monitoreo 24/7 para ${industriaFormatted}. Vigilancia remota permanente, verificación de alertas y coordinación inmediata ante incidentes. Tecnología avanzada y operadores certificados.`;
+  } else if (servicio.includes('control-acceso')) {
+    description = `Sistemas de control de acceso para ${industriaFormatted}. Tecnología biométrica, tarjetas de proximidad, gestión de visitas y registro detallado de entradas y salidas. Seguridad integral.`;
+  } else {
+    // Descripción genérica mejorada si no hay una específica
+    description = `${servicioFormatted} de alta calidad para ${industriaFormatted}. Tecnología avanzada, personal capacitado y soluciones a medida. Protegemos tu negocio con servicios profesionales certificados.`;
+  }
   
   // URL canónica
   const url = `https://gard.cl/landing-dinamico/${industria}/${servicio}`;
