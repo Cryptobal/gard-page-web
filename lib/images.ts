@@ -50,6 +50,11 @@ export const cloudflareImages = {
     client4: '732f1a26-ecdd-4dbd-cae3-f62b3f212700',
     client5: '068a0aaa-47f0-428c-bdf0-b8f7f780cb00',
   },
+  
+  // Blog posts
+  blog: {
+    nuevaLeySeguridad: '0ba18961-6cc4-4e17-7473-00213237b400',
+  }
 };
 
 // ID de la cuenta de Cloudflare Images
