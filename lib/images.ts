@@ -4,6 +4,8 @@ export const cloudflareImages = {
   logo: {
     default: '7661cf51-c66b-4419-9229-e6e50f76ff00',
     white: '24172844-496d-4cd1-4ef0-894b5574e700',
+    dark: '49b89002-6bb9-41b9-50ad-e6b91e5f6d00',
+    darkMobile: 'f1cad221-0c11-43c4-3142-a53a6febbd00',
     icon: '89a214ef-5112-4c4e-912e-4f56514c1600',
   },
   

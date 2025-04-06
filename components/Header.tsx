@@ -89,14 +89,46 @@ export default function Header() {
     <header className={headerClasses}>
       <div className="gard-container px-4 md:px-6 flex items-center justify-between">
         <Link href="/" className="relative z-50 flex items-center transition-all duration-300 ease-in-out">
-          <CloudflareImage
-            imageId={cloudflareImages.logo.default}
-            alt="Gard Security Logo"
-            width={scrolled ? 120 : 140}
-            height={scrolled ? 34 : 40}
-            priority
-            className="transition-all duration-300 ease-in-out"
-          />
+          {/* Logo condicional según el tema y tamaño de pantalla */}
+          {mounted && (
+            <>
+              {/* Logo para móviles en tema oscuro */}
+              <div className="md:hidden">
+                <CloudflareImage
+                  imageId={isDarkMode ? cloudflareImages.logo.darkMobile : cloudflareImages.logo.default}
+                  alt="Gard Security Logo"
+                  width={scrolled ? 120 : 140}
+                  height={scrolled ? 34 : 40}
+                  priority
+                  className="transition-all duration-300 ease-in-out"
+                />
+              </div>
+              
+              {/* Logo para desktop */}
+              <div className="hidden md:block">
+                <CloudflareImage
+                  imageId={isDarkMode ? cloudflareImages.logo.dark : cloudflareImages.logo.default}
+                  alt="Gard Security Logo"
+                  width={scrolled ? 120 : 140}
+                  height={scrolled ? 34 : 40}
+                  priority
+                  className="transition-all duration-300 ease-in-out"
+                />
+              </div>
+            </>
+          )}
+          
+          {/* Fallback mientras se carga el tema */}
+          {!mounted && (
+            <CloudflareImage
+              imageId={cloudflareImages.logo.default}
+              alt="Gard Security Logo"
+              width={scrolled ? 120 : 140}
+              height={scrolled ? 34 : 40}
+              priority
+              className="transition-all duration-300 ease-in-out"
+            />
+          )}
         </Link>
 
         {/* Navegación de escritorio */}
