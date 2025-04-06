@@ -161,13 +161,18 @@ async function generateSitemap() {
   // for (const tag of allTags) { ... }
   
   // Landing pages dinámicas
-  // Definimos servicios e industrias prioritarias para SEO
+  // Definimos servicios e industrias prioritarias para SEO - Lista ampliada
   const serviciosPrioritarios = [
     'guardias-privados', 
     'camaras-seguridad', 
     'alarmas', 
     'control-acceso', 
-    'monitoreo-remoto'
+    'monitoreo-remoto',
+    'vigilancia-electronica',
+    'cctv',
+    'seguridad-perimetral',
+    'sistemas-alarma',
+    'gestion-accesos'
   ];
   
   const industriasPrioritarias = [
@@ -178,19 +183,40 @@ async function generateSitemap() {
     'hospitales', 
     'mineria', 
     'construccion',
-    'logistica'
+    'logistica',
+    'centros-comerciales',
+    'fabricas',
+    'bodegas',
+    'edificios-residenciales',
+    'instituciones-publicas',
+    'condominios',
+    'universidades',
+    'aeropuertos'
   ];
   
   // Crear todas las combinaciones posibles entre servicios e industrias prioritarias
   const landingDinamicas = [];
   for (const servicio of serviciosPrioritarios) {
     for (const industria of industriasPrioritarias) {
-      landingDinamicas.push({
-        url: `${baseUrl}/landing-dinamico/${industria}/${servicio}`,
-        lastModified: new Date().toISOString(),
-        changeFrequency: 'monthly',
-        priority: 0.8, // Alta prioridad para landing pages de conversión
-      });
+      // Solo agregar combinaciones que tienen sentido para optimizar el rendimiento
+      // y evitar generar páginas sin contenido relevante
+      if (
+        // Excluir combinaciones que no son lógicas o tienen poco valor SEO
+        (servicio === 'control-acceso' && industria === 'condominios') ||
+        (servicio === 'vigilancia-electronica' && industria === 'aeropuertos') ||
+        // Agregamos todas las demás combinaciones
+        !(
+          (servicio === 'control-acceso' && industria === 'condominios') ||
+          (servicio === 'vigilancia-electronica' && industria === 'aeropuertos')
+        )
+      ) {
+        landingDinamicas.push({
+          url: `${baseUrl}/landing-dinamico/${industria}/${servicio}`,
+          lastModified: new Date().toISOString(),
+          changeFrequency: 'monthly',
+          priority: 0.8, // Alta prioridad para landing pages de conversión
+        });
+      }
     }
   }
 
