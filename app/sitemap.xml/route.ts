@@ -135,16 +135,19 @@ async function generateSitemap() {
     priority: 0.6,
   }));
   
-  // Páginas de paginación del blog
+  // Páginas de paginación del blog principal (solo la primera página adicional)
+  // Se limita la paginación para evitar URLs no canónicas
   const totalPages = Math.ceil(blogPosts.length / POSTS_PER_PAGE);
-  const blogPaginationPages = Array.from({ length: totalPages - 1 }, (_, i) => ({
-    url: `${baseUrl}/blog/page/${i + 2}`, // Páginas 2 en adelante
-    lastModified: new Date().toISOString(),
-    changeFrequency: 'weekly',
-    priority: 0.5,
-  }));
+  const blogPaginationPages = totalPages > 1 ? [
+    {
+      url: `${baseUrl}/blog/page/2`, // Solo incluimos la página 2 como referencia
+      lastModified: new Date().toISOString(),
+      changeFrequency: 'weekly',
+      priority: 0.5,
+    }
+  ] : [];
   
-  // Páginas de etiquetas del blog
+  // Páginas de etiquetas del blog (solo las páginas principales, sin paginación)
   const allTags = await getAllTags();
   const blogTagPages = allTags.map((tag) => ({
     url: `${baseUrl}/blog/tag/${encodeURIComponent(tag)}`,
@@ -153,23 +156,10 @@ async function generateSitemap() {
     priority: 0.6,
   }));
 
-  // Páginas de paginación por etiqueta
-  const blogTagPaginationPages = [];
-  for (const tag of allTags) {
-    const { totalPages } = await getPostsByTag(tag);
-    
-    if (totalPages > 1) {
-      const pages = Array.from({ length: totalPages - 1 }, (_, i) => ({
-        url: `${baseUrl}/blog/tag/${encodeURIComponent(tag)}/page/${i + 2}`, // Páginas 2 en adelante
-        lastModified: new Date().toISOString(),
-        changeFrequency: 'weekly',
-        priority: 0.5,
-      }));
-      
-      blogTagPaginationPages.push(...pages);
-    }
-  }
-
+  // Se elimina completamente la sección de paginación por etiqueta que está causando los errores
+  // const blogTagPaginationPages = [];
+  // for (const tag of allTags) { ... }
+  
   // Landing pages dinámicas
   // Definimos servicios e industrias prioritarias para SEO
   const serviciosPrioritarios = [
@@ -212,7 +202,7 @@ async function generateSitemap() {
     ...blogPostPages, 
     ...blogPaginationPages,
     ...blogTagPages,
-    ...blogTagPaginationPages,
+    // Se elimina blogTagPaginationPages del array final
     ...landingDinamicas
   ];
   
