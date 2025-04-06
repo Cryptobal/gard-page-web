@@ -1,7 +1,7 @@
 ---
 title: Impacto de la Nueva Ley de Seguridad Privada en las Empresas del Sector
 slug: impacto-nueva-ley-seguridad-privada-empresas
-date: '2024-04-06'
+date: '2025-04-06'
 description: >-
   Descubre cómo la nueva Ley de Seguridad Privada afecta a las empresas del sector. Conoce sus implicancias, desafíos y oportunidades clave para mantenerse competitivo en el mercado.
 tags:
