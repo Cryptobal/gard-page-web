@@ -125,6 +125,110 @@ export const serviciosPorIndustria: IndustriaServicios[] = [
       "seguridad-electronica",
       "central-monitoreo"
     ]
+  },
+  // NUEVAS INDUSTRIAS
+  {
+    industria: "sector-financiero",
+    servicios: [
+      "guardias-de-seguridad",
+      "seguridad-electronica",
+      "central-monitoreo",
+      "seguridad-perimetral",
+      "auditoria-seguridad",
+      "consultoria",
+      "prevencion-intrusiones"
+    ]
+  },
+  {
+    industria: "agroindustria",
+    servicios: [
+      "guardias-de-seguridad",
+      "seguridad-electronica",
+      "central-monitoreo",
+      "drones-seguridad",
+      "seguridad-perimetral"
+    ]
+  },
+  {
+    industria: "centros-comerciales",
+    servicios: [
+      "guardias-de-seguridad",
+      "seguridad-electronica",
+      "central-monitoreo",
+      "prevencion-intrusiones"
+    ]
+  },
+  {
+    industria: "manufactura",
+    servicios: [
+      "guardias-de-seguridad",
+      "seguridad-electronica",
+      "central-monitoreo",
+      "seguridad-perimetral",
+      "auditoria-seguridad"
+    ]
+  },
+  {
+    industria: "condominios-residenciales",
+    servicios: [
+      "guardias-de-seguridad",
+      "seguridad-electronica",
+      "central-monitoreo",
+      "seguridad-perimetral"
+    ]
+  },
+  {
+    industria: "centros-de-datos",
+    servicios: [
+      "guardias-de-seguridad",
+      "seguridad-electronica",
+      "central-monitoreo",
+      "seguridad-perimetral",
+      "prevencion-intrusiones",
+      "auditoria-seguridad",
+      "consultoria"
+    ]
+  },
+  {
+    industria: "puertos-terminales",
+    servicios: [
+      "guardias-de-seguridad",
+      "seguridad-electronica",
+      "central-monitoreo",
+      "drones-seguridad",
+      "seguridad-perimetral"
+    ]
+  },
+  {
+    industria: "sector-energetico",
+    servicios: [
+      "guardias-de-seguridad",
+      "seguridad-electronica",
+      "central-monitoreo",
+      "drones-seguridad",
+      "seguridad-perimetral",
+      "auditoria-seguridad"
+    ]
+  },
+  {
+    industria: "farmaceutica",
+    servicios: [
+      "guardias-de-seguridad",
+      "seguridad-electronica",
+      "central-monitoreo",
+      "seguridad-perimetral",
+      "auditoria-seguridad",
+      "consultoria"
+    ]
+  },
+  {
+    industria: "instalaciones-deportivas",
+    servicios: [
+      "guardias-de-seguridad",
+      "seguridad-electronica",
+      "central-monitoreo",
+      "drones-seguridad"
+    ]
   }
 ];
 
@@ -166,6 +270,76 @@ const servicioIndustriaDataMap: Record<string, ServicioIndustriaData> = {
     ],
     casoExito: "Redujimos las pérdidas por hurto en un 67% para una cadena nacional de retail, implementando un sistema integrado de guardias visibles y encubiertos con tecnología de apoyo.",
     testimonio: "La profesionalidad de los guardias de Gard ha transformado nuestra seguridad. Su enfoque discreto pero efectivo mantiene nuestra imagen de marca mientras protege nuestros activos."
+  },
+  
+  // NUEVAS COMBINACIONES ESPECÍFICAS
+  
+  // Guardias de seguridad para sector financiero
+  "guardias-de-seguridad__sector-financiero": {
+    description: "Nuestro servicio de guardias de seguridad para instituciones financieras ofrece protección de máximo nivel con personal altamente capacitado en la detección de amenazas específicas del sector bancario. Garantizamos la protección de clientes, empleados y activos de valor con estrictos protocolos de seguridad.",
+    desafios: [
+      "Prevención de robos y atracos en sucursales bancarias",
+      "Protección de áreas de alta sensibilidad como bóvedas y cajeros automáticos",
+      "Control de accesos con verificación avanzada de identidad"
+    ],
+    soluciones: [
+      "Guardias especializados en protocolos de seguridad bancaria",
+      "Coordinación con sistemas de seguridad electrónica avanzados",
+      "Procedimientos específicos para manejo de emergencias en entornos financieros"
+    ],
+    casoExito: "Implementamos un sistema de seguridad integral para una red de 14 sucursales bancarias, logrando cero incidentes de seguridad durante los últimos 2 años y mejorando la confianza de clientes y empleados.",
+    testimonio: "Los guardias de Gard Security han demostrado un nivel de profesionalismo excepcional, adaptándose perfectamente a los exigentes protocolos que requiere nuestro sector financiero."
+  },
+  
+  // Guardias de seguridad para centros comerciales
+  "guardias-de-seguridad__centros-comerciales": {
+    description: "Ofrecemos un servicio integral de guardias de seguridad para centros comerciales que combina protección efectiva con excelente atención al cliente. Nuestro personal está especialmente formado para gestionar grandes flujos de visitantes mientras mantiene un entorno seguro y agradable.",
+    desafios: [
+      "Gestión de seguridad en espacios con alto tráfico de personas",
+      "Prevención de hurtos en múltiples locales comerciales simultáneamente",
+      "Control de situaciones de emergencia y evacuaciones"
+    ],
+    soluciones: [
+      "Guardias con formación específica en entornos comerciales de alta concurrencia",
+      "Sistemas de vigilancia coordinada con múltiples puntos de control",
+      "Protocolos especiales para eventos, periodos de alta afluencia y situaciones de emergencia"
+    ],
+    casoExito: "Redujimos un 78% los incidentes de seguridad en un centro comercial de 150 locales, mejorando significativamente la experiencia de compra y la percepción de seguridad de los visitantes.",
+    testimonio: "El equipo de Gard ha transformado la seguridad de nuestro centro comercial, combinando perfectamente protección efectiva con trato amable hacia nuestros clientes."
+  },
+  
+  // Seguridad electrónica para centros de datos
+  "seguridad-electronica__centros-de-datos": {
+    description: "Nuestras soluciones de seguridad electrónica para centros de datos combinan tecnología de última generación con protocolos especializados para proteger infraestructuras críticas de TI. Implementamos sistemas de control de acceso biométrico, CCTV avanzado y detección temprana de intrusiones.",
+    desafios: [
+      "Protección 24/7 de infraestructura crítica de información",
+      "Control de acceso con múltiples niveles de autenticación",
+      "Detección temprana de intentos de intrusión física"
+    ],
+    soluciones: [
+      "Sistemas de control de acceso biométrico multicapa",
+      "Videovigilancia HD con analítica avanzada e IA",
+      "Integración con sistemas de alarma y notificación inmediata"
+    ],
+    casoExito: "Implementamos un sistema integral de seguridad electrónica para un centro de datos Tier III, logrando cumplimiento normativo total y cero incidentes de seguridad física en los últimos 3 años.",
+    testimonio: "Las soluciones de seguridad electrónica de Gard nos han permitido cumplir con los exigentes estándares internacionales de protección para centros de datos, garantizando la continuidad de nuestras operaciones."
+  },
+  
+  // Drones para sector energético
+  "drones-seguridad__sector-energetico": {
+    description: "Nuestro servicio de vigilancia con drones para el sector energético proporciona monitoreo aéreo de alta precisión para plantas solares, eólicas y otras instalaciones energéticas. Ofrecemos inspección de infraestructuras, vigilancia perimetral y detección temprana de amenazas en tiempo real.",
+    desafios: [
+      "Vigilancia de instalaciones energéticas en áreas extensas y remotas",
+      "Inspección regular de infraestructuras de difícil acceso",
+      "Detección temprana de intrusiones en perímetros amplios"
+    ],
+    soluciones: [
+      "Drones con cámaras térmicas y de alta resolución para vigilancia diurna y nocturna",
+      "Rutas programadas de vigilancia para monitoreo regular perimetral",
+      "Transmisión en tiempo real a central de monitoreo con análisis de imágenes"
+    ],
+    casoExito: "Implementamos un sistema de patrullaje con drones para una planta solar de 100 hectáreas, reduciendo costos de vigilancia en un 40% y detectando eficazmente intentos de intrusión y anomalías en los paneles.",
+    testimonio: "La vigilancia con drones ha revolucionado la seguridad de nuestras instalaciones energéticas, permitiéndonos cubrir extensas áreas con una eficiencia que era imposible con métodos tradicionales."
   }
 };
 
