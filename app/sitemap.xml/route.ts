@@ -1,6 +1,8 @@
 import { industries } from '../data/industries';
 import { getAllPosts, POSTS_PER_PAGE, getAllTags, getPostsByTag } from '@/lib/blog';
 import { isValidUrl } from '@/lib/utils';
+import { ciudades } from '@/lib/data/ciudad-data';
+import { servicesMetadata } from '@/app/servicios/serviceMetadata';
 
 // Función para verificar y filtrar URLs
 async function filterValidUrls(urls: { url: string; lastModified: string; changeFrequency: string; priority: number; }[]) {
@@ -194,6 +196,24 @@ async function generateSitemap() {
     }
   }
 
+  // Nuevas landing pages dinámicas de ciudad/servicio
+  const ciudadServicioPages = [];
+  
+  // Extraer los slugs de los servicios del array importado
+  const servicioSlugs = servicesMetadata.map(servicio => servicio.slug);
+  
+  // Crear combinaciones de ciudad + servicio
+  for (const ciudad of ciudades) {
+    for (const servicioSlug of servicioSlugs) {
+      ciudadServicioPages.push({
+        url: `${baseUrl}/${ciudad.slug}/${servicioSlug}`,
+        lastModified: new Date().toISOString(),
+        changeFrequency: 'monthly',
+        priority: 0.9, // Alta prioridad para landing pages de conversión geolocalizada
+      });
+    }
+  }
+
   const allUrls = [
     ...staticPages, 
     ...servicePages, 
@@ -203,7 +223,8 @@ async function generateSitemap() {
     ...blogPaginationPages,
     ...blogTagPages,
     // Se elimina blogTagPaginationPages del array final
-    ...landingDinamicas
+    ...landingDinamicas,
+    ...ciudadServicioPages // Añadimos las nuevas páginas de ciudad/servicio
   ];
   
   // Filtrar URLs para incluir solo las que devuelven código 200
