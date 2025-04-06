@@ -772,10 +772,10 @@ export default function CiudadServicioLanding({ content, params }: CiudadServici
                   <div className="w-16 h-16 rounded-full flex items-center justify-center relative overflow-hidden">
                     {/* Logo adaptado al modo oscuro/claro */}
                     <div className="hidden dark:block">
-                      <img src="/logo-escudo-blanco.svg" alt="Gard Security Logo" className="h-10 w-10" />
+                      <img src="/logos/logo-escudo-blanco.svg" alt="Gard Security Logo" className="h-10 w-10" />
                     </div>
                     <div className="block dark:hidden">
-                      <img src="/logo-escudo-azul.svg" alt="Gard Security Logo" className="h-10 w-10" />
+                      <img src="/logos/logo-escudo-azul.svg" alt="Gard Security Logo" className="h-10 w-10" />
                     </div>
                   </div>
                 </div>
