@@ -21,6 +21,7 @@ import OurServices from '@/app/components/OurServices';
 import IndustriasGridPage from './components/IndustriasGridPage';
 import CtaFinal from '@/components/ui/shared/CtaFinal';
 import GardHero from '@/components/layouts/GardHero';
+import ServiciosBuscador from './components/home/ServiciosBuscador';
 
 export default function Home() {
   return (
@@ -39,6 +40,9 @@ export default function Home() {
           text: "Expertos en Seguridad Empresarial"
         }}
       />
+
+      {/* Buscador de servicios */}
+      <ServiciosBuscador />
 
       {/* Clientes que confían en nosotros */}
       <ClientCarousel />
