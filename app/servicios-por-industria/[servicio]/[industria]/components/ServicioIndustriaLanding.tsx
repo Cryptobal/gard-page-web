@@ -74,9 +74,9 @@ const BenefitCard = ({ icon, title, description, index }: { icon: React.ReactNod
     transition={{ duration: 0.5, delay: index * 0.1 }}
   >
     <Card className="gard-card h-full border-none shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden group">
-      <CardContent className="gard-card-content h-full flex flex-col">
-        <div className="flex items-start gap-5 mb-4">
-          <div className="p-4 ml-1 rounded-xl bg-primary/10 group-hover:bg-primary/20 transition-colors">
+      <CardContent className="gard-card-content h-full flex flex-col p-6">
+        <div className="flex items-start gap-5 mb-4 px-2">
+          <div className="p-4 rounded-xl bg-primary/10 group-hover:bg-primary/20 transition-colors flex items-center justify-center">
             {icon}
           </div>
           
@@ -87,11 +87,11 @@ const BenefitCard = ({ icon, title, description, index }: { icon: React.ReactNod
           </div>
         </div>
         
-        <p className="text-body-base text-foreground dark:text-foreground mt-2 flex-1">
+        <p className="text-body-base text-foreground dark:text-foreground mt-2 flex-1 px-2">
           {description}
         </p>
         
-        <div className="mt-4 pt-3 border-t border-gray-100 dark:border-gray-800">
+        <div className="mt-4 pt-3 border-t border-gray-100 dark:border-gray-800 px-2">
           <span className="text-sm text-primary flex items-center gap-1">
             <CheckCircle className="h-4 w-4" />
             <span className="font-medium">Garantizado</span>
