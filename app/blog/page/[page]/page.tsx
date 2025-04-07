@@ -57,8 +57,8 @@ export async function generateMetadata({
 
   return {
     title: pageNumber === 1 
-      ? 'Blog de Seguridad Privada | Gard Security' 
-      : `Página ${pageNumber} | Blog de Seguridad Privada | Gard Security`,
+      ? 'Blog de Seguridad | Gard Security' 
+      : `Blog (${pageNumber}) | Gard Security`,
     description: `Explora artículos sobre seguridad privada y guardias de seguridad en Chile. ${pageNumber > 1 ? `Página ${pageNumber} de ${totalPages}.` : ''}`,
     openGraph: {
       title: pageNumber === 1 

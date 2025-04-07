@@ -31,14 +31,17 @@ export async function generateMetadata({
     ? `https://imagedelivery.net/${CLOUDFLARE_ACCOUNT_HASH}/${post.imageId}/public`
     : `https://imagedelivery.net/${CLOUDFLARE_ACCOUNT_HASH}/5eea1064-8a2d-4e8b-5606-d28775467a00/public`;
 
+  // Acortar el título para evitar que exceda los 70 caracteres
+  const shortenedTitle = post.title.length > 60 ? `${post.title.substring(0, 60)}...` : post.title;
+
   return {
-    title: `${post.title} | Blog Gard Security`,
+    title: `${shortenedTitle} | Gard Security`,
     description: post.description,
     keywords: post.tags || ['seguridad privada', 'blog gard', 'guardias de seguridad'],
     authors: [{ name: 'Gard Security', url: 'https://gard.cl' }],
     robots: 'index, follow',
     openGraph: {
-      title: post.title,
+      title: post.title, // Mantenemos el título completo para Open Graph
       description: post.description,
       type: 'article',
       publishedTime: post.date,
@@ -57,7 +60,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: 'summary_large_image',
-      title: post.title,
+      title: shortenedTitle, // Acortamos también para Twitter
       description: post.description,
       images: [ogImageUrl],
     }

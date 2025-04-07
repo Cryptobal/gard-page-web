@@ -21,7 +21,7 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 
   return {
-    title: 'Blog de Seguridad Privada | Gard Security',
+    title: 'Blog de Seguridad | Gard Security',
     description: 'Descubre las últimas noticias, tendencias y consejos sobre seguridad privada, guardias de seguridad y protección empresarial en Chile.',
     openGraph: {
       title: 'Blog de Seguridad Privada | Gard Security',
