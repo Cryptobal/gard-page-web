@@ -27,7 +27,7 @@ export default function CloudflareVideo({
   height = '100%',
 }: CloudflareVideoProps) {
   return (
-    <div style={{ width, height, position: 'relative' }} className={className}>
+    <div style={{ width: '100%', height: '100%', overflow: 'hidden', position: 'absolute', top: 0, left: 0 }} className={className}>
       <Stream 
         src={videoId}
         controls={controls}
@@ -35,7 +35,7 @@ export default function CloudflareVideo({
         loop={loop}
         autoplay={autoPlay}
         poster={poster}
-        className="w-full h-full absolute inset-0 object-cover"
+        className="w-full h-full object-cover"
         preload="auto"
       />
     </div>
