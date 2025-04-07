@@ -90,7 +90,9 @@ export default function Header() {
       <div className="gard-container px-4 md:px-6 flex items-center justify-between">
         <Link href="/" className="relative z-50 flex items-center transition-all duration-300 ease-in-out">
           <CloudflareImage
-            imageId={cloudflareImages.logo.default}
+            imageId={isDarkMode 
+              ? cloudflareImages.logo.nav.night 
+              : cloudflareImages.logo.nav.day}
             alt="Gard Security Logo"
             width={scrolled ? 120 : 140}
             height={scrolled ? 34 : 40}

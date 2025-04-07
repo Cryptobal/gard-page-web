@@ -2,8 +2,18 @@
 export const cloudflareImages = {
   // Logos e identidad
   logo: {
-    default: '7661cf51-c66b-4419-9229-e6e50f76ff00',
-    white: '24172844-496d-4cd1-4ef0-894b5574e700',
+    default: '195f82cb-9a5e-4964-6fb5-ea43da47b000',    // Escudo azul
+    white: 'f1cad221-0c11-43c4-3142-a53a6febbd00',    // Escudo blanco
+    day: '7661cf51-c66b-4419-9229-e6e50f76ff00',    // Logo para modo claro
+    night: '49b89002-6bb9-41b9-50ad-e6b91e5f6d00',  // Logo para modo oscuro
+    nav: {
+      day: '7661cf51-c66b-4419-9229-e6e50f76ff00',  // Logo en navbar para modo claro
+      night: '49b89002-6bb9-41b9-50ad-e6b91e5f6d00' // Logo en navbar para modo oscuro
+    },
+    footer: {
+      day: '195f82cb-9a5e-4964-6fb5-ea43da47b000',  // Logo en footer para modo claro
+      night: 'f1cad221-0c11-43c4-3142-a53a6febbd00' // Logo en footer para modo oscuro
+    },
     icon: '89a214ef-5112-4c4e-912e-4f56514c1600',
   },
   

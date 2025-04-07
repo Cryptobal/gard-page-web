@@ -10,10 +10,11 @@ import { X, MessageSquare } from 'lucide-react';
 export default function Footer() {
   const currentYear = new Date().getFullYear();
   const { theme } = useTheme();
+  const isDarkMode = theme === 'dark';
 
   return (
     <footer 
-      className="bg-[hsl(var(--gard-background))] py-16 px-8 md:px-20"
+      className="bg-[hsl(var(--gard-background))] py-16 px-8 md:px-20 dark:text-white/80 text-gray-700"
       itemScope
       itemType="https://schema.org/Organization"
     >
@@ -24,7 +25,9 @@ export default function Footer() {
             <Link href="/" className="inline-block" aria-label="Página Principal">
               <div itemProp="logo">
                 <CloudflareImage
-                  imageId={cloudflareImages.logo.white}
+                  imageId={isDarkMode 
+                    ? cloudflareImages.logo.footer.night 
+                    : cloudflareImages.logo.footer.day}
                   alt="Gard Security Logo"
                   width={200}
                   height={60}
@@ -32,7 +35,7 @@ export default function Footer() {
                 />
               </div>
             </Link>
-            <p className="text-white/80 text-sm md:text-base mt-4 max-w-xs text-center sm:text-left" itemProp="description">
+            <p className="dark:text-white/80 text-gray-700 text-sm md:text-base mt-4 max-w-xs text-center sm:text-left" itemProp="description">
               Soluciones de seguridad de clase mundial para empresas exigentes. Protegemos lo que más importa.
             </p>
             
@@ -43,7 +46,7 @@ export default function Footer() {
                 target="_blank" 
                 rel="noopener noreferrer"
                 aria-label="LinkedIn - Visita nuestro perfil de LinkedIn"
-                className="text-blue-100 hover:text-white hover:scale-110 transition-all duration-300"
+                className="dark:text-blue-100 text-primary hover:text-primary/80 dark:hover:text-white hover:scale-110 transition-all duration-300"
                 itemProp="sameAs"
               >
                 <Linkedin className="w-6 h-6" />
@@ -53,7 +56,7 @@ export default function Footer() {
                 target="_blank" 
                 rel="noopener noreferrer"
                 aria-label="X (Twitter) - Síguenos en X"
-                className="text-blue-100 hover:text-white hover:scale-110 transition-all duration-300"
+                className="dark:text-blue-100 text-primary hover:text-primary/80 dark:hover:text-white hover:scale-110 transition-all duration-300"
                 itemProp="sameAs"
               >
                 <X className="w-6 h-6" />
@@ -63,7 +66,7 @@ export default function Footer() {
                 target="_blank" 
                 rel="noopener noreferrer"
                 aria-label="Instagram - Síguenos en Instagram"
-                className="text-blue-100 hover:text-white hover:scale-110 transition-all duration-300"
+                className="dark:text-blue-100 text-primary hover:text-primary/80 dark:hover:text-white hover:scale-110 transition-all duration-300"
                 itemProp="sameAs"
               >
                 <Instagram className="w-6 h-6" />
@@ -73,7 +76,7 @@ export default function Footer() {
                 target="_blank" 
                 rel="noopener noreferrer"
                 aria-label="Facebook - Síguenos en Facebook"
-                className="text-blue-100 hover:text-white hover:scale-110 transition-all duration-300"
+                className="dark:text-blue-100 text-primary hover:text-primary/80 dark:hover:text-white hover:scale-110 transition-all duration-300"
                 itemProp="sameAs"
               >
                 <Facebook className="w-6 h-6" />
@@ -83,7 +86,7 @@ export default function Footer() {
                 target="_blank" 
                 rel="noopener noreferrer"
                 aria-label="WhatsApp - Contáctanos por WhatsApp"
-                className="text-blue-100 hover:text-white hover:scale-110 transition-all duration-300"
+                className="dark:text-blue-100 text-primary hover:text-primary/80 dark:hover:text-white hover:scale-110 transition-all duration-300"
               >
                 <MessageSquare className="w-6 h-6" />
               </a>
@@ -92,12 +95,12 @@ export default function Footer() {
 
           {/* Columna 2: Enlaces */}
           <div className="sm:col-span-1">
-            <h3 className="font-semibold text-white text-lg mb-6">Enlaces</h3>
+            <h3 className="font-semibold text-primary dark:text-white text-lg mb-6">Enlaces</h3>
             <ul className="space-y-3">
               <li>
                 <Link 
                   href="/" 
-                  className="text-sm md:text-base text-blue-100 hover:text-white transition-colors"
+                  className="text-sm md:text-base text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors"
                   aria-label="Inicio"
                 >
                   Inicio
@@ -106,7 +109,7 @@ export default function Footer() {
               <li>
                 <Link 
                   href="/servicios" 
-                  className="text-sm md:text-base text-blue-100 hover:text-white transition-colors"
+                  className="text-sm md:text-base text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors"
                   aria-label="Servicios"
                 >
                   Servicios
@@ -115,7 +118,7 @@ export default function Footer() {
               <li>
                 <Link 
                   href="/industrias" 
-                  className="text-sm md:text-base text-blue-100 hover:text-white transition-colors"
+                  className="text-sm md:text-base text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors"
                   aria-label="Industrias"
                 >
                   Industrias
@@ -124,7 +127,7 @@ export default function Footer() {
               <li>
                 <Link 
                   href="/sobre-nosotros" 
-                  className="text-sm md:text-base text-blue-100 hover:text-white transition-colors"
+                  className="text-sm md:text-base text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors"
                   aria-label="Sobre Nosotros"
                 >
                   Sobre Nosotros
@@ -133,7 +136,7 @@ export default function Footer() {
               <li>
                 <Link 
                   href="/blog" 
-                  className="text-sm md:text-base text-blue-100 hover:text-white transition-colors"
+                  className="text-sm md:text-base text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors"
                   aria-label="Blog"
                 >
                   Blog
@@ -142,7 +145,7 @@ export default function Footer() {
               <li>
                 <Link 
                   href="/reclutamiento" 
-                  className="text-sm md:text-base text-blue-100 hover:text-white transition-colors"
+                  className="text-sm md:text-base text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors"
                   aria-label="Trabaja con Nosotros"
                 >
                   Trabaja con Nosotros
@@ -151,7 +154,7 @@ export default function Footer() {
               <li>
                 <Link 
                   href="/contacto" 
-                  className="text-sm md:text-base text-blue-100 hover:text-white transition-colors"
+                  className="text-sm md:text-base text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors"
                   aria-label="Contacto"
                 >
                   Contacto
@@ -162,12 +165,12 @@ export default function Footer() {
 
           {/* Columna 3: Legal */}
           <div className="sm:col-span-1">
-            <h3 className="font-semibold text-white text-lg mb-6">Legal</h3>
+            <h3 className="font-semibold text-primary dark:text-white text-lg mb-6">Legal</h3>
             <ul className="space-y-3">
               <li>
                 <Link 
                   href="/privacidad" 
-                  className="text-sm md:text-base text-blue-100 hover:text-white transition-colors"
+                  className="text-sm md:text-base text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors"
                   aria-label="Política de Privacidad"
                 >
                   Política de Privacidad
@@ -176,7 +179,7 @@ export default function Footer() {
               <li>
                 <Link 
                   href="/terminos" 
-                  className="text-sm md:text-base text-blue-100 hover:text-white transition-colors"
+                  className="text-sm md:text-base text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors"
                   aria-label="Términos de Servicio"
                 >
                   Términos de Servicio
@@ -185,7 +188,7 @@ export default function Footer() {
               <li>
                 <Link 
                   href="/politica-ambiental" 
-                  className="text-sm md:text-base text-blue-100 hover:text-white transition-colors"
+                  className="text-sm md:text-base text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors"
                   aria-label="Política Ambiental"
                 >
                   Política Ambiental
@@ -196,12 +199,12 @@ export default function Footer() {
 
           {/* Columna 4: Contacto */}
           <div className="sm:col-span-1">
-            <h3 className="font-semibold text-white text-lg mb-6">Contacto</h3>
+            <h3 className="font-semibold text-primary dark:text-white text-lg mb-6">Contacto</h3>
             <ul className="space-y-4">
               <li className="flex items-start gap-2">
-                <MapPin className="w-5 h-5 text-blue-300 flex-shrink-0 mt-1" />
+                <MapPin className="w-5 h-5 text-primary dark:text-blue-300 flex-shrink-0 mt-1" />
                 <span 
-                  className="text-sm md:text-base text-blue-100"
+                  className="text-sm md:text-base text-gray-700 dark:text-blue-100"
                   itemProp="address"
                   itemScope
                   itemType="https://schema.org/PostalAddress"
@@ -212,10 +215,10 @@ export default function Footer() {
                 </span>
               </li>
               <li className="flex items-start gap-2">
-                <Phone className="w-5 h-5 text-blue-300 flex-shrink-0 mt-1" />
+                <Phone className="w-5 h-5 text-primary dark:text-blue-300 flex-shrink-0 mt-1" />
                 <a 
                   href="tel:+56941137976" 
-                  className="text-sm md:text-base text-blue-100 hover:text-white transition-colors"
+                  className="text-sm md:text-base text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors"
                   aria-label="+56 9 4113 7976"
                   itemProp="telephone"
                 >
@@ -223,10 +226,10 @@ export default function Footer() {
                 </a>
               </li>
               <li className="flex items-start gap-2">
-                <Mail className="w-5 h-5 text-blue-300 flex-shrink-0 mt-1" />
+                <Mail className="w-5 h-5 text-primary dark:text-blue-300 flex-shrink-0 mt-1" />
                 <a 
                   href="mailto:comercial@gard.cl" 
-                  className="text-sm md:text-base text-blue-100 hover:text-white transition-colors"
+                  className="text-sm md:text-base text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors"
                   aria-label="comercial@gard.cl"
                   itemProp="email"
                 >
@@ -237,8 +240,8 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-white/10 mt-10 pt-6 text-center">
-          <p className="text-blue-100/80 text-sm md:text-base" itemProp="name">
+        <div className="border-t border-gray-200 dark:border-white/10 mt-10 pt-6 text-center">
+          <p className="text-gray-700 dark:text-blue-100/80 text-sm md:text-base" itemProp="name">
             © {currentYear} Gard Security. Todos los derechos reservados.
           </p>
         </div>
