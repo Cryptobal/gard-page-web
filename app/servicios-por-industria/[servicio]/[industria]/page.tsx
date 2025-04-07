@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import { getServicioIndustriaContent } from '@/lib/data/getServicioIndustriaContent';
 import { industriesMetadata } from '@/app/industrias/industryMetadata';
 import { servicesMetadata } from '@/app/servicios/serviceMetadata';
-import { serviciosPorIndustria } from '@/app/data/servicios-por-industria';
+import { serviciosPorIndustria, esCombinacionValida } from '@/app/data/servicios-por-industria';
 import ServicioIndustriaLanding from './components/ServicioIndustriaLanding';
 
 interface PageProps {
@@ -17,24 +17,12 @@ interface PageProps {
 export function generateStaticParams() {
   const params = [];
   
-  // Crear un mapa para consulta rápida de qué servicios están disponibles para cada industria
-  const serviciosPorIndustriaMap = new Map();
-  
-  // Llenar el mapa con la información del archivo serviciosPorIndustria
-  serviciosPorIndustria.forEach(item => {
-    serviciosPorIndustriaMap.set(item.industria, item.servicios);
-  });
-  
   // Para cada servicio en nuestro catálogo
   for (const servicio of servicesMetadata) {
     // Para cada industria en nuestro catálogo
     for (const industria of industriesMetadata) {
-      // Obtener la lista de servicios disponibles para esta industria
-      const serviciosDisponibles = serviciosPorIndustriaMap.get(industria.slug);
-      
-      // Si esta industria no tiene una lista explícita, permitir todos los servicios
-      // O si el servicio está en la lista de servicios disponibles para esta industria
-      if (!serviciosDisponibles || serviciosDisponibles.includes(servicio.slug)) {
+      // Verificar si la combinación servicio-industria es válida
+      if (esCombinacionValida(servicio.slug, industria.slug)) {
         params.push({
           servicio: servicio.slug,
           industria: industria.slug,

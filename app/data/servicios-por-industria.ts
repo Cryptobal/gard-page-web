@@ -233,6 +233,25 @@ export const serviciosPorIndustria: IndustriaServicios[] = [
 ];
 
 /**
+ * Verifica si una combinación de servicio e industria es válida
+ * @param servicioSlug Slug del servicio
+ * @param industriaSlug Slug de la industria
+ * @returns true si la combinación es válida, false en caso contrario
+ */
+export function esCombinacionValida(servicioSlug: string, industriaSlug: string): boolean {
+  // Buscamos la industria en nuestro mapa de servicios por industria
+  const industriaConfig = serviciosPorIndustria.find(item => item.industria === industriaSlug);
+  
+  // Si la industria no tiene configuración explícita, permitimos todos los servicios
+  if (!industriaConfig) {
+    return true;
+  }
+  
+  // Si hay configuración para la industria, verificamos si el servicio está en la lista
+  return industriaConfig.servicios.includes(servicioSlug);
+}
+
+/**
  * Datos específicos para combinaciones de servicio e industria
  * Aquí se pueden añadir descripciones, desafíos, soluciones y otros datos específicos
  * La clave es "[servicio-slug]__[industria-slug]"

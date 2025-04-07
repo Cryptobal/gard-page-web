@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import { esCombinacionValida } from '@/app/data/servicios-por-industria';
 
 // Lista de ciudades válidas para comparar
 const CIUDADES_VALIDAS = [
@@ -44,6 +45,26 @@ export function middleware(request: NextRequest) {
   const segments = pathname.split('/').filter(Boolean);
   
   console.log(`Segmentos detectados: ${segments.join(', ')} (${segments.length})`);
+
+  // Manejar rutas de servicios por industria
+  if (segments.length === 3 && segments[0] === 'servicios-por-industria') {
+    const servicio = segments[1];
+    const industria = segments[2];
+    
+    // Verificar si son segmentos válidos
+    if (SERVICIOS_VALIDOS.includes(servicio) && INDUSTRIAS_VALIDAS.includes(industria)) {
+      // Verificar si la combinación es válida según nuestro mapa de configuración
+      if (!esCombinacionValida(servicio, industria)) {
+        console.log(`Combinación no válida: ${servicio}/${industria}, redirigiendo a /servicios/${servicio}`);
+        // Si la combinación no es válida, redirigir a la página del servicio
+        url.pathname = `/servicios/${servicio}`;
+        return NextResponse.redirect(url, 302); // Redirección temporal
+      }
+      
+      // Si la combinación es válida, continuar normalmente
+      return NextResponse.next();
+    }
+  }
   
   // Manejar URLs antiguas de landing-dinamico
   if (segments.length === 3 && segments[0] === 'landing-dinamico') {
