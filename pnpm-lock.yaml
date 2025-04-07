@@ -83,9 +83,6 @@ importers:
       next-themes:
         specifier: ^0.2.1
         version: 0.2.1(next@14.0.4(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react:
-        specifier: ^18.2.0
-        version: 18.3.1
       react-countup:
         specifier: ^6.5.3
         version: 6.5.3(react@18.3.1)
@@ -109,7 +106,7 @@ importers:
         specifier: ^20.10.6
         version: 20.17.29
       '@types/react':
-        specifier: ^18.2.46
+        specifier: ^18.3.20
         version: 18.3.20
       '@types/react-dom':
         specifier: ^18.2.18
@@ -126,6 +123,9 @@ importers:
       postcss:
         specifier: ^8.4.32
         version: 8.5.3
+      react:
+        specifier: ^18.2.0
+        version: 18.3.1
       tailwindcss:
         specifier: ^3.4.0
         version: 3.4.17

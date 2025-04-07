@@ -97,6 +97,14 @@ const formSchema = z.object({
   movilizacionPropia: z.string(),
   certificadoOS10: z.string(),
   comentarios: z.string(),
+  // No validamos los UTM ya que son opcionales
+  utm_source: z.string().optional(),
+  utm_medium: z.string().optional(),
+  utm_campaign: z.string().optional(),
+  utm_term: z.string().optional(),
+  utm_content: z.string().optional(),
+  gclid: z.string().optional(),
+  landing_page: z.string().optional(),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -124,10 +132,42 @@ export default function ReclutamientoForm() {
       movilizacionPropia: 'no',
       certificadoOS10: 'no',
       comentarios: '',
+      utm_source: '',
+      utm_medium: '',
+      utm_campaign: '',
+      utm_term: '',
+      utm_content: '',
+      gclid: '',
+      landing_page: '',
     }
   });
 
   const { setValue } = form;
+
+  // Capturar parámetros UTM y gclid de la URL
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const tags = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid'];
+      
+      // Guardar en localStorage y en el formulario
+      tags.forEach(tag => {
+        const value = params.get(tag);
+        if (value) {
+          localStorage.setItem(tag, value);
+          setValue(tag as keyof FormValues, value);
+        } else if (localStorage.getItem(tag)) {
+          // Si no está en la URL pero está en localStorage, usarlo
+          setValue(tag as keyof FormValues, localStorage.getItem(tag) || '');
+        }
+      });
+      
+      // Guardar la página actual
+      const landingPage = window.location.pathname;
+      localStorage.setItem('landing_page', landingPage);
+      setValue('landing_page', landingPage);
+    }
+  }, [setValue]);
 
   // Referencia para autocompletado de Google Places
   const autocompleteRef = (element: HTMLInputElement | null) => {
@@ -200,12 +240,29 @@ export default function ReclutamientoForm() {
     setFormStatus('idle');
 
     try {
+      // Añadir UTM y otros datos de tracking al payload
+      const utmData = {
+        utm_source: localStorage.getItem('utm_source') || null,
+        utm_medium: localStorage.getItem('utm_medium') || null,
+        utm_campaign: localStorage.getItem('utm_campaign') || null,
+        utm_term: localStorage.getItem('utm_term') || null,
+        utm_content: localStorage.getItem('utm_content') || null,
+        gclid: localStorage.getItem('gclid') || null,
+        landing_page: localStorage.getItem('landing_page') || window.location.pathname,
+      };
+
+      // Combinar con los datos del formulario
+      const fullFormData = {
+        ...data,
+        ...utmData,
+      };
+
       const response = await fetch('https://hook.us1.make.com/5ozb2y5aucrr75d2xtpshmlyckds9nl4', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(fullFormData),
       });
 
       if (response.ok) {
@@ -610,7 +667,7 @@ export default function ReclutamientoForm() {
                             placeholder="912345678"
                             maxLength={9}
                             {...field}
-                            onChange={(e) => {
+                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                               // Solo permitir números
                               const value = e.target.value.replace(/\D/g, '');
                               field.onChange(value);
