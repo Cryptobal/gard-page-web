@@ -44,11 +44,11 @@ export default function Home() {
       {/* Buscador de servicios */}
       <ServiciosBuscador />
 
-      {/* Clientes que confían en nosotros */}
-      <ClientCarousel />
-
       {/* Servicios destacados */}
       <OurServices />
+
+      {/* Clientes que confían en nosotros */}
+      <ClientCarousel />
 
       {/* Información corporativa */}
       <section className="gard-section py-16 md:py-24 bg-[hsl(var(--gard-background))] text-white">
