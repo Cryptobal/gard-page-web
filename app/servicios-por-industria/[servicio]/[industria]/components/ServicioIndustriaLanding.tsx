@@ -663,9 +663,9 @@ export default function ServicioIndustriaLanding({ content, params }: ServicioIn
               className="flex justify-center mt-12"
             >
               <Button 
-                variant="gard-outline-orange" 
+                variant="gard-outline" 
                 size="lg" 
-                className="gard-btn-lg rounded-xl"
+                className="gard-btn-lg rounded-xl border-accent text-accent hover:bg-accent/10"
                 onClick={scrollToForm}
               >
                 ¿Necesitas una solución a medida?
