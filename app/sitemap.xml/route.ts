@@ -18,17 +18,23 @@ async function filterValidUrls(urls: { url: string; lastModified: string; change
     // Verificar todas las URLs en el lote en paralelo
     const results = await Promise.allSettled(
       batch.map(async (urlItem) => {
-        const isValid = await isValidUrl(urlItem.url);
-        return { urlItem, isValid };
+        const result = await isValidUrl(urlItem.url);
+        return { urlItem, result };
       })
     );
     
     // Filtrar las URLs válidas
     results.forEach((result) => {
-      if (result.status === 'fulfilled' && result.value.isValid) {
-        validUrls.push(result.value.urlItem);
-      } else if (result.status === 'fulfilled') {
-        console.log(`URL no válida (redirección o error): ${result.value.urlItem.url}`);
+      if (result.status === 'fulfilled') {
+        const { urlItem, result: urlResult } = result.value;
+        
+        if (urlResult.isValid) {
+          validUrls.push(urlItem);
+        } else if (urlResult.isRedirect) {
+          console.log(`URL con redirección excluida: ${urlItem.url} -> ${urlResult.finalUrl}`);
+        } else {
+          console.log(`URL no válida (error o no encontrada): ${urlItem.url}`);
+        }
       }
     });
   };
@@ -111,15 +117,16 @@ async function generateSitemap() {
   });
 
   // Combinaciones prioritarias de servicio-industria
-  const servicioIndustriaPrioritarias = [
-    {servicio: 'guardias-de-seguridad', industria: 'retail'},
-    {servicio: 'guardias-de-seguridad', industria: 'mineria'},
-    {servicio: 'drones-seguridad', industria: 'mineria'},
-    {servicio: 'seguridad-electronica', industria: 'retail'},
-    {servicio: 'central-monitoreo', industria: 'edificios-corporativos'},
-    {servicio: 'auditoria-seguridad', industria: 'instituciones-publicas'},
-    {servicio: 'consultoria', industria: 'edificios-corporativos'},
-    {servicio: 'prevencion-intrusiones', industria: 'parques-industriales'}
+  const servicioIndustriaPrioritarias: { servicio: string; industria: string }[] = [
+    // Eliminamos las combinaciones que aparecen como redirigidas en Semrush
+    // {servicio: 'guardias-de-seguridad', industria: 'retail'},
+    // {servicio: 'guardias-de-seguridad', industria: 'mineria'},
+    // {servicio: 'drones-seguridad', industria: 'mineria'},
+    // {servicio: 'seguridad-electronica', industria: 'retail'},
+    // {servicio: 'central-monitoreo', industria: 'edificios-corporativos'},
+    // {servicio: 'auditoria-seguridad', industria: 'instituciones-publicas'},
+    // {servicio: 'consultoria', industria: 'edificios-corporativos'},
+    // {servicio: 'prevencion-intrusiones', industria: 'parques-industriales'}
   ];
 
   const combinacionesPages = servicioIndustriaPrioritarias.map(({ servicio, industria }) => ({
@@ -171,19 +178,24 @@ async function generateSitemap() {
     }
   ] : [];
   
-  // Páginas de etiquetas del blog (solo las páginas principales, sin paginación)
-  const allTags = await getAllTags();
-  const blogTagPages = allTags.map((tag) => ({
-    url: `${baseUrl}/blog/tag/${encodeURIComponent(tag)}`,
-    lastModified: new Date().toISOString(),
-    changeFrequency: 'monthly',
-    priority: 0.6,
-  }));
-
-  // Se elimina completamente la sección de paginación por etiqueta que está causando los errores
-  // const blogTagPaginationPages = [];
-  // for (const tag of allTags) { ... }
+  // Eliminamos las páginas de etiquetas del blog para evitar problemas de URL no canónicas
+  // Según análisis de Semrush, estas páginas causan la mayoría de errores
+  // const allTags = await getAllTags();
+  // const blogTagPages = allTags.map((tag) => ({
+  //   url: `${baseUrl}/blog/tag/${encodeURIComponent(tag)}`,
+  //   lastModified: new Date().toISOString(),
+  //   changeFrequency: 'monthly',
+  //   priority: 0.6,
+  // }));
   
+  // Reemplazamos con un array vacío
+  const blogTagPages: {
+    url: string;
+    lastModified: string;
+    changeFrequency: string;
+    priority: number;
+  }[] = [];
+
   // Nuevas landing pages dinámicas de ciudad/servicio
   const ciudadServicioPages = [];
   
