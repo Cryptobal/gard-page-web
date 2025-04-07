@@ -51,8 +51,68 @@ export const getServicioIndustriaContent = (
   const industria = industriesMetadata.find((i) => i.slug === industriaSlug) as IndustriaBase;
   if (!industria) return null;
 
-  // Generar contenido dinámico basado en la combinación de servicio e industria
-  return generarContenidoDinamico(servicio, industria);
+  try {
+    // Generar contenido dinámico basado en la combinación de servicio e industria
+    return generarContenidoDinamico(servicio, industria);
+  } catch (error) {
+    console.error(`Error generando contenido para ${servicioSlug}/${industriaSlug}:`, error);
+    
+    // Crear contenido genérico cuando falla la generación dinámica
+    const servicioBase = servicio.title.split('|')[0].trim();
+    const nombreIndustria = industria.title.split('|')[0].trim().replace('Seguridad para ', '').replace('Guardias para ', '');
+    
+    return {
+      title: `${servicioBase} para ${nombreIndustria} | Gard Security`,
+      metaDescription: `Servicio profesional de ${servicioBase.toLowerCase()} especializado para el sector ${nombreIndustria}. Soluciones de seguridad adaptadas a sus necesidades específicas.`,
+      h1: `${servicioBase} para ${nombreIndustria}`,
+      intro: `Protección especializada con ${servicioBase.toLowerCase()} diseñado para las necesidades específicas del sector ${nombreIndustria}.`,
+      descripcion: `Nuestro servicio de ${servicioBase.toLowerCase()} para el sector de ${nombreIndustria} está diseñado considerando los desafíos y características específicas de esta industria. Ofrecemos soluciones adaptadas a sus necesidades con personal altamente calificado y tecnología de punta.\n\nEntendemos que el sector de ${nombreIndustria} presenta necesidades de seguridad particulares que requieren un enfoque especializado y adaptado a los riesgos específicos.\n\nNuestro equipo cuenta con amplia experiencia en la protección de empresas del sector ${nombreIndustria}, brindando una respuesta rápida y efectiva ante cualquier incidente.`,
+      beneficios: [
+        `Protección especializada para el sector ${nombreIndustria}`,
+        `Personal entrenado en los riesgos específicos de su industria`,
+        `Supervisión constante y reportes detallados`,
+        `Adaptación a sus necesidades y horarios operativos`
+      ],
+      casosDeUso: [
+        `Protección integral de instalaciones en el sector ${nombreIndustria}`,
+        `Prevención de incidentes y control de accesos`,
+        `Coordinación con sistemas de seguridad existentes`,
+        `Respuesta inmediata ante emergencias las 24/7`
+      ],
+      zonasCriticas: {
+        titulo: `Protección para puntos críticos en ${nombreIndustria}`,
+        descripcion: `En el sector ${nombreIndustria}, identificamos áreas que requieren atención especial en términos de seguridad. Nuestro servicio se adapta a las necesidades específicas de cada punto crítico:`,
+        zonas: [
+          `Accesos principales: Control estricto de entradas y salidas`,
+          `Áreas operativas: Supervisión y prevención de incidentes`,
+          `Zonas administrativas: Protección de información sensible`,
+          `Exteriores: Vigilancia perimetral y prevención de intrusiones`
+        ]
+      },
+      preguntasFrecuentes: [
+        {
+          pregunta: `¿Cómo se adapta su servicio de ${servicioBase.toLowerCase()} a las necesidades del sector ${nombreIndustria}?`,
+          respuesta: `Nuestro servicio se adapta mediante la capacitación especializada de nuestro personal en los riesgos específicos de su industria, implementación de protocolos personalizados y coordinación con sus sistemas de seguridad existentes.`
+        },
+        {
+          pregunta: `¿Qué experiencia tiene Gard Security en el sector ${nombreIndustria}?`,
+          respuesta: `Contamos con amplia experiencia protegiendo empresas del sector ${nombreIndustria}, lo que nos permite entender a profundidad los desafíos específicos de seguridad que enfrenta y ofrecer soluciones efectivas.`
+        },
+        {
+          pregunta: `¿Cuánto tiempo toma implementar su servicio en nuestras instalaciones?`,
+          respuesta: `El tiempo de implementación varía según la complejidad de sus instalaciones, pero generalmente podemos estar operativos en 1-2 semanas, incluyendo la capacitación específica para su sector.`
+        },
+        {
+          pregunta: `¿Ofrecen servicios complementarios además de ${servicioBase.toLowerCase()}?`,
+          respuesta: `Sí, ofrecemos una gama completa de servicios complementarios que pueden integrarse con el servicio de ${servicioBase.toLowerCase()}, incluyendo seguridad electrónica, monitoreo remoto y consultoría especializada.`
+        }
+      ],
+      ctaTexto: `Solicitar ${servicioBase} para ${nombreIndustria}`,
+      imageId: industria.slug === 'mineria' ? '7d33f2ab-1ad7-4f8d-11c3-e82a0b54db00' : 
+               industria.slug === 'retail' ? 'bee9d371-805c-4029-59f6-93cdfd916000' : 
+               '5eea1064-8a2d-4e8b-5606-d28775467a00'
+    };
+  }
 };
 
 /**
