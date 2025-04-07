@@ -207,7 +207,7 @@ export default function CotizacionForm() {
   };
 
   return (
-    <div className="bg-card rounded-xl shadow-sm p-6 md:p-8">
+    <div className="bg-card rounded-xl shadow-sm p-6 md:p-8 border border-gray-200 dark:border-gray-700">
       {formStatus === 'success' ? (
         <div className="text-center py-8">
           <h2 className="text-heading-4 text-primary mb-4">¡Tu solicitud ha sido enviada correctamente!</h2>
