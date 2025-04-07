@@ -251,6 +251,17 @@ export default function ServicioIndustriaLanding({ content, params }: ServicioIn
           setActiveSection(section.getAttribute('data-section') || 'hero');
         }
       });
+      
+      // Detectar si el footer está visible o cerca para ocultar el CTA flotante
+      const footer = document.querySelector('footer');
+      if (footer) {
+        const footerRect = footer.getBoundingClientRect();
+        // Añadir margen de seguridad (100px) para que desaparezca antes de llegar al footer
+        const isNearFooter = footerRect.top < window.innerHeight + 100;
+        if (isNearFooter) {
+          setIsScrolled(false);
+        }
+      }
     };
     
     window.addEventListener('scroll', handleScroll);
@@ -307,7 +318,7 @@ export default function ServicioIndustriaLanding({ content, params }: ServicioIn
               <div className="flex items-center justify-between gap-3">
                 <div className="flex-1">
                   <Button 
-                    variant="gard-primary" 
+                    variant="gard-accent" 
                     size="lg" 
                     className="w-full rounded-xl"
                     onClick={scrollToForm}

@@ -184,40 +184,6 @@ async function generateSitemap() {
   // const blogTagPaginationPages = [];
   // for (const tag of allTags) { ... }
   
-  // Landing pages dinámicas
-  // Definimos servicios e industrias prioritarias para SEO
-  const serviciosPrioritarios = [
-    'guardias-privados', 
-    'camaras-seguridad', 
-    'alarmas', 
-    'control-acceso', 
-    'monitoreo-remoto'
-  ];
-  
-  const industriasPrioritarias = [
-    'retail', 
-    'industrial', 
-    'corporativo', 
-    'educacion', 
-    'hospitales', 
-    'mineria', 
-    'construccion',
-    'logistica'
-  ];
-  
-  // Crear todas las combinaciones posibles entre servicios e industrias prioritarias
-  const landingDinamicas = [];
-  for (const servicio of serviciosPrioritarios) {
-    for (const industria of industriasPrioritarias) {
-      landingDinamicas.push({
-        url: `${baseUrl}/landing-dinamico/${industria}/${servicio}`,
-        lastModified: new Date().toISOString(),
-        changeFrequency: 'monthly',
-        priority: 0.8, // Alta prioridad para landing pages de conversión
-      });
-    }
-  }
-
   // Nuevas landing pages dinámicas de ciudad/servicio
   const ciudadServicioPages = [];
   
@@ -245,8 +211,6 @@ async function generateSitemap() {
     ...blogPostPages, 
     ...blogPaginationPages,
     ...blogTagPages,
-    // Se elimina blogTagPaginationPages del array final
-    ...landingDinamicas,
     ...ciudadServicioPages // Añadimos las nuevas páginas de ciudad/servicio
   ];
   

@@ -357,6 +357,17 @@ const StickyMobileButton = () => {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 500);
+      
+      // Detectar si el footer está visible o cerca para ocultar el CTA flotante
+      const footer = document.querySelector('footer');
+      if (footer) {
+        const footerRect = footer.getBoundingClientRect();
+        // Añadir margen de seguridad (100px) para que desaparezca antes de llegar al footer
+        const isNearFooter = footerRect.top < window.innerHeight + 100;
+        if (isNearFooter) {
+          setIsScrolled(false);
+        }
+      }
     };
     
     window.addEventListener('scroll', handleScroll);
