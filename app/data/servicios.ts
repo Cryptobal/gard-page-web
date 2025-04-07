@@ -32,9 +32,8 @@ export const servicios: Servicio[] = [
       "bc045c39-36bc-4abb-348d-c589687cb400",
       "eed0de62-d623-47bd-0a3f-d2ca692c6300",
       "1106aceb-986e-4176-a9a9-f0ec1f80f700",
-      "5b95423f-4c59-4205-7b90-52e0667ca200",
-      "04e7aafd-831d-4b6f-666c-116605cc4400",
-      "fb852267-cb0c-4e3e-fa90-136c201e7000"
+      "fb852267-cb0c-4e3e-fa90-136c201e7000",
+      "8bc35c05-93da-4a2a-f46e-a926bd422d00"
     ],
     keywords: [
       "guardias de seguridad",
