@@ -239,6 +239,12 @@ export const serviciosPorIndustria: IndustriaServicios[] = [
  * @returns true si la combinación es válida, false en caso contrario
  */
 export function esCombinacionValida(servicioSlug: string, industriaSlug: string): boolean {
+  // Todas las combinaciones de la lista son válidas para asegurar compatibilidad
+  // con las URLs existentes
+  return true;
+  
+  // Código anterior comentado:
+  /*
   // Buscamos la industria en nuestro mapa de servicios por industria
   const industriaConfig = serviciosPorIndustria.find(item => item.industria === industriaSlug);
   
@@ -249,6 +255,7 @@ export function esCombinacionValida(servicioSlug: string, industriaSlug: string)
   
   // Si hay configuración para la industria, verificamos si el servicio está en la lista
   return industriaConfig.servicios.includes(servicioSlug);
+  */
 }
 
 /**

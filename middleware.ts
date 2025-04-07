@@ -53,6 +53,12 @@ export function middleware(request: NextRequest) {
     
     // Verificar si son segmentos válidos
     if (SERVICIOS_VALIDOS.includes(servicio) && INDUSTRIAS_VALIDAS.includes(industria)) {
+      // Permitir todas las combinaciones válidas
+      // No verificamos esCombinacionValida ya que ahora todas las combinaciones son válidas
+      return NextResponse.next();
+      
+      /*
+      // Código original comentado:
       // Verificar si la combinación es válida según nuestro mapa de configuración
       if (!esCombinacionValida(servicio, industria)) {
         console.log(`Combinación no válida: ${servicio}/${industria}, redirigiendo a /servicios/${servicio}`);
@@ -63,6 +69,7 @@ export function middleware(request: NextRequest) {
       
       // Si la combinación es válida, continuar normalmente
       return NextResponse.next();
+      */
     }
   }
   
