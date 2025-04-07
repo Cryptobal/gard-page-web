@@ -848,7 +848,7 @@ export default function ReclutamientoForm() {
       </section>
 
       {/* CTA Final */}
-      <section className="py-16 md:py-20 bg-primary dark:bg-[#0a0a0a] dark:bg-[url('/assets/noise-pattern.png')] dark:bg-opacity-90">
+      <section className="py-16 md:py-20 bg-primary gard-dark-bg">
         <div className="max-w-5xl mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -863,7 +863,7 @@ export default function ReclutamientoForm() {
             <Button
               onClick={scrollToForm}
               size="lg"
-              className="bg-white text-primary hover:bg-white/90 dark:hover:bg-white/95 text-lg px-8 py-6 h-auto rounded-full shadow-lg hover:shadow-xl transition-all"
+              className="bg-[hsl(var(--gard-accent))] text-white hover:bg-[hsl(var(--gard-accent))]/90 text-lg px-8 py-6 h-auto rounded-full shadow-lg hover:shadow-xl transition-all"
             >
               Postula Ahora →
             </Button>

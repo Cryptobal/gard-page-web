@@ -26,12 +26,12 @@ export default function PostCard({
   const formattedDate = format(new Date(date), 'dd MMMM, yyyy', { locale: es });
   
   return (
-    <div className="gard-card bg-white dark:bg-[rgba(15,15,15,0.5)] dark:backdrop-blur-sm dark:border-[1px] dark:border-[rgba(255,255,255,0.07)] rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all dark:hover:border-[rgba(255,255,255,0.15)]">
+    <div className="gard-card-dark-accent">
       <div>
         <Link href={`/blog/${slug}`} className="block group">
           {imageId ? (
             <div className="aspect-video relative overflow-hidden rounded-t-2xl">
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent z-10"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent z-10 dark:from-[hsl(var(--gard-background-darkest))/60] dark:to-transparent"></div>
               <CloudflareImage
                 imageId={imageId}
                 alt={title}
@@ -87,7 +87,7 @@ export default function PostCard({
               <Link 
                 href={`/blog/tag/${encodeURIComponent(tag)}`}
                 key={tag}
-                className="text-xs px-3 py-1 bg-gray-100 dark:bg-[rgba(15,15,15,0.7)] text-gray-600 dark:text-gray-300 rounded-full hover:bg-primary/10 hover:text-primary dark:hover:bg-[hsl(var(--gard-accent)/_0.2)] dark:hover:text-[hsl(var(--gard-accent))] transition-colors dark:border-[1px] dark:border-[rgba(255,255,255,0.05)] dark:hover:border-[rgba(255,255,255,0.15)]"
+                className="text-xs px-3 py-1 bg-gray-100 dark:bg-[hsl(var(--gard-background-darker))] text-gray-600 dark:text-gray-300 rounded-full hover:bg-primary/10 hover:text-primary dark:hover:bg-[hsl(var(--gard-accent)/_0.2)] dark:hover:text-[hsl(var(--gard-accent))] transition-colors dark:border-[1px] dark:border-[hsl(var(--gard-border-subtle))] dark:hover:border-[hsl(var(--gard-accent)/_0.3)]"
               >
                 {tag}
               </Link>

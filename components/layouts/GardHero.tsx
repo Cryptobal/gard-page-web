@@ -118,11 +118,11 @@ export default function GardHero({
       {/* Hero Section - Fullscreen con video/imagen de fondo */}
       <section 
         data-section="hero"
-        className={`gard-hero relative ${variant === "home" ? "min-h-screen" : "min-h-[95vh]"} flex items-center overflow-hidden bg-gradient-to-tr from-gray-900 via-gray-800 to-gray-900 dark:bg-[linear-gradient(to_bottom,hsl(220,14%,6%)_0%,hsl(220,14%,12%)_100%)]`}
+        className={`gard-hero relative ${variant === "home" ? "min-h-screen" : "min-h-[95vh]"} flex items-center overflow-hidden bg-gradient-to-tr from-gray-900 via-gray-800 to-gray-900 dark:bg-[linear-gradient(to_bottom,hsl(var(--gard-background-darkest))_0%,hsl(var(--gard-background))_100%)]`}
       >
         {/* Overlay con degradado */}
         {overlay && (
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent z-10"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent z-10 dark:from-[hsl(var(--gard-background-darkest))/90] dark:to-transparent"></div>
         )}
         
         {/* Video o imagen de fondo */}
@@ -140,6 +140,8 @@ export default function GardHero({
                 className="w-full h-full absolute inset-0 object-cover"
                 preload="auto"
               />
+              {/* Patrón de textura sutil en modo oscuro */}
+              <div className="hidden dark:block absolute inset-0 bg-[url('/assets/noise-pattern.png')] opacity-10 z-10 pointer-events-none"></div>
             </div>
           ) : imageId ? (
             // Fallback a imagen si no hay video disponible
@@ -153,20 +155,23 @@ export default function GardHero({
                 objectFit="cover"
               />
               
+              {/* Patrón de textura sutil en modo oscuro */}
+              <div className="hidden dark:block absolute inset-0 bg-[url('/assets/noise-pattern.png')] opacity-10 z-10 pointer-events-none"></div>
+              
               {/* Sobreponer un botón de play para simular que es un video */}
               <motion.button
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1, duration: 0.5 }}
                 onClick={toggleVideo}
-                className="absolute bottom-10 right-10 z-20 bg-black/30 backdrop-blur-sm text-white p-3 rounded-full hover:bg-black/50 transition-all"
+                className="absolute bottom-10 right-10 z-20 bg-[hsl(var(--gard-card))/30] backdrop-blur-sm text-white p-3 rounded-full hover:bg-[hsl(var(--gard-card))/50] transition-all"
               >
                 <PlayCircle className="h-10 w-10" />
               </motion.button>
             </div>
           ) : (
             // Fallback si no hay ni video ni imagen
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-black/50"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-[hsl(var(--gard-background-darkest))/70] to-[hsl(var(--gard-background-darkest))/90]"></div>
           )}
         </div>
         

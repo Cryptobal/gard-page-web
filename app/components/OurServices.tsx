@@ -130,28 +130,28 @@ export default function OurServices({
               <Link 
                 key={index} 
                 href={href}
-                className="bg-card dark:bg-[hsl(var(--gard-card))] rounded-2xl p-4 shadow-md hover:shadow-xl transition-all duration-200 ease-in-out hover:scale-105 hover:border hover:border-[hsl(var(--gard-ring))] flex flex-col w-1/5 min-w-[200px] max-w-[23%] mb-6"
+                className="gard-card-dark rounded-2xl p-4 shadow-md hover:shadow-xl transition-all duration-200 ease-in-out hover:scale-105 flex flex-col w-1/5 min-w-[200px] max-w-[23%] mb-6 relative z-10 overflow-hidden group"
               >
-                <div className="relative aspect-[3/2] w-full mb-4">
+                <div className="relative aspect-[3/2] w-full mb-4 z-10">
                   <CloudflareImage
                     imageId={service.imageId}
                     alt={service.name}
                     fill
-                    className="rounded-xl object-cover w-full grayscale opacity-90 hover:grayscale-0 hover:opacity-100 transition duration-300 ease-in-out"
+                    className="rounded-xl object-cover w-full grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition duration-300 ease-in-out"
                   />
                 </div>
                 
-                <div className="flex items-center justify-center my-4">
+                <div className="flex items-center justify-center my-4 relative z-20">
                   {renderIcon(service.icon)}
                 </div>
                 
-                <h3 className="text-xl font-semibold text-foreground mb-2 text-center">{service.name}</h3>
+                <h3 className="text-xl font-semibold text-foreground mb-2 text-center relative z-20">{service.name}</h3>
                 
-                <p className="text-sm text-muted-foreground mb-4 text-center flex-grow">
+                <p className="text-sm text-muted-foreground mb-4 text-center flex-grow relative z-20">
                   {service.description}
                 </p>
                 
-                <div className="flex justify-center mt-auto">
+                <div className="flex justify-center mt-auto relative z-20">
                   <span className="inline-flex items-center text-primary dark:text-[hsl(var(--gard-accent))] font-medium">
                     Saber más <ArrowRight className="ml-1 h-4 w-4" />
                   </span>
@@ -181,31 +181,31 @@ export default function OurServices({
                     ? `${serviciosFiltrados[currentIndex].href}/${industria}` 
                     : serviciosFiltrados[currentIndex].href
                   }
-                  className="bg-card dark:bg-[hsl(var(--gard-card))] rounded-2xl p-4 shadow-md flex flex-col"
+                  className="gard-card-dark rounded-2xl p-4 shadow-md flex flex-col relative z-10 overflow-hidden group"
                 >
-                  <div className="relative aspect-[3/2] w-full mb-4">
+                  <div className="relative aspect-[3/2] w-full mb-4 z-10">
                     <CloudflareImage
                       imageId={serviciosFiltrados[currentIndex].imageId}
                       alt={serviciosFiltrados[currentIndex].name}
                       fill
-                      className="rounded-xl object-cover w-full grayscale opacity-90 hover:grayscale-0 hover:opacity-100 transition duration-300 ease-in-out"
+                      className="rounded-xl object-cover w-full grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition duration-300 ease-in-out"
                     />
                   </div>
                   
-                  <div className="flex items-center justify-center my-4">
+                  <div className="flex items-center justify-center my-4 relative z-20">
                     {renderIcon(serviciosFiltrados[currentIndex].icon)}
                   </div>
                   
-                  <h3 className="text-xl font-semibold text-foreground mb-2 text-center">
+                  <h3 className="text-xl font-semibold text-foreground mb-2 text-center relative z-20">
                     {serviciosFiltrados[currentIndex].name}
                   </h3>
                   
-                  <p className="text-sm text-muted-foreground mb-4 text-center flex-grow">
+                  <p className="text-sm text-muted-foreground mb-4 text-center flex-grow relative z-20">
                     {serviciosFiltrados[currentIndex].description}
                   </p>
                   
-                  <div className="flex justify-center mt-auto">
-                    <span className="inline-flex items-center text-primary dark:text-accent font-medium">
+                  <div className="flex justify-center mt-auto relative z-20">
+                    <span className="inline-flex items-center text-primary dark:text-[hsl(var(--gard-accent))] font-medium">
                       Saber más <ArrowRight className="ml-1 h-4 w-4" />
                     </span>
                   </div>
@@ -220,7 +220,7 @@ export default function OurServices({
             className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 bg-white dark:bg-[hsl(var(--gard-card))] p-2 rounded-full shadow-md"
             aria-label="Anterior"
           >
-            <ChevronLeft className="h-6 w-6 text-primary dark:text-accent" />
+            <ChevronLeft className="h-6 w-6 text-primary dark:text-[hsl(var(--gard-accent))]" />
           </button>
           
           <button 
@@ -228,7 +228,7 @@ export default function OurServices({
             className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 bg-white dark:bg-[hsl(var(--gard-card))] p-2 rounded-full shadow-md"
             aria-label="Siguiente"
           >
-            <ChevronRight className="h-6 w-6 text-primary dark:text-accent" />
+            <ChevronRight className="h-6 w-6 text-primary dark:text-[hsl(var(--gard-accent))]" />
           </button>
 
           {/* Indicadores de páginación */}
@@ -239,7 +239,7 @@ export default function OurServices({
                 onClick={() => setCurrentIndex(index)}
                 className={`w-6 h-6 rounded-full transition-all duration-300 flex items-center justify-center ${
                   currentIndex === index 
-                    ? 'bg-primary dark:bg-accent w-8' 
+                    ? 'bg-primary dark:bg-[hsl(var(--gard-accent))] w-8' 
                     : 'bg-gray-300 dark:bg-gray-700'
                 }`}
                 aria-label={`${index + 1} - Ir a servicio ${index + 1}`}

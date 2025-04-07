@@ -9,10 +9,10 @@ export const metadata: Metadata = {
 
 export default function TerminosServicio() {
   return (
-    <main className="gard-section bg-white dark:bg-gray-900">
+    <main className="gard-section bg-white dark:bg-[hsl(var(--gard-background-darkest))] dark:bg-[url('/assets/noise-pattern.png')] dark:bg-opacity-95">
       <div className="gard-container">
         <div className="max-w-3xl mx-auto">
-          <h1 className="text-heading-2 md:text-heading-1 text-center mb-12 text-primary dark:text-primary">
+          <h1 className="text-heading-2 md:text-heading-1 text-center mb-12 text-primary dark:text-[hsl(var(--gard-accent))]">
             Términos de Servicio
           </h1>
 
@@ -131,7 +131,7 @@ export default function TerminosServicio() {
               <p className="text-body-base text-gray-700 dark:text-gray-300 mb-6">
                 Si tiene preguntas sobre estos términos de servicio, contáctenos en:
               </p>
-              <div className="border-l-4 border-primary pl-4 py-2 text-gray-700 dark:text-gray-300">
+              <div className="border-l-4 border-primary dark:border-[hsl(var(--gard-accent))] pl-4 py-2 text-gray-700 dark:text-gray-300">
                 <p className="mb-2"><strong>Gard Security</strong></p>
                 <p className="mb-2">Email: legal@gard.cl</p>
                 <p className="mb-0">Teléfono: +56 2 2345 6789</p>
@@ -142,7 +142,7 @@ export default function TerminosServicio() {
               <h2 className="text-heading-3 mb-4 text-gray-900 dark:text-white">Preguntas frecuentes sobre nuestros términos de servicio</h2>
               
               <div className="space-y-6 mt-6">
-                <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+                <div className="bg-gray-50 dark:bg-[hsl(var(--gard-card))] p-6 rounded-lg">
                   <h3 className="text-heading-5 mb-3 text-gray-900 dark:text-white">¿Con qué frecuencia se actualizan estos términos?</h3>
                   <p className="text-body-base text-gray-700 dark:text-gray-300">
                     Revisamos nuestros términos de servicio periódicamente para asegurarnos de que reflejen 
@@ -154,7 +154,7 @@ export default function TerminosServicio() {
                   </p>
                 </div>
                 
-                <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+                <div className="bg-gray-50 dark:bg-[hsl(var(--gard-card))] p-6 rounded-lg">
                   <h3 className="text-heading-5 mb-3 text-gray-900 dark:text-white">¿Qué sucede si existe un conflicto entre estos términos y mi contrato específico?</h3>
                   <p className="text-body-base text-gray-700 dark:text-gray-300">
                     En caso de discrepancia entre estos términos generales y las condiciones específicas 
@@ -166,7 +166,7 @@ export default function TerminosServicio() {
                   </p>
                 </div>
                 
-                <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+                <div className="bg-gray-50 dark:bg-[hsl(var(--gard-card))] p-6 rounded-lg">
                   <h3 className="text-heading-5 mb-3 text-gray-900 dark:text-white">¿Cómo se manejan las disputas relacionadas con estos términos?</h3>
                   <p className="text-body-base text-gray-700 dark:text-gray-300">
                     Ante cualquier controversia relacionada con estos términos, buscamos primero una 
@@ -178,7 +178,7 @@ export default function TerminosServicio() {
                   </p>
                 </div>
                 
-                <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+                <div className="bg-gray-50 dark:bg-[hsl(var(--gard-card))] p-6 rounded-lg">
                   <h3 className="text-heading-5 mb-3 text-gray-900 dark:text-white">¿Estos términos se aplican a todos los servicios de Gard Security?</h3>
                   <p className="text-body-base text-gray-700 dark:text-gray-300">
                     Estos términos generales se aplican a todos los servicios básicos ofrecidos por 
@@ -190,7 +190,7 @@ export default function TerminosServicio() {
                   </p>
                 </div>
                 
-                <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+                <div className="bg-gray-50 dark:bg-[hsl(var(--gard-card))] p-6 rounded-lg">
                   <h3 className="text-heading-5 mb-3 text-gray-900 dark:text-white">¿Cómo puedo obtener una copia de estos términos para mis registros?</h3>
                   <p className="text-body-base text-gray-700 dark:text-gray-300">
                     Puede guardar o imprimir una copia de estos términos directamente desde esta página web 
@@ -204,7 +204,7 @@ export default function TerminosServicio() {
               </div>
             </section>
 
-            <div className="mt-12 border-t border-gray-200 dark:border-gray-700 pt-6 text-sm text-gray-500 dark:text-gray-400">
+            <div className="mt-12 border-t border-gray-200 dark:border-[hsl(var(--gard-border))] pt-6 text-sm text-gray-500 dark:text-gray-400">
               <p>Última actualización: Mayo 2024</p>
             </div>
           </div>

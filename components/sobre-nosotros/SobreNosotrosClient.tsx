@@ -20,7 +20,7 @@ export default function SobreNosotrosClient() {
       {/* Hero Section */}
       <GardHero 
         title="Somos Gard Security: tu socio en protección empresarial"
-        subtitle="Más de 20 años resguardando instalaciones críticas, con tecnología avanzada y equipos altamente capacitados."
+        subtitle="Equipo profesional resguardando instalaciones críticas, con tecnología avanzada y equipos altamente capacitados."
         imageId="7d33f2ab-1ad7-4f8d-11c3-e82a0b54db00"
         badge={{
           icon: <Shield className="h-4 w-4" />,
@@ -72,7 +72,7 @@ export default function SobreNosotrosClient() {
               >
                 <div className="absolute -left-10 top-0 w-4 h-4 bg-primary dark:bg-[hsl(var(--gard-accent))] rounded-full"></div>
                 <div className="mb-2">
-                  <span className="text-sm text-muted-foreground">2002</span>
+                  <span className="text-sm text-muted-foreground">2018</span>
                   <h4 className="text-heading-4">Fundación</h4>
                 </div>
                 <p className="text-body-base">Nacimiento de Gard Security como respuesta a la necesidad de seguridad especializada para empresas.</p>
@@ -87,7 +87,7 @@ export default function SobreNosotrosClient() {
               >
                 <div className="absolute -left-10 top-0 w-4 h-4 bg-primary dark:bg-[hsl(var(--gard-accent))] rounded-full"></div>
                 <div className="mb-2">
-                  <span className="text-sm text-muted-foreground">2010</span>
+                  <span className="text-sm text-muted-foreground">2019</span>
                   <h4 className="text-heading-4">Expansión nacional</h4>
                 </div>
                 <p className="text-body-base">Ampliación de operaciones a todo el territorio nacional, con foco en industrias críticas.</p>
@@ -102,7 +102,7 @@ export default function SobreNosotrosClient() {
               >
                 <div className="absolute -left-10 top-0 w-4 h-4 bg-primary dark:bg-[hsl(var(--gard-accent))] rounded-full"></div>
                 <div className="mb-2">
-                  <span className="text-sm text-muted-foreground">2015</span>
+                  <span className="text-sm text-muted-foreground">2020</span>
                   <h4 className="text-heading-4">Integración tecnológica</h4>
                 </div>
                 <p className="text-body-base">Implementación de plataformas propias de gestión y control de operaciones de seguridad.</p>

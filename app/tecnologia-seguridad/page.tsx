@@ -101,7 +101,7 @@ export default function Page() {
       </section>
 
       {/* Sección Supervisión Inteligente */}
-      <section className="gard-section py-16 md:py-24 bg-gray-50 dark:bg-[#050505] dark:bg-[radial-gradient(circle_at_center,_rgba(15,15,15,0.5)_1px,transparent_1px)] dark:bg-[length:24px_24px]">
+      <section className="gard-section py-16 md:py-24 bg-gray-50 gard-dark-grid">
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
@@ -127,7 +127,7 @@ export default function Page() {
             </div>
             
             <div className="relative h-[400px] rounded-2xl overflow-hidden shadow-md">
-              <div className="absolute inset-0 bg-gradient-to-tr from-black/40 to-transparent z-10"></div>
+              <div className="absolute inset-0 bg-gradient-to-tr from-black/40 to-transparent z-10 dark:from-[hsl(var(--gard-background-darkest))/60] dark:to-transparent"></div>
               <CloudflareImage
                 imageId="678cad4f-9b0d-49e6-3bbd-0d747a2fdc00"
                 alt="Supervisión y operación inteligente en seguridad privada"
@@ -140,7 +140,7 @@ export default function Page() {
       </section>
 
       {/* Sección Comunicación con Clientes */}
-      <section className="gard-section py-16 md:py-24 bg-white dark:bg-[linear-gradient(180deg,#080808_0%,#0c0c0c_100%)] dark:before:content-[''] dark:before:absolute dark:before:inset-0 dark:before:bg-[linear-gradient(90deg,rgba(20,20,20,0.03)_1px,transparent_1px),linear-gradient(0deg,rgba(20,20,20,0.03)_1px,transparent_1px)] dark:before:bg-[size:20px_20px] dark:before:pointer-events-none dark:before:opacity-60">
+      <section className="gard-section py-16 md:py-24 bg-white gard-dark-gradient">
         <div className="max-w-7xl mx-auto px-4 relative">
           <div className="text-center mb-12">
             <h2 className="text-heading-2 mb-4">Comunicación en Tiempo Real</h2>
@@ -150,7 +150,7 @@ export default function Page() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="bg-card dark:bg-[rgba(15,15,15,0.5)] dark:backdrop-blur-sm dark:border-[1px] dark:border-[rgba(255,255,255,0.07)] rounded-2xl p-4 shadow-sm hover:shadow-md transition-all dark:hover:border-[rgba(255,255,255,0.15)]">
+            <Card className="gard-card-dark-accent">
               <CardHeader className="text-center">
                 <div className="mx-auto mb-4 bg-primary/5 dark:bg-[hsl(var(--gard-accent)/_0.1)] p-4 rounded-full">
                   <MessageSquare className="h-10 w-10 text-primary dark:text-[hsl(var(--gard-accent))]" />
@@ -164,7 +164,7 @@ export default function Page() {
               </CardContent>
             </Card>
 
-            <Card className="bg-card dark:bg-[rgba(15,15,15,0.5)] dark:backdrop-blur-sm dark:border-[1px] dark:border-[rgba(255,255,255,0.07)] rounded-2xl p-4 shadow-sm hover:shadow-md transition-all dark:hover:border-[rgba(255,255,255,0.15)]">
+            <Card className="gard-card-dark-accent">
               <CardHeader className="text-center">
                 <div className="mx-auto mb-4 bg-primary/5 dark:bg-[hsl(var(--gard-accent)/_0.1)] p-4 rounded-full">
                   <ClipboardCheck className="h-10 w-10 text-primary dark:text-[hsl(var(--gard-accent))]" />
@@ -178,7 +178,7 @@ export default function Page() {
               </CardContent>
             </Card>
 
-            <Card className="bg-card dark:bg-[rgba(15,15,15,0.5)] dark:backdrop-blur-sm dark:border-[1px] dark:border-[rgba(255,255,255,0.07)] rounded-2xl p-4 shadow-sm hover:shadow-md transition-all dark:hover:border-[rgba(255,255,255,0.15)]">
+            <Card className="gard-card-dark-accent">
               <CardHeader className="text-center">
                 <div className="mx-auto mb-4 bg-primary/5 dark:bg-[hsl(var(--gard-accent)/_0.1)] p-4 rounded-full">
                   <Database className="h-10 w-10 text-primary dark:text-[hsl(var(--gard-accent))]" />
@@ -196,7 +196,7 @@ export default function Page() {
       </section>
 
       {/* Sección Reportes IA */}
-      <section className="gard-section py-16 md:py-24 bg-gray-50 dark:bg-[#070707] dark:bg-[conic-gradient(from_90deg_at_50%_50%,#080808_0%,#0c0c0c_50%,#080808_100%)]">
+      <section className="gard-section py-16 md:py-24 bg-gray-50 dark:bg-[hsl(var(--gard-background-darkest))] dark:bg-[conic-gradient(from_90deg_at_50%_50%,hsl(var(--gard-background-darker))_0%,hsl(var(--gard-background))_50%,hsl(var(--gard-background-darker))_100%)]">
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="order-2 lg:order-1">
@@ -247,7 +247,7 @@ export default function Page() {
       </section>
 
       {/* Sección Desarrollo a Medida */}
-      <section className="gard-section py-16 md:py-24 bg-white dark:bg-[#0a0a0a] dark:bg-[url('/assets/noise-pattern.png')] dark:bg-opacity-90">
+      <section className="gard-section py-16 md:py-24 bg-white gard-dark-bg">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-heading-2 mb-4">Desarrollo a Medida para Empresas</h2>
@@ -258,7 +258,7 @@ export default function Page() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
             <div className="flex items-start group">
-              <div className="mr-4 bg-primary/10 dark:bg-black/40 dark:border dark:border-[hsl(var(--gard-accent)/_0.2)] p-3 rounded-full group-hover:border-[hsl(var(--gard-accent)/_0.4)] transition-all duration-300">
+              <div className="mr-4 bg-primary/10 dark:bg-[hsl(var(--gard-background-darker))/40] dark:border dark:border-[hsl(var(--gard-accent)/_0.2)] p-3 rounded-full group-hover:border-[hsl(var(--gard-accent)/_0.4)] transition-all duration-300">
                 <Code className="h-8 w-8 text-primary dark:text-[hsl(var(--gard-accent))]" />
               </div>
               <div>
@@ -270,7 +270,7 @@ export default function Page() {
             </div>
             
             <div className="flex items-start group">
-              <div className="mr-4 bg-primary/10 dark:bg-black/40 dark:border dark:border-[hsl(var(--gard-accent)/_0.2)] p-3 rounded-full group-hover:border-[hsl(var(--gard-accent)/_0.4)] transition-all duration-300">
+              <div className="mr-4 bg-primary/10 dark:bg-[hsl(var(--gard-background-darker))/40] dark:border dark:border-[hsl(var(--gard-accent)/_0.2)] p-3 rounded-full group-hover:border-[hsl(var(--gard-accent)/_0.4)] transition-all duration-300">
                 <Database className="h-8 w-8 text-primary dark:text-[hsl(var(--gard-accent))]" />
               </div>
               <div>
@@ -282,7 +282,7 @@ export default function Page() {
             </div>
             
             <div className="flex items-start group">
-              <div className="mr-4 bg-primary/10 dark:bg-black/40 dark:border dark:border-[hsl(var(--gard-accent)/_0.2)] p-3 rounded-full group-hover:border-[hsl(var(--gard-accent)/_0.4)] transition-all duration-300">
+              <div className="mr-4 bg-primary/10 dark:bg-[hsl(var(--gard-background-darker))/40] dark:border dark:border-[hsl(var(--gard-accent)/_0.2)] p-3 rounded-full group-hover:border-[hsl(var(--gard-accent)/_0.4)] transition-all duration-300">
                 <ClipboardCheck className="h-8 w-8 text-primary dark:text-[hsl(var(--gard-accent))]" />
               </div>
               <div>
@@ -294,7 +294,7 @@ export default function Page() {
             </div>
             
             <div className="flex items-start group">
-              <div className="mr-4 bg-primary/10 dark:bg-black/40 dark:border dark:border-[hsl(var(--gard-accent)/_0.2)] p-3 rounded-full group-hover:border-[hsl(var(--gard-accent)/_0.4)] transition-all duration-300">
+              <div className="mr-4 bg-primary/10 dark:bg-[hsl(var(--gard-background-darker))/40] dark:border dark:border-[hsl(var(--gard-accent)/_0.2)] p-3 rounded-full group-hover:border-[hsl(var(--gard-accent)/_0.4)] transition-all duration-300">
                 <Smartphone className="h-8 w-8 text-primary dark:text-[hsl(var(--gard-accent))]" />
               </div>
               <div>
