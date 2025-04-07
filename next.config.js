@@ -17,6 +17,9 @@ const nextConfig = {
   // Redirecciones para evitar errores 404 y contenido duplicado
   async redirects() {
     return [
+      // Las redirecciones ciudad/servicio y servicio/industria 
+      // ahora son manejadas por middleware.ts
+      
       // Redirecciones de URLs antiguas a nuevas estructuras
       {
         source: '/automatizacion-y-domotica',

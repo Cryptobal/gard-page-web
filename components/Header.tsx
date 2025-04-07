@@ -64,7 +64,7 @@ export default function Header() {
   const getNavLinkClasses = (isActive: boolean, isCTA?: boolean) => {
     if (isCTA) {
       return `
-        bg-primary text-white px-4 py-2 rounded-xl hover:bg-primary/90 transition
+        bg-primary text-white px-4 py-2 rounded-xl hover:bg-accent transition
         font-semibold ${scrolled ? 'text-sm' : 'text-base'}
       `;
     }
@@ -160,7 +160,7 @@ export default function Header() {
                   key={href}
                   href={href}
                   className={isCTA 
-                    ? "bg-primary text-white px-6 py-2 rounded-xl hover:bg-primary/90 transition text-lg font-semibold"
+                    ? "bg-primary text-white px-6 py-2 rounded-xl hover:bg-accent transition text-lg font-semibold"
                     : `
                       text-lg font-semibold transition-colors
                       ${pathname === href 

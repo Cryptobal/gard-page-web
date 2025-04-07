@@ -30,6 +30,7 @@ import {
 
 import CloudflareImage from '@/components/CloudflareImage';
 import { cloudflareImages } from '@/lib/images';
+import GardHero from '@/components/layouts/GardHero';
 import {
   Form,
   FormControl,
@@ -237,57 +238,18 @@ export default function ReclutamientoForm() {
   return (
     <main className="flex-grow">
       {/* Hero Principal */}
-      <section className="relative h-[60vh] md:h-[65vh] overflow-hidden">
-        <div className="absolute inset-0">
-          <CloudflareImage
-            imageId="428c1028-8f6b-455a-e110-38421eeb5700"
-            alt="Reclutamiento Gard Security"
-            fill
-            className="object-cover"
-            objectPosition="center"
-            priority
-          />
-          {/* Overlay oscuro */}
-          <div className="absolute inset-0 bg-black/50 z-10"></div>
-          <div className="bg-gradient-to-t from-black/60 to-transparent absolute inset-0 z-10"></div>
-        </div>
-        
-        {/* Contenido */}
-        <div className="relative z-20 h-full flex flex-col justify-center items-center text-center px-4">
-          <motion.h1 
-            initial="hidden"
-            animate="visible"
-            variants={fadeIn}
-            className="text-white text-4xl md:text-5xl font-bold leading-tight max-w-4xl mb-6"
-          >
-            Sé parte de Gard Security
-          </motion.h1>
-          <motion.p 
-            initial="hidden"
-            animate="visible"
-            variants={fadeIn}
-            transition={{ delay: 0.2 }}
-            className="text-white text-xl max-w-2xl mb-8"
-          >
-            Buscamos guardias responsables, con vocación y compromiso.
-          </motion.p>
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={fadeIn}
-            transition={{ delay: 0.4 }}
-          >
-            <Button 
-              onClick={scrollToForm}
-              className="bg-primary hover:bg-primary/90 text-white px-8 py-6 rounded-full text-lg flex items-center"
-              aria-label="Ir al formulario de postulación"
-            >
-              Postula Aquí
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-          </motion.div>
-        </div>
-      </section>
+      <GardHero 
+        title="Sé parte de Gard Security"
+        subtitle="Buscamos guardias responsables, con vocación y compromiso."
+        ctaTexto="Postula Aquí"
+        badge={{
+          icon: <Shield className="h-4 w-4" />,
+          text: "Oportunidades Laborales"
+        }}
+        imageId="428c1028-8f6b-455a-e110-38421eeb5700"
+        overlay={true}
+        onScrollToForm={scrollToForm}
+      />
 
       {/* ¿A quién buscamos? */}
       <section className="py-16 md:py-24 bg-white dark:bg-gray-900">

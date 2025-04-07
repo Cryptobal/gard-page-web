@@ -20,45 +20,25 @@ import ClientCarousel from '@/app/components/home/ClientCarousel';
 import OurServices from '@/app/components/OurServices';
 import IndustriasGridPage from './components/IndustriasGridPage';
 import CtaFinal from '@/components/ui/shared/CtaFinal';
+import GardHero from '@/components/layouts/GardHero';
 
 export default function Home() {
   return (
     <>
       {/* Hero principal */}
-      <section className="gard-hero min-h-screen flex flex-col justify-center items-center py-12 sm:py-20">
-        {/* Overlay para contraste */}
-        <div className="gard-hero-overlay bg-black/40"></div>
-        <div className="absolute inset-0 bg-black/30 z-10"></div>
-        <div className="bg-gradient-to-t from-black/50 to-transparent absolute inset-0 z-10"></div>
-        <div className="gard-hero-content text-center">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 max-w-4xl mx-auto leading-tight">
-            Seguridad de Clase Mundial para Empresas Exigentes
-          </h1>
-          <p className="text-base text-muted-foreground max-w-md text-center mx-auto text-gray-200 mb-8">
-            Protegemos lo que más importa con soluciones integrales diseñadas para los desafíos de seguridad más complejos.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center w-full max-w-md mx-auto">
-            <Link href="/servicios" className="w-full sm:flex-1 gard-btn gard-btn-outline gard-btn-lg bg-transparent border-white text-white hover:bg-white/20">
-              Explorar Servicios
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Link>
-            <Link href="/cotizar" className="w-full sm:flex-1 gard-btn gard-btn-primary gard-btn-lg">
-              Cotizar Ahora
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Link>
-          </div>
-        </div>
-        <div className="absolute inset-0 -z-10">
-          <CloudflareImage
-            imageId={cloudflareImages.hero.home}
-            alt="Gard Security - Seguridad Empresarial"
-            fill
-            priority
-            objectFit="cover"
-            objectPosition="center center"
-          />
-        </div>
-      </section>
+      <GardHero 
+        title="Seguridad de Clase Mundial para Empresas Exigentes"
+        subtitle="Protegemos lo que más importa con soluciones integrales diseñadas para los desafíos de seguridad más complejos."
+        ctaTexto="Cotizar Ahora"
+        ctaHref="/cotizar"
+        videoId="ac93b4a10e87873748171425b9f8066d"
+        imageId={cloudflareImages.hero.home}
+        variant="home"
+        badge={{
+          icon: <Shield className="h-4 w-4" />,
+          text: "Expertos en Seguridad Empresarial"
+        }}
+      />
 
       {/* Clientes que confían en nosotros */}
       <ClientCarousel />

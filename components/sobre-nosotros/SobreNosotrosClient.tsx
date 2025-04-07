@@ -9,6 +9,7 @@ import { motion } from 'framer-motion';
 import CtaFinal from '@/components/ui/shared/CtaFinal';
 import CanonicalUrl from '@/components/seo/CanonicalUrl';
 import SEODevPanel from '@/components/seo/SEODevPanel';
+import GardHero from '@/components/layouts/GardHero';
 
 export default function SobreNosotrosClient() {
   return (
@@ -18,42 +19,17 @@ export default function SobreNosotrosClient() {
       <SEODevPanel />
       
       {/* Hero Section */}
-      <section className="relative h-[55vh] md:h-[65vh] overflow-hidden">
-        {/* Imagen de fondo */}
-        <div className="absolute inset-0">
-          <CloudflareImage
-            imageId="7d33f2ab-1ad7-4f8d-11c3-e82a0b54db00"
-            alt="Equipo de Gard Security"
-            fill
-            className="object-cover"
-            objectPosition="center"
-            priority
-          />
-          {/* Overlay oscuro */}
-          <div className="absolute inset-0 bg-black/50 z-10"></div>
-          <div className="bg-gradient-to-t from-black/60 to-transparent absolute inset-0 z-10"></div>
-        </div>
-        
-        {/* Contenido */}
-        <div className="relative z-20 h-full flex flex-col justify-center items-center text-center px-4">
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-white text-4xl md:text-5xl font-bold leading-tight max-w-4xl mb-6"
-          >
-            Somos Gard Security: tu socio en protección empresarial
-          </motion.h1>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-white text-xl max-w-2xl mb-8"
-          >
-            Más de 20 años resguardando instalaciones críticas, con tecnología avanzada y equipos altamente capacitados.
-          </motion.p>
-        </div>
-      </section>
+      <GardHero 
+        title="Somos Gard Security: tu socio en protección empresarial"
+        subtitle="Más de 20 años resguardando instalaciones críticas, con tecnología avanzada y equipos altamente capacitados."
+        imageId="7d33f2ab-1ad7-4f8d-11c3-e82a0b54db00"
+        badge={{
+          icon: <Shield className="h-4 w-4" />,
+          text: "Líderes en Seguridad"
+        }}
+        overlay={true}
+        showCallButton={false}
+      />
 
       {/* Historia y trayectoria */}
       <section className="max-w-7xl mx-auto px-4 py-16 md:py-24 my-12">

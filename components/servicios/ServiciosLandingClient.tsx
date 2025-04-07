@@ -2,12 +2,13 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { CheckCircle, ArrowRight } from 'lucide-react';
+import { CheckCircle, ArrowRight, Shield } from 'lucide-react';
 import CloudflareImage from '@/components/CloudflareImage';
 import OurServices from '@/app/components/OurServices';
 import CtaFinal from '@/components/ui/shared/CtaFinal';
 import SEODevPanel from '@/components/seo/SEODevPanel';
 import CanonicalUrl from '@/components/seo/CanonicalUrl';
+import GardHero from '@/components/layouts/GardHero';
 
 export default function ServiciosLandingClient() {
   return (
@@ -17,27 +18,19 @@ export default function ServiciosLandingClient() {
       <CanonicalUrl />
       
       {/* Hero Section */}
-      <section className="relative w-full h-[45vh] md:h-[60vh]">
-        <div className="absolute inset-0 bg-black/50 z-10"></div>
-        <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-4">
-          <h1 className="text-white text-4xl md:text-5xl font-bold mb-4">
-            Nuestros Servicios de Seguridad
-          </h1>
-          <p className="text-white text-lg md:text-xl opacity-90 max-w-3xl mb-8">
-            Protección integral para industrias, empresas, instituciones y comunidades.
-          </p>
-          <Link href="/cotizar" className="gard-btn gard-btn-primary gard-btn-lg inline-flex items-center">
-            Cotiza ahora <ArrowRight className="ml-2 h-5 w-5" />
-          </Link>
-        </div>
-        <CloudflareImage
-          imageId="5eea1064-8a2d-4e8b-5606-d28775467a00"
-          alt="Servicios de seguridad Gard"
-          fill
-          priority
-          className="object-cover"
-        />
-      </section>
+      <GardHero 
+        title="Nuestros Servicios de Seguridad"
+        subtitle="Protección integral para industrias, empresas, instituciones y comunidades."
+        ctaTexto="Cotiza ahora"
+        ctaHref="/cotizar"
+        imageId="5eea1064-8a2d-4e8b-5606-d28775467a00"
+        badge={{
+          icon: <Shield className="h-4 w-4" />,
+          text: "Servicios de Alta Calidad"
+        }}
+        overlay={true}
+        variant="standard"
+      />
 
       {/* Servicios destacados - usando el mismo componente que la página de inicio */}
       <OurServices />

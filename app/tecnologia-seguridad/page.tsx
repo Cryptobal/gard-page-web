@@ -8,7 +8,8 @@ import {
   FileText,
   MessageSquare,
   Database,
-  Code
+  Code,
+  Cpu
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/components/ui/button';
@@ -22,6 +23,7 @@ import {
 } from "@/components/ui/card";
 import CtaFinal from '@/components/ui/shared/CtaFinal';
 import TecnologiaLandingClient from './TecnologiaLandingClient';
+import GardHero from '@/components/layouts/GardHero';
 
 export default function Page() {
   return (
@@ -30,42 +32,18 @@ export default function Page() {
       <TecnologiaLandingClient />
       
       {/* Hero Section */}
-      <section className="relative h-[60vh] md:h-[70vh] w-full overflow-hidden">
-        <div className="absolute inset-0">
-          <CloudflareImage
-            imageId="678cad4f-9b0d-49e6-3bbd-0d747a2fdc00"
-            alt="Tecnología para Seguridad Privada Inteligente"
-            fill
-            className="object-cover"
-            objectPosition="center"
-            priority
-          />
-          {/* Overlay oscuro */}
-          <div className="absolute inset-0 bg-black/60 z-10"></div>
-          <div className="bg-gradient-to-t from-black/60 to-transparent absolute inset-0 z-10"></div>
-        </div>
-        
-        {/* Contenido */}
-        <div className="relative z-20 h-full flex flex-col justify-center items-center text-center px-4">
-          <h1 className="text-white text-4xl md:text-5xl font-bold leading-tight max-w-4xl mb-6">
-            Innovación en Tecnología para Seguridad Privada
-          </h1>
-          <p className="text-white text-xl max-w-2xl mb-8">
-            Inteligencia artificial, videovigilancia avanzada y sistemas de monitoreo en tiempo real.
-          </p>
-          <Link 
-            href="/cotizar" 
-            className={cn(
-              buttonVariants({ variant: "gard-primary", size: "lg" }),
-              "text-base md:text-lg px-8 py-3 rounded-full"
-            )}
-            aria-label="Solicitar información sobre nuestra tecnología"
-          >
-            Conocer más
-            <ArrowRight className="ml-2 h-5 w-5" />
-          </Link>
-        </div>
-      </section>
+      <GardHero 
+        title="Innovación en Tecnología para Seguridad Privada"
+        subtitle="Inteligencia artificial, videovigilancia avanzada y sistemas de monitoreo en tiempo real."
+        ctaTexto="Conocer más"
+        ctaHref="/cotizar"
+        imageId="678cad4f-9b0d-49e6-3bbd-0d747a2fdc00"
+        badge={{
+          icon: <Cpu className="h-4 w-4" />,
+          text: "Tecnología de Vanguardia"
+        }}
+        overlay={true}
+      />
 
       {/* Módulo Plataforma */}
       <section className="gard-section py-16 md:py-24 bg-white dark:bg-gray-900">
