@@ -76,7 +76,7 @@ const BenefitCard = ({ icon, title, description, index }: { icon: React.ReactNod
     <Card className="gard-card h-full border-none shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden group">
       <CardContent className="gard-card-content h-full flex flex-col">
         <div className="flex items-start gap-5 mb-4">
-          <div className="p-3 rounded-xl bg-primary/10 group-hover:bg-primary/20 transition-colors">
+          <div className="p-4 ml-1 rounded-xl bg-primary/10 group-hover:bg-primary/20 transition-colors">
             {icon}
           </div>
           
