@@ -59,8 +59,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
   
   // Obtener información del servicio e industria para mejorar los metadatos
-  const servicio = servicesMetadata.find(s => s.slug === params.servicio)?.name || params.servicio;
-  const industria = industriesMetadata.find(i => i.slug === params.industria)?.name || params.industria;
+  const servicio = servicesMetadata.find(s => s.slug === params.servicio)?.title || params.servicio;
+  const industria = industriesMetadata.find(i => i.slug === params.industria)?.title || params.industria;
   
   // Construir la URL correcta con el prefijo servicios-por-industria
   const url = `https://www.gard.cl/servicios-por-industria/${params.servicio}/${params.industria}`;
