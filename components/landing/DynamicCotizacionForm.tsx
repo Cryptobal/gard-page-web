@@ -31,8 +31,10 @@ export default function DynamicCotizacionForm({
   // Estado del formulario
   const [formData, setFormData] = useState({
     nombre: '',
+    apellido: '',
     email: '',
     telefono: '',
+    empresa: '',
     direccion: '',
     comuna: '',
     ciudad: '',
@@ -199,8 +201,10 @@ export default function DynamicCotizacionForm({
       // Resetear formulario
       setFormData({
         nombre: '',
+        apellido: '',
         email: '',
         telefono: '',
+        empresa: '',
         direccion: '',
         comuna: '',
         ciudad: '',
@@ -238,13 +242,26 @@ export default function DynamicCotizacionForm({
         {/* Campos visibles */}
         <div className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="nombre">Nombre completo *</Label>
+            <Label htmlFor="nombre">Nombre *</Label>
             <Input
               id="nombre"
               name="nombre"
               value={formData.nombre}
               onChange={handleChange}
               placeholder="Ingresa tu nombre"
+              required
+              className="rounded-xl"
+            />
+          </div>
+          
+          <div className="space-y-2">
+            <Label htmlFor="apellido">Apellido *</Label>
+            <Input
+              id="apellido"
+              name="apellido"
+              value={formData.apellido}
+              onChange={handleChange}
+              placeholder="Ingresa tu apellido"
               required
               className="rounded-xl"
             />
@@ -273,6 +290,19 @@ export default function DynamicCotizacionForm({
               value={formData.telefono}
               onChange={handleChange}
               placeholder="+56 9 1234 5678"
+              required
+              className="rounded-xl"
+            />
+          </div>
+          
+          <div className="space-y-2">
+            <Label htmlFor="empresa">Nombre de Empresa *</Label>
+            <Input
+              id="empresa"
+              name="empresa"
+              value={formData.empresa}
+              onChange={handleChange}
+              placeholder="Nombre de tu empresa"
               required
               className="rounded-xl"
             />
