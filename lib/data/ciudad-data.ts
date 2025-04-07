@@ -132,4 +132,45 @@ export const ciudades: CiudadData[] = [
     necesidadesSeguridad: ['Seguridad agroindustrial', 'Protección comercial', 'Vigilancia en centros educativos', 'Control en terminales de transporte', 'Monitoreo de eventos masivos'],
     industriasClave: ['Agroindustria', 'Comercio', 'Educación', 'Turismo termal', 'Ganadería']
   }
-]; 
+];
+
+/**
+ * Obtiene los datos de una ciudad por su slug
+ * @param slug El slug de la ciudad a buscar
+ * @returns Los datos de la ciudad o undefined si no se encuentra
+ */
+export function getCiudadBySlug(slug: string): CiudadData | undefined {
+  return ciudades.find(ciudad => ciudad.slug === slug);
+}
+
+/**
+ * Obtiene todas las ciudades disponibles
+ * @returns Lista de todas las ciudades
+ */
+export function getAllCiudades(): CiudadData[] {
+  return ciudades;
+}
+
+/**
+ * Agrupa ciudades por región
+ * @returns Un objeto con las ciudades agrupadas por región
+ */
+export function getCiudadesByRegion(): Record<string, CiudadData[]> {
+  const ciudadesPorRegion: Record<string, CiudadData[]> = {};
+  
+  ciudades.forEach(ciudad => {
+    if (!ciudadesPorRegion[ciudad.region]) {
+      ciudadesPorRegion[ciudad.region] = [];
+    }
+    ciudadesPorRegion[ciudad.region].push(ciudad);
+  });
+  
+  return ciudadesPorRegion;
+}
+
+export default {
+  ciudades,
+  getCiudadBySlug,
+  getAllCiudades,
+  getCiudadesByRegion
+}; 

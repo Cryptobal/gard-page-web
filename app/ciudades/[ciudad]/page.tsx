@@ -21,7 +21,8 @@ import {
   UserCog,
   Phone,
   Clock,
-  Users
+  Users,
+  BadgeCheck
 } from 'lucide-react';
 import { getCiudadBySlug } from '@/lib/data/ciudad-data';
 import { servicesMetadata } from '@/app/servicios/serviceMetadata';
@@ -366,11 +367,11 @@ export default function CiudadPage({ params }: { params: { ciudad: string } }) {
                 </div>
                 
                 <h3 className="font-medium text-gray-800 dark:text-gray-200 text-heading-5 mb-4 flex items-center">
-                  <Shield className="h-5 w-5 text-primary mr-2" />
+                  <BadgeCheck className="h-5 w-5 text-primary mr-2" />
                   Características
                 </h3>
                 <ul className="text-gray-600 dark:text-gray-300 space-y-3 mb-6">
-                  {ciudad.caracteristicas.map((caracteristica, index) => (
+                  {ciudad.necesidadesSeguridad.map((caracteristica, index) => (
                     <li key={index} className="flex items-start">
                       <span className="inline-block w-2 h-2 rounded-full bg-primary mt-1.5 mr-2"></span>
                       {caracteristica}
@@ -383,7 +384,7 @@ export default function CiudadPage({ params }: { params: { ciudad: string } }) {
                   Industrias principales
                 </h3>
                 <div className="flex flex-wrap gap-2 mb-6">
-                  {ciudad.industrias.map((industria, index) => (
+                  {ciudad.industriasClave.map((industria, index) => (
                     <span 
                       key={index}
                       className="bg-primary/10 text-primary dark:bg-primary/20 dark:text-accent px-3 py-1 rounded-full text-sm flex items-center"

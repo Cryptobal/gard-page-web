@@ -37,10 +37,8 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
   // URL canónica
   const url = `https://gard.cl/ciudades/${ciudadSlug}`;
   
-  // Imagen OG
-  const ogImage = ciudad.imageId 
-    ? `https://imagedelivery.net/gGw8cfmEZedi85dYm6qcFw/${ciudad.imageId}/public` 
-    : `https://imagedelivery.net/gGw8cfmEZedi85dYm6qcFw/${cloudflareImages.hero.services}/public`;
+  // Imagen OG - usar imagen por defecto ya que CiudadData no tiene imageId
+  const ogImage = `https://imagedelivery.net/gGw8cfmEZedi85dYm6qcFw/${cloudflareImages.hero.services}/public`;
   
   // Generar alternates para diferentes versiones de la URL
   const canonicalUrl = url;
@@ -66,7 +64,7 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
   ];
   
   // Añadir keywords específicas basadas en las industrias predominantes de la ciudad
-  const industriasKeywords = ciudad.industrias.map(industria => 
+  const industriasKeywords = ciudad.industriasClave.map(industria => 
     `seguridad para ${industria.replace(/-/g, ' ')} en ${ciudadFormatted}`
   );
   

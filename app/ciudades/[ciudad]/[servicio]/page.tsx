@@ -94,6 +94,11 @@ export default function CiudadServicioPage({ params }: { params: { ciudad: strin
   // Obtener el contenido personalizado para ciudad-servicio
   const contenido = getCiudadServicioContent(params.ciudad, servicioSlugDatos, ciudad, servicioFormatted);
   
+  // Si no hay contenido personalizado, mostrar 404
+  if (!contenido) {
+    notFound();
+  }
+  
   // Obtener FAQs para este servicio
   const faqs = getFAQsByService(params.servicio);
   
@@ -206,7 +211,7 @@ export default function CiudadServicioPage({ params }: { params: { ciudad: strin
                 {`${params.servicio.replace(/-/g, ' ').charAt(0).toUpperCase() + params.servicio.replace(/-/g, ' ').slice(1)} de Seguridad en ${ciudad.nombre} para Empresas`}
               </h1>
               <p className="text-xl text-gray-300">
-                {contenido.subtitle}
+                {contenido.intro || `Servicio profesional de ${params.servicio.replace(/-/g, ' ')} en ${ciudad.nombre}`}
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <button
@@ -274,7 +279,7 @@ export default function CiudadServicioPage({ params }: { params: { ciudad: strin
               {`Servicios de ${params.servicio.replace(/-/g, ' ')} profesionales en ${ciudad.nombre}`}
             </h2>
             <p className="text-body-lg text-muted-foreground">
-              {contenido.description}
+              {contenido.descripcion}
             </p>
             
             {/* Si hay estadísticas de seguridad para esta ciudad, mostrarlas */}
@@ -393,7 +398,7 @@ export default function CiudadServicioPage({ params }: { params: { ciudad: strin
             variants={staggerContainer}
             className="grid md:grid-cols-3 gap-8"
           >
-            {contenido.features.map((feature, index) => (
+            {contenido.features && contenido.features.map((feature, index) => (
               <motion.div
                 key={index}
                 variants={fadeIn}

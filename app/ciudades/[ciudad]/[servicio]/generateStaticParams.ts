@@ -1,8 +1,8 @@
-import { getCiudades } from '@/lib/data/ciudad-data';
+import { getAllCiudades } from '@/lib/data/ciudad-data';
 import { servicesMetadata } from '@/app/servicios/serviceMetadata';
 
 export async function generateStaticParams() {
-  const ciudades = getCiudades();
+  const ciudades = getAllCiudades();
   const servicios = servicesMetadata;
   
   const params = [];

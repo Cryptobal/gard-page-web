@@ -7,8 +7,37 @@ export interface CiudadServicioContent {
   h1: string;
   intro: string;
   descripcion: string;
+  subtitle?: string;
+  videoId?: string;
   beneficios: string[];
   casosDeUso: string[];
+  features?: {
+    title: string;
+    description: string;
+    iconName?: string;
+  }[];
+  referenciasLocales?: {
+    barrios?: string[];
+    zonasComerciales?: string[];
+    puntosReferencia?: string[];
+  };
+  estadisticas?: {
+    indiceDelincuencia?: number;
+    tipoDelincuenciaPrincipal?: string;
+    incidenciaRobos?: number;
+  };
+  casosExito?: {
+    cliente: string;
+    descripcion: string;
+    resultado: string;
+  }[];
+  testimonios?: {
+    nombre: string;
+    cargo: string;
+    empresa: string;
+    texto: string;
+    imageId?: string;
+  }[];
   zonasCriticas: {
     titulo: string;
     descripcion: string;

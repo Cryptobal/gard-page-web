@@ -1,7 +1,7 @@
-import { getCiudades } from '@/lib/data/ciudad-data';
+import { getAllCiudades } from '@/lib/data/ciudad-data';
 
 export async function generateStaticParams() {
-  const ciudades = getCiudades();
+  const ciudades = getAllCiudades();
   
   return ciudades.map(ciudad => ({
     ciudad: ciudad.slug,

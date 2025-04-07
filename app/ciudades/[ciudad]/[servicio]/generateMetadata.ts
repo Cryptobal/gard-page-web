@@ -53,10 +53,11 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
   // URL canónica
   const url = `https://gard.cl/ciudades/${ciudadSlug}/${servicioSlug}`;
   
-  // Imagen OG
-  const ogImage = contenido.imageId 
+  // Imagen OG - manejar caso cuando contenido es nulo
+  const defaultImage = `https://imagedelivery.net/gGw8cfmEZedi85dYm6qcFw/${cloudflareImages.hero.services}/public`;
+  const ogImage = contenido && contenido.imageId 
     ? `https://imagedelivery.net/gGw8cfmEZedi85dYm6qcFw/${contenido.imageId}/public` 
-    : `https://imagedelivery.net/gGw8cfmEZedi85dYm6qcFw/${cloudflareImages.hero.services}/public`;
+    : defaultImage;
   
   // Extraer UTM params y gclid para tracking
   const utm_source = searchParams.utm_source || '';
