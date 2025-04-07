@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
 interface BlogPost {
@@ -15,7 +15,7 @@ interface BlogPost {
 }
 
 interface BlogLayoutProps {
-  children: React.ReactNode;
+  children: any;
   showSidebar?: boolean;
 }
 
@@ -64,14 +64,14 @@ export default function BlogLayout({ children, showSidebar = false }: BlogLayout
   }, [showSidebar]);
 
   return (
-    <div className="bg-white dark:bg-gray-950">
+    <div className="bg-white dark:bg-gradient-to-b dark:from-[hsl(var(--gard-background))] dark:to-[hsl(var(--gard-background)/_0.9)] dark:backdrop-blur-sm">
       <main className="pt-[100px] md:pt-[120px] pb-16 md:pb-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {showSidebar ? (
             <div className="flex flex-col lg:flex-row gap-8">
               <div className="w-full lg:w-2/3">{children}</div>
-              <aside className="w-full lg:w-1/3 lg:pl-8 mt-12 lg:mt-0 lg:border-l lg:border-gray-200 dark:lg:border-gray-800">
-                <div className="lg:sticky lg:top-[120px] max-w-sm ml-auto bg-gray-50 dark:bg-gray-900 p-6 rounded-xl max-h-[calc(100vh-160px)] overflow-y-auto">
+              <aside className="w-full lg:w-1/3 lg:pl-8 mt-12 lg:mt-0 lg:border-l lg:border-gray-200 dark:lg:border-[rgba(255,255,255,0.07)]">
+                <div className="lg:sticky lg:top-[120px] max-w-sm ml-auto bg-gray-50 dark:bg-black/40 dark:backdrop-blur-sm dark:border-[1px] dark:border-[rgba(255,255,255,0.07)] p-6 rounded-xl max-h-[calc(100vh-160px)] overflow-y-auto shadow-sm dark:hover:border-[rgba(255,255,255,0.12)] transition-all">
                   {/* Últimos artículos */}
                   <div className="mb-10">
                     <h3 className="text-lg font-semibold mb-4 text-gray-900 dark:text-white">
@@ -88,11 +88,11 @@ export default function BlogLayout({ children, showSidebar = false }: BlogLayout
                       </div>
                     ) : (
                       <ul className="space-y-4">
-                        {latestPosts.map(post => (
+                        {latestPosts.map((post: BlogPost) => (
                           <li key={post.slug} className="mb-3">
                             <Link 
                               href={`/blog/${post.slug}`} 
-                              className="text-gray-800 dark:text-gray-200 hover:text-primary dark:hover:text-primary hover:underline font-medium block"
+                              className="text-gray-800 dark:text-gray-200 hover:text-primary dark:hover:text-[hsl(var(--gard-accent))] hover:underline font-medium block"
                             >
                               {post.title}
                             </Link>
@@ -122,11 +122,11 @@ export default function BlogLayout({ children, showSidebar = false }: BlogLayout
                       </div>
                     ) : (
                       <div className="flex flex-wrap gap-2 overflow-x-auto">
-                        {topTags.slice(0, 12).map(tag => (
+                        {topTags.slice(0, 12).map((tag: string) => (
                           <Link
                             key={tag}
                             href={`/blog/tag/${encodeURIComponent(tag)}`}
-                            className="bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-sm px-3 py-1 rounded-full text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
+                            className="bg-gray-100 hover:bg-gray-200 dark:bg-[rgba(15,15,15,0.5)] dark:hover:bg-[rgba(15,15,15,0.7)] text-sm px-3 py-1 rounded-full text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-[hsl(var(--gard-accent))] transition-colors dark:border-[1px] dark:border-[rgba(255,255,255,0.07)] dark:hover:border-[rgba(255,255,255,0.15)]"
                           >
                             {tag}
                           </Link>
