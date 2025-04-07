@@ -55,15 +55,20 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     };
   }
 
+  const canonical = `https://www.gard.cl/servicios/${servicio.slug}`;
+
   return {
     title: servicio.title,
     description: servicio.description,
     keywords: servicio.keywords,
     robots: 'index, follow',
+    alternates: {
+      canonical: canonical,
+    },
     openGraph: {
       title: servicio.title,
       description: servicio.description,
-      url: `https://gard.cl/servicios/${servicio.slug}`,
+      url: canonical,
       siteName: 'Gard Security',
       type: 'article',
       locale: 'es_CL',
