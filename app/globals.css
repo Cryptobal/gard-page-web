@@ -1,0 +1,380 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.75rem;
+
+    /* Variables de colores para modo claro */
+    --gard-primary: 215 100% 45%;
+    --gard-primary-foreground: 0 0% 100%;
+    --gard-secondary: 215 80% 25%;
+    --gard-secondary-foreground: 0 0% 100%;
+    --gard-accent: 18 100% 50%;
+    --gard-accent-foreground: 0 0% 100%;
+    --gard-background: 0 0% 100%;
+    --gard-foreground: 215 25% 27%;
+    --gard-muted: 220 14% 96%;
+    --gard-muted-foreground: 215 25% 30%;
+    --gard-card: 0 0% 100%;
+    --gard-card-foreground: 215 25% 27%;
+    --gard-popover: 0 0% 100%;
+    --gard-popover-foreground: 215 25% 27%;
+    --gard-border: 220 13% 91%;
+    --gard-input: 220 13% 91%;
+    --gard-ring: 215 100% 50%;
+  }
+
+  .dark {
+    /* Variables de colores para modo oscuro */
+    --gard-primary: 215 100% 55%;
+    --gard-primary-foreground: 0 0% 100%;
+    --gard-secondary: 215 70% 40%;
+    --gard-secondary-foreground: 0 0% 100%;
+    --gard-accent: 18 100% 60%;
+    --gard-accent-foreground: 0 0% 100%;
+    --gard-background: 222 47% 11%;
+    --gard-foreground: 210 40% 98%;
+    --gard-muted: 217 33% 17%;
+    --gard-muted-foreground: 215 20% 75%;
+    --gard-card: 222 47% 14%;
+    --gard-card-foreground: 210 40% 98%;
+    --gard-popover: 222 47% 14%;
+    --gard-popover-foreground: 210 40% 98%;
+    --gard-border: 217 33% 25%;
+    --gard-input: 217 33% 25%;
+    --gard-ring: 215 100% 60%;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-inter);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-poppins);
+  }
+}
+
+@layer components {
+  /* Componentes de texto */
+  .text-heading-1 {
+    font-size: 2.5rem;
+    line-height: 1.2;
+    font-weight: 700;
+  }
+  @screen md {
+    .text-heading-1 {
+      font-size: 3rem;
+    }
+  }
+  @screen lg {
+    .text-heading-1 {
+      font-size: 3.5rem;
+    }
+  }
+
+  .text-heading-2 {
+    font-size: 2rem;
+    line-height: 1.2;
+    font-weight: 700;
+  }
+  @screen md {
+    .text-heading-2 {
+      font-size: 2.25rem;
+    }
+  }
+  @screen lg {
+    .text-heading-2 {
+      font-size: 2.5rem;
+    }
+  }
+
+  .text-heading-3 {
+    font-size: 1.5rem;
+    line-height: 1.2;
+    font-weight: 600;
+  }
+  @screen md {
+    .text-heading-3 {
+      font-size: 1.75rem;
+    }
+  }
+  @screen lg {
+    .text-heading-3 {
+      font-size: 2rem;
+    }
+  }
+
+  .text-heading-4 {
+    font-size: 1.25rem;
+    line-height: 1.3;
+    font-weight: 600;
+  }
+  @screen md {
+    .text-heading-4 {
+      font-size: 1.375rem;
+    }
+  }
+  @screen lg {
+    .text-heading-4 {
+      font-size: 1.5rem;
+    }
+  }
+
+  .text-heading-5 {
+    font-size: 1.125rem;
+    line-height: 1.4;
+    font-weight: 600;
+  }
+  @screen md {
+    .text-heading-5 {
+      font-size: 1.1875rem;
+    }
+  }
+  @screen lg {
+    .text-heading-5 {
+      font-size: 1.25rem;
+    }
+  }
+
+  .text-body-lg {
+    font-size: 1.125rem;
+    line-height: 1.5;
+  }
+
+  .text-body-base {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .text-body-sm {
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  .text-muted {
+    @apply text-muted-foreground;
+  }
+
+  /* Contenedores principales */
+  .gard-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .gard-section {
+    @apply py-24 md:py-32;
+  }
+
+  .gard-section-alt {
+    @apply bg-gray-50 dark:bg-gray-800;
+  }
+
+  /* Botones y CTA */
+  .gard-btn {
+    @apply inline-flex items-center justify-center rounded-xl text-sm font-semibold transition-all duration-300;
+  }
+
+  .gard-btn-primary {
+    @apply bg-primary text-white shadow-sm hover:bg-primary/90 font-bold;
+  }
+
+  .gard-btn-secondary {
+    @apply bg-secondary text-white shadow-sm hover:bg-secondary/90;
+  }
+
+  .gard-btn-accent {
+    @apply bg-accent hover:bg-accent/90;
+    color: hsl(var(--gard-accent-foreground));
+  }
+
+  .gard-btn-outline {
+    @apply border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary;
+  }
+
+  .gard-btn-ghost {
+    @apply text-primary hover:bg-primary/10 hover:text-primary;
+  }
+
+  .gard-btn-link {
+    @apply text-primary underline-offset-4 hover:underline;
+  }
+
+  .gard-btn-lg {
+    @apply px-8 py-3 text-base;
+  }
+
+  .gard-btn-md {
+    @apply h-10 px-6 py-2 text-sm;
+  }
+
+  .gard-btn-sm {
+    @apply h-8 px-4 py-1 text-xs;
+  }
+
+  /* Dark mode */
+  .dark .gard-btn-outline {
+    @apply border-white text-white hover:bg-white/10;
+  }
+
+  /* Tarjetas y Contenedores */
+  .gard-card {
+    @apply bg-card shadow-lg rounded-xl;
+    color: hsl(var(--gard-card-foreground));
+  }
+
+  .gard-card p {
+    @apply text-foreground/90;
+  }
+
+  .gard-card-header {
+    @apply p-6 flex flex-col space-y-1.5;
+  }
+
+  .gard-card-content {
+    @apply p-6 pt-0;
+  }
+
+  .gard-card-footer {
+    @apply p-6 pt-0 flex items-center;
+  }
+
+  /* Grids */
+  .gard-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+  }
+
+  .gard-grid-2 {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-6;
+  }
+
+  /* Hero Completo */
+  .gard-hero {
+    @apply relative overflow-hidden pt-16 md:pt-20;
+  }
+
+  .gard-hero-content {
+    @apply relative z-20 text-white px-4 w-full max-w-7xl mx-auto;
+  }
+
+  .gard-hero-overlay {
+    @apply absolute inset-0 bg-black/40 z-0;
+  }
+}
+
+/* Ajustes para secciones hero y primera sección de cada página */
+/* Esta regla evita que las secciones hero se superpongan con el header fijo en dispositivos móviles */
+main > section:first-child:not(.gard-hero) {
+  padding-top: 4rem; /* 64px, espacio para el header en móviles */
+}
+
+@media (min-width: 768px) {
+  main > section:first-child:not(.gard-hero) {
+    padding-top: 5rem; /* 80px, espacio para el header en desktop */
+  }
+}
+
+/* Estilos para el contenido de blog con Elementor */
+.blog-content {
+  width: 100%;
+}
+
+.blog-content .elementor {
+  margin: 0 auto;
+}
+
+.blog-content .elementor-section,
+.blog-content .e-con {
+  margin-bottom: 1.5rem;
+}
+
+.blog-content .elementor-widget-container {
+  width: 100%;
+}
+
+.blog-content h1, 
+.blog-content h2, 
+.blog-content h3, 
+.blog-content h4, 
+.blog-content h5, 
+.blog-content h6 {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--tw-prose-headings);
+}
+
+.blog-content h1 {
+  font-size: 2.5rem;
+}
+
+.blog-content h2 {
+  font-size: 2rem;
+}
+
+.blog-content h3 {
+  font-size: 1.75rem;
+}
+
+.blog-content p {
+  margin-bottom: 1.25rem;
+  line-height: 1.7;
+}
+
+.blog-content a {
+  color: var(--tw-prose-links);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.blog-content ul, 
+.blog-content ol {
+  margin-bottom: 1.25rem;
+  padding-left: 1.5rem;
+}
+
+.blog-content li {
+  margin-bottom: 0.5rem;
+}
+
+.blog-content img {
+  border-radius: 0.5rem;
+  margin: 1.5rem 0;
+  max-width: 100%;
+  height: auto;
+}
+
+.blog-content blockquote {
+  border-left: 4px solid var(--tw-prose-quote-borders);
+  padding-left: 1rem;
+  font-style: italic;
+  margin: 1.5rem 0;
+}
+
+.dark .blog-content {
+  color: var(--tw-prose-invert-body);
+}
+
+.dark .blog-content h1,
+.dark .blog-content h2,
+.dark .blog-content h3,
+.dark .blog-content h4,
+.dark .blog-content h5,
+.dark .blog-content h6 {
+  color: var(--tw-prose-invert-headings);
+}
+
+.dark .blog-content a {
+  color: var(--tw-prose-invert-links);
+}
+
+.dark .blog-content blockquote {
+  border-color: var(--tw-prose-invert-quote-borders);
+}
+
+/* Clases específicas de Elementor */
+.blog-content .e-con-inner {
+  width: 100%;
+} 
