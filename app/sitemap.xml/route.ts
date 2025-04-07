@@ -3,6 +3,7 @@ import { getAllPosts, POSTS_PER_PAGE, getAllTags, getPostsByTag } from '@/lib/bl
 import { isValidUrl } from '@/lib/utils';
 import { ciudades } from '@/lib/data/ciudad-data';
 import { servicesMetadata } from '@/app/servicios/serviceMetadata';
+import { serviciosPorIndustria } from '../data/servicios-por-industria';
 
 // Función para verificar y filtrar URLs
 async function filterValidUrls(urls: { url: string; lastModified: string; changeFrequency: string; priority: number; }[]) {
@@ -128,6 +129,27 @@ async function generateSitemap() {
     priority: 0.65,
   }));
   
+  // Nuevas URLs de servicio-por-industria
+  const servicioIndustriaPages: {
+    url: string;
+    lastModified: string;
+    changeFrequency: string;
+    priority: number;
+  }[] = [];
+  
+  // Generar todas las combinaciones válidas de servicio-industria
+  serviciosPorIndustria.forEach(item => {
+    const industria = item.industria;
+    item.servicios.forEach(servicio => {
+      servicioIndustriaPages.push({
+        url: `${baseUrl}/servicios-por-industria/${servicio}/${industria}`,
+        lastModified: new Date().toISOString(),
+        changeFrequency: 'monthly',
+        priority: 0.9, // Alta prioridad para estas páginas clave de conversión
+      });
+    });
+  });
+  
   // Páginas de blog dinámicas (posts individuales)
   const blogPosts = await getAllPosts();
   const blogPostPages = blogPosts.map((post) => ({
@@ -219,6 +241,7 @@ async function generateSitemap() {
     ...servicePages, 
     ...industryPages,
     ...combinacionesPages, 
+    ...servicioIndustriaPages,
     ...blogPostPages, 
     ...blogPaginationPages,
     ...blogTagPages,

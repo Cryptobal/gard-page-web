@@ -3,6 +3,12 @@ export function GET() {
 User-agent: *
 Allow: /
 
+# Secciones específicas que queremos que sean indexadas
+Allow: /servicios-por-industria/
+Allow: /servicios/
+Allow: /industrias/
+Allow: /blog/
+
 # Archivos específicos a no indexar
 Disallow: /*.json$
 Disallow: /*_buildManifest.js$
