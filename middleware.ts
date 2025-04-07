@@ -42,7 +42,9 @@ export function middleware(request: NextRequest) {
   console.log(`Middleware procesando: ${pathname}`);
   
   // Obtener los segmentos de la ruta
-  const segments = pathname.split('/').filter(Boolean);
+  // Eliminar cualquier prefijo https: o www. que pueda estar en la ruta
+  const cleanPathname = pathname.replace(/^\/https?:\/\/(www\.)?gard\.cl/, '');
+  const segments = cleanPathname.split('/').filter(Boolean);
   
   console.log(`Segmentos detectados: ${segments.join(', ')} (${segments.length})`);
 
@@ -54,22 +56,7 @@ export function middleware(request: NextRequest) {
     // Verificar si son segmentos válidos
     if (SERVICIOS_VALIDOS.includes(servicio) && INDUSTRIAS_VALIDAS.includes(industria)) {
       // Permitir todas las combinaciones válidas
-      // No verificamos esCombinacionValida ya que ahora todas las combinaciones son válidas
       return NextResponse.next();
-      
-      /*
-      // Código original comentado:
-      // Verificar si la combinación es válida según nuestro mapa de configuración
-      if (!esCombinacionValida(servicio, industria)) {
-        console.log(`Combinación no válida: ${servicio}/${industria}, redirigiendo a /servicios/${servicio}`);
-        // Si la combinación no es válida, redirigir a la página del servicio
-        url.pathname = `/servicios/${servicio}`;
-        return NextResponse.redirect(url, 302); // Redirección temporal
-      }
-      
-      // Si la combinación es válida, continuar normalmente
-      return NextResponse.next();
-      */
     }
   }
   
