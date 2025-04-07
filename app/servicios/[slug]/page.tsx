@@ -10,6 +10,7 @@ import { servicios, type Servicio } from '@/app/data/servicios';
 import { industries } from '@/app/data/industries';
 import { servicesMetadata } from '../serviceMetadata';
 import CloudflareImage from '@/components/CloudflareImage';
+import CloudflareVideo from '@/components/CloudflareVideo';
 import CtaFinal from '@/components/ui/shared/CtaFinal';
 import IndustriasGridPage from '@/app/components/IndustriasGridPage';
 import ServiceDescription from '@/app/components/services/ServiceDescription';
@@ -228,13 +229,27 @@ export default function ServicioPage({ params }: { params: { slug: string } }) {
             Cotizar este servicio <ArrowRight className="ml-2 h-5 w-5" />
           </LinkParamsAware>
         </div>
-        <CloudflareImage
-          imageId={servicio.heroImageId}
-          alt={`${servicio.name} - Gard Security`}
-          fill
-          priority
-          className="object-cover"
-        />
+        
+        {/* Mostrar video o imagen dependiendo del servicio */}
+        <div className="absolute inset-0 w-full h-full">
+          {(servicio.slug === 'auditoria-seguridad' || servicio.slug === 'consultoria') ? (
+            <CloudflareImage
+              imageId={servicio.heroImageId}
+              alt={`${servicio.name} - Gard Security`}
+              fill
+              priority
+              className="object-cover"
+            />
+          ) : (
+            <CloudflareVideo
+              videoId={servicio.heroImageId}
+              className="w-full h-full"
+              autoPlay
+              loop
+              muted
+            />
+          )}
+        </div>
       </section>
 
       {/* Descripción detallada - Ahora usando el componente */}
