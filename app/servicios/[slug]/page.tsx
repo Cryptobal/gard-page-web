@@ -10,7 +10,6 @@ import { servicios, type Servicio } from '@/app/data/servicios';
 import { industries } from '@/app/data/industries';
 import { servicesMetadata } from '../serviceMetadata';
 import CloudflareImage from '@/components/CloudflareImage';
-import CloudflareVideo from '@/components/CloudflareVideo';
 import CtaFinal from '@/components/ui/shared/CtaFinal';
 import IndustriasGridPage from '@/app/components/IndustriasGridPage';
 import ServiceDescription from '@/app/components/services/ServiceDescription';
@@ -30,6 +29,12 @@ import {
 } from 'lucide-react';
 import LinkParamsAware from '@/app/components/LinkParamsAware';
 import GaleriaImagenes from '@/components/GaleriaImagenes';
+
+// Importar el componente CloudflareVideo de manera dinámica con la opción ssr: false
+const CloudflareVideo = dynamic(() => import('@/components/CloudflareVideo'), {
+  ssr: false,
+  loading: () => <div className="absolute inset-0 bg-gray-900"></div>
+});
 
 // Generar rutas estáticas para cada servicio
 export async function generateStaticParams() {

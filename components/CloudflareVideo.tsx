@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { Stream } from '@cloudflare/stream-react';
 
