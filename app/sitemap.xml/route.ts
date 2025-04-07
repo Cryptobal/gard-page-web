@@ -144,18 +144,24 @@ async function generateSitemap() {
     priority: number;
   }[] = [];
   
-  // Generar todas las combinaciones válidas de servicio-industria
-  serviciosPorIndustria.forEach(item => {
-    const industria = item.industria;
-    item.servicios.forEach(servicio => {
+  // Generar todas las combinaciones posibles de servicio-industria
+  // Usamos los metadatos directos para asegurar que todas las combinaciones se incluyan
+  for (const servicio of servicesMetadata) {
+    for (const industria of industries) {
+      const industriaSlug = industria.name.toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/[^\w\s]/g, '')
+        .replace(/\s+/g, '-');
+        
       servicioIndustriaPages.push({
-        url: `${baseUrl}/servicios-por-industria/${servicio}/${industria}`,
+        url: `${baseUrl}/servicios-por-industria/${servicio.slug}/${industriaSlug}`,
         lastModified: new Date().toISOString(),
         changeFrequency: 'monthly',
         priority: 0.9, // Alta prioridad para estas páginas clave de conversión
       });
-    });
-  });
+    }
+  }
   
   // Páginas de blog dinámicas (posts individuales)
   const blogPosts = await getAllPosts();
