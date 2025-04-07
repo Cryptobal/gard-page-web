@@ -266,7 +266,7 @@ export default function CiudadServicioPage({ params }: { params: { ciudad: strin
       </section>
       
       {/* Descripción */}
-      <section className="py-16 md:py-24 bg-white dark:bg-gray-900">
+      <section className="py-16 md:py-24 bg-white dark:bg-[hsl(var(--gard-background))]">
         <div className="max-w-7xl mx-auto px-4">
           <motion.div
             initial="hidden"

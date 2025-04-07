@@ -3,7 +3,7 @@ import { servicesMetadata } from '@/app/servicios/serviceMetadata';
 
 // Metadatos de la página
 export const metadata: Metadata = {
-  title: 'Consultoría de Seguridad para Edificios Corporativos | Gard Security',
+  title: 'Consultoría - Edificios | Gard Security',
   description: 'Asesoría especializada en seguridad integral para edificios corporativos. Desarrollamos planes estratégicos, evaluación de sistemas existentes y optimización de protocolos de seguridad.',
   keywords: 'consultoría de seguridad, edificios corporativos, evaluación de riesgos, planificación de seguridad, control de acceso',
   alternates: {

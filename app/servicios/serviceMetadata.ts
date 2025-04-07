@@ -1,7 +1,7 @@
 export const servicesMetadata = [
   {
     slug: 'guardias-de-seguridad',
-    title: 'Guardias de Seguridad Privada | Gard Security',
+    title: 'Guardias de Seguridad | Gard Security',
     description: 'Servicio de guardias profesionales con supervisión 24/7 y control en tiempo real. Seguridad confiable para tu empresa.',
     keywords: [
       'guardias de seguridad',
@@ -11,7 +11,7 @@ export const servicesMetadata = [
   },
   {
     slug: 'seguridad-electronica',
-    title: 'Seguridad Electrónica para Empresas | Gard Security',
+    title: 'Seguridad Electrónica | Gard Security',
     description: 'Instalación de CCTV, alarmas, control de acceso y monitoreo centralizado para industrias y edificios.',
     keywords: [
       'seguridad electrónica',
@@ -21,7 +21,7 @@ export const servicesMetadata = [
   },
   {
     slug: 'central-monitoreo',
-    title: 'Central de Monitoreo 24/7 | Gard Security',
+    title: 'Central de Monitoreo | Gard Security',
     description: 'Vigilancia remota constante con operadores especializados. Detectamos incidentes y coordinamos respuesta inmediata.',
     keywords: [
       'central de monitoreo',
@@ -32,7 +32,7 @@ export const servicesMetadata = [
   },
   {
     slug: 'drones-seguridad',
-    title: 'Drones de Seguridad y Vigilancia | Gard Security',
+    title: 'Drones de Seguridad | Gard Security',
     description: 'Vigilancia aérea con drones profesionales para grandes extensiones, eventos y situaciones de emergencia.',
     keywords: [
       'drones de seguridad',
@@ -43,7 +43,7 @@ export const servicesMetadata = [
   },
   {
     slug: 'seguridad-perimetral',
-    title: 'Seguridad Perimetral Avanzada | Gard Security',
+    title: 'Seguridad Perimetral | Gard Security',
     description: 'Protección integral del perímetro con barreras físicas, sensores y vigilancia electrónica para prevenir intrusiones.',
     keywords: [
       'seguridad perimetral',
@@ -54,7 +54,7 @@ export const servicesMetadata = [
   },
   {
     slug: 'auditoria-seguridad',
-    title: 'Auditoría de Seguridad Profesional | Gard Security',
+    title: 'Auditoría de Seguridad | Gard Security',
     description: 'Evaluación completa de vulnerabilidades y sistemas de seguridad con recomendaciones especializadas.',
     keywords: [
       'auditoría de seguridad',
@@ -65,7 +65,7 @@ export const servicesMetadata = [
   },
   {
     slug: 'consultoria',
-    title: 'Consultoría en Seguridad Privada | Gard Security',
+    title: 'Consultoría en Seguridad | Gard Security',
     description: 'Asesoría experta en seguridad para empresas con soluciones personalizadas según necesidades específicas.',
     keywords: [
       'consultoría de seguridad',

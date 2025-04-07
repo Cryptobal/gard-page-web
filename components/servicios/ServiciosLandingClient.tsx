@@ -36,7 +36,7 @@ export default function ServiciosLandingClient() {
       <OurServices />
 
       {/* Sección "¿Por qué elegir Gard?" */}
-      <section className="gard-section py-16 md:py-24 bg-gray-50 dark:bg-gray-800">
+      <section className="gard-section py-16 md:py-24 bg-gray-50 dark:bg-[hsl(var(--gard-background))]">
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-heading-2 mb-4 text-center">¿Por qué elegir Gard?</h2>
           <p className="text-body-lg text-muted-foreground max-w-3xl mx-auto text-center mb-12">
@@ -44,24 +44,24 @@ export default function ServiciosLandingClient() {
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white dark:bg-gray-900 p-8 rounded-2xl flex flex-col items-center text-center">
-              <CheckCircle className="h-12 w-12 text-primary mb-4" />
+            <div className="bg-white dark:bg-[hsl(var(--gard-card))] p-8 rounded-2xl flex flex-col items-center text-center">
+              <CheckCircle className="h-12 w-12 text-primary dark:text-[hsl(var(--gard-accent))] mb-4" />
               <h3 className="text-heading-4 mb-2">Personal profesional y confiable</h3>
               <p className="text-muted-foreground">
                 Nuestro equipo está formado por profesionales certificados y verificados exhaustivamente.
               </p>
             </div>
             
-            <div className="bg-white dark:bg-gray-900 p-8 rounded-2xl flex flex-col items-center text-center">
-              <CheckCircle className="h-12 w-12 text-primary mb-4" />
+            <div className="bg-white dark:bg-[hsl(var(--gard-card))] p-8 rounded-2xl flex flex-col items-center text-center">
+              <CheckCircle className="h-12 w-12 text-primary dark:text-[hsl(var(--gard-accent))] mb-4" />
               <h3 className="text-heading-4 mb-2">Tecnología de vanguardia</h3>
               <p className="text-muted-foreground">
                 Implementamos soluciones tecnológicas avanzadas para garantizar la máxima seguridad.
               </p>
             </div>
             
-            <div className="bg-white dark:bg-gray-900 p-8 rounded-2xl flex flex-col items-center text-center">
-              <CheckCircle className="h-12 w-12 text-primary mb-4" />
+            <div className="bg-white dark:bg-[hsl(var(--gard-card))] p-8 rounded-2xl flex flex-col items-center text-center">
+              <CheckCircle className="h-12 w-12 text-primary dark:text-[hsl(var(--gard-accent))] mb-4" />
               <h3 className="text-heading-4 mb-2">Cobertura nacional 24/7</h3>
               <p className="text-muted-foreground">
                 Servicio ininterrumpido en todo el país con tiempos de respuesta garantizados.

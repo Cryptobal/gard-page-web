@@ -109,7 +109,7 @@ export default function OurServices({
   };
 
   return (
-    <section className="gard-section py-16 md:py-24 bg-white dark:bg-gray-900">
+    <section className="gard-section py-16 md:py-24 bg-white dark:bg-[hsl(var(--gard-background))]">
       <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12 xl:px-16">
         <div className="text-center mb-12">
           <h2 className="text-heading-2 mb-4">{title}</h2>
@@ -130,7 +130,7 @@ export default function OurServices({
               <Link 
                 key={index} 
                 href={href}
-                className="bg-card dark:bg-gray-800 rounded-2xl p-4 shadow-md hover:shadow-lg transition-all duration-300 ease-in-out flex flex-col w-1/5 min-w-[200px] max-w-[23%] mb-6"
+                className="bg-card dark:bg-[hsl(var(--gard-card))] rounded-2xl p-4 shadow-md hover:shadow-xl transition-all duration-200 ease-in-out hover:scale-105 hover:border hover:border-[hsl(var(--gard-ring))] flex flex-col w-1/5 min-w-[200px] max-w-[23%] mb-6"
               >
                 <div className="relative aspect-[3/2] w-full mb-4">
                   <CloudflareImage
@@ -152,7 +152,7 @@ export default function OurServices({
                 </p>
                 
                 <div className="flex justify-center mt-auto">
-                  <span className="inline-flex items-center text-primary dark:text-accent font-medium">
+                  <span className="inline-flex items-center text-primary dark:text-[hsl(var(--gard-accent))] font-medium">
                     Saber más <ArrowRight className="ml-1 h-4 w-4" />
                   </span>
                 </div>
@@ -181,7 +181,7 @@ export default function OurServices({
                     ? `${serviciosFiltrados[currentIndex].href}/${industria}` 
                     : serviciosFiltrados[currentIndex].href
                   }
-                  className="bg-card dark:bg-gray-800 rounded-2xl p-4 shadow-md flex flex-col"
+                  className="bg-card dark:bg-[hsl(var(--gard-card))] rounded-2xl p-4 shadow-md flex flex-col"
                 >
                   <div className="relative aspect-[3/2] w-full mb-4">
                     <CloudflareImage
@@ -217,7 +217,7 @@ export default function OurServices({
           {/* Flechas de navegación */}
           <button 
             onClick={prevSlide}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 bg-white dark:bg-gray-800 p-2 rounded-full shadow-md"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 bg-white dark:bg-[hsl(var(--gard-card))] p-2 rounded-full shadow-md"
             aria-label="Anterior"
           >
             <ChevronLeft className="h-6 w-6 text-primary dark:text-accent" />
@@ -225,7 +225,7 @@ export default function OurServices({
           
           <button 
             onClick={nextSlide}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 bg-white dark:bg-gray-800 p-2 rounded-full shadow-md"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 bg-white dark:bg-[hsl(var(--gard-card))] p-2 rounded-full shadow-md"
             aria-label="Siguiente"
           >
             <ChevronRight className="h-6 w-6 text-primary dark:text-accent" />

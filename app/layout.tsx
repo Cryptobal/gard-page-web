@@ -1,5 +1,5 @@
 import React from 'react';
-import { inter, poppins } from './fonts';
+import { inter, spaceGrotesk } from './fonts';
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -25,7 +25,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" suppressHydrationWarning>
-      <body className={`${inter.variable} ${poppins.variable}`}>
+      <body className={`${inter.variable} ${spaceGrotesk.variable}`}>
         {/* Sistema de gestión de consentimiento de cookies */}
         <CookieConsent>
           {/* Google Tag Manager (solo se carga con consentimiento de analytics) */}

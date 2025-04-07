@@ -44,8 +44,8 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
   const ciudadFormatted = ciudad.nombre;
   const servicioFormatted = servicioSlug.charAt(0).toUpperCase() + servicioSlug.slice(1).replace(/-/g, ' ');
   
-  // Título dinámico con la nueva estructura optimizada para SEO
-  const title = `${servicioFormatted} en ${ciudadFormatted} | Servicios Profesionales de Seguridad | Gard Security`;
+  // Título dinámico optimizado para SEO (acortado para evitar truncamiento)
+  const title = `${servicioFormatted} en ${ciudadFormatted} | Gard Security`;
   
   // Descripción dinámica con llamado a la acción clara y directa
   const description = `Contrata ${servicioSlug.replace(/-/g, ' ')} en ${ciudadFormatted} con Gard Security. Protección confiable, rápida y personalizada para tu empresa o proyecto.`;

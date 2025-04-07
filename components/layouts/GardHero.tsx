@@ -118,7 +118,7 @@ export default function GardHero({
       {/* Hero Section - Fullscreen con video/imagen de fondo */}
       <section 
         data-section="hero"
-        className={`gard-hero relative ${variant === "home" ? "min-h-screen" : "min-h-[95vh]"} flex items-center overflow-hidden bg-gradient-to-tr from-gray-900 via-gray-800 to-gray-900 dark:from-black dark:via-gray-900 dark:to-black`}
+        className={`gard-hero relative ${variant === "home" ? "min-h-screen" : "min-h-[95vh]"} flex items-center overflow-hidden bg-gradient-to-tr from-gray-900 via-gray-800 to-gray-900 dark:bg-[linear-gradient(to_bottom,hsl(220,14%,6%)_0%,hsl(220,14%,12%)_100%)]`}
       >
         {/* Overlay con degradado */}
         {overlay && (

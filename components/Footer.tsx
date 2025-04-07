@@ -13,7 +13,7 @@ export default function Footer() {
 
   return (
     <footer 
-      className="bg-gradient-to-r from-[#1a2a90] to-[#2333a8] dark:from-[#0f172a] dark:to-[#1e293b] py-16 px-8 md:px-20"
+      className="bg-[hsl(var(--gard-background))] py-16 px-8 md:px-20"
       itemScope
       itemType="https://schema.org/Organization"
     >

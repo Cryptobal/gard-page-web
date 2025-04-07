@@ -1,9 +1,9 @@
-import { Inter, Poppins } from 'next/font/google';
+import { Inter, Poppins, Space_Grotesk } from 'next/font/google';
 
-export const poppins = Poppins({
+export const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
-  variable: '--font-poppins',
+  variable: '--font-space-grotesk',
   display: 'block',
   fallback: ['system-ui', 'sans-serif'],
   preload: false,

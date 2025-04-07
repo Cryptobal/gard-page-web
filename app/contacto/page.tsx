@@ -6,7 +6,7 @@ const ContactoLandingClient = dynamic(() => import('@/components/contacto/Contac
 
 export default function ContactoPage() {
   return (
-    <main className="min-h-screen bg-white dark:bg-gray-900">
+    <main className="min-h-screen bg-white dark:bg-[hsl(var(--gard-background))]">
       <ContactoLandingClient />
     </main>
   );

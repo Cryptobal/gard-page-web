@@ -27,23 +27,23 @@
   }
 
   .dark {
-    /* Variables de colores para modo oscuro */
-    --gard-primary: 215 100% 55%;
+    --gard-background: 220 14% 6%;           /* Azul muy oscuro casi negro: #0B0F1A */
+    --gard-card: 220 14% 9%;                 /* Tarjetas sobre fondo negro */
+    --gard-muted: 220 10% 12%;               /* Secciones con fondo intermedio */
+    --gard-muted-foreground: 215 15% 65%;    /* Subtítulos o texto leve */
+
+    --gard-primary: 215 100% 55%;            /* Azul principal para CTA */
     --gard-primary-foreground: 0 0% 100%;
-    --gard-secondary: 215 70% 40%;
+    --gard-secondary: 215 60% 30%;           /* Azul petróleo oscuro para detalles */
     --gard-secondary-foreground: 0 0% 100%;
-    --gard-accent: 18 100% 60%;
-    --gard-accent-foreground: 0 0% 100%;
-    --gard-background: 222 47% 11%;
-    --gard-foreground: 210 40% 98%;
-    --gard-muted: 217 33% 17%;
-    --gard-muted-foreground: 215 20% 75%;
-    --gard-card: 222 47% 14%;
-    --gard-card-foreground: 210 40% 98%;
-    --gard-popover: 222 47% 14%;
-    --gard-popover-foreground: 210 40% 98%;
-    --gard-border: 217 33% 25%;
-    --gard-input: 217 33% 25%;
+
+    --gard-foreground: 210 30% 95%;          /* Texto general blanco suave */
+    --gard-card-foreground: 210 30% 95%;
+    --gard-popover: 220 14% 9%;
+    --gard-popover-foreground: 210 30% 95%;
+
+    --gard-border: 220 10% 20%;
+    --gard-input: 220 10% 20%;
     --gard-ring: 215 100% 60%;
   }
 
@@ -53,7 +53,7 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-poppins);
+    font-family: var(--font-space-grotesk);
   }
 }
 
@@ -377,4 +377,4 @@ main > section:first-child:not(.gard-hero) {
 /* Clases específicas de Elementor */
 .blog-content .e-con-inner {
   width: 100%;
-} 
+}

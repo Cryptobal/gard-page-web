@@ -50,7 +50,7 @@ export default function ClientCarousel() {
   };
 
   return (
-    <section className="gard-section py-16 md:py-24 w-full bg-gray-50 dark:bg-gray-800">
+    <section className="gard-section py-16 md:py-24 w-full bg-gray-50 dark:bg-[hsl(var(--gard-background))]">
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-heading-2 text-gray-900 dark:text-white font-title mb-4">
@@ -67,14 +67,14 @@ export default function ClientCarousel() {
             <div className="absolute left-0 right-0 top-1/2 transform -translate-y-1/2 flex justify-between z-10 pointer-events-none">
               <button 
                 onClick={handlePrev}
-                className="w-12 h-12 rounded-full bg-white dark:bg-gray-900 shadow-md flex items-center justify-center text-primary dark:text-accent hover:scale-105 transition-all pointer-events-auto border border-gray-100 dark:border-gray-700"
+                className="w-12 h-12 rounded-full bg-white dark:bg-[hsl(var(--gard-card))] shadow-md flex items-center justify-center text-primary dark:text-accent hover:scale-105 transition-all pointer-events-auto border border-gray-100 dark:border-gray-700"
                 aria-label="Anterior"
               >
                 <ChevronLeft className="w-6 h-6" />
               </button>
               <button
                 onClick={handleNext}
-                className="w-12 h-12 rounded-full bg-white dark:bg-gray-900 shadow-md flex items-center justify-center text-primary dark:text-accent hover:scale-105 transition-all pointer-events-auto border border-gray-100 dark:border-gray-700"
+                className="w-12 h-12 rounded-full bg-white dark:bg-[hsl(var(--gard-card))] shadow-md flex items-center justify-center text-primary dark:text-accent hover:scale-105 transition-all pointer-events-auto border border-gray-100 dark:border-gray-700"
                 aria-label="Siguiente"
               >
                 <ChevronRight className="w-6 h-6" />

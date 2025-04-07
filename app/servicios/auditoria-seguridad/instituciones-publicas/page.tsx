@@ -3,7 +3,7 @@ import { servicesMetadata } from '@/app/servicios/serviceMetadata';
 
 // Metadatos de la página
 export const metadata: Metadata = {
-  title: 'Auditoría de Seguridad para Instituciones Públicas | Gard Security',
+  title: 'Auditoría - Instituciones Públicas | Gard Security',
   description: 'Auditorías de seguridad especializadas para entidades gubernamentales y servicios públicos. Verificación normativa, análisis de protocolos de emergencia y evaluación de seguridad documental clasificada.',
   keywords: 'auditoría de seguridad, instituciones públicas, evaluación de riesgos, cumplimiento normativo, seguridad gubernamental',
   alternates: {

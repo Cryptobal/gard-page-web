@@ -26,7 +26,7 @@ export default function CtaFinal({
 
   // Determinamos las clases según la variante
   const bgClasses = variant === "soft" 
-    ? "bg-slate-100 dark:bg-white/5 text-foreground dark:text-slate-200" 
+    ? "bg-[hsl(var(--gard-card))] text-foreground dark:text-slate-200" 
     : "bg-slate-900/80 dark:bg-slate-900/80 text-white dark:text-white";
   
   const descriptionClasses = variant === "soft"
@@ -38,7 +38,7 @@ export default function CtaFinal({
       <div 
         ref={ref}
         className={cn(
-          "max-w-4xl mx-auto text-center rounded-xl py-12 md:py-16 px-6 md:px-8 border border-border/20 shadow-sm",
+          "max-w-4xl mx-auto text-center rounded-2xl py-12 md:py-16 px-6 md:px-8 border border-border/20 shadow-lg",
           bgClasses,
           "transform transition-all duration-700 ease-out",
           isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
@@ -55,7 +55,7 @@ export default function CtaFinal({
           href={ctaHref}
           className={cn(
             buttonVariants({ variant: "gard-primary", size: "lg" }),
-            "text-base md:text-lg px-8 py-3 rounded-full hover:scale-105 transition-transform"
+            "text-base md:text-lg px-8 py-3 rounded-full hover:scale-105 transition-all duration-200 shadow-md hover:shadow-xl"
           )}
         >
           {ctaLabel}

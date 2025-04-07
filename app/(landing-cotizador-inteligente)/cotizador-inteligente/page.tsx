@@ -330,7 +330,7 @@ const ContadorEmpresas = () => {
   
   return (
     <motion.div 
-      className="bg-gray-800 py-8 border-t border-gray-700"
+      className="bg-[hsl(var(--gard-background))] py-8 border-t border-gray-700"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}

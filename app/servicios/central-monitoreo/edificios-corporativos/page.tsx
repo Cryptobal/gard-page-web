@@ -3,7 +3,7 @@ import { servicesMetadata } from '@/app/servicios/serviceMetadata';
 
 // Metadatos de la página
 export const metadata: Metadata = {
-  title: 'Central de Monitoreo para Edificios Corporativos | Gard Security',
+  title: 'Central de Monitoreo - Edificios | Gard Security',
   description: 'Central de monitoreo con tecnología avanzada exclusiva para edificios corporativos. Supervisión continua por operadores certificados, integración con sistemas existentes y alertas en tiempo real.',
   keywords: 'central de monitoreo, edificios corporativos, seguridad 24/7, vigilancia remota, respuesta a incidentes',
   alternates: {
