@@ -17,6 +17,8 @@ export type ServicioIndustriaData = {
   soluciones?: string[];
   casoExito?: string;
   testimonio?: string;
+  beneficios?: string[];
+  featuredImageId?: string;
 }
 
 /**
@@ -278,7 +280,14 @@ const servicioIndustriaDataMap: Record<string, ServicioIndustriaData> = {
       "Sistemas de rotación adaptados a las necesidades operativas de minería 24/7"
     ],
     casoExito: "Implementamos un sistema integral de seguridad para una de las principales mineras del país, logrando reducir en un 85% los incidentes de seguridad y mejorando significativamente el cumplimiento normativo.",
-    testimonio: "La presencia de guardias especializados en minería no solo ha mejorado nuestra seguridad, sino que ha contribuido positivamente a nuestra cultura de seguridad operacional. Su conocimiento del sector hace la diferencia."
+    testimonio: "La presencia de guardias especializados en minería no solo ha mejorado nuestra seguridad, sino que ha contribuido positivamente a nuestra cultura de seguridad operacional. Su conocimiento del sector hace la diferencia.",
+    beneficios: [
+      "Reducción de incidentes de seguridad en áreas críticas",
+      "Cumplimiento estricto de normativas mineras de seguridad",
+      "Mayor eficiencia operativa al integrar seguridad en procesos mineros",
+      "Protección efectiva de activos de alto valor"
+    ],
+    featuredImageId: "1c2a45f1-3e7d-4878-9786-41c2fb5a7c1e"
   },
   
   // Guardias de seguridad para retail
@@ -295,7 +304,14 @@ const servicioIndustriaDataMap: Record<string, ServicioIndustriaData> = {
       "Coordinación con sistemas electrónicos para maximizar la cobertura"
     ],
     casoExito: "Redujimos las pérdidas por hurto en un 67% para una cadena nacional de retail, implementando un sistema integrado de guardias visibles y encubiertos con tecnología de apoyo.",
-    testimonio: "La profesionalidad de los guardias de Gard ha transformado nuestra seguridad. Su enfoque discreto pero efectivo mantiene nuestra imagen de marca mientras protege nuestros activos."
+    testimonio: "La profesionalidad de los guardias de Gard ha transformado nuestra seguridad. Su enfoque discreto pero efectivo mantiene nuestra imagen de marca mientras protege nuestros activos.",
+    beneficios: [
+      "Reducción significativa de pérdidas por hurto",
+      "Mejora de la experiencia de compra de los clientes",
+      "Protección de la imagen de marca con seguridad discreta",
+      "Coordinación eficiente con el personal de tienda"
+    ],
+    featuredImageId: "3f5d9e7c-2b1a-46d0-8c54-5f92a3b7d08e"
   },
   
   // NUEVAS COMBINACIONES ESPECÍFICAS
@@ -314,7 +330,14 @@ const servicioIndustriaDataMap: Record<string, ServicioIndustriaData> = {
       "Procedimientos específicos para manejo de emergencias en entornos financieros"
     ],
     casoExito: "Implementamos un sistema de seguridad integral para una red de 14 sucursales bancarias, logrando cero incidentes de seguridad durante los últimos 2 años y mejorando la confianza de clientes y empleados.",
-    testimonio: "Los guardias de Gard Security han demostrado un nivel de profesionalismo excepcional, adaptándose perfectamente a los exigentes protocolos que requiere nuestro sector financiero."
+    testimonio: "Los guardias de Gard Security han demostrado un nivel de profesionalismo excepcional, adaptándose perfectamente a los exigentes protocolos que requiere nuestro sector financiero.",
+    beneficios: [
+      "Cumplimiento de normativas de seguridad bancaria",
+      "Prevención efectiva de incidentes en áreas de alto riesgo",
+      "Mayor confianza de clientes y empleados",
+      "Gestión profesional de situaciones críticas"
+    ],
+    featuredImageId: "5d1e7c9a-8b3f-4f21-ae6b-92c7d1e8f0a4"
   },
   
   // Guardias de seguridad para centros comerciales
@@ -348,7 +371,14 @@ const servicioIndustriaDataMap: Record<string, ServicioIndustriaData> = {
       "Integración con sistemas de alarma y notificación inmediata"
     ],
     casoExito: "Implementamos un sistema integral de seguridad electrónica para un centro de datos Tier III, logrando cumplimiento normativo total y cero incidentes de seguridad física en los últimos 3 años.",
-    testimonio: "Las soluciones de seguridad electrónica de Gard nos han permitido cumplir con los exigentes estándares internacionales de protección para centros de datos, garantizando la continuidad de nuestras operaciones."
+    testimonio: "Las soluciones de seguridad electrónica de Gard nos han permitido cumplir con los exigentes estándares internacionales de protección para centros de datos, garantizando la continuidad de nuestras operaciones.",
+    beneficios: [
+      "Cumplimiento de estándares internacionales Tier III/IV",
+      "Detección y respuesta inmediata ante intentos de intrusión",
+      "Gestión centralizada de todos los sistemas de seguridad",
+      "Integración con protocolos de continuidad de negocio"
+    ],
+    featuredImageId: "7f9a2b3c-6d5e-4f8a-9b1c-8d7e6a5f4c3d"
   },
   
   // Drones para sector energético
