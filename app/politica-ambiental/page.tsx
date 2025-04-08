@@ -31,7 +31,7 @@ export const metadata: Metadata = {
 
 export default function PoliticaAmbientalPage() {
   return (
-    <main className="flex-grow bg-white dark:bg-gray-900">
+    <main className="flex-grow bg-white dark:bg-[hsl(var(--gard-background-darkest))]">
       {/* Hero Principal */}
       <section className="relative h-[50vh] md:h-[70vh] overflow-hidden">
         <div className="absolute inset-0">
@@ -46,6 +46,8 @@ export default function PoliticaAmbientalPage() {
           {/* Overlay verde */}
           <div className="absolute inset-0 bg-green-900/40 dark:bg-green-900/60 z-10"></div>
           <div className="bg-gradient-to-t from-green-900/50 to-transparent absolute inset-0 z-10"></div>
+          {/* Textura sutil para modo oscuro */}
+          <div className="hidden dark:block absolute inset-0 bg-[url('/assets/noise-pattern.png')] opacity-10 z-10 pointer-events-none"></div>
         </div>
         
         {/* Contenido */}
@@ -58,7 +60,7 @@ export default function PoliticaAmbientalPage() {
           </p>
           <Link 
             href="#compromisos" 
-            className="gard-btn gard-btn-primary gard-btn-lg bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-3 rounded-full font-semibold inline-flex items-center"
+            className="gard-btn gard-btn-lg bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-3 rounded-full font-semibold inline-flex items-center"
           >
             Ver nuestros compromisos
             <ArrowRight className="ml-2 h-5 w-5" />
@@ -67,7 +69,7 @@ export default function PoliticaAmbientalPage() {
       </section>
 
       {/* Sección 1: Compromiso Ambiental */}
-      <section id="compromisos" className="py-16 md:py-24 bg-green-50 dark:bg-gray-800">
+      <section id="compromisos" className="py-16 md:py-24 bg-green-50 dark:bg-[linear-gradient(180deg,hsl(var(--gard-background-darkest))_0%,hsl(160,80%,5%)_100%)]">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-heading-2 text-green-900 dark:text-emerald-400 mb-6">Compromiso Ambiental</h2>
@@ -78,7 +80,7 @@ export default function PoliticaAmbientalPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Tarjeta 1 */}
-            <Card className="bg-white dark:bg-gray-800 border-emerald-200 dark:border-emerald-800 hover:shadow-md hover:scale-105 transition-all duration-300">
+            <Card className="bg-white dark:bg-[hsl(var(--gard-card))] border-emerald-200 dark:border-emerald-800/30 hover:shadow-md hover:scale-105 transition-all duration-300 dark:hover:border-emerald-700/50">
               <CardHeader className="text-center">
                 <div className="mx-auto p-3 rounded-full bg-emerald-100 dark:bg-emerald-900/40 inline-flex">
                   <Zap className="h-8 w-8 text-emerald-600 dark:text-emerald-400" />
@@ -91,7 +93,7 @@ export default function PoliticaAmbientalPage() {
             </Card>
 
             {/* Tarjeta 2 */}
-            <Card className="bg-white dark:bg-gray-800 border-emerald-200 dark:border-emerald-800 hover:shadow-md hover:scale-105 transition-all duration-300">
+            <Card className="bg-white dark:bg-[hsl(var(--gard-card))] border-emerald-200 dark:border-emerald-800/30 hover:shadow-md hover:scale-105 transition-all duration-300 dark:hover:border-emerald-700/50">
               <CardHeader className="text-center">
                 <div className="mx-auto p-3 rounded-full bg-emerald-100 dark:bg-emerald-900/40 inline-flex">
                   <Recycle className="h-8 w-8 text-emerald-600 dark:text-emerald-400" />
@@ -104,7 +106,7 @@ export default function PoliticaAmbientalPage() {
             </Card>
 
             {/* Tarjeta 3 */}
-            <Card className="bg-white dark:bg-gray-800 border-emerald-200 dark:border-emerald-800 hover:shadow-md hover:scale-105 transition-all duration-300">
+            <Card className="bg-white dark:bg-[hsl(var(--gard-card))] border-emerald-200 dark:border-emerald-800/30 hover:shadow-md hover:scale-105 transition-all duration-300 dark:hover:border-emerald-700/50">
               <CardHeader className="text-center">
                 <div className="mx-auto p-3 rounded-full bg-emerald-100 dark:bg-emerald-900/40 inline-flex">
                   <Leaf className="h-8 w-8 text-emerald-600 dark:text-emerald-400" />
@@ -117,7 +119,7 @@ export default function PoliticaAmbientalPage() {
             </Card>
 
             {/* Tarjeta 4 */}
-            <Card className="bg-white dark:bg-gray-800 border-emerald-200 dark:border-emerald-800 hover:shadow-md hover:scale-105 transition-all duration-300">
+            <Card className="bg-white dark:bg-[hsl(var(--gard-card))] border-emerald-200 dark:border-emerald-800/30 hover:shadow-md hover:scale-105 transition-all duration-300 dark:hover:border-emerald-700/50">
               <CardHeader className="text-center">
                 <div className="mx-auto p-3 rounded-full bg-emerald-100 dark:bg-emerald-900/40 inline-flex">
                   <Lightbulb className="h-8 w-8 text-emerald-600 dark:text-emerald-400" />
@@ -133,7 +135,7 @@ export default function PoliticaAmbientalPage() {
       </section>
 
       {/* Sección 2: Seguridad Responsable */}
-      <section className="py-16 md:py-24 bg-white dark:bg-gray-900 relative overflow-hidden">
+      <section className="py-16 md:py-24 bg-white dark:bg-[hsl(var(--gard-background-darkest))] dark:bg-[url('/assets/noise-pattern.png')] dark:bg-opacity-90 relative overflow-hidden">
         {/* Forma decorativa */}
         <div className="absolute -top-16 right-0 w-64 h-64 bg-green-100 dark:bg-green-900/20 rounded-full opacity-60 -z-10 blur-3xl"></div>
         <div className="absolute bottom-0 left-10 w-96 h-96 bg-emerald-100 dark:bg-emerald-900/20 rounded-full opacity-40 -z-10 blur-3xl"></div>
@@ -182,7 +184,7 @@ export default function PoliticaAmbientalPage() {
       </section>
 
       {/* Sección 3: Acciones Concretas */}
-      <section className="py-16 md:py-24 bg-emerald-50 dark:bg-gray-800">
+      <section className="py-16 md:py-24 bg-emerald-50 dark:bg-[linear-gradient(180deg,hsl(160,80%,5%)_0%,hsl(var(--gard-background-darkest))_100%)] dark:before:content-[''] dark:before:absolute dark:before:inset-0 dark:before:bg-[linear-gradient(90deg,rgba(0,40,20,0.03)_1px,transparent_1px),linear-gradient(0deg,rgba(0,40,20,0.03)_1px,transparent_1px)] dark:before:bg-[size:20px_20px] dark:before:pointer-events-none dark:before:opacity-60">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-heading-2 text-green-900 dark:text-emerald-400 mb-6">Acciones Concretas</h2>
@@ -192,7 +194,7 @@ export default function PoliticaAmbientalPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-emerald-200 dark:border-emerald-800 hover:shadow-md transition-all">
+            <div className="bg-white dark:bg-[hsl(var(--gard-card))] p-6 rounded-xl border border-emerald-200 dark:border-emerald-800/30 hover:shadow-md transition-all dark:hover:border-emerald-700/50">
               <div className="flex items-start mb-4">
                 <div className="p-2 rounded-full bg-emerald-100 dark:bg-emerald-900/40 mr-4">
                   <Factory className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
@@ -204,7 +206,7 @@ export default function PoliticaAmbientalPage() {
               </div>
             </div>
 
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-emerald-200 dark:border-emerald-800 hover:shadow-md transition-all">
+            <div className="bg-white dark:bg-[hsl(var(--gard-card))] p-6 rounded-xl border border-emerald-200 dark:border-emerald-800/30 hover:shadow-md transition-all dark:hover:border-emerald-700/50">
               <div className="flex items-start mb-4">
                 <div className="p-2 rounded-full bg-emerald-100 dark:bg-emerald-900/40 mr-4">
                   <Lightbulb className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
@@ -216,7 +218,7 @@ export default function PoliticaAmbientalPage() {
               </div>
             </div>
 
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-emerald-200 dark:border-emerald-800 hover:shadow-md transition-all">
+            <div className="bg-white dark:bg-[hsl(var(--gard-card))] p-6 rounded-xl border border-emerald-200 dark:border-emerald-800/30 hover:shadow-md transition-all dark:hover:border-emerald-700/50">
               <div className="flex items-start mb-4">
                 <div className="p-2 rounded-full bg-emerald-100 dark:bg-emerald-900/40 mr-4">
                   <Recycle className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
@@ -228,7 +230,7 @@ export default function PoliticaAmbientalPage() {
               </div>
             </div>
 
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-emerald-200 dark:border-emerald-800 hover:shadow-md transition-all">
+            <div className="bg-white dark:bg-[hsl(var(--gard-card))] p-6 rounded-xl border border-emerald-200 dark:border-emerald-800/30 hover:shadow-md transition-all dark:hover:border-emerald-700/50">
               <div className="flex items-start mb-4">
                 <div className="p-2 rounded-full bg-emerald-100 dark:bg-emerald-900/40 mr-4">
                   <Globe className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
@@ -240,7 +242,7 @@ export default function PoliticaAmbientalPage() {
               </div>
             </div>
 
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-emerald-200 dark:border-emerald-800 hover:shadow-md transition-all md:col-span-2">
+            <div className="bg-white dark:bg-[hsl(var(--gard-card))] p-6 rounded-xl border border-emerald-200 dark:border-emerald-800/30 hover:shadow-md transition-all dark:hover:border-emerald-700/50 md:col-span-2">
               <div className="flex items-start mb-4">
                 <div className="p-2 rounded-full bg-emerald-100 dark:bg-emerald-900/40 mr-4">
                   <Home className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
@@ -256,7 +258,7 @@ export default function PoliticaAmbientalPage() {
       </section>
 
       {/* Sección 4: ODS */}
-      <section className="py-16 md:py-24 bg-white dark:bg-gray-900">
+      <section className="py-16 md:py-24 bg-white dark:bg-[hsl(var(--gard-background-darkest))] dark:bg-[url('/assets/noise-pattern.png')] dark:bg-opacity-95">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-heading-2 text-green-900 dark:text-emerald-400 mb-6">Objetivos de Desarrollo Sostenible (ODS)</h2>
@@ -267,7 +269,7 @@ export default function PoliticaAmbientalPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-4xl mx-auto">
             {/* ODS 7 */}
-            <div className="flex flex-col items-center text-center p-6 bg-green-50 dark:bg-green-900/20 rounded-2xl hover:shadow-lg hover:scale-105 transition-all duration-300">
+            <div className="flex flex-col items-center text-center p-6 bg-green-50 dark:bg-[hsl(var(--gard-card))] dark:border dark:border-emerald-900/30 rounded-2xl hover:shadow-lg hover:scale-105 transition-all duration-300 dark:hover:border-emerald-800/50">
               <div className="w-20 h-20 bg-yellow-500 rounded-full flex items-center justify-center mb-4">
                 <Zap className="h-10 w-10 text-white" />
               </div>
@@ -276,7 +278,7 @@ export default function PoliticaAmbientalPage() {
             </div>
 
             {/* ODS 11 */}
-            <div className="flex flex-col items-center text-center p-6 bg-green-50 dark:bg-green-900/20 rounded-2xl hover:shadow-lg hover:scale-105 transition-all duration-300">
+            <div className="flex flex-col items-center text-center p-6 bg-green-50 dark:bg-[hsl(var(--gard-card))] dark:border dark:border-emerald-900/30 rounded-2xl hover:shadow-lg hover:scale-105 transition-all duration-300 dark:hover:border-emerald-800/50">
               <div className="w-20 h-20 bg-amber-600 rounded-full flex items-center justify-center mb-4">
                 <Home className="h-10 w-10 text-white" />
               </div>
@@ -285,7 +287,7 @@ export default function PoliticaAmbientalPage() {
             </div>
 
             {/* ODS 12 */}
-            <div className="flex flex-col items-center text-center p-6 bg-green-50 dark:bg-green-900/20 rounded-2xl hover:shadow-lg hover:scale-105 transition-all duration-300">
+            <div className="flex flex-col items-center text-center p-6 bg-green-50 dark:bg-[hsl(var(--gard-card))] dark:border dark:border-emerald-900/30 rounded-2xl hover:shadow-lg hover:scale-105 transition-all duration-300 dark:hover:border-emerald-800/50">
               <div className="w-20 h-20 bg-amber-800 rounded-full flex items-center justify-center mb-4">
                 <Recycle className="h-10 w-10 text-white" />
               </div>
@@ -294,7 +296,7 @@ export default function PoliticaAmbientalPage() {
             </div>
 
             {/* ODS 13 */}
-            <div className="flex flex-col items-center text-center p-6 bg-green-50 dark:bg-green-900/20 rounded-2xl hover:shadow-lg hover:scale-105 transition-all duration-300">
+            <div className="flex flex-col items-center text-center p-6 bg-green-50 dark:bg-[hsl(var(--gard-card))] dark:border dark:border-emerald-900/30 rounded-2xl hover:shadow-lg hover:scale-105 transition-all duration-300 dark:hover:border-emerald-800/50">
               <div className="w-20 h-20 bg-green-600 rounded-full flex items-center justify-center mb-4">
                 <Globe className="h-10 w-10 text-white" />
               </div>
@@ -312,7 +314,7 @@ export default function PoliticaAmbientalPage() {
           buttonText="Cotiza con Gard Security"
           href="/cotizar"
           variant="primary"
-          contrast="soft"
+          bg="bg-emerald-800 dark:bg-[hsl(var(--gard-background-darkest))] dark:bg-[url('/assets/noise-pattern.png')] dark:bg-opacity-95"
         />
       </div>
     </main>

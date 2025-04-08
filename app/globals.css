@@ -27,24 +27,31 @@
   }
 
   .dark {
-    /* Variables de colores para modo oscuro */
-    --gard-primary: 215 100% 55%;
+    --gard-background: 220 14% 6%;           /* Base oscura principal: #0B0F1A */
+    --gard-background-darker: 0 0% 4%;       /* Negro sofisticado casi puro: #0a0a0a */
+    --gard-background-darkest: 0 0% 2%;      /* Negro puro para contrastar: #050505 */
+    --gard-background-subtle: 220 10% 8%;    /* Para variaciones sutiles: #111827 */
+    
+    --gard-card: 220 14% 9%;                 /* Tarjetas sobre fondo negro */
+    --gard-card-accent: 18 30% 7%;           /* Tarjetas con tinte naranja muy sutil */
+    --gard-muted: 220 10% 12%;               /* Secciones con fondo intermedio */
+    --gard-muted-foreground: 215 15% 65%;    /* Subtítulos o texto leve */
+
+    --gard-primary: 215 100% 55%;            /* Azul principal para CTA */
     --gard-primary-foreground: 0 0% 100%;
-    --gard-secondary: 215 70% 40%;
+    --gard-secondary: 215 60% 30%;           /* Azul petróleo oscuro para detalles */
     --gard-secondary-foreground: 0 0% 100%;
-    --gard-accent: 18 100% 60%;
-    --gard-accent-foreground: 0 0% 100%;
-    --gard-background: 222 47% 11%;
-    --gard-foreground: 210 40% 98%;
-    --gard-muted: 217 33% 17%;
-    --gard-muted-foreground: 215 20% 75%;
-    --gard-card: 222 47% 14%;
-    --gard-card-foreground: 210 40% 98%;
-    --gard-popover: 222 47% 14%;
-    --gard-popover-foreground: 210 40% 98%;
-    --gard-border: 217 33% 25%;
-    --gard-input: 217 33% 25%;
+
+    --gard-foreground: 210 30% 95%;          /* Texto general blanco suave */
+    --gard-card-foreground: 210 30% 95%;
+    --gard-popover: 220 14% 9%;
+    --gard-popover-foreground: 210 30% 95%;
+
+    --gard-border: 220 10% 20%;
+    --gard-border-subtle: 0 0% 15%;
+    --gard-input: 220 10% 20%;
     --gard-ring: 215 100% 60%;
+    --gard-ring-accent: 18 100% 60%;
   }
 
   body {
@@ -53,7 +60,7 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-poppins);
+    font-family: var(--font-space-grotesk);
   }
 }
 
@@ -168,7 +175,7 @@
   }
 
   .gard-section-alt {
-    @apply bg-gray-50 dark:bg-gray-800;
+    @apply bg-gray-50 dark:bg-[hsl(var(--gard-background))];
   }
 
   /* Botones y CTA */
@@ -260,6 +267,28 @@
 
   .gard-hero-overlay {
     @apply absolute inset-0 bg-black/40 z-0;
+  }
+
+  /* Fondos oscuros estilizados para modo dark */
+  .gard-dark-bg {
+    @apply dark:bg-[hsl(var(--gard-background-darker))] dark:bg-[url('/assets/noise-pattern.png')] dark:bg-opacity-95;
+  }
+  
+  .gard-dark-gradient {
+    @apply dark:bg-[linear-gradient(180deg,hsl(var(--gard-background-darkest))_0%,hsl(var(--gard-background-darker))_100%)];
+  }
+  
+  .gard-dark-grid {
+    @apply dark:bg-[hsl(var(--gard-background-darkest))] dark:bg-[linear-gradient(90deg,rgba(15,15,15,0.03)_1px,transparent_1px),linear-gradient(0deg,rgba(15,15,15,0.03)_1px,transparent_1px)] dark:bg-[size:20px_20px];
+  }
+  
+  /* Cards mejoradas para modo dark */
+  .gard-card-dark {
+    @apply bg-card dark:bg-[hsl(var(--gard-card))] dark:border-[1px] dark:border-[hsl(var(--gard-border-subtle))] shadow-sm hover:shadow-md transition-all dark:hover:border-[hsl(var(--gard-ring)/_0.3)];
+  }
+
+  .gard-card-dark-accent {
+    @apply bg-card dark:bg-[hsl(var(--gard-card))] dark:border-[1px] dark:border-[hsl(var(--gard-accent)/_0.15)] shadow-sm hover:shadow-md transition-all dark:hover:border-[hsl(var(--gard-accent)/_0.3)];
   }
 }
 
@@ -377,4 +406,4 @@ main > section:first-child:not(.gard-hero) {
 /* Clases específicas de Elementor */
 .blog-content .e-con-inner {
   width: 100%;
-} 
+}

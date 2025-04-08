@@ -4,7 +4,7 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
@@ -18,10 +18,12 @@ const buttonVariants = cva(
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
         // Variantes personalizadas con mejor contraste
-        "gard-primary": "bg-primary text-white font-semibold shadow-sm hover:bg-primary/90",
-        "gard-secondary": "bg-secondary text-white font-semibold shadow-sm hover:bg-secondary/90",
-        "gard-outline": "border-2 border-primary text-primary font-semibold hover:bg-primary/10 hover:text-primary",
-        "gard-ghost": "text-primary hover:bg-primary/10 hover:text-primary font-medium",
+        "gard-primary": "bg-primary text-white font-semibold shadow-sm hover:bg-accent hover:text-white transition-all duration-150 ease-in-out hover:scale-105 hover:brightness-110",
+        "gard-secondary": "bg-secondary text-white font-semibold shadow-sm hover:bg-accent hover:text-white transition-all duration-150 ease-in-out hover:scale-105 hover:brightness-110",
+        "gard-outline": "border-2 border-primary text-primary font-semibold hover:bg-primary/10 hover:text-primary transition-all duration-150 ease-in-out hover:scale-105",
+        "gard-outline-orange": "border-2 border-accent text-accent font-semibold hover:bg-accent/10 hover:text-accent hover:border-accent transition-all duration-150 ease-in-out hover:scale-105",
+        "gard-ghost": "text-primary hover:bg-primary/10 hover:text-primary font-medium transition-all duration-150 ease-in-out hover:scale-105",
+        "gard-accent": "bg-accent text-white font-semibold shadow-sm hover:bg-accent/90 hover:text-white transition-all duration-150 ease-in-out hover:scale-105 hover:brightness-110",
       },
       size: {
         default: "h-10 px-4 py-2",

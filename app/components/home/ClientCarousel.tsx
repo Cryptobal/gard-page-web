@@ -6,8 +6,9 @@ import { useKeenSlider } from 'keen-slider/react';
 import "keen-slider/keen-slider.min.css";
 import CloudflareImage from '@/components/CloudflareImage';
 import { CLIENTES } from '@/app/data/clientes';
-import { ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Quote, Building2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { motion } from 'framer-motion';
 
 export default function ClientCarousel() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -49,7 +50,7 @@ export default function ClientCarousel() {
   };
 
   return (
-    <section className="py-20 md:py-28 w-full bg-background dark:bg-zinc-900">
+    <section className="gard-section py-16 md:py-24 w-full bg-gray-50 dark:bg-[hsl(var(--gard-background))]">
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-heading-2 text-gray-900 dark:text-white font-title mb-4">
@@ -60,23 +61,23 @@ export default function ClientCarousel() {
           </p>
         </div>
         
-        <div className="relative px-4">
+        <div className="relative px-12 md:px-16">
           {/* Botones de navegación */}
           {loaded && instanceRef.current && (
             <div className="absolute left-0 right-0 top-1/2 transform -translate-y-1/2 flex justify-between z-10 pointer-events-none">
               <button 
                 onClick={handlePrev}
-                className="w-10 h-10 rounded-full bg-white dark:bg-zinc-800 shadow-md flex items-center justify-center text-primary dark:text-accent hover:scale-105 transition-all pointer-events-auto"
+                className="w-12 h-12 rounded-full bg-white dark:bg-[hsl(var(--gard-card))] shadow-md flex items-center justify-center text-primary dark:text-accent hover:scale-105 transition-all pointer-events-auto border border-gray-100 dark:border-gray-700"
                 aria-label="Anterior"
               >
-                <ChevronLeft className="w-5 h-5" />
+                <ChevronLeft className="w-6 h-6" />
               </button>
               <button
                 onClick={handleNext}
-                className="w-10 h-10 rounded-full bg-white dark:bg-zinc-800 shadow-md flex items-center justify-center text-primary dark:text-accent hover:scale-105 transition-all pointer-events-auto"
+                className="w-12 h-12 rounded-full bg-white dark:bg-[hsl(var(--gard-card))] shadow-md flex items-center justify-center text-primary dark:text-accent hover:scale-105 transition-all pointer-events-auto border border-gray-100 dark:border-gray-700"
                 aria-label="Siguiente"
               >
-                <ChevronRight className="w-5 h-5" />
+                <ChevronRight className="w-6 h-6" />
               </button>
             </div>
           )}
@@ -85,22 +86,17 @@ export default function ClientCarousel() {
           <div className="keen-slider-container">
             <div ref={sliderRef} className="keen-slider">
               {CLIENTES.map((cliente) => (
-                <Link
+                <div
                   key={cliente.imageId}
-                  href={cliente.link || "#"}
-                  target={cliente.link ? "_blank" : undefined}
-                  rel={cliente.link ? "noopener noreferrer" : undefined}
-                  role="link"
-                  aria-label={cliente.nombre}
-                  className={cn(
-                    "keen-slider__slide h-full",
-                    cliente.link ? "cursor-pointer" : "cursor-default"
-                  )}
+                  className="keen-slider__slide h-full"
                 >
-                  <div className="h-full bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm hover:shadow-md transition-all border border-gray-100 dark:border-gray-700">
+                  <motion.div 
+                    whileHover={{ y: -5 }}
+                    className="h-full bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-gray-700 flex flex-col"
+                  >
                     <div className="flex flex-col h-full">
                       {/* Logo del cliente */}
-                      <div className="relative h-16 mb-4 flex items-center justify-center">
+                      <div className="relative h-20 mb-6 flex items-center justify-center bg-gray-50 dark:bg-gray-800 rounded-xl p-3">
                         <CloudflareImage 
                           imageId={cliente.imageId}
                           alt={`Logo de ${cliente.nombre}`}
@@ -110,41 +106,33 @@ export default function ClientCarousel() {
                         />
                       </div>
                       
-                      <h3 className="text-heading-4 text-gray-900 dark:text-white font-title mb-2">
+                      <div className="mb-4 flex items-center gap-2">
+                        <Building2 className="h-5 w-5 text-primary dark:text-accent flex-shrink-0" />
+                        <span className="text-sm font-medium text-primary dark:text-accent">
+                          {cliente.industria}
+                        </span>
+                      </div>
+                      
+                      <h3 className="text-heading-4 text-gray-900 dark:text-white font-title mb-4">
                         {cliente.nombre}
                       </h3>
                       
-                      <p className="text-body-base text-gray-600 dark:text-gray-300 mb-4">
-                        {cliente.industria}
-                      </p>
-                      
-                      <p className="text-sm italic text-gray-500 dark:text-gray-400 mb-4 flex-grow">
-                        "{cliente.frase}"
-                      </p>
-                      
-                      {/* Link */}
-                      <div className="mt-auto">
-                        {cliente.link ? (
-                          <div className="inline-flex items-center text-primary dark:text-accent gap-1 group">
-                            <span>Visitar sitio</span>
-                            <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                          </div>
-                        ) : (
-                          <span className="text-gray-400 dark:text-gray-500">
-                            Sitio no disponible
-                          </span>
-                        )}
+                      <div className="flex-grow bg-gray-50 dark:bg-gray-800 rounded-xl p-5 mb-2 relative mx-2">
+                        <Quote className="absolute -top-3 -left-3 h-6 w-6 text-primary dark:text-accent bg-white dark:bg-gray-900 rounded-full p-1" />
+                        <p className="text-sm italic text-gray-600 dark:text-gray-300">
+                          "{cliente.frase}"
+                        </p>
                       </div>
                     </div>
-                  </div>
-                </Link>
+                  </motion.div>
+                </div>
               ))}
             </div>
           </div>
           
           {/* Indicadores (dots) */}
           {loaded && instanceRef.current && (
-            <div className="flex justify-center mt-6 gap-4">
+            <div className="flex justify-center mt-8 gap-4">
               {Array.from(
                 { length: Math.max(1, instanceRef.current.track.details.slides.length - slidesPerView() + 1) },
                 (_, idx) => (

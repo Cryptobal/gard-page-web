@@ -1,4 +1,3 @@
-import React from 'react';
 import ReclutamientoForm from './ReclutamientoForm';
 
 // Metadata para SEO (esto sí se puede hacer en un componente de servidor)

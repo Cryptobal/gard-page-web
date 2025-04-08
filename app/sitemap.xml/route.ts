@@ -1,6 +1,9 @@
 import { industries } from '../data/industries';
 import { getAllPosts, POSTS_PER_PAGE, getAllTags, getPostsByTag } from '@/lib/blog';
 import { isValidUrl } from '@/lib/utils';
+import { ciudades } from '@/lib/data/ciudad-data';
+import { servicesMetadata } from '@/app/servicios/serviceMetadata';
+import { serviciosPorIndustria } from '../data/servicios-por-industria';
 
 // Función para verificar y filtrar URLs
 async function filterValidUrls(urls: { url: string; lastModified: string; changeFrequency: string; priority: number; }[]) {
@@ -15,17 +18,23 @@ async function filterValidUrls(urls: { url: string; lastModified: string; change
     // Verificar todas las URLs en el lote en paralelo
     const results = await Promise.allSettled(
       batch.map(async (urlItem) => {
-        const isValid = await isValidUrl(urlItem.url);
-        return { urlItem, isValid };
+        const result = await isValidUrl(urlItem.url);
+        return { urlItem, result };
       })
     );
     
     // Filtrar las URLs válidas
     results.forEach((result) => {
-      if (result.status === 'fulfilled' && result.value.isValid) {
-        validUrls.push(result.value.urlItem);
-      } else if (result.status === 'fulfilled') {
-        console.log(`URL no válida (redirección o error): ${result.value.urlItem.url}`);
+      if (result.status === 'fulfilled') {
+        const { urlItem, result: urlResult } = result.value;
+        
+        if (urlResult.isValid) {
+          validUrls.push(urlItem);
+        } else if (urlResult.isRedirect) {
+          console.log(`URL con redirección excluida: ${urlItem.url} -> ${urlResult.finalUrl}`);
+        } else {
+          console.log(`URL no válida (error o no encontrada): ${urlItem.url}`);
+        }
       }
     });
   };
@@ -108,15 +117,16 @@ async function generateSitemap() {
   });
 
   // Combinaciones prioritarias de servicio-industria
-  const servicioIndustriaPrioritarias = [
-    {servicio: 'guardias-de-seguridad', industria: 'retail'},
-    {servicio: 'guardias-de-seguridad', industria: 'mineria'},
-    {servicio: 'drones-seguridad', industria: 'mineria'},
-    {servicio: 'seguridad-electronica', industria: 'retail'},
-    {servicio: 'central-monitoreo', industria: 'edificios-corporativos'},
-    {servicio: 'auditoria-seguridad', industria: 'instituciones-publicas'},
-    {servicio: 'consultoria', industria: 'edificios-corporativos'},
-    {servicio: 'prevencion-intrusiones', industria: 'parques-industriales'}
+  const servicioIndustriaPrioritarias: { servicio: string; industria: string }[] = [
+    // Eliminamos las combinaciones que aparecen como redirigidas en Semrush
+    // {servicio: 'guardias-de-seguridad', industria: 'retail'},
+    // {servicio: 'guardias-de-seguridad', industria: 'mineria'},
+    // {servicio: 'drones-seguridad', industria: 'mineria'},
+    // {servicio: 'seguridad-electronica', industria: 'retail'},
+    // {servicio: 'central-monitoreo', industria: 'edificios-corporativos'},
+    // {servicio: 'auditoria-seguridad', industria: 'instituciones-publicas'},
+    // {servicio: 'consultoria', industria: 'edificios-corporativos'},
+    // {servicio: 'prevencion-intrusiones', industria: 'parques-industriales'}
   ];
 
   const combinacionesPages = servicioIndustriaPrioritarias.map(({ servicio, industria }) => ({
@@ -125,6 +135,33 @@ async function generateSitemap() {
     changeFrequency: 'monthly',
     priority: 0.65,
   }));
+  
+  // Nuevas URLs de servicio-por-industria
+  const servicioIndustriaPages: {
+    url: string;
+    lastModified: string;
+    changeFrequency: string;
+    priority: number;
+  }[] = [];
+  
+  // Generar todas las combinaciones posibles de servicio-industria
+  // Usamos los metadatos directos para asegurar que todas las combinaciones se incluyan
+  for (const servicio of servicesMetadata) {
+    for (const industria of industries) {
+      const industriaSlug = industria.name.toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/[^\w\s]/g, '')
+        .replace(/\s+/g, '-');
+        
+      servicioIndustriaPages.push({
+        url: `${baseUrl}/servicios-por-industria/${servicio.slug}/${industriaSlug}`,
+        lastModified: new Date().toISOString(),
+        changeFrequency: 'monthly',
+        priority: 0.9, // Alta prioridad para estas páginas clave de conversión
+      });
+    }
+  }
   
   // Páginas de blog dinámicas (posts individuales)
   const blogPosts = await getAllPosts();
@@ -135,38 +172,51 @@ async function generateSitemap() {
     priority: 0.6,
   }));
   
-  // Páginas de paginación del blog
+  // Páginas de paginación del blog principal (solo la primera página adicional)
+  // Se limita la paginación para evitar URLs no canónicas
   const totalPages = Math.ceil(blogPosts.length / POSTS_PER_PAGE);
-  const blogPaginationPages = Array.from({ length: totalPages - 1 }, (_, i) => ({
-    url: `${baseUrl}/blog/page/${i + 2}`, // Páginas 2 en adelante
-    lastModified: new Date().toISOString(),
-    changeFrequency: 'weekly',
-    priority: 0.5,
-  }));
+  const blogPaginationPages = totalPages > 1 ? [
+    {
+      url: `${baseUrl}/blog/page/2`, // Solo incluimos la página 2 como referencia
+      lastModified: new Date().toISOString(),
+      changeFrequency: 'weekly',
+      priority: 0.5,
+    }
+  ] : [];
   
-  // Páginas de etiquetas del blog
-  const allTags = await getAllTags();
-  const blogTagPages = allTags.map((tag) => ({
-    url: `${baseUrl}/blog/tag/${encodeURIComponent(tag)}`,
-    lastModified: new Date().toISOString(),
-    changeFrequency: 'monthly',
-    priority: 0.6,
-  }));
+  // Eliminamos las páginas de etiquetas del blog para evitar problemas de URL no canónicas
+  // Según análisis de Semrush, estas páginas causan la mayoría de errores
+  // const allTags = await getAllTags();
+  // const blogTagPages = allTags.map((tag) => ({
+  //   url: `${baseUrl}/blog/tag/${encodeURIComponent(tag)}`,
+  //   lastModified: new Date().toISOString(),
+  //   changeFrequency: 'monthly',
+  //   priority: 0.6,
+  // }));
+  
+  // Reemplazamos con un array vacío
+  const blogTagPages: {
+    url: string;
+    lastModified: string;
+    changeFrequency: string;
+    priority: number;
+  }[] = [];
 
-  // Páginas de paginación por etiqueta
-  const blogTagPaginationPages = [];
-  for (const tag of allTags) {
-    const { totalPages } = await getPostsByTag(tag);
-    
-    if (totalPages > 1) {
-      const pages = Array.from({ length: totalPages - 1 }, (_, i) => ({
-        url: `${baseUrl}/blog/tag/${encodeURIComponent(tag)}/page/${i + 2}`, // Páginas 2 en adelante
+  // Nuevas landing pages dinámicas de ciudad/servicio
+  const ciudadServicioPages = [];
+  
+  // Extraer los slugs de los servicios del array importado
+  const servicioSlugs = servicesMetadata.map(servicio => servicio.slug);
+  
+  // Crear combinaciones de ciudad + servicio
+  for (const ciudad of ciudades) {
+    for (const servicioSlug of servicioSlugs) {
+      ciudadServicioPages.push({
+        url: `${baseUrl}/${ciudad.slug}/${servicioSlug}`,
         lastModified: new Date().toISOString(),
-        changeFrequency: 'weekly',
-        priority: 0.5,
-      }));
-      
-      blogTagPaginationPages.push(...pages);
+        changeFrequency: 'monthly',
+        priority: 0.9, // Alta prioridad para landing pages de conversión geolocalizada
+      });
     }
   }
 
@@ -175,10 +225,11 @@ async function generateSitemap() {
     ...servicePages, 
     ...industryPages,
     ...combinacionesPages, 
+    ...servicioIndustriaPages,
     ...blogPostPages, 
     ...blogPaginationPages,
     ...blogTagPages,
-    ...blogTagPaginationPages
+    ...ciudadServicioPages // Añadimos las nuevas páginas de ciudad/servicio
   ];
   
   // Filtrar URLs para incluir solo las que devuelven código 200

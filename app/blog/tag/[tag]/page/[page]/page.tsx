@@ -87,7 +87,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${capitalizedTag} (Página ${pageNumber}) | Blog de Seguridad Gard`,
+    title: `${capitalizedTag} (${pageNumber}) | Gard Security`,
     description: `Explora artículos sobre ${capitalizedTag}. Página ${pageNumber} de ${totalPages}. Consejos, tendencias y novedades sobre seguridad privada.`,
     openGraph: {
       title: `${capitalizedTag} (Página ${pageNumber}) | Blog de Seguridad Gard`,

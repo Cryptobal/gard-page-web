@@ -64,7 +64,7 @@ export default function Header() {
   const getNavLinkClasses = (isActive: boolean, isCTA?: boolean) => {
     if (isCTA) {
       return `
-        bg-primary text-white px-4 py-2 rounded-xl hover:bg-primary/90 transition
+        bg-primary text-white px-4 py-2 rounded-xl hover:bg-accent transition
         font-semibold ${scrolled ? 'text-sm' : 'text-base'}
       `;
     }
@@ -90,7 +90,9 @@ export default function Header() {
       <div className="gard-container px-4 md:px-6 flex items-center justify-between">
         <Link href="/" className="relative z-50 flex items-center transition-all duration-300 ease-in-out">
           <CloudflareImage
-            imageId={cloudflareImages.logo.default}
+            imageId={isDarkMode 
+              ? cloudflareImages.logo.nav.night 
+              : cloudflareImages.logo.nav.day}
             alt="Gard Security Logo"
             width={scrolled ? 120 : 140}
             height={scrolled ? 34 : 40}
@@ -160,7 +162,7 @@ export default function Header() {
                   key={href}
                   href={href}
                   className={isCTA 
-                    ? "bg-primary text-white px-6 py-2 rounded-xl hover:bg-primary/90 transition text-lg font-semibold"
+                    ? "bg-primary text-white px-6 py-2 rounded-xl hover:bg-accent transition text-lg font-semibold"
                     : `
                       text-lg font-semibold transition-colors
                       ${pathname === href 

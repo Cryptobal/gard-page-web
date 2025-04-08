@@ -6,22 +6,22 @@ import { Shield, Clock, Award, Users, Check } from 'lucide-react';
 
 const beneficios = [
   {
-    icon: <Shield className="h-12 w-12 text-orange-500" />,
+    icon: <Shield className="h-12 w-12 text-[hsl(var(--gard-accent))]" />,
     title: 'Protección garantizada',
     description: 'Guardias certificados y capacitados para brindar la seguridad que tu empresa necesita.'
   },
   {
-    icon: <Clock className="h-12 w-12 text-orange-500" />,
+    icon: <Clock className="h-12 w-12 text-[hsl(var(--gard-accent))]" />,
     title: 'Servicio 24/7',
     description: 'Cobertura completa sin interrupciones, todos los días del año.'
   },
   {
-    icon: <Award className="h-12 w-12 text-orange-500" />,
+    icon: <Award className="h-12 w-12 text-[hsl(var(--gard-accent))]" />,
     title: 'Certificación OS-10',
     description: 'Cumplimos con todas las normativas y certificaciones exigidas por la ley.'
   },
   {
-    icon: <Users className="h-12 w-12 text-orange-500" />,
+    icon: <Users className="h-12 w-12 text-[hsl(var(--gard-accent))]" />,
     title: 'Personal calificado',
     description: 'Guardias con experiencia y entrenamiento continuo en protección de activos.'
   }

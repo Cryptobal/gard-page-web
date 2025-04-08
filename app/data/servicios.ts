@@ -27,7 +27,7 @@ export const servicios: Servicio[] = [
     slug: "guardias-de-seguridad",
     icon: "ShieldCheck",
     description: "Guardias profesionales, entrenados y certificados para proteger personas, activos e instalaciones.",
-    heroImageId: "e01db9f7-4cf6-4cac-cf83-c93215097200",
+    heroImageId: "c0a460385f6fb9e90343feb3a97c55c3",
     gallery: [
       "bc045c39-36bc-4abb-348d-c589687cb400",
       "eed0de62-d623-47bd-0a3f-d2ca692c6300",
@@ -52,7 +52,7 @@ export const servicios: Servicio[] = [
     slug: "seguridad-electronica",
     icon: "Shield",
     description: "Soluciones tecnológicas integradas para proteger instalaciones con sistemas CCTV, alarmas y control de acceso.",
-    heroImageId: "237c574e-8997-4f6b-47fa-6c3ebe057200",
+    heroImageId: "a098993d251d333a275c104aeb94be81",
     gallery: [
       "7f152778-b285-4cbe-7aba-a77620455d00",
       "c2aebfd4-132d-4a44-21d0-469e834e5900"
@@ -73,7 +73,7 @@ export const servicios: Servicio[] = [
     slug: "central-monitoreo",
     icon: "Eye",
     description: "Vigilancia 24/7 desde nuestra central de monitoreo para respuesta inmediata ante cualquier incidente.",
-    heroImageId: "4a5d0b79-8f81-4387-54b5-dc9956268400",
+    heroImageId: "c23fd56dd80e14308e27c9bc78b7c257",
     gallery: [
       "4be6a0d1-a23a-49fc-f2a5-aa24df947700",
       "165c106f-ae53-496f-d8f9-5d9f10aeb500"
@@ -94,7 +94,7 @@ export const servicios: Servicio[] = [
     slug: "drones-seguridad",
     icon: "Plane",
     description: "Vigilancia aérea con tecnología de drones para terrenos extensos, eventos y sitios de difícil acceso.",
-    heroImageId: "be6ef2e1-98d5-4b3c-cd50-ca77cd6f0e00",
+    heroImageId: "e1119eb2a24f5a86e790687131fecee9",
     gallery: [
       "79e59b55-d3cb-4cee-1f58-d5512b7d0000",
       "330ea24f-8216-48e2-ea7f-b33e24815b00"
@@ -115,7 +115,7 @@ export const servicios: Servicio[] = [
     slug: "seguridad-perimetral",
     icon: "ShieldAlert",
     description: "Protección completa del perímetro de sus instalaciones con tecnología avanzada y vigilancia integrada.",
-    heroImageId: "8534db25-0748-4339-68d9-9cc19023ec00",
+    heroImageId: "1ebfeb8f8f2ac179465db0fc05ed5b2d",
     gallery: [
       "8534db25-0748-4339-68d9-9cc19023ec00"
     ],
@@ -175,7 +175,7 @@ export const servicios: Servicio[] = [
     slug: "prevencion-intrusiones",
     icon: "ShieldAlert",
     description: "Sistemas avanzados para detectar y neutralizar amenazas antes de que se materialicen.",
-    heroImageId: "5d100f19-4396-4bc4-7df6-3c8b18cbf800",
+    heroImageId: "1ebfeb8f8f2ac179465db0fc05ed5b2d",
     gallery: [
       "5d100f19-4396-4bc4-7df6-3c8b18cbf800"
     ],

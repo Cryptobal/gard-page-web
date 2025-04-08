@@ -209,7 +209,7 @@ export default function IndustriasGridPage({ servicioSlug }: IndustriasGridPageP
           <Link 
             key={industria.name} 
             href={href}
-            className="relative group overflow-hidden rounded-xl shadow-md aspect-[4/3] block hover:scale-[1.02] transition-transform duration-300"
+            className="relative group overflow-hidden rounded-xl shadow-md aspect-[4/3] block hover:scale-105 transition-all duration-200 ease-in-out hover:shadow-xl hover:border hover:border-[hsl(var(--gard-ring))]"
           >
             <CloudflareImage
               imageId={industria.imageId}

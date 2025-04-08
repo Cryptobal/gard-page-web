@@ -22,42 +22,49 @@ interface FaqItem {
   answer: string;
 }
 
-// Creamos un tipo para las categorías de FAQ
-type FaqCategories = {
-  [key: string]: FaqItem[];
+// Interfaz para la estructura de categorías de FAQ
+interface FaqCategories {
+  [category: string]: FaqItem[];
+}
+
+// Definir iconos para categorías
+const categoryIcons: {[key: string]: React.ReactNode} = {
+  "Guardias de Seguridad": <ShieldCheck className="h-5 w-5" />,
+  "Monitoreo y CCTV": <Video className="h-5 w-5" />,
+  "Drones de Seguridad": <Plane className="h-5 w-5" />,
+  "Tecnología e Innovación": <Cpu className="h-5 w-5" />,
+  "Empresa y Operación": <Building className="h-5 w-5" />,
 };
 
-// Iconos por categoría para móviles
-const categoryIcons: Record<string, React.ReactNode> = {
-  'Guardias de Seguridad': <ShieldCheck className="h-5 w-5" />,
-  'Monitoreo y CCTV': <Video className="h-5 w-5" />,
-  'Drones de Seguridad': <Plane className="h-5 w-5" />,
-  'Tecnología e Innovación': <Cpu className="h-5 w-5" />,
-  'Empresa y Operación': <Building className="h-5 w-5" />
+// Versiones cortas de los nombres de categorías para mejor visualización
+const shortCategoryNames: {[key: string]: string} = {
+  "Guardias de Seguridad": "Guardias",
+  "Monitoreo y CCTV": "Monitoreo",
+  "Drones de Seguridad": "Drones",
+  "Tecnología e Innovación": "Tecnología",
+  "Empresa y Operación": "Empresa",
 };
 
 export default function FaqSection() {
   // Afirmamos que faqData es del tipo FaqCategories
   const typedFaqData = faqData as FaqCategories;
-  const [activeTab, setActiveTab] = useState(Object.keys(typedFaqData)[0]);
+  
+  // Extractar categorías
   const categories = Object.keys(typedFaqData);
+  
+  // Estado para la pestaña activa
+  const [activeTab, setActiveTab] = useState(categories[0]);
+  
+  // Estado para item expandido
   const [expandedItem, setExpandedItem] = useState<string | null>(null);
+  
+  // Referencias para scroll y altura
   const titleRef = useRef<HTMLHeadingElement>(null);
-  const sectionRef = useRef<HTMLElement>(null);
-  const [isMobile, setIsMobile] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
-  const [contentHeight, setContentHeight] = useState<number>(400); // Altura predeterminada
-
-  // Detectar si estamos en móvil
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
+  const sectionRef = useRef<HTMLElement>(null);
+  
+  // Estado para la altura del contenido
+  const [contentHeight, setContentHeight] = useState(400);
 
   // Precalcular alturas para transiciones fluidas
   useEffect(() => {
@@ -74,7 +81,7 @@ export default function FaqSection() {
         tempDiv.innerHTML = `
           <div class="card border-0 shadow-sm">
             <div class="pt-6">
-              <dl class="w-full divide-y divide-gray-200">
+              <dl class="w-full space-y-4">
                 ${typedFaqData[category].map(item => `
                   <div class="py-2 w-full">
                     <dt class="w-full">
@@ -105,13 +112,8 @@ export default function FaqSection() {
     return () => window.removeEventListener('resize', calculateHeights);
   }, [categories, typedFaqData]);
 
-  // Scroll al título cuando cambia la categoría
+  // Reset del item expandido al cambiar de pestaña
   useEffect(() => {
-    // Eliminar el scroll automático al cargar o cambiar pestañas
-    // if (titleRef.current) {
-    //   titleRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    // }
-    // Reset expanded item when changing tab
     setExpandedItem(null);
   }, [activeTab]);
 
@@ -126,11 +128,11 @@ export default function FaqSection() {
   };
 
   return (
-    <section ref={sectionRef} className="gard-section gard-section-alt py-12">
+    <section ref={sectionRef} className="gard-section bg-[hsl(var(--gard-background))] py-16">
       <div className="gard-container max-w-5xl mx-auto px-4">
         <h2 
           ref={titleRef}
-          className="text-heading-2 text-center mb-12"
+          className="text-heading-2 text-center mb-12 text-[hsl(var(--gard-foreground))]"
           id="preguntas-frecuentes"
         >
           Preguntas Frecuentes
@@ -138,147 +140,146 @@ export default function FaqSection() {
         
         <div className="w-full">
           <Tabs defaultValue={activeTab} onValueChange={handleTabChange} className="w-full">
-            <div className="relative mb-8 overflow-hidden">
-              <TabsList className="flex flex-nowrap overflow-x-auto pb-2 justify-start md:justify-center gap-2 w-full">
-                {categories.map((category) => (
-                  <TabsTrigger 
-                    key={category} 
-                    value={category}
-                    className="relative rounded-xl py-2 px-4 text-sm md:text-base whitespace-nowrap flex-shrink-0 flex items-center justify-center"
-                    title={category} // Para accesibilidad en caso de mostrar solo iconos
-                  >
-                    {/* En móvil mostramos solo iconos, en desktop texto */}
-                    <span className="md:block hidden">{category}</span>
-                    <span className="md:hidden flex items-center justify-center" aria-hidden="true">
-                      {categoryIcons[category] || <HelpCircle className="h-5 w-5" />}
-                    </span>
-                    
-                    {activeTab === category && (
-                      <motion.div
-                        layoutId="underline"
-                        className="absolute left-0 right-0 bottom-0 h-0.5 bg-primary"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 0.3 }}
-                      />
-                    )}
-                  </TabsTrigger>
-                ))}
-              </TabsList>
-            </div>
-            
-            {/* Contenedor con altura fija para evitar saltos en transiciones */}
-            <div 
-              ref={contentRef}
-              className="relative"
-              style={{ 
-                height: `${contentHeight}px`, 
-                overflow: 'hidden',
-                transition: 'height 0.3s ease'
-              }}
-            >
-              <AnimatePresence mode="wait" initial={false}>
-                {categories.map((category) => (
-                  activeTab === category && (
-                    <TabsContent 
-                      key={category} 
-                      value={category}
-                      className="mt-4 w-full absolute top-0 left-0"
-                    >
-                      <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ 
-                          duration: 0.25,
-                          ease: "easeInOut"
-                        }}
-                        className="w-full"
-                      >
-                        <Card className="border-0 shadow-sm">
-                          <CardContent className="pt-6">
-                            <dl className="w-full divide-y divide-gray-200 dark:divide-gray-800">
+            <div className="relative mb-16">
+              <div className="max-w-full mx-auto">
+                <div className="overflow-x-auto pb-2 hide-scrollbar relative">
+                  <div className="flex justify-center w-full">
+                    <TabsList className="flex flex-nowrap gap-1.5 md:gap-2 w-max min-w-max mx-auto bg-transparent p-1 rounded-xl relative">
+                      {/* Indicador de pestaña activa (sutil gradiente) */}
+                      <div className="absolute inset-0 bg-gradient-to-b from-[hsl(var(--gard-accent))/5] to-transparent opacity-30 rounded-xl pointer-events-none"></div>
+                      
+                      {categories.map((category) => (
+                        <TabsTrigger 
+                          key={category} 
+                          value={category}
+                          className="relative rounded-full py-1.5 px-2.5 md:px-3.5 text-sm md:text-base whitespace-nowrap flex items-center justify-center transition-all duration-300 
+                          data-[state=active]:bg-[hsl(var(--gard-card))] data-[state=active]:shadow-md data-[state=active]:border data-[state=active]:border-[hsl(var(--gard-ring))] data-[state=active]:text-white data-[state=active]:scale-105
+                          data-[state=inactive]:text-[hsl(var(--gard-muted-foreground))] hover:bg-[hsl(var(--gard-muted))] hover:scale-[1.02] hover:shadow-sm"
+                          title={category}
+                        >
+                          {/* Móvil: solo icono */}
+                          <span className="md:hidden flex items-center justify-center">
+                            <span className="text-[hsl(var(--gard-accent))] bg-[hsl(var(--gard-accent))]/10 w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0">
+                              {categoryIcons[category] || <HelpCircle className="h-4 w-4" />}
+                            </span>
+                          </span>
+                          
+                          {/* Desktop: icono + texto */}
+                          <span className="hidden md:flex items-center gap-2">
+                            <span className="text-[hsl(var(--gard-accent))] bg-[hsl(var(--gard-accent))]/10 w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0">
+                              {categoryIcons[category] || <HelpCircle className="h-3.5 w-3.5" />}
+                            </span>
+                            <span className="font-medium text-sm">{shortCategoryNames[category] || category}</span>
+                          </span>
+                        </TabsTrigger>
+                      ))}
+                    </TabsList>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Contenido de preguntas */}
+              <div className="w-full">
+                {/* Contenedor con altura dinámica */}
+                <div 
+                  ref={contentRef}
+                  className="relative"
+                  style={{ 
+                    height: `${contentHeight}px`, 
+                    overflow: 'hidden',
+                    transition: 'height 0.3s ease'
+                  }}
+                >
+                  <AnimatePresence mode="wait" initial={false}>
+                    {categories.map((category) => (
+                      activeTab === category && (
+                        <TabsContent 
+                          key={category} 
+                          value={category}
+                          className="mt-6 w-full absolute top-0 left-0"
+                        >
+                          <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ 
+                              duration: 0.25,
+                              ease: "easeInOut"
+                            }}
+                            className="w-full"
+                          >
+                            <div className="space-y-4">
                               {typedFaqData[category].map((item: FaqItem, index: number) => {
                                 const questionId = `${category}-question-${index}`;
                                 const isExpanded = expandedItem === questionId;
                                 
                                 return (
-                                  <div 
-                                    key={index} 
-                                    className="py-2 w-full"
+                                  <motion.div 
+                                    key={index}
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.3, delay: index * 0.05 }}
+                                    className="bg-[hsl(var(--gard-card))] rounded-xl shadow-sm overflow-hidden border border-[hsl(var(--gard-border))] hover:shadow-md transition-shadow duration-300 group"
                                   >
-                                    <dt className="w-full">
+                                    <div className="px-4 py-3">
                                       <button 
                                         onClick={() => toggleQuestion(questionId)}
-                                        className="flex justify-between items-center w-full text-left py-5 px-3 hover:bg-muted/20 rounded-md transition-all duration-200 group"
+                                        className="flex justify-between items-center w-full text-left py-3 px-3 rounded-lg transition-all duration-300 group-hover:bg-[hsl(var(--gard-muted))/50]"
                                         aria-expanded={isExpanded}
                                         aria-controls={`answer-${questionId}`}
                                       >
-                                        <span className="text-base font-semibold dark:text-white">{item.question}</span>
-                                        <span className="flex-shrink-0 ml-2 text-primary">
-                                          {isExpanded ? (
-                                            <Minus className="h-4 w-4 transition-transform duration-300" />
-                                          ) : (
-                                            <Plus className="h-4 w-4 transition-transform duration-300" />
-                                          )}
+                                        <span 
+                                          className={`text-base font-semibold transition-colors duration-200 ${
+                                            isExpanded ? 'text-[hsl(var(--gard-accent))]' : 'text-[hsl(var(--gard-foreground))]'
+                                          }`}
+                                        >
+                                          {item.question}
+                                        </span>
+                                        <span 
+                                          className={`flex-shrink-0 ml-2 text-[hsl(var(--gard-accent))] w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 ${
+                                            isExpanded ? 'bg-[hsl(var(--gard-accent))/20] scale-110' : 'bg-[hsl(var(--gard-accent))/10] scale-100'
+                                          }`}
+                                        >
+                                          <Plus className={`h-5 w-5 transition-transform duration-300 ${isExpanded ? 'rotate-45' : ''}`} />
                                         </span>
                                       </button>
-                                    </dt>
-                                    <dd 
-                                      id={`answer-${questionId}`}
-                                      className={`overflow-hidden transition-all duration-300 ease-in-out ${isExpanded ? 'max-h-96' : 'max-h-0'}`}
-                                    >
+                                    </div>
+                                    
+                                    <AnimatePresence>
                                       {isExpanded && (
                                         <motion.div
-                                          initial={{ opacity: 0 }}
-                                          animate={{ opacity: 1 }}
-                                          transition={{ duration: 0.2 }}
-                                          className="text-sm text-muted-foreground leading-relaxed mt-2 pl-4 py-3"
+                                          initial={{ height: 0, opacity: 0 }}
+                                          animate={{ height: 'auto', opacity: 1 }}
+                                          exit={{ height: 0, opacity: 0 }}
+                                          transition={{ duration: 0.3, ease: "easeOut" }}
+                                          className="overflow-hidden"
                                         >
-                                          {item.answer}
+                                          <div className="bg-[hsl(var(--gard-muted))] text-[hsl(var(--gard-muted-foreground))] px-7 py-5 border-t border-[hsl(var(--gard-border))]">
+                                            <motion.div
+                                              initial={{ y: 10, opacity: 0 }}
+                                              animate={{ y: 0, opacity: 1 }}
+                                              transition={{ duration: 0.2, delay: 0.1 }}
+                                            >
+                                              {item.answer}
+                                            </motion.div>
+                                          </div>
                                         </motion.div>
                                       )}
-                                    </dd>
-                                  </div>
+                                    </AnimatePresence>
+                                  </motion.div>
                                 );
                               })}
-                            </dl>
-                          </CardContent>
-                        </Card>
-                      </motion.div>
-                    </TabsContent>
-                  )
-                ))}
-              </AnimatePresence>
+                            </div>
+                          </motion.div>
+                        </TabsContent>
+                      )
+                    ))}
+                  </AnimatePresence>
+                </div>
+              </div>
             </div>
           </Tabs>
         </div>
-        
-        {/* Datos estructurados para SEO (comentado para futura implementación) */}
-        {/* 
-        <script type="application/ld+json">
-          {`
-            {
-              "@context": "https://schema.org",
-              "@type": "FAQPage",
-              "mainEntity": [
-                ${categories.flatMap(category => 
-                  typedFaqData[category].map(item => `
-                    {
-                      "@type": "Question",
-                      "name": "${item.question}",
-                      "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "${item.answer}"
-                      }
-                    }
-                  `)
-                ).join(',')}
-              ]
-            }
-          `}
-        </script>
-        */}
       </div>
     </section>
   );

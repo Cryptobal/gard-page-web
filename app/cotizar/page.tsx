@@ -1,9 +1,8 @@
-import React from 'react';
 import CotizacionForm from './components/CotizacionForm';
 import UrlParamsProcessor from './components/UrlParamsProcessor';
-import CloudflareImage from '@/components/CloudflareImage';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Clipboard } from 'lucide-react';
 import CotizadorLandingClient from './components/CotizadorLandingClient';
+import GardHero from '@/components/layouts/GardHero';
 
 export default function CotizarPage() {
   return (
@@ -15,24 +14,18 @@ export default function CotizarPage() {
       <UrlParamsProcessor />
 
       {/* Hero Section */}
-      <section className="relative w-full h-[40vh] md:h-[50vh]">
-        <div className="absolute inset-0 bg-black/50 z-10"></div>
-        <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-4">
-          <h1 className="text-white text-4xl md:text-5xl font-bold mb-4">
-            Cotiza tu Servicio de Seguridad
-          </h1>
-          <p className="text-white text-lg md:text-xl opacity-90 max-w-3xl">
-            Completa el formulario y te enviaremos una propuesta personalizada
-          </p>
-        </div>
-        <CloudflareImage
-          imageId="09f20a0c-b345-4db8-ff81-14aad098db00"
-          alt="Cotización de servicios de seguridad - Gard Security"
-          fill
-          priority
-          className="object-cover"
-        />
-      </section>
+      <GardHero 
+        title="Cotiza tu Servicio de Seguridad"
+        subtitle="Completa el formulario y te enviaremos una propuesta personalizada"
+        ctaTexto="Completar Formulario"
+        badge={{
+          icon: <Clipboard className="h-4 w-4" />,
+          text: "Cotización Personalizada"
+        }}
+        videoId="ac93b4a10e87873748171425b9f8066d"
+        imageId="09f20a0c-b345-4db8-ff81-14aad098db00"
+        overlay={true}
+      />
 
       {/* Formulario de cotización */}
       <section className="gard-section py-16 md:py-24">

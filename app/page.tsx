@@ -16,58 +16,42 @@ import {
 // Restore component import
 import FaqSection from '@/components/FaqSection/FaqSection';
 // import TrustedClients from '@/app/components/TrustedClients';
-import ClientesCarrusel from '@/components/ClientesCarrusel';
+import ClientCarousel from '@/app/components/home/ClientCarousel';
 import OurServices from '@/app/components/OurServices';
 import IndustriasGridPage from './components/IndustriasGridPage';
 import CtaFinal from '@/components/ui/shared/CtaFinal';
+import GardHero from '@/components/layouts/GardHero';
+import ServiciosBuscador from './components/home/ServiciosBuscador';
 
 export default function Home() {
   return (
     <>
       {/* Hero principal */}
-      <section className="gard-hero min-h-screen flex flex-col justify-center items-center py-12 sm:py-20">
-        {/* Overlay para contraste */}
-        <div className="gard-hero-overlay bg-black/40"></div>
-        <div className="absolute inset-0 bg-black/30 z-10"></div>
-        <div className="bg-gradient-to-t from-black/50 to-transparent absolute inset-0 z-10"></div>
-        <div className="gard-hero-content text-center">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 max-w-4xl mx-auto leading-tight">
-            Seguridad de Clase Mundial para Empresas Exigentes
-          </h1>
-          <p className="text-base text-muted-foreground max-w-md text-center mx-auto text-gray-200 mb-8">
-            Protegemos lo que más importa con soluciones integrales diseñadas para los desafíos de seguridad más complejos.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center w-full max-w-md mx-auto">
-            <Link href="/servicios" className="w-full sm:flex-1 gard-btn gard-btn-outline gard-btn-lg bg-transparent border-white text-white hover:bg-white/20">
-              Explorar Servicios
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Link>
-            <Link href="/cotizar" className="w-full sm:flex-1 gard-btn gard-btn-primary gard-btn-lg">
-              Cotizar Ahora
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Link>
-          </div>
-        </div>
-        <div className="absolute inset-0 -z-10">
-          <CloudflareImage
-            imageId={cloudflareImages.hero.home}
-            alt="Gard Security - Seguridad Empresarial"
-            fill
-            priority
-            objectFit="cover"
-            objectPosition="center center"
-          />
-        </div>
-      </section>
+      <GardHero 
+        title="Seguridad de Clase Mundial para Empresas Exigentes"
+        subtitle="Protegemos lo que más importa con soluciones integrales diseñadas para los desafíos de seguridad más complejos."
+        ctaTexto="Cotizar Ahora"
+        ctaHref="/cotizar"
+        videoId="ac93b4a10e87873748171425b9f8066d"
+        imageId={cloudflareImages.hero.home}
+        variant="home"
+        badge={{
+          icon: <Shield className="h-4 w-4" />,
+          text: "Expertos en Seguridad Empresarial"
+        }}
+      />
 
-      {/* Clientes que confían en nosotros */}
-      <ClientesCarrusel />
+      {/* Buscador de servicios */}
+      <ServiciosBuscador />
 
       {/* Servicios destacados */}
       <OurServices />
 
+      {/* Clientes que confían en nosotros */}
+      <ClientCarousel />
+
       {/* Información corporativa */}
-      <section className="gard-section gard-section-alt">
+      <section className="gard-section py-16 md:py-24 bg-[hsl(var(--gard-background))] text-white">
         <div className="gard-container">
           <div className="gard-grid-2 items-center gap-12">
             <div>
@@ -78,30 +62,30 @@ export default function Home() {
               
               <ul className="space-y-4">
                 <li className="flex items-start">
-                  <CheckCircle className="h-6 w-6 text-primary mr-3 mt-1 flex-shrink-0" />
+                  <CheckCircle className="h-6 w-6 text-[hsl(var(--gard-accent))] mr-3 mt-1 flex-shrink-0" />
                   <div>
                     <h3 className="text-heading-5 mb-1">Equipo de expertos</h3>
-                    <p className="text-body-base text-muted-foreground">
+                    <p className="text-body-base text-[hsl(var(--gard-muted-foreground))]">
                       Profesionales certificados con amplia experiencia en seguridad empresarial.
                     </p>
                   </div>
                 </li>
                 
                 <li className="flex items-start">
-                  <CheckCircle className="h-6 w-6 text-primary mr-3 mt-1 flex-shrink-0" />
+                  <CheckCircle className="h-6 w-6 text-[hsl(var(--gard-accent))] mr-3 mt-1 flex-shrink-0" />
                   <div>
                     <h3 className="text-heading-5 mb-1">Tecnología avanzada</h3>
-                    <p className="text-body-base text-muted-foreground">
+                    <p className="text-body-base text-[hsl(var(--gard-muted-foreground))]">
                       Utilizamos las últimas innovaciones en seguridad física y digital.
                     </p>
                   </div>
                 </li>
                 
                 <li className="flex items-start">
-                  <CheckCircle className="h-6 w-6 text-primary mr-3 mt-1 flex-shrink-0" />
+                  <CheckCircle className="h-6 w-6 text-[hsl(var(--gard-accent))] mr-3 mt-1 flex-shrink-0" />
                   <div>
                     <h3 className="text-heading-5 mb-1">Soporte 24/7</h3>
-                    <p className="text-body-base text-muted-foreground">
+                    <p className="text-body-base text-[hsl(var(--gard-muted-foreground))]">
                       Asistencia continua y tiempo de respuesta garantizado ante incidentes.
                     </p>
                   </div>
@@ -133,7 +117,7 @@ export default function Home() {
       </section>
 
       {/* Estadísticas */}
-      <section className="gard-section bg-gradient-to-r from-[#1A2A90] to-[#2535C0] text-white relative overflow-hidden">
+      <section className="gard-section bg-[radial-gradient(circle_at_center,hsl(var(--gard-background)),hsl(var(--gard-card)))] text-white relative overflow-hidden">
         {/* Patrón de fondo sutil */}
         <div className="absolute inset-0 opacity-5" 
              style={{
@@ -147,25 +131,25 @@ export default function Home() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             <div className="p-6 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10 shadow-md transform hover:scale-105 transition duration-300">
-              <BarChart4 className="h-14 w-14 mx-auto mb-4 text-white" />
+              <BarChart4 className="h-14 w-14 mx-auto mb-4 text-primary dark:text-accent" />
               <div className="text-5xl font-bold mb-3 text-white">50+</div>
               <p className="text-body-base text-gray-100">Clientes satisfechos</p>
             </div>
             
             <div className="p-6 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10 shadow-md transform hover:scale-105 transition duration-300">
-              <BarChart4 className="h-14 w-14 mx-auto mb-4 text-white" />
+              <BarChart4 className="h-14 w-14 mx-auto mb-4 text-primary dark:text-accent" />
               <div className="text-5xl font-bold mb-3 text-white">8+</div>
               <p className="text-body-base text-gray-100">Años de experiencia</p>
             </div>
             
             <div className="p-6 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10 shadow-md transform hover:scale-105 transition duration-300">
-              <BarChart4 className="h-14 w-14 mx-auto mb-4 text-white" />
+              <BarChart4 className="h-14 w-14 mx-auto mb-4 text-primary dark:text-accent" />
               <div className="text-5xl font-bold mb-3 text-white">99.9%</div>
               <p className="text-body-base text-gray-100">Actividad operativa</p>
             </div>
             
             <div className="p-6 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10 shadow-md transform hover:scale-105 transition duration-300">
-              <BarChart4 className="h-14 w-14 mx-auto mb-4 text-white" />
+              <BarChart4 className="h-14 w-14 mx-auto mb-4 text-primary dark:text-accent" />
               <div className="text-5xl font-bold mb-3 text-white">24/7</div>
               <p className="text-body-base text-gray-100">Central operativa</p>
             </div>

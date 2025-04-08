@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Blog de Seguridad Empresarial | Gard Security',
+  title: 'Blog de Seguridad | Gard Security',
   description: 'Artículos, consejos y tendencias sobre seguridad empresarial, ciberseguridad y protección de activos para empresas.',
   keywords: ['blog seguridad', 'artículos seguridad empresarial', 'consejos ciberseguridad', 'tendencias seguridad'],
   robots: {

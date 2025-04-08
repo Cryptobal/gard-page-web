@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useKeenSlider } from 'keen-slider/react';
 import "keen-slider/keen-slider.min.css";
 import { motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Quote, Building2 } from 'lucide-react';
 import CloudflareImage from '@/components/CloudflareImage';
 import { CLIENTES } from '@/app/data/clientes';
 import { cn } from '@/lib/utils';
@@ -53,6 +53,19 @@ export default function ClientesCarrusel() {
     created() {
       setLoaded(true);
     },
+    dragSpeed: 1.2,
+    loop: true,
+    mode: "snap",
+    breakpoints: {
+      "(min-width: 640px)": {
+        slides: { perView: 2, spacing: 16 },
+      },
+      "(min-width: 1024px)": {
+        slides: { perView: 3, spacing: 16 },
+      },
+    },
+    rubberband: true,
+    renderMode: "performance",
   });
 
   // Maneja la navegación del carrusel
@@ -89,51 +102,20 @@ export default function ClientesCarrusel() {
     };
   }, []);
 
-  // Animaciones para las tarjetas
-  const cardVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { 
-        duration: 0.5,
-        ease: "easeOut" 
-      }
-    }
-  };
-
-  // Animaciones para el logo en hover
-  const logoVariants = {
-    hover: { 
-      scale: 1.05, 
-      transition: { duration: 0.3 } 
-    }
-  };
-
   return (
-    <section className="py-20 md:py-28 w-full bg-white dark:bg-[#0D0F1C]">
+    <section className="gard-section py-16 md:py-24 w-full bg-gray-50 dark:bg-[hsl(var(--gard-background))]">
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-12">
-          <motion.h2 
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-heading-2 text-blue-900 dark:text-white font-title mb-4"
-          >
+          <h2 className="text-3xl md:text-4xl font-semibold mb-4 text-primary dark:text-white">
             Empresas que confían en nosotros
-          </motion.h2>
-          <motion.p 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-body-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
-          >
+          </h2>
+          <p className="text-body-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             Brindamos soluciones de seguridad a líderes de diversas industrias en todo Chile
-          </motion.p>
+          </p>
         </div>
         
         <div 
-          className="relative px-4"
+          className="relative px-12 md:px-16"
           ref={sliderContainerRef}
           onMouseEnter={() => setIsHovering(true)}
           onMouseLeave={() => setIsHovering(false)}
@@ -143,32 +125,22 @@ export default function ClientesCarrusel() {
         >
           {/* Botones de navegación */}
           {loaded && instanceRef.current && (
-            <>
+            <div className="absolute left-0 right-0 top-1/2 transform -translate-y-1/2 flex justify-between z-10 pointer-events-none">
               <button 
                 onClick={handlePrev}
-                className={cn(
-                  "absolute top-1/2 -translate-y-1/2 left-0 z-10",
-                  "w-10 h-10 rounded-full bg-neutral-800 hover:bg-neutral-700 dark:bg-[#1A1A1A] shadow-md",
-                  "flex items-center justify-center text-white transition-all pointer-events-auto",
-                  (isHovering || isMobile) ? "opacity-100" : "opacity-0"
-                )}
+                className="w-12 h-12 rounded-full bg-white dark:bg-gray-900 shadow-md flex items-center justify-center text-primary dark:text-accent hover:scale-105 transition-all pointer-events-auto border border-gray-100 dark:border-gray-700"
                 aria-label="Anterior"
               >
                 <ChevronLeft className="w-6 h-6" />
               </button>
               <button
                 onClick={handleNext}
-                className={cn(
-                  "absolute top-1/2 -translate-y-1/2 right-0 z-10",
-                  "w-10 h-10 rounded-full bg-neutral-800 hover:bg-neutral-700 dark:bg-[#1A1A1A] shadow-md",
-                  "flex items-center justify-center text-white transition-all pointer-events-auto",
-                  (isHovering || isMobile) ? "opacity-100" : "opacity-0"
-                )}
+                className="w-12 h-12 rounded-full bg-white dark:bg-gray-900 shadow-md flex items-center justify-center text-primary dark:text-accent hover:scale-105 transition-all pointer-events-auto border border-gray-100 dark:border-gray-700"
                 aria-label="Siguiente"
               >
                 <ChevronRight className="w-6 h-6" />
               </button>
-            </>
+            </div>
           )}
           
           {/* Carrusel */}
@@ -177,78 +149,64 @@ export default function ClientesCarrusel() {
               ref={sliderRef} 
               className="keen-slider"
             >
-              {CLIENTES.map((cliente, index) => (
-                <motion.div
+              {CLIENTES.map((cliente) => (
+                <div
                   key={cliente.imageId}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.3 }}
-                  variants={cardVariants}
-                  custom={index}
-                  className="keen-slider__slide px-2 py-2 h-full"
+                  className="keen-slider__slide h-full"
                 >
-                  <div 
-                    className={cn(
-                      "h-[340px] md:h-[360px] lg:h-[380px]",
-                      "bg-gray-100 dark:bg-[#1C1C1E]",
-                      "rounded-xl shadow-lg shadow-black/10 overflow-hidden",
-                      "flex flex-col items-center justify-center text-center gap-y-2",
-                      "p-6 lg:p-8 hover:scale-[1.02] transition-transform duration-300"
-                    )}
+                  <motion.div 
+                    whileHover={{ y: -5 }}
+                    className="h-full bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-gray-700 flex flex-col"
                   >
-                    {/* Logo del cliente - clickeable si hay link */}
-                    <div className="flex items-center justify-center w-full h-1/3 mb-4">
-                      {cliente.link ? (
-                        <Link
-                          href={cliente.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label={`${cliente.nombre} - Visitar sitio web de ${cliente.nombre}`}
-                          className="cursor-pointer group flex items-center justify-center"
-                        >
-                          <motion.div
-                            whileHover="hover"
-                            variants={logoVariants}
-                            className="w-24 md:w-28 lg:w-32 h-auto flex items-center justify-center"
+                    <div className="flex flex-col h-full">
+                      {/* Logo del cliente */}
+                      <div className="relative h-20 mb-6 flex items-center justify-center bg-gray-50 dark:bg-gray-800 rounded-xl p-3">
+                        {cliente.link ? (
+                          <Link
+                            href={cliente.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`${cliente.nombre} - Visitar sitio web`}
                           >
                             <CloudflareImage 
                               imageId={cliente.imageId}
-                              alt={`Logo de ${cliente.nombre} - ${cliente.industria}`}
-                              width={200}
-                              height={80}
-                              className="object-contain max-h-full dark:invert"
+                              alt={`Logo de ${cliente.nombre}`}
+                              width={180}
+                              height={64}
+                              className="object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
                             />
-                          </motion.div>
-                        </Link>
-                      ) : (
-                        <div className="w-24 md:w-28 lg:w-32 h-auto flex items-center justify-center">
+                          </Link>
+                        ) : (
                           <CloudflareImage 
                             imageId={cliente.imageId}
-                            alt={`Logo de ${cliente.nombre} - ${cliente.industria}`}
-                            width={200}
-                            height={80}
-                            className="object-contain max-h-full dark:invert"
+                            alt={`Logo de ${cliente.nombre}`}
+                            width={180}
+                            height={64}
+                            className="object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
                           />
-                        </div>
-                      )}
-                    </div>
-                    
-                    {/* Información del cliente */}
-                    <div className="flex flex-col items-center flex-grow">
-                      <h3 className="text-xl md:text-2xl font-semibold tracking-tight text-blue-900 dark:text-white">
+                        )}
+                      </div>
+                      
+                      <div className="mb-4 flex items-center gap-2">
+                        <Building2 className="h-5 w-5 text-primary dark:text-accent flex-shrink-0" />
+                        <span className="text-sm font-medium text-primary dark:text-accent">
+                          {cliente.industria}
+                        </span>
+                      </div>
+                      
+                      <h3 className="text-heading-4 text-gray-900 dark:text-white font-title mb-4">
                         {cliente.nombre}
                       </h3>
                       
-                      <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
-                        {cliente.industria}
-                      </p>
-                      
-                      <p className="text-sm italic text-gray-500 dark:text-slate-300">
-                        "{cliente.frase}"
-                      </p>
+                      <div className="flex-grow bg-gray-50 dark:bg-gray-800 rounded-xl p-5 mb-2 relative mx-2">
+                        <Quote className="absolute -top-3 -left-3 h-6 w-6 text-primary dark:text-accent bg-white dark:bg-gray-900 rounded-full p-1" />
+                        <p className="text-sm italic text-gray-600 dark:text-gray-300">
+                          "{cliente.frase}"
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                </motion.div>
+                  </motion.div>
+                </div>
               ))}
             </div>
           </div>
@@ -265,10 +223,10 @@ export default function ClientesCarrusel() {
                     className={cn(
                       "w-6 h-6 rounded-full transition-all flex items-center justify-center",
                       currentSlide === idx 
-                        ? "bg-blue-600 dark:bg-blue-400 w-8" 
-                        : "bg-gray-300 dark:bg-gray-700"
+                        ? "bg-primary dark:bg-accent w-8" 
+                        : "bg-gray-300 dark:bg-zinc-700"
                     )}
-                    aria-label={`Slide ${idx + 1} - Ir a slide ${idx + 1}`}
+                    aria-label={`Slide ${idx + 1}`}
                   />
                 )
               )}

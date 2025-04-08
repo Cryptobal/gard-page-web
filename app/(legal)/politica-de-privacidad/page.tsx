@@ -8,10 +8,10 @@ export const metadata: Metadata = {
 
 export default function PoliticaPrivacidad() {
   return (
-    <main className="gard-section bg-white dark:bg-gray-900">
+    <main className="gard-section bg-white gard-dark-bg">
       <div className="gard-container">
         <div className="max-w-3xl mx-auto">
-          <h1 className="text-heading-2 md:text-heading-1 text-center mb-12 text-primary dark:text-primary">
+          <h1 className="text-heading-2 md:text-heading-1 text-center mb-12 text-primary dark:text-[hsl(var(--gard-accent))]">
             Política de Privacidad
           </h1>
 
@@ -126,14 +126,14 @@ export default function PoliticaPrivacidad() {
               <p className="text-body-base text-gray-700 dark:text-gray-300 mb-6">
                 Si tiene preguntas o inquietudes sobre esta política de privacidad o el tratamiento de sus datos, contáctenos a:
               </p>
-              <div className="border-l-4 border-primary pl-4 py-2 text-gray-700 dark:text-gray-300">
+              <div className="border-l-4 border-primary dark:border-[hsl(var(--gard-accent))] pl-4 py-2 text-gray-700 dark:text-gray-300">
                 <p className="mb-2"><strong>Gard Security</strong></p>
                 <p className="mb-2">Email: privacidad@gard.cl</p>
                 <p className="mb-0">Teléfono: +56 2 2345 6789</p>
               </div>
             </section>
 
-            <div className="mt-12 border-t border-gray-200 dark:border-gray-700 pt-6 text-sm text-gray-500 dark:text-gray-400">
+            <div className="mt-12 border-t border-gray-200 dark:border-[hsl(var(--gard-border))] pt-6 text-sm text-gray-500 dark:text-gray-400">
               <p>Última actualización: Mayo 2024</p>
             </div>
           </div>

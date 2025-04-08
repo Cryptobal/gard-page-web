@@ -21,7 +21,7 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 
   return {
-    title: 'Blog de Seguridad Privada | Gard Security',
+    title: 'Blog de Seguridad | Gard Security',
     description: 'Descubre las últimas noticias, tendencias y consejos sobre seguridad privada, guardias de seguridad y protección empresarial en Chile.',
     openGraph: {
       title: 'Blog de Seguridad Privada | Gard Security',
@@ -59,7 +59,7 @@ export default async function BlogPage() {
         >
           <ol className="list-none p-0 inline-flex space-x-2">
             <li>
-              <Link href="/" className="hover:underline text-primary dark:text-accent font-medium">Inicio</Link>
+              <Link href="/" className="hover:underline text-primary dark:text-[hsl(var(--gard-accent))] font-medium">Inicio</Link>
             </li>
             <li>/</li>
             <li className="text-gray-700 dark:text-gray-300">
@@ -68,7 +68,7 @@ export default async function BlogPage() {
           </ol>
         </nav>
         
-        <div className="text-center mb-12">
+        <div className="text-center mb-12 px-4 py-8 bg-gray-50 dark:bg-[rgba(15,15,15,0.5)] dark:backdrop-blur-sm dark:border-[1px] dark:border-[rgba(255,255,255,0.07)] rounded-2xl">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4">
             Blog de Seguridad
           </h1>
@@ -93,7 +93,7 @@ export default async function BlogPage() {
         </div>
         
         {posts.length === 0 && (
-          <div className="text-center py-12">
+          <div className="text-center py-12 bg-gray-50 dark:bg-[rgba(15,15,15,0.3)] dark:backdrop-blur-sm rounded-xl border dark:border-[rgba(255,255,255,0.07)]">
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">
               No hay artículos disponibles
             </h2>

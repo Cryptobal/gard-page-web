@@ -30,6 +30,12 @@ import {
 import LinkParamsAware from '@/app/components/LinkParamsAware';
 import GaleriaImagenes from '@/components/GaleriaImagenes';
 
+// Importar el componente CloudflareVideo de manera dinámica con la opción ssr: false
+const CloudflareVideo = dynamic(() => import('@/components/CloudflareVideo'), {
+  ssr: false,
+  loading: () => <div className="absolute inset-0 bg-gray-900"></div>
+});
+
 // Generar rutas estáticas para cada servicio
 export async function generateStaticParams() {
   return servicios.map((servicio) => ({
@@ -49,15 +55,20 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     };
   }
 
+  const canonical = `https://www.gard.cl/servicios/${servicio.slug}`;
+
   return {
     title: servicio.title,
     description: servicio.description,
     keywords: servicio.keywords,
     robots: 'index, follow',
+    alternates: {
+      canonical: canonical,
+    },
     openGraph: {
       title: servicio.title,
       description: servicio.description,
-      url: `https://gard.cl/servicios/${servicio.slug}`,
+      url: canonical,
       siteName: 'Gard Security',
       type: 'article',
       locale: 'es_CL',
@@ -228,13 +239,27 @@ export default function ServicioPage({ params }: { params: { slug: string } }) {
             Cotizar este servicio <ArrowRight className="ml-2 h-5 w-5" />
           </LinkParamsAware>
         </div>
-        <CloudflareImage
-          imageId={servicio.heroImageId}
-          alt={`${servicio.name} - Gard Security`}
-          fill
-          priority
-          className="object-cover"
-        />
+        
+        {/* Mostrar video o imagen dependiendo del servicio */}
+        <div className="absolute inset-0 w-full h-full">
+          {(servicio.slug === 'auditoria-seguridad' || servicio.slug === 'consultoria') ? (
+            <CloudflareImage
+              imageId={servicio.heroImageId}
+              alt={`${servicio.name} - Gard Security`}
+              fill
+              priority
+              className="object-cover"
+            />
+          ) : (
+            <CloudflareVideo
+              videoId={servicio.heroImageId}
+              className="w-full h-full"
+              autoPlay
+              loop
+              muted
+            />
+          )}
+        </div>
       </section>
 
       {/* Descripción detallada - Ahora usando el componente */}
@@ -270,7 +295,7 @@ export default function ServicioPage({ params }: { params: { slug: string } }) {
       </section>
 
       {/* Servicios relacionados */}
-      <section className="gard-section py-16 md:py-24 bg-white dark:bg-gray-900">
+      <section className="gard-section py-16 md:py-24 bg-white dark:bg-[hsl(var(--gard-background))]">
         <div className="gard-container max-w-7xl mx-auto px-4">
           <h2 className="text-heading-2 mb-6 text-center">Servicios relacionados</h2>
           <p className="text-body-lg text-muted-foreground mb-12 max-w-3xl mx-auto text-center">
@@ -285,23 +310,23 @@ export default function ServicioPage({ params }: { params: { slug: string } }) {
                 <Link 
                   key={index}
                   href={`/servicios/${servicioRelacionado.slug}`}
-                  className="bg-card dark:bg-gray-800 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col h-full"
+                  className="bg-card dark:bg-[hsl(var(--gard-card))] rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col h-full"
                 >
                   <div className="flex items-center mb-4">
-                    {servicioRelacionado.icon === "ShieldCheck" && <ShieldCheck className="h-8 w-8 text-primary dark:text-accent mr-3" />}
-                    {servicioRelacionado.icon === "Shield" && <ShieldCheck className="h-8 w-8 text-primary dark:text-accent mr-3" />}
-                    {servicioRelacionado.icon === "Eye" && <Stethoscope className="h-8 w-8 text-primary dark:text-accent mr-3" />}
-                    {servicioRelacionado.icon === "Plane" && <Plane className="h-8 w-8 text-primary dark:text-accent mr-3" />}
-                    {servicioRelacionado.icon === "ShieldAlert" && <ShieldCheck className="h-8 w-8 text-primary dark:text-accent mr-3" />}
-                    {servicioRelacionado.icon === "ClipboardCheck" && <ClipboardCheck className="h-8 w-8 text-primary dark:text-accent mr-3" />}
-                    {servicioRelacionado.icon === "FileText" && <FileText className="h-8 w-8 text-primary dark:text-accent mr-3" />}
+                    {servicioRelacionado.icon === "ShieldCheck" && <ShieldCheck className="h-8 w-8 text-primary dark:text-[hsl(var(--gard-accent))] mr-3" />}
+                    {servicioRelacionado.icon === "Shield" && <ShieldCheck className="h-8 w-8 text-primary dark:text-[hsl(var(--gard-accent))] mr-3" />}
+                    {servicioRelacionado.icon === "Eye" && <Stethoscope className="h-8 w-8 text-primary dark:text-[hsl(var(--gard-accent))] mr-3" />}
+                    {servicioRelacionado.icon === "Plane" && <Plane className="h-8 w-8 text-primary dark:text-[hsl(var(--gard-accent))] mr-3" />}
+                    {servicioRelacionado.icon === "ShieldAlert" && <ShieldCheck className="h-8 w-8 text-primary dark:text-[hsl(var(--gard-accent))] mr-3" />}
+                    {servicioRelacionado.icon === "ClipboardCheck" && <ClipboardCheck className="h-8 w-8 text-primary dark:text-[hsl(var(--gard-accent))] mr-3" />}
+                    {servicioRelacionado.icon === "FileText" && <FileText className="h-8 w-8 text-primary dark:text-[hsl(var(--gard-accent))] mr-3" />}
                     <h3 className="text-xl font-semibold">{servicioRelacionado.name}</h3>
                   </div>
                   <p className="text-body-base text-muted-foreground mb-4 flex-grow">
                     {servicioRelacionado.description}
                   </p>
                   <div className="flex justify-end mt-auto">
-                    <span className="inline-flex items-center text-primary dark:text-accent font-medium">
+                    <span className="inline-flex items-center text-primary dark:text-[hsl(var(--gard-accent))] font-medium">
                       Ver servicio <ArrowRight className="ml-1 h-4 w-4" />
                     </span>
                   </div>

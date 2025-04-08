@@ -2,14 +2,15 @@ import React from 'react';
 import Link from 'next/link';
 import CloudflareImage from '@/components/CloudflareImage';
 import IndustriasGridPage from '@/app/components/IndustriasGridPage';
-import HeroIndustria from '@/app/components/HeroIndustria';
+import GardHero from '@/components/layouts/GardHero';
 import CtaFinal from '@/components/ui/shared/CtaFinal';
 import { 
   ArrowRight, 
   CheckCircle, 
   Settings, 
   Award, 
-  Shield
+  Shield,
+  Factory
 } from 'lucide-react';
 import { Metadata } from 'next';
 
@@ -30,12 +31,17 @@ export default function IndustriasPage() {
   return (
     <>
       {/* Hero Section */}
-      <HeroIndustria 
+      <GardHero 
         title="Soluciones de Seguridad por Industria"
         subtitle="Adaptamos nuestros servicios para cada entorno operativo, desde minería a educación."
-        ctaText="Solicita Cotización"
-        ctaLink="/cotizar"
+        ctaTexto="Solicitar Cotización"
+        ctaHref="/cotizar"
         imageId="4a46b63d-0e1b-4640-b95c-7f040a288c00"
+        badge={{
+          icon: <Factory className="h-4 w-4" />,
+          text: "Protección Especializada por Sector"
+        }}
+        overlay={true}
       />
 
       {/* Grid de Industrias */}

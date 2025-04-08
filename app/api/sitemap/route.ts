@@ -2,6 +2,10 @@ import { MetadataRoute } from 'next';
 import { industries } from '@/app/data/industries';
 import { getAllPosts, POSTS_PER_PAGE, getAllTags, getPostsByTag } from '@/lib/blog';
 import { isValidUrl } from '@/lib/utils';
+import { servicesMetadata } from '@/app/servicios/serviceMetadata';
+import { serviciosPorIndustria } from '@/app/data/servicios-por-industria';
+import { industriesMetadata } from '@/app/industrias/industryMetadata';
+import { ciudades } from '@/lib/data/ciudad-data';
 
 // Función para verificar y filtrar URLs
 async function filterValidUrls(urls: { url: string; lastModified: string; changeFrequency: string; priority: number; }[]) {
@@ -144,6 +148,47 @@ async function generateSitemap() {
     }
   }
 
+  // Nuevas URLs de servicio-por-industria
+  const servicioIndustriaPages: {
+    url: string;
+    lastModified: string;
+    changeFrequency: string;
+    priority: number;
+  }[] = [];
+  
+  // Generar todas las combinaciones posibles de servicio-industria
+  for (const servicio of servicesMetadata) {
+    for (const industria of industries) {
+      const industriaSlug = industria.name.toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/[^\w\s]/g, '')
+        .replace(/\s+/g, '-');
+        
+      servicioIndustriaPages.push({
+        url: `${baseUrl}/servicios-por-industria/${servicio.slug}/${industriaSlug}`,
+        lastModified: new Date().toISOString(),
+        changeFrequency: 'monthly',
+        priority: 0.9, // Alta prioridad para estas páginas clave de conversión
+      });
+    }
+  }
+  
+  // Nuevas landing pages dinámicas de ciudad/servicio
+  const ciudadServicioPages = [];
+  
+  // Crear combinaciones de ciudad + servicio
+  for (const ciudad of ciudades) {
+    for (const servicio of servicesMetadata) {
+      ciudadServicioPages.push({
+        url: `${baseUrl}/${ciudad.slug}/${servicio.slug}`,
+        lastModified: new Date().toISOString(),
+        changeFrequency: 'monthly',
+        priority: 0.9, // Alta prioridad para landing pages de conversión geolocalizada
+      });
+    }
+  }
+
   const allUrls = [
     ...staticPages, 
     ...servicePages, 
@@ -151,7 +196,9 @@ async function generateSitemap() {
     ...blogPostPages, 
     ...blogPaginationPages,
     ...blogTagPages,
-    ...blogTagPaginationPages
+    ...blogTagPaginationPages,
+    ...servicioIndustriaPages,
+    ...ciudadServicioPages
   ];
   
   // Filtrar URLs para incluir solo las que devuelven código 200

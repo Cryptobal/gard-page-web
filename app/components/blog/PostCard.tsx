@@ -26,11 +26,12 @@ export default function PostCard({
   const formattedDate = format(new Date(date), 'dd MMMM, yyyy', { locale: es });
   
   return (
-    <div className="gard-card bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
+    <div className="gard-card-dark-accent">
       <div>
         <Link href={`/blog/${slug}`} className="block group">
           {imageId ? (
-            <div className="aspect-video relative overflow-hidden">
+            <div className="aspect-video relative overflow-hidden rounded-t-2xl">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent z-10 dark:from-[hsl(var(--gard-background-darkest))/60] dark:to-transparent"></div>
               <CloudflareImage
                 imageId={imageId}
                 alt={title}
@@ -41,7 +42,7 @@ export default function PostCard({
               />
             </div>
           ) : (
-            <div className="aspect-video bg-gray-200 dark:bg-gray-700" />
+            <div className="aspect-video bg-gray-200 dark:bg-[hsl(var(--gard-background))] rounded-t-2xl" />
           )}
           
           <div className="p-6">
@@ -51,7 +52,7 @@ export default function PostCard({
               </time>
             </div>
             
-            <h3 className="text-heading-4 font-title font-bold mb-2 text-gray-900 dark:text-white group-hover:text-primary dark:group-hover:text-accent">
+            <h3 className="text-heading-4 font-title font-bold mb-2 text-gray-900 dark:text-white group-hover:text-primary dark:group-hover:text-[hsl(var(--gard-accent))]">
               {title}
             </h3>
             
@@ -59,7 +60,7 @@ export default function PostCard({
               {excerpt}
             </p>
             
-            <div className="mt-4 flex items-center text-primary dark:text-accent font-medium">
+            <div className="mt-4 flex items-center text-primary dark:text-[hsl(var(--gard-accent))] font-medium">
               <span>Leer artículo</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -86,7 +87,7 @@ export default function PostCard({
               <Link 
                 href={`/blog/tag/${encodeURIComponent(tag)}`}
                 key={tag}
-                className="text-xs px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-full hover:bg-primary/10 hover:text-primary dark:hover:bg-accent/10 dark:hover:text-accent transition-colors"
+                className="text-xs px-3 py-1 bg-gray-100 dark:bg-[hsl(var(--gard-background-darker))] text-gray-600 dark:text-gray-300 rounded-full hover:bg-primary/10 hover:text-primary dark:hover:bg-[hsl(var(--gard-accent)/_0.2)] dark:hover:text-[hsl(var(--gard-accent))] transition-colors dark:border-[1px] dark:border-[hsl(var(--gard-border-subtle))] dark:hover:border-[hsl(var(--gard-accent)/_0.3)]"
               >
                 {tag}
               </Link>

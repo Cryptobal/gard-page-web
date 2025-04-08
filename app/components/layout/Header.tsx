@@ -21,6 +21,7 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
   const { theme, setTheme } = useTheme();
+  const isDarkMode = theme === 'dark';
 
   useEffect(() => {
     // Cerrar el menú móvil cuando se cambia de ruta
@@ -33,7 +34,9 @@ export default function Header() {
         {/* Logo (zona izquierda) */}
         <Link href="/" className="relative z-50 flex items-center">
           <CloudflareImage
-            imageId={cloudflareImages.logo.white}
+            imageId={isDarkMode 
+              ? cloudflareImages.logo.nav.night 
+              : cloudflareImages.logo.nav.day}
             alt="Logo Gard Security"
             width={140}
             height={40}

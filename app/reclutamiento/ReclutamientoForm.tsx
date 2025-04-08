@@ -30,6 +30,7 @@ import {
 
 import CloudflareImage from '@/components/CloudflareImage';
 import { cloudflareImages } from '@/lib/images';
+import GardHero from '@/components/layouts/GardHero';
 import {
   Form,
   FormControl,
@@ -96,6 +97,14 @@ const formSchema = z.object({
   movilizacionPropia: z.string(),
   certificadoOS10: z.string(),
   comentarios: z.string(),
+  // No validamos los UTM ya que son opcionales
+  utm_source: z.string().optional(),
+  utm_medium: z.string().optional(),
+  utm_campaign: z.string().optional(),
+  utm_term: z.string().optional(),
+  utm_content: z.string().optional(),
+  gclid: z.string().optional(),
+  landing_page: z.string().optional(),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -123,10 +132,42 @@ export default function ReclutamientoForm() {
       movilizacionPropia: 'no',
       certificadoOS10: 'no',
       comentarios: '',
+      utm_source: '',
+      utm_medium: '',
+      utm_campaign: '',
+      utm_term: '',
+      utm_content: '',
+      gclid: '',
+      landing_page: '',
     }
   });
 
   const { setValue } = form;
+
+  // Capturar parámetros UTM y gclid de la URL
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const tags = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid'];
+      
+      // Guardar en localStorage y en el formulario
+      tags.forEach(tag => {
+        const value = params.get(tag);
+        if (value) {
+          localStorage.setItem(tag, value);
+          setValue(tag as keyof FormValues, value);
+        } else if (localStorage.getItem(tag)) {
+          // Si no está en la URL pero está en localStorage, usarlo
+          setValue(tag as keyof FormValues, localStorage.getItem(tag) || '');
+        }
+      });
+      
+      // Guardar la página actual
+      const landingPage = window.location.pathname;
+      localStorage.setItem('landing_page', landingPage);
+      setValue('landing_page', landingPage);
+    }
+  }, [setValue]);
 
   // Referencia para autocompletado de Google Places
   const autocompleteRef = (element: HTMLInputElement | null) => {
@@ -199,12 +240,29 @@ export default function ReclutamientoForm() {
     setFormStatus('idle');
 
     try {
+      // Añadir UTM y otros datos de tracking al payload
+      const utmData = {
+        utm_source: localStorage.getItem('utm_source') || null,
+        utm_medium: localStorage.getItem('utm_medium') || null,
+        utm_campaign: localStorage.getItem('utm_campaign') || null,
+        utm_term: localStorage.getItem('utm_term') || null,
+        utm_content: localStorage.getItem('utm_content') || null,
+        gclid: localStorage.getItem('gclid') || null,
+        landing_page: localStorage.getItem('landing_page') || window.location.pathname,
+      };
+
+      // Combinar con los datos del formulario
+      const fullFormData = {
+        ...data,
+        ...utmData,
+      };
+
       const response = await fetch('https://hook.us1.make.com/5ozb2y5aucrr75d2xtpshmlyckds9nl4', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(fullFormData),
       });
 
       if (response.ok) {
@@ -237,60 +295,21 @@ export default function ReclutamientoForm() {
   return (
     <main className="flex-grow">
       {/* Hero Principal */}
-      <section className="relative h-[60vh] md:h-[65vh] overflow-hidden">
-        <div className="absolute inset-0">
-          <CloudflareImage
-            imageId="428c1028-8f6b-455a-e110-38421eeb5700"
-            alt="Reclutamiento Gard Security"
-            fill
-            className="object-cover"
-            objectPosition="center"
-            priority
-          />
-          {/* Overlay oscuro */}
-          <div className="absolute inset-0 bg-black/50 z-10"></div>
-          <div className="bg-gradient-to-t from-black/60 to-transparent absolute inset-0 z-10"></div>
-        </div>
-        
-        {/* Contenido */}
-        <div className="relative z-20 h-full flex flex-col justify-center items-center text-center px-4">
-          <motion.h1 
-            initial="hidden"
-            animate="visible"
-            variants={fadeIn}
-            className="text-white text-4xl md:text-5xl font-bold leading-tight max-w-4xl mb-6"
-          >
-            Sé parte de Gard Security
-          </motion.h1>
-          <motion.p 
-            initial="hidden"
-            animate="visible"
-            variants={fadeIn}
-            transition={{ delay: 0.2 }}
-            className="text-white text-xl max-w-2xl mb-8"
-          >
-            Buscamos guardias responsables, con vocación y compromiso.
-          </motion.p>
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={fadeIn}
-            transition={{ delay: 0.4 }}
-          >
-            <Button 
-              onClick={scrollToForm}
-              className="bg-primary hover:bg-primary/90 text-white px-8 py-6 rounded-full text-lg flex items-center"
-              aria-label="Ir al formulario de postulación"
-            >
-              Postula Aquí
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-          </motion.div>
-        </div>
-      </section>
+      <GardHero 
+        title="Sé parte de Gard Security"
+        subtitle="Buscamos guardias responsables, con vocación y compromiso."
+        ctaTexto="Postula Aquí"
+        badge={{
+          icon: <Shield className="h-4 w-4" />,
+          text: "Oportunidades Laborales"
+        }}
+        imageId="428c1028-8f6b-455a-e110-38421eeb5700"
+        overlay={true}
+        onScrollToForm={scrollToForm}
+      />
 
       {/* ¿A quién buscamos? */}
-      <section className="py-16 md:py-24 bg-white dark:bg-gray-900">
+      <section className="py-16 md:py-24 bg-white dark:bg-gradient-to-b dark:from-[hsl(var(--gard-background))] dark:to-[hsl(var(--gard-background)/_0.85)] dark:backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -308,12 +327,12 @@ export default function ReclutamientoForm() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {[
-              { icon: <BadgeCheck className="h-8 w-8 text-primary" />, title: "Certificado OS10 vigente", description: "Requisito fundamental para ejercer labores de seguridad privada" },
-              { icon: <User className="h-8 w-8 text-primary" />, title: "Buena presencia", description: "Presentación personal impecable y trato profesional" },
-              { icon: <CheckCircle className="h-8 w-8 text-primary" />, title: "Compromiso", description: "Responsabilidad, puntualidad y seriedad en el trabajo" },
-              { icon: <Calendar className="h-8 w-8 text-primary" />, title: "Disponibilidad", description: "Flexibilidad para turnos rotativos según necesidades" },
-              { icon: <Briefcase className="h-8 w-8 text-primary" />, title: "Experiencia", description: "Valoramos experiencia previa en seguridad (no excluyente)" },
-              { icon: <Users className="h-8 w-8 text-primary" />, title: "Trabajo en equipo", description: "Capacidad para integrarse a equipos de alto rendimiento" }
+              { icon: <BadgeCheck className="h-8 w-8 text-primary dark:text-[hsl(var(--gard-accent))]" />, title: "Certificado OS10 vigente", description: "Requisito fundamental para ejercer labores de seguridad privada" },
+              { icon: <User className="h-8 w-8 text-primary dark:text-[hsl(var(--gard-accent))]" />, title: "Buena presencia", description: "Presentación personal impecable y trato profesional" },
+              { icon: <CheckCircle className="h-8 w-8 text-primary dark:text-[hsl(var(--gard-accent))]" />, title: "Compromiso", description: "Responsabilidad, puntualidad y seriedad en el trabajo" },
+              { icon: <Calendar className="h-8 w-8 text-primary dark:text-[hsl(var(--gard-accent))]" />, title: "Disponibilidad", description: "Flexibilidad para turnos rotativos según necesidades" },
+              { icon: <Briefcase className="h-8 w-8 text-primary dark:text-[hsl(var(--gard-accent))]" />, title: "Experiencia", description: "Valoramos experiencia previa en seguridad (no excluyente)" },
+              { icon: <Users className="h-8 w-8 text-primary dark:text-[hsl(var(--gard-accent))]" />, title: "Trabajo en equipo", description: "Capacidad para integrarse a equipos de alto rendimiento" }
             ].map((item, index) => (
               <motion.div
                 key={index}
@@ -321,9 +340,9 @@ export default function ReclutamientoForm() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="flex flex-col items-center p-6 text-center bg-white dark:bg-gray-800 rounded-2xl shadow-sm hover:shadow-md transition-all"
+                className="flex flex-col items-center p-6 text-center bg-white dark:bg-[hsl(var(--gard-card))] dark:border-[1px] dark:border-[hsl(var(--gard-accent)/_0.15)] rounded-2xl shadow-sm hover:shadow-md transition-all dark:hover:border-[hsl(var(--gard-accent)/_0.3)]"
               >
-                <div className="mb-4">{item.icon}</div>
+                <div className="mb-4 p-3 rounded-full bg-transparent dark:bg-[hsl(var(--gard-accent)/_0.1)] dark:backdrop-blur-md">{item.icon}</div>
                 <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
                 <p className="text-muted-foreground">{item.description}</p>
               </motion.div>
@@ -333,7 +352,7 @@ export default function ReclutamientoForm() {
       </section>
 
       {/* Proceso de Reclutamiento */}
-      <section className="py-16 md:py-24 bg-gray-50 dark:bg-gray-800">
+      <section className="py-16 md:py-24 bg-gray-50 dark:bg-[#050505] dark:bg-[radial-gradient(circle_at_center,_rgba(15,15,15,0.5)_1px,transparent_1px)] dark:bg-[length:24px_24px]">
         <div className="max-w-7xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -350,12 +369,12 @@ export default function ReclutamientoForm() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {[
-              { icon: <Briefcase className="h-10 w-10 text-primary" />, title: "Identificación de necesidad", description: "Evaluamos requerimientos específicos del cliente" },
-              { icon: <FileCheck className="h-10 w-10 text-primary" />, title: "Filtro documental", description: "Revisión de OS10, antecedentes y referencias" },
-              { icon: <User className="h-10 w-10 text-primary" />, title: "Evaluación psicológica", description: "Evaluamos aptitudes y perfil psicológico" },
-              { icon: <BadgeCheck className="h-10 w-10 text-primary" />, title: "Verificación de antecedentes", description: "Comprobación exhaustiva de historial laboral y personal" },
-              { icon: <Users className="h-10 w-10 text-primary" />, title: "Entrevista personal", description: "Entrevista con nuestro equipo de Recursos Humanos" },
-              { icon: <GraduationCap className="h-10 w-10 text-primary" />, title: "Capacitación inicial", description: "Formación específica según el servicio asignado" }
+              { icon: <Briefcase className="h-10 w-10 text-primary dark:text-[hsl(var(--gard-accent))]" />, title: "Identificación de necesidad", description: "Evaluamos requerimientos específicos del cliente" },
+              { icon: <FileCheck className="h-10 w-10 text-primary dark:text-[hsl(var(--gard-accent))]" />, title: "Filtro documental", description: "Revisión de OS10, antecedentes y referencias" },
+              { icon: <User className="h-10 w-10 text-primary dark:text-[hsl(var(--gard-accent))]" />, title: "Evaluación psicológica", description: "Evaluamos aptitudes y perfil psicológico" },
+              { icon: <BadgeCheck className="h-10 w-10 text-primary dark:text-[hsl(var(--gard-accent))]" />, title: "Verificación de antecedentes", description: "Comprobación exhaustiva de historial laboral y personal" },
+              { icon: <Users className="h-10 w-10 text-primary dark:text-[hsl(var(--gard-accent))]" />, title: "Entrevista personal", description: "Entrevista con nuestro equipo de Recursos Humanos" },
+              { icon: <GraduationCap className="h-10 w-10 text-primary dark:text-[hsl(var(--gard-accent))]" />, title: "Capacitación inicial", description: "Formación específica según el servicio asignado" }
             ].map((step, index) => (
               <motion.div
                 key={index}
@@ -363,9 +382,9 @@ export default function ReclutamientoForm() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="flex flex-col bg-white dark:bg-gray-900 p-8 rounded-2xl shadow-sm hover:shadow-md transition-all"
+                className="flex flex-col bg-white dark:bg-black/50 dark:backdrop-blur-sm dark:border-[1px] dark:border-[rgba(255,255,255,0.07)] p-8 rounded-2xl shadow-sm hover:shadow-md transition-all dark:hover:border-[rgba(255,255,255,0.15)]"
               >
-                <div className="flex justify-center items-center w-16 h-16 rounded-full bg-primary/10 mb-6 mx-auto">
+                <div className="flex justify-center items-center w-16 h-16 rounded-full bg-primary/10 dark:bg-[hsl(var(--gard-accent)/_0.1)] mb-6 mx-auto">
                   {step.icon}
                 </div>
                 <div className="flex items-center justify-center w-8 h-8 rounded-full bg-primary text-white font-bold mb-4 mx-auto">
@@ -380,8 +399,8 @@ export default function ReclutamientoForm() {
       </section>
 
       {/* Beneficios */}
-      <section className="py-16 md:py-24 bg-white dark:bg-gray-900">
-        <div className="max-w-7xl mx-auto px-4">
+      <section className="py-16 md:py-24 bg-white dark:bg-[linear-gradient(180deg,#080808_0%,#0c0c0c_100%)] dark:before:content-[''] dark:before:absolute dark:before:inset-0 dark:before:bg-[linear-gradient(90deg,rgba(20,20,20,0.03)_1px,transparent_1px),linear-gradient(0deg,rgba(20,20,20,0.03)_1px,transparent_1px)] dark:before:bg-[size:20px_20px] dark:before:pointer-events-none dark:before:opacity-60">
+        <div className="max-w-7xl mx-auto px-4 relative">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -401,11 +420,11 @@ export default function ReclutamientoForm() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
               viewport={{ once: true }}
-              className="bg-[#1E293B] rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 p-6"
+              className="bg-[rgba(15,15,15,0.5)] dark:backdrop-blur-sm dark:border-[1px] dark:border-[rgba(255,255,255,0.07)] rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 p-6 dark:hover:border-[rgba(255,255,255,0.15)]"
             >
               <div className="flex flex-col items-center text-center">
-                <div className="w-14 h-14 bg-[#1E293B] rounded-full flex items-center justify-center mb-6">
-                  <Briefcase className="h-8 w-8 text-[#F97316]" />
+                <div className="w-14 h-14 bg-[hsl(var(--gard-accent)/_0.1)] rounded-full flex items-center justify-center mb-6">
+                  <Briefcase className="h-8 w-8 text-[hsl(var(--gard-accent))]" />
                 </div>
                 <h3 className="text-white text-xl font-semibold mb-4">Contrato formal</h3>
                 <p className="text-muted-foreground">
@@ -419,11 +438,11 @@ export default function ReclutamientoForm() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
               viewport={{ once: true }}
-              className="bg-[#1E293B] rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 p-6"
+              className="bg-[rgba(15,15,15,0.5)] dark:backdrop-blur-sm dark:border-[1px] dark:border-[rgba(255,255,255,0.07)] rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 p-6 dark:hover:border-[rgba(255,255,255,0.15)]"
             >
               <div className="flex flex-col items-center text-center">
-                <div className="w-14 h-14 bg-[#1E293B] rounded-full flex items-center justify-center mb-6">
-                  <DollarSign className="h-8 w-8 text-[#F97316]" />
+                <div className="w-14 h-14 bg-[hsl(var(--gard-accent)/_0.1)] rounded-full flex items-center justify-center mb-6">
+                  <DollarSign className="h-8 w-8 text-[hsl(var(--gard-accent))]" />
                 </div>
                 <h3 className="text-white text-xl font-semibold mb-4">Pagos puntuales</h3>
                 <p className="text-muted-foreground">
@@ -437,11 +456,11 @@ export default function ReclutamientoForm() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
               viewport={{ once: true }}
-              className="bg-[#1E293B] rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 p-6"
+              className="bg-[rgba(15,15,15,0.5)] dark:backdrop-blur-sm dark:border-[1px] dark:border-[rgba(255,255,255,0.07)] rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 p-6 dark:hover:border-[rgba(255,255,255,0.15)]"
             >
               <div className="flex flex-col items-center text-center">
-                <div className="w-14 h-14 bg-[#1E293B] rounded-full flex items-center justify-center mb-6">
-                  <GraduationCap className="h-8 w-8 text-[#F97316]" />
+                <div className="w-14 h-14 bg-[hsl(var(--gard-accent)/_0.1)] rounded-full flex items-center justify-center mb-6">
+                  <GraduationCap className="h-8 w-8 text-[hsl(var(--gard-accent))]" />
                 </div>
                 <h3 className="text-white text-xl font-semibold mb-4">Capacitación constante</h3>
                 <p className="text-muted-foreground">
@@ -455,11 +474,11 @@ export default function ReclutamientoForm() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
               viewport={{ once: true }}
-              className="bg-[#1E293B] rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 p-6"
+              className="bg-[rgba(15,15,15,0.5)] dark:backdrop-blur-sm dark:border-[1px] dark:border-[rgba(255,255,255,0.07)] rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 p-6 dark:hover:border-[rgba(255,255,255,0.15)]"
             >
               <div className="flex flex-col items-center text-center">
-                <div className="w-14 h-14 bg-[#1E293B] rounded-full flex items-center justify-center mb-6">
-                  <Award className="h-8 w-8 text-[#F97316]" />
+                <div className="w-14 h-14 bg-[hsl(var(--gard-accent)/_0.1)] rounded-full flex items-center justify-center mb-6">
+                  <Award className="h-8 w-8 text-[hsl(var(--gard-accent))]" />
                 </div>
                 <h3 className="text-white text-xl font-semibold mb-4">Crecimiento profesional</h3>
                 <p className="text-muted-foreground">
@@ -473,11 +492,11 @@ export default function ReclutamientoForm() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.5 }}
               viewport={{ once: true }}
-              className="bg-[#1E293B] rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 p-6"
+              className="bg-[rgba(15,15,15,0.5)] dark:backdrop-blur-sm dark:border-[1px] dark:border-[rgba(255,255,255,0.07)] rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 p-6 dark:hover:border-[rgba(255,255,255,0.15)]"
             >
               <div className="flex flex-col items-center text-center">
-                <div className="w-14 h-14 bg-[#1E293B] rounded-full flex items-center justify-center mb-6">
-                  <Smile className="h-8 w-8 text-[#F97316]" />
+                <div className="w-14 h-14 bg-[hsl(var(--gard-accent)/_0.1)] rounded-full flex items-center justify-center mb-6">
+                  <Smile className="h-8 w-8 text-[hsl(var(--gard-accent))]" />
                 </div>
                 <h3 className="text-white text-xl font-semibold mb-4">Excelente clima laboral</h3>
                 <p className="text-muted-foreground">
@@ -491,11 +510,11 @@ export default function ReclutamientoForm() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.6 }}
               viewport={{ once: true }}
-              className="bg-[#1E293B] rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 p-6"
+              className="bg-[rgba(15,15,15,0.5)] dark:backdrop-blur-sm dark:border-[1px] dark:border-[rgba(255,255,255,0.07)] rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 p-6 dark:hover:border-[rgba(255,255,255,0.15)]"
             >
               <div className="flex flex-col items-center text-center">
-                <div className="w-14 h-14 bg-[#1E293B] rounded-full flex items-center justify-center mb-6">
-                  <Shield className="h-8 w-8 text-[#F97316]" />
+                <div className="w-14 h-14 bg-[hsl(var(--gard-accent)/_0.1)] rounded-full flex items-center justify-center mb-6">
+                  <Shield className="h-8 w-8 text-[hsl(var(--gard-accent))]" />
                 </div>
                 <h3 className="text-white text-xl font-semibold mb-4">Implementos de calidad</h3>
                 <p className="text-muted-foreground">
@@ -511,7 +530,7 @@ export default function ReclutamientoForm() {
       <section 
         ref={formRef} 
         id="formulario"
-        className="py-16 md:py-24 bg-gray-50 dark:bg-gray-800"
+        className="py-16 md:py-24 bg-gray-50 dark:bg-[#070707] dark:bg-[conic-gradient(from_90deg_at_50%_50%,#080808_0%,#0c0c0c_50%,#080808_100%)]"
       >
         <div className="max-w-4xl mx-auto px-4">
           <motion.div
@@ -531,7 +550,7 @@ export default function ReclutamientoForm() {
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="bg-green-50 dark:bg-green-900/20 p-8 rounded-2xl text-center"
+              className="bg-green-50 dark:bg-green-900/20 p-8 rounded-2xl text-center dark:border-[1px] dark:border-green-900/30"
             >
               <CheckCircle className="w-16 h-16 text-green-600 dark:text-green-500 mx-auto mb-4" />
               <h3 className="text-2xl font-bold mb-4">¡Postulación enviada con éxito!</h3>
@@ -549,7 +568,7 @@ export default function ReclutamientoForm() {
             <Form {...form}>
               <form 
                 onSubmit={form.handleSubmit(onSubmit)}
-                className="space-y-8 bg-white dark:bg-gray-900 p-8 rounded-2xl shadow-sm"
+                className="space-y-8 bg-white dark:bg-black/40 dark:backdrop-blur-sm dark:border-[1px] dark:border-[rgba(255,255,255,0.07)] p-8 rounded-2xl shadow-sm dark:hover:border-[rgba(255,255,255,0.12)] transition-all"
               >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <FormField
@@ -648,7 +667,7 @@ export default function ReclutamientoForm() {
                             placeholder="912345678"
                             maxLength={9}
                             {...field}
-                            onChange={(e) => {
+                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                               // Solo permitir números
                               const value = e.target.value.replace(/\D/g, '');
                               field.onChange(value);
@@ -829,38 +848,24 @@ export default function ReclutamientoForm() {
       </section>
 
       {/* CTA Final */}
-      <section className="relative py-20 bg-primary dark:bg-primary/80 text-white">
+      <section className="py-16 md:py-20 bg-primary gard-dark-bg">
         <div className="max-w-5xl mx-auto px-4 text-center">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-bold mb-6"
-          >
-            ¿Listo para proteger con excelencia?
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="text-xl mb-8 max-w-2xl mx-auto opacity-90"
-          >
-            Únete a Gard Security y desarrolla tu carrera en una empresa líder del sector.
-          </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
+            transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <Button 
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">¿Listo para proteger con excelencia?</h2>
+            <p className="text-xl text-white/80 mb-8">
+              Únete a Gard Security y desarrolla tu carrera en una empresa líder del sector.
+            </p>
+            <Button
               onClick={scrollToForm}
-              className="bg-white text-primary hover:bg-white/90 px-8 py-6 rounded-full text-lg"
+              size="lg"
+              className="bg-[hsl(var(--gard-accent))] text-white hover:bg-[hsl(var(--gard-accent))]/90 text-lg px-8 py-6 h-auto rounded-full shadow-lg hover:shadow-xl transition-all"
             >
-              Postula Ahora
-              <ArrowRight className="ml-2 h-5 w-5" />
+              Postula Ahora →
             </Button>
           </motion.div>
         </div>

@@ -35,20 +35,30 @@ export const theme = {
     '--gard-accent': '18 100% 60%', // Naranja más brillante
     '--gard-accent-foreground': '0 0% 100%', // Blanco
 
-    // Colores de fondo
-    '--gard-background': '222 47% 11%', // Azul muy oscuro
-    '--gard-foreground': '210 40% 98%', // Blanco con tinte azulado
-    '--gard-muted': '217 33% 17%', // Azul oscuro
-    '--gard-muted-foreground': '215 20% 70%', // Gris azulado más brillante para mejor legibilidad
+    // Sistema refinado de fondos oscuros
+    '--gard-background': '220 14% 6%',           // Base oscura principal: #0B0F1A
+    '--gard-background-darker': '0 0% 4%',       // Negro sofisticado casi puro: #0a0a0a
+    '--gard-background-darkest': '0 0% 2%',      // Negro puro para contrastar: #050505
+    '--gard-background-subtle': '220 10% 8%',    // Para variaciones sutiles: #111827
+    
+    // Fondos para componentes
+    '--gard-card': '220 14% 9%',                 // Tarjetas sobre fondo negro
+    '--gard-card-accent': '18 30% 7%',           // Tarjetas con tinte naranja muy sutil
+    '--gard-muted': '220 10% 12%',               // Secciones con fondo intermedio
+    '--gard-muted-foreground': '215 15% 65%',    // Subtítulos o texto leve
+    
+    // Textos
+    '--gard-foreground': '210 30% 95%',          // Texto general blanco suave
+    '--gard-card-foreground': '210 30% 95%',     // Texto en tarjetas
+    '--gard-popover': '220 14% 9%',              // Popovers 
+    '--gard-popover-foreground': '210 30% 95%',  // Texto en popovers
 
-    // Componentes
-    '--gard-card': '222 47% 14%', // Azul oscuro para cards
-    '--gard-card-foreground': '210 40% 98%', // Blanco con tinte azulado
-    '--gard-popover': '222 47% 14%', // Azul oscuro para popovers
-    '--gard-popover-foreground': '210 40% 98%', // Blanco con tinte azulado
-    '--gard-border': '217 33% 25%', // Azul oscuro para bordes
-    '--gard-input': '217 33% 25%', // Azul oscuro para inputs
-    '--gard-ring': '215 80% 55%', // Mismo azul del primario
+    // Elementos interactivos
+    '--gard-border': '220 10% 20%',              // Bordes estándar
+    '--gard-border-subtle': '0 0% 15%',          // Bordes sutiles
+    '--gard-input': '220 10% 20%',               // Campos de formulario
+    '--gard-ring': '215 80% 55%',                // Anillo de focus azul
+    '--gard-ring-accent': '18 100% 60%',         // Anillo de focus naranja
 
     // Radio
     '--radius': '0.75rem',

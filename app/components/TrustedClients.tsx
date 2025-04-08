@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 
 export default function TrustedClients() {
   return (
-    <section className="bg-[#0F172A] py-16 px-4 sm:px-6 lg:px-8">
+    <section className="bg-[hsl(var(--gard-background))] py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto text-center">
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}

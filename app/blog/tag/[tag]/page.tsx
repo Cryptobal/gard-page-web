@@ -46,7 +46,7 @@ export async function generateMetadata({ params }: { params: { tag: string } }):
   }
   
   return {
-    title: `Artículos sobre ${capitalizedTag} | Blog de Seguridad Gard`,
+    title: `${capitalizedTag} | Blog Gard Security`,
     description: `Explora artículos del blog relacionados con ${capitalizedTag}. Conoce tendencias, consejos y novedades sobre seguridad privada en Chile.`,
     openGraph: {
       title: `Artículos sobre ${capitalizedTag} | Blog de Seguridad Gard`,
