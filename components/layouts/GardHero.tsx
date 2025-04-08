@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { motion, LazyMotion, domAnimation } from 'framer-motion';
 import { ArrowRight, Phone, Clock, PlayCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -93,6 +93,7 @@ export default function GardHero({
 }: GardHeroProps) {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const heroRef = useRef<HTMLElement>(null);
   
   // Reproducir/pausar video (para compatibilidad con videos que no sean de Cloudflare)
   const toggleVideo = () => {
@@ -113,12 +114,28 @@ export default function GardHero({
     }
   };
   
+  // Asegurar que no haya espacios entre componentes en cualquier renderizado
+  useEffect(() => {
+    if (heroRef.current) {
+      const nextElement = heroRef.current.nextElementSibling;
+      if (nextElement) {
+        // Eliminar cualquier margen superior del siguiente elemento
+        (nextElement as HTMLElement).style.marginTop = '0';
+      }
+    }
+  }, []);
+  
   return (
     <LazyMotion features={domAnimation}>
       {/* Hero Section - Fullscreen con video/imagen de fondo */}
       <section 
+        ref={heroRef}
         data-section="hero"
-        className={`gard-hero relative ${variant === "home" ? "min-h-screen" : "min-h-[95vh]"} flex items-center overflow-hidden bg-gradient-to-tr from-gray-900 via-gray-800 to-gray-900 dark:bg-[linear-gradient(to_bottom,hsl(var(--gard-background-darkest))_0%,hsl(var(--gard-background))_100%)]`}
+        className="gard-hero relative h-screen min-h-[600px] flex items-center overflow-hidden bg-gradient-to-tr from-gray-900 via-gray-800 to-gray-900 dark:bg-[linear-gradient(to_bottom,hsl(var(--gard-background-darkest))_0%,hsl(var(--gard-background))_100%)]"
+        style={{ 
+          marginBottom: '0',
+          borderBottom: '1px solid transparent' // Evita flash blanco entre secciones
+        }}
       >
         {/* Overlay con degradado */}
         {overlay && (
@@ -303,22 +320,24 @@ export default function GardHero({
           </div>
         </div>
         
-        {/* Indicador de scroll */}
-        <motion.div 
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.5 }}
-          style={{
-            position: "absolute",
-            bottom: "2rem",
-            left: "50%",
-            transform: "translateX(-50%)",
-            zIndex: 20
+        {/* Indicador de scroll - Posición absoluta en la parte inferior del hero */}
+        <div 
+          className="absolute left-0 right-0 bottom-8 md:bottom-10 w-full flex justify-center items-center z-50"
+          style={{ 
+            pointerEvents: 'none'
           }}
         >
-          <div className="flex flex-col items-center gap-2">
-            <span className="text-white/70 text-sm">Descubra más</span>
-            <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center items-start p-1">
+          <motion.div 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.5 }}
+            className="flex flex-col items-center bg-black/50 backdrop-blur-md py-2 px-5 rounded-full shadow-lg"
+            style={{ 
+              pointerEvents: 'auto'
+            }}
+          >
+            <span className="text-white/90 text-sm mb-1 font-semibold">Descubra más</span>
+            <div className="w-6 h-10 border-2 border-white/70 rounded-full flex justify-center items-start p-1">
               <motion.div 
                 animate={{ 
                   y: [0, 12, 0],
@@ -331,8 +350,8 @@ export default function GardHero({
                 className="bg-white rounded-full"
               />
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
       </section>
     </LazyMotion>
   );

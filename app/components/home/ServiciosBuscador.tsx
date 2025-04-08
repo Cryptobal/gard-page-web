@@ -8,6 +8,15 @@ import { getAllCiudades } from '@/lib/data/ciudad-data';
 import { servicios } from '@/app/data/servicios';
 import { industries } from '@/app/data/industries';
 
+// Función para normalizar nombres a slugs (quitando acentos y caracteres especiales)
+function normalizeName(name: string): string {
+  return name.toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^\w\s]/g, '')
+    .replace(/\s+/g, '-');
+}
+
 const ServiciosBuscador = () => {
   const router = useRouter();
   const [ciudadSeleccionada, setCiudadSeleccionada] = useState<string>('');
@@ -37,9 +46,11 @@ const ServiciosBuscador = () => {
 
     // Construir la URL según las selecciones
     try {
-      if (industriaSeleccionada) {
+      if (industriaSeleccionada && industriaSeleccionada !== "todas") {
         // Si hay una industria seleccionada, redirigir a la página de servicios por industria
-        router.push(`/servicios-por-industria/${servicioSeleccionado}/${industriaSeleccionada}`);
+        // Usar slugs ya normalizados del industriesMetadata en vez de normalizar los nombres
+        const slugIndustria = industriaSeleccionada;
+        router.push(`/servicios-por-industria/${servicioSeleccionado}/${slugIndustria}`);
       } else {
         // Si solo hay ciudad y servicio, redirigir a la página de ciudad/servicio
         router.push(`/ciudades/${ciudadSeleccionada}/${servicioSeleccionado}`);
@@ -51,76 +62,23 @@ const ServiciosBuscador = () => {
 
   // Servicios filtrados para evitar errores
   const serviciosFiltrados = servicios || [];
-  // Industrias filtradas para evitar errores
   const industriasFiltradas = industries || [];
 
   return (
-    <section className="gard-section py-16 md:py-24 bg-gray-50 dark:bg-gray-800">
-      <div className="gard-container text-center">
-        <h2 className="text-heading-2 mb-4">Encuentra el servicio ideal para tu empresa</h2>
-        <p className="text-body-lg text-muted-foreground mb-10 max-w-3xl mx-auto">
-          Selecciona tu ubicación, el servicio que necesitas y tu industria para obtener soluciones personalizadas de seguridad.
+    <section className="bg-white dark:bg-gray-800 py-12 md:py-16">
+      <div className="max-w-7xl mx-auto px-4">
+        <h2 className="text-heading-2 text-center mb-2">Encuentra tu solución de seguridad</h2>
+        <p className="text-body-lg text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
+          Selecciona tu ciudad, el tipo de servicio que necesitas y te mostraremos la mejor solución.
         </p>
-        
-        <div className="max-w-4xl mx-auto bg-white dark:bg-gray-900 rounded-2xl shadow-md p-6 md:p-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-6">
-            {/* Selector de servicio */}
+
+        <div className="bg-[hsl(var(--gard-background))] dark:bg-gray-700 rounded-2xl p-6 md:p-8 shadow-md max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+            {/* Selector de Ciudad */}
             <div>
-              <label htmlFor="servicio-select" className="block text-sm font-medium text-left mb-2 text-gray-700 dark:text-gray-300">
-                Servicio
-              </label>
-              <Select 
-                value={servicioSeleccionado} 
-                onValueChange={setServicioSeleccionado}
-              >
-                <SelectTrigger id="servicio-select" className="w-full h-12 rounded-xl">
-                  <SelectValue placeholder="Selecciona un servicio" />
-                </SelectTrigger>
-                <SelectContent>
-                  {serviciosFiltrados.map((servicio) => (
-                    <SelectItem key={servicio.slug} value={servicio.slug}>
-                      {servicio.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-            
-            {/* Selector de industria (opcional) */}
-            <div>
-              <label htmlFor="industria-select" className="block text-sm font-medium text-left mb-2 text-gray-700 dark:text-gray-300">
-                Industria (opcional)
-              </label>
-              <Select 
-                value={industriaSeleccionada} 
-                onValueChange={setIndustriaSeleccionada}
-              >
-                <SelectTrigger id="industria-select" className="w-full h-12 rounded-xl">
-                  <SelectValue placeholder="Selecciona una industria" />
-                </SelectTrigger>
-                <SelectContent>
-                  {industriasFiltradas.map((industria) => (
-                    <SelectItem 
-                      key={industria.name.toLowerCase().replace(/\s+/g, '-')} 
-                      value={industria.name.toLowerCase().replace(/\s+/g, '-')}
-                    >
-                      {industria.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-            
-            {/* Selector de ciudad */}
-            <div>
-              <label htmlFor="ciudad-select" className="block text-sm font-medium text-left mb-2 text-gray-700 dark:text-gray-300">
-                Ciudad
-              </label>
-              <Select 
-                value={ciudadSeleccionada} 
-                onValueChange={setCiudadSeleccionada}
-              >
-                <SelectTrigger id="ciudad-select" className="w-full h-12 rounded-xl">
+              <label className="block text-sm font-medium mb-2 text-white">Ciudad</label>
+              <Select value={ciudadSeleccionada} onValueChange={setCiudadSeleccionada}>
+                <SelectTrigger className="bg-white dark:bg-gray-800 h-14 rounded-xl">
                   <SelectValue placeholder="Selecciona una ciudad" />
                 </SelectTrigger>
                 <SelectContent>
@@ -132,9 +90,46 @@ const ServiciosBuscador = () => {
                 </SelectContent>
               </Select>
             </div>
+
+            {/* Selector de Servicio */}
+            <div>
+              <label className="block text-sm font-medium mb-2 text-white">Servicio requerido</label>
+              <Select value={servicioSeleccionado} onValueChange={setServicioSeleccionado}>
+                <SelectTrigger className="bg-white dark:bg-gray-800 h-14 rounded-xl">
+                  <SelectValue placeholder="Tipo de servicio" />
+                </SelectTrigger>
+                <SelectContent>
+                  {serviciosFiltrados.map((servicio) => (
+                    <SelectItem key={servicio.slug} value={servicio.slug}>
+                      {servicio.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            {/* Selector de Industria (opcional) */}
+            <div>
+              <label className="block text-sm font-medium mb-2 text-white">Industria (opcional)</label>
+              <Select value={industriaSeleccionada} onValueChange={setIndustriaSeleccionada}>
+                <SelectTrigger className="bg-white dark:bg-gray-800 h-14 rounded-xl">
+                  <SelectValue placeholder="Selecciona tu industria" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="todas">Cualquier industria</SelectItem>
+                  {industriasFiltradas.map((industria) => (
+                    <SelectItem 
+                      key={normalizeName(industria.name)} 
+                      value={normalizeName(industria.name)}
+                    >
+                      {industria.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
           </div>
-          
-          {/* Botón de búsqueda */}
+
           <button 
             onClick={handleBuscar}
             disabled={!ciudadSeleccionada || !servicioSeleccionado}
@@ -143,26 +138,6 @@ const ServiciosBuscador = () => {
             <Search className="h-5 w-5" />
             <span>Buscar soluciones</span>
           </button>
-        </div>
-
-        {/* Sección de ciudades donde operamos (opcional) */}
-        <div className="mt-16">
-          <h3 className="text-heading-4 mb-8">Ciudades donde operamos</h3>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-            {ciudades.slice(0, 10).map((ciudad) => (
-              <a 
-                key={ciudad.slug}
-                href={`/ciudades/${ciudad.slug}`}
-                className="bg-white dark:bg-gray-900 rounded-xl shadow-sm hover:shadow-md p-4 transition-all hover:scale-105 hover:border-primary/30 hover:border flex flex-col items-center justify-center h-24 group"
-              >
-                <MapPin className="h-5 w-5 text-primary dark:text-accent mb-1 group-hover:text-primary" />
-                <span className="font-medium mb-1 group-hover:text-primary">
-                  {ciudad.nombre}
-                </span>
-                <span className="text-xs text-muted-foreground group-hover:text-primary/70">Ver servicios</span>
-              </a>
-            ))}
-          </div>
         </div>
       </div>
     </section>

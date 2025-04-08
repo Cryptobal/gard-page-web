@@ -1,10 +1,21 @@
+"use client";
+
 import CotizacionForm from './components/CotizacionForm';
 import UrlParamsProcessor from './components/UrlParamsProcessor';
 import { ArrowRight, Clipboard } from 'lucide-react';
 import CotizadorLandingClient from './components/CotizadorLandingClient';
 import GardHero from '@/components/layouts/GardHero';
+import { useRef } from 'react';
 
 export default function CotizarPage() {
+  // Función para desplazar al formulario cuando se hace clic en el botón
+  const scrollToForm = () => {
+    const formSection = document.querySelector('.gard-section');
+    if (formSection) {
+      formSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <>
       {/* Componente SEO cliente */}
@@ -18,6 +29,7 @@ export default function CotizarPage() {
         title="Cotiza tu Servicio de Seguridad"
         subtitle="Completa el formulario y te enviaremos una propuesta personalizada"
         ctaTexto="Completar Formulario"
+        onScrollToForm={scrollToForm}
         badge={{
           icon: <Clipboard className="h-4 w-4" />,
           text: "Cotización Personalizada"
