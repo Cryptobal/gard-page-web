@@ -1,3 +1,21 @@
+import React from 'react';
+import { CheckCircle, ShieldCheck, UserCheck, Clock, ArrowRight } from 'lucide-react';
+
+interface ServiceDescriptionProps {
+  title: string;
+  description: string;
+  benefits: string[];
+  serviceName: string;
+  serviceSlug: string;
+}
+
+export default function ServiceDescription({
+  title,
+  description,
+  benefits,
+  serviceName,
+  serviceSlug
+}: ServiceDescriptionProps) {
   return (
     <section className="gard-section py-16 md:py-24 bg-[#0A0C12] relative">
       <div className="absolute inset-0 bg-[url('/images/textures/noise-pattern.png')] opacity-5"></div>
@@ -73,4 +91,5 @@
         </div>
       </div>
     </section>
-  ); 
+  );
+} 
