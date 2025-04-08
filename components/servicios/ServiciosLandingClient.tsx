@@ -22,7 +22,7 @@ export default function ServiciosLandingClient() {
         title="Nuestros Servicios de Seguridad"
         subtitle="Protección integral para industrias, empresas, instituciones y comunidades."
         ctaTexto="Cotiza ahora"
-        ctaHref="/cotizar"
+        ctaHref="#cotizar"
         imageId="5eea1064-8a2d-4e8b-5606-d28775467a00"
         badge={{
           icon: <Shield className="h-4 w-4" />,

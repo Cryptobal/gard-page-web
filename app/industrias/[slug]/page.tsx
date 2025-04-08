@@ -1,57 +1,80 @@
 import React from 'react';
-import type { Metadata } from 'next';
+import { Metadata } from 'next';
 import Link from 'next/link';
-import dynamic from 'next/dynamic';
+import { notFound } from 'next/navigation';
+import { ArrowRight, CheckCircle, ArrowUpRight, ShieldCheck, Shield, Eye, Factory } from 'lucide-react';
 import CloudflareImage from '@/components/CloudflareImage';
-import CtaFinal from '@/components/ui/shared/CtaFinal';
-import { 
-  ArrowRight, 
-  CheckCircle,
-  Shield
-} from 'lucide-react';
-import { industries } from '@/app/data/industries';
-import { servicios } from '@/app/data/servicios';
 import { industriesMetadata } from '../industryMetadata';
-import OurServices from '@/app/components/OurServices';
-import LinkParamsAware from '@/app/components/LinkParamsAware';
+import GardHero from '@/components/layouts/GardHero';
+import FormularioCotizacionSeccion from '@/app/components/FormularioCotizacionSeccion';
 
-// Componente cliente cargado dinámicamente
-const IndustriaClientComponents = dynamic(() => import('./IndustriaClientComponents'), {
-  ssr: false,
-});
+// Interfaces para tipado
+interface Challenge {
+  icon: string;
+  title: string;
+  description: string;
+}
 
-// Función para generar rutas estáticas
+interface Stat {
+  prefix?: string;
+  value: number;
+  suffix?: string;
+  label: string;
+}
+
+interface Client {
+  name: string;
+  logoId: string;
+}
+
+interface Service {
+  name: string;
+  slug: string;
+  description: string;
+}
+
+interface Industry {
+  slug: string;
+  title: string;
+  description: string;
+  name: string;
+  imageId: string;
+  videoId?: string;
+  subtitle?: string;
+  descriptionTitle?: string;
+  descriptionParagraphs: string[];
+  descriptionImageId?: string;
+  challengesDescription?: string;
+  challenges: Challenge[];
+  statsDescription?: string;
+  stats?: Stat[];
+  recommendedServices?: Service[];
+  clients?: Client[];
+}
+
+// Datos de industrias
 export async function generateStaticParams() {
-  return industries.map(industry => ({
-    slug: industry.name.toLowerCase()
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
-      .replace(/[^\w\s]/g, '')
-      .replace(/\s+/g, '-')
+  return industriesMetadata.map((industry) => ({
+    slug: industry.slug,
   }));
 }
 
-// Función para obtener datos de industria por slug
-const getIndustryBySlug = (slug: string) => {
-  // Intentar encontrar primero por coincidencia exacta de slug normalizado
-  const normalizedSlug = slug.toLowerCase();
-  
-  return industries.find(industry => {
-    const industrySlug = industry.name.toLowerCase()
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
-      .replace(/[^\w\s]/g, '')
-      .replace(/\s+/g, '-');
-      
-    return industrySlug === normalizedSlug;
-  });
+// Obtener la industria por slug
+const getIndustryBySlug = (slug: string): any => {
+  // Buscar por slug en industriesMetadata
+  return industriesMetadata.find((industry) => industry.slug === slug);
 };
 
-// Generación dinámica de metadatos
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const industria = industriesMetadata.find(i => i.slug === params.slug);
+// Formatear número con separador de miles
+const formatNumber = (num: number): string => {
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+};
 
-  if (!industria) {
+// Generar metadata dinámica para SEO
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const industry = getIndustryBySlug(params.slug);
+
+  if (!industry) {
     return {
       title: 'Industria no encontrada | Gard Security',
       description: 'La industria solicitada no existe o fue eliminada.',
@@ -59,304 +82,259 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     };
   }
 
+  const canonical = `https://www.gard.cl/industrias/${industry.slug}`;
+
   return {
-    title: industria.title,
-    description: industria.description,
-    keywords: industria.keywords,
-    authors: [{ name: 'Gard Security', url: 'https://gard.cl' }],
+    title: industry.title,
+    description: industry.description,
     robots: 'index, follow',
+    alternates: {
+      canonical: canonical,
+    },
     openGraph: {
-      title: industria.title,
-      description: industria.description,
-      url: `https://gard.cl/industrias/${params.slug}`,
+      title: industry.title,
+      description: industry.description,
+      url: canonical,
       siteName: 'Gard Security',
-      locale: 'es_CL',
       type: 'article',
+      locale: 'es_CL',
     },
   };
 }
 
 export default function IndustriaPage({ params }: { params: { slug: string } }) {
-  const industry = getIndustryBySlug(params.slug);
+  // Buscar la industria correspondiente por slug
+  const industryData = getIndustryBySlug(params.slug);
   
-  // Página de error si no se encuentra la industria
-  if (!industry) {
-    return (
-      <div className="gard-container py-24 text-center">
-        <h1 className="text-heading-2 mb-6">Industria no encontrada</h1>
-        <p className="text-body-lg mb-8">La industria que busca no está disponible actualmente.</p>
-        <Link href="/industrias" className="gard-btn gard-btn-primary">
-          Ver todas las industrias
-          <ArrowRight className="ml-2 h-5 w-5" />
-        </Link>
-      </div>
-    );
+  // Si no existe la industria, mostrar 404
+  if (!industryData) {
+    return notFound();
   }
 
-  // Obtener el slug normalizado para pasarlo al componente OurServices
-  const industrySlug = industry.name.toLowerCase()
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .replace(/[^\w\s]/g, '')
-    .replace(/\s+/g, '-');
+  // Extraer propiedades con valores por defecto
+  const industry = {
+    // Propiedades básicas de SEO que siempre existen
+    slug: industryData.slug,
+    title: industryData.title,
+    description: industryData.description,
+    
+    // Propiedades para la página que pueden no existir
+    name: industryData.name || industryData.title.split('|')[0].trim(),
+    imageId: industryData.imageId || '',
+    videoId: industryData.videoId,
+    subtitle: industryData.subtitle,
+    descriptionTitle: industryData.descriptionTitle,
+    descriptionParagraphs: industryData.descriptionParagraphs || [],
+    descriptionImageId: industryData.descriptionImageId,
+    challengesDescription: industryData.challengesDescription,
+    challenges: industryData.challenges || [],
+    statsDescription: industryData.statsDescription,
+    stats: industryData.stats || [],
+    recommendedServices: industryData.recommendedServices || [],
+    clients: industryData.clients || []
+  };
+
+  // Crear un Schema.org JSON-LD para SEO
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    'name': `Seguridad para ${industry.name}`,
+    'description': industry.description,
+    'provider': {
+      '@type': 'Organization',
+      'name': 'Gard Security',
+      'url': 'https://www.gard.cl'
+    },
+    'serviceType': 'Security',
+    'audience': {
+      '@type': 'BusinessAudience',
+      'audienceType': industry.name
+    }
+  };
 
   return (
     <>
-      {/* Componente cliente para funcionalidades SEO */}
-      <IndustriaClientComponents />
-      
-      {/* Hero Section */}
-      <section className="relative h-[40vh] md:h-[60vh] overflow-hidden">
-        {/* Imagen de fondo */}
-        <div className="absolute inset-0">
-          <CloudflareImage
-            imageId={industry.imageId}
-            alt={`Seguridad para ${industry.name}`}
-            fill
-            className="object-cover"
-            priority
-          />
-          {/* Overlay oscuro */}
-          <div className="absolute inset-0 bg-black/50 z-10"></div>
-        </div>
-        
-        {/* Contenido */}
-        <div className="relative z-20 h-full flex flex-col justify-center items-center text-center px-4">
-          <h1 className="text-white text-4xl md:text-5xl font-bold leading-tight max-w-4xl mb-6">
-            Seguridad privada para {industry.name}
-          </h1>
-          <p className="text-white text-xl max-w-2xl mb-8">
-            Protegemos el sector {industry.name} con soluciones adaptadas, profesionales y confiables.
-          </p>
-          <LinkParamsAware 
-            href="/cotizar" 
-            className="gard-btn gard-btn-primary gard-btn-lg"
-            industryName={industry.name}
-            industrySlug={industrySlug}
-          >
-            Cotiza tu seguridad
-            <ArrowRight className="ml-2 h-5 w-5" />
-          </LinkParamsAware>
+      {/* Schema.org JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
+      {/* Hero */}
+      <GardHero 
+        title={`Seguridad para ${industry.name}`}
+        subtitle={industry.subtitle || `Soluciones de seguridad especializadas para el sector ${industry.name}`}
+        ctaTexto="Cotizar para mi empresa"
+        ctaHref="#cotizar"
+        videoId={industry.videoId}
+        imageId={industry.imageId}
+        badge={{
+          icon: <Factory className="h-4 w-4" />,
+          text: `Soluciones para ${industry.name}`
+        }}
+        overlay={true}
+      />
+
+      {/* Descripción de la industria */}
+      <section className="gard-section py-16 md:py-24">
+        <div className="gard-container max-w-7xl mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
+            <div className="lg:col-span-6">
+              <h2 className="text-heading-2 mb-6">{industry.descriptionTitle || `Protección para el sector ${industry.name}`}</h2>
+              
+              <div className="space-y-4 text-body-lg">
+                {(industry.descriptionParagraphs || []).map((paragraph: string, index: number) => (
+                  <p key={index} className="text-muted-foreground">
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
+              
+              <div className="mt-8">
+                <a 
+                  href="#cotizar"
+                  className="gard-btn gard-btn-primary inline-flex items-center"
+                >
+                  Solicitar cotización <ArrowRight className="ml-2 h-5 w-5" />
+                </a>
+              </div>
+            </div>
+            
+            <div className="lg:col-span-6">
+              <div className="relative h-[400px] rounded-2xl overflow-hidden shadow-lg">
+                <CloudflareImage
+                  imageId={industry.descriptionImageId || industry.imageId}
+                  alt={`Seguridad para ${industry.name}`}
+                  fill
+                  objectFit="cover"
+                  className="transition-transform duration-700 hover:scale-105"
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Sección: Desafíos de seguridad en esta industria */}
-      <section className="gard-section">
-        <div className="gard-container">
-          <h2 className="text-heading-2 mb-6 text-center">Desafíos de seguridad en {industry.name}</h2>
-          <p className="text-body-lg text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
-            El sector de {industry.name} enfrenta riesgos y amenazas específicas que requieren un enfoque 
-            especializado en materia de seguridad. Conocemos estos desafíos y desarrollamos estrategias 
-            efectivas para abordarlos.
+      {/* Desafíos de seguridad para esta industria */}
+      <section className="gard-section py-16 md:py-24 bg-[#0A0C12] relative">
+        <div className="absolute inset-0 bg-[url('/images/textures/noise-pattern.png')] opacity-10"></div>
+        <div className="gard-container max-w-7xl mx-auto px-4 relative z-10">
+          <h2 className="text-heading-2 mb-8 text-center text-white">Desafíos de seguridad en {industry.name}</h2>
+          <p className="text-body-lg text-gray-300 mb-12 max-w-3xl mx-auto text-center">
+            {industry.challengesDescription || `Las empresas del sector ${industry.name} enfrentan riesgos específicos que requieren soluciones de seguridad adaptadas.`}
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-card p-6 rounded-xl shadow-sm">
-              <div className="h-12 w-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                <Shield className="h-6 w-6 text-primary" />
+            {(industry.challenges || []).map((challenge: Challenge, index: number) => (
+              <div 
+                key={index} 
+                className="bg-[hsl(var(--gard-card))] rounded-xl p-6 shadow-sm border border-gray-700 hover:shadow-md transition-shadow"
+              >
+                <div className="mb-4">
+                  {challenge.icon === 'ShieldCheck' && <ShieldCheck className="h-10 w-10 text-[hsl(var(--gard-accent))]" />}
+                  {challenge.icon === 'Shield' && <Shield className="h-10 w-10 text-[hsl(var(--gard-accent))]" />}
+                  {challenge.icon === 'Eye' && <Eye className="h-10 w-10 text-[hsl(var(--gard-accent))]" />}
+                </div>
+                <h3 className="text-xl font-semibold mb-2 text-white">{challenge.title}</h3>
+                <p className="text-gray-300">{challenge.description}</p>
               </div>
-              <h3 className="text-heading-5 mb-3">Protección de activos valiosos</h3>
-              <p className="text-muted-foreground">
-                El sector {industry.name} maneja activos de alto valor que requieren protección 
-                especializada y constante vigilancia para prevenir robos o sabotajes.
-              </p>
-            </div>
-            
-            <div className="bg-card p-6 rounded-xl shadow-sm">
-              <div className="h-12 w-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                <Shield className="h-6 w-6 text-primary" />
-              </div>
-              <h3 className="text-heading-5 mb-3">Control de acceso crítico</h3>
-              <p className="text-muted-foreground">
-                Gestionar quién puede acceder a determinadas áreas es fundamental en {industry.name}, 
-                donde la seguridad perimetral y los protocolos de entrada requieren especial atención.
-              </p>
-            </div>
-            
-            <div className="bg-card p-6 rounded-xl shadow-sm">
-              <div className="h-12 w-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                <Shield className="h-6 w-6 text-primary" />
-              </div>
-              <h3 className="text-heading-5 mb-3">Cumplimiento normativo</h3>
-              <p className="text-muted-foreground">
-                Las empresas de {industry.name} deben cumplir con regulaciones estrictas de seguridad, 
-                lo que requiere conocimiento especializado y actualizaciones constantes.
-              </p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Sección 2 - ¿Por qué elegirnos? */}
-      <section className="gard-section bg-muted/5">
-        <div className="gard-container">
-          <h2 className="text-heading-2 mb-8 text-center">¿Por qué elegir Gard en {industry.name}?</h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-            <div className="flex flex-col p-6 bg-card rounded-xl shadow-sm">
-              <CheckCircle className="h-10 w-10 text-primary mb-4" />
-              <h3 className="text-heading-4 mb-3">Experiencia en el rubro</h3>
-              <p className="text-body-base text-muted-foreground">
-                Contamos con amplia experiencia en seguridad para el sector {industry.name}, 
-                conociendo a fondo los riesgos y necesidades específicas de esta industria.
-              </p>
-            </div>
+      {/* Estadísticas del sector */}
+      {industry.stats && industry.stats.length > 0 && (
+        <section className="gard-section py-16 md:py-24 bg-[#0A0C12]">
+          <div className="gard-container max-w-7xl mx-auto px-4">
+            <h2 className="text-heading-2 mb-8 text-center text-white">El sector {industry.name} en cifras</h2>
+            <p className="text-body-lg text-gray-300 mb-12 max-w-3xl mx-auto text-center">
+              {industry.statsDescription || `Entendemos la magnitud e importancia del sector ${industry.name} en la economía chilena.`}
+            </p>
             
-            <div className="flex flex-col p-6 bg-card rounded-xl shadow-sm">
-              <CheckCircle className="h-10 w-10 text-primary mb-4" />
-              <h3 className="text-heading-4 mb-3">Adaptabilidad operativa</h3>
-              <p className="text-body-base text-muted-foreground">
-                Nuestros equipos y soluciones se adaptan a las particularidades de cada operación 
-                en {industry.name}, ajustándose a los protocolos y normativas del sector.
-              </p>
-            </div>
-            
-            <div className="flex flex-col p-6 bg-card rounded-xl shadow-sm">
-              <CheckCircle className="h-10 w-10 text-primary mb-4" />
-              <h3 className="text-heading-4 mb-3">Tecnología y confiabilidad</h3>
-              <p className="text-body-base text-muted-foreground">
-                Implementamos tecnología de punta combinada con personal altamente capacitado, 
-                asegurando la máxima confiabilidad en la protección de su operación de {industry.name}.
-              </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {(industry.stats || []).map((stat: Stat, index: number) => (
+                <div 
+                  key={index}
+                  className="text-center p-6 bg-[hsl(var(--gard-card))] rounded-xl border border-gray-700 hover:shadow-md transition-shadow"
+                >
+                  <div className="text-4xl md:text-5xl font-bold text-[hsl(var(--gard-accent))] mb-2">
+                    {stat.prefix || ''}{formatNumber(stat.value)}{stat.suffix || ''}
+                  </div>
+                  <p className="text-gray-300">{stat.label}</p>
+                </div>
+              ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
-      {/* Sección: Soluciones especializadas */}
-      <section className="gard-section">
-        <div className="gard-container">
-          <h2 className="text-heading-2 mb-6 text-center">Soluciones específicas para {industry.name}</h2>
-          <p className="text-body-lg text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
-            Hemos desarrollado un conjunto de soluciones de seguridad especialmente diseñadas para 
-            abordar los desafíos únicos que enfrenta el sector de {industry.name}.
+      {/* Servicios recomendados para esta industria */}
+      <section className="gard-section py-16 md:py-24 bg-[#0A0C12] relative">
+        <div className="absolute inset-0 bg-[url('/images/textures/noise-pattern.png')] opacity-10"></div>
+        <div className="gard-container max-w-7xl mx-auto px-4 relative z-10">
+          <h2 className="text-heading-2 mb-6 text-center text-white">Servicios recomendados para {industry.name}</h2>
+          <p className="text-body-lg text-gray-300 mb-12 max-w-3xl mx-auto text-center">
+            Nuestras soluciones están adaptadas a los desafíos específicos de su industria
           </p>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="flex border-b border-muted pb-6 mb-6">
-              <div className="h-12 w-12 bg-primary/10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
-                <Shield className="h-6 w-6 text-primary" />
-              </div>
-              <div>
-                <h3 className="text-heading-5 mb-2">Guardias especializados en {industry.name}</h3>
-                <p className="text-muted-foreground">
-                  Nuestro personal recibe capacitación específica sobre los protocolos y procedimientos 
-                  de seguridad relevantes para el sector {industry.name}, garantizando un servicio 
-                  alineado con las mejores prácticas de la industria.
+          {/* Lista de servicios recomendados */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {(industry.recommendedServices || []).map((servicio: Service, index: number) => (
+              <Link 
+                key={index}
+                href={`/servicios/${servicio.slug}`}
+                className="bg-[hsl(var(--gard-card))] rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col h-full border border-gray-700"
+              >
+                <div className="flex items-center mb-4">
+                  <ShieldCheck className="h-8 w-8 text-[hsl(var(--gard-accent))] mr-3" />
+                  <h3 className="text-xl font-semibold text-white">{servicio.name}</h3>
+                </div>
+                <p className="text-body-base text-gray-300 mb-4 flex-grow">
+                  {servicio.description}
                 </p>
-              </div>
-            </div>
-            
-            <div className="flex border-b border-muted pb-6 mb-6">
-              <div className="h-12 w-12 bg-primary/10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
-                <Shield className="h-6 w-6 text-primary" />
-              </div>
-              <div>
-                <h3 className="text-heading-5 mb-2">Sistemas de vigilancia avanzados</h3>
-                <p className="text-muted-foreground">
-                  Implementamos tecnología de videovigilancia y monitoreo adaptada a las necesidades 
-                  específicas de {industry.name}, con capacidad de detección temprana de incidentes 
-                  y respuesta rápida.
-                </p>
-              </div>
-            </div>
-            
-            <div className="flex border-b border-muted pb-6 mb-6 md:mb-0">
-              <div className="h-12 w-12 bg-primary/10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
-                <Shield className="h-6 w-6 text-primary" />
-              </div>
-              <div>
-                <h3 className="text-heading-5 mb-2">Control de acceso personalizado</h3>
-                <p className="text-muted-foreground">
-                  Diseñamos e implementamos sistemas de control de acceso que cumplen con los 
-                  requisitos específicos de seguridad del sector {industry.name}, protegiendo 
-                  áreas sensibles y regulando el flujo de personal.
-                </p>
-              </div>
-            </div>
-            
-            <div className="flex">
-              <div className="h-12 w-12 bg-primary/10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
-                <Shield className="h-6 w-6 text-primary" />
-              </div>
-              <div>
-                <h3 className="text-heading-5 mb-2">Auditorías de seguridad especializadas</h3>
-                <p className="text-muted-foreground">
-                  Realizamos evaluaciones exhaustivas de la seguridad en instalaciones de {industry.name}, 
-                  identificando vulnerabilidades y recomendando mejoras para fortalecer la protección 
-                  general.
-                </p>
-              </div>
-            </div>
+                <div className="flex justify-end mt-auto">
+                  <span className="inline-flex items-center text-[hsl(var(--gard-accent))] font-medium">
+                    Ver servicio <ArrowRight className="ml-1 h-4 w-4" />
+                  </span>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Imagen contextual */}
-      <section className="relative h-[40vh] md:h-[60vh] overflow-hidden">
-        <CloudflareImage
-          imageId={industry.imageId}
-          alt={`Protección profesional para ${industry.name}`}
-          fill
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-black/30 z-10"></div>
-      </section>
-
-      {/* Usamos el componente OurServices reutilizable */}
-      <OurServices 
-        title={`Servicios de seguridad para ${industry.name}`}
-        subtitle="Soluciones diseñadas para los desafíos específicos de esta industria"
-        industria={industrySlug}
-        nombreIndustria={industry.name}
-      />
-
-      {/* Sección: Preguntas frecuentes */}
-      <section className="gard-section bg-muted/5">
-        <div className="gard-container">
-          <h2 className="text-heading-2 mb-8 text-center">Preguntas frecuentes sobre seguridad en {industry.name}</h2>
-          
-          <div className="space-y-6 max-w-4xl mx-auto">
-            <div className="bg-card p-6 rounded-xl">
-              <h3 className="text-heading-5 mb-3">¿Qué formación específica tienen sus guardias para el sector {industry.name}?</h3>
-              <p className="text-muted-foreground">
-                Todos nuestros guardias asignados al sector {industry.name} reciben capacitación especializada 
-                que incluye protocolos específicos de la industria, normativas de seguridad aplicables, 
-                y procedimientos de respuesta ante emergencias propias del sector. Además, realizamos 
-                actualizaciones periódicas para mantener al personal al día con las mejores prácticas.
-              </p>
-            </div>
+      {/* Clientes de esta industria */}
+      {industry.clients && industry.clients.length > 0 && (
+        <section className="gard-section py-16 md:py-24 bg-[#0A0C12]">
+          <div className="gard-container max-w-7xl mx-auto px-4">
+            <h2 className="text-heading-2 mb-8 text-center text-white">Empresas que confían en nosotros</h2>
+            <p className="text-body-lg text-gray-300 mb-12 max-w-3xl mx-auto text-center">
+              Estas son algunas de las organizaciones del sector {industry.name} que protegemos
+            </p>
             
-            <div className="bg-card p-6 rounded-xl">
-              <h3 className="text-heading-5 mb-3">¿Cómo se adaptan sus servicios a los requisitos regulatorios de {industry.name}?</h3>
-              <p className="text-muted-foreground">
-                Nuestro equipo de expertos se mantiene constantemente actualizado sobre la normativa 
-                y regulaciones que afectan al sector {industry.name}. Diseñamos nuestras soluciones 
-                de seguridad asegurando el cumplimiento de todos los requisitos legales y estándares 
-                de la industria, ayudando a nuestros clientes a mantener su operación conforme y segura.
-              </p>
-            </div>
-            
-            <div className="bg-card p-6 rounded-xl">
-              <h3 className="text-heading-5 mb-3">¿Qué tecnologías específicas recomiendan para la seguridad en {industry.name}?</h3>
-              <p className="text-muted-foreground">
-                Para el sector {industry.name} recomendamos una combinación de sistemas de videovigilancia 
-                avanzados con análisis inteligente, controles de acceso biométricos, y sistemas de alarma 
-                integrados con nuestra central de monitoreo. La combinación exacta dependerá de la evaluación 
-                de riesgos específica de cada instalación, que realizamos como parte de nuestro servicio.
-              </p>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 items-center">
+              {(industry.clients || []).map((client: Client, index: number) => (
+                <div key={index} className="flex justify-center p-4">
+                  <div className="relative h-20 w-full grayscale hover:grayscale-0 transition-all opacity-70 hover:opacity-100">
+                    <CloudflareImage
+                      imageId={client.logoId}
+                      alt={client.name}
+                      fill
+                      objectFit="contain"
+                    />
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
-      {/* CTA Final */}
-      <CtaFinal 
-        title={`Protege tu operación en el rubro ${industry.name}`}
-        description={`Cotiza servicios de seguridad personalizados para el sector ${industry.name}. Nuestros expertos diseñarán una solución adaptada a tus necesidades específicas.`}
-        ctaLabel="Cotiza según tu industria"
-        ctaHref="/cotizar"
-        variant="soft"
+      {/* Formulario de cotización */}
+      <FormularioCotizacionSeccion 
+        prefillIndustria={industry.name} 
+        className="bg-[#0A0C12]"
       />
     </>
   );

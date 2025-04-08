@@ -3,7 +3,7 @@ import Link from 'next/link';
 import CloudflareImage from '@/components/CloudflareImage';
 import IndustriasGridPage from '@/app/components/IndustriasGridPage';
 import GardHero from '@/components/layouts/GardHero';
-import CtaFinal from '@/components/ui/shared/CtaFinal';
+import FormularioCotizacionSeccion from '@/app/components/FormularioCotizacionSeccion';
 import { 
   ArrowRight, 
   CheckCircle, 
@@ -35,7 +35,7 @@ export default function IndustriasPage() {
         title="Soluciones de Seguridad por Industria"
         subtitle="Adaptamos nuestros servicios para cada entorno operativo, desde minería a educación."
         ctaTexto="Solicitar Cotización"
-        ctaHref="/cotizar"
+        ctaHref="#cotizar"
         imageId="4a46b63d-0e1b-4640-b95c-7f040a288c00"
         badge={{
           icon: <Factory className="h-4 w-4" />,
@@ -100,14 +100,8 @@ export default function IndustriasPage() {
         </div>
       </section>
 
-      {/* CTA Final */}
-      <CtaFinal 
-        title="Seguridad adaptada a tu sector industrial"
-        description="Descubre cómo nuestras soluciones de seguridad se adaptan perfectamente a las necesidades específicas de tu industria."
-        ctaLabel="Cotiza según tu industria"
-        ctaHref="/cotizar"
-        variant="soft"
-      />
+      {/* Formulario de cotización */}
+      <FormularioCotizacionSeccion />
     </>
   );
 } 

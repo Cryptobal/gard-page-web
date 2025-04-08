@@ -10,7 +10,6 @@ import { servicios, type Servicio } from '@/app/data/servicios';
 import { industries } from '@/app/data/industries';
 import { servicesMetadata } from '../serviceMetadata';
 import CloudflareImage from '@/components/CloudflareImage';
-import CtaFinal from '@/components/ui/shared/CtaFinal';
 import IndustriasGridPage from '@/app/components/IndustriasGridPage';
 import ServiceDescription from '@/app/components/services/ServiceDescription';
 import { 
@@ -27,8 +26,8 @@ import {
   Landmark,
   Hotel
 } from 'lucide-react';
-import LinkParamsAware from '@/app/components/LinkParamsAware';
 import GaleriaImagenes from '@/components/GaleriaImagenes';
+import FormularioCotizacionSeccion from '@/app/components/FormularioCotizacionSeccion';
 
 // Importar el componente CloudflareVideo de manera dinámica con la opción ssr: false
 const CloudflareVideo = dynamic(() => import('@/components/CloudflareVideo'), {
@@ -230,14 +229,12 @@ export default function ServicioPage({ params }: { params: { slug: string } }) {
           <p className="text-white text-lg md:text-xl opacity-90 max-w-3xl mb-8">
             {servicio.description}
           </p>
-          <LinkParamsAware 
-            href="/cotizar" 
+          <a 
+            href="#cotizar"
             className="gard-btn gard-btn-primary gard-btn-lg inline-flex items-center"
-            serviceName={servicio.name}
-            serviceSlug={servicio.slug}
           >
             Cotizar este servicio <ArrowRight className="ml-2 h-5 w-5" />
-          </LinkParamsAware>
+          </a>
         </div>
         
         {/* Mostrar video o imagen dependiendo del servicio */}
@@ -273,9 +270,9 @@ export default function ServicioPage({ params }: { params: { slug: string } }) {
 
       {/* Galería de imágenes */}
       {servicio.gallery.length > 0 && (
-        <section className="gard-section py-16 md:py-24 bg-gray-50 dark:bg-gray-800">
+        <section className="gard-section py-16 md:py-24 bg-[#0A0C12]">
           <div className="gard-container max-w-7xl mx-auto px-4">
-            <h2 className="text-heading-2 mb-10 text-center">Galería de {servicio.name}</h2>
+            <h2 className="text-heading-2 mb-10 text-center text-white">Galería de {servicio.name}</h2>
             
             <GaleriaImagenes imagenes={servicio.gallery} titulo={servicio.name} />
           </div>
@@ -283,10 +280,11 @@ export default function ServicioPage({ params }: { params: { slug: string } }) {
       )}
 
       {/* Industrias compatibles - Usamos el componente reutilizable */}
-      <section className="gard-section py-16 md:py-24 bg-gray-50 dark:bg-gray-800">
-        <div className="gard-container max-w-7xl mx-auto px-4">
-          <h2 className="text-heading-2 mb-6 text-center">Industrias que protegemos con este servicio</h2>
-          <p className="text-body-lg text-muted-foreground mb-12 max-w-3xl mx-auto text-center">
+      <section className="gard-section py-16 md:py-24 bg-[#0A0C12] relative">
+        <div className="absolute inset-0 bg-[url('/images/textures/noise-pattern.png')] opacity-10"></div>
+        <div className="gard-container max-w-7xl mx-auto px-4 relative z-10">
+          <h2 className="text-heading-2 mb-6 text-center text-white">Industrias que protegemos con este servicio</h2>
+          <p className="text-body-lg text-gray-300 mb-12 max-w-3xl mx-auto text-center">
             Adaptamos nuestras soluciones de seguridad a los desafíos específicos de cada sector
           </p>
           
@@ -295,10 +293,10 @@ export default function ServicioPage({ params }: { params: { slug: string } }) {
       </section>
 
       {/* Servicios relacionados */}
-      <section className="gard-section py-16 md:py-24 bg-white dark:bg-[hsl(var(--gard-background))]">
+      <section className="gard-section py-16 md:py-24 bg-[#0A0C12]">
         <div className="gard-container max-w-7xl mx-auto px-4">
-          <h2 className="text-heading-2 mb-6 text-center">Servicios relacionados</h2>
-          <p className="text-body-lg text-muted-foreground mb-12 max-w-3xl mx-auto text-center">
+          <h2 className="text-heading-2 mb-6 text-center text-white">Servicios relacionados</h2>
+          <p className="text-body-lg text-gray-300 mb-12 max-w-3xl mx-auto text-center">
             Descubre otros servicios complementarios para una solución de seguridad integral
           </p>
           
@@ -310,23 +308,23 @@ export default function ServicioPage({ params }: { params: { slug: string } }) {
                 <Link 
                   key={index}
                   href={`/servicios/${servicioRelacionado.slug}`}
-                  className="bg-card dark:bg-[hsl(var(--gard-card))] rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col h-full"
+                  className="bg-[hsl(var(--gard-card))] rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col h-full"
                 >
                   <div className="flex items-center mb-4">
-                    {servicioRelacionado.icon === "ShieldCheck" && <ShieldCheck className="h-8 w-8 text-primary dark:text-[hsl(var(--gard-accent))] mr-3" />}
-                    {servicioRelacionado.icon === "Shield" && <ShieldCheck className="h-8 w-8 text-primary dark:text-[hsl(var(--gard-accent))] mr-3" />}
-                    {servicioRelacionado.icon === "Eye" && <Stethoscope className="h-8 w-8 text-primary dark:text-[hsl(var(--gard-accent))] mr-3" />}
-                    {servicioRelacionado.icon === "Plane" && <Plane className="h-8 w-8 text-primary dark:text-[hsl(var(--gard-accent))] mr-3" />}
-                    {servicioRelacionado.icon === "ShieldAlert" && <ShieldCheck className="h-8 w-8 text-primary dark:text-[hsl(var(--gard-accent))] mr-3" />}
-                    {servicioRelacionado.icon === "ClipboardCheck" && <ClipboardCheck className="h-8 w-8 text-primary dark:text-[hsl(var(--gard-accent))] mr-3" />}
-                    {servicioRelacionado.icon === "FileText" && <FileText className="h-8 w-8 text-primary dark:text-[hsl(var(--gard-accent))] mr-3" />}
-                    <h3 className="text-xl font-semibold">{servicioRelacionado.name}</h3>
+                    {servicioRelacionado.icon === "ShieldCheck" && <ShieldCheck className="h-8 w-8 text-[hsl(var(--gard-accent))] mr-3" />}
+                    {servicioRelacionado.icon === "Shield" && <ShieldCheck className="h-8 w-8 text-[hsl(var(--gard-accent))] mr-3" />}
+                    {servicioRelacionado.icon === "Eye" && <Stethoscope className="h-8 w-8 text-[hsl(var(--gard-accent))] mr-3" />}
+                    {servicioRelacionado.icon === "Plane" && <Plane className="h-8 w-8 text-[hsl(var(--gard-accent))] mr-3" />}
+                    {servicioRelacionado.icon === "ShieldAlert" && <ShieldCheck className="h-8 w-8 text-[hsl(var(--gard-accent))] mr-3" />}
+                    {servicioRelacionado.icon === "ClipboardCheck" && <ClipboardCheck className="h-8 w-8 text-[hsl(var(--gard-accent))] mr-3" />}
+                    {servicioRelacionado.icon === "FileText" && <FileText className="h-8 w-8 text-[hsl(var(--gard-accent))] mr-3" />}
+                    <h3 className="text-xl font-semibold text-white">{servicioRelacionado.name}</h3>
                   </div>
-                  <p className="text-body-base text-muted-foreground mb-4 flex-grow">
+                  <p className="text-body-base text-gray-300 mb-4 flex-grow">
                     {servicioRelacionado.description}
                   </p>
                   <div className="flex justify-end mt-auto">
-                    <span className="inline-flex items-center text-primary dark:text-[hsl(var(--gard-accent))] font-medium">
+                    <span className="inline-flex items-center text-[hsl(var(--gard-accent))] font-medium">
                       Ver servicio <ArrowRight className="ml-1 h-4 w-4" />
                     </span>
                   </div>
@@ -336,13 +334,10 @@ export default function ServicioPage({ params }: { params: { slug: string } }) {
         </div>
       </section>
 
-      {/* CTA Final */}
-      <CtaFinal 
-        title={`¿Necesitas un servicio de ${servicio.name} personalizado?`}
-        description="Cada empresa tiene desafíos únicos. Contacta con nuestro equipo para una solución adaptada a tus necesidades específicas."
-        ctaLabel="Solicita tu cotización"
-        ctaHref="/cotizar"
-        variant="soft"
+      {/* Formulario de cotización */}
+      <FormularioCotizacionSeccion 
+        prefillServicio={servicio.name}
+        className="bg-[#0A0C12]" 
       />
     </>
   );

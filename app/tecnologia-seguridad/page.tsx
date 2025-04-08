@@ -20,9 +20,9 @@ import {
   CardHeader, 
   CardTitle 
 } from "@/components/ui/card";
-import CtaFinal from '@/components/ui/shared/CtaFinal';
 import TecnologiaLandingClient from './TecnologiaLandingClient';
 import GardHero from '@/components/layouts/GardHero';
+import FormularioCotizacionSeccion from '@/app/components/FormularioCotizacionSeccion';
 
 export default function Page() {
   return (
@@ -35,7 +35,7 @@ export default function Page() {
         title="Innovación en Tecnología para Seguridad Privada"
         subtitle="Inteligencia artificial, videovigilancia avanzada y sistemas de monitoreo en tiempo real."
         ctaTexto="Conocer más"
-        ctaHref="/cotizar"
+        ctaHref="#cotizar"
         imageId="678cad4f-9b0d-49e6-3bbd-0d747a2fdc00"
         badge={{
           icon: <Cpu className="h-4 w-4" />,
@@ -309,13 +309,7 @@ export default function Page() {
       </section>
 
       {/* CTA Final */}
-      <CtaFinal 
-        title="¿Quieres ver cómo operamos todo en tiempo real?"
-        description="Agenda una demostración o solicita un presupuesto personalizado para tu empresa."
-        ctaLabel="Agenda una Demo"
-        ctaHref="/contacto"
-        variant="soft"
-      />
+      <FormularioCotizacionSeccion />
     </>
   );
 }

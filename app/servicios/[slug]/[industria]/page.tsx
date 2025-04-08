@@ -8,6 +8,7 @@ import { servicios } from '@/app/data/servicios';
 import { industries } from '@/app/data/industries';
 import { getServicioIndustriaData } from '@/app/data/servicios-por-industria';
 import LinkParamsAware from '@/app/components/LinkParamsAware';
+import FormularioCotizacionSeccion from '@/app/components/FormularioCotizacionSeccion';
 
 type PageProps = {
   params: {
@@ -111,11 +112,12 @@ export default function ServicioIndustriaPage({ params }: PageProps) {
       </section>
 
       {/* Sección de descripción específica */}
-      <section className="gard-section">
-        <div className="gard-container">
+      <section className="gard-section bg-[#0A0C12] relative">
+        <div className="absolute inset-0 bg-[url('/images/textures/noise-pattern.png')] opacity-10"></div>
+        <div className="gard-container relative z-10">
           <div className="max-w-3xl mx-auto text-center mb-12">
-            <h2 className="text-heading-2 mb-6">{servicio.name} especializado para {industry.name}</h2>
-            <p className="text-body-lg text-muted-foreground">
+            <h2 className="text-heading-2 mb-6 text-white">{servicio.name} especializado para {industry.name}</h2>
+            <p className="text-body-lg text-gray-300 mb-12">
               {servicioIndustriaData.description || `Nuestro servicio de ${servicio.name.toLowerCase()} para el sector ${industry.name} combina nuestra experiencia en seguridad con un profundo conocimiento de los desafíos específicos de esta industria.`}
             </p>
           </div>
@@ -124,10 +126,10 @@ export default function ServicioIndustriaPage({ params }: PageProps) {
             <div>
               <div className="space-y-6">
                 <div className="flex items-start">
-                  <CheckCircle className="h-6 w-6 text-primary mr-4 mt-1" />
+                  <CheckCircle className="h-6 w-6 text-[hsl(var(--gard-accent))] mr-4 mt-1" />
                   <div>
-                    <h3 className="text-heading-5 mb-2">Especialización sectorial</h3>
-                    <p className="text-muted-foreground">
+                    <h3 className="text-heading-5 mb-2 text-white">Especialización sectorial</h3>
+                    <p className="text-gray-300">
                       Nuestro personal cuenta con capacitación específica sobre los protocolos y procesos 
                       de seguridad propios del sector {industry.name}, garantizando un servicio adaptado a 
                       sus necesidades particulares.
@@ -136,10 +138,10 @@ export default function ServicioIndustriaPage({ params }: PageProps) {
                 </div>
                 
                 <div className="flex items-start">
-                  <CheckCircle className="h-6 w-6 text-primary mr-4 mt-1" />
+                  <CheckCircle className="h-6 w-6 text-[hsl(var(--gard-accent))] mr-4 mt-1" />
                   <div>
-                    <h3 className="text-heading-5 mb-2">Cumplimiento normativo</h3>
-                    <p className="text-muted-foreground">
+                    <h3 className="text-heading-5 mb-2 text-white">Cumplimiento normativo</h3>
+                    <p className="text-gray-300">
                       Aseguramos el cumplimiento de todas las regulaciones y estándares específicos del 
                       sector {industry.name}, manteniendo su operación conforme y segura en todo momento.
                     </p>
@@ -147,109 +149,47 @@ export default function ServicioIndustriaPage({ params }: PageProps) {
                 </div>
                 
                 <div className="flex items-start">
-                  <CheckCircle className="h-6 w-6 text-primary mr-4 mt-1" />
+                  <CheckCircle className="h-6 w-6 text-[hsl(var(--gard-accent))] mr-4 mt-1" />
                   <div>
-                    <h3 className="text-heading-5 mb-2">Tecnología avanzada</h3>
-                    <p className="text-muted-foreground">
-                      Implementamos las últimas tecnologías en {servicio.name.toLowerCase()}, adaptadas para 
-                      abordar de manera eficiente los riesgos específicos presentes en el sector {industry.name}.
+                    <h3 className="text-heading-5 mb-2 text-white">Respuesta personalizada</h3>
+                    <p className="text-gray-300">
+                      Diseñamos protocolos de {servicio.name.toLowerCase()} específicos para los riesgos 
+                      y vulnerabilidades habituales en {industry.name}, garantizando una cobertura integral 
+                      y eficiente.
                     </p>
                   </div>
                 </div>
               </div>
             </div>
             
-            <div className="relative h-[400px] rounded-xl overflow-hidden">
-              <CloudflareImage
-                imageId={servicio.heroImageId || industry.imageId}
-                alt={`${servicio.name} adaptado para ${industry.name}`}
-                fill
-                className="object-cover"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Sección: Desafíos y soluciones específicas */}
-      <section className="gard-section bg-muted/5">
-        <div className="gard-container">
-          <h2 className="text-heading-2 mb-8 text-center">Desafíos y soluciones para {industry.name}</h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12 mb-12">
-            <div className="flex flex-col">
-              <div className="flex items-center mb-4">
-                <div className="h-12 w-12 bg-primary/10 rounded-full flex items-center justify-center mr-4">
-                  <Shield className="h-6 w-6 text-primary" />
-                </div>
-                <h3 className="text-heading-4">Desafíos específicos</h3>
-              </div>
+            <div className="space-y-6">
+              <h3 className="text-heading-4 mb-4 text-white">Soluciones que ofrecemos</h3>
               
-              <div className="bg-card p-6 rounded-xl flex-grow">
+              <div className="bg-[hsl(var(--gard-card))] p-6 rounded-xl flex-grow border border-gray-700">
                 <ul className="space-y-4">
                   <li className="flex items-start">
-                    <div className="h-6 w-6 bg-red-100 rounded-full flex items-center justify-center mr-3 mt-1 flex-shrink-0">
-                      <span className="text-red-500 text-sm font-bold">!</span>
+                    <div className="h-6 w-6 bg-green-900 rounded-full flex items-center justify-center mr-3 mt-1 flex-shrink-0">
+                      <CheckCircle className="h-4 w-4 text-green-400" />
                     </div>
-                    <p className="text-muted-foreground">
-                      {servicioIndustriaData.desafios?.[0] || `Protección de activos de alto valor específicos de ${industry.name}, que requieren medidas de seguridad especializadas.`}
-                    </p>
-                  </li>
-                  
-                  <li className="flex items-start">
-                    <div className="h-6 w-6 bg-red-100 rounded-full flex items-center justify-center mr-3 mt-1 flex-shrink-0">
-                      <span className="text-red-500 text-sm font-bold">!</span>
-                    </div>
-                    <p className="text-muted-foreground">
-                      {servicioIndustriaData.desafios?.[1] || `Cumplimiento de regulaciones específicas del sector ${industry.name} en materia de seguridad y protección.`}
-                    </p>
-                  </li>
-                  
-                  <li className="flex items-start">
-                    <div className="h-6 w-6 bg-red-100 rounded-full flex items-center justify-center mr-3 mt-1 flex-shrink-0">
-                      <span className="text-red-500 text-sm font-bold">!</span>
-                    </div>
-                    <p className="text-muted-foreground">
-                      {servicioIndustriaData.desafios?.[2] || `Gestión de riesgos específicos asociados con las operaciones diarias en el sector ${industry.name}.`}
-                    </p>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            
-            <div className="flex flex-col">
-              <div className="flex items-center mb-4">
-                <div className="h-12 w-12 bg-primary/10 rounded-full flex items-center justify-center mr-4">
-                  <LightbulbIcon className="h-6 w-6 text-primary" />
-                </div>
-                <h3 className="text-heading-4">Nuestras soluciones</h3>
-              </div>
-              
-              <div className="bg-card p-6 rounded-xl flex-grow">
-                <ul className="space-y-4">
-                  <li className="flex items-start">
-                    <div className="h-6 w-6 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-1 flex-shrink-0">
-                      <CheckCircle className="h-4 w-4 text-green-500" />
-                    </div>
-                    <p className="text-muted-foreground">
+                    <p className="text-gray-300">
                       {servicioIndustriaData.soluciones?.[0] || `Personal especializado con capacitación específica en los procesos y riesgos del sector ${industry.name}.`}
                     </p>
                   </li>
                   
                   <li className="flex items-start">
-                    <div className="h-6 w-6 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-1 flex-shrink-0">
-                      <CheckCircle className="h-4 w-4 text-green-500" />
+                    <div className="h-6 w-6 bg-green-900 rounded-full flex items-center justify-center mr-3 mt-1 flex-shrink-0">
+                      <CheckCircle className="h-4 w-4 text-green-400" />
                     </div>
-                    <p className="text-muted-foreground">
+                    <p className="text-gray-300">
                       {servicioIndustriaData.soluciones?.[1] || `Tecnologías y procedimientos diseñados específicamente para abordar los desafíos de seguridad en ${industry.name}.`}
                     </p>
                   </li>
                   
                   <li className="flex items-start">
-                    <div className="h-6 w-6 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-1 flex-shrink-0">
-                      <CheckCircle className="h-4 w-4 text-green-500" />
+                    <div className="h-6 w-6 bg-green-900 rounded-full flex items-center justify-center mr-3 mt-1 flex-shrink-0">
+                      <CheckCircle className="h-4 w-4 text-green-400" />
                     </div>
-                    <p className="text-muted-foreground">
+                    <p className="text-gray-300">
                       {servicioIndustriaData.soluciones?.[2] || `Evaluaciones continuas y planes de mejora adaptados a la evolución de las amenazas en el sector ${industry.name}.`}
                     </p>
                   </li>
@@ -260,96 +200,133 @@ export default function ServicioIndustriaPage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* Sección: Beneficios para la industria */}
-      <section className="gard-section">
+      {/* Beneficios principales */}
+      <section className="gard-section bg-[#0A0C12]">
         <div className="gard-container">
-          <h2 className="text-heading-2 mb-6 text-center">Beneficios para el sector {industry.name}</h2>
-          <p className="text-body-lg text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
-            Nuestro servicio de {servicio.name.toLowerCase()} especializado para {industry.name} ofrece ventajas 
-            competitivas significativas para su negocio.
-          </p>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-card p-6 rounded-xl shadow-sm text-center">
-              <div className="h-16 w-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Shield className="h-8 w-8 text-primary" />
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+            <div className="md:col-span-5 order-2 md:order-1">
+              <h2 className="text-heading-2 mb-6 text-white">Beneficios para su empresa</h2>
+              
+              <div className="space-y-4">
+                {servicioIndustriaData.beneficios ? 
+                  servicioIndustriaData.beneficios.map((beneficio: string, index: number) => (
+                    <div key={index} className="flex items-start">
+                      <div className="mt-1 mr-3">
+                        <ArrowRight className="h-5 w-5 text-[hsl(var(--gard-accent))]" />
+                      </div>
+                      <p className="text-gray-300">{beneficio}</p>
+                    </div>
+                  )) : (
+                    <>
+                      <div className="flex items-start">
+                        <div className="mt-1 mr-3">
+                          <ArrowRight className="h-5 w-5 text-[hsl(var(--gard-accent))]" />
+                        </div>
+                        <p className="text-gray-300">Reducción significativa de incidentes de seguridad específicos del sector {industry.name}.</p>
+                      </div>
+                      <div className="flex items-start">
+                        <div className="mt-1 mr-3">
+                          <ArrowRight className="h-5 w-5 text-[hsl(var(--gard-accent))]" />
+                        </div>
+                        <p className="text-gray-300">Cumplimiento garantizado de normativas y regulaciones sectoriales.</p>
+                      </div>
+                      <div className="flex items-start">
+                        <div className="mt-1 mr-3">
+                          <ArrowRight className="h-5 w-5 text-[hsl(var(--gard-accent))]" />
+                        </div>
+                        <p className="text-gray-300">Optimización de costos al adaptar los servicios exactamente a sus necesidades.</p>
+                      </div>
+                      <div className="flex items-start">
+                        <div className="mt-1 mr-3">
+                          <ArrowRight className="h-5 w-5 text-[hsl(var(--gard-accent))]" />
+                        </div>
+                        <p className="text-gray-300">Mayor tranquilidad para su equipo, clientes y stakeholders.</p>
+                      </div>
+                    </>
+                  )}
               </div>
-              <h3 className="text-heading-5 mb-3">Mayor tranquilidad</h3>
-              <p className="text-muted-foreground">
-                La implementación de medidas de seguridad específicas para el sector {industry.name} 
-                permite que su equipo se concentre en su actividad principal mientras nosotros 
-                gestionamos los riesgos.
-              </p>
+              
+              <div className="mt-8">
+                <a 
+                  href="#cotizar"
+                  className="gard-btn gard-btn-primary inline-flex items-center"
+                >
+                  Solicitar información <ArrowRight className="ml-2 h-5 w-5" />
+                </a>
+              </div>
             </div>
             
-            <div className="bg-card p-6 rounded-xl shadow-sm text-center">
-              <div className="h-16 w-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <BarChart3 className="h-8 w-8 text-primary" />
+            <div className="md:col-span-7 order-1 md:order-2">
+              <div className="relative h-[400px] rounded-2xl overflow-hidden">
+                <CloudflareImage
+                  imageId={servicioIndustriaData.featuredImageId || industry.imageId}
+                  alt={`${servicio.name} para ${industry.name}`}
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
               </div>
-              <h3 className="text-heading-5 mb-3">Reducción de incidentes</h3>
-              <p className="text-muted-foreground">
-                Nuestras soluciones personalizadas para {industry.name} han demostrado reducir 
-                significativamente los incidentes de seguridad, minimizando pérdidas y 
-                disrupciones operativas.
-              </p>
-            </div>
-            
-            <div className="bg-card p-6 rounded-xl shadow-sm text-center">
-              <div className="h-16 w-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <TrendingUp className="h-8 w-8 text-primary" />
-              </div>
-              <h3 className="text-heading-5 mb-3">Ventaja competitiva</h3>
-              <p className="text-muted-foreground">
-                Un entorno seguro y protegido mejora su imagen corporativa y genera mayor 
-                confianza entre clientes, socios y empleados, creando una ventaja 
-                diferencial en el sector {industry.name}.
-              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Sección: Casos de éxito y testimonios */}
-      <section className="gard-section bg-muted/5">
-        <div className="gard-container">
-          <h2 className="text-heading-2 mb-6 text-center">Experiencia comprobada en {industry.name}</h2>
-          <p className="text-body-lg text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
+      {/* Casos de éxito */}
+      <section className="gard-section bg-[#0A0C12] relative">
+        <div className="absolute inset-0 bg-[url('/images/textures/noise-pattern.png')] opacity-10"></div>
+        <div className="gard-container relative z-10">
+          <h2 className="text-heading-2 mb-6 text-center text-white">Experiencia comprobada en {industry.name}</h2>
+          <p className="text-body-lg text-center text-gray-300 mb-12 max-w-3xl mx-auto">
             Empresas líderes en el sector {industry.name} confían en nuestras soluciones de {servicio.name.toLowerCase()}.
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+            <div className="bg-[hsl(var(--gard-card))] p-6 rounded-xl shadow-sm border border-gray-700">
               <div className="flex items-center mb-4">
-                <div className="h-12 w-12 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mr-4">
-                  <span className="text-blue-600 dark:text-blue-300 text-xl font-bold">C</span>
+                <div className="h-12 w-12 bg-blue-900 rounded-full flex items-center justify-center mr-4">
+                  <span className="text-blue-300 text-xl font-bold">C</span>
                 </div>
                 <div>
-                  <h3 className="text-heading-5">Caso de estudio: Protección integral</h3>
-                  <p className="text-sm text-muted-foreground">Empresa líder en {industry.name}</p>
+                  <h3 className="text-heading-5 text-white">Caso de estudio: Protección integral</h3>
+                  <p className="text-sm text-gray-400">Empresa líder en {industry.name}</p>
                 </div>
               </div>
-              <p className="text-muted-foreground mb-4">
+              <p className="text-gray-300 mb-4">
                 {servicioIndustriaData.casoExito || `Implementamos un sistema completo de ${servicio.name.toLowerCase()} para una empresa líder del sector ${industry.name}, logrando reducir los incidentes de seguridad en un 65% y optimizando los costos operativos relacionados con la seguridad.`}
               </p>
               <div className="flex justify-end">
-                <Link href="/contacto" className="text-primary hover:underline text-sm flex items-center">
+                <Link href="/contacto" className="text-[hsl(var(--gard-accent))] hover:underline text-sm flex items-center">
                   Solicitar información detallada
                   <ArrowRight className="ml-1 h-4 w-4" />
                 </Link>
               </div>
             </div>
             
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
-              <div className="mb-4 text-gray-400">"</div>
-              <p className="text-muted-foreground mb-6 italic">
-                {servicioIndustriaData.testimonio || `La implementación del servicio de ${servicio.name.toLowerCase()} especializado para nuestra operación de ${industry.name} ha sido una decisión estratégica fundamental. El profundo conocimiento del sector por parte de Gard Security ha permitido una adaptación perfecta a nuestras necesidades específicas.`}
-              </p>
-              <div className="flex items-center">
-                <div className="h-10 w-10 bg-gray-200 dark:bg-gray-700 rounded-full mr-3"></div>
-                <div>
-                  <p className="font-medium">Director de Operaciones</p>
-                  <p className="text-sm text-muted-foreground">Empresa líder en {industry.name}</p>
+            <div className="bg-[hsl(var(--gard-card))] p-6 rounded-xl shadow-sm border border-gray-700">
+              <div className="flex items-center mb-4">
+                <div className="h-12 w-12 bg-blue-900 rounded-full flex items-center justify-center mr-4">
+                  <span className="text-blue-300 text-xl font-bold">T</span>
                 </div>
+                <div>
+                  <h3 className="text-heading-5 text-white">Testimonios de clientes</h3>
+                  <p className="text-sm text-gray-400">La opinión de quienes confían en nosotros</p>
+                </div>
+              </div>
+              
+              <blockquote className="border-l-4 border-[hsl(var(--gard-accent))] pl-4 italic mb-4">
+                <p className="text-gray-300 mb-2">
+                  {servicioIndustriaData.testimonio || `"El servicio de ${servicio.name.toLowerCase()} que Gard Security ha implementado en nuestras instalaciones ha superado todas nuestras expectativas. Su conocimiento del sector ${industry.name} fue clave para adaptar perfectamente la solución a nuestras necesidades específicas."`}
+                </p>
+                <footer className="text-sm text-gray-400">
+                  - Director de Operaciones, empresa líder en {industry.name}
+                </footer>
+              </blockquote>
+              
+              <div className="flex justify-end">
+                <Link href="/testimonios" className="text-[hsl(var(--gard-accent))] hover:underline text-sm flex items-center">
+                  Ver más testimonios
+                  <ArrowRight className="ml-1 h-4 w-4" />
+                </Link>
               </div>
             </div>
           </div>
@@ -406,8 +383,15 @@ export default function ServicioIndustriaPage({ params }: PageProps) {
         title={`Proteja su operación de ${industry.name} con nuestro servicio especializado`}
         description={`Solicite hoy mismo una evaluación personalizada de sus necesidades de ${servicio.name.toLowerCase()} para el sector ${industry.name}.`}
         ctaLabel="Solicitar cotización"
-        ctaHref="/cotizar"
+        ctaHref="#cotizar"
         variant="soft"
+      />
+      
+      {/* Formulario de cotización */}
+      <FormularioCotizacionSeccion 
+        prefillServicio={servicio.name}
+        prefillIndustria={industry.name}
+        className="bg-[#0A0C12]"
       />
     </main>
   );

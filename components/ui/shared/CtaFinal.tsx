@@ -18,7 +18,7 @@ export default function CtaFinal({
   title = "¿Listo para proteger su empresa?",
   description = "Solicita una cotización personalizada y descubre cómo podemos ayudarte.",
   ctaLabel = "Solicitar cotización",
-  ctaHref = "/cotizar",
+  ctaHref = "#cotizar",
   variant = "default"
 }: CtaFinalProps) {
   const ref = useRef(null)

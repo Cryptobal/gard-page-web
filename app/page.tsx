@@ -22,6 +22,7 @@ import IndustriasGridPage from './components/IndustriasGridPage';
 import CtaFinal from '@/components/ui/shared/CtaFinal';
 import GardHero from '@/components/layouts/GardHero';
 import ServiciosBuscador from './components/home/ServiciosBuscador';
+import FormularioCotizacionSeccion from './components/FormularioCotizacionSeccion';
 
 export default function Home() {
   return (
@@ -31,7 +32,7 @@ export default function Home() {
         title="Seguridad de Clase Mundial para Empresas Exigentes"
         subtitle="Protegemos lo que más importa con soluciones integrales diseñadas para los desafíos de seguridad más complejos."
         ctaTexto="Cotizar Ahora"
-        ctaHref="/cotizar"
+        ctaHref="#cotizar"
         videoId="ac93b4a10e87873748171425b9f8066d"
         imageId={cloudflareImages.hero.home}
         variant="home"
@@ -169,18 +170,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Preguntas Frecuentes - Comentado temporalmente */}
-      {/* <FaqSection /> */}
+      {/* Preguntas Frecuentes */}
       <FaqSection />
 
-      {/* CTA final */}
-      <CtaFinal 
-        title="¿Listo para proteger tu empresa?"
-        description="Contáctenos hoy para una evaluación gratuita de sus necesidades de seguridad y descubre por qué las empresas líderes confían en Gard Security."
-        ctaLabel="Solicitar cotización"
-        ctaHref="/cotizar"
-        variant="soft"
-      />
+      {/* Formulario de cotización */}
+      <FormularioCotizacionSeccion />
+
+      {/* CTA final - Eliminado porque ya tenemos el formulario */}
     </>
   );
 } 
