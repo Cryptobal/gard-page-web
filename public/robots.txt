@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Allow: /cotizar
 
 Sitemap: https://www.gard.cl/sitemap.xml

@@ -12,6 +12,7 @@ Allow: /servicios-por-industria/
 Allow: /servicios/
 Allow: /industrias/
 Allow: /blog/
+Allow: /cotizar
 
 # Archivos específicos a no indexar
 Disallow: /*.json$
