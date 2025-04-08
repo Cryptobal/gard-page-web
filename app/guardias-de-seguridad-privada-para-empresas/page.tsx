@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import CotizadorGuardias from '@/app/components/CotizadorGuardias';
+import FormularioCotizacionSeccion from '@/app/components/FormularioCotizacionSeccion';
 import { motion } from 'framer-motion';
 
 export default function GuardiasPage() {
@@ -31,7 +31,12 @@ export default function GuardiasPage() {
       </section>
 
       {/* Cotizador de Guardias */}
-      <CotizadorGuardias />
+      <div className="px-4 py-8">
+        <h2 className="text-center text-3xl font-bold mb-8">Solicita una cotización para tu servicio de guardias</h2>
+        <FormularioCotizacionSeccion 
+          prefillServicio="Guardias de Seguridad"
+        />
+      </div>
 
       {/* Servicios Adicionales */}
       <section className="gard-section w-full py-16 md:py-24 bg-gray-50 dark:bg-gray-800">

@@ -43,12 +43,32 @@ const formSchema = z.object({
   comuna: z.string().optional(),
   ciudad: z.string().optional(),
   tipoIndustria: z.string().min(1, { message: 'Selecciona un tipo de industria' }),
+  servicioRequerido: z.string().min(1, { message: 'Selecciona un servicio requerido' }),
   cotizacion: z.string().min(3, { message: 'Proporciona los detalles de tu solicitud' }),
 });
 
+// Lista de servicios
+const servicios = [
+  'Guardias de Seguridad',
+  'Vigilancia Electrónica',
+  'Control de Acceso',
+  'Monitoreo 24/7',
+  'Seguridad Perimetral',
+  'Drones de Seguridad',
+  'Consultoría de Seguridad',
+  'Auditoría de Seguridad',
+  'Prevención de Intrusiones',
+  'Otro',
+];
+
 type FormValues = z.infer<typeof formSchema>;
 
-export default function CotizacionForm() {
+interface CotizacionFormProps {
+  prefillServicio?: string;
+  prefillIndustria?: string;
+}
+
+export default function CotizacionForm({ prefillServicio, prefillIndustria }: CotizacionFormProps = {}) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formStatus, setFormStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const autocompleteInputRef = useRef<HTMLInputElement | null>(null);
@@ -68,6 +88,7 @@ export default function CotizacionForm() {
       comuna: '',
       ciudad: '',
       tipoIndustria: '',
+      servicioRequerido: '',
       cotizacion: '',
     },
   });
@@ -83,21 +104,32 @@ export default function CotizacionForm() {
   useEffect(() => {
     if (typeof window === 'undefined') return;
     
-    // Obtener valores guardados en navegación previa
-    const savedIndustry = sessionStorage.getItem('user_industry') || '';
-    const savedService = sessionStorage.getItem('user_service') || '';
+    // Obtener valores guardados en navegación previa o desde props
+    const savedIndustry = prefillIndustria || sessionStorage.getItem('user_industry') || '';
+    const savedService = prefillServicio || sessionStorage.getItem('user_service') || '';
     
     // Rellenar formulario con datos guardados si existen
     if (savedIndustry) {
       setValue('tipoIndustria', savedIndustry);
-      console.log('✅ Industria cargada desde sessionStorage:', savedIndustry);
+      console.log('✅ Industria cargada:', savedIndustry);
     }
     
-    // Personalizar el texto de cotización con el servicio si existe
+    // Autocompletar el servicio requerido si existe
     if (savedService) {
+      // Buscar coincidencia en la lista de servicios
+      const servicioEncontrado = servicios.find(s => 
+        s.toLowerCase().includes(savedService.toLowerCase())
+      );
+      
+      if (servicioEncontrado) {
+        setValue('servicioRequerido', servicioEncontrado);
+        console.log('✅ Servicio requerido cargado:', servicioEncontrado);
+      }
+      
+      // Personalizar el texto de cotización con el servicio
       const cotizacionInicial = `Estoy interesado en contratar servicios de ${savedService}`;
       setValue('cotizacion', cotizacionInicial);
-      console.log('✅ Servicio cargado desde sessionStorage:', savedService);
+      console.log('✅ Servicio cargado:', savedService);
     }
     
     // También obtener UTMs para registrarlos en la conversión después
@@ -109,7 +141,7 @@ export default function CotizacionForm() {
     if (utmSource || utmMedium || utmCampaign) {
       console.log('✅ UTMs detectados en URL:', { utmSource, utmMedium, utmCampaign });
     }
-  }, [setValue]);
+  }, [setValue, prefillServicio, prefillIndustria]);
 
   useEffect(() => {
     // Carga de la API de Google Maps
@@ -192,7 +224,9 @@ export default function CotizacionForm() {
         trackFormSubmission({
           formType: 'cotizacion',
           additionalData: {
-            tipo_industria: data.tipoIndustria
+            tipo_industria: data.tipoIndustria,
+            servicio_requerido: data.servicioRequerido,
+            pagina_origen: window.location.pathname
           }
         });
       } else {
@@ -374,35 +408,60 @@ export default function CotizacionForm() {
               />
             </div>
 
-            <FormField
-              control={form.control}
-              name="tipoIndustria"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Tipo de industria</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Selecciona el tipo de industria" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      <SelectItem value="Banca y Finanzas">Banca y Finanzas</SelectItem>
-                      <SelectItem value="Retail y Centros Comerciales">Retail y Centros Comerciales</SelectItem>
-                      <SelectItem value="Salud (Hospitales y Clínicas)">Salud (Hospitales y Clínicas)</SelectItem>
-                      <SelectItem value="Educación (Colegios y Universidades)">Educación (Colegios y Universidades)</SelectItem>
-                      <SelectItem value="Infraestructura Crítica">Infraestructura Crítica</SelectItem>
-                      <SelectItem value="Transporte y Logística">Transporte y Logística</SelectItem>
-                      <SelectItem value="Construcción e Inmobiliario">Construcción e Inmobiliario</SelectItem>
-                      <SelectItem value="Minería y Energía">Minería y Energía</SelectItem>
-                      <SelectItem value="Corporativo y Oficinas">Corporativo y Oficinas</SelectItem>
-                      <SelectItem value="Condominios y Residencias">Condominios y Residencias</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <FormField
+                control={form.control}
+                name="tipoIndustria"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Tipo de industria</FormLabel>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Selecciona el tipo de industria" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="Banca y Finanzas">Banca y Finanzas</SelectItem>
+                        <SelectItem value="Retail y Centros Comerciales">Retail y Centros Comerciales</SelectItem>
+                        <SelectItem value="Salud (Hospitales y Clínicas)">Salud (Hospitales y Clínicas)</SelectItem>
+                        <SelectItem value="Educación (Colegios y Universidades)">Educación (Colegios y Universidades)</SelectItem>
+                        <SelectItem value="Infraestructura Crítica">Infraestructura Crítica</SelectItem>
+                        <SelectItem value="Transporte y Logística">Transporte y Logística</SelectItem>
+                        <SelectItem value="Construcción e Inmobiliario">Construcción e Inmobiliario</SelectItem>
+                        <SelectItem value="Minería y Energía">Minería y Energía</SelectItem>
+                        <SelectItem value="Corporativo y Oficinas">Corporativo y Oficinas</SelectItem>
+                        <SelectItem value="Condominios y Residencias">Condominios y Residencias</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="servicioRequerido"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Servicio requerido</FormLabel>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Selecciona el servicio que necesitas" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {servicios.map((servicio) => (
+                          <SelectItem key={servicio} value={servicio}>{servicio}</SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
 
             <FormField
               control={form.control}

@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useEffect } from 'react';
-import CotizadorReutilizable from './cotizador/CotizadorReutilizable';
+import CotizacionForm from '../cotizar/components/CotizacionForm';
 
 interface FormularioCotizacionSeccionProps {
   className?: string;
@@ -145,7 +145,7 @@ export default function FormularioCotizacionSeccion({
           {/* Columna del formulario - Mostrar primero en móvil */}
           <div className="order-1 lg:order-2 lg:col-span-7">
             <div className="pt-4 md:pt-0"> {/* Añadir padding top en móvil */}
-              <CotizadorReutilizable 
+              <CotizacionForm 
                 prefillServicio={prefillServicio}
                 prefillIndustria={prefillIndustria}
               />

@@ -3,9 +3,9 @@
 import CotizacionForm from './components/CotizacionForm';
 import UrlParamsProcessor from './components/UrlParamsProcessor';
 import { ArrowRight, Clipboard } from 'lucide-react';
-import CotizadorLandingClient from './components/CotizadorLandingClient';
 import GardHero from '@/components/layouts/GardHero';
 import { useRef } from 'react';
+import Head from 'next/head';
 
 export default function CotizarPage() {
   // Función para desplazar al formulario cuando se hace clic en el botón
@@ -18,9 +18,6 @@ export default function CotizarPage() {
 
   return (
     <>
-      {/* Componente SEO cliente */}
-      <CotizadorLandingClient />
-      
       {/* Componente para procesar parámetros URL */}
       <UrlParamsProcessor />
 
