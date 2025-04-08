@@ -112,6 +112,14 @@ interface FormData {
   ciudad: string;
   rubro: string;
   comentarios: string;
+  // Añadir parámetros UTM
+  utm_source?: string;
+  utm_medium?: string;
+  utm_campaign?: string;
+  utm_term?: string;
+  utm_content?: string;
+  gclid?: string;
+  landing_page?: string;
 }
 
 // Lista de rubros disponibles
@@ -161,7 +169,15 @@ export default function CotizadorInteligenteV2() {
     comuna: '',
     ciudad: '',
     rubro: rubros[0],
-    comentarios: ''
+    comentarios: '',
+    // Inicializar campos UTM
+    utm_source: '',
+    utm_medium: '',
+    utm_campaign: '',
+    utm_term: '',
+    utm_content: '',
+    gclid: '',
+    landing_page: ''
   });
   
   // Estado para errores del formulario y envío
@@ -389,6 +405,52 @@ export default function CotizadorInteligenteV2() {
     return Object.keys(errors).length === 0;
   };
   
+  // Capturar parámetros UTM y landing page cuando el componente se monta
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    // Capturar parámetros UTM de la URL y localStorage
+    const urlParams = new URLSearchParams(window.location.search);
+    
+    // Lista de parámetros a capturar
+    const trackingParams = [
+      'utm_source', 
+      'utm_medium', 
+      'utm_campaign', 
+      'utm_term', 
+      'utm_content', 
+      'gclid'
+    ];
+    
+    // Obtener valores de URL o storage
+    const utmData: {[key: string]: string} = {};
+    
+    trackingParams.forEach(param => {
+      // Priorizar valor de URL
+      const value = urlParams.get(param) || localStorage.getItem(param) || sessionStorage.getItem(param) || '';
+      if (value) {
+        utmData[param] = value;
+        // Guardar en storage para persistencia
+        localStorage.setItem(param, value);
+        sessionStorage.setItem(param, value);
+        console.log(`✅ Cotizador - Parámetro capturado: ${param}=${value}`);
+      }
+    });
+    
+    // Capturar landing_page (página actual)
+    const landing = window.location.pathname;
+    utmData['landing_page'] = landing;
+    localStorage.setItem('landing_page', landing);
+    sessionStorage.setItem('landing_page', landing);
+    
+    // Actualizar formData con los valores UTM
+    setFormData(prev => ({
+      ...prev,
+      ...utmData
+    }));
+    
+  }, []);
+  
   // Enviar formulario
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -404,9 +466,21 @@ export default function CotizadorInteligenteV2() {
         return `🛡️ Turno ${rol.tipoTurno} | ${rol.horario} | ${rol.puestos} puesto(s) | ${rol.diasSemana} días/semana | ${rol.horasDia} hrs/día | Sueldo: $${rol.sueldoLiquido.toLocaleString('es-CL')} | Costo: $${costoEstimado.toLocaleString('es-CL')}`;
       }).join('\n');
 
+      // Asegurar que los parámetros UTM estén incluidos
+      const utmData = {
+        utm_source: formData.utm_source || localStorage.getItem('utm_source') || '',
+        utm_medium: formData.utm_medium || localStorage.getItem('utm_medium') || '',
+        utm_campaign: formData.utm_campaign || localStorage.getItem('utm_campaign') || '',
+        utm_term: formData.utm_term || localStorage.getItem('utm_term') || '',
+        utm_content: formData.utm_content || localStorage.getItem('utm_content') || '',
+        gclid: formData.gclid || localStorage.getItem('gclid') || '',
+        landing_page: formData.landing_page || localStorage.getItem('landing_page') || window.location.pathname,
+      };
+
       // Preparar datos para enviar
       const dataToSend = {
         ...formData,
+        ...utmData,
         roles: roles.map(rol => ({
           tipoTurno: rol.tipoTurno,
           horario: rol.horario,
@@ -453,7 +527,14 @@ export default function CotizadorInteligenteV2() {
           comuna: '',
           ciudad: '',
           rubro: rubros[0],
-          comentarios: ''
+          comentarios: '',
+          utm_source: '',
+          utm_medium: '',
+          utm_campaign: '',
+          utm_term: '',
+          utm_content: '',
+          gclid: '',
+          landing_page: ''
         });
         
         // Evento de formulario enviado usando el helper centralizado
@@ -461,7 +542,15 @@ export default function CotizadorInteligenteV2() {
           formType: 'cotizador_inteligente',
           additionalData: {
             costo_total: costoTotal,
-            roles_cantidad: roles.length
+            roles_cantidad: roles.length,
+            // Incluir explícitamente parámetros UTM
+            utm_source: utmData.utm_source,
+            utm_medium: utmData.utm_medium,
+            utm_campaign: utmData.utm_campaign,
+            utm_term: utmData.utm_term,
+            utm_content: utmData.utm_content,
+            gclid: utmData.gclid,
+            landing_page: utmData.landing_page
           }
         });
       } else {

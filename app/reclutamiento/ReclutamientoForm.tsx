@@ -44,6 +44,7 @@ import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { cn } from '@/lib/utils';
+import { trackFormSubmission } from '@/lib/analytics/formTracking';
 
 // Validador de RUT chileno usando algoritmo Módulo 11
 const validateRut = (rut: string) => {
@@ -155,7 +156,9 @@ export default function ReclutamientoForm() {
         const value = params.get(tag);
         if (value) {
           localStorage.setItem(tag, value);
+          sessionStorage.setItem(tag, value);
           setValue(tag as keyof FormValues, value);
+          console.log(`✅ Reclutamiento - Parámetro capturado: ${tag}=${value}`);
         } else if (localStorage.getItem(tag)) {
           // Si no está en la URL pero está en localStorage, usarlo
           setValue(tag as keyof FormValues, localStorage.getItem(tag) || '');
@@ -165,7 +168,9 @@ export default function ReclutamientoForm() {
       // Guardar la página actual
       const landingPage = window.location.pathname;
       localStorage.setItem('landing_page', landingPage);
+      sessionStorage.setItem('landing_page', landingPage);
       setValue('landing_page', landingPage);
+      console.log(`✅ Reclutamiento - Landing page capturada: ${landingPage}`);
     }
   }, [setValue]);
 
@@ -242,19 +247,19 @@ export default function ReclutamientoForm() {
     try {
       // Añadir UTM y otros datos de tracking al payload
       const utmData = {
-        utm_source: localStorage.getItem('utm_source') || null,
-        utm_medium: localStorage.getItem('utm_medium') || null,
-        utm_campaign: localStorage.getItem('utm_campaign') || null,
-        utm_term: localStorage.getItem('utm_term') || null,
-        utm_content: localStorage.getItem('utm_content') || null,
-        gclid: localStorage.getItem('gclid') || null,
-        landing_page: localStorage.getItem('landing_page') || window.location.pathname,
+        utm_source: data.utm_source || localStorage.getItem('utm_source') || '',
+        utm_medium: data.utm_medium || localStorage.getItem('utm_medium') || '',
+        utm_campaign: data.utm_campaign || localStorage.getItem('utm_campaign') || '',
+        utm_term: data.utm_term || localStorage.getItem('utm_term') || '',
+        utm_content: data.utm_content || localStorage.getItem('utm_content') || '',
+        gclid: data.gclid || localStorage.getItem('gclid') || '',
+        landing_page: data.landing_page || localStorage.getItem('landing_page') || window.location.pathname,
       };
 
       // Combinar con los datos del formulario
       const fullFormData = {
         ...data,
-        ...utmData,
+        ...utmData
       };
 
       const response = await fetch('https://hook.us1.make.com/5ozb2y5aucrr75d2xtpshmlyckds9nl4', {
@@ -268,6 +273,23 @@ export default function ReclutamientoForm() {
       if (response.ok) {
         setFormStatus('success');
         form.reset();
+        
+        // Evento de formulario enviado usando el helper centralizado
+        trackFormSubmission({
+          formType: 'reclutamiento',
+          additionalData: {
+            certificado_os10: data.certificadoOS10,
+            movilizacion_propia: data.movilizacionPropia,
+            // Incluir explícitamente parámetros UTM
+            utm_source: utmData.utm_source,
+            utm_medium: utmData.utm_medium,
+            utm_campaign: utmData.utm_campaign,
+            utm_term: utmData.utm_term,
+            utm_content: utmData.utm_content,
+            gclid: utmData.gclid,
+            landing_page: utmData.landing_page
+          }
+        });
       } else {
         setFormStatus('error');
       }

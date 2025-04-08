@@ -75,6 +75,43 @@ export function captureUtmParameters(): void {
   Object.entries(utmParams).forEach(([key, value]) => {
     if (value) {
       sessionStorage.setItem(key, value);
+      // También guardar en localStorage para persistencia entre sesiones
+      localStorage.setItem(key, value);
     }
   });
+  
+  // Guardar siempre landing_page (página actual)
+  const landingPage = window.location.pathname;
+  sessionStorage.setItem('landing_page', landingPage);
+  localStorage.setItem('landing_page', landingPage);
+}
+
+/**
+ * Obtiene todos los parámetros UTM y landing_page desde sessionStorage y localStorage
+ * @returns Objeto con todos los parámetros UTM y landing_page
+ */
+export function getUtmParameters(): Record<string, string> {
+  if (typeof window === 'undefined') return {};
+  
+  // Lista de parámetros a obtener
+  const paramNames = [
+    'utm_source', 'utm_medium', 'utm_campaign', 
+    'utm_term', 'utm_content', 'gclid', 'landing_page'
+  ];
+  
+  // Obtener valores
+  const params: Record<string, string> = {};
+  
+  paramNames.forEach(param => {
+    // Priorizar sessionStorage, luego localStorage
+    const value = sessionStorage.getItem(param) || localStorage.getItem(param) || '';
+    params[param] = value;
+  });
+  
+  // Si landing_page no está definido, usar la página actual
+  if (!params.landing_page && typeof window !== 'undefined') {
+    params.landing_page = window.location.pathname;
+  }
+  
+  return params;
 } 

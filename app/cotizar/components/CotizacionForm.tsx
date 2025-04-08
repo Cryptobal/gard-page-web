@@ -45,6 +45,13 @@ const formSchema = z.object({
   tipoIndustria: z.string().min(1, { message: 'Selecciona un tipo de industria' }),
   servicioRequerido: z.string().min(1, { message: 'Selecciona un servicio requerido' }),
   cotizacion: z.string().min(3, { message: 'Proporciona los detalles de tu solicitud' }),
+  utm_source: z.string().optional(),
+  utm_medium: z.string().optional(),
+  utm_campaign: z.string().optional(),
+  utm_term: z.string().optional(),
+  utm_content: z.string().optional(),
+  gclid: z.string().optional(),
+  landing_page: z.string().optional(),
 });
 
 // Lista de servicios
@@ -90,6 +97,13 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
       tipoIndustria: '',
       servicioRequerido: '',
       cotizacion: '',
+      utm_source: '',
+      utm_medium: '',
+      utm_campaign: '',
+      utm_term: '',
+      utm_content: '',
+      gclid: '',
+      landing_page: '',
     },
   });
 
@@ -132,15 +146,37 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
       console.log('✅ Servicio cargado:', savedService);
     }
     
-    // También obtener UTMs para registrarlos en la conversión después
+    // Capturar parámetros UTM de la URL y localStorage
     const urlParams = new URLSearchParams(window.location.search);
-    const utmSource = urlParams.get('utm_source');
-    const utmMedium = urlParams.get('utm_medium');
-    const utmCampaign = urlParams.get('utm_campaign');
     
-    if (utmSource || utmMedium || utmCampaign) {
-      console.log('✅ UTMs detectados en URL:', { utmSource, utmMedium, utmCampaign });
-    }
+    // Lista de parámetros a capturar
+    const trackingParams = [
+      'utm_source', 
+      'utm_medium', 
+      'utm_campaign', 
+      'utm_term', 
+      'utm_content', 
+      'gclid'
+    ];
+    
+    // Capturar valores de URL o localStorage
+    trackingParams.forEach(param => {
+      // Priorizar valor de URL
+      const value = urlParams.get(param) || localStorage.getItem(param) || sessionStorage.getItem(param) || '';
+      if (value) {
+        setValue(param as keyof FormValues, value);
+        // Guardar en storage para persistencia
+        localStorage.setItem(param, value);
+        sessionStorage.setItem(param, value);
+        console.log(`✅ Parámetro capturado: ${param}=${value}`);
+      }
+    });
+    
+    // Capturar landing_page (página actual)
+    const landing = window.location.pathname;
+    setValue('landing_page', landing);
+    localStorage.setItem('landing_page', landing);
+    sessionStorage.setItem('landing_page', landing);
   }, [setValue, prefillServicio, prefillIndustria]);
 
   useEffect(() => {
@@ -203,12 +239,24 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
     try {
       setIsSubmitting(true);
       
+      // Asegurar que los parámetros UTM estén incluidos antes de enviar
+      const completeData = {
+        ...data,
+        utm_source: data.utm_source || localStorage.getItem('utm_source') || '',
+        utm_medium: data.utm_medium || localStorage.getItem('utm_medium') || '',
+        utm_campaign: data.utm_campaign || localStorage.getItem('utm_campaign') || '',
+        utm_term: data.utm_term || localStorage.getItem('utm_term') || '',
+        utm_content: data.utm_content || localStorage.getItem('utm_content') || '',
+        gclid: data.gclid || localStorage.getItem('gclid') || '',
+        landing_page: data.landing_page || localStorage.getItem('landing_page') || window.location.pathname,
+      };
+      
       const response = await fetch(API_URLS.COTIZACION, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(completeData),
       });
       
       if (response.ok) {
@@ -226,7 +274,15 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
           additionalData: {
             tipo_industria: data.tipoIndustria,
             servicio_requerido: data.servicioRequerido,
-            pagina_origen: window.location.pathname
+            pagina_origen: window.location.pathname,
+            // Incluir explícitamente parámetros UTM
+            utm_source: completeData.utm_source,
+            utm_medium: completeData.utm_medium,
+            utm_campaign: completeData.utm_campaign,
+            utm_term: completeData.utm_term,
+            utm_content: completeData.utm_content,
+            gclid: completeData.gclid,
+            landing_page: completeData.landing_page
           }
         });
       } else {
