@@ -22,23 +22,42 @@ export default function FormularioCotizacionSeccion({
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
+    // Bandera para controlar los intentos de scroll
+    let scrollAttempted = false;
+    // Tiempo de espera para resetear la bandera de scroll
+    let scrollResetTimeout: NodeJS.Timeout;
+
     // Función centralizada para manejar el scroll
     const handleHashChange = () => {
-      // Si el hash es #cotizar, hacer scroll
-      if (window.location.hash === '#cotizar') {
+      // Si el hash es #cotizar, hacer scroll solo si no se ha intentado recientemente
+      if (window.location.hash === '#cotizar' && !scrollAttempted) {
+        // Marcar que ya se intentó hacer scroll para evitar múltiples intentos
+        scrollAttempted = true;
+        
         // Pequeño retraso para asegurar que los elementos estén cargados
         setTimeout(() => {
           scrollToFormPosition();
+          
+          // Resetear la bandera después de un tiempo para permitir futuros scrolls
+          scrollResetTimeout = setTimeout(() => {
+            scrollAttempted = false;
+          }, 2000); // Esperar 2 segundos antes de permitir otro intento de scroll
         }, 200);
       }
     };
 
     // Verificar si hay un parámetro 'scroll' en la URL
     const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('scroll') === 'form') {
+    if (urlParams.get('scroll') === 'form' && !scrollAttempted) {
+      scrollAttempted = true;
       // Esperar un momento para que la página se cargue completamente
       setTimeout(() => {
         scrollToFormPosition();
+        
+        // Resetear la bandera después de un tiempo
+        scrollResetTimeout = setTimeout(() => {
+          scrollAttempted = false;
+        }, 2000);
       }, 500);
     }
     
@@ -53,29 +72,53 @@ export default function FormularioCotizacionSeccion({
     
     // Para manejar navegación interna de Next.js
     const handleNextJsRouteChange = () => {
-      if (window.location.hash === '#cotizar') {
-        setTimeout(scrollToFormPosition, 300);
+      if (window.location.hash === '#cotizar' && !scrollAttempted) {
+        scrollAttempted = true;
+        setTimeout(() => {
+          scrollToFormPosition();
+          scrollResetTimeout = setTimeout(() => {
+            scrollAttempted = false;
+          }, 2000);
+        }, 300);
       }
     };
     
-    // Registrar un MutationObserver para detectar cambios en el DOM
-    // Esto ayuda con la navegación de cliente en Next.js
+    // Registrar un MutationObserver con limitación de frecuencia para evitar múltiples scrolls
+    let mutationTimeout: NodeJS.Timeout;
     const observer = new MutationObserver((mutations) => {
-      for (const mutation of mutations) {
-        if (mutation.type === 'childList' && window.location.hash === '#cotizar') {
-          setTimeout(scrollToFormPosition, 300);
-          break;
-        }
+      // Evitar múltiples llamadas rápidas utilizando debounce
+      clearTimeout(mutationTimeout);
+      
+      // Solo procesar si no hemos intentado hacer scroll recientemente
+      if (!scrollAttempted && window.location.hash === '#cotizar') {
+        scrollAttempted = true;
+        
+        mutationTimeout = setTimeout(() => {
+          scrollToFormPosition();
+          
+          // Resetear la bandera después de un tiempo
+          scrollResetTimeout = setTimeout(() => {
+            scrollAttempted = false;
+          }, 2000);
+        }, 300);
       }
     });
     
-    observer.observe(document.body, { childList: true, subtree: true });
+    // Configurar el observer para que solo observe lo necesario
+    observer.observe(document.body, { 
+      childList: true, 
+      subtree: true, 
+      attributes: false, 
+      characterData: false 
+    });
     
     // Limpiar los event listeners y observer al desmontar
     return () => {
       window.removeEventListener('hashchange', handleHashChange);
       window.removeEventListener('load', handleHashChange);
       observer.disconnect();
+      clearTimeout(scrollResetTimeout);
+      clearTimeout(mutationTimeout);
     };
   }, []);
 
@@ -92,14 +135,26 @@ export default function FormularioCotizacionSeccion({
       // En móvil, hacemos scroll a un punto un poco por encima del formulario
       // para que sea inmediatamente visible
       if (isMobile) {
-        const offset = 100; // Offset en píxeles para móviles
+        // Cambiar el valor del offset para evitar el problema
+        const offset = 80; // Reducido de 100 para evitar problemas
         const elementPosition = sectionRef.current.getBoundingClientRect().top;
         const offsetPosition = elementPosition + window.pageYOffset - offset;
         
+        // Usar autoScrolling para prevenir loops con el MutationObserver
         window.scrollTo({
           top: offsetPosition,
           behavior: 'smooth'
         });
+        
+        // Eliminar el hash de la URL para evitar que se vuelva a disparar el evento
+        if (window.history && window.history.replaceState) {
+          // Mantener la URL actual pero quitar el fragmento
+          window.history.replaceState(
+            null, 
+            document.title, 
+            window.location.pathname + window.location.search
+          );
+        }
       } else {
         // En desktop, comportamiento normal
         sectionRef.current.scrollIntoView({ 
@@ -113,7 +168,7 @@ export default function FormularioCotizacionSeccion({
       // Método alternativo si falla el scroll
       if (sectionRef.current) {
         window.scrollTo({
-          top: sectionRef.current.offsetTop - 100,
+          top: sectionRef.current.offsetTop - 80,
           behavior: 'smooth'
         });
       }
@@ -127,7 +182,7 @@ export default function FormularioCotizacionSeccion({
       className={`gard-section py-16 md:py-24 bg-[#0A0C12] ${className}`}
       data-section="formulario-cotizacion"
       // Aumentar el margen de scroll para mejorar la posición en móviles
-      style={{ scrollMarginTop: '100px' }}
+      style={{ scrollMarginTop: '80px' }}
     >
       {/* Textura de fondo */}
       <div className="absolute inset-0 bg-[url('/images/textures/noise-pattern.png')] opacity-5"></div>
