@@ -55,4 +55,48 @@ export async function isValidUrl(url: string): Promise<{isValid: boolean; finalU
     }
     return { isValid: false };
   }
+}
+
+/**
+ * Verifica si una URL tiene la meta etiqueta noindex en su contenido
+ * @param url La URL a verificar
+ * @returns true si la URL tiene noindex, false si no lo tiene o hay error
+ */
+export async function hasNoindexMetaTag(url: string): Promise<boolean> {
+  try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 8000); // 8 segundos de timeout para obtener el contenido completo
+    
+    const response = await fetch(url, { 
+      signal: controller.signal,
+      redirect: 'follow' // Seguir redirecciones para llegar al contenido final
+    });
+    
+    clearTimeout(timeoutId);
+    
+    if (!response.ok) {
+      console.error(`Error al obtener contenido de ${url}: ${response.status}`);
+      return true; // Por seguridad, si hay error, consideramos que tiene noindex
+    }
+    
+    const html = await response.text();
+    
+    // Buscar metaetiquetas con noindex en diferentes formatos
+    const hasNoindexMetaTag = 
+      html.includes('<meta name="robots" content="noindex') || 
+      html.includes('<meta name="robots" content="none') ||
+      html.includes('<meta content="noindex') ||
+      html.includes('<meta content="none') ||
+      html.includes('<meta name="googlebot" content="noindex');
+      
+    // Buscar en la respuesta de Next.js metadata con robots: noindex
+    const hasNextJsNoindex = 
+      html.includes('"robots":"noindex') || 
+      html.includes('"robots":"none');
+    
+    return hasNoindexMetaTag || hasNextJsNoindex;
+  } catch (error) {
+    console.error(`Error al verificar noindex para ${url}:`, error);
+    return true; // Por seguridad, si hay error, consideramos que tiene noindex
+  }
 } 

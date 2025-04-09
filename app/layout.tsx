@@ -10,6 +10,7 @@ import CookieConsent from './components/cookie/CookieConsent';
 import { GoogleAnalytics } from './components/cookie/ConsentAwareScript';
 import ClientWrapper from './ClientWrapper';
 import { metadata } from './metadata';
+import CanonicalUrl from '@/components/seo/CanonicalUrl';
 
 // Obtener GTM ID desde variables de entorno
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || '';
@@ -25,6 +26,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" suppressHydrationWarning>
+      <head>
+        {/* MODIFICACIÓN SEO: Añadir componente para asegurar etiquetas canónicas */}
+        <CanonicalUrl />
+      </head>
       <body className={`${inter.variable} ${spaceGrotesk.variable}`}>
         {/* Sistema de gestión de consentimiento de cookies */}
         <CookieConsent>

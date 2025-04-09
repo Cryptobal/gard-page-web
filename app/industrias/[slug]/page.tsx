@@ -75,11 +75,8 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const industry = getIndustryBySlug(params.slug);
 
   if (!industry) {
-    return {
-      title: 'Industria no encontrada | Gard Security',
-      description: 'La industria solicitada no existe o fue eliminada.',
-      robots: 'noindex',
-    };
+    notFound();
+    return {} as Metadata;
   }
 
   const canonical = `https://www.gard.cl/industrias/${industry.slug}`;

@@ -1,16 +1,16 @@
 import { industries } from '../data/industries';
 import { getAllPosts, POSTS_PER_PAGE, getAllTags, getPostsByTag } from '@/lib/blog';
-import { isValidUrl } from '@/lib/utils';
+import { isValidUrl, hasNoindexMetaTag } from '@/lib/utils';
 import { ciudades } from '@/lib/data/ciudad-data';
 import { servicesMetadata } from '@/app/servicios/serviceMetadata';
 import { serviciosPorIndustria } from '../data/servicios-por-industria';
 
-// Función para verificar y filtrar URLs
+// Función para verificar y filtrar URLs mejorada
 async function filterValidUrls(urls: { url: string; lastModified: string; changeFrequency: string; priority: number; }[]) {
-  console.log(`Verificando ${urls.length} URLs...`);
+  console.log(`Verificando ${urls.length} URLs para el sitemap...`);
   
-  // Agrupar las URLs en lotes para procesarlas de forma más eficiente
-  const batchSize = 10; // Procesar 10 URLs a la vez
+  // Agrupar las URLs en lotes más pequeños para procesarlas eficientemente
+  const batchSize = 5; // Reducimos a 5 por lote para evitar problemas de rendimiento
   const validUrls: { url: string; lastModified: string; changeFrequency: string; priority: number; }[] = [];
   
   // Función para procesar un lote de URLs
@@ -18,23 +18,46 @@ async function filterValidUrls(urls: { url: string; lastModified: string; change
     // Verificar todas las URLs en el lote en paralelo
     const results = await Promise.allSettled(
       batch.map(async (urlItem) => {
-        const result = await isValidUrl(urlItem.url);
-        return { urlItem, result };
+        try {
+          // Paso 1: Verificar redirecciones con HEAD request
+          const response = await fetch(urlItem.url, { 
+            method: 'HEAD',
+            redirect: 'manual' // No seguir redirecciones automáticamente
+          });
+          
+          // Si la URL redirecciona, no incluirla en el sitemap
+          if (response.status >= 300 && response.status < 400) {
+            const redirectUrl = response.headers.get('location');
+            console.log(`URL con redirección excluida: ${urlItem.url} -> ${redirectUrl || 'destino desconocido'}`);
+            return { urlItem, valid: false, reason: 'redirect' };
+          }
+          
+          // Si la URL no devuelve 200, no incluirla
+          if (response.status !== 200) {
+            console.log(`URL con estado no-200 excluida: ${urlItem.url} (${response.status})`);
+            return { urlItem, valid: false, reason: 'non-200' };
+          }
+          
+          // Paso 2: Verificar si la página tiene noindex
+          const hasNoindex = await hasNoindexMetaTag(urlItem.url);
+          if (hasNoindex) {
+            console.log(`URL con noindex excluida: ${urlItem.url}`);
+            return { urlItem, valid: false, reason: 'noindex' };
+          }
+          
+          // Si pasa todas las verificaciones, es válida
+          return { urlItem, valid: true };
+        } catch (error) {
+          console.error(`Error al verificar URL ${urlItem.url}:`, error);
+          return { urlItem, valid: false, reason: 'error' };
+        }
       })
     );
     
-    // Filtrar las URLs válidas
+    // Procesar los resultados
     results.forEach((result) => {
-      if (result.status === 'fulfilled') {
-        const { urlItem, result: urlResult } = result.value;
-        
-        if (urlResult.isValid) {
-          validUrls.push(urlItem);
-        } else if (urlResult.isRedirect) {
-          console.log(`URL con redirección excluida: ${urlItem.url} -> ${urlResult.finalUrl}`);
-        } else {
-          console.log(`URL no válida (error o no encontrada): ${urlItem.url}`);
-        }
+      if (result.status === 'fulfilled' && result.value.valid) {
+        validUrls.push(result.value.urlItem);
       }
     });
   };
@@ -46,7 +69,7 @@ async function filterValidUrls(urls: { url: string; lastModified: string; change
     console.log(`Progreso: ${Math.min(i + batchSize, urls.length)}/${urls.length} URLs procesadas`);
   }
   
-  console.log(`URLs válidas: ${validUrls.length} de ${urls.length}`);
+  console.log(`URLs válidas para sitemap: ${validUrls.length} de ${urls.length}`);
   return validUrls;
 }
 
@@ -75,26 +98,9 @@ async function generateSitemap() {
     priority: route === '' ? 1 : 0.8,
   }));
 
-  // URLs antiguas que ahora son redirecciones (no se incluyen en el sitemap)
-  // '/automatizacion-y-domotica',
-  // '/drones-de-seguridad-para-empresas-e-industrias',
-  // '/guardias-de-seguridad-privada-para-empresas',
-  // '/noticias-de-seguridad-privada',
-  // '/servicios-de-seguridad-privada',
-  // '/tecnologias',
-
-  // Páginas de servicios
-  const servicePages = [
-    '/servicios/guardias-de-seguridad',
-    '/servicios/drones-seguridad',
-    '/servicios/seguridad-electronica',
-    '/servicios/monitoreo',
-    '/servicios/seguridad-perimetral',
-    '/servicios/auditoria-seguridad',
-    '/servicios/consultoria',
-    '/servicios/prevencion-intrusiones'
-  ].map((route) => ({
-    url: `${baseUrl}${route}`,
+  // Páginas de servicios principales
+  const servicePages = servicesMetadata.map(servicio => ({
+    url: `${baseUrl}/servicios/${servicio.slug}`,
     lastModified: new Date().toISOString(),
     changeFrequency: 'monthly',
     priority: 0.7,
@@ -115,26 +121,6 @@ async function generateSitemap() {
       priority: 0.7,
     };
   });
-
-  // Combinaciones prioritarias de servicio-industria
-  const servicioIndustriaPrioritarias: { servicio: string; industria: string }[] = [
-    // Eliminamos las combinaciones que aparecen como redirigidas en Semrush
-    // {servicio: 'guardias-de-seguridad', industria: 'retail'},
-    // {servicio: 'guardias-de-seguridad', industria: 'mineria'},
-    // {servicio: 'drones-seguridad', industria: 'mineria'},
-    // {servicio: 'seguridad-electronica', industria: 'retail'},
-    // {servicio: 'central-monitoreo', industria: 'edificios-corporativos'},
-    // {servicio: 'auditoria-seguridad', industria: 'instituciones-publicas'},
-    // {servicio: 'consultoria', industria: 'edificios-corporativos'},
-    // {servicio: 'prevencion-intrusiones', industria: 'parques-industriales'}
-  ];
-
-  const combinacionesPages = servicioIndustriaPrioritarias.map(({ servicio, industria }) => ({
-    url: `${baseUrl}/servicios/${servicio}/${industria}`,
-    lastModified: new Date().toISOString(),
-    changeFrequency: 'monthly',
-    priority: 0.65,
-  }));
   
   // Nuevas URLs de servicio-por-industria
   const servicioIndustriaPages: {
@@ -144,8 +130,7 @@ async function generateSitemap() {
     priority: number;
   }[] = [];
   
-  // Generar todas las combinaciones posibles de servicio-industria
-  // Usamos los metadatos directos para asegurar que todas las combinaciones se incluyan
+  // Generar combinaciones de servicio-por-industria
   for (const servicio of servicesMetadata) {
     for (const industria of industries) {
       const industriaSlug = industria.name.toLowerCase()
@@ -172,8 +157,7 @@ async function generateSitemap() {
     priority: 0.6,
   }));
   
-  // Páginas de paginación del blog principal (solo la primera página adicional)
-  // Se limita la paginación para evitar URLs no canónicas
+  // Páginas de paginación del blog (solo la primera página adicional)
   const totalPages = Math.ceil(blogPosts.length / POSTS_PER_PAGE);
   const blogPaginationPages = totalPages > 1 ? [
     {
@@ -184,33 +168,24 @@ async function generateSitemap() {
     }
   ] : [];
   
-  // Eliminamos las páginas de etiquetas del blog para evitar problemas de URL no canónicas
-  // Según análisis de Semrush, estas páginas causan la mayoría de errores
-  // const allTags = await getAllTags();
-  // const blogTagPages = allTags.map((tag) => ({
-  //   url: `${baseUrl}/blog/tag/${encodeURIComponent(tag)}`,
-  //   lastModified: new Date().toISOString(),
-  //   changeFrequency: 'monthly',
-  //   priority: 0.6,
-  // }));
-  
-  // Reemplazamos con un array vacío
-  const blogTagPages: {
-    url: string;
-    lastModified: string;
-    changeFrequency: string;
-    priority: number;
-  }[] = [];
-
-  // Nuevas landing pages dinámicas de ciudad/servicio
+  // Nuevas landing pages dinámicas de ciudad/servicio - solo las combinaciones más relevantes
   const ciudadServicioPages = [];
   
   // Extraer los slugs de los servicios del array importado
   const servicioSlugs = servicesMetadata.map(servicio => servicio.slug);
   
-  // Crear combinaciones de ciudad + servicio
-  for (const ciudad of ciudades) {
-    for (const servicioSlug of servicioSlugs) {
+  // Crear combinaciones prioritarias de ciudad + servicio para reducir la cantidad total
+  // Seleccionamos solo las 5 ciudades principales y los 4 servicios más importantes
+  const ciudadesPrincipales = ciudades.slice(0, 5); // Solo las 5 primeras ciudades
+  const serviciosPrincipales = [
+    'guardias-de-seguridad',
+    'seguridad-electronica',
+    'central-monitoreo',
+    'drones-seguridad'
+  ];
+  
+  for (const ciudad of ciudadesPrincipales) {
+    for (const servicioSlug of serviciosPrincipales) {
       ciudadServicioPages.push({
         url: `${baseUrl}/${ciudad.slug}/${servicioSlug}`,
         lastModified: new Date().toISOString(),
@@ -220,19 +195,18 @@ async function generateSitemap() {
     }
   }
 
+  // Combinamos todas las URLs
   const allUrls = [
     ...staticPages, 
     ...servicePages, 
     ...industryPages,
-    ...combinacionesPages, 
     ...servicioIndustriaPages,
     ...blogPostPages, 
     ...blogPaginationPages,
-    ...blogTagPages,
-    ...ciudadServicioPages // Añadimos las nuevas páginas de ciudad/servicio
+    ...ciudadServicioPages
   ];
   
-  // Filtrar URLs para incluir solo las que devuelven código 200
+  // Filtrar URLs para incluir solo las válidas (200 OK, sin redirecciones, sin noindex)
   return await filterValidUrls(allUrls);
 }
 

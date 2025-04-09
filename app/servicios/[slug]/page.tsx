@@ -47,11 +47,8 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const servicio = servicesMetadata.find(s => s.slug === params.slug);
 
   if (!servicio) {
-    return {
-      title: 'Servicio no encontrado | Gard Security',
-      description: 'El servicio solicitado no existe o fue eliminado.',
-      robots: 'noindex',
-    };
+    notFound();
+    return {} as Metadata;
   }
 
   const canonical = `https://www.gard.cl/servicios/${servicio.slug}`;

@@ -48,19 +48,12 @@ export function middleware(request: NextRequest) {
   
   console.log(`Segmentos detectados: ${segments.join(', ')} (${segments.length})`);
 
-  // Manejar rutas de servicios por industria
+  // MODIFICACIÓN SEO: Permitir todas las rutas de servicios-por-industria
   if (segments.length === 3 && segments[0] === 'servicios-por-industria') {
-    const servicio = segments[1];
-    const industria = segments[2];
-    
-    // Verificar si son segmentos válidos
-    if (SERVICIOS_VALIDOS.includes(servicio) && INDUSTRIAS_VALIDAS.includes(industria)) {
-      // Permitir todas las combinaciones válidas
-      return NextResponse.next();
-    }
+    return NextResponse.next();
   }
   
-  // Manejar URLs antiguas de landing-dinamico
+  // Manejar URLs antiguas de landing-dinamico - mantener este caso para preservar SEO histórico
   if (segments.length === 3 && segments[0] === 'landing-dinamico') {
     console.log(`Detectada URL antigua de landing dinámico: ${pathname}`);
     
@@ -85,51 +78,32 @@ export function middleware(request: NextRequest) {
     }
   }
   
-  // Primero verificamos para rutas de 3 segmentos (servicios/[slug]/[industria])
-  if (segments.length === 3) {
-    console.log(`Procesando ruta de 3 segmentos: ${segments.join('/')}`);
-    
-    if (segments[0] === 'servicios' && 
-        SERVICIOS_VALIDOS.includes(segments[1]) && 
-        INDUSTRIAS_VALIDAS.includes(segments[2])) {
-      
-      console.log(`Redirigiendo /servicios/${segments[1]}/${segments[2]} a /servicios-por-industria/`);
-      
-      // Redirigir a la nueva estructura de URL
-      url.pathname = `/servicios-por-industria/${segments[1]}/${segments[2]}`;
-      return NextResponse.redirect(url, 301); // Redirección permanente (301)
-    }
-  }
+  // MODIFICACIÓN SEO: No redirigir URLs de servicios/[slug]/[industria]
+  // Estas rutas ahora se permitirán directamente para mejor SEO
   
-  // Luego procesamos las rutas de 2 segmentos
+  // MODIFICACIÓN SEO: Permitir rutas de ciudad/servicio y servicio/industria directamente
   if (segments.length === 2) {
     const [primerSegmento, segundoSegmento] = segments;
     
-    console.log(`Analizando ruta de 2 segmentos: /${primerSegmento}/${segundoSegmento}`);
-    
-    // Verificar si es una ruta ciudad/servicio
-    if (CIUDADES_VALIDAS.includes(primerSegmento) && SERVICIOS_VALIDOS.includes(segundoSegmento)) {
-      console.log(`Se identificó como ciudad/servicio: ${primerSegmento}/${segundoSegmento}`);
-      // Es una ruta ciudad/servicio, continuar normalmente
+    // Verificar si es una ruta ciudad/servicio o servicio/industria - permitir ambos casos
+    if ((CIUDADES_VALIDAS.includes(primerSegmento) && SERVICIOS_VALIDOS.includes(segundoSegmento)) ||
+        (SERVICIOS_VALIDOS.includes(primerSegmento) && INDUSTRIAS_VALIDAS.includes(segundoSegmento))) {
       return NextResponse.next();
     }
-    
-    // Verificar si es una ruta servicio/industria
-    if (SERVICIOS_VALIDOS.includes(primerSegmento) && INDUSTRIAS_VALIDAS.includes(segundoSegmento)) {
-      console.log(`Se identificó como servicio/industria: ${primerSegmento}/${segundoSegmento}`);
-      // Es una ruta servicio/industria, redirigir a servicios-por-industria
-      url.pathname = `/servicios-por-industria/${primerSegmento}/${segundoSegmento}`;
-      return NextResponse.redirect(url);
-    }
-    
-    console.log(`No se identificó ningún patrón conocido para: ${primerSegmento}/${segundoSegmento}`);
   }
   
   // Si no coincide con ninguno de los patrones, continuar normalmente
   return NextResponse.next();
 }
 
-// Configurar el middleware para que se ejecute en TODAS las rutas
+// MODIFICACIÓN SEO: Reducir el ámbito del middleware para mejor rendimiento
+// Solo ejecutar en las rutas que realmente necesitan procesamiento
 export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)']
+  matcher: [
+    '/landing-dinamico/:path*',
+    '/servicios-por-industria/:path*',
+    '/servicios/:path*',
+    '/:city/:service',
+    '/:service/:industry'
+  ]
 }; 

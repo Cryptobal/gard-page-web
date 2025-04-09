@@ -20,11 +20,8 @@ export async function generateMetadata({
   const post = await getPostBySlug(slug);
 
   if (!post) {
-    return {
-      title: 'Artículo no encontrado | Blog Gard Security',
-      description: 'El artículo solicitado no está disponible o fue eliminado.',
-      robots: 'noindex, nofollow',
-    };
+    notFound();
+    return {} as Metadata;
   }
 
   const ogImageUrl = post.imageId 
@@ -40,13 +37,16 @@ export async function generateMetadata({
     keywords: post.tags || ['seguridad privada', 'blog gard', 'guardias de seguridad'],
     authors: [{ name: 'Gard Security', url: 'https://gard.cl' }],
     robots: 'index, follow',
+    alternates: {
+      canonical: `https://www.gard.cl/blog/${slug}`,
+    },
     openGraph: {
       title: post.title, // Mantenemos el título completo para Open Graph
       description: post.description,
       type: 'article',
       publishedTime: post.date,
       tags: post.tags,
-      url: `https://gard.cl/blog/${slug}`,
+      url: `https://www.gard.cl/blog/${slug}`,
       siteName: 'Gard Security',
       locale: 'es_CL',
       images: [

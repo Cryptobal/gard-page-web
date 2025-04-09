@@ -13,12 +13,22 @@ export default function CanonicalUrl() {
       // Verificar si ya existe una etiqueta canonical (definida por metadata.ts)
       const existingCanonical = document.querySelector('link[rel="canonical"]');
       
-      // Solo actuar si no hay canonical definida por metadata.ts
-      if (!existingCanonical && !canonicalCreated) {
-        console.log('[CanonicalUrl] No se encontró canonical, creando fallback para:', pathname);
+      // MODIFICACIÓN SEO: Asegurar que siempre haya una URL canónica y que use www
+      if (existingCanonical) {
+        // Si existe, verificar que use www y actualizarla si no lo hace
+        const currentHref = existingCanonical.getAttribute('href');
+        if (currentHref && !currentHref.includes('www.gard.cl')) {
+          console.log('[CanonicalUrl] Actualizando canonical sin www:', currentHref);
+          const correctedHref = currentHref.replace('https://gard.cl', 'https://www.gard.cl');
+          existingCanonical.setAttribute('href', correctedHref);
+        }
+        return null;
+      } else if (!canonicalCreated) {
+        // Si no existe, crear uno nuevo con www
+        console.log('[CanonicalUrl] Creando nueva canonical para:', pathname);
         
-        // Crear canonical como fallback basada en pathname
-        const fallbackCanonical = `https://gard.cl${pathname || '/'}`;
+        // Crear canonical basada en pathname, asegurando www
+        const fallbackCanonical = `https://www.gard.cl${pathname || '/'}`;
         
         // Crear y añadir etiqueta
         const link = document.createElement('link');
@@ -34,7 +44,7 @@ export default function CanonicalUrl() {
       return null;
     };
     
-    // Esperamos 1.5 segundos para dar tiempo a que Next.js complete la hidratación
+    // Esperamos 1 segundo para dar tiempo a que Next.js complete la hidratación
     const timer = setTimeout(() => {
       const createdLink = checkAndCreateCanonical();
       
@@ -45,7 +55,7 @@ export default function CanonicalUrl() {
           setCanonicalCreated(false);
         }
       };
-    }, 1500);
+    }, 1000);
     
     return () => clearTimeout(timer);
   }, [pathname, canonicalCreated]);
