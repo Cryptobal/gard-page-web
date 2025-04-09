@@ -202,6 +202,34 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
       componentRestrictions: { country: 'cl' },
     });
 
+    // Determinar si estamos en un dispositivo móvil
+    const isMobile = window.innerWidth < 768;
+    
+    // Ajustar opciones de autocompletado para móviles
+    if (isMobile) {
+      // Limitar el número de predicciones en móviles para evitar que ocupe demasiado espacio
+      autocomplete.setOptions({
+        fields: ['formatted_address', 'geometry', 'address_components'],
+      });
+    }
+
+    // Prevenir el scroll automático en móviles cuando se abre el autocompletado
+    if (isMobile && autocompleteInputRef.current) {
+      autocompleteInputRef.current.addEventListener('focus', (e) => {
+        // Mantener la posición de scroll actual
+        const currentScrollPos = window.scrollY;
+        
+        // Pequeño retraso para asegurar que el evento se maneja después de que el navegador
+        // intente hacer scroll automáticamente
+        setTimeout(() => {
+          window.scrollTo({
+            top: currentScrollPos,
+            behavior: 'auto'
+          });
+        }, 10);
+      });
+    }
+
     autocomplete.addListener('place_changed', () => {
       const place = autocomplete.getPlace();
       if (!place.address_components) return;
@@ -228,10 +256,30 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
 
       setValue('comuna', comuna);
       setValue('ciudad', ciudad);
+      
+      // En móviles, después de seleccionar una dirección, asegurar que el usuario
+      // pueda seguir viendo el formulario correctamente
+      if (isMobile) {
+        // Pequeño retraso para dar tiempo a que se complete el autocompletado
+        setTimeout(() => {
+          // Obtener el siguiente campo después de la dirección para asegurar una buena UX
+          const nextField = document.querySelector('[name="comuna"]');
+          if (nextField) {
+            // Scroll para asegurar que los campos siguientes sean visibles
+            window.scrollBy({
+              top: 100,
+              behavior: 'smooth'
+            });
+          }
+        }, 300);
+      }
     });
 
     return () => {
       // Cleanup si es necesario
+      if (isMobile && autocompleteInputRef.current) {
+        autocompleteInputRef.current.removeEventListener('focus', () => {});
+      }
     };
   }, [mapLoaded, setValue]);
 
@@ -427,6 +475,20 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
                       placeholder="Ingresa la dirección"
                       {...field}
                       ref={autocompleteRef}
+                      // Añadir atributos para mejorar la experiencia móvil
+                      autoComplete="street-address"
+                      onFocus={(e) => {
+                        // En móviles, asegurar que el campo permanezca visible al enfocarlo
+                        if (window.innerWidth < 768) {
+                          // Pequeño retraso para permitir que el teclado aparezca primero
+                          setTimeout(() => {
+                            e.target.scrollIntoView({
+                              behavior: 'smooth',
+                              block: 'center'
+                            });
+                          }, 100);
+                        }
+                      }}
                     />
                   </FormControl>
                   <FormMessage />
