@@ -549,323 +549,320 @@ export default function ReclutamientoForm() {
       </section>
 
       {/* Formulario de Postulación */}
-      <section 
-        ref={formRef} 
-        id="formulario"
-        className="py-16 md:py-24 bg-gray-50 dark:bg-[#070707] dark:bg-[conic-gradient(from_90deg_at_50%_50%,#080808_0%,#0c0c0c_50%,#080808_100%)]"
-      >
-        <div className="max-w-4xl mx-auto px-4">
+      <section ref={formRef} className="py-16 md:py-24 bg-white dark:bg-[hsl(var(--gard-background))]">
+        <div className="max-w-3xl mx-auto px-4">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            variants={fadeIn}
+            initial="hidden"
+            whileInView="visible"
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="bg-white dark:bg-[hsl(var(--gard-card))] shadow-md rounded-2xl overflow-hidden"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Formulario de Postulación</h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Completa el siguiente formulario para iniciar tu proceso de postulación. Nos pondremos en contacto contigo a la brevedad.
-            </p>
-          </motion.div>
+            <div className="relative h-32 md:h-48 bg-[hsl(var(--gard-accent))]">
+              <CloudflareImage
+                imageId={cloudflareImages.hero.reclutamiento}
+                alt="Trabaja con nosotros - Gard Security"
+                fill
+                className="object-cover opacity-20"
+              />
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-4">
+                <h2 className="text-2xl md:text-3xl font-bold text-center">Formulario de Postulación</h2>
+                <p className="text-center mt-2 max-w-xl">Complete sus datos para ser considerado en nuestros procesos de selección</p>
+              </div>
+            </div>
 
-          {formStatus === 'success' ? (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="bg-green-50 dark:bg-green-900/20 p-8 rounded-2xl text-center dark:border-[1px] dark:border-green-900/30"
-            >
-              <CheckCircle className="w-16 h-16 text-green-600 dark:text-green-500 mx-auto mb-4" />
-              <h3 className="text-2xl font-bold mb-4">¡Postulación enviada con éxito!</h3>
-              <p className="text-lg mb-6">
-                Hemos recibido tu información correctamente. Nuestro equipo de reclutamiento revisará tu perfil y se contactará contigo en los próximos días.
-              </p>
-              <Button
-                onClick={() => setFormStatus('idle')}
-                className="bg-primary hover:bg-primary/90"
-              >
-                Enviar otra postulación
-              </Button>
-            </motion.div>
-          ) : (
-            <Form {...form}>
-              <form 
-                onSubmit={form.handleSubmit(onSubmit)}
-                className="space-y-8 bg-white dark:bg-black/40 dark:backdrop-blur-sm dark:border-[1px] dark:border-[rgba(255,255,255,0.07)] p-8 rounded-2xl shadow-sm dark:hover:border-[rgba(255,255,255,0.12)] transition-all"
-              >
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <FormField
-                    control={form.control}
-                    name="nombre"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Nombre</FormLabel>
-                        <FormControl>
-                          <Input placeholder="Tu nombre" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  
-                  <FormField
-                    control={form.control}
-                    name="apellido"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Apellido</FormLabel>
-                        <FormControl>
-                          <Input placeholder="Tu apellido" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <FormField
-                    control={form.control}
-                    name="rut"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>RUT</FormLabel>
-                        <FormControl>
-                          <Input 
-                            placeholder="12345678-9" 
-                            {...field} 
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  
-                  <FormField
-                    control={form.control}
-                    name="fechaNacimiento"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Fecha de nacimiento</FormLabel>
-                        <FormControl>
-                          <Input 
-                            type="date" 
-                            {...field} 
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <FormField
-                    control={form.control}
-                    name="email"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Correo electrónico</FormLabel>
-                        <FormControl>
-                          <Input 
-                            type="email" 
-                            placeholder="tucorreo@ejemplo.com" 
-                            {...field} 
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  
-                  <FormField
-                    control={form.control}
-                    name="telefono"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Teléfono</FormLabel>
-                        <FormControl>
-                          <Input 
-                            type="tel" 
-                            placeholder="912345678"
-                            maxLength={9}
-                            {...field}
-                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                              // Solo permitir números
-                              const value = e.target.value.replace(/\D/g, '');
-                              field.onChange(value);
-                            }}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-
-                <FormField
-                  control={form.control}
-                  name="direccion"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Dirección</FormLabel>
-                      <FormControl>
-                        <Input 
-                          placeholder="Ingresa tu dirección" 
-                          {...field} 
-                          ref={autocompleteRef}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <FormField
-                    control={form.control}
-                    name="comuna"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Comuna</FormLabel>
-                        <FormControl>
-                          <Input 
-                            placeholder="Comuna" 
-                            readOnly 
-                            {...field} 
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  
-                  <FormField
-                    control={form.control}
-                    name="ciudad"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Ciudad</FormLabel>
-                        <FormControl>
-                          <Input 
-                            placeholder="Ciudad" 
-                            readOnly 
-                            {...field} 
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <FormField
-                    control={form.control}
-                    name="movilizacionPropia"
-                    render={({ field }) => (
-                      <FormItem className="space-y-3">
-                        <FormLabel>¿Cuenta con movilización propia?</FormLabel>
-                        <FormControl>
-                          <RadioGroup
-                            onValueChange={field.onChange}
-                            defaultValue={field.value}
-                            className="flex flex-col space-y-1"
-                          >
-                            <div className="flex items-center space-x-2">
-                              <RadioGroupItem value="si" id="movilizacion-si" />
-                              <label htmlFor="movilizacion-si">Sí</label>
-                            </div>
-                            <div className="flex items-center space-x-2">
-                              <RadioGroupItem value="no" id="movilizacion-no" />
-                              <label htmlFor="movilizacion-no">No</label>
-                            </div>
-                          </RadioGroup>
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  
-                  <FormField
-                    control={form.control}
-                    name="certificadoOS10"
-                    render={({ field }) => (
-                      <FormItem className="space-y-3">
-                        <FormLabel>¿Cuenta con certificado OS10 vigente?</FormLabel>
-                        <FormControl>
-                          <RadioGroup
-                            onValueChange={field.onChange}
-                            defaultValue={field.value}
-                            className="flex flex-col space-y-1"
-                          >
-                            <div className="flex items-center space-x-2">
-                              <RadioGroupItem value="si" id="os10-si" />
-                              <label htmlFor="os10-si">Sí</label>
-                            </div>
-                            <div className="flex items-center space-x-2">
-                              <RadioGroupItem value="no" id="os10-no" />
-                              <label htmlFor="os10-no">No</label>
-                            </div>
-                          </RadioGroup>
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-
-                <FormField
-                  control={form.control}
-                  name="comentarios"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Comentarios adicionales</FormLabel>
-                      <FormControl>
-                        <Textarea 
-                          placeholder="Cuéntanos sobre tu experiencia, disponibilidad horaria, u otra información relevante"
-                          className="min-h-[120px]" 
-                          {...field} 
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <div className="flex justify-center pt-6">
-                  <Button 
-                    type="submit" 
-                    className={cn(
-                      "bg-primary hover:bg-primary/90 text-white px-8 py-6 rounded-full text-lg",
-                      isSubmitting && "opacity-50 cursor-not-allowed"
-                    )}
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting ? (
-                      <>
-                        <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                        Enviando...
-                      </>
-                    ) : (
-                      <>
-                        Enviar Postulación
-                        <ArrowRight className="ml-2 h-5 w-5" />
-                      </>
-                    )}
+            {formStatus === 'success' ? (
+              <div className="p-8">
+                <div className="bg-green-50 dark:bg-green-900/20 rounded-xl p-8 text-center">
+                  <div className="inline-flex items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30 w-16 h-16 mb-4">
+                    <CheckCircle className="h-8 w-8 text-green-600 dark:text-green-400" />
+                  </div>
+                  <h3 className="text-xl font-bold mb-4">¡Postulación recibida con éxito!</h3>
+                  <p className="text-muted-foreground mb-6">
+                    Hemos recibido correctamente tu información. Nuestro equipo de recursos humanos revisará tu perfil y te contactará si tu candidatura avanza en el proceso de selección.
+                  </p>
+                  <Button variant="gard-primary" className="rounded-xl">
+                    Volver al Inicio
                   </Button>
                 </div>
+              </div>
+            ) : (
+              <div className="p-8">
+                <Form {...form}>
+                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <FormField
+                        control={form.control}
+                        name="nombre"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Nombre <span className="text-red-500">*</span></FormLabel>
+                            <FormControl>
+                              <Input placeholder="Ingrese su nombre" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
 
-                {formStatus === 'error' && (
-                  <div className="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg flex items-center">
-                    <AlertCircle className="h-5 w-5 text-red-600 dark:text-red-400 mr-2" />
-                    <p className="text-red-600 dark:text-red-400">
-                      Ocurrió un error al enviar tu postulación. Por favor intenta nuevamente.
-                    </p>
-                  </div>
-                )}
-              </form>
-            </Form>
-          )}
+                      <FormField
+                        control={form.control}
+                        name="apellido"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Apellido <span className="text-red-500">*</span></FormLabel>
+                            <FormControl>
+                              <Input placeholder="Ingrese su apellido" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
+                      <FormField
+                        control={form.control}
+                        name="rut"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>RUT <span className="text-red-500">*</span></FormLabel>
+                            <FormControl>
+                              <Input 
+                                placeholder="12345678-9" 
+                                {...field} 
+                                onChange={(e) => {
+                                  // Formatear RUT (opcional)
+                                  field.onChange(e.target.value);
+                                }}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
+                      <FormField
+                        control={form.control}
+                        name="email"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Correo Electrónico <span className="text-red-500">*</span></FormLabel>
+                            <FormControl>
+                              <Input 
+                                type="email" 
+                                placeholder="ejemplo@correo.com" 
+                                {...field} 
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
+                      <FormField
+                        control={form.control}
+                        name="telefono"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Teléfono Celular <span className="text-red-500">*</span></FormLabel>
+                            <FormControl>
+                              <Input 
+                                placeholder="912345678" 
+                                maxLength={9}
+                                {...field} 
+                                onChange={(e) => {
+                                  // Solo permitir números
+                                  const value = e.target.value.replace(/\D/g, '');
+                                  field.onChange(value);
+                                }}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
+                      <FormField
+                        control={form.control}
+                        name="fechaNacimiento"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Fecha de Nacimiento <span className="text-red-500">*</span></FormLabel>
+                            <FormControl>
+                              <Input 
+                                type="date" 
+                                {...field} 
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+
+                    <FormField
+                      control={form.control}
+                      name="direccion"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Dirección <span className="text-red-500">*</span></FormLabel>
+                          <FormControl>
+                            <Input 
+                              placeholder="Ingrese su dirección" 
+                              {...field} 
+                              ref={autocompleteRef}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <FormField
+                        control={form.control}
+                        name="comuna"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Comuna <span className="text-red-500">*</span></FormLabel>
+                            <FormControl>
+                              <Input 
+                                placeholder="Comuna" 
+                                {...field} 
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
+                      <FormField
+                        control={form.control}
+                        name="ciudad"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Ciudad <span className="text-red-500">*</span></FormLabel>
+                            <FormControl>
+                              <Input 
+                                placeholder="Ciudad" 
+                                {...field} 
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+
+                    <FormField
+                      control={form.control}
+                      name="movilizacionPropia"
+                      render={({ field }) => (
+                        <FormItem className="space-y-3">
+                          <FormLabel>¿Cuenta con movilización propia? <span className="text-red-500">*</span></FormLabel>
+                          <FormControl>
+                            <RadioGroup
+                              onValueChange={field.onChange}
+                              defaultValue={field.value}
+                              className="flex space-x-6"
+                            >
+                              <div className="flex items-center space-x-2">
+                                <RadioGroupItem value="si" id="movilizacion-si" />
+                                <label htmlFor="movilizacion-si" className="cursor-pointer">
+                                  Sí
+                                </label>
+                              </div>
+                              <div className="flex items-center space-x-2">
+                                <RadioGroupItem value="no" id="movilizacion-no" />
+                                <label htmlFor="movilizacion-no" className="cursor-pointer">
+                                  No
+                                </label>
+                              </div>
+                            </RadioGroup>
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="certificadoOS10"
+                      render={({ field }) => (
+                        <FormItem className="space-y-3">
+                          <FormLabel>¿Cuenta con certificado OS10 vigente? <span className="text-red-500">*</span></FormLabel>
+                          <FormControl>
+                            <RadioGroup
+                              onValueChange={field.onChange}
+                              defaultValue={field.value}
+                              className="flex space-x-6"
+                            >
+                              <div className="flex items-center space-x-2">
+                                <RadioGroupItem value="si" id="os10-si" />
+                                <label htmlFor="os10-si" className="cursor-pointer">
+                                  Sí
+                                </label>
+                              </div>
+                              <div className="flex items-center space-x-2">
+                                <RadioGroupItem value="no" id="os10-no" />
+                                <label htmlFor="os10-no" className="cursor-pointer">
+                                  No
+                                </label>
+                              </div>
+                            </RadioGroup>
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="comentarios"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Comentarios Adicionales</FormLabel>
+                          <FormControl>
+                            <Textarea 
+                              placeholder="Indique experiencia previa, disponibilidad horaria, u otra información relevante..."
+                              className="resize-none"
+                              {...field} 
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    {formStatus === 'error' && (
+                      <div className="p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-700 text-red-800 dark:text-red-300 rounded-md flex items-start text-sm">
+                        <AlertCircle className="h-5 w-5 mr-2 flex-shrink-0 mt-0.5" />
+                        <span>Hubo un problema al enviar el formulario. Por favor, inténtelo nuevamente.</span>
+                      </div>
+                    )}
+
+                    <div className="pt-4">
+                      <Button 
+                        type="submit" 
+                        className="w-full rounded-xl"
+                        disabled={isSubmitting}
+                      >
+                        {isSubmitting ? (
+                          <>
+                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                            Enviando...
+                          </>
+                        ) : (
+                          <>
+                            Enviar postulación
+                          </>
+                        )}
+                      </Button>
+                    </div>
+                  </form>
+                </Form>
+              </div>
+            )}
+          </motion.div>
         </div>
       </section>
 
