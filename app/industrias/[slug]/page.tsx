@@ -5,8 +5,7 @@ import { notFound } from 'next/navigation';
 import { ArrowRight, CheckCircle, ArrowUpRight, ShieldCheck, Shield, Eye, Factory } from 'lucide-react';
 import CloudflareImage from '@/components/CloudflareImage';
 import { industriesMetadata } from '../industryMetadata';
-import GardHero from '@/components/layouts/GardHero';
-import FormularioCotizacionSeccion from '@/app/components/FormularioCotizacionSeccion';
+import { industries } from '@/app/data/industries';
 
 // Interfaces para tipado
 interface Challenge {
@@ -65,6 +64,29 @@ const getIndustryBySlug = (slug: string): any => {
   return industriesMetadata.find((industry) => industry.slug === slug);
 };
 
+// Obtener el ID de imagen para una industria por slug
+const getIndustryImageId = (slug: string): string => {
+  // Normalizar el nombre para comparar
+  const normalizeString = (str: string) => str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  
+  // Obtener el metadata de la industria
+  const industryMeta = getIndustryBySlug(slug);
+  if (!industryMeta) return "";
+  
+  // Extraer el nombre de la industria del título (antes del primer '|')
+  const industryName = industryMeta.title.split('|')[0].trim().replace('Seguridad para ', '').replace('Guardias para ', '');
+  
+  // Buscar la industria correspondiente en el array de industries 
+  const industry = industries.find(ind => 
+    normalizeString(ind.name) === normalizeString(industryName) ||
+    normalizeString(ind.name).includes(normalizeString(industryName)) ||
+    normalizeString(industryName).includes(normalizeString(ind.name))
+  );
+  
+  // Retornar el ID de imagen o un ID por defecto
+  return industry?.imageId || "4a46b63d-0e1b-4640-b95c-7f040a288c00";
+};
+
 // Formatear número con separador de miles
 const formatNumber = (num: number): string => {
   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
@@ -108,6 +130,9 @@ export default function IndustriaPage({ params }: { params: { slug: string } }) 
     return notFound();
   }
 
+  // Obtener el ID de imagen para esta industria
+  const industryImageId = getIndustryImageId(params.slug);
+
   // Extraer propiedades con valores por defecto
   const industry = {
     // Propiedades básicas de SEO que siempre existen
@@ -117,7 +142,7 @@ export default function IndustriaPage({ params }: { params: { slug: string } }) 
     
     // Propiedades para la página que pueden no existir
     name: industryData.name || industryData.title.split('|')[0].trim(),
-    imageId: industryData.imageId || '',
+    imageId: industryImageId, // Usar el ID de imagen obtenido
     videoId: industryData.videoId,
     subtitle: industryData.subtitle,
     descriptionTitle: industryData.descriptionTitle,
@@ -158,19 +183,44 @@ export default function IndustriaPage({ params }: { params: { slug: string } }) 
       />
 
       {/* Hero */}
-      <GardHero 
-        title={`Seguridad para ${industry.name}`}
-        subtitle={industry.subtitle || `Soluciones de seguridad especializadas para el sector ${industry.name}`}
-        ctaTexto="Cotizar para mi empresa"
-        ctaHref="#cotizar"
-        videoId={industry.videoId}
-        imageId={industry.imageId}
-        badge={{
-          icon: <Factory className="h-4 w-4" />,
-          text: `Soluciones para ${industry.name}`
-        }}
-        overlay={true}
-      />
+      <section className="gard-hero min-h-[60vh] flex flex-col justify-center items-center relative overflow-hidden">
+        {/* Imagen de fondo */}
+        <div className="absolute inset-0">
+          <CloudflareImage
+            imageId={industry.imageId}
+            alt={`Seguridad para ${industry.name}`}
+            fill
+            className="object-cover"
+            priority
+          />
+          {/* Overlay */}
+          <div className="gard-hero-overlay bg-black/50 absolute inset-0"></div>
+        </div>
+        
+        {/* Contenido */}
+        <div className="gard-hero-content text-center relative z-10 px-4 py-20">
+          {/* Badge */}
+          <div className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary mb-4">
+            <Factory className="h-4 w-4 mr-2" />
+            <span>Soluciones para {industry.name}</span>
+          </div>
+          
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+            Seguridad para {industry.name}
+          </h1>
+          
+          <p className="text-xl text-white/90 max-w-3xl mx-auto mb-8">
+            {industry.subtitle || `Soluciones de seguridad especializadas para el sector ${industry.name}`}
+          </p>
+          
+          <a 
+            href="#cotizar" 
+            className="gard-btn gard-btn-primary inline-flex items-center"
+          >
+            Cotizar para mi empresa <ArrowRight className="ml-2 h-5 w-5" />
+          </a>
+        </div>
+      </section>
 
       {/* Descripción de la industria */}
       <section className="gard-section py-16 md:py-24">
@@ -329,10 +379,71 @@ export default function IndustriaPage({ params }: { params: { slug: string } }) 
       )}
 
       {/* Formulario de cotización */}
-      <FormularioCotizacionSeccion 
-        prefillIndustria={industry.name} 
-        className="bg-[#0A0C12]"
-      />
+      <section id="cotizar" className="gard-section py-16 md:py-24 bg-[#0A0C12]">
+        <div className="gard-container max-w-7xl mx-auto px-4">
+          <h2 className="text-heading-2 mb-6 text-center text-white">
+            Solicite una cotización personalizada
+          </h2>
+          <p className="text-body-lg text-gray-300 mb-12 max-w-3xl mx-auto text-center">
+            Complete el formulario y un ejecutivo se contactará a la brevedad con una propuesta adaptada a {industry.name}
+          </p>
+          
+          {/* Aquí iría el componente de formulario */}
+          <div className="max-w-3xl mx-auto">
+            <form className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label className="text-white">Nombre</label>
+                  <input 
+                    type="text" 
+                    className="w-full p-3 rounded-lg bg-[#1A1D26] border border-gray-700 text-white"
+                    placeholder="Su nombre completo"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-white">Email</label>
+                  <input 
+                    type="email"
+                    className="w-full p-3 rounded-lg bg-[#1A1D26] border border-gray-700 text-white"
+                    placeholder="correo@ejemplo.com"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-white">Teléfono</label>
+                  <input 
+                    type="tel"
+                    className="w-full p-3 rounded-lg bg-[#1A1D26] border border-gray-700 text-white"
+                    placeholder="+56 9 1234 5678"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-white">Empresa</label>
+                  <input 
+                    type="text"
+                    className="w-full p-3 rounded-lg bg-[#1A1D26] border border-gray-700 text-white"
+                    placeholder="Nombre de su empresa"
+                  />
+                </div>
+              </div>
+              <div className="space-y-2">
+                <label className="text-white">Mensaje</label>
+                <textarea 
+                  className="w-full p-3 rounded-lg bg-[#1A1D26] border border-gray-700 text-white h-32"
+                  placeholder="Cuéntenos sobre sus necesidades de seguridad..."
+                />
+              </div>
+              <div className="flex justify-center">
+                <button 
+                  type="submit" 
+                  className="gard-btn gard-btn-primary gard-btn-lg"
+                >
+                  Enviar solicitud <ArrowRight className="ml-2 h-5 w-5" />
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
     </>
   );
 } 
