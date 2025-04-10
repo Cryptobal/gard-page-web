@@ -363,7 +363,7 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
                 name="nombre"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Nombre</FormLabel>
+                    <FormLabel>Nombre <span className="text-red-500">*</span></FormLabel>
                     <FormControl>
                       <Input placeholder="Tu nombre" {...field} />
                     </FormControl>
@@ -377,7 +377,7 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
                 name="apellido"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Apellido</FormLabel>
+                    <FormLabel>Apellido <span className="text-red-500">*</span></FormLabel>
                     <FormControl>
                       <Input placeholder="Tu apellido" {...field} />
                     </FormControl>
@@ -393,7 +393,7 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email de contacto</FormLabel>
+                    <FormLabel>Email de contacto <span className="text-red-500">*</span></FormLabel>
                     <FormControl>
                       <Input type="email" placeholder="correo@ejemplo.com" {...field} />
                     </FormControl>
@@ -407,7 +407,7 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
                 name="telefono"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Número de teléfono</FormLabel>
+                    <FormLabel>Número de teléfono <span className="text-red-500">*</span></FormLabel>
                     <FormControl>
                       <Input
                         type="tel"
@@ -432,7 +432,7 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
               name="empresa"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Empresa</FormLabel>
+                  <FormLabel>Empresa <span className="text-red-500">*</span></FormLabel>
                   <FormControl>
                     <Input placeholder="Nombre de tu empresa" {...field} />
                   </FormControl>
@@ -446,7 +446,7 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
               name="direccion"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Dirección o ubicación del servicio</FormLabel>
+                  <FormLabel>Dirección o ubicación del servicio <span className="text-red-500">*</span></FormLabel>
                   <FormControl>
                     <Input
                       placeholder="Ingresa la dirección"

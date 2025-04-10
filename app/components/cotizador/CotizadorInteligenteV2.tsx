@@ -383,7 +383,17 @@ export default function CotizadorInteligenteV2() {
   // Validar formulario
   const validateForm = (): boolean => {
     const errors: {[key: string]: string} = {};
-    const requiredFields: Array<keyof FormData> = ['nombre', 'apellido', 'email', 'telefono', 'empresa', 'direccion', 'rubro', 'comentarios'];
+    // Todos los campos visibles en el formulario se consideran obligatorios
+    const requiredFields: Array<keyof FormData> = [
+      'nombre', 
+      'apellido', 
+      'email', 
+      'telefono', 
+      'empresa', 
+      'direccion', 
+      'rubro', 
+      'comentarios'
+    ];
     
     // Verificar campos requeridos
     requiredFields.forEach(field => {
@@ -403,8 +413,13 @@ export default function CotizadorInteligenteV2() {
       errors.telefono = 'El teléfono debe tener 9 dígitos';
     }
     
-    setFormErrors(errors);
-    return Object.keys(errors).length === 0;
+    // Si hay errores, actualizar el estado y devolver false
+    if (Object.keys(errors).length > 0) {
+      setFormErrors(errors);
+      return false;
+    }
+    
+    return true;
   };
   
   // Capturar parámetros UTM y landing page cuando el componente se monta
