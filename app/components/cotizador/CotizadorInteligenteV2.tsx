@@ -27,7 +27,8 @@ import {
   Mail,
   Phone,
   MapPin,
-  X
+  X,
+  Check
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import {
@@ -45,6 +46,7 @@ import {
 import { Loader } from '@googlemaps/js-api-loader';
 import API_URLS from '@/app/config/api';
 import { trackFormSubmission } from '@/lib/analytics/formTracking';
+import { Button } from '@/components/ui/button';
 
 // Opciones predefinidas para los controles de selección
 const OPCIONES_TIPO_TURNO: TipoTurno[] = ['2x5', '5x2', '4x4', '7x7', '14x14'];
@@ -112,7 +114,7 @@ interface FormData {
   ciudad: string;
   rubro: string;
   comentarios: string;
-  // Añadir parámetros UTM
+  // Parámetros UTM
   utm_source?: string;
   utm_medium?: string;
   utm_campaign?: string;
@@ -381,7 +383,7 @@ export default function CotizadorInteligenteV2() {
   // Validar formulario
   const validateForm = (): boolean => {
     const errors: {[key: string]: string} = {};
-    const requiredFields: Array<keyof FormData> = ['nombre', 'apellido', 'email', 'telefono', 'empresa', 'direccion'];
+    const requiredFields: Array<keyof FormData> = ['nombre', 'apellido', 'email', 'telefono', 'empresa', 'direccion', 'rubro', 'comentarios'];
     
     // Verificar campos requeridos
     requiredFields.forEach(field => {
@@ -688,318 +690,211 @@ export default function CotizadorInteligenteV2() {
         {/* Modal de Formulario */}
         <AnimatePresence>
           {showForm && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 flex items-start justify-center p-4 overflow-y-auto"
-              onClick={() => setShowForm(false)}
-            >
-              {submitSuccess ? (
-                <motion.div
-                  initial={{ scale: 0.9, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  exit={{ scale: 0.9, opacity: 0 }}
-                  className="bg-card dark:bg-card/90 rounded-3xl p-6 md:p-8 shadow-2xl w-full max-w-md relative my-8"
-                  onClick={(e) => e.stopPropagation()}
+            <div className="fixed inset-0 flex items-center justify-center z-50 bg-black/50 backdrop-blur-sm">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                className="w-full max-w-3xl bg-card p-6 rounded-2xl shadow-2xl overflow-y-auto max-h-[90vh] relative"
+              >
+                {/* Botón de cerrar */}
+                <button 
+                  onClick={() => setShowForm(false)}
+                  className="absolute top-4 right-4 text-muted-foreground hover:text-foreground p-1.5 rounded-full"
                 >
-                  <button 
-                    onClick={() => setShowForm(false)}
-                    className="absolute top-4 right-4 p-2 rounded-full hover:bg-muted/60 transition-colors"
-                  >
-                    <X className="h-5 w-5 text-muted-foreground" />
-                  </button>
-                  <div className="text-center py-6">
-                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-100 dark:bg-green-900/30 mb-6">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-green-500 dark:text-green-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <h3 className="text-2xl font-bold text-foreground mb-4">
-                      ¡Solicitud enviada con éxito!
-                    </h3>
-                    <p className="text-muted-foreground mb-6">
-                      Hemos recibido tu información y nos pondremos en contacto contigo a la brevedad.
-                    </p>
-                    <button
-                      onClick={() => {
-                        setShowForm(false);
-                        setSubmitSuccess(false);
-                      }}
-                      className="rounded-xl py-3 px-6 bg-primary hover:bg-primary/90 text-primary-foreground transition-colors"
+                  <X className="h-5 w-5" />
+                </button>
+                
+                {submitSuccess ? (
+                  <div className="text-center py-10">
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      className="inline-flex items-center justify-center rounded-full bg-primary/10 p-3 mb-4"
                     >
+                      <Check className="h-8 w-8 text-primary" />
+                    </motion.div>
+                    <h2 className="text-2xl font-bold mb-3">¡Cotización enviada con éxito!</h2>
+                    <p className="text-muted-foreground mb-8">
+                      Nos pondremos en contacto contigo lo antes posible para coordinar los detalles de tu servicio.
+                    </p>
+                    <Button onClick={() => setShowForm(false)} variant="outline">
                       Cerrar
-                    </button>
+                    </Button>
                   </div>
-                </motion.div>
-              ) : (
-                <motion.div
-                  initial={{ scale: 0.9, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  exit={{ scale: 0.9, opacity: 0 }}
-                  className="bg-card dark:bg-card/90 rounded-3xl p-6 md:p-8 shadow-2xl w-full max-w-md relative my-8"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <button 
-                    onClick={() => setShowForm(false)}
-                    className="absolute top-4 right-4 p-2 rounded-full hover:bg-muted/60 transition-colors"
-                  >
-                    <X className="h-5 w-5 text-muted-foreground" />
-                  </button>
-                  <h3 className="text-2xl font-bold text-foreground mb-6 text-center">
-                    Complete sus datos
-                  </h3>
-                  
-                  <form onSubmit={handleSubmit} className="space-y-5">
-                    <div className="grid grid-cols-2 gap-4">
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    <h2 className="text-2xl font-bold mb-3">Solicitar cotización personalizada</h2>
+                    <p className="text-muted-foreground mb-6">
+                      Completa este formulario y nuestro equipo te enviará una cotización detallada para {roles.reduce((total, rol) => total + rol.puestos, 0)} {roles.reduce((total, rol) => total + rol.puestos, 0) === 1 ? 'guardia' : 'guardias'} de seguridad.
+                    </p>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-5">
+                      {/* Campos personales */}
                       <div>
-                        <label htmlFor="nombre" className="text-base font-medium text-foreground block mb-2">
-                          Nombre
+                        <label htmlFor="nombre" className="block text-sm font-medium mb-1.5">
+                          Nombre <span className="text-red-500">*</span>
                         </label>
                         <input
+                          type="text"
                           id="nombre"
                           name="nombre"
-                          type="text"
-                          required
+                          className={`w-full rounded-lg border ${formErrors.nombre ? 'border-red-500' : 'border-border'} bg-background p-2.5`}
                           value={formData.nombre}
                           onChange={handleFormChange}
-                          className={cn(
-                            "w-full rounded-xl border border-input bg-background px-4 py-3 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                            formErrors.nombre && "border-red-500"
-                          )}
                         />
-                        {formErrors.nombre && (
-                          <p className="text-red-500 text-xs mt-1">{formErrors.nombre}</p>
-                        )}
+                        {formErrors.nombre && <p className="text-red-500 text-xs mt-1">{formErrors.nombre}</p>}
                       </div>
                       
                       <div>
-                        <label htmlFor="apellido" className="text-base font-medium text-foreground block mb-2">
-                          Apellido
+                        <label htmlFor="apellido" className="block text-sm font-medium mb-1.5">
+                          Apellido <span className="text-red-500">*</span>
                         </label>
                         <input
+                          type="text"
                           id="apellido"
                           name="apellido"
-                          type="text"
-                          required
+                          className={`w-full rounded-lg border ${formErrors.apellido ? 'border-red-500' : 'border-border'} bg-background p-2.5`}
                           value={formData.apellido}
                           onChange={handleFormChange}
-                          className={cn(
-                            "w-full rounded-xl border border-input bg-background px-4 py-3 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                            formErrors.apellido && "border-red-500"
-                          )}
                         />
-                        {formErrors.apellido && (
-                          <p className="text-red-500 text-xs mt-1">{formErrors.apellido}</p>
-                        )}
-                      </div>
-                    </div>
-                    
-                    <div>
-                      <label htmlFor="email" className="text-base font-medium text-foreground block mb-2 flex items-center">
-                        <Mail className="h-5 w-5 mr-2 text-primary dark:text-accent" />
-                        Email
-                      </label>
-                      <input
-                        id="email"
-                        name="email"
-                        type="email"
-                        required
-                        value={formData.email}
-                        onChange={handleFormChange}
-                        className={cn(
-                          "w-full rounded-xl border border-input bg-background px-4 py-3 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                          formErrors.email && "border-red-500"
-                        )}
-                      />
-                      {formErrors.email && (
-                        <p className="text-red-500 text-xs mt-1">{formErrors.email}</p>
-                      )}
-                    </div>
-                    
-                    <div>
-                      <label htmlFor="telefono" className="text-base font-medium text-foreground block mb-2 flex items-center">
-                        <Phone className="h-5 w-5 mr-2 text-primary dark:text-accent" />
-                        Teléfono (9 dígitos)
-                      </label>
-                      <input
-                        id="telefono"
-                        name="telefono"
-                        type="tel"
-                        required
-                        maxLength={9}
-                        value={formData.telefono}
-                        onChange={(e) => {
-                          // Solo permitir dígitos numéricos
-                          const value = e.target.value.replace(/\D/g, '');
-                          setFormData(prev => ({ ...prev, telefono: value }));
-                          // Limpiar error si el campo tiene valor y 9 dígitos
-                          if (value.length === 9 && formErrors.telefono) {
-                            setFormErrors(prev => {
-                              const newErrors = { ...prev };
-                              delete newErrors.telefono;
-                              return newErrors;
-                            });
-                          }
-                        }}
-                        className={cn(
-                          "w-full rounded-xl border border-input bg-background px-4 py-3 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                          formErrors.telefono && "border-red-500"
-                        )}
-                      />
-                      {formErrors.telefono && (
-                        <p className="text-red-500 text-xs mt-1">{formErrors.telefono}</p>
-                      )}
-                    </div>
-                    
-                    <div>
-                      <label htmlFor="empresa" className="text-base font-medium text-foreground block mb-2 flex items-center">
-                        <Building className="h-5 w-5 mr-2 text-primary dark:text-accent" />
-                        Empresa
-                      </label>
-                      <input
-                        id="empresa"
-                        name="empresa"
-                        type="text"
-                        required
-                        value={formData.empresa}
-                        onChange={handleFormChange}
-                        className={cn(
-                          "w-full rounded-xl border border-input bg-background px-4 py-3 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                          formErrors.empresa && "border-red-500"
-                        )}
-                      />
-                      {formErrors.empresa && (
-                        <p className="text-red-500 text-xs mt-1">{formErrors.empresa}</p>
-                      )}
-                    </div>
-                    
-                    <div>
-                      <label htmlFor="rubro" className="text-base font-medium text-foreground block mb-2">
-                        Rubro
-                      </label>
-                      <select
-                        id="rubro"
-                        name="rubro"
-                        value={formData.rubro}
-                        onChange={handleFormChange}
-                        className="w-full rounded-xl border border-input bg-background px-4 py-3 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                      >
-                        {rubros.map((rubro) => (
-                          <option key={rubro} value={rubro}>
-                            {rubro}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-                    
-                    {/* Nuevos campos de dirección con autocompletado */}
-                    <div>
-                      <label htmlFor="direccion" className="text-base font-medium text-foreground block mb-2 flex items-center">
-                        <MapPin className="h-5 w-5 mr-2 text-primary dark:text-accent" />
-                        Dirección
-                      </label>
-                      <input
-                        id="direccion"
-                        name="direccion"
-                        type="text"
-                        ref={autocompleteRef}
-                        required
-                        value={formData.direccion}
-                        onChange={handleDireccionChange}
-                        className={cn(
-                          "w-full rounded-xl border border-input bg-background px-4 py-3 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                          formErrors.direccion && "border-red-500"
-                        )}
-                        placeholder="Buscar dirección..."
-                      />
-                      {formErrors.direccion && (
-                        <p className="text-red-500 text-xs mt-1">{formErrors.direccion}</p>
-                      )}
-                      {!mapLoaded && (
-                        <p className="text-amber-500 text-xs mt-1">
-                          Autocompletado no disponible. Ingresa la dirección manualmente.
-                        </p>
-                      )}
-                    </div>
-
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <label htmlFor="comuna" className="text-base font-medium text-foreground block mb-2">
-                          Comuna
-                        </label>
-                        <input
-                          id="comuna"
-                          name="comuna"
-                          type="text"
-                          value={formData.comuna}
-                          onChange={handleFormChange}
-                          className="w-full rounded-xl border border-input bg-background px-4 py-3 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                        />
+                        {formErrors.apellido && <p className="text-red-500 text-xs mt-1">{formErrors.apellido}</p>}
                       </div>
                       
                       <div>
-                        <label htmlFor="ciudad" className="text-base font-medium text-foreground block mb-2">
-                          Ciudad
+                        <label htmlFor="email" className="block text-sm font-medium mb-1.5">
+                          Email <span className="text-red-500">*</span>
                         </label>
                         <input
-                          id="ciudad"
-                          name="ciudad"
-                          type="text"
-                          value={formData.ciudad}
+                          type="email"
+                          id="email"
+                          name="email"
+                          className={`w-full rounded-lg border ${formErrors.email ? 'border-red-500' : 'border-border'} bg-background p-2.5`}
+                          value={formData.email}
                           onChange={handleFormChange}
-                          className="w-full rounded-xl border border-input bg-background px-4 py-3 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                         />
+                        {formErrors.email && <p className="text-red-500 text-xs mt-1">{formErrors.email}</p>}
+                      </div>
+                      
+                      <div>
+                        <label htmlFor="telefono" className="block text-sm font-medium mb-1.5">
+                          Teléfono <span className="text-red-500">*</span>
+                        </label>
+                        <input
+                          type="tel"
+                          id="telefono"
+                          name="telefono"
+                          className={`w-full rounded-lg border ${formErrors.telefono ? 'border-red-500' : 'border-border'} bg-background p-2.5`}
+                          value={formData.telefono}
+                          onChange={handleFormChange}
+                          maxLength={9}
+                        />
+                        {formErrors.telefono && <p className="text-red-500 text-xs mt-1">{formErrors.telefono}</p>}
+                      </div>
+                      
+                      <div>
+                        <label htmlFor="empresa" className="block text-sm font-medium mb-1.5">
+                          Empresa <span className="text-red-500">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          id="empresa"
+                          name="empresa"
+                          className={`w-full rounded-lg border ${formErrors.empresa ? 'border-red-500' : 'border-border'} bg-background p-2.5`}
+                          value={formData.empresa}
+                          onChange={handleFormChange}
+                        />
+                        {formErrors.empresa && <p className="text-red-500 text-xs mt-1">{formErrors.empresa}</p>}
+                      </div>
+                      
+                      <div>
+                        <label htmlFor="rubro" className="block text-sm font-medium mb-1.5">
+                          Rubro <span className="text-red-500">*</span>
+                        </label>
+                        <select
+                          id="rubro"
+                          name="rubro"
+                          className={`w-full rounded-lg border ${formErrors.rubro ? 'border-red-500' : 'border-border'} bg-background p-2.5`}
+                          value={formData.rubro}
+                          onChange={handleFormChange}
+                        >
+                          {rubros.map(rubro => (
+                            <option key={rubro} value={rubro}>{rubro}</option>
+                          ))}
+                        </select>
+                        {formErrors.rubro && <p className="text-red-500 text-xs mt-1">{formErrors.rubro}</p>}
                       </div>
                     </div>
                     
+                    {/* Campos de ubicación */}
                     <div>
-                      <label htmlFor="comentarios" className="text-base font-medium text-foreground block mb-2">
-                        Comentarios adicionales (opcional)
+                      <label htmlFor="direccion" className="block text-sm font-medium mb-1.5">
+                        Dirección <span className="text-red-500">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        id="direccion"
+                        name="direccion"
+                        className={`w-full rounded-lg border ${formErrors.direccion ? 'border-red-500' : 'border-border'} bg-background p-2.5`}
+                        value={formData.direccion}
+                        onChange={handleDireccionChange}
+                        ref={autocompleteRef}
+                      />
+                      {formErrors.direccion && <p className="text-red-500 text-xs mt-1">{formErrors.direccion}</p>}
+                    </div>
+                    
+                    {/* Mantener campos ocultos de comuna y ciudad para el webhook */}
+                    <input
+                      type="hidden"
+                      id="comuna"
+                      name="comuna"
+                      value={formData.comuna}
+                    />
+                    
+                    <input
+                      type="hidden"
+                      id="ciudad"
+                      name="ciudad"
+                      value={formData.ciudad}
+                    />
+                    
+                    {/* Comentarios - ahora obligatorio */}
+                    <div>
+                      <label htmlFor="comentarios" className="block text-sm font-medium mb-1.5">
+                        Comentarios adicionales <span className="text-red-500">*</span>
                       </label>
                       <textarea
                         id="comentarios"
                         name="comentarios"
-                        rows={3}
+                        rows={4}
+                        className={`w-full rounded-lg border ${formErrors.comentarios ? 'border-red-500' : 'border-border'} bg-background p-2.5`}
                         value={formData.comentarios}
                         onChange={handleFormChange}
-                        className="w-full rounded-xl border border-input bg-background px-4 py-3 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring resize-none"
+                        placeholder="Detalles específicos sobre tus necesidades de seguridad..."
                       ></textarea>
+                      {formErrors.comentarios && <p className="text-red-500 text-xs mt-1">{formErrors.comentarios}</p>}
                     </div>
                     
-                    <div className="mt-6 flex items-center justify-between gap-4">
-                      <button
-                        type="button"
-                        onClick={() => setShowForm(false)}
-                        className="px-5 py-3 rounded-xl border border-input bg-background hover:bg-accent/10 text-foreground transition-colors"
-                      >
-                        Cancelar
-                      </button>
-                      <button
-                        type="submit"
-                        disabled={isSubmitting}
-                        className="flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground transition-colors disabled:opacity-50"
-                      >
+                    <div className="flex justify-end gap-3 pt-2">
+                      <Button type="button" variant="outline" onClick={() => setShowForm(false)}>Cancelar</Button>
+                      <Button type="submit" disabled={isSubmitting}>
                         {isSubmitting ? (
                           <>
-                            <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                             </svg>
                             Enviando...
                           </>
                         ) : (
-                          <>
-                            Enviar
-                            <Send className="h-4 w-4 ml-1" />
-                          </>
+                          'Solicitar cotización'
                         )}
-                      </button>
+                      </Button>
                     </div>
                   </form>
-                </motion.div>
-              )}
-            </motion.div>
+                )}
+              </motion.div>
+            </div>
           )}
         </AnimatePresence>
       </div>

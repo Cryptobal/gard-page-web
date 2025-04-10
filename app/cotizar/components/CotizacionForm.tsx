@@ -35,10 +35,6 @@ const formSchema = z.object({
   email: z.string().email({ message: 'Ingresa un correo electrónico válido' }),
   telefono: z.string().regex(/^\d{9}$/, { message: 'El teléfono debe tener 9 dígitos numéricos' }),
   empresa: z.string().min(2, { message: 'La empresa es obligatoria' }),
-  paginaWeb: z.string()
-    .min(3, { message: 'La página web es obligatoria' })
-    .regex(/^(https?:\/\/)?([a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,}/, 
-      { message: 'Ingresa una URL válida (ej: gard.cl, www.gard.cl o https://gard.cl)' }),
   direccion: z.string().min(5, { message: 'La dirección es obligatoria' }),
   comuna: z.string().optional(),
   ciudad: z.string().optional(),
@@ -90,7 +86,6 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
       email: '',
       telefono: '',
       empresa: '',
-      paginaWeb: '',
       direccion: '',
       comuna: '',
       ciudad: '',
@@ -254,6 +249,7 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
         }
       });
 
+      // Seguir capturando comuna y ciudad pero no mostrarlos visualmente
       setValue('comuna', comuna);
       setValue('ciudad', ciudad);
       
@@ -263,7 +259,7 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
         // Pequeño retraso para dar tiempo a que se complete el autocompletado
         setTimeout(() => {
           // Obtener el siguiente campo después de la dirección para asegurar una buena UX
-          const nextField = document.querySelector('[name="comuna"]');
+          const nextField = document.querySelector('[name="tipoIndustria"]');
           if (nextField) {
             // Scroll para asegurar que los campos siguientes sean visibles
             window.scrollBy({
@@ -431,38 +427,19 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
               />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <FormField
-                control={form.control}
-                name="empresa"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Empresa</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Nombre de tu empresa" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              
-              <FormField
-                control={form.control}
-                name="paginaWeb"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Página Web</FormLabel>
-                    <FormControl>
-                      <Input 
-                        placeholder="gard.cl, www.gard.cl o https://gard.cl" 
-                        {...field} 
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
+            <FormField
+              control={form.control}
+              name="empresa"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Empresa</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Nombre de tu empresa" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
             <FormField
               control={form.control}
@@ -496,35 +473,8 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
               )}
             />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <FormField
-                control={form.control}
-                name="comuna"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Comuna</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Comuna" readOnly {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              
-              <FormField
-                control={form.control}
-                name="ciudad"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Ciudad</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Ciudad" readOnly {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
+            <input type="hidden" {...form.register('comuna')} />
+            <input type="hidden" {...form.register('ciudad')} />
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <FormField
@@ -532,7 +482,7 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
                 name="tipoIndustria"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Tipo de industria</FormLabel>
+                    <FormLabel>Tipo de industria <span className="text-red-500">*</span></FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
                         <SelectTrigger>
@@ -562,7 +512,7 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
                 name="servicioRequerido"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Servicio requerido</FormLabel>
+                    <FormLabel>Servicio requerido <span className="text-red-500">*</span></FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
                         <SelectTrigger>
@@ -586,7 +536,7 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
               name="cotizacion"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Cotización</FormLabel>
+                  <FormLabel>Cotización <span className="text-red-500">*</span></FormLabel>
                   <FormControl>
                     <Textarea 
                       placeholder="Explícanos tus necesidades de seguridad para ofrecerte una cotización personalizada" 
