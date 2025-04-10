@@ -44,3 +44,12 @@ node_modules
 /app/components/cotizador/backup/
 /components/cotizador/backup/
 /app/cotizar/components/backup/
+
+# Virtual environment
+/.venv/
+.venv
+.venv/
+
+# Duplicate files
+* 2.tsx
+* 3.*
