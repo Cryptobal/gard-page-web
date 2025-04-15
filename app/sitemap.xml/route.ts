@@ -3,7 +3,7 @@ import { getAllPosts, POSTS_PER_PAGE, getAllTags, getPostsByTag } from '@/lib/bl
 import { isValidUrl, hasNoindexMetaTag } from '@/lib/utils';
 import { ciudades } from '@/lib/data/ciudad-data';
 import { servicesMetadata } from '@/app/servicios/serviceMetadata';
-import { serviciosPorIndustria } from '../data/servicios-por-industria';
+import { serviciosPorIndustria, esCombinacionValida } from '../data/servicios-por-industria';
 
 // Función para verificar y filtrar URLs mejorada
 async function filterValidUrls(urls: { url: string; lastModified: string; changeFrequency: string; priority: number; }[]) {
@@ -130,7 +130,7 @@ async function generateSitemap() {
     priority: number;
   }[] = [];
   
-  // Generar combinaciones de servicio-por-industria
+  // Generar combinaciones de servicio-por-industria usando la función esCombinacionValida
   for (const servicio of servicesMetadata) {
     for (const industria of industries) {
       const industriaSlug = industria.name.toLowerCase()
@@ -138,13 +138,16 @@ async function generateSitemap() {
         .replace(/[\u0300-\u036f]/g, '')
         .replace(/[^\w\s]/g, '')
         .replace(/\s+/g, '-');
-        
-      servicioIndustriaPages.push({
-        url: `${baseUrl}/servicios-por-industria/${servicio.slug}/${industriaSlug}`,
-        lastModified: new Date().toISOString(),
-        changeFrequency: 'monthly',
-        priority: 0.9, // Alta prioridad para estas páginas clave de conversión
-      });
+      
+      // Solo incluir combinaciones válidas
+      if (esCombinacionValida(servicio.slug, industriaSlug)) {
+        servicioIndustriaPages.push({
+          url: `${baseUrl}/servicios-por-industria/${servicio.slug}/${industriaSlug}`,
+          lastModified: new Date().toISOString(),
+          changeFrequency: 'weekly', // Actualizado a semanal para mejor indexación
+          priority: 0.9,
+        });
+      }
     }
   }
   
