@@ -145,6 +145,11 @@ const rubros = [
   'Otro'
 ];
 
+// Función para generar el enlace de Google Maps
+const getGoogleMapsLink = (direccion: string) => {
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(direccion)}`;
+};
+
 export default function CotizadorInteligenteV2() {
   // Estado para los roles operativos
   const [roles, setRoles] = useState<RolOperativo[]>([
@@ -498,6 +503,8 @@ export default function CotizadorInteligenteV2() {
       const dataToSend = {
         ...formData,
         ...utmData,
+        direccion: formData.direccion,
+        direccionGoogleMaps: getGoogleMapsLink(formData.direccion),
         roles: roles.map(rol => ({
           tipoTurno: rol.tipoTurno,
           horario: rol.horario,

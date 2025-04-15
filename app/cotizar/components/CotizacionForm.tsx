@@ -71,6 +71,11 @@ interface CotizacionFormProps {
   prefillIndustria?: string;
 }
 
+// Función para generar el enlace de Google Maps
+const getGoogleMapsLink = (direccion: string) => {
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(direccion)}`;
+};
+
 export default function CotizacionForm({ prefillServicio, prefillIndustria }: CotizacionFormProps = {}) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formStatus, setFormStatus] = useState<'idle' | 'success' | 'error'>('idle');
@@ -293,6 +298,8 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
         utm_content: data.utm_content || localStorage.getItem('utm_content') || '',
         gclid: data.gclid || localStorage.getItem('gclid') || '',
         landing_page: data.landing_page || localStorage.getItem('landing_page') || window.location.pathname,
+        // Agregar el enlace de Google Maps
+        direccionGoogleMaps: getGoogleMapsLink(data.direccion),
       };
       
       const response = await fetch(API_URLS.COTIZACION, {
