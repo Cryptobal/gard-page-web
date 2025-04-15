@@ -27,7 +27,7 @@ import Script from 'next/script';
 // IDs de imágenes para logos e imágenes
 const LOGO_GARD_BLANCO = '49b89002-6bb9-41b9-50ad-e6b91e5f6d00';
 const ESCUDO_GARD_BLANCO = 'f1cad221-0c11-43c4-3142-a53a6febbd00';
-const HERO_IMAGE_ID = '4824f8b9-abb0-4e77-c654-efe920697b00';
+const HERO_VIDEO_ID = '173a0d7d07ffa39bb4c93e422d676e65';
 const GUARDIA_IMAGEN_ID = '5eea1064-8a2d-4e8b-5606-d28775467a00'; // Imagen de guardia trabajando
 
 // Definir el metadata directamente en este archivo para evitar problemas de importación
@@ -442,13 +442,16 @@ export default function CotizadorInteligentePage() {
         <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/70 to-black/60 z-10"></div>
         
         {/* Imagen de fondo */}
-        <CloudflareImage
-          imageId={HERO_IMAGE_ID}
-          alt="Guardias de seguridad profesionales"
-          fill
-          priority
-          className="object-cover"
-        />
+        <div className="absolute inset-0 z-[-1]">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+            src={`https://imagedelivery.net/cGbMPRg9wt8jvG6HDuBzVQ/${HERO_VIDEO_ID}/public`}
+          />
+        </div>
         
         {/* Contenido del Hero */}
         <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-4">
