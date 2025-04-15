@@ -248,7 +248,7 @@ export default function ServicioPage({ params }: { params: { slug: string } }) {
             <CloudflareVideo
               videoId={servicio.heroImageId}
               className="w-full h-full"
-              autoPlay
+              autoplay
               loop
               muted
             />

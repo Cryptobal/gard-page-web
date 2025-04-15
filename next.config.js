@@ -28,9 +28,6 @@ const nextConfig = {
     return config;
   },
   trailingSlash: true,
-  experimental: {
-    serverActions: true,
-  },
   // Redirecciones para evitar errores 404 y contenido duplicado
   async redirects() {
     return [
