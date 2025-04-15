@@ -39,71 +39,59 @@ export function middleware(request: NextRequest) {
   const url = request.nextUrl.clone();
   const { pathname } = url;
   
-  console.log(`Middleware procesando: ${pathname}`);
-  
-  // Obtener los segmentos de la ruta
-  // Eliminar cualquier prefijo https: o www. que pueda estar en la ruta
+  // Limpiar la ruta de cualquier prefijo no deseado
   const cleanPathname = pathname.replace(/^\/https?:\/\/(www\.)?gard\.cl/, '');
   const segments = cleanPathname.split('/').filter(Boolean);
   
-  console.log(`Segmentos detectados: ${segments.join(', ')} (${segments.length})`);
-
-  // MODIFICACIÓN SEO: Permitir todas las rutas de servicios-por-industria
-  if (segments.length === 3 && segments[0] === 'servicios-por-industria') {
+  // Si la ruta es válida, permitir sin redirección
+  if (isValidRoute(segments)) {
     return NextResponse.next();
   }
   
-  // Manejar URLs antiguas de landing-dinamico - mantener este caso para preservar SEO histórico
-  if (segments.length === 3 && segments[0] === 'landing-dinamico') {
-    console.log(`Detectada URL antigua de landing dinámico: ${pathname}`);
+  // Manejar URLs antiguas de landing-dinamico
+  if (segments[0] === 'landing-dinamico' && segments.length === 3) {
+    const [_, industria, servicio] = segments;
     
-    const industria = segments[1];
-    const servicioAntiguo = segments[2];
-    
-    // Verificar si hay un mapeo para el servicio antiguo
-    const servicioNuevo = servicioAntiguo in MAPEO_SERVICIOS_ANTIGUOS 
-      ? MAPEO_SERVICIOS_ANTIGUOS[servicioAntiguo as keyof typeof MAPEO_SERVICIOS_ANTIGUOS] 
-      : 'guardias-de-seguridad';
-    
-    // Si la industria está en la lista de industrias válidas, redirigir a la nueva estructura
     if (INDUSTRIAS_VALIDAS.includes(industria)) {
-      url.pathname = `/servicios-por-industria/${servicioNuevo}/${industria}`;
-      console.log(`Redirigiendo a nueva estructura: ${url.pathname}`);
-      return NextResponse.redirect(url, 301); // Redirección permanente
-    } else {
-      // Si la industria no es válida, redirigir a servicios
-      url.pathname = '/servicios';
-      console.log(`Industria no válida, redirigiendo a: ${url.pathname}`);
+      url.pathname = `/servicios-por-industria/${servicio}/${industria}/`;
       return NextResponse.redirect(url, 301);
     }
   }
   
-  // MODIFICACIÓN SEO: No redirigir URLs de servicios/[slug]/[industria]
-  // Estas rutas ahora se permitirán directamente para mejor SEO
-  
-  // MODIFICACIÓN SEO: Permitir rutas de ciudad/servicio y servicio/industria directamente
-  if (segments.length === 2) {
-    const [primerSegmento, segundoSegmento] = segments;
-    
-    // Verificar si es una ruta ciudad/servicio o servicio/industria - permitir ambos casos
-    if ((CIUDADES_VALIDAS.includes(primerSegmento) && SERVICIOS_VALIDOS.includes(segundoSegmento)) ||
-        (SERVICIOS_VALIDOS.includes(primerSegmento) && INDUSTRIAS_VALIDAS.includes(segundoSegmento))) {
-      return NextResponse.next();
-    }
-  }
-  
-  // Si no coincide con ninguno de los patrones, continuar normalmente
+  // Si la ruta no es válida, redirigir a la página principal
   return NextResponse.next();
 }
 
-// MODIFICACIÓN SEO: Reducir el ámbito del middleware para mejor rendimiento
-// Solo ejecutar en las rutas que realmente necesitan procesamiento
+function isValidRoute(segments: string[]): boolean {
+  if (segments.length === 0) return true;
+  
+  // Rutas válidas de primer nivel
+  if (segments.length === 1) {
+    return ['blog', 'servicios', 'industrias', 'contacto', 'sobre-nosotros', 'tecnologia-seguridad'].includes(segments[0]);
+  }
+  
+  // Rutas ciudad/servicio
+  if (segments.length === 2) {
+    const [first, second] = segments;
+    return (
+      (CIUDADES_VALIDAS.includes(first) && SERVICIOS_VALIDOS.includes(second)) ||
+      (SERVICIOS_VALIDOS.includes(first) && INDUSTRIAS_VALIDAS.includes(second)) ||
+      (first === 'blog' && second.startsWith('tag'))
+    );
+  }
+  
+  // Rutas servicios-por-industria
+  if (segments.length === 3 && segments[0] === 'servicios-por-industria') {
+    const [_, servicio, industria] = segments;
+    return SERVICIOS_VALIDOS.includes(servicio) && INDUSTRIAS_VALIDAS.includes(industria);
+  }
+  
+  return false;
+}
+
+// Configurar el matcher para las rutas que necesitan procesamiento
 export const config = {
   matcher: [
-    '/landing-dinamico/:path*',
-    '/servicios-por-industria/:path*',
-    '/servicios/:path*',
-    '/:city/:service',
-    '/:service/:industry'
+    '/((?!api|_next/static|_next/image|favicon.ico).*)',
   ]
 }; 

@@ -12,15 +12,29 @@ const nextConfig = {
       },
     ],
   },
-  trailingSlash: false,
+  trailingSlash: true,
   
   // Redirecciones para evitar errores 404 y contenido duplicado
   async redirects() {
     return [
-      // Las redirecciones ciudad/servicio y servicio/industria 
-      // ahora son manejadas por middleware.ts
+      // Redirecciones básicas
+      {
+        source: '/tecnologias',
+        destination: '/tecnologia-seguridad',
+        permanent: true,
+      },
+      {
+        source: '/contactanos',
+        destination: '/contacto',
+        permanent: true,
+      },
+      {
+        source: '/mejor-empresa-de-seguridad',
+        destination: '/sobre-nosotros',
+        permanent: true,
+      },
       
-      // Redirecciones de URLs antiguas a nuevas estructuras
+      // Redirecciones de URLs antiguas manteniendo la estructura ciudad/servicio
       {
         source: '/automatizacion-y-domotica',
         destination: '/servicios/automatizacion-y-domotica',
@@ -41,60 +55,53 @@ const nextConfig = {
         destination: '/blog',
         permanent: true,
       },
+      
+      // Redireccionar de no-www a www
       {
-        source: '/servicios-de-seguridad-privada',
-        destination: '/servicios',
-        permanent: true,
-      },
-      {
-        source: '/tecnologias',
-        destination: '/tecnologia-seguridad',
-        permanent: true,
-      },
-      {
-        source: '/contacto-empresa-de-seguridad',
-        destination: '/cotizar',
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'gard.cl',
+          },
+        ],
+        destination: 'https://www.gard.cl/:path*',
         permanent: true,
       },
       
-      // Asegurar que las URLs con slash final también funcionen
+      // Redireccionar parámetros UTM y tracking a URLs limpias
       {
-        source: '/automatizacion-y-domotica/:path*',
-        destination: '/servicios/automatizacion-y-domotica/:path*',
+        source: '/:path*\\?trk=:trk*',
+        destination: '/:path*',
         permanent: true,
       },
       {
-        source: '/drones-de-seguridad-para-empresas-e-industrias/:path*',
-        destination: '/servicios/drones-seguridad/:path*',
+        source: '/:path*\\?elementor_library=:elem*',
+        destination: '/:path*',
         permanent: true,
       },
       {
-        source: '/guardias-de-seguridad-privada-para-empresas/:path*',
-        destination: '/servicios/guardias-de-seguridad/:path*',
-        permanent: true,
-      },
-      {
-        source: '/noticias-de-seguridad-privada/:path*',
-        destination: '/blog/:path*',
-        permanent: true,
-      },
-      {
-        source: '/servicios-de-seguridad-privada/:path*',
-        destination: '/servicios/:path*',
-        permanent: true,
-      },
-      {
-        source: '/tecnologias/:path*',
-        destination: '/tecnologia-seguridad/:path*',
-        permanent: true,
-      },
-      {
-        source: '/contacto-empresa-de-seguridad/:path*',
-        destination: '/cotizar/:path*',
+        source: '/:path*\\?jkit-ajax-request=:jkit*',
+        destination: '/:path*',
         permanent: true,
       }
     ];
   },
+  
+  // Agregar headers para mejorar SEO
+  async headers() {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          {
+            key: 'X-Robots-Tag',
+            value: 'index, follow'
+          }
+        ]
+      }
+    ];
+  }
 };
 
 module.exports = nextConfig; 
