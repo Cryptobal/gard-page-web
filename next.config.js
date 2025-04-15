@@ -12,8 +12,25 @@ const nextConfig = {
       },
     ],
   },
+  // Agregar configuración para videos
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /\.(mp4|webm)$/,
+      use: {
+        loader: 'file-loader',
+        options: {
+          publicPath: '/_next/static/videos/',
+          outputPath: 'static/videos/',
+          name: '[name].[hash].[ext]',
+        },
+      },
+    });
+    return config;
+  },
   trailingSlash: true,
-  
+  experimental: {
+    serverActions: true,
+  },
   // Redirecciones para evitar errores 404 y contenido duplicado
   async redirects() {
     return [
@@ -84,7 +101,7 @@ const nextConfig = {
         source: '/:path*\\?jkit-ajax-request=:jkit*',
         destination: '/:path*',
         permanent: true,
-      }
+      },
     ];
   },
   

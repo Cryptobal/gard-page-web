@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { ThemeToggle } from './ThemeToggle';
+import ThemeToggle from './ThemeToggle';
 import { Menu, X } from 'lucide-react';
 import CloudflareImage from './CloudflareImage';
 import { cloudflareImages } from '@/lib/images';
@@ -112,11 +112,7 @@ export default function Header() {
               {label}
             </Link>
           ))}
-          <ThemeToggle className={`transition-all duration-300 ease-in-out ${
-            scrolled 
-              ? (isDarkMode ? 'text-white' : 'text-primary')
-              : (isDarkMode ? 'text-white' : 'text-black')
-          }`} />
+          <ThemeToggle />
         </nav>
 
         {/* Botón de menú móvil */}
@@ -178,7 +174,7 @@ export default function Header() {
                 </Link>
               ))}
               <div className="mt-4">
-                <ThemeToggle className={isDarkMode ? 'text-white' : 'text-black'} />
+                <ThemeToggle />
               </div>
             </nav>
           </motion.div>

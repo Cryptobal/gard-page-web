@@ -27,30 +27,30 @@ export default function RootLayout({
   return (
     <html lang="es" suppressHydrationWarning>
       <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
         {/* MODIFICACIÓN SEO: Añadir componente para asegurar etiquetas canónicas */}
         <CanonicalUrl />
       </head>
-      <body className={`${inter.variable} ${spaceGrotesk.variable}`}>
-        {/* Sistema de gestión de consentimiento de cookies */}
-        <CookieConsent>
-          {/* Google Tag Manager (solo se carga con consentimiento de analytics) */}
-          {GTM_ID && <GoogleTagManager gtmId={GTM_ID} />}
-          
-          {/* Google Analytics 4 (solo se carga con consentimiento de analytics) */}
-          <GoogleAnalytics measurementId={GA_ID} />
-          
-          <ClientWrapper>
+      <body className={inter.className}>
+        <ClientWrapper>
+          <CookieConsent>
+            {/* Google Tag Manager (solo se carga con consentimiento de analytics) */}
+            {GTM_ID && <GoogleTagManager gtmId={GTM_ID} />}
+            
+            {/* Google Analytics 4 (solo se carga con consentimiento de analytics) */}
+            <GoogleAnalytics measurementId={GA_ID} />
+            
             <Header />
-            <main className="min-h-screen">
+            <main className="flex-grow">
               {children}
             </main>
             <Footer />
-          </ClientWrapper>
-          
-          {/* Estos scripts siempre se cargan porque están exentos del consentimiento */}
-          <SpeedInsights />
-          <Analytics />
-        </CookieConsent>
+            <SpeedInsights />
+            <Analytics />
+          </CookieConsent>
+        </ClientWrapper>
       </body>
     </html>
   );
