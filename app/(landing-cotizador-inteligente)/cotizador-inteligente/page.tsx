@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import CotizadorInteligenteV2 from '@/app/components/cotizador/CotizadorInteligenteV2';
 import FAQsCotizador from '@/components/cotizador/FAQsCotizador';
 import CloudflareImage from '@/components/CloudflareImage';
+import CloudflareVideo from '@/components/CloudflareVideo';
 import Link from 'next/link';
 import { 
   ArrowRight, 
@@ -436,125 +437,31 @@ export default function CotizadorInteligentePage() {
       {/* Botón sticky para móvil - Temporalmente desactivado */}
       {/* <StickyMobileButton /> */}
       
-      {/* Hero Section Rediseñada */}
-      <section className="relative w-full h-[80vh] md:h-[80vh]">
-        {/* Overlay con gradiente */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/70 to-black/60 z-10"></div>
-        
-        {/* Imagen de fondo */}
-        <div className="absolute inset-0 z-[-1]">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
+      {/* Hero Section con Video de Fondo */}
+      <section className="relative w-full h-[70vh] md:h-[80vh] overflow-hidden pt-[100px] md:pt-[120px]">
+        {/* Video de fondo */}
+        <div className="absolute inset-0">
+          <CloudflareVideo
+            videoId={HERO_VIDEO_ID}
+            autoplay={true}
+            loop={true}
+            muted={true}
+            controls={false}
             className="w-full h-full object-cover"
-            src={`https://imagedelivery.net/cGbMPRg9wt8jvG6HDuBzVQ/${HERO_VIDEO_ID}/public`}
           />
+          {/* Overlay oscuro */}
+          <div className="absolute inset-0 bg-black/50 z-10"></div>
+          <div className="bg-gradient-to-t from-black/60 to-transparent absolute inset-0 z-10"></div>
         </div>
         
         {/* Contenido del Hero */}
-        <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-4">
-          {/* Escudo para móviles en la parte superior */}
-          <motion.div 
-            className="absolute top-8 block md:hidden"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-          >
-            <Link href="/" className="block hover:opacity-90 transition-opacity">
-              <div className="relative w-12 h-12">
-                <CloudflareImage 
-                  imageId={ESCUDO_GARD_BLANCO}
-                  alt="Gard Security Escudo"
-                  fill
-                  className="object-contain drop-shadow-lg"
-                  priority
-                />
-              </div>
-            </Link>
-          </motion.div>
-          
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="max-w-4xl"
-          >
-            <h1 className="text-white text-4xl md:text-6xl font-bold mb-6">
-              Cotizador Inteligente de Guardias de Seguridad
-            </h1>
-            
-            <p className="text-white text-lg md:text-xl opacity-90 max-w-3xl mx-auto mb-8">
-              Configura turnos, calcula costos y solicita tu cotización personalizada
-            </p>
-            
-            {/* Badges de confianza */}
-            <div className="flex flex-wrap justify-center gap-4 mb-8">
-              <motion.div 
-                className="bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full flex items-center"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.3, duration: 0.5 }}
-              >
-                <Star className="text-yellow-400 w-5 h-5 mr-2" />
-                <span className="text-white text-sm">Más de 10 años de experiencia</span>
-              </motion.div>
-              
-              <motion.div 
-                className="bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full flex items-center"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.4, duration: 0.5 }}
-              >
-                <Shield className="text-orange-500 w-5 h-5 mr-2" />
-                <span className="text-white text-sm">Certificación OS10</span>
-              </motion.div>
-              
-              <motion.div 
-                className="bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full flex items-center"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.5, duration: 0.5 }}
-              >
-                <MessageSquare className="text-blue-400 w-5 h-5 mr-2" />
-                <span className="text-white text-sm">Soporte 24/7</span>
-              </motion.div>
-            </div>
-            
-            {/* CTA principal */}
-            <motion.a 
-              href="#cotizador"
-              className="inline-flex items-center px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-xl transition-colors duration-300 shadow-lg hover:shadow-xl"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.5 }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Simular Cotización <ChevronRight className="ml-2 h-5 w-5" />
-            </motion.a>
-          </motion.div>
-          
-          {/* Logo para desktop en la parte inferior */}
-          <motion.div 
-            className="absolute bottom-4 hidden md:block"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.8, duration: 0.5 }}
-          >
-            <Link href="/" className="block hover:opacity-90 transition-opacity">
-              <div className="relative w-48 h-20">
-                <CloudflareImage 
-                  imageId={LOGO_GARD_BLANCO}
-                  alt="Gard Security Logo"
-                  fill
-                  className="object-contain drop-shadow-lg"
-                  priority
-                />
-              </div>
-            </Link>
-          </motion.div>
+        <div className="relative z-20 h-full flex flex-col justify-center items-center text-center px-4 max-w-7xl mx-auto">
+          <h1 className="text-heading-1 text-white md:text-5xl font-bold leading-tight max-w-4xl mb-6">
+            Cotizador Inteligente de Guardias de Seguridad
+          </h1>
+          <p className="text-body-lg text-white max-w-2xl mb-8">
+            Calcula el costo de tu servicio de guardias de seguridad con nuestro cotizador inteligente. Configura turnos, horarios y recibe una cotización personalizada.
+          </p>
         </div>
       </section>
 
