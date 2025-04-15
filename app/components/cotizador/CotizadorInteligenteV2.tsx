@@ -588,7 +588,7 @@ export default function CotizadorInteligenteV2() {
   };
   
   return (
-    <div className="w-full py-8 md:py-12">
+    <div className="w-full py-8 md:py-12 bg-background text-foreground">
       <div className="max-w-[760px] mx-auto px-4">
         {/* Header del Cotizador eliminado para evitar duplicación con la página principal */}
         

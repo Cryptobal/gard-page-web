@@ -33,12 +33,23 @@ const GUARDIA_IMAGEN_ID = '5eea1064-8a2d-4e8b-5606-d28775467a00'; // Imagen de g
 
 // Definir el metadata directamente en este archivo para evitar problemas de importación
 const metadataInfo = {
-  title: 'Cotizador Inteligente de Guardias de Seguridad | Gard Security',
-  description: 'Calcula el costo de tu servicio de guardias de seguridad con nuestro cotizador inteligente. Configura turnos, horarios y recibe una cotización personalizada.',
-  keywords: ['cotizador guardias', 'calculadora seguridad', 'presupuesto guardias', 'cotización online seguridad'],
+  title: 'Cotizador de Guardias de Seguridad | Calcula el Costo de tu Servicio | Gard Security',
+  description: 'Calcula el costo de guardias de seguridad para tu empresa. Cotización instantánea y personalizada para servicios de seguridad industrial, retail, corporativa y más. Precios competitivos y cobertura 24/7.',
+  keywords: [
+    'cotizador guardias de seguridad',
+    'servicios de seguridad para empresas',
+    'guardias de seguridad industrial',
+    'cotización seguridad privada',
+    'precio guardias de seguridad',
+    'seguridad para empresas',
+    'guardias 24 horas',
+    'servicios de seguridad corporativa',
+    'cotización online seguridad',
+    'guardias de seguridad retail'
+  ],
   openGraph: {
-    title: 'Cotizador Inteligente de Guardias de Seguridad | Gard Security',
-    description: 'Calcula el costo de tu servicio de guardias de seguridad con nuestro cotizador inteligente. Configura turnos, horarios y recibe una cotización personalizada.',
+    title: 'Cotizador de Guardias de Seguridad | Calcula el Costo de tu Servicio | Gard Security',
+    description: 'Calcula el costo de guardias de seguridad para tu empresa. Cotización instantánea y personalizada para servicios de seguridad industrial, retail, corporativa y más.',
     url: 'https://gard.cl/cotizador-inteligente',
     siteName: 'Gard Security',
     locale: 'es_CL',
@@ -122,6 +133,61 @@ const MetadataEnforcer = () => {
           }
           ogDesc.setAttribute('content', og.description);
         }
+
+        // Agregar schema.org para el cotizador
+        const schemaScript = document.createElement('script');
+        schemaScript.type = 'application/ld+json';
+        schemaScript.text = JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Product",
+          "name": "Cotizador de Guardias de Seguridad",
+          "description": "Calcula el costo de guardias de seguridad para tu empresa. Cotización instantánea y personalizada para servicios de seguridad industrial, retail, corporativa y más.",
+          "brand": {
+            "@type": "Brand",
+            "name": "Gard Security"
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "priceCurrency": "CLP",
+            "availability": "https://schema.org/InStock"
+          }
+        });
+        document.head.appendChild(schemaScript);
+
+        // Agregar schema.org para las FAQs
+        const faqSchemaScript = document.createElement('script');
+        faqSchemaScript.type = 'application/ld+json';
+        faqSchemaScript.text = JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "¿Cómo funciona el cotizador de guardias de seguridad?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Nuestro cotizador te permite calcular el costo de guardias de seguridad personalizando parámetros como tipo de turno, horario y número de puestos. Simplemente configura tus necesidades y obtén una cotización instantánea."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Qué tipos de servicios de seguridad puedo cotizar?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Ofrecemos cotización para servicios de seguridad industrial, retail, corporativa, centros comerciales, hotelería, minería, tecnología, financiera y más. El cotizador se adapta a las necesidades específicas de cada sector."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Cuál es el costo de guardias de seguridad 24/7?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "El costo de guardias 24/7 varía según el sistema de turnos (4x4, 5x2, 7x7, 14x14) y el número de puestos. Nuestro cotizador te permite ver el costo exacto según tu configuración específica."
+              }
+            }
+          ]
+        });
+        document.head.appendChild(faqSchemaScript);
       }
     };
     
@@ -434,8 +500,32 @@ export default function CotizadorInteligentePage() {
       {/* Forzar la carga de Google Analytics */}
       <ForceGALoader />
       
-      {/* Botón sticky para móvil - Temporalmente desactivado */}
-      {/* <StickyMobileButton /> */}
+      {/* Breadcrumb */}
+      <nav className="bg-gray-50 dark:bg-gray-900 py-4">
+        <div className="max-w-7xl mx-auto px-4">
+          <ol className="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
+            <li>
+              <Link href="/" className="hover:text-primary dark:hover:text-accent">
+                Inicio
+              </Link>
+            </li>
+            <li>
+              <ChevronRight className="h-4 w-4" />
+            </li>
+            <li>
+              <Link href="/servicios" className="hover:text-primary dark:hover:text-accent">
+                Servicios
+              </Link>
+            </li>
+            <li>
+              <ChevronRight className="h-4 w-4" />
+            </li>
+            <li className="text-primary dark:text-accent">
+              Cotizador de Guardias
+            </li>
+          </ol>
+        </div>
+      </nav>
       
       {/* Hero Section con Video de Fondo */}
       <section className="relative w-full h-[70vh] md:h-[80vh] overflow-hidden pt-[100px] md:pt-[120px]">
@@ -457,10 +547,10 @@ export default function CotizadorInteligentePage() {
         {/* Contenido del Hero */}
         <div className="relative z-20 h-full flex flex-col justify-center items-center text-center px-4 max-w-7xl mx-auto">
           <h1 className="text-heading-1 text-white md:text-5xl font-bold leading-tight max-w-4xl mb-6">
-            Cotizador Inteligente de Guardias de Seguridad
+            Cotizador de Guardias de Seguridad para Empresas
           </h1>
           <p className="text-body-lg text-white max-w-2xl mb-8">
-            Calcula el costo de tu servicio de guardias de seguridad con nuestro cotizador inteligente. Configura turnos, horarios y recibe una cotización personalizada.
+            Calcula el costo de guardias de seguridad para tu empresa. Cotización instantánea y personalizada para servicios de seguridad industrial, retail, corporativa y más. Precios competitivos y cobertura 24/7.
           </p>
         </div>
       </section>
@@ -491,10 +581,10 @@ export default function CotizadorInteligentePage() {
               </div>
             </motion.div>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Calculadora de Costos
+              Calculadora de Costos para Servicios de Seguridad
             </h2>
             <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-              Personalice los parámetros según sus necesidades para obtener un estimado del costo mensual
+              Personaliza los parámetros según tus necesidades de seguridad y obtén un estimado del costo mensual de guardias para tu empresa
             </p>
           </motion.div>
           
@@ -520,6 +610,75 @@ export default function CotizadorInteligentePage() {
       
       {/* Beneficios Premium */}
       <BeneficiosPremium />
+      
+      {/* Testimonios y Casos de Éxito */}
+      <section className="py-20 bg-gray-50 dark:bg-gray-900">
+        <div className="max-w-7xl mx-auto px-4">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeInUp}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
+              Empresas que confían en nuestros servicios
+            </h2>
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              Más de 50 empresas de diferentes sectores han elegido nuestros servicios de seguridad
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                empresa: "Retail Nacional",
+                sector: "Comercio",
+                testimonio: "La implementación de guardias de seguridad ha mejorado significativamente la seguridad en nuestros locales. El servicio es profesional y la atención es excelente.",
+                logo: "retail-logo"
+              },
+              {
+                empresa: "Empresa Industrial",
+                sector: "Manufactura",
+                testimonio: "Los guardias están altamente capacitados y el servicio 24/7 nos da la tranquilidad que necesitamos para operar con seguridad.",
+                logo: "industrial-logo"
+              },
+              {
+                empresa: "Centro Comercial",
+                sector: "Retail",
+                testimonio: "La cobertura completa y el profesionalismo de los guardias han mejorado la experiencia de nuestros visitantes y la seguridad del centro.",
+                logo: "mall-logo"
+              }
+            ].map((testimonio, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg"
+              >
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center">
+                    <Building className="h-6 w-6 text-primary dark:text-accent" />
+                  </div>
+                  <div className="ml-4">
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                      {testimonio.empresa}
+                    </h3>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                      {testimonio.sector}
+                    </p>
+                  </div>
+                </div>
+                <p className="text-gray-600 dark:text-gray-300">
+                  "{testimonio.testimonio}"
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
       
       {/* Preguntas frecuentes */}
       <section id="faqs" className="py-20 bg-gray-50 dark:bg-gray-900">

@@ -1,18 +1,6 @@
 /* app/(landing-cotizador-inteligente)/landing-styles.css */
 
-header, footer {
-  display: none !important;
-}
-
-body {
-  background-color: #111827 !important;
-  color: white !important;
-  min-height: 100vh;
-  margin: 0 !important;
-  padding: 0 !important;
-  overflow-x: hidden;
-}
-
+/* Eliminando estilos forzados que causan problemas */
 main {
   padding: 0 !important;
   margin: 0 !important;
