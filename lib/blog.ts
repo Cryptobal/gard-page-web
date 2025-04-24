@@ -2,6 +2,8 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { cloudflareImages } from './images';
+import { remark } from 'remark';
+import html from 'remark-html';
 
 // Tipos para el blog
 export interface BlogPost {
@@ -38,7 +40,13 @@ export async function getPostBySlug(slug: string): Promise<BlogPost> {
   const fileContents = fs.readFileSync(fullPath, 'utf8');
   
   // Usar gray-matter para parsear la sección de metadatos
-  const { data, content } = matter(fileContents);
+  const { data, content: markdownContent } = matter(fileContents);
+  
+  // Procesar el contenido Markdown a HTML
+  const processedContent = await remark()
+    .use(html)
+    .process(markdownContent);
+  const contentHtml = processedContent.toString();
   
   // Usar el imageId del frontmatter si existe, de lo contrario usar un ID genérico
   const imageId = data.imageId || cloudflareImages.sections.services;
@@ -51,7 +59,7 @@ export async function getPostBySlug(slug: string): Promise<BlogPost> {
     tags: data.tags || [],
     category: data.category || 'General',
     imageId,
-    content,
+    content: contentHtml,
   };
 }
 
