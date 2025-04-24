@@ -49,6 +49,16 @@ export default function RootLayout({
             <Footer />
             <SpeedInsights />
             <Analytics />
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `window.$zoho=window.$zoho || {};$zoho.salesiq=$zoho.salesiq||{ready:function(){}}`
+              }}
+            />
+            <script 
+              id="zsiqscript" 
+              src="https://salesiq.zohopublic.com/widget?wc=siqcf67a87e344d1bd7848815110805fd06cf8b491c5114559d2ca4e7c9b86dce4c" 
+              defer
+            />
           </CookieConsent>
         </ClientWrapper>
       </body>
