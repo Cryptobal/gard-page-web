@@ -217,7 +217,7 @@ export default function ServicioPage({ params }: { params: { slug: string } }) {
       />
 
       {/* Hero Section */}
-      <section className="relative w-full h-[45vh] md:h-[60vh]">
+      <section className="relative w-full h-[45vh] md:h-[60vh] overflow-hidden">
         <div className="absolute inset-0 bg-black/50 z-10"></div>
         <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-4">
           <h1 className="text-white text-4xl md:text-5xl font-bold mb-4">
@@ -247,7 +247,7 @@ export default function ServicioPage({ params }: { params: { slug: string } }) {
           ) : (
             <CloudflareVideo
               videoId={servicio.heroImageId}
-              className="w-full h-full"
+              className="object-cover"
               autoplay
               loop
               muted

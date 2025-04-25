@@ -21,14 +21,15 @@ export default function CloudflareVideo({
   controls = false,
 }: CloudflareVideoProps) {
   return (
-    <div className={`relative w-full h-full ${className}`}>
+    <div className={`relative w-full h-full overflow-hidden ${className}`}>
       <Stream
         src={videoId}
         autoplay={autoplay}
         loop={loop}
         muted={muted}
         controls={controls}
-        className="w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover"
+        style={{ position: 'absolute' }}
       />
     </div>
   );
