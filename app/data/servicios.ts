@@ -31,6 +31,7 @@ export const servicios: Servicio[] = [
     gallery: [
       "bc045c39-36bc-4abb-348d-c589687cb400",
       "eed0de62-d623-47bd-0a3f-d2ca692c6300",
+      "2dd1b06a-afca-448a-8aaf-a995b00dd300",
       "1106aceb-986e-4176-a9a9-f0ec1f80f700",
       "5b95423f-4c59-4205-7b90-52e0667ca200",
       "04e7aafd-831d-4b6f-666c-116605cc4400",
