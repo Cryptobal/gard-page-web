@@ -29,7 +29,6 @@ export default function CloudflareVideo({
         muted={muted}
         controls={controls}
         className="absolute inset-0 w-full h-full object-cover"
-        style={{ position: 'absolute' }}
       />
     </div>
   );
