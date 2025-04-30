@@ -194,6 +194,26 @@ export default function Footer() {
                   Política Ambiental
                 </Link>
               </li>
+              <li className="pt-2">
+                <span className="font-semibold text-primary dark:text-accent block">Legal y Cumplimiento</span>
+                <ul className="ml-4 mt-2 space-y-2 border-l border-gray-200 dark:border-gray-700 pl-3">
+                  <li>
+                    <Link href="/ley-karin" className="text-sm text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-accent transition-colors" aria-label="Canal de Denuncias – Ley Karin">
+                      Canal de Denuncias – Ley Karin
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/codigo-etica" className="text-sm text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-accent transition-colors" aria-label="Código de Ética y Conducta">
+                      Código de Ética y Conducta
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/programa-cumplimiento" className="text-sm text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-accent transition-colors" aria-label="Programa de Cumplimiento y Política Anticorrupción">
+                      Programa de Cumplimiento y Política Anticorrupción
+                    </Link>
+                  </li>
+                </ul>
+              </li>
             </ul>
           </div>
 
