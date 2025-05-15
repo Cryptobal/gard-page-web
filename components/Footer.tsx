@@ -160,6 +160,17 @@ export default function Footer() {
                   Contacto
                 </Link>
               </li>
+              <li>
+                <a 
+                  href="https://trabajo.gard.cl/jobs/Careers" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-sm md:text-base text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors"
+                  aria-label="Ofertas de trabajo disponibles"
+                >
+                  Ofertas disponibles
+                </a>
+              </li>
             </ul>
           </div>
 
