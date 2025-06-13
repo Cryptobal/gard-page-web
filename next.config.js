@@ -27,7 +27,9 @@ const nextConfig = {
     });
     return config;
   },
-  trailingSlash: true,
+  // COMENTADO PARA SOLUCIONAR PROBLEMA DE GOOGLE ADS - las URLs del feed no tienen trailing slash
+  // trailingSlash: true,
+  
   // Redirecciones para evitar errores 404 y contenido duplicado
   async redirects() {
     return [

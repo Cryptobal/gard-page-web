@@ -184,7 +184,7 @@
   }
 
   .gard-btn-primary {
-    @apply bg-primary text-white shadow-sm hover:bg-primary/90 font-bold;
+    @apply bg-primary text-white shadow-sm hover:opacity-90 font-bold;
   }
 
   .gard-btn-secondary {
@@ -289,6 +289,54 @@
 
   .gard-card-dark-accent {
     @apply bg-card dark:bg-[hsl(var(--gard-card))] dark:border-[1px] dark:border-[hsl(var(--gard-accent)/_0.15)] shadow-sm hover:shadow-md transition-all dark:hover:border-[hsl(var(--gard-accent)/_0.3)];
+  }
+}
+
+@layer utilities {
+  /* Clases de fondo */
+  .bg-background {
+    background-color: hsl(var(--gard-background));
+  }
+  .bg-foreground {
+    color: hsl(var(--gard-foreground));
+  }
+  .bg-card {
+    background-color: hsl(var(--gard-card));
+  }
+  .bg-popover {
+    background-color: hsl(var(--gard-popover));
+  }
+  .bg-muted {
+    background-color: hsl(var(--gard-muted));
+  }
+  .bg-primary {
+    background-color: hsl(var(--gard-primary));
+  }
+  .bg-secondary {
+    background-color: hsl(var(--gard-secondary));
+  }
+  .bg-accent {
+    background-color: hsl(var(--gard-accent));
+  }
+
+  /* Clases de texto */
+  .text-foreground {
+    color: hsl(var(--gard-foreground));
+  }
+  .text-primary {
+    color: hsl(var(--gard-primary));
+  }
+  .text-secondary {
+    color: hsl(var(--gard-secondary));
+  }
+  .text-muted {
+    color: hsl(var(--gard-muted));
+  }
+  .text-muted-foreground {
+    color: hsl(var(--gard-muted-foreground));
+  }
+  .text-accent {
+    color: hsl(var(--gard-accent));
   }
 }
 
