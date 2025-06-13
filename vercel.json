@@ -1,7 +1,6 @@
 {
   "framework": "nextjs",
   "cleanUrls": true,
-  "trailingSlash": true,
   "headers": [
     {
       "source": "/(.*)",

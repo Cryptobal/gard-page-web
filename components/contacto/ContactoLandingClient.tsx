@@ -31,9 +31,18 @@ export default function ContactoLandingClient() {
                 <div className="flex items-start bg-[hsl(var(--gard-card))] p-5 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 border border-[hsl(var(--gard-accent))] ring-2 ring-[hsl(var(--gard-accent))]/20">
                   <Phone className="h-6 w-6 text-[hsl(var(--gard-accent))] mr-4 mt-1 flex-shrink-0" />
                   <div>
-                    <h3 className="font-semibold mb-1">Teléfono directo</h3>
+                    <h3 className="font-semibold mb-1">Consultas Comerciales</h3>
                     <p className="text-[hsl(var(--gard-muted-foreground))] mb-1">Respuesta inmediata en horario laboral</p>
                     <a href="tel:+56941137976" className="text-[hsl(var(--gard-accent))] hover:underline">+56 9 4113 7976</a>
+                  </div>
+                </div>
+                
+                <div className="flex items-start bg-[hsl(var(--gard-card))] p-5 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 border border-[hsl(var(--gard-accent))] ring-2 ring-[hsl(var(--gard-accent))]/20">
+                  <Phone className="h-6 w-6 text-[hsl(var(--gard-accent))] mr-4 mt-1 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-semibold mb-1">Trabaja con nosotros</h3>
+                    <p className="text-[hsl(var(--gard-muted-foreground))] mb-1">Oportunidades laborales para guardias de seguridad</p>
+                    <a href="tel:+56956062246" className="text-[hsl(var(--gard-accent))] hover:underline">+56 9 5606 2246</a>
                   </div>
                 </div>
                 

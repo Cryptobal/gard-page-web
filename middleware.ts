@@ -39,26 +39,20 @@ export function middleware(request: NextRequest) {
   const url = request.nextUrl.clone();
   const { pathname } = url;
   
-  // Limpiar la ruta de cualquier prefijo no deseado
-  const cleanPathname = pathname.replace(/^\/https?:\/\/(www\.)?gard\.cl/, '');
-  const segments = cleanPathname.split('/').filter(Boolean);
+  // NO limpiar pathname - esto causaba problemas
+  const segments = pathname.split('/').filter(Boolean);
   
-  // Si la ruta es válida, permitir sin redirección
-  if (isValidRoute(segments)) {
-    return NextResponse.next();
-  }
-  
-  // Manejar URLs antiguas de landing-dinamico
+  // Manejar URLs antiguas de landing-dinamico SOLAMENTE
   if (segments[0] === 'landing-dinamico' && segments.length === 3) {
     const [_, industria, servicio] = segments;
     
     if (INDUSTRIAS_VALIDAS.includes(industria)) {
-      url.pathname = `/servicios-por-industria/${servicio}/${industria}/`;
+      url.pathname = `/servicios-por-industria/${servicio}/${industria}`;
       return NextResponse.redirect(url, 301);
     }
   }
   
-  // Si la ruta no es válida, redirigir a la página principal
+  // Para todas las demás rutas, simplemente continuar
   return NextResponse.next();
 }
 

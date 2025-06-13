@@ -33,7 +33,7 @@ const nextConfig = {
   // Redirecciones para evitar errores 404 y contenido duplicado
   async redirects() {
     return [
-      // Redirecciones básicas
+      // Redirecciones básicas solamente
       {
         source: '/tecnologias',
         destination: '/tecnologia-seguridad',
@@ -69,19 +69,6 @@ const nextConfig = {
       {
         source: '/noticias-de-seguridad-privada',
         destination: '/blog',
-        permanent: true,
-      },
-      
-      // Redireccionar de no-www a www
-      {
-        source: '/:path*',
-        has: [
-          {
-            type: 'host',
-            value: 'gard.cl',
-          },
-        ],
-        destination: 'https://www.gard.cl/:path*',
         permanent: true,
       },
       
