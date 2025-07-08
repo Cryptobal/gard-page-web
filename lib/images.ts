@@ -65,6 +65,7 @@ export const cloudflareImages = {
   blog: {
     nuevaLeySeguridad: '0ba18961-6cc4-4e17-7473-00213237b400',
     sustentabilidad: '145a101a-5be7-40d8-bdb4-a39ff9babc00',
+    mejoresEmpresasSantiago: '772e4ec0-e6ed-473d-baf9-54db58967c00',
   }
 };
 

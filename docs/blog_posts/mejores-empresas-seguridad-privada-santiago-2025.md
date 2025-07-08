@@ -10,7 +10,7 @@ tags:
   - guardias de seguridad
   - ranking 2025
 category: General
-imageId: 145a101a-5be7-40d8-bdb4-a39ff9babc00
+imageId: 772e4ec0-e6ed-473d-baf9-54db58967c00
 ---
 
 # Las 7 mejores empresas de seguridad privada en Santiago: ¿Cuál elegir para proteger tu empresa en 2025?
