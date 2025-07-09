@@ -95,22 +95,3 @@ Mediante procesos de auditoría y evaluación continua, verificamos el cumplimie
 Si deseas proteger tu empresa con [soluciones de seguridad privada](https://gard.cl/guardias-de-seguridad-privada-para-empresas/) de alto nivel y bajo impacto ambiental, **[contáctanos aquí para asesorarte sin costo](https://gard.cl/guardias-de-seguridad-privada-para-empresas/)**.
 
 En resumen, proteger a tus colaboradores, clientes y activos no está reñido con proteger el entorno donde operas. En Gard Security lo hacemos posible.
-
-### Enlaces internos:
-- [Gard Security](https://gard.cl)
-- [Guardias de seguridad privada para empresas](https://gard.cl/guardias-de-seguridad-privada-para-empresas/)
-- [Seguridad electrónica](https://gard.cl/seguridad-electronica/)
-- [Drones de seguridad](https://gard.cl/drones-de-seguridad-para-empresas-e-industrias/)
-- [Política Ambiental](https://www.gard.cl/politica-ambiental)
-
-### Enlaces externos recomendados:
-- [Ministerio del Medio Ambiente – Gobierno de Chile](https://mma.gob.cl)
-- [OS10 – Carabineros de Chile](https://www.carabineros.cl)
-
----
-
-**Conteo total:** ~1.640 palabras  
-**Flesch-Kincaid:** optimizado (lectura media-alta)  
-**Densidad keywords:** <3,5% por término  
-**Transiciones:** ≥30%  
-**Estructura:** 1 H1 / ≥7 H2 / ≥8 H3 
