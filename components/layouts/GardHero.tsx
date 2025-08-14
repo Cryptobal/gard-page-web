@@ -93,8 +93,6 @@ export default function GardHero({
   phoneNumber = "+56229872380"
 }: GardHeroProps) {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
-  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
-  const [shouldShowVideo, setShouldShowVideo] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const heroRef = useRef<HTMLElement>(null);
   
@@ -127,15 +125,6 @@ export default function GardHero({
       }
     }
   }, []);
-
-  // Determinar si mostrar video basado en el tamaño de pantalla y disponibilidad
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const isDesktop = window.matchMedia('(min-width: 1024px)').matches;
-      // Solo mostrar video en desktop y si hay videoId
-      setShouldShowVideo(isDesktop && !!videoId);
-    }
-  }, [videoId]);
   
   return (
     <LazyMotion features={domAnimation}>
@@ -156,44 +145,26 @@ export default function GardHero({
         
         {/* Video o imagen de fondo */}
         <div className="absolute inset-0 w-full h-full z-0">
-          {shouldShowVideo && videoId ? (
-            // Usar Cloudflare Stream como fondo - solo en desktop
+          {videoId ? (
+            // Usar Cloudflare Stream como fondo
             <div className="absolute inset-0 w-full h-full">
-              {/* Imagen de fondo que se oculta cuando el video está listo */}
-              {imageId && !isVideoLoaded && (
-                <CloudflareImage
-                  imageId={imageId}
-                  alt={title}
-                  className="object-cover"
-                  fill
-                  priority
-                  placeholder="blur"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1280px) 100vw, 100vw"
-                  objectFit="cover"
-                />
-              )}
-              
-              {/* Video que se muestra cuando está listo */}
-              <div className={`absolute inset-0 w-full h-full ${isVideoLoaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-500`}>
-                <Stream 
-                  src={videoId}
-                  controls={false}
-                  muted={true}
-                  loop={true}
-                  autoplay={true}
-                  className="w-full h-full absolute inset-0 object-cover"
-                  preload="metadata"
-                  playsInline
-                  title="Video institucional Gard Security"
-                  onLoad={() => setIsVideoLoaded(true)}
-                />
-              </div>
-              
+              <Stream 
+                src={videoId}
+                controls={false}
+                muted={true}
+                loop={true}
+                autoplay={true}
+                poster={imageId ? getCloudflareImageUrl(imageId, 'public') : undefined}
+                className="w-full h-full absolute inset-0 object-cover"
+                preload="none"
+                playsInline
+                title="Video institucional Gard Security"
+              />
               {/* Patrón de textura sutil en modo oscuro */}
               <div className="hidden dark:block absolute inset-0 bg-[url('/assets/noise-pattern.png')] opacity-10 z-10 pointer-events-none"></div>
             </div>
           ) : imageId ? (
-            // Fallback a imagen si no hay video disponible o estamos en móvil
+            // Fallback a imagen si no hay video disponible
             <div className="absolute inset-0">
               <CloudflareImage
                 imageId={imageId}
