@@ -233,7 +233,7 @@ export default function GardHero({
                     }
                   }}
                 >
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/20 text-primary text-sm font-medium mb-6 backdrop-blur-sm">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary text-white text-sm font-medium mb-6 backdrop-blur-sm">
                     {badge.icon}
                     {badge.text}
                   </span>
