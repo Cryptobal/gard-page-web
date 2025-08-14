@@ -30,7 +30,7 @@ const AccordionTrigger = React.forwardRef<
         "flex flex-1 items-center justify-between py-4 font-medium transition-all",
         className
       )}
-      aria-label={typeof children === 'string' ? children : undefined}
+      aria-label={(props as any)['aria-label'] ?? (typeof children === 'string' ? (children as string) : 'Sección')}
       {...props}
     >
       {children}
