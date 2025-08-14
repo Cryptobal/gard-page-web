@@ -33,6 +33,42 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" />
         {/* MODIFICACIÓN SEO: Añadir componente para asegurar etiquetas canónicas */}
         <CanonicalUrl />
+        {/* Perf: preconnect/dns-prefetch para dominios críticos de imágenes/video */}
+        <link rel="preconnect" href="https://imagedelivery.net" />
+        <link rel="dns-prefetch" href="https://imagedelivery.net" />
+        <link rel="preconnect" href="https://iframe.cloudflarestream.com" />
+        <link rel="dns-prefetch" href="https://iframe.cloudflarestream.com" />
+
+        {/* JSON-LD base: Organization + LocalBusiness */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@graph': [
+                {
+                  '@type': 'Organization',
+                  name: 'Gard Security',
+                  url: 'https://www.gard.cl',
+                  logo: 'https://www.gard.cl/logos/gard.svg',
+                  sameAs: [
+                    'https://www.linkedin.com/company/gard-security'
+                  ]
+                },
+                {
+                  '@type': ['LocalBusiness', 'SecurityService'],
+                  name: 'Gard Security Chile',
+                  image: 'https://www.gard.cl/logos/gard.svg',
+                  address: { '@type': 'PostalAddress', addressCountry: 'CL' },
+                  areaServed: 'CL',
+                  telephone: '+56 2 2987 2380',
+                  openingHours: ['Mo-Fr 09:00-18:00'],
+                  url: 'https://www.gard.cl'
+                }
+              ]
+            })
+          }}
+        />
       </head>
       <body className={`${inter.variable} ${spaceGrotesk.variable}`}>
         <ClientWrapper>

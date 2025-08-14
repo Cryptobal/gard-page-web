@@ -2,11 +2,11 @@
   {
     "name": "minScore",
     "expected": 0.95,
-    "actual": 0.65,
+    "actual": 0.84,
     "values": [
-      0.6,
-      0.65,
-      0.63
+      0.63,
+      0.64,
+      0.84
     ],
     "operator": ">=",
     "passed": false,
@@ -50,11 +50,11 @@
   {
     "name": "maxNumericValue",
     "expected": 2500,
-    "actual": 12458.360000000002,
+    "actual": 13837.694500000001,
     "values": [
-      12888.819999999998,
-      12458.360000000002,
-      12456.819500000001
+      13837.694500000001,
+      13948.884500000002,
+      3071.1169999999993
     ],
     "operator": "<=",
     "passed": false,
@@ -67,11 +67,11 @@
   {
     "name": "maxNumericValue",
     "expected": 5000,
-    "actual": 14775.179700000004,
+    "actual": 14419.448300000004,
     "values": [
-      14812.806400000001,
-      14448.542350000003,
-      14775.179700000004
+      14419.448300000004,
+      14327.312400000003,
+      14512.7351
     ],
     "operator": "<=",
     "passed": false,
@@ -82,20 +82,151 @@
     "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/interactive/"
   },
   {
-    "name": "maxNumericValue",
-    "expected": 400,
-    "actual": 405.5,
+    "name": "minScore",
+    "expected": 0.95,
+    "actual": 0.7,
     "values": [
-      481.5,
-      334,
-      405.5
+      0.7,
+      0.7,
+      0.66
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditProperty": "performance",
+    "auditId": "categories",
+    "level": "error",
+    "url": "https://www.gard.cl/servicios"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.95,
+    "actual": 0.84,
+    "values": [
+      0.84,
+      0.84,
+      0.84
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditProperty": "accessibility",
+    "auditId": "categories",
+    "level": "error",
+    "url": "https://www.gard.cl/servicios"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.95,
+    "actual": 0.75,
+    "values": [
+      0.75,
+      0.75,
+      0.75
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditProperty": "best-practices",
+    "auditId": "categories",
+    "level": "error",
+    "url": "https://www.gard.cl/servicios"
+  },
+  {
+    "name": "maxNumericValue",
+    "expected": 2500,
+    "actual": 12632.642,
+    "values": [
+      14287.8395,
+      12313.859,
+      12632.642
     ],
     "operator": "<=",
     "passed": false,
-    "auditId": "total-blocking-time",
+    "auditId": "largest-contentful-paint",
+    "level": "error",
+    "url": "https://www.gard.cl/servicios",
+    "auditTitle": "Largest Contentful Paint",
+    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/lighthouse-largest-contentful-paint/"
+  },
+  {
+    "name": "maxNumericValue",
+    "expected": 5000,
+    "actual": 14366.774850000002,
+    "values": [
+      14366.774850000002,
+      14252.579650000001,
+      14674.16675
+    ],
+    "operator": "<=",
+    "passed": false,
+    "auditId": "interactive",
     "level": "warn",
-    "url": "https://www.gard.cl/",
-    "auditTitle": "Total Blocking Time",
-    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/lighthouse-total-blocking-time/"
+    "url": "https://www.gard.cl/servicios",
+    "auditTitle": "Time to Interactive",
+    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/interactive/"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.95,
+    "actual": 0.93,
+    "values": [
+      0.93,
+      0.7,
+      0.92
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditProperty": "performance",
+    "auditId": "categories",
+    "level": "error",
+    "url": "https://www.gard.cl/contacto"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.95,
+    "actual": 0.75,
+    "values": [
+      0.75,
+      0.75,
+      0.75
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditProperty": "best-practices",
+    "auditId": "categories",
+    "level": "error",
+    "url": "https://www.gard.cl/contacto"
+  },
+  {
+    "name": "maxNumericValue",
+    "expected": 2500,
+    "actual": 2849.9750000000004,
+    "values": [
+      2849.9750000000004,
+      2989.6079500000005,
+      2849.227999999999
+    ],
+    "operator": "<=",
+    "passed": false,
+    "auditId": "largest-contentful-paint",
+    "level": "error",
+    "url": "https://www.gard.cl/contacto",
+    "auditTitle": "Largest Contentful Paint",
+    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/lighthouse-largest-contentful-paint/"
+  },
+  {
+    "name": "maxNumericValue",
+    "expected": 5000,
+    "actual": 10131.195960000003,
+    "values": [
+      10635.664199999997,
+      10131.195960000003,
+      9902.407849999996
+    ],
+    "operator": "<=",
+    "passed": false,
+    "auditId": "interactive",
+    "level": "warn",
+    "url": "https://www.gard.cl/contacto",
+    "auditTitle": "Time to Interactive",
+    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/interactive/"
   }
 ]
