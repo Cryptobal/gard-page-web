@@ -69,6 +69,104 @@ export default function RootLayout({
             })
           }}
         />
+
+        {/* Organization Schema */}
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "Gard Security",
+          "url": "https://gard.cl",
+          "logo": "https://imagedelivery.net/gGw8cfmEZedi85dYm6qcFw/195f82cb-9a5e-4964-6fb5-ea43da47b000/public",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+56229872380",
+            "contactType": "customer service",
+            "availableLanguage": "Spanish"
+          },
+          "sameAs": [
+            "https://www.facebook.com/gardsecuritycl",
+            "https://www.linkedin.com/company/gard-security"
+          ],
+          "foundingDate": "2010",
+          "description": "Empresa líder en servicios de seguridad privada en Chile, especializada en guardias de seguridad, sistemas electrónicos y monitoreo 24/7."
+        }) }} />
+
+        {/* LocalBusiness Schema */}
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          "name": "Gard Security",
+          "image": "https://imagedelivery.net/gGw8cfmEZedi85dYm6qcFw/195f82cb-9a5e-4964-6fb5-ea43da47b000/public",
+          "url": "https://gard.cl",
+          "telephone": "+56229872380",
+          "email": "contacto@gard.cl",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Av. Apoquindo 6410, Oficina 701",
+            "addressLocality": "Las Condes",
+            "addressRegion": "RM",
+            "postalCode": "7550000",
+            "addressCountry": "CL"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "-33.400000",
+            "longitude": "-70.566666"
+          },
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday"
+              ],
+              "opens": "09:00",
+              "closes": "18:00"
+            }
+          ],
+          "priceRange": "$$$",
+          "serviceType": "Security Service",
+          "areaServed": "Chile",
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Servicios de Seguridad",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Guardias de Seguridad",
+                  "description": "Servicio de guardias de seguridad privada para empresas"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Sistemas de Seguridad Electrónica",
+                  "description": "Instalación y monitoreo de sistemas de seguridad electrónica"
+                }
+              }
+            ]
+          }
+        }) }} />
+
+        {/* WebSite Schema */}
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "Gard Security",
+          "url": "https://gard.cl",
+          "description": "Empresa líder en servicios de seguridad privada en Chile",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://gard.cl/buscar?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        }) }} />
       </head>
       <body className={`${inter.variable} ${spaceGrotesk.variable}`}>
         <ClientWrapper>
