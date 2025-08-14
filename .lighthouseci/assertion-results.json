@@ -1,0 +1,98 @@
+[
+  {
+    "name": "minScore",
+    "expected": 0.95,
+    "actual": 0.52,
+    "values": [
+      0.5,
+      0.52,
+      0.49
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditProperty": "performance",
+    "auditId": "categories",
+    "level": "error",
+    "url": "https://www.gard.cl/"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.95,
+    "actual": 0.81,
+    "values": [
+      0.81,
+      0.81,
+      0.81
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditProperty": "accessibility",
+    "auditId": "categories",
+    "level": "error",
+    "url": "https://www.gard.cl/"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.95,
+    "actual": 0.75,
+    "values": [
+      0.75,
+      0.75,
+      0.75
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditProperty": "best-practices",
+    "auditId": "categories",
+    "level": "error",
+    "url": "https://www.gard.cl/"
+  },
+  {
+    "name": "auditRan",
+    "expected": 1,
+    "actual": 0,
+    "values": [
+      0,
+      0,
+      0
+    ],
+    "operator": ">=",
+    "passed": false,
+    "message": "\"metrics/lcp\" is not a known audit.",
+    "auditId": "metrics/lcp",
+    "level": "error",
+    "url": "https://www.gard.cl/"
+  },
+  {
+    "name": "auditRan",
+    "expected": 1,
+    "actual": 0,
+    "values": [
+      0,
+      0,
+      0
+    ],
+    "operator": ">=",
+    "passed": false,
+    "message": "\"metrics/cls\" is not a known audit.",
+    "auditId": "metrics/cls",
+    "level": "error",
+    "url": "https://www.gard.cl/"
+  },
+  {
+    "name": "auditRan",
+    "expected": 1,
+    "actual": 0,
+    "values": [
+      0,
+      0,
+      0
+    ],
+    "operator": ">=",
+    "passed": false,
+    "message": "\"metrics/interactive\" is not a known audit.",
+    "auditId": "metrics/interactive",
+    "level": "warn",
+    "url": "https://www.gard.cl/"
+  }
+]

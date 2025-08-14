@@ -3,6 +3,7 @@
 import { usePathname } from 'next/navigation';
 import Script from 'next/script';
 import { useEffect } from 'react';
+import { useConsent } from '@/app/hooks/useConsent';
 
 // Tipo para las propiedades del componente
 interface GoogleTagManagerProps {
@@ -12,6 +13,7 @@ interface GoogleTagManagerProps {
 // Componente para cargar Google Tag Manager
 export default function GoogleTagManager({ gtmId }: GoogleTagManagerProps) {
   const pathname = usePathname();
+  const { consent, hasInteracted } = useConsent();
 
   // Actualizar la página vista en cambios de ruta
   useEffect(() => {
@@ -22,6 +24,10 @@ export default function GoogleTagManager({ gtmId }: GoogleTagManagerProps) {
       });
     }
   }, [pathname]);
+
+  const canLoad = Boolean(gtmId) && hasInteracted && consent.analytics;
+
+  if (!canLoad) return null;
 
   return (
     <>
@@ -46,6 +52,7 @@ export default function GoogleTagManager({ gtmId }: GoogleTagManagerProps) {
           src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
           height="0" 
           width="0" 
+          title="Google Tag Manager"
           style={{ display: 'none', visibility: 'hidden' }} 
         />
       </noscript>
