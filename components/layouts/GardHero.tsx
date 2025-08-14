@@ -93,6 +93,7 @@ export default function GardHero({
   phoneNumber = "+56229872380"
 }: GardHeroProps) {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const [enableVideo, setEnableVideo] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const heroRef = useRef<HTMLElement>(null);
   
@@ -125,6 +126,14 @@ export default function GardHero({
       }
     }
   }, []);
+
+  // Evitar video en móviles para mejorar LCP; habilitar solo en pantallas grandes
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const isDesktop = window.matchMedia('(min-width: 1024px)').matches;
+      if (isDesktop) setEnableVideo(true);
+    }
+  }, []);
   
   return (
     <LazyMotion features={domAnimation}>
@@ -145,7 +154,7 @@ export default function GardHero({
         
         {/* Video o imagen de fondo */}
         <div className="absolute inset-0 w-full h-full z-0">
-          {videoId ? (
+          {enableVideo && videoId ? (
             // Usar Cloudflare Stream como fondo
             <div className="absolute inset-0 w-full h-full">
               <Stream 
