@@ -255,7 +255,7 @@ export default function GardHero({
                       transition: { duration: 0.5 }
                     }
                   }}
-                  className={`text-white/90 mt-4 font-light ${variant === "home" ? "text-lg sm:text-xl max-w-2xl" : "text-base sm:text-lg max-w-xl"}`}
+                  className={`text-white mt-4 font-light ${variant === "home" ? "text-lg sm:text-xl max-w-2xl" : "text-base sm:text-lg max-w-xl"}`}
                 >
                   {subtitle}
                 </motion.p>

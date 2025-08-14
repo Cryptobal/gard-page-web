@@ -199,6 +199,9 @@
   .gard-btn-outline {
     @apply border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary;
   }
+  .gard-btn, .gard-btn-primary, .gard-btn-outline, .gard-btn-accent {
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary;
+  }
 
   .gard-btn-ghost {
     @apply text-primary hover:bg-primary/10 hover:text-primary;
