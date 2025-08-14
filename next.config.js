@@ -3,6 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   
+  // Optimización de imágenes
   images: {
     remotePatterns: [
       {
@@ -11,9 +12,18 @@ const nextConfig = {
         pathname: '/**',
       },
     ],
+    formats: ['image/webp', 'image/avif'],
+    minimumCacheTTL: 86400, // 24 horas
+    dangerouslyAllowSVG: true,
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
-  // Agregar configuración para videos
-  webpack: (config) => {
+
+  // Optimización de compresión
+  compress: true,
+  
+  // Optimización de webpack
+  webpack: (config, { dev, isServer }) => {
+    // Configuración para videos
     config.module.rules.push({
       test: /\.(mp4|webm)$/,
       use: {
@@ -25,8 +35,30 @@ const nextConfig = {
         },
       },
     });
+
+    // Optimización para producción
+    if (!dev && !isServer) {
+      config.optimization.splitChunks = {
+        chunks: 'all',
+        cacheGroups: {
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendors',
+            chunks: 'all',
+          },
+        },
+      };
+    }
+
     return config;
   },
+
+  // Optimización de experimental features
+  experimental: {
+    optimizeCss: true,
+    optimizePackageImports: ['lucide-react', '@radix-ui/react-icons'],
+  },
+  
   // COMENTADO PARA SOLUCIONAR PROBLEMA DE GOOGLE ADS - las URLs del feed no tienen trailing slash
   // trailingSlash: true,
   
@@ -91,16 +123,37 @@ const nextConfig = {
     ];
   },
   
-  // Agregar headers para mejorar SEO
+  // Headers optimizados para rendimiento y seguridad
   async headers() {
     return [
       {
         source: '/:path*',
         headers: [
+          // SEO
           { key: 'X-Robots-Tag', value: 'index, follow' },
+          
+          // Seguridad
           { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
           { key: 'X-Content-Type-Options', value: 'nosniff' },
           { key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubDomains; preload' },
+          { key: 'X-Frame-Options', value: 'DENY' },
+          { key: 'X-XSS-Protection', value: '1; mode=block' },
+          
+          // Rendimiento
+          { key: 'X-DNS-Prefetch-Control', value: 'on' },
+          { key: 'Cache-Control', value: 'public, max-age=3600, s-maxage=3600' },
+        ]
+      },
+      {
+        source: '/sitemap.xml',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=86400, s-maxage=86400' },
+        ]
+      },
+      {
+        source: '/robots.txt',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=86400, s-maxage=86400' },
         ]
       }
     ];
