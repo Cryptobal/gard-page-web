@@ -157,7 +157,6 @@ export default function GardHero({
                 poster={imageId ? getCloudflareImageUrl(imageId, 'public') : undefined}
                 className="w-full h-full absolute inset-0 object-cover"
                 preload="none"
-                playsInline
                 title="Video institucional Gard Security"
               />
               {/* Patrón de textura sutil en modo oscuro */}
