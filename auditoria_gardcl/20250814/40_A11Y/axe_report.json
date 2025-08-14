@@ -14,7 +14,7 @@
       "orientationAngle": 0,
       "orientationType": "landscape-primary"
     },
-    "timestamp": "2025-08-14T21:39:48.309Z",
+    "timestamp": "2025-08-14T21:44:15.641Z",
     "url": "https://www.gard.cl/",
     "toolOptions": {
       "reporter": "v1"
@@ -11141,7 +11141,7 @@
             ],
             "none": [],
             "impact": null,
-            "html": "<div class=\"w-full h-full absolute inset-0 object-cover\" style=\"position: relative; padding-top: 56.338%;\">",
+            "html": "<div class=\"w-full h-full absolute inset-0 object-cover\" style=\"position: relative;\">",
             "target": [
               ".object-cover.inset-0.absolute"
             ]
@@ -11527,7 +11527,7 @@
             ],
             "none": [],
             "impact": null,
-            "html": "<div class=\"bg-white rounded-full\" style=\"width: 0.5rem; height: 0.5rem; transform: translateY(4.89384px) translateZ(0px);\"></div>",
+            "html": "<div class=\"bg-white rounded-full\" style=\"width: 0.5rem; height: 0.5rem; transform: translateY(4.21809px) translateZ(0px);\"></div>",
             "target": [
               ".border-2 > .bg-white.rounded-full"
             ]
@@ -24463,7 +24463,7 @@
             "all": [],
             "none": [],
             "impact": null,
-            "html": "<div class=\"w-full h-full absolute inset-0 object-cover\" style=\"position: relative; padding-top: 56.338%;\">",
+            "html": "<div class=\"w-full h-full absolute inset-0 object-cover\" style=\"position: relative;\">",
             "target": [
               ".object-cover.inset-0.absolute"
             ]
@@ -24545,7 +24545,7 @@
             "all": [],
             "none": [],
             "impact": null,
-            "html": "<video poster=\"https://imagedelivery.net/cGbMPRg9wt8jvG6HDuBzVQ/4824f8b9-abb0-4e77-c654-efe920697b00/public\" class=\"css-14ogxpa\" playsinline=\"\" preload=\"auto\" autoplay=\"\" muted=\"true\" loop=\"\" src=\"blob:https://iframe.cloudflarestream.com/e351dc48-d9e8-4944-802d-89023862bf41\"></video>",
+            "html": "<video poster=\"https://imagedelivery.net/cGbMPRg9wt8jvG6HDuBzVQ/4824f8b9-abb0-4e77-c654-efe920697b00/public\" class=\"css-14ogxpa\" playsinline=\"\" preload=\"auto\" autoplay=\"\" muted=\"true\" loop=\"\" src=\"blob:https://iframe.cloudflarestream.com/a6a23d1e-23d3-4926-a694-7a12edc46306\"></video>",
             "target": [
               "iframe[frameborder=\"0\"]",
               "video"
@@ -25046,7 +25046,7 @@
             "all": [],
             "none": [],
             "impact": null,
-            "html": "<div class=\"w-6 h-10 border-2 border-white/70 rounded-full flex justify-center items-start p-1\"><div class=\"bg-white rounded-full\" style=\"width: 0.5rem; height: 0.5rem; transform: translateY(4.89384px) translateZ(0px);\"></div></div>",
+            "html": "<div class=\"w-6 h-10 border-2 border-white/70 rounded-full flex justify-center items-start p-1\"><div class=\"bg-white rounded-full\" style=\"width: 0.5rem; height: 0.5rem; transform: translateY(4.21809px) translateZ(0px);\"></div></div>",
             "target": [
               ".border-2"
             ]
@@ -25066,7 +25066,7 @@
             "all": [],
             "none": [],
             "impact": null,
-            "html": "<div class=\"bg-white rounded-full\" style=\"width: 0.5rem; height: 0.5rem; transform: translateY(4.89384px) translateZ(0px);\"></div>",
+            "html": "<div class=\"bg-white rounded-full\" style=\"width: 0.5rem; height: 0.5rem; transform: translateY(4.21809px) translateZ(0px);\"></div>",
             "target": [
               ".border-2 > .bg-white.rounded-full"
             ]
@@ -43259,7 +43259,7 @@
               }
             ],
             "impact": "critical",
-            "html": "<video poster=\"https://imagedelivery.net/cGbMPRg9wt8jvG6HDuBzVQ/4824f8b9-abb0-4e77-c654-efe920697b00/public\" class=\"css-14ogxpa\" playsinline=\"\" preload=\"auto\" autoplay=\"\" muted=\"true\" loop=\"\" src=\"blob:https://iframe.cloudflarestream.com/e351dc48-d9e8-4944-802d-89023862bf41\"></video>",
+            "html": "<video poster=\"https://imagedelivery.net/cGbMPRg9wt8jvG6HDuBzVQ/4824f8b9-abb0-4e77-c654-efe920697b00/public\" class=\"css-14ogxpa\" playsinline=\"\" preload=\"auto\" autoplay=\"\" muted=\"true\" loop=\"\" src=\"blob:https://iframe.cloudflarestream.com/a6a23d1e-23d3-4926-a694-7a12edc46306\"></video>",
             "target": [
               "iframe[frameborder=\"0\"]",
               "video"

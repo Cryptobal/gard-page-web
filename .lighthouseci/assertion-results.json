@@ -2,11 +2,11 @@
   {
     "name": "minScore",
     "expected": 0.95,
-    "actual": 0.51,
+    "actual": 0.53,
     "values": [
-      0.47,
-      0.41,
-      0.51
+      0.51,
+      0.53,
+      0.48
     ],
     "operator": ">=",
     "passed": false,
@@ -50,11 +50,11 @@
   {
     "name": "maxNumericValue",
     "expected": 2500,
-    "actual": 15103.101,
+    "actual": 15433.3565,
     "values": [
-      13057.9415,
-      15103.101,
-      15337.127999999997
+      15433.3565,
+      15313.694,
+      15657.832000000006
     ],
     "operator": "<=",
     "passed": false,
@@ -67,11 +67,11 @@
   {
     "name": "maxNumericValue",
     "expected": 5000,
-    "actual": 14765.439500000004,
+    "actual": 14466.829000000005,
     "values": [
-      14765.439500000004,
-      14815.956999999999,
-      14423.756999999998
+      14525.656500000001,
+      14147.001499999998,
+      14466.829000000005
     ],
     "operator": "<=",
     "passed": false,
@@ -80,22 +80,5 @@
     "url": "https://www.gard.cl/",
     "auditTitle": "Time to Interactive",
     "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/interactive/"
-  },
-  {
-    "name": "maxNumericValue",
-    "expected": 400,
-    "actual": 614.5,
-    "values": [
-      1215.5,
-      614.5,
-      249.6342499999996
-    ],
-    "operator": "<=",
-    "passed": false,
-    "auditId": "total-blocking-time",
-    "level": "warn",
-    "url": "https://www.gard.cl/",
-    "auditTitle": "Total Blocking Time",
-    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/lighthouse-total-blocking-time/"
   }
 ]
