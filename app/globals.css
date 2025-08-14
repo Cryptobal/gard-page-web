@@ -11,7 +11,7 @@
     --gard-primary-foreground: 0 0% 100%;
     --gard-secondary: 215 80% 25%;
     --gard-secondary-foreground: 0 0% 100%;
-    --gard-accent: 18 100% 50%;
+    --gard-accent: 6 100% 57%;
     --gard-accent-foreground: 0 0% 100%;
     --gard-background: 0 0% 100%;
     --gard-foreground: 215 25% 27%;
@@ -27,31 +27,31 @@
   }
 
   .dark {
-    --gard-background: 220 14% 6%;           /* Base oscura principal: #0B0F1A */
-    --gard-background-darker: 0 0% 4%;       /* Negro sofisticado casi puro: #0a0a0a */
-    --gard-background-darkest: 0 0% 2%;      /* Negro puro para contrastar: #050505 */
-    --gard-background-subtle: 220 10% 8%;    /* Para variaciones sutiles: #111827 */
+    --gard-background: 0 0% 10%;             /* Gris oscuro #1a1a1a */
+    --gard-background-darker: 0 0% 5%;       /* Negro más oscuro */
+    --gard-background-darkest: 0 0% 2%;      /* Negro puro */
+    --gard-background-subtle: 0 0% 15%;      /* Gris ligeramente más claro */
     
-    --gard-card: 220 14% 9%;                 /* Tarjetas sobre fondo negro */
-    --gard-card-accent: 18 30% 7%;           /* Tarjetas con tinte naranja muy sutil */
-    --gard-muted: 220 10% 12%;               /* Secciones con fondo intermedio */
-    --gard-muted-foreground: 215 15% 65%;    /* Subtítulos o texto leve */
+    --gard-card: 0 0% 12%;                   /* Tarjetas sobre fondo gris oscuro */
+    --gard-card-accent: 6 30% 8%;            /* Tarjetas con tinte rojo muy sutil */
+    --gard-muted: 0 0% 15%;                  /* Secciones con fondo intermedio */
+    --gard-muted-foreground: 0 0% 70%;       /* Gris medio para texto secundario */
 
-    --gard-primary: 215 100% 55%;            /* Azul principal para CTA */
-    --gard-primary-foreground: 0 0% 100%;
-    --gard-secondary: 215 60% 30%;           /* Azul petróleo oscuro para detalles */
-    --gard-secondary-foreground: 0 0% 100%;
+    --gard-primary: 0 0% 100%;               /* Blanco puro para texto principal */
+    --gard-primary-foreground: 0 0% 10%;
+    --gard-secondary: 0 0% 90%;              /* Gris claro para elementos secundarios */
+    --gard-secondary-foreground: 0 0% 10%;
 
-    --gard-foreground: 210 30% 95%;          /* Texto general blanco suave */
-    --gard-card-foreground: 210 30% 95%;
-    --gard-popover: 220 14% 9%;
-    --gard-popover-foreground: 210 30% 95%;
+    --gard-foreground: 0 0% 100%;            /* Blanco puro para texto principal */
+    --gard-card-foreground: 0 0% 100%;
+    --gard-popover: 0 0% 12%;
+    --gard-popover-foreground: 0 0% 100%;
 
-    --gard-border: 220 10% 20%;
+    --gard-border: 0 0% 20%;
     --gard-border-subtle: 0 0% 15%;
-    --gard-input: 220 10% 20%;
-    --gard-ring: 215 100% 60%;
-    --gard-ring-accent: 18 100% 60%;
+    --gard-input: 0 0% 20%;
+    --gard-ring: 6 100% 57%;                 /* Rojo-anaranjado #e63946 */
+    --gard-ring-accent: 6 100% 57%;
   }
 
   body {
@@ -184,7 +184,7 @@
   }
 
   .gard-btn-primary {
-    @apply bg-primary text-white shadow-sm hover:opacity-90 font-bold;
+    @apply bg-accent text-white shadow-sm hover:opacity-90 font-bold;
   }
 
   .gard-btn-secondary {

@@ -27,38 +27,38 @@ export const theme = {
     '--radius': '0.75rem',
   },
   dark: {
-    // Colores primarios - Unificados para consistencia
-    '--gard-primary': '215 80% 55%', // Azul principal un poco más brillante para modo oscuro
-    '--gard-primary-foreground': '0 0% 100%', // Blanco
-    '--gard-secondary': '215 70% 30%', // Azul oscuro
-    '--gard-secondary-foreground': '0 0% 100%', // Blanco
-    '--gard-accent': '18 100% 60%', // Naranja más brillante
-    '--gard-accent-foreground': '0 0% 100%', // Blanco
+    // Nueva paleta basada en gard.cl
+    '--gard-primary': '0 0% 100%', // Blanco puro para texto principal
+    '--gard-primary-foreground': '0 0% 10%', // Negro para contraste
+    '--gard-secondary': '0 0% 90%', // Gris claro para elementos secundarios
+    '--gard-secondary-foreground': '0 0% 10%', // Negro para contraste
+    '--gard-accent': '6 100% 57%', // Rojo-anaranjado #e63946
+    '--gard-accent-foreground': '0 0% 100%', // Blanco para contraste
 
-    // Sistema refinado de fondos oscuros
-    '--gard-background': '220 14% 6%',           // Base oscura principal: #0B0F1A
-    '--gard-background-darker': '0 0% 4%',       // Negro sofisticado casi puro: #0a0a0a
-    '--gard-background-darkest': '0 0% 2%',      // Negro puro para contrastar: #050505
-    '--gard-background-subtle': '220 10% 8%',    // Para variaciones sutiles: #111827
+    // Sistema de fondos basado en gard.cl
+    '--gard-background': '0 0% 10%',           // Gris oscuro #1a1a1a
+    '--gard-background-darker': '0 0% 5%',     // Negro más oscuro
+    '--gard-background-darkest': '0 0% 2%',    // Negro puro
+    '--gard-background-subtle': '0 0% 15%',    // Gris ligeramente más claro
     
     // Fondos para componentes
-    '--gard-card': '220 14% 9%',                 // Tarjetas sobre fondo negro
-    '--gard-card-accent': '18 30% 7%',           // Tarjetas con tinte naranja muy sutil
-    '--gard-muted': '220 10% 12%',               // Secciones con fondo intermedio
-    '--gard-muted-foreground': '215 15% 65%',    // Subtítulos o texto leve
+    '--gard-card': '0 0% 12%',                 // Tarjetas sobre fondo gris oscuro
+    '--gard-card-accent': '6 30% 8%',          // Tarjetas con tinte rojo muy sutil
+    '--gard-muted': '0 0% 15%',                // Secciones con fondo intermedio
+    '--gard-muted-foreground': '0 0% 70%',     // Gris medio para texto secundario
     
     // Textos
-    '--gard-foreground': '210 30% 95%',          // Texto general blanco suave
-    '--gard-card-foreground': '210 30% 95%',     // Texto en tarjetas
-    '--gard-popover': '220 14% 9%',              // Popovers 
-    '--gard-popover-foreground': '210 30% 95%',  // Texto en popovers
+    '--gard-foreground': '0 0% 100%',          // Blanco puro para texto principal
+    '--gard-card-foreground': '0 0% 100%',     // Blanco puro en tarjetas
+    '--gard-popover': '0 0% 12%',              // Popovers 
+    '--gard-popover-foreground': '0 0% 100%',  // Blanco puro en popovers
 
     // Elementos interactivos
-    '--gard-border': '220 10% 20%',              // Bordes estándar
-    '--gard-border-subtle': '0 0% 15%',          // Bordes sutiles
-    '--gard-input': '220 10% 20%',               // Campos de formulario
-    '--gard-ring': '215 80% 55%',                // Anillo de focus azul
-    '--gard-ring-accent': '18 100% 60%',         // Anillo de focus naranja
+    '--gard-border': '0 0% 20%',               // Bordes grises
+    '--gard-border-subtle': '0 0% 15%',        // Bordes sutiles
+    '--gard-input': '0 0% 20%',                // Campos de formulario
+    '--gard-ring': '6 100% 57%',               // Anillo de focus rojo-anaranjado
+    '--gard-ring-accent': '6 100% 57%',        // Anillo de focus rojo-anaranjado
 
     // Radio
     '--radius': '0.75rem',
