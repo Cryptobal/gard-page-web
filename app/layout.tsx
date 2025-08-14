@@ -59,6 +59,7 @@ export default function RootLayout({
               src="https://salesiq.zohopublic.com/widget?wc=siqcf67a87e344d1bd7848815110805fd06cf8b491c5114559d2ca4e7c9b86dce4c" 
               defer
             />
+            <iframe title="Zoho SalesIQ" style={{display:'none'}} />
           </CookieConsent>
         </ClientWrapper>
       </body>

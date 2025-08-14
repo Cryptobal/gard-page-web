@@ -180,7 +180,7 @@
 
   /* Botones y CTA */
   .gard-btn {
-    @apply inline-flex items-center justify-center rounded-xl text-sm font-semibold transition-all duration-300;
+    @apply inline-flex items-center justify-center rounded-xl text-sm font-semibold transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary;
   }
 
   .gard-btn-primary {
