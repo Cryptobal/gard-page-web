@@ -53,9 +53,8 @@ const nextConfig = {
     return config;
   },
 
-  // Optimización de experimental features
+  // Optimización de experimental features (deshabilitado optimizeCss)
   experimental: {
-    optimizeCss: true,
     optimizePackageImports: ['lucide-react', '@radix-ui/react-icons'],
   },
   
