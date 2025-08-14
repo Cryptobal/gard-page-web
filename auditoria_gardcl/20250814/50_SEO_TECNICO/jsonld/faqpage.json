@@ -1,0 +1,16 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Ofrecen guardias de seguridad para empresas?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Sí, con supervisión 24/7 y perfiles certificados."}
+    },
+    {
+      "@type": "Question",
+      "name": "¿Operan en todo Chile?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Atendemos las principales regiones con cobertura escalable."}
+    }
+  ]
+}

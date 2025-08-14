@@ -1,0 +1,18 @@
+HTTP/2 200 
+accept-ranges: bytes
+access-control-allow-origin: *
+age: 3090159
+cache-control: public, max-age=0, must-revalidate
+content-disposition: inline
+content-type: text/html; charset=utf-8
+date: Thu, 14 Aug 2025 16:53:08 GMT
+etag: "cc2565021df97b8216a29b0d7d8f9393"
+server: Vercel
+strict-transport-security: max-age=63072000
+vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Next-Url
+x-matched-path: /
+x-robots-tag: index, follow
+x-vercel-cache: HIT
+x-vercel-id: gru1::nfrk8-1755190388749-28ed7f572163
+content-length: 204082
+

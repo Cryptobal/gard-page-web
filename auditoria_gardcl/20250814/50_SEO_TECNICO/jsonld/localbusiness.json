@@ -1,0 +1,13 @@
+{
+  "@context": "https://schema.org",
+  "@type": "SecurityService",
+  "name": "Gard Security",
+  "url": "https://www.gard.cl/",
+  "areaServed": {"@type":"AdministrativeArea","name":"Chile"},
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "CL"
+  },
+  "telephone": "+56",
+  "openingHoursSpecification": [{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"09:00","closes":"18:00","validFrom":"2025-01-01"}]
+}

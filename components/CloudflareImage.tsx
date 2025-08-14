@@ -14,6 +14,8 @@ interface CloudflareImageProps {
   quality?: number;
   objectFit?: 'fill' | 'contain' | 'cover' | 'none' | 'scale-down';
   objectPosition?: string;
+  placeholder?: 'blur' | 'empty';
+  blurDataURL?: string;
 }
 
 export default function CloudflareImage({
@@ -29,6 +31,8 @@ export default function CloudflareImage({
   quality = 90,
   objectFit = 'cover',
   objectPosition = 'center',
+  placeholder = 'empty',
+  blurDataURL,
 }: CloudflareImageProps) {
   const imageUrl = getCloudflareImageUrl(imageId, variant);
   
@@ -39,6 +43,9 @@ export default function CloudflareImage({
     priority,
     quality,
     sizes,
+    placeholder,
+    // Simple placeholder base64 por defecto si se solicita blur y no se entrega uno específico
+    blurDataURL: placeholder === 'blur' ? (blurDataURL || 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMDgwIiB2aWV3Qm94PSIwIDAgMTkyMCAxMDgwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxOTIwIiBoZWlnaHQ9IjEwODAiIGZpbGw9IiNlZWUiIC8+PC9zdmc+') : undefined,
   };
 
   return fill ? (

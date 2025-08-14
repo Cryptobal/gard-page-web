@@ -1,0 +1,10 @@
+HTTP/2 308 
+cache-control: public, max-age=0, must-revalidate
+content-type: text/plain
+date: Thu, 14 Aug 2025 16:53:03 GMT
+location: https://www.gard.cl/
+refresh: 0;url=https://www.gard.cl/
+server: Vercel
+strict-transport-security: max-age=63072000
+x-vercel-id: gru1::k7csm-1755190383240-ce2d0d87f3b1
+

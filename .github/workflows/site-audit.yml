@@ -1,0 +1,21 @@
+name: site-audit
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci || pnpm i --frozen-lockfile || yarn install --frozen-lockfile
+      - run: npx @lhci/cli collect --config=./auditoria_gardcl/20250814/80_CI_CD/lhci.yml --outputDir=./auditoria_gardcl/20250814/20_LAB_REPORTS/lighthouse
+      - run: npx @lhci/cli assert --config=./auditoria_gardcl/20250814/80_CI_CD/lhci.yml
+      - run: npx @axe-core/cli https://www.gard.cl --save ./auditoria_gardcl/20250814/40_A11Y/axe_report.json
+      - run: npm run lint --if-present
+      - run: npm run typecheck --if-present

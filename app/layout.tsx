@@ -33,7 +33,7 @@ export default function RootLayout({
         {/* MODIFICACIÓN SEO: Añadir componente para asegurar etiquetas canónicas */}
         <CanonicalUrl />
       </head>
-      <body className={inter.className}>
+      <body className={`${inter.variable} ${spaceGrotesk.variable}`}>
         <ClientWrapper>
           <CookieConsent>
             {/* Google Tag Manager (solo se carga con consentimiento de analytics) */}

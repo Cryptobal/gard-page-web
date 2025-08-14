@@ -1,0 +1,40 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "name": "Gard Security",
+      "url": "https://www.gard.cl",
+      "logo": "https://www.gard.cl/logos/gard.svg",
+      "sameAs": [
+        "https://www.linkedin.com/company/gard-security"
+      ]
+    },
+    {
+      "@type": ["LocalBusiness", "SecurityService"],
+      "name": "Gard Security Chile",
+      "image": "https://www.gard.cl/logos/gard.svg",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "CL"
+      },
+      "areaServed": "CL",
+      "telephone": "+56 2 2987 2380",
+      "openingHours": ["Mo-Fr 09:00-18:00"],
+      "url": "https://www.gard.cl"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem","position": 1,"name": "Inicio","item": "https://www.gard.cl/"},
+        {"@type": "ListItem","position": 2,"name": "Servicios","item": "https://www.gard.cl/servicios"}
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question","name": "¿Qué servicios ofrece Gard?","acceptedAnswer": {"@type": "Answer","text": "Guardias, monitoreo, seguridad electrónica."}}
+      ]
+    }
+  ]
+}

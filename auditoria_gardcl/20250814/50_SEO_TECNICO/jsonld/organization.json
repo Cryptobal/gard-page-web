@@ -1,0 +1,10 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Gard Security",
+  "url": "https://www.gard.cl/",
+  "logo": "https://www.gard.cl/logos/gard.svg",
+  "sameAs": [
+    "https://www.linkedin.com/company/gard-security"
+  ]
+}

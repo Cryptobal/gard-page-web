@@ -1,0 +1,7 @@
+--- a/app/layout.tsx
++++ b/app/layout.tsx
+@@
+-            {GTM_ID && <GoogleTagManager gtmId={GTM_ID} />}
++            {/* Cargar GTM sólo con consentimiento de analytics */}
++            {GTM_ID && <GoogleTagManager gtmId={GTM_ID} />}
+

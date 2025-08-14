@@ -1,0 +1,10 @@
+*** Snippet (Next.js app/layout.tsx)
+
+<head>
+  <link rel="preconnect" href="https://imagedelivery.net" crossOrigin="anonymous" />
+  <link rel="dns-prefetch" href="//imagedelivery.net" />
+  <link rel="preconnect" href="https://videodelivery.net" crossOrigin="anonymous" />
+  <link rel="dns-prefetch" href="//videodelivery.net" />
+  {/* Fonts self-host example */}
+  <link rel="preload" as="font" href="/fonts/inter-latin.woff2" type="font/woff2" crossOrigin="anonymous" />
+</head>

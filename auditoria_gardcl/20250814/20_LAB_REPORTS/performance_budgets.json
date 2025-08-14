@@ -1,0 +1,5 @@
+{
+  "/": {"js_kb_gzip_max": 150, "css_kb_gzip_max": 50, "hero_img_kb_max": 100, "requests_max": 35, "ttfb_ms_max": 300, "lcp_ms_max": 2500, "inp_ms_max": 200, "cls_max": 0.1},
+  "/servicios": {"js_kb_gzip_max": 150, "css_kb_gzip_max": 50, "hero_img_kb_max": 100, "requests_max": 35, "ttfb_ms_max": 300, "lcp_ms_max": 2500, "inp_ms_max": 200, "cls_max": 0.1},
+  "/contacto": {"js_kb_gzip_max": 120, "css_kb_gzip_max": 40, "hero_img_kb_max": 80, "requests_max": 30, "ttfb_ms_max": 300, "lcp_ms_max": 2200, "inp_ms_max": 200, "cls_max": 0.1}
+}

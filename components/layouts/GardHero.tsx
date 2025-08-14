@@ -153,9 +153,10 @@ export default function GardHero({
                 muted={true}
                 loop={true}
                 autoplay={true}
+                // Evitar penalizar LCP: asegurar poster siempre y permitir que sea LCP candidate
                 poster={imageId ? `https://imagedelivery.net/cGbMPRg9wt8jvG6HDuBzVQ/${imageId}/public` : undefined}
                 className="w-full h-full absolute inset-0 object-cover"
-                preload="auto"
+                preload="metadata"
               />
               {/* Patrón de textura sutil en modo oscuro */}
               <div className="hidden dark:block absolute inset-0 bg-[url('/assets/noise-pattern.png')] opacity-10 z-10 pointer-events-none"></div>
@@ -169,6 +170,8 @@ export default function GardHero({
                 className="object-cover"
                 fill
                 priority
+                placeholder="blur"
+                sizes="(max-width: 768px) 100vw, (max-width: 1280px) 100vw, 100vw"
                 objectFit="cover"
               />
               
