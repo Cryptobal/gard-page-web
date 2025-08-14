@@ -6,6 +6,7 @@ import { ArrowRight, Phone, Clock, PlayCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import CloudflareImage from '@/components/CloudflareImage';
 import { Stream } from '@cloudflare/stream-react';
+import { getCloudflareImageUrl } from '@/lib/images';
 import Link from 'next/link';
 
 interface GardHeroProps {
@@ -153,10 +154,12 @@ export default function GardHero({
                 muted={true}
                 loop={true}
                 autoplay={true}
-                // Evitar penalizar LCP: asegurar poster siempre y permitir que sea LCP candidate
-                poster={imageId ? `https://imagedelivery.net/cGbMPRg9wt8jvG6HDuBzVQ/${imageId}/public` : undefined}
+                // Evitar penalizar LCP: asegurar poster ligero desde Cloudflare Images oficial del sitio
+                poster={imageId ? getCloudflareImageUrl(imageId, 'public') : undefined}
                 className="w-full h-full absolute inset-0 object-cover"
-                preload="metadata"
+                preload="none"
+                playsInline
+                title="Video institucional Gard Security"
               />
               {/* Patrón de textura sutil en modo oscuro */}
               <div className="hidden dark:block absolute inset-0 bg-[url('/assets/noise-pattern.png')] opacity-10 z-10 pointer-events-none"></div>
