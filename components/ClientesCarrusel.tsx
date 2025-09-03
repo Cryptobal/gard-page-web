@@ -159,30 +159,31 @@ export default function ClientesCarrusel() {
                     className="h-full bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-gray-700 flex flex-col"
                   >
                     <div className="flex flex-col h-full">
-                      {/* Logo del cliente */}
-                      <div className="relative h-20 mb-6 flex items-center justify-center bg-gray-50 dark:bg-gray-800 rounded-xl p-3">
+                      {/* Logo del cliente - Contenedor estandarizado */}
+                      <div className="relative h-24 mb-6 flex items-center justify-center bg-gray-50 dark:bg-gray-800 rounded-xl p-4 overflow-hidden">
                         {cliente.link ? (
                           <Link
                             href={cliente.link}
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label={`${cliente.nombre} - Visitar sitio web`}
+                            className="w-full h-full flex items-center justify-center"
                           >
                             <CloudflareImage 
                               imageId={cliente.imageId}
                               alt={`Logo de ${cliente.nombre}`}
-                              width={180}
+                              width={160}
                               height={64}
-                              className="object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+                              className="object-contain filter grayscale hover:grayscale-0 transition-all duration-300 max-w-full max-h-full"
                             />
                           </Link>
                         ) : (
                           <CloudflareImage 
                             imageId={cliente.imageId}
                             alt={`Logo de ${cliente.nombre}`}
-                            width={180}
+                            width={160}
                             height={64}
-                            className="object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+                            className="object-contain filter grayscale hover:grayscale-0 transition-all duration-300 max-w-full max-h-full"
                           />
                         )}
                       </div>
@@ -194,13 +195,13 @@ export default function ClientesCarrusel() {
                         </span>
                       </div>
                       
-                      <h3 className="text-heading-4 text-gray-900 dark:text-white font-title mb-4">
+                      <h3 className="text-heading-4 text-gray-900 dark:text-white font-title mb-4 min-h-[3rem] flex items-center">
                         {cliente.nombre}
                       </h3>
                       
-                      <div className="flex-grow bg-gray-50 dark:bg-gray-800 rounded-xl p-5 mb-2 relative mx-2">
+                      <div className="flex-grow bg-gray-50 dark:bg-gray-800 rounded-xl p-5 mb-2 relative mx-2 min-h-[5rem] flex items-center">
                         <Quote className="absolute -top-3 -left-3 h-6 w-6 text-primary dark:text-accent bg-white dark:bg-gray-900 rounded-full p-1" />
-                        <p className="text-sm italic text-gray-600 dark:text-gray-300">
+                        <p className="text-sm italic text-gray-600 dark:text-gray-300 leading-relaxed">
                           "{cliente.frase}"
                         </p>
                       </div>

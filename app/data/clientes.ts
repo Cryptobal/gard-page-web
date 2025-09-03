@@ -81,5 +81,11 @@ export const CLIENTES = [
     link: "https://santiago.itamaraty.gov.br",
     frase: "Valoran nuestros protocolos de seguridad diplomática",
     imageId: "cf2de6d2-1d49-4db8-2d01-4b67f78f0d00"
+  },
+  {
+    nombre: "Sparta",
+    industria: "Seguridad Privada",
+    frase: "Confían en nuestra experiencia y profesionalismo en el sector de la seguridad",
+    imageId: "5a4f7559-e536-4c63-3a80-fa3a99d2fc00"
   }
 ]; 
