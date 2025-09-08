@@ -27,16 +27,28 @@ const esProduccion = (): boolean => {
 // URLs de API
 export const API_URLS = {
   CONTACTO: esProduccion() 
-    ? `${getApiBaseUrl()}/api/formulario/contacto` 
+    ? 'https://hook.us1.make.com/b742nwic3qci4y21hg5ol1equ2t9rerj'
     : 'https://hook.us1.make.com/b742nwic3qci4y21hg5ol1equ2t9rerj',
   
   COTIZACION: esProduccion() 
-    ? `${getApiBaseUrl()}/api/formulario/cotizacion` 
+    ? 'https://hook.us1.make.com/oq1dihqjq7xbl2xbk9wbbdp02h37831a'
     : 'https://hook.us1.make.com/oq1dihqjq7xbl2xbk9wbbdp02h37831a',
   
   COTIZACION_INTELIGENTE: esProduccion() 
-    ? `${getApiBaseUrl()}/api/formulario/cotizacion-inteligente` 
+    ? 'https://hook.us1.make.com/c99tyreyliv9ss27qfpn5rpwoonj7s5j'
     : 'https://hook.us1.make.com/c99tyreyliv9ss27qfpn5rpwoonj7s5j',
+  
+  RECLUTAMIENTO: esProduccion() 
+    ? 'https://hook.us1.make.com/5ozb2y5aucrr75d2xtpshmlyckds9nl4'
+    : 'https://hook.us1.make.com/5ozb2y5aucrr75d2xtpshmlyckds9nl4',
+  
+  LANDING_DINAMICO: esProduccion() 
+    ? 'https://hook.us1.make.com/krnppgeej8agx68cizu4zmj8colpsupd'
+    : 'https://hook.us1.make.com/krnppgeej8agx68cizu4zmj8colpsupd',
+  
+  LEGAL_DENUNCIAS: esProduccion() 
+    ? 'https://hook.us1.make.com/v3rknlt7mxqvjtna74iajcyfku7vnfj2'
+    : 'https://hook.us1.make.com/v3rknlt7mxqvjtna74iajcyfku7vnfj2',
 };
 
 export default API_URLS; 

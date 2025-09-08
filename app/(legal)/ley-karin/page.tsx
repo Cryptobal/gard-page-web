@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from "@/components/ui/select";
+import { API_URLS } from "@/config/api";
 
 const TIPO_OPCIONES = [
   { value: "acoso_sexual", label: "Acoso sexual" },
@@ -131,7 +132,7 @@ export default function LeyKarin() {
       payload.evidencia_tipo = undefined;
     }
     try {
-      const res = await fetch("https://hook.us1.make.com/v3rknlt7mxqvjtna74iajcyfku7vnfj2", {
+      const res = await fetch(API_URLS.LEGAL_DENUNCIAS, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),

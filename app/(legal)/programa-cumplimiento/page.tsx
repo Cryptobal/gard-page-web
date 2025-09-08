@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Form, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
 import { Check } from "lucide-react";
+import { API_URLS } from "@/config/api";
 
 export default function ProgramaCumplimiento() {
   const [form, setForm] = useState({
@@ -33,7 +34,7 @@ export default function ProgramaCumplimiento() {
     setLoading(true);
     setError("");
     try {
-      const res = await fetch("https://hook.us1.make.com/v3rknlt7mxqvjtna74iajcyfku7vnfj2", {
+      const res = await fetch(API_URLS.LEGAL_DENUNCIAS, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),

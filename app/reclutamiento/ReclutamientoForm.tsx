@@ -45,6 +45,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { cn } from '@/lib/utils';
 import { trackFormSubmission } from '@/lib/analytics/formTracking';
+import { API_URLS } from '@/config/api';
 
 // Validador de RUT chileno usando algoritmo Módulo 11
 const validateRut = (rut: string) => {
@@ -262,7 +263,7 @@ export default function ReclutamientoForm() {
         ...utmData
       };
 
-      const response = await fetch('https://hook.us1.make.com/5ozb2y5aucrr75d2xtpshmlyckds9nl4', {
+      const response = await fetch(API_URLS.RECLUTAMIENTO, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

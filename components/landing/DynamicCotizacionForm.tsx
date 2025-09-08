@@ -8,6 +8,7 @@ import { Label } from '@/components/ui/label';
 import { AlertCircle, Loader2, CheckCircle, ArrowRight } from 'lucide-react';
 import { Loader } from '@googlemaps/js-api-loader';
 import { trackFormSubmission } from '@/lib/analytics/formTracking';
+import { API_URLS } from '@/config/api';
 
 // Declaración para Google Maps API
 declare global {
@@ -175,8 +176,7 @@ export default function DynamicCotizacionForm({
       };
       
       // Enviar al webhook
-      const webhookUrl = 'https://hook.us1.make.com/krnppgeej8agx68cizu4zmj8colpsupd';
-      const response = await fetch(webhookUrl, {
+      const response = await fetch(API_URLS.LANDING_DINAMICO, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
