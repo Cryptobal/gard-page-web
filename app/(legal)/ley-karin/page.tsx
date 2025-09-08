@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from "@/components/ui/select";
-import { API_URLS } from "@/config/api";
+import { API_URLS } from "@/app/config/api";
 
 const TIPO_OPCIONES = [
   { value: "acoso_sexual", label: "Acoso sexual" },

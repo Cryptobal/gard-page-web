@@ -45,7 +45,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { cn } from '@/lib/utils';
 import { trackFormSubmission } from '@/lib/analytics/formTracking';
-import { API_URLS } from '@/config/api';
+import { API_URLS } from '@/app/config/api';
 
 // Validador de RUT chileno usando algoritmo Módulo 11
 const validateRut = (rut: string) => {

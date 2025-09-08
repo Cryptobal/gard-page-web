@@ -7,7 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Form, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
 import { Check } from "lucide-react";
-import { API_URLS } from "@/config/api";
+import { API_URLS } from "@/app/config/api";
 
 export default function ProgramaCumplimiento() {
   const [form, setForm] = useState({

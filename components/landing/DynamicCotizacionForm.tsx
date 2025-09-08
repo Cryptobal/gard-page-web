@@ -8,7 +8,7 @@ import { Label } from '@/components/ui/label';
 import { AlertCircle, Loader2, CheckCircle, ArrowRight } from 'lucide-react';
 import { Loader } from '@googlemaps/js-api-loader';
 import { trackFormSubmission } from '@/lib/analytics/formTracking';
-import { API_URLS } from '@/config/api';
+import { API_URLS } from '@/app/config/api';
 
 // Declaración para Google Maps API
 declare global {

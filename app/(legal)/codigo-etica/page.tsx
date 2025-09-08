@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { API_URLS } from "@/config/api";
+import { API_URLS } from "@/app/config/api";
 
 export default function CodigoEtica() {
   const [form, setForm] = useState({
