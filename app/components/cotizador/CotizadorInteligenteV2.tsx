@@ -112,6 +112,8 @@ interface FormData {
   direccion: string;
   comuna: string;
   ciudad: string;
+  latitude?: number;
+  longitude?: number;
   rubro: string;
   comentarios: string;
   // Parámetros UTM
@@ -175,6 +177,8 @@ export default function CotizadorInteligenteV2() {
     direccion: '',
     comuna: '',
     ciudad: '',
+    latitude: undefined,
+    longitude: undefined,
     rubro: rubros[0],
     comentarios: '',
     // Inicializar campos UTM
@@ -277,6 +281,19 @@ export default function CotizadorInteligenteV2() {
               comuna,
               ciudad
             }));
+
+            // Extraer coordenadas de latitud y longitud
+            if (place.geometry && place.geometry.location) {
+              setFormData(prev => ({
+                ...prev,
+                latitude: place.geometry.location.lat(),
+                longitude: place.geometry.location.lng()
+              }));
+              console.log('Coordenadas extraídas:', {
+                latitude: place.geometry.location.lat(),
+                longitude: place.geometry.location.lng()
+              });
+            }
 
             console.log('Lugar seleccionado:', place.formatted_address);
             console.log('Comuna extraída:', comuna);

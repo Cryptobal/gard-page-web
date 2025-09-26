@@ -39,6 +39,8 @@ export default function DynamicCotizacionForm({
     direccion: '',
     comuna: '',
     ciudad: '',
+    latitude: undefined as number | undefined,
+    longitude: undefined as number | undefined,
     mensaje: '',
     // UTM params se inicializan vacíos y se rellenan en useEffect
     utm_source: '',
@@ -116,6 +118,19 @@ export default function DynamicCotizacionForm({
         comuna,
         ciudad
       }));
+
+      // Extraer coordenadas de latitud y longitud
+      if (place.geometry && place.geometry.location) {
+        setFormData(prev => ({
+          ...prev,
+          latitude: place.geometry.location.lat(),
+          longitude: place.geometry.location.lng()
+        }));
+        console.log('Coordenadas extraídas:', {
+          latitude: place.geometry.location.lat(),
+          longitude: place.geometry.location.lng()
+        });
+      }
     });
   }, [mapLoaded]);
   

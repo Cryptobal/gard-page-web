@@ -38,6 +38,8 @@ const formSchema = z.object({
   direccion: z.string().min(5, { message: 'La dirección es obligatoria' }),
   comuna: z.string().optional(),
   ciudad: z.string().optional(),
+  latitude: z.number().optional(),
+  longitude: z.number().optional(),
   tipoIndustria: z.string().min(1, { message: 'Selecciona un tipo de industria' }),
   servicioRequerido: z.string().min(1, { message: 'Selecciona un servicio requerido' }),
   cotizacion: z.string().min(3, { message: 'Proporciona los detalles de tu solicitud' }),
@@ -94,6 +96,8 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
       direccion: '',
       comuna: '',
       ciudad: '',
+      latitude: undefined,
+      longitude: undefined,
       tipoIndustria: '',
       servicioRequerido: '',
       cotizacion: '',
@@ -257,6 +261,16 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
       // Seguir capturando comuna y ciudad pero no mostrarlos visualmente
       setValue('comuna', comuna);
       setValue('ciudad', ciudad);
+
+      // Extraer coordenadas de latitud y longitud
+      if (place.geometry && place.geometry.location) {
+        setValue('latitude', place.geometry.location.lat());
+        setValue('longitude', place.geometry.location.lng());
+        console.log('Coordenadas extraídas:', {
+          latitude: place.geometry.location.lat(),
+          longitude: place.geometry.location.lng()
+        });
+      }
       
       // En móviles, después de seleccionar una dirección, asegurar que el usuario
       // pueda seguir viendo el formulario correctamente
@@ -482,6 +496,8 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
 
             <input type="hidden" {...form.register('comuna')} />
             <input type="hidden" {...form.register('ciudad')} />
+            <input type="hidden" {...form.register('latitude')} />
+            <input type="hidden" {...form.register('longitude')} />
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <FormField
