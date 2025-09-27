@@ -137,22 +137,20 @@ const nextConfig = {
           { key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubDomains; preload' },
           { key: 'X-Frame-Options', value: 'DENY' },
           { key: 'X-XSS-Protection', value: '1; mode=block' },
-          { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=(), interest-cohort=()' },
-          { key: 'Cross-Origin-Embedder-Policy', value: 'require-corp' },
+          { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
           { key: 'Cross-Origin-Opener-Policy', value: 'same-origin' },
-          { key: 'Cross-Origin-Resource-Policy', value: 'same-origin' },
           
           // Content Security Policy
           { 
             key: 'Content-Security-Policy', 
             value: [
               "default-src 'self'",
-              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://salesiq.zohopublic.com https://maps.googleapis.com https://maps.gstatic.com",
-              "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://maps.googleapis.com",
-              "font-src 'self' https://fonts.gstatic.com https://maps.gstatic.com",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://salesiq.zohopublic.com https://js.zohocdn.com https://maps.googleapis.com https://maps.gstatic.com https://iframe.cloudflarestream.com https://embed.cloudflarestream.com https://va.vercel-scripts.com https://static.hotjar.com https://googleads.g.doubleclick.net https://www.googleadservices.com",
+              "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://maps.googleapis.com https://css.zohocdn.com",
+              "font-src 'self' https://fonts.gstatic.com https://maps.gstatic.com https://css.zohocdn.com",
               "img-src 'self' data: https: blob: https://imagedelivery.net https://iframe.cloudflarestream.com https://maps.googleapis.com https://maps.gstatic.com",
               "media-src 'self' https://iframe.cloudflarestream.com",
-              "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://salesiq.zohopublic.com https://hook.us1.make.com https://maps.googleapis.com",
+              "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://salesiq.zohopublic.com https://hook.us1.make.com https://maps.googleapis.com https://iframe.cloudflarestream.com https://embed.cloudflarestream.com https://videodelivery.net https://www.google.com https://googleads.g.doubleclick.net https://www.googleadservices.com",
               "frame-src 'self' https://www.googletagmanager.com https://salesiq.zohopublic.com https://iframe.cloudflarestream.com",
               "object-src 'none'",
               "base-uri 'self'",

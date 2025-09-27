@@ -5,7 +5,12 @@ import { motion, LazyMotion, domAnimation } from 'framer-motion';
 import { ArrowRight, Phone, Clock, PlayCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import CloudflareImage from '@/components/CloudflareImage';
-import { Stream } from '@cloudflare/stream-react';
+import dynamic from 'next/dynamic';
+
+const VideoBackground = dynamic(() => import('@/components/ui/VideoBackground'), {
+  ssr: false,
+  loading: () => null
+});
 import { getCloudflareImageUrl } from '@/lib/images';
 import Link from 'next/link';
 
@@ -144,57 +149,12 @@ export default function GardHero({
         )}
         
         {/* Video o imagen de fondo */}
-        <div className="absolute inset-0 w-full h-full z-0">
-          {videoId ? (
-            // Usar Cloudflare Stream como fondo
-            <div className="absolute inset-0 w-full h-full">
-              <Stream 
-                src={videoId}
-                controls={false}
-                muted={true}
-                loop={true}
-                autoplay={true}
-                poster={imageId ? getCloudflareImageUrl(imageId, 'public') : undefined}
-                className="w-full h-full absolute inset-0 object-cover"
-                preload="none"
-                title="Video institucional Gard Security"
-              />
-              {/* Patrón de textura sutil en modo oscuro */}
-              <div className="hidden dark:block absolute inset-0 bg-[url('/assets/noise-pattern.png')] opacity-10 z-10 pointer-events-none"></div>
-            </div>
-          ) : imageId ? (
-            // Fallback a imagen si no hay video disponible
-            <div className="absolute inset-0">
-              <CloudflareImage
-                imageId={imageId}
-                alt={title}
-                className="object-cover"
-                fill
-                priority
-                placeholder="blur"
-                sizes="(max-width: 768px) 100vw, (max-width: 1280px) 100vw, 100vw"
-                objectFit="cover"
-              />
-              
-              {/* Patrón de textura sutil en modo oscuro */}
-              <div className="hidden dark:block absolute inset-0 bg-[url('/assets/noise-pattern.png')] opacity-10 z-10 pointer-events-none"></div>
-              
-              {/* Sobreponer un botón de play para simular que es un video */}
-              <motion.button
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1, duration: 0.5 }}
-                onClick={toggleVideo}
-                className="absolute bottom-10 right-10 z-20 bg-[hsl(var(--gard-card))/30] backdrop-blur-sm text-white p-3 rounded-full hover:bg-[hsl(var(--gard-card))/50] transition-all"
-              >
-                <PlayCircle className="h-10 w-10" />
-              </motion.button>
-            </div>
-          ) : (
-            // Fallback si no hay ni video ni imagen
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-[hsl(var(--gard-background-darkest))/70] to-[hsl(var(--gard-background-darkest))/90]"></div>
-          )}
-        </div>
+        <VideoBackground
+          videoId={videoId}
+          imageId={imageId}
+          title={title}
+          overlay={overlay}
+        />
         
         {/* Contenido del Hero */}
         <div className={`gard-hero-content z-20 py-16 md:py-24 ${variant === "home" ? "w-full px-4 md:px-6 lg:px-8" : "gard-container"}`}>

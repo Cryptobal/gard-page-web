@@ -1,0 +1,289 @@
+{
+  "meta": {
+    "source": "https://gard.cl/",
+    "generated_at": "2025-01-14T10:00:00Z",
+    "pages_sampled": [
+      "https://gard.cl/",
+      "https://gard.cl/servicios", 
+      "https://gard.cl/cotizar",
+      "https://gard.cl/contacto"
+    ]
+  },
+  "tokens": {
+    "color": {
+      "bg": {
+        "default": "#FFFFFF",
+        "section": "#F3F4F6",
+        "dark": "#0B0F1A",
+        "darkDarker": "#0A0A0A",
+        "darkDarkest": "#050505"
+      },
+      "fg": {
+        "primary": "#374151",
+        "muted": "#4B5563"
+      },
+      "accent": {
+        "brand": "#1A2A90",
+        "brandHover": "#3B82F6",
+        "orange": "#FF6B35"
+      },
+      "border": {
+        "subtle": "#E5E7EB",
+        "dark": "#374151"
+      },
+      "state": {
+        "success": null,
+        "warning": null,
+        "error": null
+      }
+    },
+    "typography": {
+      "fontFamily": {
+        "base": "Inter",
+        "heading": "Space Grotesk"
+      },
+      "scale": {
+        "h1": {
+          "sizeRem": 3.5,
+          "lineHeight": 1.2,
+          "weight": 700
+        },
+        "h2": {
+          "sizeRem": 2.5,
+          "lineHeight": 1.2,
+          "weight": 700
+        },
+        "h3": {
+          "sizeRem": 2.0,
+          "lineHeight": 1.2,
+          "weight": 600
+        },
+        "h4": {
+          "sizeRem": 1.5,
+          "lineHeight": 1.3,
+          "weight": 600
+        },
+        "h5": {
+          "sizeRem": 1.25,
+          "lineHeight": 1.4,
+          "weight": 600
+        },
+        "body": {
+          "sizeRem": 1.0,
+          "lineHeight": 1.5,
+          "weight": 400
+        },
+        "small": {
+          "sizeRem": 0.875,
+          "lineHeight": 1.5,
+          "weight": 400
+        }
+      }
+    },
+    "space": {
+      "xs": 4,
+      "sm": 8,
+      "md": 16,
+      "lg": 24,
+      "xl": 32,
+      "2xl": 48,
+      "3xl": 64
+    },
+    "radius": {
+      "sm": 8,
+      "md": 10,
+      "lg": 12,
+      "xl": 16
+    },
+    "shadow": {
+      "sm": "0 1px 2px 0 rgb(0 0 0 / 0.05)",
+      "md": "0 4px 6px -1px rgb(0 0 0 / 0.1)",
+      "lg": "0 10px 15px -3px rgb(0 0 0 / 0.1)"
+    },
+    "breakpoints": {
+      "sm": "640px",
+      "md": "768px",
+      "lg": "1024px",
+      "xl": "1280px",
+      "2xl": "1536px"
+    }
+  },
+  "components": {
+    "button": {
+      "variants": {
+        "primary": {
+          "bg": "#1A2A90",
+          "text": "#FFFFFF",
+          "hover": "#FF6B35",
+          "scale": 1.05,
+          "transition": "all 150ms ease-in-out"
+        },
+        "secondary": {
+          "bg": "#1E3A8A",
+          "text": "#FFFFFF",
+          "hover": "#FF6B35",
+          "scale": 1.05,
+          "transition": "all 150ms ease-in-out"
+        },
+        "ghost": {
+          "bg": "transparent",
+          "text": "#1A2A90",
+          "hover": "rgba(26, 42, 144, 0.1)",
+          "scale": 1.05,
+          "transition": "all 150ms ease-in-out"
+        },
+        "outline": {
+          "bg": "transparent",
+          "text": "#1A2A90",
+          "border": "2px solid #1A2A90",
+          "hover": "rgba(26, 42, 144, 0.1)",
+          "scale": 1.05,
+          "transition": "all 150ms ease-in-out"
+        },
+        "accent": {
+          "bg": "#FF6B35",
+          "text": "#FFFFFF",
+          "hover": "rgba(255, 107, 53, 0.9)",
+          "scale": 1.05,
+          "transition": "all 150ms ease-in-out"
+        }
+      },
+      "sizes": {
+        "sm": {
+          "height": "36px",
+          "padding": "12px",
+          "fontSize": "14px"
+        },
+        "md": {
+          "height": "40px",
+          "padding": "16px",
+          "fontSize": "14px"
+        },
+        "lg": {
+          "height": "44px",
+          "padding": "32px",
+          "fontSize": "16px"
+        }
+      },
+      "focusRing": {
+        "widthPx": 2,
+        "offsetPx": 2,
+        "color": "#3B82F6"
+      }
+    },
+    "navbar": {
+      "heightPx": 80,
+      "paddingX": 16,
+      "paddingY": 24,
+      "sticky": true,
+      "scrollHeight": 56,
+      "scrollPaddingY": 8
+    },
+    "card": {
+      "padding": "24px",
+      "radiusPx": 12,
+      "shadow": "0 10px 15px -3px rgb(0 0 0 / 0.1)",
+      "border": "1px solid #E5E7EB"
+    },
+    "form": {
+      "input": {
+        "padding": "8px 12px",
+        "radius": "6px",
+        "border": "1px solid #E5E7EB",
+        "focusRing": "2px solid #3B82F6"
+      },
+      "select": {
+        "padding": "8px 12px",
+        "radius": "6px",
+        "border": "1px solid #E5E7EB"
+      },
+      "textarea": {
+        "padding": "8px 12px",
+        "radius": "6px",
+        "border": "1px solid #E5E7EB"
+      }
+    },
+    "hero": {
+      "layout": "fullscreen",
+      "height": "100vh",
+      "minHeight": "600px",
+      "overlay": "rgba(0, 0, 0, 0.8)",
+      "contentMaxWidth": "1200px"
+    }
+  },
+  "a11y": {
+    "contrastPairs": [
+      {
+        "bg": "#1A2A90",
+        "fg": "#FFFFFF",
+        "ratio": 4.5,
+        "wcag": "AA",
+        "pass": true
+      },
+      {
+        "bg": "#FF6B35",
+        "fg": "#FFFFFF",
+        "ratio": 3.2,
+        "wcag": "AA",
+        "pass": false
+      },
+      {
+        "bg": "#374151",
+        "fg": "#FFFFFF",
+        "ratio": 12.1,
+        "wcag": "AAA",
+        "pass": true
+      },
+      {
+        "bg": "#F3F4F6",
+        "fg": "#4B5563",
+        "ratio": 7.2,
+        "wcag": "AAA",
+        "pass": true
+      },
+      {
+        "bg": "#0B0F1A",
+        "fg": "#F1F5F9",
+        "ratio": 15.2,
+        "wcag": "AAA",
+        "pass": true
+      }
+    ],
+    "focusStates": "present",
+    "notes": "Estados de foco implementados con ring-2 ring-offset-2 ring-primary. Podría mejorarse aumentando el offset a 3px para mejor contraste en modo oscuro."
+  },
+  "tailwind_suggestion": {
+    "extend.colors": {
+      "primary": "hsl(var(--gard-primary))",
+      "primary-foreground": "hsl(var(--gard-primary-foreground))",
+      "secondary": "hsl(var(--gard-secondary))",
+      "secondary-foreground": "hsl(var(--gard-secondary-foreground))",
+      "accent": "hsl(var(--gard-accent))",
+      "accent-foreground": "hsl(var(--gard-accent-foreground))",
+      "background": "hsl(var(--gard-background))",
+      "foreground": "hsl(var(--gard-foreground))",
+      "muted": "hsl(var(--gard-muted))",
+      "muted-foreground": "hsl(var(--gard-muted-foreground))",
+      "card": "hsl(var(--gard-card))",
+      "card-foreground": "hsl(var(--gard-card-foreground))",
+      "border": "hsl(var(--gard-border))",
+      "input": "hsl(var(--gard-input))",
+      "ring": "hsl(var(--gard-ring))"
+    },
+    "extend.fontFamily": {
+      "title": ["var(--font-space-grotesk)"],
+      "body": ["var(--font-inter)"]
+    },
+    "extend.boxShadow": {
+      "sm": "0 1px 2px 0 rgb(0 0 0 / 0.05)",
+      "md": "0 4px 6px -1px rgb(0 0 0 / 0.1)",
+      "lg": "0 10px 15px -3px rgb(0 0 0 / 0.1)"
+    },
+    "extend.borderRadius": {
+      "lg": "var(--radius)",
+      "md": "calc(var(--radius) - 2px)",
+      "sm": "calc(var(--radius) - 4px)"
+    }
+  }
+}
+
