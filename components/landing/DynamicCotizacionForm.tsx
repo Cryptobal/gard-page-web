@@ -223,6 +223,8 @@ export default function DynamicCotizacionForm({
         direccion: '',
         comuna: '',
         ciudad: '',
+        latitude: undefined,
+        longitude: undefined,
         mensaje: '',
         utm_source: formData.utm_source,
         utm_medium: formData.utm_medium,
