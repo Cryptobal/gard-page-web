@@ -36,12 +36,31 @@ export default function ContactForm() {
     setError('');
     
     try {
+      // Preparar datos en formato estandarizado
+      const dataToSend = {
+        ...formData,
+        // Estandarizar nombres de campos
+        apellido: '', // El formulario de contacto no tiene apellido
+        empresa: '', // El formulario de contacto no tiene empresa
+        direccion: '', // El formulario de contacto no tiene dirección
+        comuna: '', // El formulario de contacto no tiene comuna
+        ciudad: '', // El formulario de contacto no tiene ciudad
+        latitude: undefined,
+        longitude: undefined,
+        industria: 'General', // Contacto general
+        servicio: 'Consulta General', // Consulta general
+        comentarios: formData.mensaje, // Mapear mensaje a comentarios
+        // Metadatos adicionales
+        fecha: new Date().toISOString(),
+        tipoFormulario: 'contacto'
+      };
+
       const response = await fetch(API_URLS.CONTACTO, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(dataToSend),
       });
       
       if (response.ok) {

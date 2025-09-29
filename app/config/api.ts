@@ -26,9 +26,7 @@ const esProduccion = (): boolean => {
 
 // URLs de API
 export const API_URLS = {
-  CONTACTO: esProduccion() 
-    ? 'https://hook.us1.make.com/b742nwic3qci4y21hg5ol1equ2t9rerj'
-    : 'https://hook.us1.make.com/b742nwic3qci4y21hg5ol1equ2t9rerj',
+  CONTACTO: 'https://gardsecurity.app.n8n.cloud/webhook/90de2a50-84bb-4964-9feb-34b6007aca67',
   
   COTIZACION: 'https://gardsecurity.app.n8n.cloud/webhook/90de2a50-84bb-4964-9feb-34b6007aca67',
   
