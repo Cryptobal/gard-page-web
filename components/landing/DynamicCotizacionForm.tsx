@@ -187,7 +187,7 @@ export default function DynamicCotizacionForm({
         ...formData,
         industria,
         servicio,
-        comentarios: formData.mensaje || formData.comentarios || 'Solicitud de cotización desde landing dinámico',
+        comentarios: formData.mensaje || 'Solicitud de cotización desde landing dinámico',
         // Metadatos adicionales
         fecha: new Date().toISOString(),
         tipoFormulario: 'landing_dinamico'
