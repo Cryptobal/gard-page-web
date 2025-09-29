@@ -335,9 +335,17 @@ export default function CotizadorFormulario() {
         return `🛡️ Turno ${rol.tipoTurno} | ${rol.horario} | ${rol.puestos} puesto(s) | ${rol.diasSemana} días/semana | ${rol.horasDia} hrs/día | Sueldo: $${rol.sueldoLiquido.toLocaleString('es-CL')} | Costo: $${costoEstimado.toLocaleString('es-CL')}`;
       }).join('\n');
 
-      // Preparar datos para enviar
+      // Preparar datos para enviar con campos estandarizados
       const dataToSend = {
         ...formData,
+        // Estandarizar nombres de campos
+        industria: formData.rubro,
+        servicio: 'Guardias de Seguridad', // El cotizador formulario es específico para guardias
+        comentarios: formData.comentarios,
+        // Metadatos adicionales
+        fecha: new Date().toISOString(),
+        tipoFormulario: 'cotizador_formulario',
+        // Datos específicos del cotizador
         roles: roles.map(rol => ({
           tipoTurno: rol.tipoTurno,
           horario: rol.horario,

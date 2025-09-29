@@ -182,12 +182,15 @@ export default function DynamicCotizacionForm({
         throw new Error('Por favor ingresa un email válido');
       }
       
-      // Datos a enviar incluyendo industria y servicio
+      // Datos a enviar incluyendo industria y servicio con campos estandarizados
       const dataToSend = {
         ...formData,
         industria,
         servicio,
-        fecha: new Date().toISOString()
+        comentarios: formData.mensaje || formData.comentarios || 'Solicitud de cotización desde landing dinámico',
+        // Metadatos adicionales
+        fecha: new Date().toISOString(),
+        tipoFormulario: 'landing_dinamico'
       };
       
       // Enviar al webhook

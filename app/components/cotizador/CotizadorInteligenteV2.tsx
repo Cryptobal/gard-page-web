@@ -516,12 +516,20 @@ export default function CotizadorInteligenteV2() {
         landing_page: formData.landing_page || localStorage.getItem('landing_page') || window.location.pathname,
       };
 
-      // Preparar datos para enviar
+      // Preparar datos para enviar con campos estandarizados
       const dataToSend = {
         ...formData,
         ...utmData,
+        // Estandarizar nombres de campos
+        industria: formData.rubro,
+        servicio: 'Guardias de Seguridad', // El cotizador inteligente es específico para guardias
+        comentarios: formData.comentarios,
         direccion: formData.direccion,
         direccionGoogleMaps: getGoogleMapsLink(formData.direccion),
+        // Metadatos adicionales
+        fecha: new Date().toISOString(),
+        tipoFormulario: 'cotizacion_inteligente',
+        // Datos específicos del cotizador inteligente
         roles: roles.map(rol => ({
           tipoTurno: rol.tipoTurno,
           horario: rol.horario,

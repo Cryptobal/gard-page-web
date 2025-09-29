@@ -305,6 +305,10 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
       // Asegurar que los parámetros UTM estén incluidos antes de enviar
       const completeData = {
         ...data,
+        // Estandarizar nombres de campos
+        industria: data.tipoIndustria,
+        servicio: data.servicioRequerido,
+        comentarios: data.cotizacion,
         utm_source: data.utm_source || localStorage.getItem('utm_source') || '',
         utm_medium: data.utm_medium || localStorage.getItem('utm_medium') || '',
         utm_campaign: data.utm_campaign || localStorage.getItem('utm_campaign') || '',
@@ -314,6 +318,9 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
         landing_page: data.landing_page || localStorage.getItem('landing_page') || window.location.pathname,
         // Agregar el enlace de Google Maps
         direccionGoogleMaps: getGoogleMapsLink(data.direccion),
+        // Metadatos adicionales
+        fecha: new Date().toISOString(),
+        tipoFormulario: 'cotizacion_basica'
       };
       
       const response = await fetch(API_URLS.COTIZACION, {
