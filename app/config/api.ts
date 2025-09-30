@@ -26,17 +26,17 @@ const esProduccion = (): boolean => {
 
 // URLs de API
 export const API_URLS = {
-  CONTACTO: 'https://gardsecurity.app.n8n.cloud/webhook/90de2a50-84bb-4964-9feb-34b6007aca67',
+  CONTACTO: 'https://primary-production-8f25.up.railway.app/webhook/d2f96837-390f-45e9-a43f-c2b4426eccd5',
   
-  COTIZACION: 'https://gardsecurity.app.n8n.cloud/webhook/90de2a50-84bb-4964-9feb-34b6007aca67',
+  COTIZACION: 'https://primary-production-8f25.up.railway.app/webhook/d2f96837-390f-45e9-a43f-c2b4426eccd5',
   
-  COTIZACION_INTELIGENTE: 'https://gardsecurity.app.n8n.cloud/webhook/90de2a50-84bb-4964-9feb-34b6007aca67',
+  COTIZACION_INTELIGENTE: 'https://primary-production-8f25.up.railway.app/webhook/d2f96837-390f-45e9-a43f-c2b4426eccd5',
   
   RECLUTAMIENTO: esProduccion() 
     ? 'https://hook.us1.make.com/5ozb2y5aucrr75d2xtpshmlyckds9nl4'
     : 'https://hook.us1.make.com/5ozb2y5aucrr75d2xtpshmlyckds9nl4',
   
-  LANDING_DINAMICO: 'https://gardsecurity.app.n8n.cloud/webhook/90de2a50-84bb-4964-9feb-34b6007aca67',
+  LANDING_DINAMICO: 'https://primary-production-8f25.up.railway.app/webhook/d2f96837-390f-45e9-a43f-c2b4426eccd5',
   
   LEGAL_DENUNCIAS: esProduccion() 
     ? 'https://hook.us1.make.com/v3rknlt7mxqvjtna74iajcyfku7vnfj2'
