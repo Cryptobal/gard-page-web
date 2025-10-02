@@ -46,7 +46,7 @@ export default function Footer() {
                 target="_blank" 
                 rel="noopener noreferrer"
                 aria-label="LinkedIn - Visita nuestro perfil de LinkedIn"
-                className="dark:text-blue-100 text-primary hover:text-primary/80 dark:hover:text-white hover:scale-110 transition-all duration-300"
+                className="dark:text-blue-100 text-primary hover:text-primary/80 dark:hover:text-white hover:scale-110 transition-all duration-300 p-2 rounded-full hover:bg-primary/10"
                 itemProp="sameAs"
               >
                 <Linkedin className="w-6 h-6" />
@@ -56,7 +56,7 @@ export default function Footer() {
                 target="_blank" 
                 rel="noopener noreferrer"
                 aria-label="X (Twitter) - Síguenos en X"
-                className="dark:text-blue-100 text-primary hover:text-primary/80 dark:hover:text-white hover:scale-110 transition-all duration-300"
+                className="dark:text-blue-100 text-primary hover:text-primary/80 dark:hover:text-white hover:scale-110 transition-all duration-300 p-2 rounded-full hover:bg-primary/10"
                 itemProp="sameAs"
               >
                 <X className="w-6 h-6" />
@@ -66,7 +66,7 @@ export default function Footer() {
                 target="_blank" 
                 rel="noopener noreferrer"
                 aria-label="Instagram - Síguenos en Instagram"
-                className="dark:text-blue-100 text-primary hover:text-primary/80 dark:hover:text-white hover:scale-110 transition-all duration-300"
+                className="dark:text-blue-100 text-primary hover:text-primary/80 dark:hover:text-white hover:scale-110 transition-all duration-300 p-2 rounded-full hover:bg-primary/10"
                 itemProp="sameAs"
               >
                 <Instagram className="w-6 h-6" />
@@ -76,7 +76,7 @@ export default function Footer() {
                 target="_blank" 
                 rel="noopener noreferrer"
                 aria-label="Facebook - Síguenos en Facebook"
-                className="dark:text-blue-100 text-primary hover:text-primary/80 dark:hover:text-white hover:scale-110 transition-all duration-300"
+                className="dark:text-blue-100 text-primary hover:text-primary/80 dark:hover:text-white hover:scale-110 transition-all duration-300 p-2 rounded-full hover:bg-primary/10"
                 itemProp="sameAs"
               >
                 <Facebook className="w-6 h-6" />
@@ -86,7 +86,7 @@ export default function Footer() {
                 target="_blank" 
                 rel="noopener noreferrer"
                 aria-label="WhatsApp - Contáctanos por WhatsApp"
-                className="dark:text-blue-100 text-primary hover:text-primary/80 dark:hover:text-white hover:scale-110 transition-all duration-300"
+                className="dark:text-blue-100 text-primary hover:text-primary/80 dark:hover:text-white hover:scale-110 transition-all duration-300 p-2 rounded-full hover:bg-primary/10"
               >
                 <MessageSquare className="w-6 h-6" />
               </a>

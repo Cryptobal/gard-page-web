@@ -214,24 +214,24 @@ export default function FormularioCotizacionSeccion({
               En Gard Security te ofrecemos soluciones adaptadas específicamente a tus necesidades. Completa el formulario y nuestro equipo te contactará en menos de 12 horas hábiles.
             </p>
             
-            <div className="bg-white/5 backdrop-blur-sm p-6 rounded-xl mb-8 border border-gray-800">
-              <h3 className="text-heading-4 text-white mb-4">Ventajas de Gard Security</h3>
-              <ul className="space-y-3">
-                <li className="flex items-start gap-3">
-                  <span className="text-primary text-3xl">•</span>
-                  <span className="text-gray-300">Especialistas en seguridad con más de 15 años de experiencia</span>
+            <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md p-6 rounded-2xl mb-8 border border-white/20 shadow-xl">
+              <h3 className="text-heading-4 text-white mb-6 font-semibold">Ventajas de Gard Security</h3>
+              <ul className="space-y-4">
+                <li className="flex items-start gap-4 group">
+                  <div className="w-2 h-2 bg-primary rounded-full mt-2 group-hover:scale-125 transition-transform duration-300"></div>
+                  <span className="text-gray-200 group-hover:text-white transition-colors duration-300">Especialistas en seguridad con más de 15 años de experiencia</span>
                 </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-primary text-3xl">•</span>
-                  <span className="text-gray-300">Soluciones personalizadas para cada industria y necesidad</span>
+                <li className="flex items-start gap-4 group">
+                  <div className="w-2 h-2 bg-primary rounded-full mt-2 group-hover:scale-125 transition-transform duration-300"></div>
+                  <span className="text-gray-200 group-hover:text-white transition-colors duration-300">Soluciones personalizadas para cada industria y necesidad</span>
                 </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-primary text-3xl">•</span>
-                  <span className="text-gray-300">Atención 24/7 con central de monitoreo propia</span>
+                <li className="flex items-start gap-4 group">
+                  <div className="w-2 h-2 bg-primary rounded-full mt-2 group-hover:scale-125 transition-transform duration-300"></div>
+                  <span className="text-gray-200 group-hover:text-white transition-colors duration-300">Atención 24/7 con central de monitoreo propia</span>
                 </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-primary text-3xl">•</span>
-                  <span className="text-gray-300">Guardias de seguridad profesionales y certificados</span>
+                <li className="flex items-start gap-4 group">
+                  <div className="w-2 h-2 bg-primary rounded-full mt-2 group-hover:scale-125 transition-transform duration-300"></div>
+                  <span className="text-gray-200 group-hover:text-white transition-colors duration-300">Guardias de seguridad profesionales y certificados</span>
                 </li>
               </ul>
             </div>

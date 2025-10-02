@@ -92,7 +92,11 @@ export default function OurServices({
   // Función para renderizar el ícono correcto según el nombre
   const renderIcon = (iconName: string) => {
     const IconComponent = iconComponents[iconName as keyof typeof iconComponents];
-    return IconComponent ? <IconComponent className="h-10 w-10 text-primary dark:text-accent" /> : null;
+    return IconComponent ? (
+      <div className="p-3 rounded-full bg-gradient-to-br from-primary/10 to-primary/5 group-hover:from-primary/20 group-hover:to-primary/10 transition-all duration-300">
+        <IconComponent className="h-8 w-8 text-primary dark:text-accent group-hover:scale-110 transition-transform duration-300" />
+      </div>
+    ) : null;
   };
 
   // Funciones para navegación del carrusel
@@ -130,7 +134,7 @@ export default function OurServices({
               <Link 
                 key={index} 
                 href={href}
-                className="gard-card-dark rounded-2xl p-4 shadow-md hover:shadow-xl transition-all duration-200 ease-in-out hover:scale-105 flex flex-col w-1/5 min-w-[200px] max-w-[23%] mb-6 relative z-10 overflow-hidden group"
+                className="gard-card-dark rounded-2xl p-4 shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out hover:scale-105 flex flex-col w-1/5 min-w-[200px] max-w-[23%] mb-6 relative z-10 overflow-hidden group border border-gray-200/50 hover:border-primary/30"
               >
                 <div className="relative aspect-[3/2] w-full mb-4 z-10">
                   <CloudflareImage
@@ -152,8 +156,8 @@ export default function OurServices({
                 </p>
                 
                 <div className="flex justify-center mt-auto relative z-20">
-                  <span className="inline-flex items-center text-primary dark:text-[hsl(var(--gard-accent))] font-medium">
-                    Saber más <ArrowRight className="ml-1 h-4 w-4" />
+                  <span className="inline-flex items-center text-primary dark:text-[hsl(var(--gard-accent))] font-semibold group-hover:text-primary/80 transition-colors duration-300">
+                    Saber más <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
                   </span>
                 </div>
               </Link>

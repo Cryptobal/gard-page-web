@@ -182,7 +182,7 @@ export default function GardHero({
                     }
                   }}
                 >
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary text-white text-sm font-medium mb-6 backdrop-blur-sm">
+                  <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-primary to-primary/80 text-white text-sm font-semibold mb-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
                     {badge.icon}
                     {badge.text}
                   </span>
@@ -231,21 +231,21 @@ export default function GardHero({
                 className="flex flex-col sm:flex-row gap-4 pt-6"
               >
                 {onScrollToForm ? (
-                  <Button 
-                    variant="gard-primary" 
-                    size="lg" 
-                    className="rounded-xl shadow-lg w-full sm:w-auto"
-                    onClick={handleCtaClick}
-                  >
-                    {ctaTexto}
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
+                    <Button 
+                      variant="gard-primary" 
+                      size="lg" 
+                      className="rounded-xl shadow-xl hover:shadow-2xl w-full sm:w-auto transform hover:scale-105 transition-all duration-300 bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary"
+                      onClick={handleCtaClick}
+                    >
+                      {ctaTexto}
+                      <ArrowRight className="ml-2 h-5 w-5" />
+                    </Button>
                 ) : (
                   <Link href={ctaHref}>
                     <Button 
                       variant="gard-primary" 
                       size="lg" 
-                      className="rounded-xl shadow-lg w-full sm:w-auto"
+                      className="rounded-xl shadow-xl hover:shadow-2xl w-full sm:w-auto transform hover:scale-105 transition-all duration-300 bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary"
                     >
                       {ctaTexto}
                       <ArrowRight className="ml-2 h-5 w-5" />
