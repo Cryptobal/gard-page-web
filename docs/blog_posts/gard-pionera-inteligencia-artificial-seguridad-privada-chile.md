@@ -28,10 +28,10 @@ Este texto está optimizado para SEO con términos clave en **seguridad privada*
 
 Antes de ver el caso de Gard, vale dimensionar la tendencia global:
 
-* El mercado de **seguridad privada** global proyecta un crecimiento significativo, alcanzando alrededor de **USD 623,8 mil millones para 2034** con una tasa compuesta anual cercana al 9,2 %. ([Market.us][1])
-* El segmento de **inteligencia artificial aplicada a la seguridad** crece con fuerza: se estima que el mercado de soluciones de IA en seguridad alcanzará valores superiores a USD 20 mil millones en el mediano plazo. ([skyquestt.com][2])
-* En el mercado de servicios de vigilancia privada, un informe indica que **62 % de las empresas de seguridad** ya han adoptado tecnologías de IA o sistemas inteligentes para mejorar identificación de riesgos en tiempo real. ([Business Research Insights][3])
-* En la vigilancia moderna, se usan redes de cámaras + análisis de video, uso de drones, sensores, reconocimiento facial y algoritmos de aprendizaje para detectar comportamientos atípicos – no meramente cámaras activas. ([Federal Integrada][4])
+* El mercado de **seguridad privada** global proyecta un crecimiento significativo, alcanzando alrededor de **USD 623,8 mil millones para 2034** con una tasa compuesta anual cercana al 9,2 %.
+* El segmento de **inteligencia artificial aplicada a la seguridad** crece con fuerza: se estima que el mercado de soluciones de IA en seguridad alcanzará valores superiores a USD 20 mil millones en el mediano plazo.
+* En el mercado de servicios de vigilancia privada, un informe indica que **62 % de las empresas de seguridad** ya han adoptado tecnologías de IA o sistemas inteligentes para mejorar identificación de riesgos en tiempo real.
+* En la vigilancia moderna, se usan redes de cámaras + análisis de video, uso de drones, sensores, reconocimiento facial y algoritmos de aprendizaje para detectar comportamientos atípicos – no meramente cámaras activas.
 
 Este escenario confirma que la convergencia entre **seguridad privada** e **inteligencia artificial** no es una moda, sino una evolución necesaria. Gard entra a ese espacio no como seguidor, sino como pionero real en Chile.
 
@@ -225,15 +225,3 @@ Algunos guardias o supervisores podrían ver estas herramientas con recelo. Es i
 ### 7. Regulación Local de Seguridad Privada
 
 En Chile, los guardias están regulados por normas OS‑10 y leyes de seguridad privada. La integración de IA debe respetar esas reglas, sin sustituir funciones que por normativa deben ser humanas o supervisadas.
-
-## Potencial de Mercado y Diferenciación de Gard en Chile
-
-Gard no solo ofrece una ventaja operativa, sino una plataforma de posicionamiento:
-
-* Para empresas que buscan **seguridad VIP**, contar con IA real es un diferencial convincente.
-* En industrias sensibles (minería, logística, industria química), donde riesgo elevado es significativo, la oferta de IA predictiva añade valor.
-* Para condominios de alto estándar, la capacidad de visualizar reportes, trazabilidad y control inteligente refuerza la confiabilidad.
-* En licitaciones públicas o privadas, presentar una propuesta tecnológica de este nivel puede ser factor diferenciador.
-* Gard puede licenciar o desplegar su plataforma IA en ciudades completas, campus industriales, redes de sucursales, servicios auxiliares, no solo contratos aislados.
-
-Si Gard comunica bien esa propuesta de valor y la evidencia operativa, puede transformarse de empresa de seguridad a empresa tecnológica de seguridad privada con IA.
