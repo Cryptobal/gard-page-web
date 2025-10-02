@@ -16,7 +16,7 @@ const generalFAQs: FAQItem[] = [
   },
   {
     question: "¿Cómo solicito una cotización?",
-    answer: "Puede solicitar una cotización completando el formulario en nuestra página web, llamando al +56 9 4113 7976 o enviando un correo a comercial@gard.cl. Uno de nuestros asesores especializados se pondrá en contacto con usted en menos de 24 horas."
+    answer: "Puede solicitar una cotización completando el formulario en nuestra página web, llamando al +56 9 6872 7644 o enviando un correo a comercial@gard.cl. Uno de nuestros asesores especializados se pondrá en contacto con usted en menos de 24 horas."
   },
   {
     question: "¿Qué acreditaciones tiene Gard Security?",

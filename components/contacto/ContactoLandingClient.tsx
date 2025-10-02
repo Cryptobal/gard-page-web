@@ -33,7 +33,7 @@ export default function ContactoLandingClient() {
                   <div>
                     <h3 className="font-semibold mb-1">Consultas Comerciales</h3>
                     <p className="text-[hsl(var(--gard-muted-foreground))] mb-1">Respuesta inmediata en horario laboral</p>
-                    <a href="tel:+56941137976" className="text-[hsl(var(--gard-accent))] hover:underline">+56 9 4113 7976</a>
+                    <a href="tel:+56968727644" className="text-[hsl(var(--gard-accent))] hover:underline">+56 9 6872 7644</a>
                   </div>
                 </div>
                 
