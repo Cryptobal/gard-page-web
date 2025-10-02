@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import CloudflareImage from '@/components/CloudflareImage';
 import { cloudflareImages } from '@/lib/images';
 import { 
@@ -11,18 +12,36 @@ import {
   CheckCircle,
   HelpCircle
 } from 'lucide-react';
-// Comentado temporalmente mientras solucionamos el error
-// import FaqSection from '@/components/FaqSection/FaqSection';
-// Restore component import
-import FaqSection from '@/components/FaqSection/FaqSection';
-// import TrustedClients from '@/app/components/TrustedClients';
-import ClientCarousel from '@/app/components/home/ClientCarousel';
-import OurServices from '@/app/components/OurServices';
-import IndustriasGridPage from './components/IndustriasGridPage';
-import CtaFinal from '@/components/ui/shared/CtaFinal';
+
+// Componentes críticos (above the fold) - importación directa
 import GardHero from '@/components/layouts/GardHero';
-import ServiciosBuscador from './components/home/ServiciosBuscador';
-import FormularioCotizacionSeccion from './components/FormularioCotizacionSeccion';
+import OurServices from '@/app/components/OurServices';
+
+// Componentes lazy loaded (below the fold) - optimización de performance
+const FaqSection = dynamic(() => import('@/components/FaqSection/FaqSection'), {
+  loading: () => <div className="h-96 bg-gray-50 dark:bg-gray-800 animate-pulse rounded-2xl" />,
+  ssr: false
+});
+
+const ClientCarousel = dynamic(() => import('@/app/components/home/ClientCarousel'), {
+  loading: () => <div className="h-32 bg-gray-50 dark:bg-gray-800 animate-pulse rounded-2xl" />,
+  ssr: false
+});
+
+const IndustriasGridPage = dynamic(() => import('./components/IndustriasGridPage'), {
+  loading: () => <div className="h-96 bg-gray-50 dark:bg-gray-800 animate-pulse rounded-2xl" />,
+  ssr: false
+});
+
+const ServiciosBuscador = dynamic(() => import('./components/home/ServiciosBuscador'), {
+  loading: () => <div className="h-64 bg-gray-50 dark:bg-gray-800 animate-pulse rounded-2xl" />,
+  ssr: false
+});
+
+const FormularioCotizacionSeccion = dynamic(() => import('./components/FormularioCotizacionSeccion'), {
+  loading: () => <div className="h-96 bg-gray-50 dark:bg-gray-800 animate-pulse rounded-2xl" />,
+  ssr: false
+});
 
 export default function Home() {
   return (

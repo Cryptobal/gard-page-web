@@ -5,10 +5,21 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Analytics } from '@vercel/analytics/next';
-import GoogleTagManager from './components/GoogleTagManager';
+import dynamic from 'next/dynamic';
 import CookieConsent from './components/cookie/CookieConsent';
-import { GoogleAnalytics } from './components/cookie/ConsentAwareScript';
-import ZohoSalesIQ from './components/ZohoSalesIQ';
+
+// Lazy load de scripts de terceros para optimizar performance
+const GoogleTagManager = dynamic(() => import('./components/GoogleTagManager'), {
+  ssr: false
+});
+
+const GoogleAnalytics = dynamic(() => import('./components/cookie/ConsentAwareScript').then(mod => ({ default: mod.GoogleAnalytics })), {
+  ssr: false
+});
+
+const ZohoSalesIQ = dynamic(() => import('./components/ZohoSalesIQ'), {
+  ssr: false
+});
 import ClientWrapper from './ClientWrapper';
 import { metadata } from './metadata';
 import CanonicalUrl from '@/components/seo/CanonicalUrl';

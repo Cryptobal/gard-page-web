@@ -53,9 +53,11 @@ const nextConfig = {
     return config;
   },
 
-  // Optimización de experimental features (deshabilitado optimizeCss)
+  // Optimización de experimental features
   experimental: {
-    optimizePackageImports: ['lucide-react', '@radix-ui/react-icons'],
+    optimizePackageImports: ['lucide-react', '@radix-ui/react-icons', 'framer-motion'],
+    optimizeCss: true, // Habilitado para mobile-first
+    scrollRestoration: true,
   },
   
   // COMENTADO PARA SOLUCIONAR PROBLEMA DE GOOGLE ADS - las URLs del feed no tienen trailing slash

@@ -72,10 +72,32 @@ export const cloudflareImages = {
 // ID de la cuenta de Cloudflare Images
 export const CLOUDFLARE_ACCOUNT_HASH = 'gGw8cfmEZedi85dYm6qcFw';
 
-// Helper para construir la URL de Cloudflare Images
+// Helper para construir la URL de Cloudflare Images con optimización mobile-first
 export const getCloudflareImageUrl = (
   imageId: string,
-  variant: string = 'public'
+  variant: string = 'public',
+  options?: {
+    width?: number;
+    height?: number;
+    quality?: number;
+    format?: 'webp' | 'avif' | 'auto';
+  }
 ): string => {
-  return `https://imagedelivery.net/${CLOUDFLARE_ACCOUNT_HASH}/${imageId}/${variant}`;
+  let url = `https://imagedelivery.net/${CLOUDFLARE_ACCOUNT_HASH}/${imageId}/${variant}`;
+  
+  // Agregar parámetros de optimización si se proporcionan
+  if (options) {
+    const params = new URLSearchParams();
+    
+    if (options.width) params.append('w', options.width.toString());
+    if (options.height) params.append('h', options.height.toString());
+    if (options.quality) params.append('q', options.quality.toString());
+    if (options.format) params.append('f', options.format);
+    
+    if (params.toString()) {
+      url += `?${params.toString()}`;
+    }
+  }
+  
+  return url;
 }; 

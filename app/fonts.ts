@@ -16,4 +16,15 @@ export const inter = Inter({
   display: 'swap',
   fallback: ['system-ui', 'sans-serif'],
   preload: true,
+  adjustFontFallback: false, // Optimización para mobile
+});
+
+export const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-poppins',
+  display: 'swap',
+  fallback: ['system-ui', 'sans-serif'],
+  preload: true,
+  adjustFontFallback: false, // Optimización para mobile
 }); 

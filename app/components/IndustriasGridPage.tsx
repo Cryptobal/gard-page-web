@@ -20,7 +20,7 @@ import {
   ChevronLeft,
   ChevronRight
 } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, LazyMotion, domAnimation } from 'framer-motion';
 
 // Mapeo de nombres de íconos a componentes de Lucide
 const iconComponents: Record<string, React.ComponentType<any>> = {
@@ -200,6 +200,7 @@ export default function IndustriasGridPage({ servicioSlug }: IndustriasGridPageP
 
   // En pantallas más grandes, mantener el grid original
   return (
+    <LazyMotion features={domAnimation}>
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
       {industries.map((industria) => {
         const slug = generateIndustrySlug(industria.name);
@@ -236,5 +237,6 @@ export default function IndustriasGridPage({ servicioSlug }: IndustriasGridPageP
         );
       })}
     </div>
+    </LazyMotion>
   );
 } 

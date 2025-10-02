@@ -27,8 +27,8 @@ export default function CloudflareImage({
   className = '',
   priority = false,
   fill = false,
-  sizes = '100vw',
-  quality = 90,
+  sizes = '(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw',
+  quality = 85, // Reducido para mobile-first
   objectFit = 'cover',
   objectPosition = 'center',
   placeholder = 'empty',

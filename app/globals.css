@@ -2,6 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Mobile-first optimizations */
+@layer base {
+  /* Optimización de scroll para mobile */
+  html {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Optimización de fuentes para mobile */
+  body {
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Optimización de imágenes para mobile */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
 @layer base {
   :root {
     --radius: 0.75rem;

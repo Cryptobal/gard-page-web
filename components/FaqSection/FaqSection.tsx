@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { faqData } from '@/app/data/faqData';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent } from '@/components/ui/card';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, LazyMotion, domAnimation } from 'framer-motion';
 import { 
   Plus, 
   Minus, 
@@ -128,7 +128,8 @@ export default function FaqSection() {
   };
 
   return (
-    <section ref={sectionRef} className="gard-section bg-[hsl(var(--gard-background))] py-16">
+    <LazyMotion features={domAnimation}>
+      <section ref={sectionRef} className="gard-section bg-[hsl(var(--gard-background))] py-16">
       <div className="gard-container max-w-5xl mx-auto px-4">
         <h2 
           ref={titleRef}
@@ -282,5 +283,6 @@ export default function FaqSection() {
         </div>
       </div>
     </section>
+    </LazyMotion>
   );
 } 
