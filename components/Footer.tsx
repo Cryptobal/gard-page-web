@@ -82,7 +82,7 @@ export default function Footer() {
                 <Facebook className="w-6 h-6" />
               </a>
               <a 
-                href="https://wa.me/56968727644" 
+                href="https://wa.me/56956062246" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 aria-label="WhatsApp - Contáctanos por WhatsApp"
