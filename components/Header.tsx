@@ -53,10 +53,10 @@ export default function Header() {
   // Determinar las clases y estilos condicionales
   const headerClasses = `
     fixed top-0 left-0 right-0 z-50 w-full 
-    transition-all duration-300 ease-in-out
+    transition-all duration-500 ease-out
     ${scrolled 
-      ? `py-2 md:py-3 shadow-md ${isDarkMode ? 'bg-[#0b1120]' : 'bg-white'}`
-      : `py-4 md:py-6 shadow-none ${isDarkMode ? 'bg-[#0b1120]/40' : 'bg-white/40'} backdrop-blur-md`
+      ? `py-2 md:py-3 shadow-xl backdrop-blur-xl ${isDarkMode ? 'bg-[#0b1120]/95' : 'bg-white/95'} border-b border-gray-200/20`
+      : `py-4 md:py-6 shadow-none ${isDarkMode ? 'bg-[#0b1120]/60' : 'bg-white/60'} backdrop-blur-lg`
     }
   `;
 
@@ -64,23 +64,25 @@ export default function Header() {
   const getNavLinkClasses = (isActive: boolean, isCTA?: boolean) => {
     if (isCTA) {
       return `
-        bg-primary text-white px-4 py-2 rounded-xl hover:bg-accent transition
-        font-semibold ${scrolled ? 'text-sm' : 'text-base'}
+        bg-gradient-to-r from-primary to-primary/90 text-white px-4 py-2 rounded-xl 
+        hover:from-primary/90 hover:to-primary hover:scale-105 hover:shadow-lg
+        transition-all duration-300 ease-out font-semibold transform
+        ${scrolled ? 'text-sm' : 'text-base'}
       `;
     }
     
     return `
-      transition-all duration-300 ease-in-out font-semibold
+      transition-all duration-300 ease-out font-semibold relative
       ${scrolled ? 'text-sm' : 'text-base'}
       ${isActive 
-        ? 'text-primary font-bold' 
+        ? 'text-primary font-bold after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary after:rounded-full' 
         : scrolled
           ? isDarkMode 
-            ? 'text-white hover:text-primary' 
-            : 'text-primary hover:text-primary/80'
+            ? 'text-white hover:text-primary hover:scale-105' 
+            : 'text-primary hover:text-primary/80 hover:scale-105'
           : isDarkMode
-            ? 'text-white hover:text-primary/90' 
-            : 'text-black hover:text-primary/90'
+            ? 'text-white hover:text-primary/90 hover:scale-105' 
+            : 'text-black hover:text-primary/90 hover:scale-105'
       }
     `;
   };
@@ -88,7 +90,7 @@ export default function Header() {
   return (
     <header className={headerClasses}>
       <div className="gard-container px-4 md:px-6 flex items-center justify-between">
-        <Link href="/" className="relative z-50 flex items-center transition-all duration-300 ease-in-out">
+        <Link href="/" className="relative z-50 flex items-center transition-all duration-300 ease-in-out hover:scale-105 transform">
           <CloudflareImage
             imageId={isDarkMode 
               ? cloudflareImages.logo.nav.night 

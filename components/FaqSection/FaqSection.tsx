@@ -219,25 +219,25 @@ export default function FaqSection() {
                                     initial={{ opacity: 0, y: 10 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.3, delay: index * 0.05 }}
-                                    className="bg-[hsl(var(--gard-card))] rounded-xl shadow-sm overflow-hidden border border-[hsl(var(--gard-border))] hover:shadow-md transition-shadow duration-300 group"
+                                    className="bg-[hsl(var(--gard-card))] rounded-2xl shadow-lg overflow-hidden border border-[hsl(var(--gard-border))] hover:shadow-xl hover:border-primary/30 transition-all duration-300 group"
                                   >
                                     <div className="px-4 py-3">
                                       <button 
                                         onClick={() => toggleQuestion(questionId)}
-                                        className="flex justify-between items-center w-full text-left py-3 px-3 rounded-lg transition-all duration-300 group-hover:bg-[hsl(var(--gard-muted))/50]"
+                                        className="flex justify-between items-center w-full text-left py-4 px-4 rounded-xl transition-all duration-300 group-hover:bg-[hsl(var(--gard-muted))/60] hover:scale-[1.01] transform"
                                         aria-expanded={isExpanded}
                                         aria-controls={`answer-${questionId}`}
                                       >
                                         <span 
-                                          className={`text-base font-semibold transition-colors duration-200 ${
-                                            isExpanded ? 'text-[hsl(var(--gard-accent))]' : 'text-[hsl(var(--gard-foreground))]'
+                                          className={`text-base font-bold transition-colors duration-300 ${
+                                            isExpanded ? 'text-[hsl(var(--gard-accent))]' : 'text-[hsl(var(--gard-foreground))] group-hover:text-[hsl(var(--gard-accent))]/80'
                                           }`}
                                         >
                                           {item.question}
                                         </span>
                                         <span 
-                                          className={`flex-shrink-0 ml-2 text-[hsl(var(--gard-accent))] w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 ${
-                                            isExpanded ? 'bg-[hsl(var(--gard-accent))/20] scale-110' : 'bg-[hsl(var(--gard-accent))/10] scale-100'
+                                          className={`flex-shrink-0 ml-2 text-[hsl(var(--gard-accent))] w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${
+                                            isExpanded ? 'bg-[hsl(var(--gard-accent))/20] scale-110 shadow-lg' : 'bg-[hsl(var(--gard-accent))/10] scale-100 hover:scale-105 hover:bg-[hsl(var(--gard-accent))/15]'
                                           }`}
                                         >
                                           <Plus className={`h-5 w-5 transition-transform duration-300 ${isExpanded ? 'rotate-45' : ''}`} />
@@ -254,7 +254,7 @@ export default function FaqSection() {
                                           transition={{ duration: 0.3, ease: "easeOut" }}
                                           className="overflow-hidden"
                                         >
-                                          <div className="bg-[hsl(var(--gard-muted))] text-[hsl(var(--gard-muted-foreground))] px-7 py-5 border-t border-[hsl(var(--gard-border))]">
+                                          <div className="bg-gradient-to-br from-[hsl(var(--gard-muted))] to-[hsl(var(--gard-muted))/80] text-[hsl(var(--gard-foreground))] px-7 py-6 border-t border-[hsl(var(--gard-border))]">
                                             <motion.div
                                               initial={{ y: 10, opacity: 0 }}
                                               animate={{ y: 0, opacity: 1 }}

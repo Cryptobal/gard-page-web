@@ -66,7 +66,11 @@ export default function IndustriasGridPage({ servicioSlug }: IndustriasGridPageP
   // Función para renderizar el ícono correcto según el nombre
   const renderIcon = (iconName: string) => {
     const IconComponent = iconComponents[iconName];
-    return IconComponent ? <IconComponent className="w-6 h-6 mb-2 text-white" /> : null;
+    return IconComponent ? (
+      <div className="p-3 rounded-full bg-white/20 backdrop-blur-sm group-hover:bg-white/30 group-hover:scale-110 transition-all duration-300 mb-3">
+        <IconComponent className="w-6 h-6 text-white" />
+      </div>
+    ) : null;
   };
 
   // Función para generar el slug de la industria
@@ -209,7 +213,7 @@ export default function IndustriasGridPage({ servicioSlug }: IndustriasGridPageP
           <Link 
             key={industria.name} 
             href={href}
-            className="relative group overflow-hidden rounded-xl shadow-md aspect-[4/3] block hover:scale-105 transition-all duration-200 ease-in-out hover:shadow-xl hover:border hover:border-[hsl(var(--gard-ring))]"
+            className="relative group overflow-hidden rounded-2xl shadow-lg aspect-[4/3] block hover:scale-105 transition-all duration-300 ease-out hover:shadow-2xl border border-gray-200/50 hover:border-primary/30"
           >
             <CloudflareImage
               imageId={industria.imageId}
@@ -218,13 +222,13 @@ export default function IndustriasGridPage({ servicioSlug }: IndustriasGridPageP
               className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
             />
             
-            {/* Overlay oscuro */}
-            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition z-10"></div>
+            {/* Overlay con gradiente */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent group-hover:from-black/80 group-hover:via-black/40 group-hover:to-transparent transition-all duration-300 z-10"></div>
             
             {/* Texto superpuesto */}
             <div className="absolute inset-0 z-20 flex flex-col items-center justify-center p-4">
               {renderIcon(industria.icon)}
-              <h3 className="text-white text-lg font-semibold drop-shadow-md">
+              <h3 className="text-white text-lg font-bold drop-shadow-lg group-hover:text-white/90 transition-colors duration-300">
                 {industria.name}
               </h3>
             </div>
