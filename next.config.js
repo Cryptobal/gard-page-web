@@ -56,7 +56,7 @@ const nextConfig = {
   // Optimización de experimental features
   experimental: {
     optimizePackageImports: ['lucide-react', '@radix-ui/react-icons', 'framer-motion'],
-    optimizeCss: true, // Habilitado para mobile-first
+    // optimizeCss: true, // Comentado temporalmente para evitar error con critters
     scrollRestoration: true,
   },
   
