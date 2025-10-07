@@ -26,17 +26,17 @@ const esProduccion = (): boolean => {
 
 // URLs de API
 export const API_URLS = {
-  CONTACTO: 'https://primary-production-8f25.up.railway.app/webhook/d2f96837-390f-45e9-a43f-c2b4426eccd5',
+  CONTACTO: 'https://hook.us1.make.com/oq1dihqjq7xbl2xbk9wbbdp02h37831a',
   
-  COTIZACION: 'https://primary-production-8f25.up.railway.app/webhook/d2f96837-390f-45e9-a43f-c2b4426eccd5',
+  COTIZACION: 'https://hook.us1.make.com/oq1dihqjq7xbl2xbk9wbbdp02h37831a',
   
-  COTIZACION_INTELIGENTE: 'https://primary-production-8f25.up.railway.app/webhook/d2f96837-390f-45e9-a43f-c2b4426eccd5',
+  COTIZACION_INTELIGENTE: 'https://hook.us1.make.com/oq1dihqjq7xbl2xbk9wbbdp02h37831a',
   
   RECLUTAMIENTO: esProduccion() 
     ? 'https://hook.us1.make.com/5ozb2y5aucrr75d2xtpshmlyckds9nl4'
     : 'https://hook.us1.make.com/5ozb2y5aucrr75d2xtpshmlyckds9nl4',
   
-  LANDING_DINAMICO: 'https://primary-production-8f25.up.railway.app/webhook/d2f96837-390f-45e9-a43f-c2b4426eccd5',
+  LANDING_DINAMICO: 'https://hook.us1.make.com/oq1dihqjq7xbl2xbk9wbbdp02h37831a',
   
   LEGAL_DENUNCIAS: esProduccion() 
     ? 'https://hook.us1.make.com/v3rknlt7mxqvjtna74iajcyfku7vnfj2'

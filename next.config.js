@@ -152,7 +152,7 @@ const nextConfig = {
               "font-src 'self' https://fonts.gstatic.com https://maps.gstatic.com https://css.zohocdn.com",
               "img-src 'self' data: https: blob: https://imagedelivery.net https://iframe.cloudflarestream.com https://maps.googleapis.com https://maps.gstatic.com",
               "media-src 'self' https://iframe.cloudflarestream.com",
-              "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://salesiq.zohopublic.com https://hook.us1.make.com https://gardsecurity.app.n8n.cloud https://primary-production-8f25.up.railway.app https://maps.googleapis.com https://iframe.cloudflarestream.com https://embed.cloudflarestream.com https://videodelivery.net https://www.google.com https://googleads.g.doubleclick.net https://www.googleadservices.com",
+              "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://salesiq.zohopublic.com https://hook.us1.make.com https://gardsecurity.app.n8n.cloud https://maps.googleapis.com https://iframe.cloudflarestream.com https://embed.cloudflarestream.com https://videodelivery.net https://www.google.com https://googleads.g.doubleclick.net https://www.googleadservices.com",
               "frame-src 'self' https://www.googletagmanager.com https://salesiq.zohopublic.com https://iframe.cloudflarestream.com",
               "object-src 'none'",
               "base-uri 'self'",
