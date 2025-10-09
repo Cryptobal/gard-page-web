@@ -2,8 +2,6 @@
 
 import React, { useState } from 'react';
 import { Calculator, TrendingUp, CheckCircle, ArrowRight } from 'lucide-react';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Button } from '@/components/ui/button';
 import FormularioCotizacionSeccion from '@/app/components/FormularioCotizacionSeccion';
 import { FAQSection } from '@/components/seo/FAQSchema';
 
@@ -78,41 +76,42 @@ export default function CalculadoraCostosPage() {
               <div className="space-y-6">
                 <div>
                   <label className="block text-sm font-medium mb-2">Industria o Sector</label>
-                  <Select value={industria} onValueChange={setIndustria}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Seleccione su industria" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="mineria">Minería (Certificación OS10)</SelectItem>
-                      <SelectItem value="logistica">Bodegas y Logística</SelectItem>
-                      <SelectItem value="corporativo">Edificios Corporativos</SelectItem>
-                      <SelectItem value="construccion">Construcción</SelectItem>
-                      <SelectItem value="retail">Retail y Comercio</SelectItem>
-                      <SelectItem value="otro">Otra Industria</SelectItem>
-                    </SelectContent>
-                  </Select>
+                  <select 
+                    value={industria} 
+                    onChange={(e) => setIndustria(e.target.value)}
+                    className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-foreground focus:ring-2 focus:ring-primary focus:border-primary"
+                  >
+                    <option value="">Seleccione su industria</option>
+                    <option value="mineria">Minería (Certificación OS10)</option>
+                    <option value="logistica">Bodegas y Logística</option>
+                    <option value="corporativo">Edificios Corporativos</option>
+                    <option value="construccion">Construcción</option>
+                    <option value="retail">Retail y Comercio</option>
+                    <option value="otro">Otra Industria</option>
+                  </select>
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium mb-2">Número de Guardias</label>
-                  <Select value={numGuardias} onValueChange={setNumGuardias}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Seleccione cantidad" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="1">1 guardia</SelectItem>
-                      <SelectItem value="2">2 guardias</SelectItem>
-                      <SelectItem value="3">3 guardias</SelectItem>
-                      <SelectItem value="4">4 guardias</SelectItem>
-                      <SelectItem value="5">5 guardias</SelectItem>
-                      <SelectItem value="6">6 guardias (5% descuento)</SelectItem>
-                      <SelectItem value="8">8 guardias (5% descuento)</SelectItem>
-                      <SelectItem value="10">10 guardias (5% descuento)</SelectItem>
-                      <SelectItem value="12">12 guardias (10% descuento)</SelectItem>
-                      <SelectItem value="15">15 guardias (10% descuento)</SelectItem>
-                      <SelectItem value="20">20+ guardias (15% descuento)</SelectItem>
-                    </SelectContent>
-                  </Select>
+                  <select 
+                    value={numGuardias} 
+                    onChange={(e) => setNumGuardias(e.target.value)}
+                    className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-foreground focus:ring-2 focus:ring-primary focus:border-primary"
+                  >
+                    <option value="">Seleccione cantidad</option>
+                    <option value="1">1 guardia</option>
+                    <option value="2">2 guardias</option>
+                    <option value="3">3 guardias</option>
+                    <option value="4">4 guardias</option>
+                    <option value="5">5 guardias</option>
+                    <option value="6">6 guardias (-5% descuento)</option>
+                    <option value="8">8 guardias (-5% descuento)</option>
+                    <option value="10">10 guardias (-8% descuento)</option>
+                    <option value="12">12 guardias (-8% descuento)</option>
+                    <option value="15">15 guardias (-8% descuento)</option>
+                    <option value="16">16 guardias (-10% descuento)</option>
+                    <option value="20">20 guardias (-12% descuento)</option>
+                  </select>
                   {parseInt(numGuardias) >= 6 && (
                     <p className="text-sm text-green-600 mt-2">
                       ✅ Elegible para descuento por volumen ({parseInt(numGuardias) >= 20 ? '-12%' : parseInt(numGuardias) >= 16 ? '-10%' : parseInt(numGuardias) >= 10 ? '-8%' : '-5%'})
@@ -126,15 +125,18 @@ export default function CalculadoraCostosPage() {
                       ⚠️ Seleccione industria y número de guardias para calcular
                     </p>
                   )}
-                  <Button
+                  <button
                     onClick={calcularCosto}
                     disabled={!puedeCalcular}
-                    className="w-full gard-btn-lg"
-                    variant="gard-primary"
+                    className={`w-full px-6 py-4 rounded-xl font-semibold text-lg inline-flex items-center justify-center transition-all ${
+                      puedeCalcular 
+                        ? 'bg-primary text-white hover:bg-primary/90 shadow-lg hover:shadow-xl' 
+                        : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                    }`}
                   >
                     <Calculator className="mr-2 h-5 w-5" />
                     {!puedeCalcular ? 'Complete los campos para calcular' : 'Calcular Costo Estimado'}
-                  </Button>
+                  </button>
                 </div>
               </div>
             </div>
