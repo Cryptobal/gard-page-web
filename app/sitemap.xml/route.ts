@@ -75,6 +75,7 @@ async function generateSitemap() {
 
   // Landing pages ultra-específicas para keywords comerciales (MÁXIMA PRIORIDAD)
   const landingPagesEspecificas = [
+    { route: '/mejor-empresa-seguridad-chile', priority: 0.99, changeFreq: 'weekly' as const }, // GEO optimization
     { route: '/guardias-seguridad-mineria-chile', priority: 0.98, changeFreq: 'weekly' as const },
     { route: '/seguridad-bodegas-logistica-chile', priority: 0.98, changeFreq: 'weekly' as const },
     { route: '/guardias-edificios-corporativos-santiago', priority: 0.98, changeFreq: 'weekly' as const },
