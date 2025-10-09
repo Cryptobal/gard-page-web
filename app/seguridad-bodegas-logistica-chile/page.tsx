@@ -6,6 +6,7 @@ import CloudflareImage from '@/components/CloudflareImage';
 import BreadcrumbSchema, { Breadcrumbs } from '@/components/seo/BreadcrumbSchema';
 import ServiceSchema from '@/components/seo/ServiceSchema';
 import { FAQSection } from '@/components/seo/FAQSchema';
+import FormularioCotizacionSeccion from '@/app/components/FormularioCotizacionSeccion';
 
 export const metadata: Metadata = {
   title: 'Seguridad para Bodegas Logísticas Chile | Reducimos Mermas 85%',
@@ -145,41 +146,11 @@ export default function SeguridadBodegasPage() {
 
       <FAQSection title="Preguntas Frecuentes sobre Seguridad para Bodegas" description="Resolvemos las dudas más comunes sobre seguridad logística y protección de inventario" faqs={faqs} />
 
-      <section id="cotizar" className="gard-section py-16 md:py-24 bg-[#0A0C12] text-white">
-        <div className="gard-container max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-heading-2 mb-4">Proteja su Inventario Hoy Mismo</h2>
-          <p className="text-body-lg text-gray-300 mb-8 max-w-2xl mx-auto">
-            Complete el formulario y un ejecutivo especializado en logística lo contactará en menos de 2 horas.
-          </p>
-          
-          <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8">
-            <form className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input type="text" placeholder="Nombre completo *" className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder:text-gray-400" required />
-                <input type="email" placeholder="Email corporativo *" className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder:text-gray-400" required />
-                <input type="tel" placeholder="Teléfono *" className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder:text-gray-400" required />
-                <input type="text" placeholder="Empresa *" className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder:text-gray-400" required />
-                <input type="text" placeholder="Ubicación de bodega" className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder:text-gray-400" />
-                <select className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white">
-                  <option value="">Tamaño de bodega (m²)</option>
-                  <option value="500-1000">500-1,000 m²</option>
-                  <option value="1000-3000">1,000-3,000 m²</option>
-                  <option value="3000-10000">3,000-10,000 m²</option>
-                  <option value="10000+">Más de 10,000 m²</option>
-                </select>
-              </div>
-              <textarea placeholder="Tipo de mercancía almacenada y necesidades específicas..." className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder:text-gray-400 h-32"></textarea>
-              <button type="submit" className="gard-btn gard-btn-primary gard-btn-lg w-full sm:w-auto">
-                Solicitar Cotización Ahora <ArrowRight className="ml-2 h-5 w-5" />
-              </button>
-            </form>
-          </div>
-
-          <p className="text-sm text-gray-400 mt-6">
-            * Al enviar acepta nuestros <Link href="/terminos" className="text-primary hover:underline">términos</Link> y <Link href="/privacidad" className="text-primary hover:underline">política de privacidad</Link>.
-          </p>
-        </div>
-      </section>
+      <FormularioCotizacionSeccion 
+        id="cotizar"
+        prefillServicio="Guardias de Seguridad"
+        prefillIndustria="Transporte y Logística"
+      />
     </>
   );
 }

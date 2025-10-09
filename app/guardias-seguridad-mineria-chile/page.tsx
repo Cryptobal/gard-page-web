@@ -6,6 +6,7 @@ import CloudflareImage from '@/components/CloudflareImage';
 import BreadcrumbSchema, { Breadcrumbs } from '@/components/seo/BreadcrumbSchema';
 import ServiceSchema from '@/components/seo/ServiceSchema';
 import { FAQSection } from '@/components/seo/FAQSchema';
+import FormularioCotizacionSeccion from '@/app/components/FormularioCotizacionSeccion';
 
 export const metadata: Metadata = {
   title: 'Guardias de Seguridad para Minería Chile | Certificados OS10',
@@ -144,41 +145,11 @@ export default function GuardiasSeguridadMineriaPage() {
 
       <FAQSection title="Preguntas Frecuentes sobre Guardias para Minería" description="Resolvemos las dudas más comunes sobre nuestro servicio de seguridad para faenas mineras en Chile" faqs={faqs} />
 
-      <section id="cotizar" className="gard-section py-16 md:py-24 bg-[#0A0C12] text-white">
-        <div className="gard-container max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-heading-2 mb-4">Cotice Seguridad para su Faena Minera</h2>
-          <p className="text-body-lg text-gray-300 mb-8 max-w-2xl mx-auto">
-            Complete el formulario y un ejecutivo especializado en minería lo contactará en menos de 2 horas con una propuesta personalizada.
-          </p>
-          
-          <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8">
-            <form className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input type="text" placeholder="Nombre completo *" className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder:text-gray-400" required />
-                <input type="email" placeholder="Email corporativo *" className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder:text-gray-400" required />
-                <input type="tel" placeholder="Teléfono *" className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder:text-gray-400" required />
-                <input type="text" placeholder="Empresa minera *" className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder:text-gray-400" required />
-                <input type="text" placeholder="Ubicación de la faena" className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder:text-gray-400" />
-                <select className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white">
-                  <option value="">N° de guardias necesarios</option>
-                  <option value="1-2">1-2 guardias</option>
-                  <option value="3-5">3-5 guardias</option>
-                  <option value="6-10">6-10 guardias</option>
-                  <option value="10+">Más de 10 guardias</option>
-                </select>
-              </div>
-              <textarea placeholder="Cuéntenos sobre su faena y necesidades específicas de seguridad..." className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder:text-gray-400 h-32"></textarea>
-              <button type="submit" className="gard-btn gard-btn-primary gard-btn-lg w-full sm:w-auto">
-                Solicitar Cotización Ahora <ArrowRight className="ml-2 h-5 w-5" />
-              </button>
-            </form>
-          </div>
-
-          <p className="text-sm text-gray-400 mt-6">
-            * Al enviar este formulario acepta nuestros <Link href="/terminos" className="text-primary hover:underline">términos de servicio</Link> y <Link href="/privacidad" className="text-primary hover:underline">política de privacidad</Link>.
-          </p>
-        </div>
-      </section>
+      <FormularioCotizacionSeccion 
+        id="cotizar"
+        prefillServicio="Guardias de Seguridad"
+        prefillIndustria="Minería y Energía"
+      />
     </>
   );
 }

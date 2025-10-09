@@ -10,6 +10,7 @@ import BreadcrumbSchema, { Breadcrumbs } from '@/components/seo/BreadcrumbSchema
 import ServiceSchema from '@/components/seo/ServiceSchema';
 import { FAQSection } from '@/components/seo/FAQSchema';
 import { getFAQsForIndustry, hasFAQs } from '@/lib/data/industry-faqs';
+import FormularioCotizacionSeccion from '@/app/components/FormularioCotizacionSeccion';
 
 // Interfaces para tipado
 interface Challenge {
@@ -397,72 +398,11 @@ export default function IndustriaPage({ params }: { params: { slug: string } }) 
         />
       )}
 
-      {/* Formulario de cotización */}
-      <section id="cotizar" className="gard-section py-16 md:py-24 bg-[#0A0C12]">
-        <div className="gard-container max-w-7xl mx-auto px-4">
-          <h2 className="text-heading-2 mb-6 text-center text-white">
-            Solicite una cotización personalizada
-          </h2>
-          <p className="text-body-lg text-gray-300 mb-12 max-w-3xl mx-auto text-center">
-            Complete el formulario y un ejecutivo se contactará a la brevedad con una propuesta adaptada a {industry.name}
-          </p>
-          
-          {/* Aquí iría el componente de formulario */}
-          <div className="max-w-3xl mx-auto">
-            <form className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="text-white">Nombre</label>
-                  <input 
-                    type="text" 
-                    className="w-full p-3 rounded-lg bg-[#1A1D26] border border-gray-700 text-white"
-                    placeholder="Su nombre completo"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label className="text-white">Email</label>
-                  <input 
-                    type="email"
-                    className="w-full p-3 rounded-lg bg-[#1A1D26] border border-gray-700 text-white"
-                    placeholder="correo@ejemplo.com"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label className="text-white">Teléfono</label>
-                  <input 
-                    type="tel"
-                    className="w-full p-3 rounded-lg bg-[#1A1D26] border border-gray-700 text-white"
-                    placeholder="+56 9 1234 5678"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label className="text-white">Empresa</label>
-                  <input 
-                    type="text"
-                    className="w-full p-3 rounded-lg bg-[#1A1D26] border border-gray-700 text-white"
-                    placeholder="Nombre de su empresa"
-                  />
-                </div>
-              </div>
-              <div className="space-y-2">
-                <label className="text-white">Mensaje</label>
-                <textarea 
-                  className="w-full p-3 rounded-lg bg-[#1A1D26] border border-gray-700 text-white h-32"
-                  placeholder="Cuéntenos sobre sus necesidades de seguridad..."
-                />
-              </div>
-              <div className="flex justify-center">
-                <button 
-                  type="submit" 
-                  className="gard-btn gard-btn-primary gard-btn-lg"
-                >
-                  Enviar solicitud <ArrowRight className="ml-2 h-5 w-5" />
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </section>
+      {/* Formulario de cotización con webhook configurado */}
+      <FormularioCotizacionSeccion 
+        id="cotizar"
+        prefillIndustria={industry.name}
+      />
     </>
   );
 } 

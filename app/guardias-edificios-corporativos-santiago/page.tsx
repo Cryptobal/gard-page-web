@@ -6,6 +6,7 @@ import CloudflareImage from '@/components/CloudflareImage';
 import BreadcrumbSchema, { Breadcrumbs } from '@/components/seo/BreadcrumbSchema';
 import ServiceSchema from '@/components/seo/ServiceSchema';
 import { FAQSection } from '@/components/seo/FAQSchema';
+import FormularioCotizacionSeccion from '@/app/components/FormularioCotizacionSeccion';
 
 export const metadata: Metadata = {
   title: 'Guardias para Edificios Corporativos Santiago | Recepción 24/7',
@@ -140,41 +141,11 @@ export default function GuardiasEdificiosPage() {
 
       <FAQSection title="Preguntas Frecuentes sobre Seguridad para Edificios" description="Resolvemos las dudas más comunes sobre servicios de seguridad corporativa" faqs={faqs} />
 
-      <section id="cotizar" className="gard-section py-16 md:py-24 bg-[#0A0C12] text-white">
-        <div className="gard-container max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-heading-2 mb-4">Mejore la Seguridad de su Edificio</h2>
-          <p className="text-body-lg text-gray-300 mb-8 max-w-2xl mx-auto">
-            Complete el formulario y un ejecutivo especializado lo contactará con una propuesta personalizada.
-          </p>
-          
-          <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8">
-            <form className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input type="text" placeholder="Nombre completo *" className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder:text-gray-400" required />
-                <input type="email" placeholder="Email *" className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder:text-gray-400" required />
-                <input type="tel" placeholder="Teléfono *" className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder:text-gray-400" required />
-                <input type="text" placeholder="Cargo/Empresa" className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder:text-gray-400" />
-                <input type="text" placeholder="Dirección del edificio" className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder:text-gray-400" />
-                <select className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white">
-                  <option value="">N° de pisos del edificio</option>
-                  <option value="1-5">1-5 pisos</option>
-                  <option value="6-10">6-10 pisos</option>
-                  <option value="11-20">11-20 pisos</option>
-                  <option value="20+">Más de 20 pisos</option>
-                </select>
-              </div>
-              <textarea placeholder="Necesidades específicas de seguridad o servicios adicionales que requiere..." className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder:text-gray-400 h-32"></textarea>
-              <button type="submit" className="gard-btn gard-btn-primary gard-btn-lg w-full sm:w-auto">
-                Solicitar Cotización Ahora <ArrowRight className="ml-2 h-5 w-5" />
-              </button>
-            </form>
-          </div>
-
-          <p className="text-sm text-gray-400 mt-6">
-            * Al enviar acepta nuestros <Link href="/terminos" className="text-primary hover:underline">términos</Link> y <Link href="/privacidad" className="text-primary hover:underline">política de privacidad</Link>.
-          </p>
-        </div>
-      </section>
+      <FormularioCotizacionSeccion 
+        id="cotizar"
+        prefillServicio="Guardias de Seguridad"
+        prefillIndustria="Corporativo y Oficinas"
+      />
     </>
   );
 }
