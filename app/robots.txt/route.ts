@@ -16,8 +16,14 @@ Disallow: /*_buildManifest.js$
 Disallow: /*_ssgManifest.js$
 Disallow: /*.js.map$
 Disallow: /api/
-Disallow: /_next/
 Disallow: /static/
+
+# Permitir recursos estáticos críticos de Next.js
+Allow: /_next/static/
+Allow: /_next/image
+
+# Bloquear solo build data innecesarios
+Disallow: /_next/data/
 
 # No indexar páginas de paginación más allá de la página 2
 Disallow: /blog/page/[3-9]

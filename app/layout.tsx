@@ -139,7 +139,6 @@ export default function RootLayout({
             }
           ],
           "priceRange": "$$$",
-          "serviceType": "Security Service",
           "areaServed": "Chile",
           "hasOfferCatalog": {
             "@type": "OfferCatalog",

@@ -12,7 +12,6 @@ interface ServiceSchemaProps {
     url: string;
   };
   areaServed: string;
-  serviceType: string;
 }
 
 interface FAQSchemaProps {
@@ -29,7 +28,7 @@ interface BreadcrumbSchemaProps {
   }>;
 }
 
-export function ServiceSchema({ name, description, url, image, provider, areaServed, serviceType }: ServiceSchemaProps) {
+export function ServiceSchema({ name, description, url, image, provider, areaServed }: ServiceSchemaProps) {
   const schema = {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -46,7 +45,6 @@ export function ServiceSchema({ name, description, url, image, provider, areaSer
       "@type": "Country",
       "name": areaServed
     },
-    "serviceType": serviceType,
     "offers": {
       "@type": "Offer",
       "availability": "https://schema.org/InStock",

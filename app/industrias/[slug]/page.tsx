@@ -167,7 +167,6 @@ export default function IndustriaPage({ params }: { params: { slug: string } }) 
       'name': 'Gard Security',
       'url': 'https://www.gard.cl'
     },
-    'serviceType': 'Security',
     'audience': {
       '@type': 'BusinessAudience',
       'audienceType': industry.name

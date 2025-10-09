@@ -196,7 +196,6 @@ export default function ServicioPage({ params }: { params: { slug: string } }) {
       'url': 'https://www.gard.cl',
       'logo': 'https://www.gard.cl/images/logo.png'
     },
-    'serviceType': servicio.name,
     'offers': {
       '@type': 'Offer',
       'availability': 'https://schema.org/InStock',
