@@ -8,10 +8,12 @@ import FormularioCotizacionSeccion from '@/app/components/FormularioCotizacionSe
 import { FAQSection } from '@/components/seo/FAQSchema';
 
 const faqs = [
-  { question: '¿Estos precios son exactos?', answer: 'Los precios mostrados son estimaciones basadas en tarifas promedio 2025. El costo final puede variar según ubicación específica, horarios, tecnología adicional y volumen de servicio. Solicite cotización personalizada para precio exacto.' },
-  { question: '¿Qué incluye el precio base?', answer: 'El precio incluye: personal capacitado y uniformado, supervisión de turno, bitácora digital, reemplazo por ausencias, y respuesta a incidentes. No incluye: equipamiento especial, tecnología CCTV, o servicios adicionales que se cotizan por separado.' },
-  { question: '¿Hay descuentos por volumen?', answer: 'Sí, ofrecemos descuentos progresivos: 5% para 6+ guardias, 10% para 12+ guardias, 15% para 20+ guardias. También descuentos por contratos anuales vs mensuales.' },
-  { question: '¿El precio incluye certificación OS10 para minería?', answer: 'Sí, para servicios en faenas mineras, el 100% de nuestro personal cuenta con certificación OS10 vigente sin costo adicional. Es parte de nuestro estándar para el sector minero.' }
+  { question: '¿Estos precios son exactos?', answer: 'Los precios mostrados son estimaciones base. El costo final puede variar según: necesidad de transporte de guardias, solicitud de vehículos, ubicaciones muy remotas, tecnología adicional (CCTV, drones), y otros requerimientos específicos. Solicite cotización personalizada para precio exacto adaptado a su operación.' },
+  { question: '¿Qué incluye el precio base de $1.200.000 por guardia?', answer: 'El precio base incluye: guardia capacitado y uniformado, supervisión de turno, bitácora digital, reemplazo por ausencias, y respuesta a incidentes. NO incluye: transporte de guardias (si ubicación remota requiere movilización), vehículos, equipamiento especial, tecnología CCTV, o servicios adicionales que se cotizan por separado.' },
+  { question: '¿Hay descuentos por volumen?', answer: 'Sí, ofrecemos descuentos progresivos: 5% para 6-9 guardias, 8% para 10-15 guardias, 10% para 16-20 guardias, 12% para 20+ guardias. También ofrecemos descuentos adicionales por contratos anuales vs mensuales.' },
+  { question: '¿Por qué la minería es más cara?', answer: 'El precio para minería ($1.900.000/guardia) es superior debido a: certificación OS10 obligatoria por SERNAGEOMIN, capacitación especializada en protocolos mineros, operación frecuente en faenas remotas, y requisitos de equipamiento adicional para ambientes industriales. El 100% de nuestro personal minero cuenta con OS10 vigente.' },
+  { question: '¿El precio varía por turno diurno vs nocturno?', answer: 'No, nuestros precios NO varían entre turno diurno o nocturno. El precio base es el mismo independiente del horario de operación.' },
+  { question: '¿El precio varía según la ciudad?', answer: 'No, el precio base NO varía por ciudad. Sin embargo, si la ubicación requiere transporte especial de guardias (ej: faena muy remota) o movilización fuera del radio urbano normal, puede haber costo adicional de traslado que se cotiza por separado.' }
 ];
 
 export default function CalculadoraCostosPage() {
@@ -22,49 +24,19 @@ export default function CalculadoraCostosPage() {
   const [costoEstimado, setCostoEstimado] = useState<number | null>(null);
 
   const calcularCosto = () => {
-    let costoBase = 0;
-    
-    // Costo base por industria
-    const costosIndustria: Record<string, number> = {
-      'mineria': 2000000,
-      'logistica': 1200000,
-      'corporativo': 1400000,
-      'construccion': 1000000,
-      'retail': 1100000,
-      'otro': 1200000
-    };
-    
-    costoBase = costosIndustria[industria] || 1200000;
-    
-    // Multiplicador por turno
-    const multiplicadorTurno: Record<string, number> = {
-      '12h-diurno': 1.0,
-      '12h-nocturno': 1.15,
-      '24h': 2.2
-    };
-    
-    costoBase *= (multiplicadorTurno[turno] || 1.0);
-    
-    // Multiplicador por ciudad (costo de vida)
-    const multiplicadorCiudad: Record<string, number> = {
-      'santiago': 1.1,
-      'antofagasta': 1.3,
-      'iquique': 1.25,
-      'valparaiso': 1.05,
-      'concepcion': 1.0,
-      'otra': 1.0
-    };
-    
-    costoBase *= (multiplicadorCiudad[ciudad] || 1.0);
+    // Precio base por guardia: $1.2M/mes
+    // Minería más cara por certificación OS10 y faenas remotas: $1.9M/mes
+    const costoPorGuardia = industria === 'mineria' ? 1900000 : 1200000;
     
     // Multiplicar por número de guardias
     const guardias = parseInt(numGuardias);
-    let costoTotal = costoBase * guardias;
+    let costoTotal = costoPorGuardia * guardias;
     
-    // Descuento por volumen
-    if (guardias >= 20) costoTotal *= 0.85;
-    else if (guardias >= 12) costoTotal *= 0.90;
-    else if (guardias >= 6) costoTotal *= 0.95;
+    // Descuentos por volumen
+    if (guardias >= 20) costoTotal *= 0.88; // -12%
+    else if (guardias >= 16) costoTotal *= 0.90; // -10%
+    else if (guardias >= 10) costoTotal *= 0.92; // -8%
+    else if (guardias >= 6) costoTotal *= 0.95; // -5%
     
     setCostoEstimado(Math.round(costoTotal));
   };
@@ -78,7 +50,7 @@ export default function CalculadoraCostosPage() {
     }).format(value);
   };
 
-  const puedeCalcular = industria && ciudad && turno && numGuardias;
+  const puedeCalcular = industria && turno && numGuardias;
 
   return (
     <>
@@ -118,34 +90,18 @@ export default function CalculadoraCostosPage() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-2">Ciudad</label>
-                  <Select value={ciudad} onValueChange={setCiudad}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Seleccione ciudad" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="santiago">Santiago (RM)</SelectItem>
-                      <SelectItem value="antofagasta">Antofagasta</SelectItem>
-                      <SelectItem value="valparaiso">Valparaíso</SelectItem>
-                      <SelectItem value="concepcion">Concepción</SelectItem>
-                      <SelectItem value="iquique">Iquique</SelectItem>
-                      <SelectItem value="otra">Otra Ciudad</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium mb-2">Tipo de Turno</label>
+                  <label className="block text-sm font-medium mb-2">Confirmar Cálculo</label>
                   <Select value={turno} onValueChange={setTurno}>
                     <SelectTrigger>
-                      <SelectValue placeholder="Seleccione turno" />
+                      <SelectValue placeholder="Haga clic para confirmar" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="12h-diurno">12 horas Diurno (8:00-20:00)</SelectItem>
-                      <SelectItem value="12h-nocturno">12 horas Nocturno (20:00-8:00)</SelectItem>
-                      <SelectItem value="24h">24 horas (Cobertura Completa)</SelectItem>
+                      <SelectItem value="confirmar">Sí, calcular costo</SelectItem>
                     </SelectContent>
                   </Select>
+                  <p className="text-xs text-muted-foreground mt-1">
+                    * Los precios no varían por turno (diurno/nocturno) ni ciudad
+                  </p>
                 </div>
 
                 <div>
@@ -170,7 +126,7 @@ export default function CalculadoraCostosPage() {
                   </Select>
                   {parseInt(numGuardias) >= 6 && (
                     <p className="text-sm text-green-600 mt-2">
-                      ✅ Elegible para descuento por volumen ({parseInt(numGuardias) >= 20 ? '15%' : parseInt(numGuardias) >= 12 ? '10%' : '5%'})
+                      ✅ Elegible para descuento por volumen ({parseInt(numGuardias) >= 20 ? '-12%' : parseInt(numGuardias) >= 16 ? '-10%' : parseInt(numGuardias) >= 10 ? '-8%' : '-5%'})
                     </p>
                   )}
                 </div>
@@ -208,11 +164,7 @@ export default function CalculadoraCostosPage() {
                       </li>
                       <li className="flex items-start gap-2">
                         <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
-                        <span>Turno: {turno === '24h' ? '24 horas continuas' : turno === '12h-nocturno' ? '12h nocturno' : '12h diurno'}</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
-                        <span>Ubicación: {ciudad === 'santiago' ? 'Santiago' : ciudad === 'antofagasta' ? 'Antofagasta' : ciudad.charAt(0).toUpperCase() + ciudad.slice(1)}</span>
+                        <span>Cobertura configurada según necesidad</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
@@ -229,16 +181,21 @@ export default function CalculadoraCostosPage() {
                       {parseInt(numGuardias) >= 6 && (
                         <li className="flex items-start gap-2">
                           <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
-                          <span className="text-green-600 font-semibold">Descuento por volumen aplicado</span>
+                          <span className="text-green-600 font-semibold">Descuento por volumen aplicado ({parseInt(numGuardias) >= 20 ? '12%' : parseInt(numGuardias) >= 16 ? '10%' : parseInt(numGuardias) >= 10 ? '8%' : '5%'})</span>
                         </li>
                       )}
                     </ul>
                   </div>
 
                   <div className="text-center">
-                    <p className="text-sm text-muted-foreground mb-4">
-                      ⚡ Esta es una estimación. Para precio exacto y propuesta personalizada:
-                    </p>
+                    <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-4 mb-4">
+                      <p className="text-sm font-semibold mb-2">⚠️ Valores Tentativos</p>
+                      <p className="text-xs text-muted-foreground">
+                        * Los precios pueden variar según: ubicación específica, necesidad de transporte de guardias, 
+                        solicitud de vehículos, horarios especiales, y otros requerimientos. 
+                        Esta es solo una estimación base.
+                      </p>
+                    </div>
                     <a href="#cotizar" className="gard-btn gard-btn-primary gard-btn-lg inline-flex items-center w-full justify-center">
                       Solicitar Cotización Exacta <ArrowRight className="ml-2 h-5 w-5" />
                     </a>
@@ -257,9 +214,16 @@ export default function CalculadoraCostosPage() {
           </div>
 
           <div className="mt-12 bg-blue-50 dark:bg-blue-900/10 border-l-4 border-blue-500 p-6 rounded-r-xl">
-            <h3 className="font-semibold mb-2">💡 Nota Importante</h3>
+            <h3 className="font-semibold mb-2">💡 Nota Importante sobre Precios</h3>
+            <p className="text-sm text-muted-foreground mb-3">
+              <strong>Precio base:</strong> $1.200.000 por guardia/mes (industrias generales) | $1.900.000 por guardia/mes (minería con OS10)
+            </p>
             <p className="text-sm text-muted-foreground">
-              Los precios mostrados son estimaciones basadas en configuraciones estándar. Factores que pueden afectar el costo final: ubicación específica, requisitos especiales de certificación, tecnología adicional (CCTV, drones), horarios irregulares, y volumen de servicio. Para una cotización exacta adaptada a sus necesidades, complete el formulario más abajo.
+              <strong>* Los precios NO varían por:</strong> Turno diurno/nocturno, ciudad de operación.<br/>
+              <strong>* Los precios SÍ pueden variar por:</strong> Necesidad de transporte de guardias, solicitud de vehículos, ubicaciones muy remotas, horarios especiales, tecnología adicional (CCTV, drones), y otros requerimientos específicos.
+            </p>
+            <p className="text-sm text-muted-foreground mt-3">
+              <strong>Descuentos por volumen:</strong> 5% (6-9 guardias), 8% (10-15), 10% (16-20), 12% (20+)
             </p>
           </div>
 
@@ -279,40 +243,41 @@ export default function CalculadoraCostosPage() {
                 <tbody>
                   <tr className="border-b">
                     <td className="px-6 py-4 font-medium">Minería (OS10)</td>
-                    <td className="px-6 py-4 text-center">4</td>
-                    <td className="px-6 py-4 text-center">24/7</td>
-                    <td className="px-6 py-4 text-right font-semibold">$8.000.000 - $12.000.000</td>
+                    <td className="px-6 py-4 text-center">1</td>
+                    <td className="px-6 py-4 text-center">Por guardia</td>
+                    <td className="px-6 py-4 text-right font-semibold">$1.900.000*</td>
                   </tr>
                   <tr className="border-b bg-muted/30">
                     <td className="px-6 py-4 font-medium">Bodegas Logísticas</td>
-                    <td className="px-6 py-4 text-center">2</td>
-                    <td className="px-6 py-4 text-center">12h</td>
-                    <td className="px-6 py-4 text-right font-semibold">$2.500.000 - $4.000.000</td>
+                    <td className="px-6 py-4 text-center">1</td>
+                    <td className="px-6 py-4 text-center">Por guardia</td>
+                    <td className="px-6 py-4 text-right font-semibold">$1.200.000*</td>
                   </tr>
                   <tr className="border-b">
                     <td className="px-6 py-4 font-medium">Edificios Corporativos</td>
-                    <td className="px-6 py-4 text-center">2-3</td>
-                    <td className="px-6 py-4 text-center">24/7</td>
-                    <td className="px-6 py-4 text-right font-semibold">$3.500.000 - $6.000.000</td>
+                    <td className="px-6 py-4 text-center">1</td>
+                    <td className="px-6 py-4 text-center">Por guardia</td>
+                    <td className="px-6 py-4 text-right font-semibold">$1.200.000*</td>
                   </tr>
                   <tr className="border-b bg-muted/30">
                     <td className="px-6 py-4 font-medium">Construcción</td>
-                    <td className="px-6 py-4 text-center">1-2</td>
-                    <td className="px-6 py-4 text-center">12h noche</td>
-                    <td className="px-6 py-4 text-right font-semibold">$2.000.000 - $3.500.000</td>
+                    <td className="px-6 py-4 text-center">1</td>
+                    <td className="px-6 py-4 text-center">Por guardia</td>
+                    <td className="px-6 py-4 text-right font-semibold">$1.200.000*</td>
                   </tr>
                   <tr>
-                    <td className="px-6 py-4 font-medium">Retail</td>
-                    <td className="px-6 py-4 text-center">2</td>
-                    <td className="px-6 py-4 text-center">12h día</td>
-                    <td className="px-6 py-4 text-right font-semibold">$2.200.000 - $3.800.000</td>
+                    <td className="px-6 py-4 font-medium">Retail / Otros</td>
+                    <td className="px-6 py-4 text-center">1</td>
+                    <td className="px-6 py-4 text-center">Por guardia</td>
+                    <td className="px-6 py-4 text-right font-semibold">$1.200.000*</td>
                   </tr>
                 </tbody>
               </table>
             </div>
             
             <p className="text-sm text-muted-foreground mt-4 text-center">
-              Precios incluyen: Personal, uniformes, supervisión, bitácora digital. Última actualización: Octubre 2025.
+              * Precios base por guardia/mes. No varían por turno ni ciudad. Incluyen: Personal, uniformes, supervisión, bitácora digital.<br/>
+              ** Valores sujetos a variables: transporte, vehículos, ubicaciones remotas. Última actualización: Octubre 2025.
             </p>
           </div>
         </div>
