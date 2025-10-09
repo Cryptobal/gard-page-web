@@ -35,9 +35,7 @@ const breadcrumbs = [
   { name: 'Guardias Seguridad Minería Chile', url: 'https://www.gard.cl/guardias-seguridad-mineria-chile' }
 ];
 
-export default function GuardiasSegur
-
-idadMineriaPage() {
+export default function GuardiasSeguridadMineriaPage() {
   return (
     <>
       {/* SEO Schemas */}
