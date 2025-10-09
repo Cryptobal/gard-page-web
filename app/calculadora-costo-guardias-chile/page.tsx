@@ -22,6 +22,8 @@ export default function CalculadoraCostosPage() {
   const [costoEstimado, setCostoEstimado] = useState<number | null>(null);
 
   const calcularCosto = () => {
+    console.log('🔍 Calculando con:', { industria, numGuardias });
+    
     // Precio base por guardia: $1.2M/mes
     // Minería más cara por certificación OS10 y faenas remotas: $1.9M/mes
     const costoPorGuardia = industria === 'mineria' ? 1900000 : 1200000;
@@ -30,13 +32,17 @@ export default function CalculadoraCostosPage() {
     const guardias = parseInt(numGuardias);
     let costoTotal = costoPorGuardia * guardias;
     
+    console.log('💰 Costo base:', costoPorGuardia, '× guardias:', guardias, '=', costoTotal);
+    
     // Descuentos por volumen
     if (guardias >= 20) costoTotal *= 0.88; // -12%
     else if (guardias >= 16) costoTotal *= 0.90; // -10%
     else if (guardias >= 10) costoTotal *= 0.92; // -8%
     else if (guardias >= 6) costoTotal *= 0.95; // -5%
     
-    setCostoEstimado(Math.round(costoTotal));
+    const costoFinal = Math.round(costoTotal);
+    console.log('✅ Costo final con descuento:', costoFinal);
+    setCostoEstimado(costoFinal);
   };
 
   const formatCurrency = (value: number) => {
@@ -114,15 +120,22 @@ export default function CalculadoraCostosPage() {
                   )}
                 </div>
 
-                <Button
-                  onClick={calcularCosto}
-                  disabled={!puedeCalcular}
-                  className="w-full gard-btn-lg"
-                  variant="gard-primary"
-                >
-                  <Calculator className="mr-2 h-5 w-5" />
-                  Calcular Costo Estimado
-                </Button>
+                <div className="space-y-2">
+                  {!puedeCalcular && (
+                    <p className="text-sm text-amber-600">
+                      ⚠️ Seleccione industria y número de guardias para calcular
+                    </p>
+                  )}
+                  <Button
+                    onClick={calcularCosto}
+                    disabled={!puedeCalcular}
+                    className="w-full gard-btn-lg"
+                    variant="gard-primary"
+                  >
+                    <Calculator className="mr-2 h-5 w-5" />
+                    {!puedeCalcular ? 'Complete los campos para calcular' : 'Calcular Costo Estimado'}
+                  </Button>
+                </div>
               </div>
             </div>
 
