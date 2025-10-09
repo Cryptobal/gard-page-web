@@ -78,7 +78,7 @@ export default function CalculadoraCostosPage() {
     }).format(value);
   };
 
-  const puedeCalcular = industria && ciudad && turno;
+  const puedeCalcular = industria && ciudad && turno && numGuardias;
 
   return (
     <>
