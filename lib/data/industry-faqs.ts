@@ -9,7 +9,7 @@ export const industryFAQs: Record<string, FAQItem[]> = {
   'mineria': [
     {
       question: '¿Cuánto cuesta el servicio de guardias de seguridad para minería?',
-      answer: 'El costo varía según el tamaño de la faena, cantidad de guardias requeridos y nivel de certificación (OS10). En promedio, para una faena minera mediana con 4 guardias 24/7, el servicio comienza desde $8.000.000 mensuales. Incluye personal certificado, supervisión remota y cobertura completa. Solicite una cotización personalizada para su operación.'
+      answer: 'El costo varía según el tamaño de la faena, cantidad de guardias requeridos y nivel de certificación (OS10). En promedio, para una faena minera mediana con 4 guardias 24/7, el servicio comienza desde $8.000.000 mensuales. Incluye personal certificado, supervisión remota y cobertura completa. Solicite una cotización personalizada completando nuestro formulario en línea.'
     },
     {
       question: '¿Qué es la certificación OS10 y por qué es importante?',
@@ -31,7 +31,7 @@ export const industryFAQs: Record<string, FAQItem[]> = {
   'bodegas': [
     {
       question: '¿Cuánto cuesta contratar guardias para una bodega logística?',
-      answer: 'Para una bodega estándar de 2,000-5,000 m², el servicio de 2 guardias en turno de 12 horas cuesta aproximadamente $2.500.000 - $4.000.000 mensuales. Esto incluye personal capacitado, supervisión, bitácora digital y respuesta a incidentes. El costo varía según tamaño, ubicación y horarios de operación.'
+      answer: 'Para una bodega estándar de 2,000-5,000 m², el servicio de 2 guardias en turno de 12 horas cuesta aproximadamente $2.500.000 - $4.000.000 mensuales. Esto incluye personal capacitado, supervisión, bitácora digital y respuesta a incidentes. El costo varía según tamaño, ubicación y horarios de operación. Solicite cotización personalizada en línea.'
     },
     {
       question: '¿Cómo reducen las mermas y pérdidas de inventario?',
@@ -75,7 +75,7 @@ export const industryFAQs: Record<string, FAQItem[]> = {
   'edificios-corporativos': [
     {
       question: '¿Cuánto cuesta el servicio de seguridad para un edificio corporativo?',
-      answer: 'Para un edificio de 10-15 pisos con recepción 24/7, el servicio con 2-3 guardias rotativos cuesta entre $3.500.000 - $6.000.000 mensuales. Incluye control de acceso, recepción corporativa, rondas por pisos comunes, gestión de visitas, y respuesta a emergencias. El costo varía según tamaño del edificio y servicios adicionales.'
+      answer: 'Para un edificio de 10-15 pisos con recepción 24/7, el servicio con 2-3 guardias rotativos cuesta entre $3.500.000 - $6.000.000 mensuales. Incluye control de acceso, recepción corporativa, rondas por pisos comunes, gestión de visitas, y respuesta a emergencias. El costo varía según tamaño del edificio y servicios adicionales. Solicite cotización personalizada en línea.'
     },
     {
       question: '¿Sus guardias pueden hacer funciones de recepción corporativa?',

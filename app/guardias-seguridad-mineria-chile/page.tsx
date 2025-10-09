@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowRight, ShieldCheck, CheckCircle, Clock, Award, Phone } from 'lucide-react';
+import { ArrowRight, ShieldCheck, CheckCircle, Clock, Award } from 'lucide-react';
 import CloudflareImage from '@/components/CloudflareImage';
 import BreadcrumbSchema, { Breadcrumbs } from '@/components/seo/BreadcrumbSchema';
 import ServiceSchema from '@/components/seo/ServiceSchema';
@@ -10,7 +10,7 @@ import FormularioCotizacionSeccion from '@/app/components/FormularioCotizacionSe
 
 export const metadata: Metadata = {
   title: 'Guardias de Seguridad para Minería Chile | Certificados OS10',
-  description: 'Guardias certificados OS10 para faenas mineras. Protección 24/7, monitoreo remoto y respuesta inmediata. +15 años protegiendo mineras en Chile. Cotice ahora: +56 2 2987 2380',
+  description: 'Guardias certificados OS10 para faenas mineras. Protección 24/7, monitoreo remoto y respuesta inmediata. +15 años protegiendo operaciones mineras en Chile. Cotice en línea ahora.',
   keywords: ['guardias seguridad minería chile', 'guardias certificados OS10', 'seguridad faenas mineras', 'guardias para minas', 'seguridad industrial minería'],
   robots: { index: true, follow: true },
   alternates: { canonical: 'https://www.gard.cl/guardias-seguridad-mineria-chile' },
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 };
 
 const faqs = [
-  { question: '¿Cuánto cuesta contratar guardias de seguridad para una mina en Chile?', answer: 'El costo varía según el tamaño de la faena y cantidad de guardias requeridos. Para una faena mediana con 4 guardias 24/7, el servicio comienza desde $8.000.000 mensuales. Incluye personal certificado OS10, supervisión remota y equipamiento completo. Solicite una cotización personalizada llamando al +56 2 2987 2380.' },
+  { question: '¿Cuánto cuesta contratar guardias de seguridad para una mina en Chile?', answer: 'El costo varía según el tamaño de la faena y cantidad de guardias requeridos. Para una faena mediana con 4 guardias 24/7, el servicio comienza desde $8.000.000 mensuales. Incluye personal certificado OS10, supervisión remota y equipamiento completo. Solicite una cotización personalizada completando nuestro formulario en línea.' },
   { question: '¿Todos sus guardias tienen certificación OS10 para trabajar en minería?', answer: 'Sí, el 100% de nuestros guardias que trabajan en faenas mineras cuentan con certificación OS10 vigente emitida por SERNAGEOMIN. Además, reciben capacitación continua en protocolos de seguridad específicos del sector minero.' },
   { question: '¿Cuánto tiempo toma implementar el servicio en una faena minera?', answer: 'Podemos iniciar operaciones en 5-7 días hábiles. Esto incluye: evaluación de la faena, selección de personal certificado OS10, capacitación específica en los protocolos de su operación, y despliegue en terreno. Para casos urgentes, tenemos capacidad de respuesta express en 48 horas.' },
   { question: '¿Qué áreas de la faena minera pueden cubrir?', answer: 'Cubrimos todas las áreas críticas: accesos principales y secundarios, casetas de control, zonas de maquinaria y equipos, bodegas de suministros, oficinas administrativas, comedores y campamentos, y zonas de extracción. Adaptamos el despliegue según layout específico de cada faena.' },
@@ -72,12 +72,9 @@ export default function GuardiasSeguridadMineriaPage() {
             Personal <strong>certificado OS10</strong>, monitoreo 24/7 y respuesta inmediata ante emergencias. Protección integral para su faena minera.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+          <div className="flex justify-center mb-8">
             <a href="#cotizar" className="gard-btn gard-btn-primary gard-btn-lg inline-flex items-center">
-              Cotizar Mi Faena Ahora <ArrowRight className="ml-2 h-5 w-5" />
-            </a>
-            <a href="tel:+56229872380" className="gard-btn gard-btn-secondary gard-btn-lg inline-flex items-center">
-              <Phone className="mr-2 h-5 w-5" /> +56 2 2987 2380
+              Cotizar Ahora <ArrowRight className="ml-2 h-5 w-5" />
             </a>
           </div>
 

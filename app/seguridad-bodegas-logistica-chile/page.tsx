@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowRight, CheckCircle, TrendingDown, Phone, Package, Lock, Eye, Clock } from 'lucide-react';
+import { ArrowRight, CheckCircle, TrendingDown, Package, Lock, Eye, Clock } from 'lucide-react';
 import CloudflareImage from '@/components/CloudflareImage';
 import BreadcrumbSchema, { Breadcrumbs } from '@/components/seo/BreadcrumbSchema';
 import ServiceSchema from '@/components/seo/ServiceSchema';
@@ -10,7 +10,7 @@ import FormularioCotizacionSeccion from '@/app/components/FormularioCotizacionSe
 
 export const metadata: Metadata = {
   title: 'Seguridad para Bodegas Logísticas Chile | Reducimos Mermas 85%',
-  description: 'Protección integral de inventario y mercancía. Guardias especializados, control biométrico y CCTV inteligente. -85% de mermas comprobado. Cotice: +56 2 2987 2380',
+  description: 'Protección integral de inventario y mercancía. Guardias especializados, control biométrico y CCTV inteligente. Reducción de mermas hasta 85% comprobado. Cotice en línea.',
   keywords: ['seguridad bodegas chile', 'guardias almacenes logística', 'protección inventario', 'vigilancia centros distribución'],
   robots: { index: true, follow: true },
   alternates: { canonical: 'https://www.gard.cl/seguridad-bodegas-logistica-chile' },
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 };
 
 const faqs = [
-  { question: '¿Cuánto cuesta contratar guardias para una bodega logística en Chile?', answer: 'Para una bodega estándar de 2,000-5,000 m², el servicio de 2 guardias en turno de 12 horas cuesta aproximadamente $2.500.000 - $4.000.000 mensuales. Incluye personal capacitado, supervisión digital, bitácora electrónica y respuesta a incidentes. El costo varía según tamaño de bodega, ubicación y horarios de operación. Solicite cotización al +56 2 2987 2380.' },
+  { question: '¿Cuánto cuesta contratar guardias para una bodega logística en Chile?', answer: 'Para una bodega estándar de 2,000-5,000 m², el servicio de 2 guardias en turno de 12 horas cuesta aproximadamente $2.500.000 - $4.000.000 mensuales. Incluye personal capacitado, supervisión digital, bitácora electrónica y respuesta a incidentes. El costo varía según tamaño de bodega, ubicación y horarios de operación. Solicite cotización personalizada en línea.' },
   { question: '¿Cómo pueden reducir las mermas y pérdidas de inventario?', answer: 'Implementamos protocolo integral: control de acceso biométrico, rondas con checkpoints RFID, inspección aleatoria de vehículos, CCTV con analítica de video, y registro digital de todos los movimientos. Nuestros clientes reportan reducciones de mermas del 70-85% en los primeros 6 meses de servicio.' },
   { question: '¿Sus guardias tienen experiencia en operaciones logísticas?', answer: 'Sí, todos nuestros guardias para bodegas logísticas reciben capacitación especializada en: sistemas WMS, protocolos de control de transportistas, uso de RFID y código de barras, coordinación con operaciones sin interrumpir flujos, y procedimientos de emergencia en almacenes.' },
   { question: '¿Ofrecen servicio 24/7 para centros de distribución?', answer: 'Sí, ofrecemos cobertura completa 24/7/365 con guardias en turnos rotativos. Para operaciones con peaks de actividad, podemos reforzar personal en horarios críticos. Adaptamos dotación a sus necesidades operacionales.' },
@@ -72,12 +72,9 @@ export default function SeguridadBodegasPage() {
             Protección integral de inventario y mercancía. <strong>Control de acceso biométrico</strong>, guardias especializados y CCTV inteligente. Cobertura 24/7.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+          <div className="flex justify-center mb-8">
             <a href="#cotizar" className="gard-btn gard-btn-primary gard-btn-lg inline-flex items-center">
-              Cotizar Mi Bodega Ahora <ArrowRight className="ml-2 h-5 w-5" />
-            </a>
-            <a href="tel:+56229872380" className="gard-btn gard-btn-secondary gard-btn-lg inline-flex items-center">
-              <Phone className="mr-2 h-5 w-5" /> +56 2 2987 2380
+              Cotizar Ahora <ArrowRight className="ml-2 h-5 w-5" />
             </a>
           </div>
 

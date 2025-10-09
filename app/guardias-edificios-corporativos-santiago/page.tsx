@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowRight, CheckCircle, Building2, Phone, Users, Shield, Smartphone } from 'lucide-react';
+import { ArrowRight, CheckCircle, Building2, Users, Shield, Smartphone } from 'lucide-react';
 import CloudflareImage from '@/components/CloudflareImage';
 import BreadcrumbSchema, { Breadcrumbs } from '@/components/seo/BreadcrumbSchema';
 import ServiceSchema from '@/components/seo/ServiceSchema';
@@ -10,7 +10,7 @@ import FormularioCotizacionSeccion from '@/app/components/FormularioCotizacionSe
 
 export const metadata: Metadata = {
   title: 'Guardias para Edificios Corporativos Santiago | Recepción 24/7',
-  description: 'Seguridad profesional para edificios de oficinas en Santiago. Control de acceso inteligente, recepción ejecutiva 24/7 y protocolo corporativo. +50 edificios protegidos. Cotice: +56 2 2987 2380',
+  description: 'Seguridad profesional para edificios de oficinas en Santiago. Control de acceso inteligente, recepción ejecutiva 24/7 y protocolo corporativo. +50 edificios protegidos. Cotice en línea ahora.',
   keywords: ['guardias edificios corporativos santiago', 'seguridad oficinas las condes', 'control acceso edificios', 'recepción corporativa 24/7'],
   robots: { index: true, follow: true },
   alternates: { canonical: 'https://www.gard.cl/guardias-edificios-corporativos-santiago' },
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 };
 
 const faqs = [
-  { question: '¿Cuánto cuesta el servicio de seguridad para un edificio corporativo en Santiago?', answer: 'Para un edificio de 10-15 pisos con recepción 24/7, el servicio con 2-3 guardias rotativos cuesta entre $3.500.000 - $6.000.000 mensuales. Incluye control de acceso corporativo, recepción ejecutiva, rondas por áreas comunes, gestión de visitas con sistema digital, y respuesta a emergencias. Cotice al +56 2 2987 2380.' },
+  { question: '¿Cuánto cuesta el servicio de seguridad para un edificio corporativo en Santiago?', answer: 'Para un edificio de 10-15 pisos con recepción 24/7, el servicio con 2-3 guardias rotativos cuesta entre $3.500.000 - $6.000.000 mensuales. Incluye control de acceso corporativo, recepción ejecutiva, rondas por áreas comunes, gestión de visitas con sistema digital, y respuesta a emergencias. Solicite cotización personalizada en línea.' },
   { question: '¿Sus guardias pueden hacer funciones de recepción corporativa?', answer: 'Sí, nuestros guardias para edificios corporativos están capacitados en protocolo ejecutivo: atención profesional de visitas, gestión de credenciales temporales, manejo de paquetería y correspondencia, coordinación con empresas arrendatarias, y uso de sistemas de control de acceso.' },
   { question: '¿Cómo manejan el control de acceso fuera del horario de oficina?', answer: 'Implementamos sistema diferenciado: durante horario laboral, acceso fluido con validación en recepción; fuera de horario, acceso solo con tarjeta/código + validación de identidad con guardia. Mantenemos bitácora digital de todas las entradas.' },
   { question: '¿Están capacitados para evacuaciones de emergencia?', answer: 'Sí, todos nuestros guardias están certificados en evacuación de edificios corporativos: conocen plan de evacuación específico, coordinan con brigadistas internos, guían personas hacia zonas seguras, y coordinan con Bomberos.' },
@@ -72,12 +72,9 @@ export default function GuardiasEdificiosPage() {
             Seguridad profesional y <strong>recepción ejecutiva</strong>. Control de acceso inteligente, protocolo corporativo y respuesta certificada ante emergencias.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+          <div className="flex justify-center mb-8">
             <a href="#cotizar" className="gard-btn gard-btn-primary gard-btn-lg inline-flex items-center">
-              Cotizar Mi Edificio Ahora <ArrowRight className="ml-2 h-5 w-5" />
-            </a>
-            <a href="tel:+56229872380" className="gard-btn gard-btn-secondary gard-btn-lg inline-flex items-center">
-              <Phone className="mr-2 h-5 w-5" /> +56 2 2987 2380
+              Cotizar Ahora <ArrowRight className="ml-2 h-5 w-5" />
             </a>
           </div>
 
