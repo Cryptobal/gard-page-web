@@ -19,8 +19,6 @@ const faqs = [
 export default function CalculadoraCostosPage() {
   const [industria, setIndustria] = useState('');
   const [numGuardias, setNumGuardias] = useState('2');
-  const [ciudad, setCiudad] = useState('');
-  const [turno, setTurno] = useState('');
   const [costoEstimado, setCostoEstimado] = useState<number | null>(null);
 
   const calcularCosto = () => {
@@ -50,7 +48,7 @@ export default function CalculadoraCostosPage() {
     }).format(value);
   };
 
-  const puedeCalcular = industria && turno && numGuardias;
+  const puedeCalcular = industria && numGuardias;
 
   return (
     <>
@@ -87,21 +85,6 @@ export default function CalculadoraCostosPage() {
                       <SelectItem value="otro">Otra Industria</SelectItem>
                     </SelectContent>
                   </Select>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium mb-2">Confirmar Cálculo</label>
-                  <Select value={turno} onValueChange={setTurno}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Haga clic para confirmar" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="confirmar">Sí, calcular costo</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <p className="text-xs text-muted-foreground mt-1">
-                    * Los precios no varían por turno (diurno/nocturno) ni ciudad
-                  </p>
                 </div>
 
                 <div>
