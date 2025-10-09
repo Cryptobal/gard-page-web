@@ -225,7 +225,7 @@ export default function IndustriaPage({ params }: { params: { slug: string } }) 
           
           <a 
             href="#cotizar" 
-            className="gard-btn gard-btn-primary inline-flex items-center"
+            className="gard-btn gard-btn-primary gard-btn-lg inline-flex items-center"
           >
             Cotizar para mi empresa <ArrowRight className="ml-2 h-5 w-5" />
           </a>
