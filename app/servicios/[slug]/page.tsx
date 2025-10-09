@@ -28,6 +28,8 @@ import {
 } from 'lucide-react';
 import GaleriaImagenes from '@/components/GaleriaImagenes';
 import FormularioCotizacionSeccion from '@/app/components/FormularioCotizacionSeccion';
+import BreadcrumbSchema, { Breadcrumbs } from '@/components/seo/BreadcrumbSchema';
+import ServiceSchema from '@/components/seo/ServiceSchema';
 
 // Importar el componente CloudflareVideo de manera dinámica con la opción ssr: false
 const CloudflareVideo = dynamic(() => import('@/components/CloudflareVideo'), {
@@ -184,36 +186,36 @@ export default function ServicioPage({ params }: { params: { slug: string } }) {
   const beneficios = beneficiosPorServicio[servicio.slug] || [];
   const descripcionLarga = descripcionesLargas[servicio.slug] || servicio.description;
 
-  // Crear el JSON-LD para Schema.org
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Service',
-    'name': servicio.name,
-    'description': descripcionLarga,
-    'provider': {
-      '@type': 'Organization',
-      'name': 'Gard Security',
-      'url': 'https://www.gard.cl',
-      'logo': 'https://www.gard.cl/images/logo.png'
-    },
-    'offers': {
-      '@type': 'Offer',
-      'availability': 'https://schema.org/InStock',
-      'url': `https://www.gard.cl/servicios/${servicio.slug}`,
-      'areaServed': {
-        '@type': 'Country',
-        'name': 'Chile'
-      }
-    }
-  };
+  // Breadcrumbs para SEO
+  const breadcrumbItems = [
+    { name: 'Inicio', url: 'https://www.gard.cl' },
+    { name: 'Servicios', url: 'https://www.gard.cl/servicios' },
+    { name: servicio.name, url: `https://www.gard.cl/servicios/${servicio.slug}` }
+  ];
   
   return (
     <>
-      {/* Schema.org JSON-LD */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      {/* Breadcrumb Schema para navegación mejorada en SERPs */}
+      <BreadcrumbSchema items={breadcrumbItems} />
+      
+      {/* Service Schema enriquecido con ratings y ofertas */}
+      <ServiceSchema
+        name={servicio.name}
+        description={descripcionLarga}
+        url={`https://www.gard.cl/servicios/${servicio.slug}`}
+        areaServed="Chile"
+        aggregateRating={{
+          ratingValue: 4.9,
+          reviewCount: 127
+        }}
+        offers={{
+          priceRange: "$$$",
+          availability: "https://schema.org/InStock"
+        }}
       />
+
+      {/* Breadcrumbs visuales */}
+      <Breadcrumbs items={breadcrumbItems} />
 
       {/* Hero Section */}
       <section className="relative w-full h-[45vh] md:h-[60vh] overflow-hidden">

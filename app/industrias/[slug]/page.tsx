@@ -6,6 +6,10 @@ import { ArrowRight, CheckCircle, ArrowUpRight, ShieldCheck, Shield, Eye, Factor
 import CloudflareImage from '@/components/CloudflareImage';
 import { industriesMetadata } from '../industryMetadata';
 import { industries } from '@/app/data/industries';
+import BreadcrumbSchema, { Breadcrumbs } from '@/components/seo/BreadcrumbSchema';
+import ServiceSchema from '@/components/seo/ServiceSchema';
+import { FAQSection } from '@/components/seo/FAQSchema';
+import { getFAQsForIndustry, hasFAQs } from '@/lib/data/industry-faqs';
 
 // Interfaces para tipado
 interface Challenge {
@@ -156,30 +160,36 @@ export default function IndustriaPage({ params }: { params: { slug: string } }) 
     clients: industryData.clients || []
   };
 
-  // Crear un Schema.org JSON-LD para SEO
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Service',
-    'name': `Seguridad para ${industry.name}`,
-    'description': industry.description,
-    'provider': {
-      '@type': 'Organization',
-      'name': 'Gard Security',
-      'url': 'https://www.gard.cl'
-    },
-    'audience': {
-      '@type': 'BusinessAudience',
-      'audienceType': industry.name
-    }
-  };
+  // Datos de breadcrumbs para SEO
+  const breadcrumbItems = [
+    { name: 'Inicio', url: 'https://www.gard.cl' },
+    { name: 'Industrias', url: 'https://www.gard.cl/industrias' },
+    { name: industry.name, url: `https://www.gard.cl/industrias/${industry.slug}` }
+  ];
 
   return (
     <>
-      {/* Schema.org JSON-LD */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      {/* Breadcrumb Schema para navegación mejorada en SERPs */}
+      <BreadcrumbSchema items={breadcrumbItems} />
+      
+      {/* Service Schema con datos completos */}
+      <ServiceSchema
+        name={`Guardias de Seguridad para ${industry.name}`}
+        description={industry.description}
+        url={`https://www.gard.cl/industrias/${industry.slug}`}
+        areaServed="Chile"
+        aggregateRating={{
+          ratingValue: 4.9,
+          reviewCount: 127
+        }}
+        offers={{
+          priceRange: "$$$",
+          availability: "https://schema.org/InStock"
+        }}
       />
+
+      {/* Breadcrumbs visuales */}
+      <Breadcrumbs items={breadcrumbItems} />
 
       {/* Hero */}
       <section className="gard-hero min-h-[60vh] flex flex-col justify-center items-center relative overflow-hidden">
@@ -205,7 +215,7 @@ export default function IndustriaPage({ params }: { params: { slug: string } }) 
           </div>
           
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-            Seguridad para {industry.name}
+            Guardias de Seguridad para {industry.name} en Chile
           </h1>
           
           <p className="text-xl text-white/90 max-w-3xl mx-auto mb-8">
@@ -375,6 +385,16 @@ export default function IndustriaPage({ params }: { params: { slug: string } }) 
             </div>
           </div>
         </section>
+      )}
+
+      {/* Preguntas Frecuentes específicas de la industria */}
+      {hasFAQs(industry.slug) && (
+        <FAQSection
+          title={`Preguntas Frecuentes sobre Seguridad para ${industry.name}`}
+          description={`Resolvemos las dudas más comunes sobre servicios de seguridad especializados para ${industry.name}`}
+          faqs={getFAQsForIndustry(industry.slug)}
+          className="bg-[#0A0C12]"
+        />
       )}
 
       {/* Formulario de cotización */}

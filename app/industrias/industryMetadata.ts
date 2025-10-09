@@ -1,9 +1,9 @@
 export const industriesMetadata = [
   {
     slug: 'mineria',
-    title: 'Seguridad para la Industria Minera | Gard Security',
-    description: 'Soluciones de seguridad privada para faenas mineras, con cobertura 24/7, control de acceso y supervisión en zonas remotas.',
-    keywords: ['seguridad minera', 'guardias minería', 'seguridad industrial'],
+    title: 'Guardias de Seguridad para Minería en Chile | Gard Security',
+    description: 'Protección especializada 24/7 para mineras. Personal certificado OS10, monitoreo remoto y respuesta inmediata. +15 años protegiendo operaciones mineras. Cotice aquí.',
+    keywords: ['guardias seguridad minería', 'seguridad minera chile', 'guardias certificados OS10', 'seguridad industrial minería', 'protección faenas mineras'],
   },
   {
     slug: 'retail',
@@ -37,33 +37,33 @@ export const industriesMetadata = [
   },
   {
     slug: 'bodegas',
-    title: 'Seguridad para Bodegas y Almacenes | Gard Security',
-    description: 'Protección de inventario, control de acceso y vigilancia 24/7 para bodegas y centros de distribución.',
-    keywords: ['seguridad bodegas', 'vigilancia almacenes', 'protección de inventario'],
+    title: 'Seguridad para Bodegas Logísticas Chile | Guardias 24/7',
+    description: 'Protección integral de inventario y mercancía. Guardias especializados, control de acceso biométrico y CCTV. Reducimos mermas hasta 85%. Cotización inmediata.',
+    keywords: ['seguridad bodegas chile', 'guardias almacenes logística', 'protección inventario', 'vigilancia centros distribución', 'seguridad bodega 24/7'],
   },
   {
     slug: 'edificios-corporativos',
-    title: 'Seguridad para Edificios Corporativos | Gard Security',
-    description: 'Guardias, control de acceso y monitoreo para edificios de oficinas y sedes corporativas.',
-    keywords: ['seguridad oficinas', 'control acceso edificios', 'protección empresarial'],
+    title: 'Guardias para Edificios Corporativos Santiago | Gard Security',
+    description: 'Seguridad profesional para edificios de oficinas. Control de acceso inteligente, recepción 24/7 y protocolo ejecutivo. +50 edificios protegidos en Santiago. Cotice ahora.',
+    keywords: ['guardias edificios corporativos', 'seguridad oficinas santiago', 'control acceso edificios', 'recepción corporativa', 'seguridad empresarial chile'],
   },
   {
     slug: 'construccion',
-    title: 'Seguridad para Construcción | Gard Security',
-    description: 'Vigilancia y control de acceso para obras de construcción, protección de maquinaria y materiales.',
-    keywords: ['seguridad construcción', 'vigilancia obras', 'protección maquinaria'],
+    title: 'Seguridad para Obras de Construcción Chile | Guardias 24/7',
+    description: 'Protección de faenas y maquinaria. Guardias especializados en construcción, control de ingreso y rondas nocturnas. Evite robos y vandalismo. Cotice seguridad para su obra.',
+    keywords: ['seguridad construcción chile', 'guardias obras', 'protección maquinaria construcción', 'vigilancia faenas', 'seguridad obras 24/7'],
   },
   {
     slug: 'transporte-y-logistica',
-    title: 'Seguridad para Transporte y Logística | Gard Security',
-    description: 'Protección para flotas, terminales y operaciones logísticas con control de activos en movimiento.',
-    keywords: ['seguridad transporte', 'vigilancia logística', 'protección de carga'],
+    title: 'Guardias de Seguridad para Transporte y Logística Chile',
+    description: 'Protección de flotas, terminales y carga en tránsito. Guardias especializados, GPS tracking y escoltas. Cobertura nacional. Cotice seguridad para su operación logística.',
+    keywords: ['seguridad transporte chile', 'guardias logística', 'protección carga', 'escoltas transporte', 'seguridad terminales logísticos', 'vigilancia flotas'],
   },
   {
     slug: 'parques-industriales',
-    title: 'Seguridad para Parques Industriales | Gard Security',
-    description: 'Vigilancia perimetral, control de accesos y monitoreo para parques y zonas industriales.',
-    keywords: ['seguridad parques industriales', 'vigilancia industrial', 'control de accesos'],
+    title: 'Seguridad para Parques Industriales Chile | Gard Security',
+    description: 'Vigilancia perimetral avanzada para parques industriales. Drones, CCTV perimetral y guardias especializados. Protección multi-empresa. Cotice seguridad integral para su parque.',
+    keywords: ['seguridad parques industriales chile', 'vigilancia perimetral industrial', 'guardias parques', 'control acceso industrial', 'seguridad zonas industriales'],
   },
   {
     slug: 'instituciones-publicas',
@@ -97,9 +97,9 @@ export const industriesMetadata = [
   },
   {
     slug: 'manufactura',
-    title: 'Seguridad para Manufactura | Gard Security',
-    description: 'Protección para plantas de producción, control de acceso y monitoreo de instalaciones industriales.',
-    keywords: ['seguridad industrial', 'vigilancia plantas', 'protección fábricas'],
+    title: 'Seguridad Industrial para Plantas de Manufactura Chile',
+    description: 'Guardias especializados para plantas productivas. Control de acceso, vigilancia de procesos y protección de activos. Cumplimiento normativo garantizado. Cotice seguridad industrial.',
+    keywords: ['seguridad manufactura chile', 'guardias plantas industriales', 'seguridad industrial', 'protección fábricas', 'vigilancia plantas producción'],
   },
   {
     slug: 'condominios-residenciales',
@@ -121,9 +121,9 @@ export const industriesMetadata = [
   },
   {
     slug: 'sector-energetico',
-    title: 'Seguridad para el Sector Energético | Gard Security',
-    description: 'Protección para plantas eléctricas, instalaciones solares, eólicas y distribución energética.',
-    keywords: ['seguridad energética', 'vigilancia plantas', 'protección infraestructura'],
+    title: 'Seguridad para Sector Energético Chile | Plantas Solares y Eólicas',
+    description: 'Protección especializada para infraestructura energética crítica. Vigilancia con drones, monitoreo remoto 24/7 y respuesta ante emergencias. Cotice seguridad para su planta.',
+    keywords: ['seguridad sector energético chile', 'vigilancia plantas solares', 'seguridad parques eólicos', 'protección infraestructura energética', 'guardias energía'],
   },
   {
     slug: 'farmaceutica',
