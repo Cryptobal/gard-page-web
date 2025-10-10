@@ -18,12 +18,14 @@ export async function generateStaticParams() {
 }
 
 // Generar metadata dinámica para cada página
+// Next.js 15: params es ahora una Promise
 export async function generateMetadata({
   params,
 }: {
-  params: { page: string };
+  params: Promise<{ page: string }>;
 }): Promise<Metadata> {
-  const pageNumber = parseInt(params.page, 10);
+  const resolvedParams = await params;
+  const pageNumber = parseInt(resolvedParams.page, 10);
   const allPosts = await getAllPosts();
   const totalPages = Math.ceil(allPosts.length / POSTS_PER_PAGE);
   
@@ -82,12 +84,14 @@ export async function generateMetadata({
   };
 }
 
+// Next.js 15: params es ahora una Promise
 export default async function BlogPaginatedPage({
   params,
 }: {
-  params: { page: string };
+  params: Promise<{ page: string }>;
 }) {
-  const pageNumber = parseInt(params.page, 10);
+  const resolvedParams = await params;
+  const pageNumber = parseInt(resolvedParams.page, 10);
   
   // Obtener el total de posts para calcular el número total de páginas
   const allPosts = await getAllPosts();

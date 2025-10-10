@@ -1,12 +1,13 @@
 import { NextResponse } from 'next/server';
 import { getPostBySlug } from '@/lib/blog';
 
+// Next.js 15: params es ahora una Promise en route handlers
 export async function GET(
   request: Request,
-  { params }: { params: { slug: string } }
+  { params }: { params: Promise<{ slug: string }> }
 ) {
   try {
-    const { slug } = params;
+    const { slug } = await params;
     
     console.log('API request for post with slug:', slug);
     

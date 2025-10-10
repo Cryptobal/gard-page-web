@@ -18,29 +18,25 @@ import GardHero from '@/components/layouts/GardHero';
 import OurServices from '@/app/components/OurServices';
 
 // Componentes lazy loaded (below the fold) - optimización de performance
+// Next.js 15: Removido ssr: false, los dynamic imports funcionan correctamente en Server Components
 const FaqSection = dynamic(() => import('@/components/FaqSection/FaqSection'), {
-  loading: () => <div className="h-96 bg-gray-50 dark:bg-gray-800 animate-pulse rounded-2xl" />,
-  ssr: false
+  loading: () => <div className="h-96 bg-gray-50 dark:bg-gray-800 animate-pulse rounded-2xl" />
 });
 
 const ClientCarousel = dynamic(() => import('@/app/components/home/ClientCarousel'), {
-  loading: () => <div className="h-32 bg-gray-50 dark:bg-gray-800 animate-pulse rounded-2xl" />,
-  ssr: false
+  loading: () => <div className="h-32 bg-gray-50 dark:bg-gray-800 animate-pulse rounded-2xl" />
 });
 
 const IndustriasGridPage = dynamic(() => import('./components/IndustriasGridPage'), {
-  loading: () => <div className="h-96 bg-gray-50 dark:bg-gray-800 animate-pulse rounded-2xl" />,
-  ssr: false
+  loading: () => <div className="h-96 bg-gray-50 dark:bg-gray-800 animate-pulse rounded-2xl" />
 });
 
 const ServiciosBuscador = dynamic(() => import('./components/home/ServiciosBuscador'), {
-  loading: () => <div className="h-64 bg-gray-50 dark:bg-gray-800 animate-pulse rounded-2xl" />,
-  ssr: false
+  loading: () => <div className="h-64 bg-gray-50 dark:bg-gray-800 animate-pulse rounded-2xl" />
 });
 
 const FormularioCotizacionSeccion = dynamic(() => import('./components/FormularioCotizacionSeccion'), {
-  loading: () => <div className="h-96 bg-gray-50 dark:bg-gray-800 animate-pulse rounded-2xl" />,
-  ssr: false
+  loading: () => <div className="h-96 bg-gray-50 dark:bg-gray-800 animate-pulse rounded-2xl" />
 });
 
 export default function Home() {

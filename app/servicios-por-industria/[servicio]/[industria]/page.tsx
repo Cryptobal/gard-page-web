@@ -6,11 +6,12 @@ import { servicesMetadata } from '@/app/servicios/serviceMetadata';
 import { serviciosPorIndustria, esCombinacionValida } from '@/app/data/servicios-por-industria';
 import ServicioIndustriaLanding from './components/ServicioIndustriaLanding';
 
+// Next.js 15: params es ahora una Promise
 interface PageProps {
-  params: {
+  params: Promise<{
     servicio: string;
     industria: string;
-  };
+  }>;
 }
 
 // Validar parámetros de URL para evitar páginas innecesarias
@@ -37,7 +38,8 @@ export function generateStaticParams() {
 
 // Generar metadata dinámicamente para SEO
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const content = getServicioIndustriaContent(params.servicio, params.industria);
+  const resolvedParams = await params;
+  const content = getServicioIndustriaContent(resolvedParams.servicio, resolvedParams.industria);
   
   if (!content) {
     return {
@@ -47,11 +49,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
   
   // Obtener información del servicio e industria para mejorar los metadatos
-  const servicio = servicesMetadata.find(s => s.slug === params.servicio)?.title || params.servicio;
-  const industria = industriesMetadata.find(i => i.slug === params.industria)?.title || params.industria;
+  const servicio = servicesMetadata.find(s => s.slug === resolvedParams.servicio)?.title || resolvedParams.servicio;
+  const industria = industriesMetadata.find(i => i.slug === resolvedParams.industria)?.title || resolvedParams.industria;
   
   // Construir la URL correcta con el prefijo servicios-por-industria
-  const url = `https://www.gard.cl/servicios-por-industria/${params.servicio}/${params.industria}`;
+  const url = `https://www.gard.cl/servicios-por-industria/${resolvedParams.servicio}/${resolvedParams.industria}`;
   
   return {
     title: content.title,
@@ -89,14 +91,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-export default function ServicioIndustriaPage({ params }: PageProps) {
+export default async function ServicioIndustriaPage({ params }: PageProps) {
+  const resolvedParams = await params;
   // Obtener contenido dinámico combinando datos de servicio e industria
-  const content = getServicioIndustriaContent(params.servicio, params.industria);
+  const content = getServicioIndustriaContent(resolvedParams.servicio, resolvedParams.industria);
   
   // Si la combinación servicio-industria no existe, retornar 404
   if (!content) {
     notFound();
   }
   
-  return <ServicioIndustriaLanding content={content} params={params} />;
+  return <ServicioIndustriaLanding content={content} params={resolvedParams} />;
 } 

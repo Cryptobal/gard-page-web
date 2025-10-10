@@ -1,9 +1,8 @@
 import dynamic from 'next/dynamic';
 
 // Cargar el componente cliente de forma dinámica
-const SobreNosotrosClient = dynamic(() => import('@/components/sobre-nosotros/SobreNosotrosClient'), {
-  ssr: false,
-});
+// Next.js 15: Removido ssr: false
+const SobreNosotrosClient = dynamic(() => import('@/components/sobre-nosotros/SobreNosotrosClient'));
 
 export default function SobreNosotrosPage() {
   return (

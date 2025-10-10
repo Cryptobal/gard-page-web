@@ -5,11 +5,12 @@ import { ciudades } from '@/lib/data/ciudad-data';
 import { servicesMetadata } from '@/app/servicios/serviceMetadata';
 import CiudadServicioLanding from './components/CiudadServicioLanding';
 
+// Next.js 15: params es ahora una Promise
 interface PageProps {
-  params: {
+  params: Promise<{
     ciudad: string;
     servicio: string;
-  };
+  }>;
 }
 
 // Validar parámetros de URL para evitar páginas innecesarias
@@ -30,7 +31,8 @@ export function generateStaticParams() {
 
 // Generar metadata dinámicamente para SEO
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const content = getCiudadServicioContent(params.ciudad, params.servicio);
+  const resolvedParams = await params;
+  const content = getCiudadServicioContent(resolvedParams.ciudad, resolvedParams.servicio);
   
   if (!content) {
     return {
@@ -47,20 +49,21 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: content.metaDescription,
       type: 'website',
       locale: 'es_CL',
-      url: `https://gard.cl/${params.ciudad}/${params.servicio}`,
+      url: `https://gard.cl/${resolvedParams.ciudad}/${resolvedParams.servicio}`,
       siteName: 'Gard Security',
     },
   };
 }
 
-export default function CiudadServicioPage({ params }: PageProps) {
+export default async function CiudadServicioPage({ params }: PageProps) {
+  const resolvedParams = await params;
   // Obtener contenido dinámico combinando datos de ciudad y servicio
-  const content = getCiudadServicioContent(params.ciudad, params.servicio);
+  const content = getCiudadServicioContent(resolvedParams.ciudad, resolvedParams.servicio);
   
   // Si la combinación ciudad-servicio no existe, retornar 404
   if (!content) {
     notFound();
   }
   
-  return <CiudadServicioLanding content={content} params={params} />;
+  return <CiudadServicioLanding content={content} params={resolvedParams} />;
 } 

@@ -5,21 +5,8 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Analytics } from '@vercel/analytics/next';
-import dynamic from 'next/dynamic';
 import CookieConsent from './components/cookie/CookieConsent';
-
-// Lazy load de scripts de terceros para optimizar performance
-const GoogleTagManager = dynamic(() => import('./components/GoogleTagManager'), {
-  ssr: false
-});
-
-const GoogleAnalytics = dynamic(() => import('./components/cookie/ConsentAwareScript').then(mod => ({ default: mod.GoogleAnalytics })), {
-  ssr: false
-});
-
-const ZohoSalesIQ = dynamic(() => import('./components/ZohoSalesIQ'), {
-  ssr: false
-});
+import ClientScripts from './components/ClientScripts';
 import ClientWrapper from './ClientWrapper';
 import { metadata } from './metadata';
 import CanonicalUrl from '@/components/seo/CanonicalUrl';
@@ -181,11 +168,7 @@ export default function RootLayout({
       <body className={`${inter.variable} ${spaceGrotesk.variable}`}>
         <ClientWrapper>
           <CookieConsent>
-            {/* Google Tag Manager (solo se carga con consentimiento de analytics) */}
-            {GTM_ID && <GoogleTagManager gtmId={GTM_ID} />}
-            
-            {/* Google Analytics 4 (solo se carga con consentimiento de analytics) */}
-            <GoogleAnalytics measurementId={GA_ID} />
+            <ClientScripts gtmId={GTM_ID} gaId={GA_ID} />
             
             <Header />
             <main className="flex-grow">
@@ -194,7 +177,6 @@ export default function RootLayout({
             <Footer />
             <SpeedInsights />
             <Analytics />
-            <ZohoSalesIQ />
           </CookieConsent>
         </ClientWrapper>
       </body>

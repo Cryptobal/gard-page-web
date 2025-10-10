@@ -11,12 +11,13 @@ export async function generateStaticParams() {
 }
 
 // Generar metadata dinámica para cada post
+// Next.js 15: params es ahora una Promise
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  const { slug } = params;
+  const { slug } = await params;
   const post = await getPostBySlug(slug);
 
   if (!post) {
@@ -67,17 +68,19 @@ export async function generateMetadata({
   };
 }
 
-export default function BlogPostPage({
+// Next.js 15: params es ahora una Promise
+export default async function BlogPostPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
+  const resolvedParams = await params;
   // Verificar que tengamos un slug válido
-  if (!params.slug) {
+  if (!resolvedParams.slug) {
     return notFound();
   }
   
-  console.log('Rendering BlogPostPage with slug:', params.slug);
+  console.log('Rendering BlogPostPage with slug:', resolvedParams.slug);
   
-  return <BlogPost slug={params.slug} />;
+  return <BlogPost slug={resolvedParams.slug} />;
 } 

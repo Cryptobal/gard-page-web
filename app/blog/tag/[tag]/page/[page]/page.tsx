@@ -40,13 +40,15 @@ export async function generateStaticParams() {
 
 /**
  * Genera metadatos SEO para cada página paginada de etiqueta
+ * Next.js 15: params es ahora una Promise
  */
 export async function generateMetadata({
   params,
 }: {
-  params: { tag: string; page: string };
+  params: Promise<{ tag: string; page: string }>;
 }): Promise<Metadata> {
-  const { tag, page } = params;
+  const resolvedParams = await params;
+  const { tag, page } = resolvedParams;
   const pageNumber = parseInt(page, 10);
   const tagName = decodeURIComponent(tag);
   const capitalizedTag = capitalize(tagName);
@@ -112,13 +114,15 @@ export async function generateMetadata({
 
 /**
  * Página paginada de etiquetas del blog
+ * Next.js 15: params es ahora una Promise
  */
 export default async function TagPaginatedPage({
   params,
 }: {
-  params: { tag: string; page: string };
+  params: Promise<{ tag: string; page: string }>;
 }) {
-  const { tag, page } = params;
+  const resolvedParams = await params;
+  const { tag, page } = resolvedParams;
   const pageNumber = parseInt(page, 10);
   const tagName = decodeURIComponent(tag);
   const capitalizedTag = capitalize(tagName);

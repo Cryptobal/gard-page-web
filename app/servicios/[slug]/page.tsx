@@ -31,9 +31,9 @@ import FormularioCotizacionSeccion from '@/app/components/FormularioCotizacionSe
 import BreadcrumbSchema, { Breadcrumbs } from '@/components/seo/BreadcrumbSchema';
 import ServiceSchema from '@/components/seo/ServiceSchema';
 
-// Importar el componente CloudflareVideo de manera dinámica con la opción ssr: false
+// Importar el componente CloudflareVideo de manera dinámica
+// Next.js 15: Removido ssr: false
 const CloudflareVideo = dynamic(() => import('@/components/CloudflareVideo'), {
-  ssr: false,
   loading: () => <div className="absolute inset-0 bg-gray-900"></div>
 });
 
@@ -45,8 +45,10 @@ export async function generateStaticParams() {
 }
 
 // Generar metadata dinámica para SEO
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const servicio = servicesMetadata.find(s => s.slug === params.slug);
+// Next.js 15: params es ahora una Promise
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const resolvedParams = await params;
+  const servicio = servicesMetadata.find(s => s.slug === resolvedParams.slug);
 
   if (!servicio) {
     notFound();
@@ -173,9 +175,11 @@ const getIndustrySlug = (name: string) => {
 };
 
 // Componente principal de la página de servicio
-export default function ServicioPage({ params }: { params: { slug: string } }) {
+// Next.js 15: params es ahora una Promise
+export default async function ServicioPage({ params }: { params: Promise<{ slug: string }> }) {
+  const resolvedParams = await params;
   // Buscar el servicio correspondiente por slug
-  const servicio = servicios.find((s) => s.slug === params.slug);
+  const servicio = servicios.find((s) => s.slug === resolvedParams.slug);
   
   // Si no existe el servicio, mostrar 404
   if (!servicio) {
@@ -286,7 +290,7 @@ export default function ServicioPage({ params }: { params: { slug: string } }) {
             Adaptamos nuestras soluciones de seguridad a los desafíos específicos de cada sector
           </p>
           
-          <IndustriasGridPage servicioSlug={params.slug} />
+          <IndustriasGridPage servicioSlug={resolvedParams.slug} />
         </div>
       </section>
 

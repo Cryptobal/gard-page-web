@@ -2,9 +2,8 @@ import dynamic from 'next/dynamic';
 import FormularioCotizacionSeccion from '@/app/components/FormularioCotizacionSeccion';
 
 // Cargar el componente cliente de forma dinámica
-const ServiciosLandingClient = dynamic(() => import('@/components/servicios/ServiciosLandingClient'), {
-  ssr: false,
-});
+// Next.js 15: Removido ssr: false
+const ServiciosLandingClient = dynamic(() => import('@/components/servicios/ServiciosLandingClient'));
 
 export default function ServiciosPage() {
   return (

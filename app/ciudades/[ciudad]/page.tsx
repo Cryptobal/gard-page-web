@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { notFound } from 'next/navigation';
+import { notFound, useParams } from 'next/navigation';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { 
@@ -158,7 +158,11 @@ const getServicioColor = (slug: string): string => {
   return 'bg-blue-50 dark:bg-blue-900/20'; // Color por defecto
 };
 
-export default function CiudadPage({ params }: { params: { ciudad: string } }) {
+// Next.js 15: En Client Components, usar useParams() en lugar de props
+export default function CiudadPage() {
+  const routeParams = useParams();
+  const params = { ciudad: routeParams.ciudad as string };
+  
   const ciudad = getCiudadBySlug(params.ciudad);
   const [servicioSeleccionado, setServicioSeleccionado] = useState<string | null>(null);
   

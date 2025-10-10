@@ -7,17 +7,20 @@ import { traducirSlugServicio } from '@/lib/servicios-mapping';
 import { cloudflareImages } from '@/lib/images';
 
 // Tipos para los parámetros
+// Next.js 15: params y searchParams son ahora Promises
 type Props = {
-  params: {
+  params: Promise<{
     ciudad: string;
     servicio: string;
-  };
-  searchParams: { [key: string]: string | string[] | undefined };
+  }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
 // Función para generar metadatos dinámicos
 export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
-  const { ciudad: ciudadSlug, servicio: servicioSlug } = params;
+  const resolvedParams = await params;
+  const resolvedSearchParams = await searchParams;
+  const { ciudad: ciudadSlug, servicio: servicioSlug } = resolvedParams;
   
   // Obtener datos de la ciudad y servicio
   const ciudad = getCiudadBySlug(ciudadSlug);
@@ -60,10 +63,10 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
     : defaultImage;
   
   // Extraer UTM params y gclid para tracking
-  const utm_source = searchParams.utm_source || '';
-  const utm_medium = searchParams.utm_medium || '';
-  const utm_campaign = searchParams.utm_campaign || '';
-  const gclid = searchParams.gclid || '';
+  const utm_source = resolvedSearchParams.utm_source || '';
+  const utm_medium = resolvedSearchParams.utm_medium || '';
+  const utm_campaign = resolvedSearchParams.utm_campaign || '';
+  const gclid = resolvedSearchParams.gclid || '';
   
   // Generar alternates para diferentes versiones de la URL
   const canonicalUrl = url;

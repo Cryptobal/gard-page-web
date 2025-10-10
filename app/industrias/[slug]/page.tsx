@@ -98,8 +98,10 @@ const formatNumber = (num: number): string => {
 };
 
 // Generar metadata dinámica para SEO
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const industry = getIndustryBySlug(params.slug);
+// Next.js 15: params es ahora una Promise
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const resolvedParams = await params;
+  const industry = getIndustryBySlug(resolvedParams.slug);
 
   if (!industry) {
     notFound();
@@ -126,9 +128,11 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-export default function IndustriaPage({ params }: { params: { slug: string } }) {
+// Next.js 15: params es ahora una Promise
+export default async function IndustriaPage({ params }: { params: Promise<{ slug: string }> }) {
+  const resolvedParams = await params;
   // Buscar la industria correspondiente por slug
-  const industryData = getIndustryBySlug(params.slug);
+  const industryData = getIndustryBySlug(resolvedParams.slug);
   
   // Si no existe la industria, mostrar 404
   if (!industryData) {
@@ -136,7 +140,7 @@ export default function IndustriaPage({ params }: { params: { slug: string } }) 
   }
 
   // Obtener el ID de imagen para esta industria
-  const industryImageId = getIndustryImageId(params.slug);
+  const industryImageId = getIndustryImageId(resolvedParams.slug);
 
   // Extraer propiedades con valores por defecto
   const industry = {

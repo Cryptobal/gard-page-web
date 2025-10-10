@@ -74,9 +74,17 @@ const staggerContainer = {
   }
 };
 
-export default function CiudadServicioPage({ params }: { params: { ciudad: string; servicio: string } }) {
-  // Obtener datos de la ciudad y servicio
+// Next.js 15: params ahora es una Promise incluso en Client Components
+export default function CiudadServicioPage() {
+  // Usar hooks de Next.js para obtener params en Client Components
+  const routeParams = useParams();
   const searchParams = useSearchParams();
+  const params = {
+    ciudad: routeParams.ciudad as string,
+    servicio: routeParams.servicio as string
+  };
+  
+  // Obtener datos de la ciudad y servicio
   const ciudad = getCiudadBySlug(params.ciudad);
   const servicioMetadata = servicesMetadata.find(s => s.slug === params.servicio);
   

@@ -10,11 +10,12 @@ import { getServicioIndustriaData } from '@/app/data/servicios-por-industria';
 import LinkParamsAware from '@/app/components/LinkParamsAware';
 import FormularioCotizacionSeccion from '@/app/components/FormularioCotizacionSeccion';
 
+// Next.js 15: params es ahora una Promise
 type PageProps = {
-  params: {
+  params: Promise<{
     slug: string;
     industria: string;
-  };
+  }>;
 };
 
 // Función para normalizar nombres a slugs
@@ -27,8 +28,9 @@ function normalizeName(name: string): string {
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const servicio = servicios.find(s => normalizeName(s.name) === params.slug);
-  const industry = industries.find(i => normalizeName(i.name) === params.industria);
+  const resolvedParams = await params;
+  const servicio = servicios.find(s => normalizeName(s.name) === resolvedParams.slug);
+  const industry = industries.find(i => normalizeName(i.name) === resolvedParams.industria);
   
   if (!servicio || !industry) {
     return {
@@ -43,7 +45,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     keywords: [
       `${servicio.name.toLowerCase()} para ${industry.name}`,
       `seguridad en ${industry.name}`,
-      `${servicio.name.toLowerCase()} ${params.industria}`,
+      `${servicio.name.toLowerCase()} ${resolvedParams.industria}`,
       'seguridad especializada',
       'servicios de protección',
       `empresa de seguridad para ${industry.name}`
@@ -51,9 +53,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-export default function ServicioIndustriaPage({ params }: PageProps) {
-  const servicio = servicios.find(s => normalizeName(s.name) === params.slug);
-  const industry = industries.find(i => normalizeName(i.name) === params.industria);
+export default async function ServicioIndustriaPage({ params }: PageProps) {
+  const resolvedParams = await params;
+  const servicio = servicios.find(s => normalizeName(s.name) === resolvedParams.slug);
+  const industry = industries.find(i => normalizeName(i.name) === resolvedParams.industria);
   
   if (!servicio || !industry) {
     return (
@@ -69,7 +72,7 @@ export default function ServicioIndustriaPage({ params }: PageProps) {
   }
   
   // Obtener datos específicos para esta combinación de servicio e industria
-  const servicioIndustriaData = getServicioIndustriaData(params.slug, params.industria);
+  const servicioIndustriaData = getServicioIndustriaData(resolvedParams.slug, resolvedParams.industria);
   
   // Obtener slugs normalizados para pasar a los componentes
   const servicioSlug = normalizeName(servicio.name);

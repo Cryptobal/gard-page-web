@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
+  // swcMinify removido - es el default en Next.js 15
   
   // Optimización de imágenes
   images: {
@@ -53,11 +53,19 @@ const nextConfig = {
     return config;
   },
 
-  // Optimización de experimental features
+  // Optimización de experimental features - Next.js 15
   experimental: {
     optimizePackageImports: ['lucide-react', '@radix-ui/react-icons', 'framer-motion'],
-    // optimizeCss: true, // Comentado temporalmente para evitar error con critters
     scrollRestoration: true,
+    // Turbo features disponibles en Next 15 (estable)
+    turbo: {
+      rules: {
+        '*.svg': {
+          loaders: ['@svgr/webpack'],
+          as: '*.js',
+        },
+      },
+    },
   },
   
   // COMENTADO PARA SOLUCIONAR PROBLEMA DE GOOGLE ADS - las URLs del feed no tienen trailing slash

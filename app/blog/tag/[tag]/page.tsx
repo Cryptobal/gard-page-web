@@ -26,9 +26,11 @@ export async function generateStaticParams() {
 
 /**
  * Genera metadatos SEO para cada página de etiqueta
+ * Next.js 15: params es ahora una Promise
  */
-export async function generateMetadata({ params }: { params: { tag: string } }): Promise<Metadata> {
-  const tagName = decodeURIComponent(params.tag);
+export async function generateMetadata({ params }: { params: Promise<{ tag: string }> }): Promise<Metadata> {
+  const resolvedParams = await params;
+  const tagName = decodeURIComponent(resolvedParams.tag);
   const capitalizedTag = capitalize(tagName);
   const canonicalPath = `/blog/tag/${encodeURIComponent(tagName)}`;
   
@@ -71,9 +73,11 @@ export async function generateMetadata({ params }: { params: { tag: string } }):
 
 /**
  * Página de etiquetas del blog que muestra los artículos con una etiqueta específica (primera página)
+ * Next.js 15: params es ahora una Promise
  */
-export default async function TagPage({ params }: { params: { tag: string } }) {
-  const tag = decodeURIComponent(params.tag);
+export default async function TagPage({ params }: { params: Promise<{ tag: string }> }) {
+  const resolvedParams = await params;
+  const tag = decodeURIComponent(resolvedParams.tag);
   const capitalizedTag = capitalize(tag);
   
   // Obtener posts paginados para la primera página

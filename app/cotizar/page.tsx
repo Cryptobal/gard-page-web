@@ -4,7 +4,7 @@ import CotizacionForm from './components/CotizacionForm';
 import UrlParamsProcessor from './components/UrlParamsProcessor';
 import { ArrowRight, Clipboard } from 'lucide-react';
 import GardHero from '@/components/layouts/GardHero';
-import { useRef } from 'react';
+import { useRef, Suspense } from 'react';
 import Head from 'next/head';
 
 export default function CotizarPage() {
@@ -19,7 +19,9 @@ export default function CotizarPage() {
   return (
     <>
       {/* Componente para procesar parámetros URL */}
-      <UrlParamsProcessor />
+      <Suspense fallback={null}>
+        <UrlParamsProcessor />
+      </Suspense>
 
       {/* Hero Section */}
       <GardHero 
