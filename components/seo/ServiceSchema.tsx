@@ -74,7 +74,8 @@ export default function ServiceSchema({
       '@type': 'AggregateRating',
       'ratingValue': aggregateRating.ratingValue,
       'reviewCount': aggregateRating.reviewCount,
-      'bestRating': aggregateRating.bestRating || 5
+      'bestRating': aggregateRating.bestRating || 5,
+      'worstRating': 1
     };
   }
 
