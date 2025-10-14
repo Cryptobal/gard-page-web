@@ -296,7 +296,6 @@ export default function GuardiasAntofagastaPage() {
 
       <FormularioCotizacionSeccion 
         id="cotizar"
-        prefillCiudad="Antofagasta"
       />
     </>
   );

@@ -309,7 +309,6 @@ export default function SeguridadConstruccionPage() {
       <FormularioCotizacionSeccion 
         id="cotizar"
         prefillIndustria="Construcción"
-        prefillCiudad="Santiago"
       />
     </>
   );

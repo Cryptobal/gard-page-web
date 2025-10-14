@@ -296,7 +296,6 @@ export default function GuardiasValparaisoPage() {
 
       <FormularioCotizacionSeccion 
         id="cotizar"
-        prefillCiudad="Valparaíso"
       />
     </>
   );
