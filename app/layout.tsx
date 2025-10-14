@@ -10,6 +10,7 @@ import ClientScripts from './components/ClientScripts';
 import ClientWrapper from './ClientWrapper';
 import { metadata } from './metadata';
 import CanonicalUrl from '@/components/seo/CanonicalUrl';
+import LocalBusinessSchema from '@/components/seo/LocalBusinessSchema';
 
 // Obtener GTM ID desde variables de entorno
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || '';
@@ -37,130 +38,68 @@ export default function RootLayout({
         <link rel="preconnect" href="https://iframe.cloudflarestream.com" />
         <link rel="dns-prefetch" href="https://iframe.cloudflarestream.com" />
 
-        {/* JSON-LD base: Organization + LocalBusiness */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@graph': [
-                {
-                  '@type': 'Organization',
-                  name: 'Gard Security',
-                  url: 'https://www.gard.cl',
-                  logo: 'https://www.gard.cl/logos/gard.svg',
-                  sameAs: [
-                    'https://www.linkedin.com/company/gard-security'
-                  ]
-                },
-                {
-                  '@type': ['LocalBusiness', 'SecurityService'],
-                  name: 'Gard Security Chile',
-                  image: 'https://www.gard.cl/logos/gard.svg',
-                  address: { '@type': 'PostalAddress', addressCountry: 'CL' },
-                  areaServed: 'CL',
-                  telephone: '+56 2 2987 2380',
-                  openingHours: ['Mo-Fr 09:00-18:00'],
-                  url: 'https://www.gard.cl'
-                }
-              ]
-            })
-          }}
-        />
-
-        {/* Organization Schema */}
+        {/* LocalBusiness Schema - Optimizado para SEO Local */}
+        <LocalBusinessSchema />
+        
+        {/* Organization Schema - Información corporativa */}
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Organization",
+          "@id": "https://www.gard.cl/#organization",
           "name": "Gard Security",
-          "url": "https://gard.cl",
-          "logo": "https://imagedelivery.net/gGw8cfmEZedi85dYm6qcFw/195f82cb-9a5e-4964-6fb5-ea43da47b000/public",
+          "alternateName": "Gard Security SpA",
+          "legalName": "Gard Security SpA",
+          "url": "https://www.gard.cl",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.gard.cl/logos/gard.svg",
+            "width": "250",
+            "height": "60"
+          },
+          "description": "Empresa líder en servicios de seguridad privada B2B en Chile, especializada en guardias certificados OS10, sistemas electrónicos y monitoreo 24/7 para minería, logística y edificios corporativos.",
+          "foundingDate": "2010",
+          "numberOfEmployees": {
+            "@type": "QuantitativeValue",
+            "value": "500"
+          },
           "contactPoint": {
             "@type": "ContactPoint",
             "telephone": "+56229872380",
             "contactType": "customer service",
-            "availableLanguage": "Spanish"
+            "availableLanguage": ["Spanish", "es"],
+            "email": "comercial@gard.cl",
+            "areaServed": "CL"
           },
           "sameAs": [
             "https://www.facebook.com/gardsecuritycl",
             "https://www.linkedin.com/company/gard-security"
           ],
-          "foundingDate": "2010",
-          "description": "Empresa líder en servicios de seguridad privada en Chile, especializada en guardias de seguridad, sistemas electrónicos y monitoreo 24/7."
+          "knowsAbout": [
+            "Seguridad Privada",
+            "Guardias de Seguridad",
+            "Seguridad Minera",
+            "Certificación OS10",
+            "Seguridad Industrial",
+            "Monitoreo 24/7"
+          ]
         }) }} />
 
-        {/* LocalBusiness Schema */}
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "LocalBusiness",
-          "name": "Gard Security",
-          "image": "https://imagedelivery.net/gGw8cfmEZedi85dYm6qcFw/195f82cb-9a5e-4964-6fb5-ea43da47b000/public",
-          "url": "https://gard.cl",
-          "telephone": "+56229872380",
-          "email": "contacto@gard.cl",
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "Av. Apoquindo 6410, Oficina 701",
-            "addressLocality": "Las Condes",
-            "addressRegion": "RM",
-            "postalCode": "7550000",
-            "addressCountry": "CL"
-          },
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": "-33.400000",
-            "longitude": "-70.566666"
-          },
-          "openingHoursSpecification": [
-            {
-              "@type": "OpeningHoursSpecification",
-              "dayOfWeek": [
-                "Monday",
-                "Tuesday",
-                "Wednesday",
-                "Thursday",
-                "Friday"
-              ],
-              "opens": "09:00",
-              "closes": "18:00"
-            }
-          ],
-          "priceRange": "$$$",
-          "areaServed": "Chile",
-          "hasOfferCatalog": {
-            "@type": "OfferCatalog",
-            "name": "Servicios de Seguridad",
-            "itemListElement": [
-              {
-                "@type": "Offer",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "Guardias de Seguridad",
-                  "description": "Servicio de guardias de seguridad privada para empresas"
-                }
-              },
-              {
-                "@type": "Offer",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "Sistemas de Seguridad Electrónica",
-                  "description": "Instalación y monitoreo de sistemas de seguridad electrónica"
-                }
-              }
-            ]
-          }
-        }) }} />
-
-        {/* WebSite Schema */}
+        {/* WebSite Schema - Para búsqueda interna */}
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "WebSite",
           "name": "Gard Security",
-          "url": "https://gard.cl",
-          "description": "Empresa líder en servicios de seguridad privada en Chile",
+          "url": "https://www.gard.cl",
+          "description": "Empresa líder en servicios de seguridad privada B2B en Chile",
+          "publisher": {
+            "@id": "https://www.gard.cl/#organization"
+          },
           "potentialAction": {
             "@type": "SearchAction",
-            "target": "https://gard.cl/buscar?q={search_term_string}",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://www.gard.cl/blog?q={search_term_string}"
+            },
             "query-input": "required name=search_term_string"
           }
         }) }} />

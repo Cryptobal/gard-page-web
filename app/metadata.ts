@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://gard.cl'),
+  metadataBase: new URL('https://www.gard.cl'),
   title: {
     template: '%s',
     default: 'Gard Security Chile', // Este valor solo se usa si la página hija no define título
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'es_CL',
-    url: 'https://gard.cl',
+    url: 'https://www.gard.cl',
     siteName: 'Gard Security',
     title: 'Gard Security Chile',
     description: 'Empresa líder en seguridad privada para empresas e industrias. Ofrecemos guardias de seguridad, monitoreo 24/7, sistemas de vigilancia y soluciones integrales para proteger tu negocio.',

@@ -5,6 +5,92 @@ export const industriesMetadata = [
     title: 'Guardias de Seguridad para Minería en Chile | Gard Security',
     description: 'Protección especializada 24/7 para mineras. Personal certificado OS10, monitoreo remoto y respuesta inmediata. +15 años protegiendo operaciones mineras. Cotice aquí.',
     keywords: ['guardias seguridad minería', 'seguridad minera chile', 'guardias certificados OS10', 'seguridad industrial minería', 'protección faenas mineras'],
+    
+    // Contenido expandido para SEO
+    subtitle: 'Protección especializada con personal 100% certificado OS10 por SERNAGEOMIN para faenas mineras en Chile',
+    descriptionTitle: 'Seguridad Minera de Clase Mundial',
+    descriptionParagraphs: [
+      'La industria minera en Chile enfrenta desafíos de seguridad únicos debido a la ubicación remota de las faenas, el alto valor de los activos y las exigentes normativas de SERNAGEOMIN. En Gard Security, entendemos que la seguridad en minería no es solo vigilancia: es protección de vidas, activos críticos y continuidad operacional.',
+      'Contamos con más de 15 años de experiencia protegiendo operaciones mineras en zonas remotas de Chile, incluyendo Antofagasta, Atacama y Coquimbo. Como es obligatorio por ley, el 100% de nuestro personal cuenta con certificación OS10 vigente de SERNAGEOMIN. Además, nuestros guardias en minería reciben capacitación especializada adicional en protocolos mineros, primeros auxilios en altura y manejo de emergencias en zonas remotas.',
+      'Nuestros protocolos de seguridad minera incluyen control de acceso biométrico en puntos críticos, rondas programadas con tecnología RFID, monitoreo remoto 24/7 con cámaras PTZ de alta definición, y respuesta ante emergencias coordinada con equipos de rescate. Cada guardia recibe capacitación específica en primeros auxilios en altura, manejo de situaciones de emergencia en faenas y protocolos anti-intrusión.',
+      'Trabajamos con mineras de cobre, litio, oro y otros minerales, adaptando nuestros servicios a las particularidades de cada operación. Ya sea una faena a cielo abierto, subterránea o de procesamiento, diseñamos soluciones de seguridad que no interfieren con la productividad pero garantizan protección total.',
+      'Además de guardias certificados, proveemos tecnología especializada para minería: drones de vigilancia perimetral con visión nocturna, sistemas de detección de intrusos en zonas extensas, comunicación satelital para zonas sin cobertura celular, y plataformas de gestión de incidentes integradas con los sistemas de la minera.'
+    ],
+    
+    challengesDescription: 'Las operaciones mineras en Chile enfrentan riesgos de seguridad complejos que requieren soluciones especializadas y personal altamente calificado.',
+    challenges: [
+      {
+        icon: 'Shield',
+        title: 'Ubicaciones Remotas y Aisladas',
+        description: 'Faenas ubicadas en zonas de difícil acceso requieren personal que pueda trabajar en condiciones extremas con autonomía y comunicación satelital cuando no hay cobertura celular.'
+      },
+      {
+        icon: 'ShieldCheck',
+        title: 'Robo de Activos de Alto Valor',
+        description: 'Maquinaria pesada, vehículos, cables de cobre, combustibles y explosivos son objetivos frecuentes de robo organizado. Se requiere vigilancia especializada y controles estrictos.'
+      },
+      {
+        icon: 'Eye',
+        title: 'Cumplimiento Normativo Estricto',
+        description: 'La certificación OS10 es obligatoria para todos los guardias de seguridad en Chile según DS N°132. En minería, además se requieren protocolos específicos de SERNAGEOMIN. El incumplimiento resulta en multas millonarias y paralización.'
+      },
+      {
+        icon: 'Shield',
+        title: 'Protección de Información Sensible',
+        description: 'Datos geológicos, procesos productivos y rutas de transporte de mineral son información confidencial que debe protegerse contra espionaje industrial.'
+      },
+      {
+        icon: 'ShieldCheck',
+        title: 'Gestión de Emergencias',
+        description: 'Derrumbes, incendios, accidentes con maquinaria o situaciones médicas requieren personal de seguridad capacitado en primeros auxilios y protocolos de evacuación.'
+      },
+      {
+        icon: 'Eye',
+        title: 'Control de Acceso Multi-Nivel',
+        description: 'Separación de áreas según nivel de autorización (zonas públicas, restringidas, críticas) con control biométrico y registro de ingresos/salidas para trazabilidad total.'
+      }
+    ],
+    
+    statsDescription: 'Chile es el principal productor mundial de cobre y uno de los líderes en litio. La seguridad minera es crítica para mantener esta posición.',
+    stats: [
+      { value: 15, suffix: '+', label: 'Años Protegiendo Mineras' },
+      { value: 100, suffix: '%', label: 'Personal Certificado OS10' },
+      { value: 15, suffix: '+', label: 'Faenas Mineras Protegidas' },
+      { value: 99.9, suffix: '%', label: 'Continuidad Operacional' }
+    ],
+    
+    recommendedServices: [
+      {
+        name: 'Guardias Certificados OS10 Especializados',
+        slug: 'guardias-de-seguridad',
+        description: '100% de nuestro personal cuenta con certificación OS10 vigente (obligatorio por ley) MÁS capacitación especializada en protocolos mineros, primeros auxilios en altura y emergencias en zonas remotas.'
+      },
+      {
+        name: 'Monitoreo Remoto 24/7',
+        slug: 'central-monitoreo',
+        description: 'Central de monitoreo especializada en minería con comunicación satelital para zonas sin cobertura. Respuesta inmediata ante alarmas o incidentes.'
+      },
+      {
+        name: 'Drones de Vigilancia Perimetral',
+        slug: 'drones-seguridad',
+        description: 'Vigilancia con drones en áreas extensas difíciles de patrullar. Visión nocturna térmica, detección de intrusos y reconocimiento aéreo programado.'
+      },
+      {
+        name: 'Seguridad Electrónica Integrada',
+        slug: 'seguridad-electronica',
+        description: 'Cámaras PTZ de alta definición, control de acceso biométrico, sensores perimetrales y sistemas de comunicación integrados con la operación minera.'
+      },
+      {
+        name: 'Control de Acceso Biométrico',
+        slug: 'seguridad-perimetral',
+        description: 'Identificación por huella digital o reconocimiento facial en puntos de acceso críticos. Registro digital de entradas/salidas con trazabilidad completa.'
+      },
+      {
+        name: 'Auditoría de Seguridad',
+        slug: 'auditoria-seguridad',
+        description: 'Evaluación de riesgos específicos de su faena minera con recomendaciones para cumplir normativas SERNAGEOMIN y optimizar protección.'
+      }
+    ]
   },
   {
     slug: 'retail',
@@ -47,6 +133,92 @@ export const industriesMetadata = [
     title: 'Seguridad para Bodegas Logísticas Chile | Guardias 24/7',
     description: 'Protección integral de inventario y mercancía. Guardias especializados, control de acceso biométrico y CCTV. Reducimos mermas hasta 85%. Cotización inmediata.',
     keywords: ['seguridad bodegas chile', 'guardias almacenes logística', 'protección inventario', 'vigilancia centros distribución', 'seguridad bodega 24/7'],
+    
+    // Contenido expandido para SEO
+    subtitle: 'Reducción comprobada de mermas hasta 85% con guardias especializados, control biométrico y CCTV con inteligencia artificial',
+    descriptionTitle: 'Protección Integral para Bodegas y Centros de Distribución',
+    descriptionParagraphs: [
+      'Las mermas en bodegas logísticas y centros de distribución pueden representar pérdidas de hasta 15% del inventario anual, impactando directamente la rentabilidad. En Gard Security hemos desarrollado un sistema integral de seguridad que combina guardias capacitados, tecnología de punta y protocolos anti-robo que han demostrado reducir mermas hasta en 85% en los primeros 6 meses.',
+      'Con más de 30 centros de distribución protegidos en Chile, entendemos los puntos críticos de vulnerabilidad: recepción de mercancía, almacenamiento, picking, despacho y control de personal interno/externo. Nuestro enfoque no es solo reactivo sino preventivo: detectamos patrones de riesgo antes de que se materialicen en pérdidas.',
+      'Implementamos control de acceso biométrico en todas las zonas críticas, eliminando el acceso no autorizado. Nuestros guardias realizan revisiones aleatorias de vehículos y personal, verifican documentación de carga y mantienen registro digital de todos los movimientos. Las cámaras CCTV con IA detectan automáticamente comportamientos sospechosos y envían alertas en tiempo real a nuestra central de monitoreo.',
+      'Trabajamos con bodegas de retail, e-commerce, distribuidores mayoristas, centros de cross-docking y almacenes de alta rotación. Cada operación logística tiene particularidades que consideramos en el diseño del plan de seguridad: horarios de operación, tipos de mercancía, flujo de vehículos, cantidad de personal y nivel de automatización.',
+      'Además de prevenir robos externos, nuestro sistema detecta y disuade el "robo hormiga" interno, responsable del 60-70% de las mermas en logística. Capacitamos a su personal en cultura de seguridad y implementamos controles que no entorpecen la operación pero mantienen trazabilidad total del inventario.'
+    ],
+    
+    challengesDescription: 'Los centros logísticos y bodegas enfrentan amenazas complejas que requieren un enfoque integral combinando personal, tecnología y procesos.',
+    challenges: [
+      {
+        icon: 'Shield',
+        title: 'Robo Hormiga Interno',
+        description: 'El 60-70% de las mermas provienen de sustracción de mercancía por personal interno. Requiere controles sutiles pero efectivos que no afecten la moral del equipo.'
+      },
+      {
+        icon: 'ShieldCheck',
+        title: 'Robo Organizado Externo',
+        description: 'Bandas especializadas que operan con información privilegiada sobre mercancía de alto valor, rutas de transporte y puntos débiles de seguridad.'
+      },
+      {
+        icon: 'Eye',
+        title: 'Control de Acceso Multi-Actor',
+        description: 'Flujo constante de choferes externos, proveedores, personal temporal y operadores internos requiere identificación precisa y trazabilidad de movimientos.'
+      },
+      {
+        icon: 'Shield',
+        title: 'Mercancía de Alto Valor',
+        description: 'Electrónica, medicamentos, licores, perfumes y otros productos atractivos para reventa ilegal requieren vigilancia especial y control de inventario riguroso.'
+      },
+      {
+        icon: 'ShieldCheck',
+        title: 'Operación 24/7 Sin Pausas',
+        description: 'Bodegas que operan día y noche requieren cobertura de seguridad continua con cambios de turno sin exposición de vulnerabilidades.'
+      },
+      {
+        icon: 'Eye',
+        title: 'Falta de Trazabilidad',
+        description: 'Sin sistemas digitales de control, es imposible identificar cuándo, dónde y quién sustrajo mercancía. La tecnología es clave para detectar patrones.'
+      }
+    ],
+    
+    statsDescription: 'La logística mueve el 40% del PIB chileno. Reducir mermas significa millones en ahorro para las empresas del sector.',
+    stats: [
+      { value: 30, suffix: '+', label: 'Bodegas Protegidas' },
+      { value: 85, suffix: '%', label: 'Reducción de Mermas' },
+      { value: 250000, suffix: '+ m²', label: 'Metros Protegidos' },
+      { value: 24, suffix: '/7', label: 'Monitoreo Continuo' }
+    ],
+    
+    recommendedServices: [
+      {
+        name: 'Guardias Especializados en Logística',
+        slug: 'guardias-de-seguridad',
+        description: 'Guardias capacitados en control de inventario, revisión de vehículos, protocolos anti-robo hormiga y gestión de incidentes en bodegas de alta rotación.'
+      },
+      {
+        name: 'Control de Acceso Biométrico',
+        slug: 'seguridad-perimetral',
+        description: 'Identificación por huella digital o reconocimiento facial en zonas críticas. Registro automático de entradas/salidas con generación de reportes de trazabilidad.'
+      },
+      {
+        name: 'CCTV con Inteligencia Artificial',
+        slug: 'seguridad-electronica',
+        description: 'Cámaras de alta resolución con IA que detectan comportamientos sospechosos: permanencia prolongada en zonas restringidas, movimientos anormales, manipulación de mercancía.'
+      },
+      {
+        name: 'Monitoreo Remoto 24/7',
+        slug: 'central-monitoreo',
+        description: 'Central especializada en logística que supervisa todas las cámaras, alarmas y controles de acceso. Respuesta inmediata ante incidentes sospechosos.'
+      },
+      {
+        name: 'Auditoría de Seguridad',
+        slug: 'auditoria-seguridad',
+        description: 'Evaluación completa de vulnerabilidades en su bodega con recomendaciones específicas para reducir mermas y optimizar controles sin afectar productividad.'
+      },
+      {
+        name: 'Checkpoints RFID',
+        slug: 'seguridad-electronica',
+        description: 'Rondas de guardias verificadas con tecnología RFID en puntos estratégicos. Trazabilidad digital de todas las inspecciones y registros de incidentes.'
+      }
+    ]
   },
   {
     slug: 'edificios-corporativos',
@@ -54,6 +226,92 @@ export const industriesMetadata = [
     title: 'Guardias para Edificios Corporativos Santiago | Gard Security',
     description: 'Seguridad profesional para edificios de oficinas. Control de acceso inteligente, recepción 24/7 y protocolo ejecutivo. +50 edificios protegidos en Santiago. Cotice ahora.',
     keywords: ['guardias edificios corporativos', 'seguridad oficinas santiago', 'control acceso edificios', 'recepción corporativa', 'seguridad empresarial chile'],
+    
+    // Contenido expandido para SEO
+    subtitle: 'Seguridad de nivel ejecutivo con protocolo corporativo, control de acceso inteligente y recepción profesional 24/7',
+    descriptionTitle: 'Protección Corporativa de Clase Mundial',
+    descriptionParagraphs: [
+      'Los edificios corporativos requieren un nivel de seguridad que combine protección efectiva con una imagen profesional impecable. En Gard Security entendemos que en edificios clase A, la seguridad debe ser invisible pero omnipresente: guardias con presentación ejecutiva, protocolos discretos y tecnología de punta que no interfiera con la experiencia de ejecutivos, colaboradores y visitantes.',
+      'Con más de 50 edificios corporativos protegidos en Santiago (Las Condes, Providencia, Vitacura), hemos perfeccionado un modelo de seguridad que equilibra control estricto con hospitalidad profesional. Nuestros guardias actúan como primera línea de atención corporativa: reciben visitantes con cortesía, gestionan accesos con eficiencia y mantienen vigilancia constante sin ser intrusivos.',
+      'Implementamos sistemas de control de acceso inteligente con reconocimiento facial o tarjetas RFID para colaboradores, registro digital de visitantes con generación automática de credenciales temporales, y trazabilidad completa de entradas/salidas. Todas las áreas comunes y accesos tienen cobertura de cámaras CCTV en alta definición conectadas a nuestra central de monitoreo 24/7.',
+      'Nuestro protocolo de seguridad corporativa incluye gestión de emergencias (evacuaciones, primeros auxilios), coordinación con carabineros y bomberos, control de estacionamientos subterráneos, supervisión de áreas comunes (hall, ascensores, terrazas), y reportería mensual para administraciones de edificios con KPIs de incidentes, tiempos de respuesta y cumplimiento de protocolos.',
+      'Trabajamos con edificios de oficinas clase A y A+, torres corporativas, centros empresariales y complejos de oficinas. Cada edificio tiene características únicas que consideramos: cantidad de empresas arrendatarias, flujo de personas, horarios de atención, eventos corporativos, y nivel de tecnología instalada. Nos integramos perfectamente con sistemas BMS (Building Management System) existentes.'
+    ],
+    
+    challengesDescription: 'Los edificios corporativos enfrentan desafíos de seguridad que requieren profesionalismo, tecnología y protocolos adaptados al ambiente ejecutivo.',
+    challenges: [
+      {
+        icon: 'Shield',
+        title: 'Control de Visitantes Corporativos',
+        description: 'Alto flujo de visitantes, reuniones de negocios, eventos y delivery requiere identificación precisa sin crear fricciones ni demoras que afecten la imagen corporativa.'
+      },
+      {
+        icon: 'ShieldCheck',
+        title: 'Protección de Información Sensible',
+        description: 'Oficinas con información confidencial, datos de clientes y estrategias corporativas requieren prevenir accesos no autorizados y espionaje corporativo.'
+      },
+      {
+        icon: 'Eye',
+        title: 'Gestión de Accesos Multi-Empresa',
+        description: 'Edificios con múltiples empresas arrendatarias requieren segregación de accesos: cada empresa controla quién ingresa a sus oficinas sin afectar áreas comunes.'
+      },
+      {
+        icon: 'Shield',
+        title: 'Seguridad en Estacionamientos',
+        description: 'Estacionamientos subterráneos son puntos vulnerables: robos de vehículos, asaltos a ejecutivos al llegar/salir y acceso no autorizado al edificio por zonas de carga.'
+      },
+      {
+        icon: 'ShieldCheck',
+        title: 'Protección Ejecutiva Discreta',
+        description: 'Ejecutivos de alto perfil requieren protección sin ostentación. Guardias deben identificar amenazas potenciales manteniendo un ambiente corporativo profesional.'
+      },
+      {
+        icon: 'Eye',
+        title: 'Respuesta ante Emergencias',
+        description: 'Evacuaciones, emergencias médicas, incendios o amenazas requieren protocolos claros, coordinación con autoridades y personal capacitado en primeros auxilios.'
+      }
+    ],
+    
+    statsDescription: 'Santiago concentra el 70% de los edificios corporativos de Chile. La seguridad profesional es factor clave en la valuación inmobiliaria.',
+    stats: [
+      { value: 50, suffix: '+', label: 'Edificios Protegidos' },
+      { value: 99, suffix: '.9%', label: 'Continuidad Operacional' },
+      { value: 24, suffix: '/7', label: 'Recepción Activa' },
+      { value: 5000, suffix: '+', label: 'Ejecutivos Protegidos' }
+    ],
+    
+    recommendedServices: [
+      {
+        name: 'Recepción Corporativa 24/7',
+        slug: 'guardias-de-seguridad',
+        description: 'Guardias con presentación ejecutiva que actúan como recepcionistas profesionales: atienden visitantes, gestionan accesos, controlan entregas y mantienen imagen corporativa impecable.'
+      },
+      {
+        name: 'Control de Acceso Inteligente',
+        slug: 'seguridad-perimetral',
+        description: 'Sistemas con reconocimiento facial, tarjetas RFID para colaboradores, registro digital de visitantes con foto y generación de credenciales temporales con QR.'
+      },
+      {
+        name: 'CCTV Corporativa',
+        slug: 'seguridad-electronica',
+        description: 'Cámaras de alta definición en áreas comunes, ascensores, estacionamientos y accesos. Almacenamiento en la nube con respaldo de 90 días y acceso remoto para administradores.'
+      },
+      {
+        name: 'Monitoreo Remoto 24/7',
+        slug: 'central-monitoreo',
+        description: 'Central especializada en edificios corporativos que supervisa cámaras, alarmas, controles de acceso y sensores. Respuesta coordinada ante cualquier incidente.'
+      },
+      {
+        name: 'Protección de Estacionamientos',
+        slug: 'seguridad-perimetral',
+        description: 'Vigilancia de estacionamientos subterráneos con cámaras PTZ, control de ingreso/salida de vehículos, rondas programadas y verificación de credenciales de conductores.'
+      },
+      {
+        name: 'Gestión de Emergencias',
+        slug: 'guardias-de-seguridad',
+        description: 'Protocolos de evacuación, primeros auxilios, coordinación con bomberos/carabineros, simulacros periódicos y capacitación a ocupantes del edificio en prevención.'
+      }
+    ]
   },
   {
     slug: 'construccion',

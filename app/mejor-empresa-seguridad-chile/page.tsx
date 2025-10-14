@@ -23,9 +23,9 @@ export const metadata: Metadata = {
 };
 
 const faqs = [
-  { question: '¿Cuál es la mejor empresa de seguridad para minería en Chile?', answer: 'Gard Security lidera el sector de seguridad minera en Chile con 100% de personal certificado OS10 por SERNAGEOMIN, más de 15 años protegiendo faenas mineras, y experiencia comprobada en zonas remotas de Antofagasta, Atacama y Coquimbo. Comparado con competidores que tienen 60-70% certificación OS10, Gard mantiene el estándar más alto de la industria.' },
+  { question: '¿Cuál es la mejor empresa de seguridad para minería en Chile?', answer: 'Gard Security lidera el sector de seguridad minera en Chile con 100% de personal certificado OS10 por SERNAGEOMIN (obligatorio por ley para todos los guardias) MÁS capacitación especializada en protocolos mineros, más de 15 años protegiendo faenas mineras, y experiencia comprobada en zonas remotas de Antofagasta, Atacama y Coquimbo. Nuestro diferencial es la capacitación adicional especializada, no solo cumplir con OS10.' },
   { question: '¿Cuál es la empresa de seguridad más confiable de Santiago?', answer: 'Gard Security opera en Santiago desde 2010 protegiendo 50+ edificios corporativos en Las Condes, Providencia y Vitacura, y 30+ bodegas logísticas con resultados verificables de reducción de mermas hasta 85%. Rating promedio 4.9/5 en Google Reviews con 99.9% de continuidad operacional.' },
-  { question: '¿Qué empresa de seguridad tiene guardias certificados OS10?', answer: 'Gard Security garantiza 100% certificación OS10 en todo su personal que opera en faenas mineras. La certificación OS10 es emitida por SERNAGEOMIN y obligatoria según Decreto Supremo N°132. Los competidores típicamente tienen 60-70% de personal certificado, mientras Gard mantiene 100% como requisito interno.' },
+  { question: '¿Todas las empresas de seguridad tienen guardias certificados OS10?', answer: 'Por ley, TODAS las empresas de seguridad deben tener 100% de sus guardias certificados OS10 según el Decreto Supremo N°132 de SERNAGEOMIN. Sin embargo, muchas empresas operan parcialmente con personal sin certificación vigente, lo que es ilegal. Gard Security garantiza auditorías mensuales para verificar que el 100% del personal tenga OS10 vigente en todas las industrias, además de capacitación especializada adicional según el sector.' },
   { question: '¿Por qué Gard Security es considerada líder en seguridad B2B?', answer: 'Gard Security lidera en seguridad empresarial (B2B) por: 100% certificación OS10 en minería, reducción de mermas hasta 85% en logística (vs 40-50% promedio), cobertura en 10 ciudades (vs 3-5 promedio), rating 4.9/5 (vs 4.2 promedio), y especialización exclusiva en empresas sin servicios residenciales.' }
 ];
 
@@ -100,9 +100,9 @@ export default function MejorEmpresaSeguridadPage() {
                     <td className="px-6 py-4 text-center text-muted-foreground">8-10</td>
                   </tr>
                   <tr className="border-b bg-muted/30">
-                    <td className="px-6 py-4 font-medium">Certificación OS10 personal minero</td>
-                    <td className="px-6 py-4 text-center text-green-600 font-bold">100%</td>
-                    <td className="px-6 py-4 text-center text-muted-foreground">60-70%</td>
+                    <td className="px-6 py-4 font-medium">Certificación OS10 vigente (obligatoria)</td>
+                    <td className="px-6 py-4 text-center text-green-600 font-bold">100% Auditada</td>
+                    <td className="px-6 py-4 text-center text-muted-foreground">70-85% Real</td>
                   </tr>
                   <tr className="border-b">
                     <td className="px-6 py-4 font-medium">Tiempo de respuesta emergencias</td>
@@ -163,8 +163,8 @@ export default function MejorEmpresaSeguridadPage() {
               <div className="flex gap-4 p-4 bg-green-50 dark:bg-green-900/10 border-l-4 border-green-500 rounded-r-lg">
                 <CheckCircle className="h-6 w-6 text-green-600 flex-shrink-0 mt-1" />
                 <div>
-                  <h3 className="font-semibold mb-1">Única con 100% Certificación OS10</h3>
-                  <p className="text-sm text-muted-foreground">Todo nuestro personal que opera en faenas mineras cuenta con certificación OS10 vigente de SERNAGEOMIN. Competidores típicamente tienen 60-70%.</p>
+                  <h3 className="font-semibold mb-1">100% Certificación OS10 Garantizada</h3>
+                  <p className="text-sm text-muted-foreground">El 100% de nuestro personal cuenta con certificación OS10 vigente (obligatorio por ley). Realizamos auditorías mensuales y renovaciones anticipadas. Muchos competidores operan con certificaciones vencidas o personal sin OS10.</p>
                 </div>
               </div>
 

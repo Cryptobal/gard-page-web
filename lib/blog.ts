@@ -4,6 +4,7 @@ import matter from 'gray-matter';
 import { cloudflareImages } from './images';
 import { remark } from 'remark';
 import html from 'remark-html';
+import remarkGfm from 'remark-gfm';
 
 // Tipos para el blog
 export interface BlogPost {
@@ -42,9 +43,10 @@ export async function getPostBySlug(slug: string): Promise<BlogPost> {
   // Usar gray-matter para parsear la sección de metadatos
   const { data, content: markdownContent } = matter(fileContents);
   
-  // Procesar el contenido Markdown a HTML
+  // Procesar el contenido Markdown a HTML (con soporte para tablas GFM)
   const processedContent = await remark()
-    .use(html)
+    .use(remarkGfm) // Soporte para GitHub Flavored Markdown (tablas, strikethrough, etc)
+    .use(html, { sanitize: false }) // sanitize: false para permitir HTML en markdown
     .process(markdownContent);
   const contentHtml = processedContent.toString();
   
