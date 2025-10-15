@@ -10,18 +10,14 @@ export const metadata: Metadata = {
   robots: 'index, follow',
 };
 
-// Función para obtener los últimos posts del blog (simulado con API)
+// Importar función de blog
+import { getAllPosts } from '@/lib/blog';
+
+// Función para obtener los últimos posts del blog
 async function getRecentPosts() {
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.gard.cl'}/api/blog/posts`, {
-      cache: 'no-store'
-    });
-    
-    if (!response.ok) {
-      return [];
-    }
-    
-    const { posts } = await response.json();
+    // Usar la función directa en lugar de fetch para evitar problemas en build time
+    const posts = await getAllPosts();
     return posts.slice(0, 50); // Últimos 50 posts
   } catch (error) {
     console.error('Error fetching posts for sitemap:', error);
