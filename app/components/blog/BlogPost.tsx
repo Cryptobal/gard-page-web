@@ -33,7 +33,7 @@ export default function BlogPost({ slug }: { slug: string }) {
   const router = useRouter();
 
   useEffect(() => {
-    async function fetchPost() {
+    const fetchPost = async () => {
       try {
         // Usar fetch para obtener el post desde la API
         const apiUrl = `/api/blog/post/${slug}`;
@@ -74,7 +74,7 @@ export default function BlogPost({ slug }: { slug: string }) {
       } finally {
         setLoading(false);
       }
-    }
+    };
 
     if (slug) {
       fetchPost();

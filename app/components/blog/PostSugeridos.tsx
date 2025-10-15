@@ -26,7 +26,7 @@ export default function PostSugeridos({ currentSlug, currentTags = [] }: PostSug
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function fetchSugeridos() {
+    const fetchSugeridos = async () => {
       // Si no hay tags para comparar, no mostramos sugeridos
       if (!currentTags || currentTags.length === 0) {
         setLoading(false);
@@ -62,7 +62,7 @@ export default function PostSugeridos({ currentSlug, currentTags = [] }: PostSug
       } finally {
         setLoading(false);
       }
-    }
+    };
     
     fetchSugeridos();
   }, [currentSlug, currentTags]);
