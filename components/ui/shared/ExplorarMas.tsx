@@ -43,7 +43,7 @@ export default function ExplorarMas({
 
   useEffect(() => {
     if (showBlog) {
-      async function fetchPosts() {
+      const fetchPosts = async () => {
         try {
           const response = await fetch('/api/blog/posts');
           if (!response.ok) throw new Error('Error al cargar posts');
@@ -55,7 +55,7 @@ export default function ExplorarMas({
         } finally {
           setLoading(false);
         }
-      }
+      };
       fetchPosts();
     } else {
       setLoading(false);

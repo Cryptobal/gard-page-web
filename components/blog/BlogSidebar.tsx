@@ -29,7 +29,7 @@ export default function BlogSidebar({ currentSlug, currentTags = [] }: BlogSideb
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function fetchPosts() {
+    const fetchPosts = async () => {
       try {
         const response = await fetch('/api/blog/posts');
         if (!response.ok) throw new Error('Error al cargar posts');
@@ -55,7 +55,7 @@ export default function BlogSidebar({ currentSlug, currentTags = [] }: BlogSideb
       } finally {
         setLoading(false);
       }
-    }
+    };
     
     fetchPosts();
   }, [currentSlug]);
