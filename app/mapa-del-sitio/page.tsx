@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   title: 'Mapa del Sitio | Gard Security',
   description: 'Encuentra rápidamente todas las páginas, servicios, industrias y artículos de Gard Security.',
   robots: 'index, follow',
+  alternates: {
+    canonical: 'https://www.gard.cl/mapa-del-sitio',
+  },
 };
 
 // Importar función de blog
