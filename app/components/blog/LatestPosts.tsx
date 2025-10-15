@@ -37,7 +37,7 @@ export default function LatestPosts({
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function fetchPosts() {
+    const fetchPosts = async () => {
       try {
         // Usar fetch para obtener los posts desde la API
         const response = await fetch(`/api/blog/latest?limit=${limit}`);
@@ -53,7 +53,7 @@ export default function LatestPosts({
       } finally {
         setLoading(false);
       }
-    }
+    };
 
     fetchPosts();
   }, [limit]);
