@@ -25,7 +25,7 @@ export default function BlogLayout({ children, showSidebar = false }: BlogLayout
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    async function fetchSidebarData() {
+    const fetchSidebarData = async () => {
       if (!showSidebar) return;
       
       try {
@@ -58,8 +58,8 @@ export default function BlogLayout({ children, showSidebar = false }: BlogLayout
       } finally {
         setIsLoading(false);
       }
-    }
-    
+    };
+
     fetchSidebarData();
   }, [showSidebar]);
 
