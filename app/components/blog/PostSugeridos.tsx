@@ -55,8 +55,8 @@ export default function PostSugeridos({ currentSlug, currentTags = [] }: PostSug
           .filter((post: any) => post.relevancia > 0) // Solo posts con al menos un tag en común
           .sort((a: any, b: any) => b.relevancia - a.relevancia); // Ordenar por relevancia descendente
         
-        // Tomar los 3 primeros posts más relevantes
-        setSugeridos(postsConRelevancia.slice(0, 3));
+        // Tomar los 6 primeros posts más relevantes
+        setSugeridos(postsConRelevancia.slice(0, 6));
       } catch (error) {
         console.error('Error cargando posts sugeridos:', error);
       } finally {
@@ -72,13 +72,20 @@ export default function PostSugeridos({ currentSlug, currentTags = [] }: PostSug
     return null;
   }
 
+  // Extraer tags únicos para mostrar categorías
+  const uniqueTags = Array.from(
+    new Set(
+      sugeridos.flatMap((post) => post.tags || [])
+    )
+  ).slice(0, 6);
+
   return (
     <section aria-labelledby="related-posts-heading" className="mt-16 mb-8 border-t border-gray-200 dark:border-gray-800 pt-10 pb-12">
       <h2 id="related-posts-heading" className="text-xl md:text-2xl font-semibold text-gray-900 dark:text-white mb-6 text-center">
         Artículos relacionados
       </h2>
       
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {sugeridos.map((post) => (
           <div 
             key={post.slug} 
@@ -150,6 +157,32 @@ export default function PostSugeridos({ currentSlug, currentTags = [] }: PostSug
           </div>
         ))}
       </div>
+
+      {/* Sección de categorías relacionadas */}
+      {uniqueTags.length > 0 && (
+        <div className="mt-10 text-center">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+            Explora más por categoría
+          </h3>
+          <div className="flex flex-wrap gap-3 justify-center">
+            {uniqueTags.map((tag) => (
+              <Link
+                key={tag}
+                href={`/blog/tag/${encodeURIComponent(tag)}`}
+                className="inline-flex items-center px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full text-sm font-medium hover:bg-primary hover:text-white dark:hover:bg-accent transition-colors"
+              >
+                {tag}
+              </Link>
+            ))}
+          </div>
+          <Link
+            href="/blog"
+            className="inline-block mt-6 text-primary dark:text-accent font-medium hover:underline"
+          >
+            Ver todos los artículos del blog →
+          </Link>
+        </div>
+      )}
     </section>
   );
 } 

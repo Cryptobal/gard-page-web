@@ -8,9 +8,11 @@ import Link from 'next/link';
 import CloudflareImage from '@/components/CloudflareImage';
 import BlogLayout from '@/app/components/blog/BlogLayout';
 import PostSugeridos from '@/app/components/blog/PostSugeridos';
+import BlogSidebar from '@/components/blog/BlogSidebar';
 import { CLOUDFLARE_ACCOUNT_HASH } from '@/lib/images';
 import { Button } from '@/components/ui/button';
 import BlogPostClient from '@/app/blog/[slug]/BlogPostClient';
+import { addInternalLinks } from '@/lib/internal-linking';
 
 // Tipo BlogPost sin importar de lib/blog
 interface BlogPost {
@@ -187,13 +189,18 @@ export default function BlogPost({ slug }: { slug: string }) {
     ],
   };
 
-  // Función auxiliar para limpiar HTML potencialmente peligroso
+  // Función auxiliar para limpiar HTML potencialmente peligroso y agregar enlaces internos
   // No es una solución completa de seguridad pero elimina los scripts
-  const cleanHtml = (html: string) => {
-    // Limpiar scripts y atributos on* potencialmente peligrosos
-    return html
+  const processHtml = (html: string) => {
+    // Primero limpiar scripts y atributos on* potencialmente peligrosos
+    let cleanedHtml = html
       .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
       .replace(/on\w+="[^"]*"/g, '');
+    
+    // Luego agregar enlaces internos automáticos
+    cleanedHtml = addInternalLinks(cleanedHtml, 2); // Máximo 2 enlaces por keyword
+    
+    return cleanedHtml;
   };
 
   return (
@@ -274,13 +281,23 @@ export default function BlogPost({ slug }: { slug: string }) {
         </div>
       </div>
       
-      {/* Contenido del artículo - usar dangerouslySetInnerHTML para renderizar HTML */}
-      <article className="prose prose-lg dark:prose-invert max-w-3xl mx-auto">
-        <div 
-          className="blog-content"
-          dangerouslySetInnerHTML={{ __html: cleanHtml(post.content) }} 
-        />
-      </article>
+      {/* Contenedor con sidebar y contenido */}
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8">
+        {/* Contenido principal del artículo */}
+        <div className="lg:col-span-8">
+          <article className="prose prose-lg dark:prose-invert max-w-none">
+            <div 
+              className="blog-content"
+              dangerouslySetInnerHTML={{ __html: processHtml(post.content) }} 
+            />
+          </article>
+        </div>
+
+        {/* Sidebar */}
+        <div className="lg:col-span-4">
+          <BlogSidebar currentSlug={slug} currentTags={post.tags} />
+        </div>
+      </div>
       
       {/* Tags */}
       {post.tags && post.tags.length > 0 && (

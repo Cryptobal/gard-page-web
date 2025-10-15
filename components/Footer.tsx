@@ -19,7 +19,7 @@ export default function Footer() {
       itemType="https://schema.org/Organization"
     >
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12 gap-y-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-12 gap-y-8">
           {/* Columna 1: Identidad */}
           <div className="flex flex-col space-y-6 items-center sm:items-start">
             <Link href="/" className="inline-block" aria-label="Página Principal">
@@ -174,6 +174,85 @@ export default function Footer() {
             </ul>
           </div>
 
+          {/* Columna 2.5: Industrias */}
+          <div className="sm:col-span-1">
+            <h3 className="font-semibold text-primary dark:text-white text-lg mb-6">Industrias</h3>
+            <ul className="space-y-3">
+              <li>
+                <Link 
+                  href="/industrias/mineria" 
+                  className="text-sm md:text-base text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors"
+                  aria-label="Seguridad para Minería"
+                >
+                  Minería
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/industrias/retail" 
+                  className="text-sm md:text-base text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors"
+                  aria-label="Seguridad para Retail"
+                >
+                  Retail
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/industrias/bodegas" 
+                  className="text-sm md:text-base text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors"
+                  aria-label="Seguridad para Bodegas"
+                >
+                  Bodegas y Logística
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/industrias/edificios-corporativos" 
+                  className="text-sm md:text-base text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors"
+                  aria-label="Seguridad para Edificios Corporativos"
+                >
+                  Edificios Corporativos
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/industrias/construccion" 
+                  className="text-sm md:text-base text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors"
+                  aria-label="Seguridad para Construcción"
+                >
+                  Construcción
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/industrias/salud" 
+                  className="text-sm md:text-base text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors"
+                  aria-label="Seguridad para Salud"
+                >
+                  Salud
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/industrias/educacion" 
+                  className="text-sm md:text-base text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors"
+                  aria-label="Seguridad para Educación"
+                >
+                  Educación
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/industrias" 
+                  className="text-sm md:text-base text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors font-medium"
+                  aria-label="Ver todas las industrias"
+                >
+                  Ver todas →
+                </Link>
+              </li>
+            </ul>
+          </div>
+
           {/* Columna 3: Legal */}
           <div className="sm:col-span-1">
             <h3 className="font-semibold text-primary dark:text-white text-lg mb-6">Legal</h3>
@@ -203,6 +282,15 @@ export default function Footer() {
                   aria-label="Política Ambiental"
                 >
                   Política Ambiental
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/mapa-del-sitio" 
+                  className="text-sm md:text-base text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors"
+                  aria-label="Mapa del Sitio"
+                >
+                  Mapa del Sitio
                 </Link>
               </li>
               <li className="pt-2">

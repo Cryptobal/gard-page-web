@@ -11,6 +11,8 @@ import ServiceSchema from '@/components/seo/ServiceSchema';
 import { FAQSection } from '@/components/seo/FAQSchema';
 import { getFAQsForIndustry, hasFAQs } from '@/lib/data/industry-faqs';
 import FormularioCotizacionSeccion from '@/app/components/FormularioCotizacionSeccion';
+import IndustriasRelacionadas from '@/components/landing/IndustriasRelacionadas';
+import ExplorarMas from '@/components/ui/shared/ExplorarMas';
 
 // Interfaces para tipado
 interface Challenge {
@@ -401,6 +403,24 @@ export default async function IndustriaPage({ params }: { params: Promise<{ slug
           className="bg-[#0A0C12]"
         />
       )}
+
+      {/* Industrias relacionadas */}
+      <IndustriasRelacionadas 
+        excludeSlug={industry.slug}
+        limit={4}
+        title="Explora Otras Industrias"
+        description="Descubre cómo protegemos diferentes sectores empresariales en Chile"
+      />
+
+      {/* Hub de exploración adicional */}
+      <ExplorarMas 
+        title="Más Información de Seguridad"
+        description="Explora nuestros servicios y artículos relacionados con seguridad para tu industria"
+        showIndustrias={false}
+        showServicios={true}
+        showBlog={true}
+        limit={5}
+      />
 
       {/* Formulario de cotización con webhook configurado */}
       <FormularioCotizacionSeccion 
