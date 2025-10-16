@@ -99,6 +99,9 @@ const formatNumber = (num: number): string => {
   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 };
 
+// Forzar revalidación para asegurar que los componentes nuevos se rendericen
+export const revalidate = 0; // Deshabilitar ISR temporalmente
+
 // Generar metadata dinámica para SEO
 // Next.js 15: params es ahora una Promise
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
