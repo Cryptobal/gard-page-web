@@ -2,8 +2,6 @@
 
 [byterover-mcp]
 
-[byterover-mcp]
-
 You are given two tools from Byterover MCP server, including
 ## 1. `byterover-store-knowledge`
 You `MUST` always use this tool when:
@@ -20,3 +18,4 @@ You `MUST` always use this tool when:
 + Before making architectural decisions to understand existing patterns
 + When debugging issues to check for previous solutions
 + Working with unfamiliar parts of the codebase
+ of the codebase
