@@ -328,8 +328,8 @@ export default function Footer() {
                   itemScope
                   itemType="https://schema.org/PostalAddress"
                 >
-                  <span itemProp="streetAddress">Camino Los Trapenses 2140</span>, 
-                  <span itemProp="addressLocality">Lo Barnechea</span>, 
+                  <span itemProp="streetAddress">Lo Fontecilla 201, oficina 525</span>, 
+                  <span itemProp="addressLocality">Las Condes</span>, 
                   <span itemProp="addressRegion">Santiago</span>
                 </span>
               </li>

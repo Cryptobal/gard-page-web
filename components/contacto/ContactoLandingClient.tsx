@@ -61,7 +61,7 @@ export default function ContactoLandingClient() {
                     <h3 className="font-semibold mb-1">Oficina central</h3>
                     <p className="text-[hsl(var(--gard-muted-foreground))] mb-1">Visítenos previo agendamiento</p>
                     <address className="not-italic">
-                      Camino Los Trapenses 2140, Lo Barnechea<br />
+                      Camino Los Trapenses 2140, Las Condes<br />
                       Santiago, Chile
                     </address>
                   </div>
