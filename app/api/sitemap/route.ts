@@ -201,8 +201,10 @@ async function generateSitemap() {
     ...ciudadServicioPages
   ];
   
-  // Filtrar URLs para incluir solo las que devuelven código 200
-  return await filterValidUrls(allUrls);
+  // Retornar todas las URLs sin validación (optimización para build time)
+  // Las URLs son generadas dinámicamente por el código y son válidas
+  console.log(`API Sitemap: ${allUrls.length} URLs generadas`);
+  return allUrls;
 }
 
 // Generar el XML del sitemap
