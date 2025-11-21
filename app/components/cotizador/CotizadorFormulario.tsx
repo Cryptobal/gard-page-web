@@ -13,6 +13,7 @@ import {
   MapPin
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Button, buttonVariants } from '@/components/ui/button';
 import {
   RolOperativo,
   crearNuevoRol,
@@ -457,7 +458,7 @@ export default function CotizadorFormulario() {
 
           <motion.button
             onClick={addRole}
-            className="gard-btn flex items-center justify-center py-4 px-5 rounded-2xl bg-muted hover:bg-muted/80 text-foreground transition-colors w-full md:w-auto mx-auto"
+            className={cn(buttonVariants({ variant: "secondary", size: "lg" }), "w-full md:w-auto mx-auto")}
             whileHover={{ scale: 1.03, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1)" }}
             whileTap={{ scale: 0.98 }}
           >
@@ -489,7 +490,7 @@ export default function CotizadorFormulario() {
               
               <motion.button
                 onClick={() => setShowForm(true)}
-                className="gard-btn rounded-2xl py-4 px-8 bg-primary hover:bg-primary/90 text-primary-foreground transition-colors flex items-center mt-4"
+                className={cn(buttonVariants({ variant: "gard-primary", size: "lg" }), "flex items-center mt-4")}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -535,7 +536,7 @@ export default function CotizadorFormulario() {
                         setShowForm(false);
                         setSubmitSuccess(false);
                       }}
-                      className="gard-btn rounded-xl py-3 px-6 bg-primary hover:bg-primary/90 text-primary-foreground transition-colors"
+                      className={buttonVariants({ variant: "gard-primary" })}
                     >
                       Cerrar
                     </button>
@@ -751,14 +752,14 @@ export default function CotizadorFormulario() {
                       <button
                         type="button"
                         onClick={() => setShowForm(false)}
-                        className="px-5 py-3 rounded-xl border border-input bg-background hover:bg-accent/10 text-foreground transition-colors"
+                        className={buttonVariants({ variant: "outline" })}
                       >
                         Cancelar
                       </button>
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground transition-colors disabled:opacity-50"
+                        className={buttonVariants({ variant: "gard-primary" })}
                       >
                         {isSubmitting ? (
                           <>

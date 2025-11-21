@@ -1,5 +1,7 @@
-import Image from 'next/image';
-import { getCloudflareImageUrl } from '@/lib/images';
+'use client';
+
+import Image, { ImageLoaderProps } from 'next/image';
+import { CLOUDFLARE_ACCOUNT_HASH } from '@/lib/images';
 
 interface CloudflareImageProps {
   imageId: string;
@@ -34,10 +36,13 @@ export default function CloudflareImage({
   placeholder = 'empty',
   blurDataURL,
 }: CloudflareImageProps) {
-  const imageUrl = getCloudflareImageUrl(imageId, variant);
+  const imageLoader = ({ src, width, quality }: ImageLoaderProps) => {
+    return `https://imagedelivery.net/${CLOUDFLARE_ACCOUNT_HASH}/${src}/${variant}?w=${width}&q=${quality || 75}&f=auto`;
+  };
   
   const imageProps = {
-    src: imageUrl,
+    loader: imageLoader,
+    src: imageId,
     alt,
     className: `${className} ${fill ? 'object-' + objectFit + ' object-' + objectPosition.replace(' ', '-') : ''}`,
     priority,

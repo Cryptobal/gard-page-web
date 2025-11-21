@@ -35,7 +35,7 @@ const config: Config = {
         },
       },
       fontFamily: {
-        title: ['var(--font-space-grotesk)'],
+        title: ['var(--font-poppins)'],
         body: ['var(--font-inter)'],
       },
       fontSize: {

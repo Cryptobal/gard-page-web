@@ -15,6 +15,7 @@ import {
   Building,
   HelpCircle
 } from 'lucide-react';
+import FAQSchema from '@/components/seo/FAQSchema';
 
 // Definimos una interfaz para los datos FAQ
 interface FaqItem {
@@ -127,8 +128,12 @@ export default function FaqSection() {
     setExpandedItem(expandedItem === id ? null : id);
   };
 
+  // Flatten all FAQs for Schema
+  const allFaqs = Object.values(typedFaqData).flat();
+
   return (
     <LazyMotion features={domAnimation}>
+      <FAQSchema faqs={allFaqs} />
       <section ref={sectionRef} className="gard-section bg-[hsl(var(--gard-background))] py-16">
       <div className="gard-container max-w-5xl mx-auto px-4">
         <h2 

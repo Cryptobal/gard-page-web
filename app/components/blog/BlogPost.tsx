@@ -249,9 +249,9 @@ export default function BlogPost({ slug }: { slug: string }) {
       </nav>
       
       {/* Hero del artículo */}
-      <div className="mb-8">
+      <header className="mb-8">
         {post.imageId && (
-          <div className="aspect-video md:aspect-[21/9] relative rounded-2xl overflow-hidden mb-8">
+          <figure className="aspect-video md:aspect-[21/9] relative rounded-2xl overflow-hidden mb-8 m-0">
             <CloudflareImage
               imageId={post.imageId}
               alt={post.title}
@@ -260,7 +260,7 @@ export default function BlogPost({ slug }: { slug: string }) {
               priority
               sizes="(max-width: 768px) 100vw, 1200px"
             />
-          </div>
+          </figure>
         )}
         
         <div className="text-center max-w-3xl mx-auto">
@@ -279,7 +279,7 @@ export default function BlogPost({ slug }: { slug: string }) {
             )}
           </div>
         </div>
-      </div>
+      </header>
       
       {/* Contenedor con sidebar y contenido */}
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8">
@@ -294,14 +294,14 @@ export default function BlogPost({ slug }: { slug: string }) {
         </div>
 
         {/* Sidebar */}
-        <div className="lg:col-span-4">
+        <aside className="lg:col-span-4">
           <BlogSidebar currentSlug={slug} currentTags={post.tags} />
-        </div>
+        </aside>
       </div>
       
       {/* Tags */}
       {post.tags && post.tags.length > 0 && (
-        <div className="mt-12 flex flex-wrap gap-3 justify-center">
+        <section className="mt-12 flex flex-wrap gap-3 justify-center" aria-label="Etiquetas">
           {post.tags.map((tag) => (
             <Link
               key={tag}
@@ -311,7 +311,7 @@ export default function BlogPost({ slug }: { slug: string }) {
               {tag}
             </Link>
           ))}
-        </div>
+        </section>
       )}
       
       {/* Posts sugeridos */}

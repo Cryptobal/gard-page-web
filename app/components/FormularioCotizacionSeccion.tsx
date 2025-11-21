@@ -179,7 +179,7 @@ export default function FormularioCotizacionSeccion({
     <section 
       ref={sectionRef}
       id={id}
-      className={`gard-section py-16 md:py-24 bg-[#0A0C12] ${className}`}
+      className={`gard-section py-16 md:py-24 bg-gray-50 dark:bg-[#0A0C12] ${className}`}
       data-section="formulario-cotizacion"
       // Aumentar el margen de scroll para mejorar la posición en móviles
       style={{ scrollMarginTop: '80px' }}
@@ -209,29 +209,29 @@ export default function FormularioCotizacionSeccion({
           
           {/* Columna de texto - Mostrar después en móvil */}
           <div className="order-2 lg:order-1 lg:col-span-5 flex flex-col justify-center mt-8 lg:mt-0">
-            <h2 className="text-heading-2 text-white mb-6">¿Necesitas servicios de seguridad profesionales?</h2>
-            <p className="text-body-lg text-gray-300 mb-8">
+            <h2 className="text-heading-2 text-foreground dark:text-white mb-6">¿Necesitas servicios de seguridad profesionales?</h2>
+            <p className="text-body-lg text-muted-foreground dark:text-gray-300 mb-8">
               En Gard Security te ofrecemos soluciones adaptadas específicamente a tus necesidades. Completa el formulario y nuestro equipo te contactará en menos de 12 horas hábiles.
             </p>
             
-            <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md p-6 rounded-2xl mb-8 border border-white/20 shadow-xl">
-              <h3 className="text-heading-4 text-white mb-6 font-semibold">Ventajas de Gard Security</h3>
+            <div className="bg-white dark:bg-white/5 dark:bg-gradient-to-br dark:from-white/10 dark:to-white/5 backdrop-blur-md p-6 rounded-2xl mb-8 border border-gray-200 dark:border-white/20 shadow-xl">
+              <h3 className="text-heading-4 text-foreground dark:text-white mb-6 font-semibold">Ventajas de Gard Security</h3>
               <ul className="space-y-4">
                 <li className="flex items-start gap-4 group">
                   <div className="w-2 h-2 bg-primary rounded-full mt-2 group-hover:scale-125 transition-transform duration-300"></div>
-                  <span className="text-gray-200 group-hover:text-white transition-colors duration-300">Especialistas en seguridad con más de 15 años de experiencia</span>
+                  <span className="text-muted-foreground dark:text-gray-200 group-hover:text-primary dark:group-hover:text-white transition-colors duration-300">Especialistas en seguridad con más de 15 años de experiencia</span>
                 </li>
                 <li className="flex items-start gap-4 group">
                   <div className="w-2 h-2 bg-primary rounded-full mt-2 group-hover:scale-125 transition-transform duration-300"></div>
-                  <span className="text-gray-200 group-hover:text-white transition-colors duration-300">Soluciones personalizadas para cada industria y necesidad</span>
+                  <span className="text-muted-foreground dark:text-gray-200 group-hover:text-primary dark:group-hover:text-white transition-colors duration-300">Soluciones personalizadas para cada industria y necesidad</span>
                 </li>
                 <li className="flex items-start gap-4 group">
                   <div className="w-2 h-2 bg-primary rounded-full mt-2 group-hover:scale-125 transition-transform duration-300"></div>
-                  <span className="text-gray-200 group-hover:text-white transition-colors duration-300">Atención 24/7 con central de monitoreo propia</span>
+                  <span className="text-muted-foreground dark:text-gray-200 group-hover:text-primary dark:group-hover:text-white transition-colors duration-300">Atención 24/7 con central de monitoreo propia</span>
                 </li>
                 <li className="flex items-start gap-4 group">
                   <div className="w-2 h-2 bg-primary rounded-full mt-2 group-hover:scale-125 transition-transform duration-300"></div>
-                  <span className="text-gray-200 group-hover:text-white transition-colors duration-300">Guardias de seguridad profesionales y certificados</span>
+                  <span className="text-muted-foreground dark:text-gray-200 group-hover:text-primary dark:group-hover:text-white transition-colors duration-300">Guardias de seguridad profesionales y certificados</span>
                 </li>
               </ul>
             </div>

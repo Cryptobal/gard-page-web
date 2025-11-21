@@ -1,5 +1,5 @@
 import React from 'react';
-import { inter, spaceGrotesk } from './fonts';
+import { inter, poppins } from './fonts';
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -41,49 +41,6 @@ export default function RootLayout({
         {/* LocalBusiness Schema - Optimizado para SEO Local */}
         <LocalBusinessSchema />
         
-        {/* Organization Schema - Información corporativa */}
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          "@id": "https://www.gard.cl/#organization",
-          "name": "Gard Security",
-          "alternateName": "Gard Security SpA",
-          "legalName": "Gard Security SpA",
-          "url": "https://www.gard.cl",
-          "logo": {
-            "@type": "ImageObject",
-            "url": "https://www.gard.cl/logos/gard.svg",
-            "width": "250",
-            "height": "60"
-          },
-          "description": "Empresa líder en servicios de seguridad privada B2B en Chile, especializada en guardias certificados OS10, sistemas electrónicos y monitoreo 24/7 para minería, logística y edificios corporativos.",
-          "foundingDate": "2010",
-          "numberOfEmployees": {
-            "@type": "QuantitativeValue",
-            "value": "500"
-          },
-          "contactPoint": {
-            "@type": "ContactPoint",
-            "telephone": "+56229872380",
-            "contactType": "customer service",
-            "availableLanguage": ["Spanish", "es"],
-            "email": "comercial@gard.cl",
-            "areaServed": "CL"
-          },
-          "sameAs": [
-            "https://www.facebook.com/gardsecuritycl",
-            "https://www.linkedin.com/company/gard-security"
-          ],
-          "knowsAbout": [
-            "Seguridad Privada",
-            "Guardias de Seguridad",
-            "Seguridad Minera",
-            "Certificación OS10",
-            "Seguridad Industrial",
-            "Monitoreo 24/7"
-          ]
-        }) }} />
-
         {/* WebSite Schema - Para búsqueda interna */}
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
           "@context": "https://schema.org",
@@ -104,7 +61,7 @@ export default function RootLayout({
           }
         }) }} />
       </head>
-      <body className={`${inter.variable} ${spaceGrotesk.variable}`}>
+      <body className={`${inter.variable} ${poppins.variable}`}>
         <ClientWrapper>
           <CookieConsent>
             <ClientScripts gtmId={GTM_ID} gaId={GA_ID} />

@@ -13,6 +13,7 @@ import { getFAQsForIndustry, hasFAQs } from '@/lib/data/industry-faqs';
 import FormularioCotizacionSeccion from '@/app/components/FormularioCotizacionSeccion';
 import IndustriasRelacionadas from '@/components/landing/IndustriasRelacionadas';
 import ExplorarMas from '@/components/ui/shared/ExplorarMas';
+import { Button } from '@/components/ui/button';
 
 // Interfaces para tipado
 interface Challenge {
@@ -232,12 +233,11 @@ export default async function IndustriaPage({ params }: { params: Promise<{ slug
             {industry.subtitle || `Soluciones de seguridad especializadas para el sector ${industry.name}`}
           </p>
           
-          <a 
-            href="#cotizar" 
-            className="gard-btn gard-btn-primary gard-btn-lg inline-flex items-center"
-          >
-            Cotizar para mi empresa <ArrowRight className="ml-2 h-5 w-5" />
-          </a>
+          <Button asChild variant="gard-primary" size="lg" className="inline-flex items-center">
+            <a href="#cotizar">
+              Cotizar para mi empresa <ArrowRight className="ml-2 h-5 w-5" />
+            </a>
+          </Button>
         </div>
       </section>
 
@@ -257,12 +257,11 @@ export default async function IndustriaPage({ params }: { params: Promise<{ slug
               </div>
               
               <div className="mt-8">
-                <a 
-                  href="#cotizar"
-                  className="gard-btn gard-btn-primary inline-flex items-center"
-                >
-                  Solicitar cotización <ArrowRight className="ml-2 h-5 w-5" />
-                </a>
+                <Button asChild variant="gard-primary" className="inline-flex items-center">
+                  <a href="#cotizar">
+                    Solicitar cotización <ArrowRight className="ml-2 h-5 w-5" />
+                  </a>
+                </Button>
               </div>
             </div>
             
@@ -282,11 +281,11 @@ export default async function IndustriaPage({ params }: { params: Promise<{ slug
       </section>
 
       {/* Desafíos de seguridad para esta industria */}
-      <section className="gard-section py-16 md:py-24 bg-[#0A0C12] relative">
-        <div className="absolute inset-0 bg-[url('/images/textures/noise-pattern.png')] opacity-10"></div>
+      <section className="gard-section py-16 md:py-24 bg-gray-50 dark:bg-[#0A0C12] relative">
+        <div className="absolute inset-0 bg-[url('/images/textures/noise-pattern.png')] opacity-5"></div>
         <div className="gard-container max-w-7xl mx-auto px-4 relative z-10">
-          <h2 className="text-heading-2 mb-8 text-center text-white">Desafíos de seguridad en {industry.name}</h2>
-          <p className="text-body-lg text-gray-300 mb-12 max-w-3xl mx-auto text-center">
+          <h2 className="text-heading-2 mb-8 text-center text-foreground dark:text-white">Desafíos de seguridad en {industry.name}</h2>
+          <p className="text-body-lg text-muted-foreground dark:text-gray-300 mb-12 max-w-3xl mx-auto text-center">
             {industry.challengesDescription || `Las empresas del sector ${industry.name} enfrentan riesgos específicos que requieren soluciones de seguridad adaptadas.`}
           </p>
           
@@ -294,15 +293,15 @@ export default async function IndustriaPage({ params }: { params: Promise<{ slug
             {(industry.challenges || []).map((challenge: Challenge, index: number) => (
               <div 
                 key={index} 
-                className="bg-[hsl(var(--gard-card))] rounded-xl p-6 shadow-sm border border-gray-700 hover:shadow-md transition-shadow"
+                className="bg-white dark:bg-[hsl(var(--gard-card))] rounded-xl p-6 shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-md transition-shadow"
               >
                 <div className="mb-4">
-                  {challenge.icon === 'ShieldCheck' && <ShieldCheck className="h-10 w-10 text-[hsl(var(--gard-accent))]" />}
-                  {challenge.icon === 'Shield' && <Shield className="h-10 w-10 text-[hsl(var(--gard-accent))]" />}
-                  {challenge.icon === 'Eye' && <Eye className="h-10 w-10 text-[hsl(var(--gard-accent))]" />}
+                  {challenge.icon === 'ShieldCheck' && <ShieldCheck className="h-10 w-10 text-primary dark:text-[hsl(var(--gard-accent))]" />}
+                  {challenge.icon === 'Shield' && <Shield className="h-10 w-10 text-primary dark:text-[hsl(var(--gard-accent))]" />}
+                  {challenge.icon === 'Eye' && <Eye className="h-10 w-10 text-primary dark:text-[hsl(var(--gard-accent))]" />}
                 </div>
-                <h3 className="text-xl font-semibold mb-2 text-white">{challenge.title}</h3>
-                <p className="text-gray-300">{challenge.description}</p>
+                <h3 className="text-xl font-semibold mb-2 text-foreground dark:text-white">{challenge.title}</h3>
+                <p className="text-muted-foreground dark:text-gray-300">{challenge.description}</p>
               </div>
             ))}
           </div>
@@ -311,10 +310,10 @@ export default async function IndustriaPage({ params }: { params: Promise<{ slug
 
       {/* Estadísticas del sector */}
       {industry.stats && industry.stats.length > 0 && (
-        <section className="gard-section py-16 md:py-24 bg-[#0A0C12]">
+        <section className="gard-section py-16 md:py-24 bg-white dark:bg-[#0A0C12]">
           <div className="gard-container max-w-7xl mx-auto px-4">
-            <h2 className="text-heading-2 mb-8 text-center text-white">El sector {industry.name} en cifras</h2>
-            <p className="text-body-lg text-gray-300 mb-12 max-w-3xl mx-auto text-center">
+            <h2 className="text-heading-2 mb-8 text-center text-foreground dark:text-white">El sector {industry.name} en cifras</h2>
+            <p className="text-body-lg text-muted-foreground dark:text-gray-300 mb-12 max-w-3xl mx-auto text-center">
               {industry.statsDescription || `Entendemos la magnitud e importancia del sector ${industry.name} en la economía chilena.`}
             </p>
             
@@ -322,12 +321,12 @@ export default async function IndustriaPage({ params }: { params: Promise<{ slug
               {(industry.stats || []).map((stat: Stat, index: number) => (
                 <div 
                   key={index}
-                  className="text-center p-6 bg-[hsl(var(--gard-card))] rounded-xl border border-gray-700 hover:shadow-md transition-shadow"
+                  className="text-center p-6 bg-gray-50 dark:bg-[hsl(var(--gard-card))] rounded-xl border border-gray-200 dark:border-gray-700 hover:shadow-md transition-shadow"
                 >
-                  <div className="text-4xl md:text-5xl font-bold text-[hsl(var(--gard-accent))] mb-2">
+                  <div className="text-4xl md:text-5xl font-bold text-primary dark:text-[hsl(var(--gard-accent))] mb-2">
                     {stat.prefix || ''}{formatNumber(stat.value)}{stat.suffix || ''}
                   </div>
-                  <p className="text-gray-300">{stat.label}</p>
+                  <p className="text-muted-foreground dark:text-gray-300">{stat.label}</p>
                 </div>
               ))}
             </div>
@@ -336,11 +335,11 @@ export default async function IndustriaPage({ params }: { params: Promise<{ slug
       )}
 
       {/* Servicios recomendados para esta industria */}
-      <section className="gard-section py-16 md:py-24 bg-[#0A0C12] relative">
-        <div className="absolute inset-0 bg-[url('/images/textures/noise-pattern.png')] opacity-10"></div>
+      <section className="gard-section py-16 md:py-24 bg-gray-50 dark:bg-[#0A0C12] relative">
+        <div className="absolute inset-0 bg-[url('/images/textures/noise-pattern.png')] opacity-5"></div>
         <div className="gard-container max-w-7xl mx-auto px-4 relative z-10">
-          <h2 className="text-heading-2 mb-6 text-center text-white">Servicios recomendados para {industry.name}</h2>
-          <p className="text-body-lg text-gray-300 mb-12 max-w-3xl mx-auto text-center">
+          <h2 className="text-heading-2 mb-6 text-center text-foreground dark:text-white">Servicios recomendados para {industry.name}</h2>
+          <p className="text-body-lg text-muted-foreground dark:text-gray-300 mb-12 max-w-3xl mx-auto text-center">
             Nuestras soluciones están adaptadas a los desafíos específicos de su industria
           </p>
           
@@ -350,17 +349,17 @@ export default async function IndustriaPage({ params }: { params: Promise<{ slug
               <Link 
                 key={index}
                 href={`/servicios/${servicio.slug}`}
-                className="bg-[hsl(var(--gard-card))] rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col h-full border border-gray-700"
+                className="bg-white dark:bg-[hsl(var(--gard-card))] rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col h-full border border-gray-200 dark:border-gray-700"
               >
                 <div className="flex items-center mb-4">
-                  <ShieldCheck className="h-8 w-8 text-[hsl(var(--gard-accent))] mr-3" />
-                  <h3 className="text-xl font-semibold text-white">{servicio.name}</h3>
+                  <ShieldCheck className="h-8 w-8 text-primary dark:text-[hsl(var(--gard-accent))] mr-3" />
+                  <h3 className="text-xl font-semibold text-foreground dark:text-white">{servicio.name}</h3>
                 </div>
-                <p className="text-body-base text-gray-300 mb-4 flex-grow">
+                <p className="text-body-base text-muted-foreground dark:text-gray-300 mb-4 flex-grow">
                   {servicio.description}
                 </p>
                 <div className="flex justify-end mt-auto">
-                  <span className="inline-flex items-center text-[hsl(var(--gard-accent))] font-medium">
+                  <span className="inline-flex items-center text-primary dark:text-[hsl(var(--gard-accent))] font-medium">
                     Ver servicio <ArrowRight className="ml-1 h-4 w-4" />
                   </span>
                 </div>
@@ -372,10 +371,10 @@ export default async function IndustriaPage({ params }: { params: Promise<{ slug
 
       {/* Clientes de esta industria */}
       {industry.clients && industry.clients.length > 0 && (
-        <section className="gard-section py-16 md:py-24 bg-[#0A0C12]">
+        <section className="gard-section py-16 md:py-24 bg-white dark:bg-[#0A0C12]">
           <div className="gard-container max-w-7xl mx-auto px-4">
-            <h2 className="text-heading-2 mb-8 text-center text-white">Empresas que confían en nosotros</h2>
-            <p className="text-body-lg text-gray-300 mb-12 max-w-3xl mx-auto text-center">
+            <h2 className="text-heading-2 mb-8 text-center text-foreground dark:text-white">Empresas que confían en nosotros</h2>
+            <p className="text-body-lg text-muted-foreground dark:text-gray-300 mb-12 max-w-3xl mx-auto text-center">
               Estas son algunas de las organizaciones del sector {industry.name} que protegemos
             </p>
             
@@ -403,7 +402,7 @@ export default async function IndustriaPage({ params }: { params: Promise<{ slug
           title={`Preguntas Frecuentes sobre Seguridad para ${industry.name}`}
           description={`Resolvemos las dudas más comunes sobre servicios de seguridad especializados para ${industry.name}`}
           faqs={getFAQsForIndustry(industry.slug)}
-          className="bg-[#0A0C12]"
+          className="bg-gray-50 dark:bg-[#0A0C12]"
         />
       )}
 

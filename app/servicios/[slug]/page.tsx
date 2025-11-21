@@ -30,6 +30,7 @@ import GaleriaImagenes from '@/components/GaleriaImagenes';
 import FormularioCotizacionSeccion from '@/app/components/FormularioCotizacionSeccion';
 import BreadcrumbSchema, { Breadcrumbs } from '@/components/seo/BreadcrumbSchema';
 import ServiceSchema from '@/components/seo/ServiceSchema';
+import { Button } from '@/components/ui/button';
 
 // Importar el componente CloudflareVideo de manera dinámica
 // Next.js 15: Removido ssr: false
@@ -231,12 +232,11 @@ export default async function ServicioPage({ params }: { params: Promise<{ slug:
           <p className="text-white text-lg md:text-xl opacity-90 max-w-3xl mb-8">
             {servicio.description}
           </p>
-          <a 
-            href="#cotizar"
-            className="gard-btn gard-btn-primary gard-btn-lg inline-flex items-center"
-          >
-            Cotizar este servicio <ArrowRight className="ml-2 h-5 w-5" />
-          </a>
+          <Button asChild variant="gard-primary" size="lg" className="inline-flex items-center">
+            <a href="#cotizar">
+              Cotizar este servicio <ArrowRight className="ml-2 h-5 w-5" />
+            </a>
+          </Button>
         </div>
         
         {/* Mostrar video o imagen dependiendo del servicio */}
@@ -272,9 +272,9 @@ export default async function ServicioPage({ params }: { params: Promise<{ slug:
 
       {/* Galería de imágenes */}
       {servicio.gallery.length > 0 && (
-        <section className="gard-section py-16 md:py-24 bg-[#0A0C12]">
+        <section className="gard-section py-16 md:py-24 bg-gray-50 dark:bg-[#0A0C12]">
           <div className="gard-container max-w-7xl mx-auto px-4">
-            <h2 className="text-heading-2 mb-10 text-center text-white">Galería de {servicio.name}</h2>
+            <h2 className="text-heading-2 mb-10 text-center text-foreground dark:text-white">Galería de {servicio.name}</h2>
             
             <GaleriaImagenes imagenes={servicio.gallery} titulo={servicio.name} />
           </div>
@@ -282,11 +282,11 @@ export default async function ServicioPage({ params }: { params: Promise<{ slug:
       )}
 
       {/* Industrias compatibles - Usamos el componente reutilizable */}
-      <section className="gard-section py-16 md:py-24 bg-[#0A0C12] relative">
-        <div className="absolute inset-0 bg-[url('/images/textures/noise-pattern.png')] opacity-10"></div>
+      <section className="gard-section py-16 md:py-24 bg-white dark:bg-[#0A0C12] relative">
+        <div className="absolute inset-0 bg-[url('/images/textures/noise-pattern.png')] opacity-5"></div>
         <div className="gard-container max-w-7xl mx-auto px-4 relative z-10">
-          <h2 className="text-heading-2 mb-6 text-center text-white">Industrias que protegemos con este servicio</h2>
-          <p className="text-body-lg text-gray-300 mb-12 max-w-3xl mx-auto text-center">
+          <h2 className="text-heading-2 mb-6 text-center text-foreground dark:text-white">Industrias que protegemos con este servicio</h2>
+          <p className="text-body-lg text-muted-foreground dark:text-gray-300 mb-12 max-w-3xl mx-auto text-center">
             Adaptamos nuestras soluciones de seguridad a los desafíos específicos de cada sector
           </p>
           
@@ -295,10 +295,10 @@ export default async function ServicioPage({ params }: { params: Promise<{ slug:
       </section>
 
       {/* Servicios relacionados */}
-      <section className="gard-section py-16 md:py-24 bg-[#0A0C12]">
+      <section className="gard-section py-16 md:py-24 bg-gray-50 dark:bg-[#0A0C12]">
         <div className="gard-container max-w-7xl mx-auto px-4">
-          <h2 className="text-heading-2 mb-6 text-center text-white">Servicios relacionados</h2>
-          <p className="text-body-lg text-gray-300 mb-12 max-w-3xl mx-auto text-center">
+          <h2 className="text-heading-2 mb-6 text-center text-foreground dark:text-white">Servicios relacionados</h2>
+          <p className="text-body-lg text-muted-foreground dark:text-gray-300 mb-12 max-w-3xl mx-auto text-center">
             Descubre otros servicios complementarios para una solución de seguridad integral
           </p>
           
@@ -310,23 +310,23 @@ export default async function ServicioPage({ params }: { params: Promise<{ slug:
                 <Link 
                   key={index}
                   href={`/servicios/${servicioRelacionado.slug}`}
-                  className="bg-[hsl(var(--gard-card))] rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col h-full"
+                  className="bg-white dark:bg-[hsl(var(--gard-card))] rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col h-full"
                 >
                   <div className="flex items-center mb-4">
-                    {servicioRelacionado.icon === "ShieldCheck" && <ShieldCheck className="h-8 w-8 text-[hsl(var(--gard-accent))] mr-3" />}
-                    {servicioRelacionado.icon === "Shield" && <ShieldCheck className="h-8 w-8 text-[hsl(var(--gard-accent))] mr-3" />}
-                    {servicioRelacionado.icon === "Eye" && <Stethoscope className="h-8 w-8 text-[hsl(var(--gard-accent))] mr-3" />}
-                    {servicioRelacionado.icon === "Plane" && <Plane className="h-8 w-8 text-[hsl(var(--gard-accent))] mr-3" />}
-                    {servicioRelacionado.icon === "ShieldAlert" && <ShieldCheck className="h-8 w-8 text-[hsl(var(--gard-accent))] mr-3" />}
-                    {servicioRelacionado.icon === "ClipboardCheck" && <ClipboardCheck className="h-8 w-8 text-[hsl(var(--gard-accent))] mr-3" />}
-                    {servicioRelacionado.icon === "FileText" && <FileText className="h-8 w-8 text-[hsl(var(--gard-accent))] mr-3" />}
-                    <h3 className="text-xl font-semibold text-white">{servicioRelacionado.name}</h3>
+                    {servicioRelacionado.icon === "ShieldCheck" && <ShieldCheck className="h-8 w-8 text-primary dark:text-[hsl(var(--gard-accent))] mr-3" />}
+                    {servicioRelacionado.icon === "Shield" && <ShieldCheck className="h-8 w-8 text-primary dark:text-[hsl(var(--gard-accent))] mr-3" />}
+                    {servicioRelacionado.icon === "Eye" && <Stethoscope className="h-8 w-8 text-primary dark:text-[hsl(var(--gard-accent))] mr-3" />}
+                    {servicioRelacionado.icon === "Plane" && <Plane className="h-8 w-8 text-primary dark:text-[hsl(var(--gard-accent))] mr-3" />}
+                    {servicioRelacionado.icon === "ShieldAlert" && <ShieldCheck className="h-8 w-8 text-primary dark:text-[hsl(var(--gard-accent))] mr-3" />}
+                    {servicioRelacionado.icon === "ClipboardCheck" && <ClipboardCheck className="h-8 w-8 text-primary dark:text-[hsl(var(--gard-accent))] mr-3" />}
+                    {servicioRelacionado.icon === "FileText" && <FileText className="h-8 w-8 text-primary dark:text-[hsl(var(--gard-accent))] mr-3" />}
+                    <h3 className="text-xl font-semibold text-foreground dark:text-white">{servicioRelacionado.name}</h3>
                   </div>
-                  <p className="text-body-base text-gray-300 mb-4 flex-grow">
+                  <p className="text-body-base text-muted-foreground dark:text-gray-300 mb-4 flex-grow">
                     {servicioRelacionado.description}
                   </p>
                   <div className="flex justify-end mt-auto">
-                    <span className="inline-flex items-center text-[hsl(var(--gard-accent))] font-medium">
+                    <span className="inline-flex items-center text-primary dark:text-[hsl(var(--gard-accent))] font-medium">
                       Ver servicio <ArrowRight className="ml-1 h-4 w-4" />
                     </span>
                   </div>
@@ -339,7 +339,7 @@ export default async function ServicioPage({ params }: { params: Promise<{ slug:
       {/* Formulario de cotización */}
       <FormularioCotizacionSeccion 
         prefillServicio={servicio.name}
-        className="bg-[#0A0C12]" 
+        className="bg-white dark:bg-[#0A0C12]" 
       />
     </>
   );

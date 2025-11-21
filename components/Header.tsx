@@ -4,23 +4,52 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import ThemeToggle from './ThemeToggle';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 import CloudflareImage from './CloudflareImage';
 import { cloudflareImages } from '@/lib/images';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from 'next-themes';
 
 const navLinks = [
-  { href: '/servicios', label: 'Servicios' },
-  { href: '/industrias', label: 'Industrias' },
+  { 
+    href: '/servicios', 
+    label: 'Servicios',
+    hasMegaMenu: true
+  },
+  { 
+    href: '/industrias', 
+    label: 'Industrias',
+    hasMegaMenu: true
+  },
   { href: '/tecnologia-seguridad', label: 'Tecnologías' },
   { href: '/reclutamiento', label: 'Trabaja con Nosotros' },
   { href: '/cotizar', label: 'Cotizar', isCTA: true },
 ];
 
+// Mega Menu Data
+const megaMenuData = {
+  Servicios: [
+    { title: 'Guardias de Seguridad', href: '/servicios/guardias-de-seguridad', desc: 'Personal certificado OS10 para protección física.' },
+    { title: 'Seguridad Electrónica', href: '/servicios/seguridad-electronica', desc: 'CCTV, alarmas y control de acceso avanzado.' },
+    { title: 'Central de Monitoreo', href: '/servicios/central-monitoreo', desc: 'Vigilancia remota 24/7 con respuesta inmediata.' },
+    { title: 'Drones de Seguridad', href: '/servicios/drones-seguridad', desc: 'Vigilancia aérea para grandes extensiones.' },
+    { title: 'Auditoría de Seguridad', href: '/servicios/auditoria-seguridad', desc: 'Evaluación de riesgos y vulnerabilidades.' },
+    { title: 'Consultoría', href: '/servicios/consultoria', desc: 'Asesoría estratégica en seguridad corporativa.' },
+  ],
+  Industrias: [
+    { title: 'Minería', href: '/industrias/mineria', desc: 'Seguridad especializada para faenas mineras.' },
+    { title: 'Retail', href: '/industrias/retail', desc: 'Protección de activos y control de pérdidas.' },
+    { title: 'Logística', href: '/industrias/bodegas', desc: 'Seguridad para centros de distribución.' },
+    { title: 'Corporativo', href: '/industrias/edificios-corporativos', desc: 'Vigilancia para oficinas y edificios.' },
+    { title: 'Construcción', href: '/industrias/construccion', desc: 'Protección de obras y maquinaria.' },
+    { title: 'Educación', href: '/industrias/educacion', desc: 'Seguridad para colegios y universidades.' },
+  ]
+};
+
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [hoveredLink, setHoveredLink] = useState<string | null>(null);
   const pathname = usePathname();
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
@@ -45,6 +74,7 @@ export default function Header() {
   useEffect(() => {
     // Cerrar el menú móvil cuando se cambia de ruta
     setIsOpen(false);
+    setHoveredLink(null);
   }, [pathname]);
 
   // Determinar si estamos en un contexto oscuro
@@ -65,31 +95,34 @@ export default function Header() {
     if (isCTA) {
       return `
         bg-gradient-to-r from-primary to-primary/90 text-white px-4 py-2 rounded-xl 
-        hover:from-primary/90 hover:to-primary hover:scale-105 hover:shadow-lg
-        transition-all duration-300 ease-out font-semibold transform
+        hover:from-primary/90 hover:to-primary hover:scale-105 hover:shadow-lg hover:shadow-primary/20
+        transition-all duration-300 ease-out font-semibold transform gard-btn-glow
         ${scrolled ? 'text-sm' : 'text-base'}
       `;
     }
     
     return `
-      transition-all duration-300 ease-out font-semibold relative
+      transition-all duration-300 ease-out font-semibold relative flex items-center gap-1 group
       ${scrolled ? 'text-sm' : 'text-base'}
       ${isActive 
-        ? 'text-primary font-bold after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary after:rounded-full' 
+        ? 'text-primary font-bold after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-0.5 after:bg-primary after:rounded-full' 
         : scrolled
           ? isDarkMode 
-            ? 'text-white hover:text-primary hover:scale-105' 
-            : 'text-primary hover:text-primary/80 hover:scale-105'
+            ? 'text-white hover:text-primary' 
+            : 'text-gray-800 hover:text-primary'
           : isDarkMode
-            ? 'text-white hover:text-primary/90 hover:scale-105' 
-            : 'text-black hover:text-primary/90 hover:scale-105'
+            ? 'text-white hover:text-primary/90' 
+            : 'text-gray-900 hover:text-primary'
       }
     `;
   };
 
   return (
-    <header className={headerClasses}>
-      <div className="gard-container px-4 md:px-6 flex items-center justify-between">
+    <header 
+      className={headerClasses}
+      onMouseLeave={() => setHoveredLink(null)}
+    >
+      <div className="gard-container px-4 md:px-6 flex items-center justify-between relative">
         <Link href="/" className="relative z-50 flex items-center transition-all duration-300 ease-in-out hover:scale-105 transform">
           <CloudflareImage
             imageId={isDarkMode 
@@ -104,18 +137,58 @@ export default function Header() {
         </Link>
 
         {/* Navegación de escritorio */}
-        <nav className="hidden md:flex items-center space-x-6 lg:space-x-8">
-          {navLinks.map(({ href, label, isCTA }) => (
-            <Link
-              key={href}
-              href={href}
-              className={getNavLinkClasses(pathname === href, isCTA)}
-            >
-              {label}
-            </Link>
+        <nav className="hidden md:flex items-center space-x-6 lg:space-x-8 h-full">
+          {navLinks.map(({ href, label, isCTA, hasMegaMenu }) => (
+            <div key={href} className="relative h-full flex items-center" onMouseEnter={() => hasMegaMenu && setHoveredLink(label)}>
+              <Link
+                href={href}
+                className={getNavLinkClasses(pathname === href, isCTA)}
+              >
+                {label}
+                {hasMegaMenu && <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${hoveredLink === label ? 'rotate-180' : ''}`} />}
+              </Link>
+            </div>
           ))}
           <ThemeToggle />
         </nav>
+
+        {/* Mega Menu Container */}
+        <AnimatePresence>
+          {hoveredLink && megaMenuData[hoveredLink as keyof typeof megaMenuData] && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 10 }}
+              transition={{ duration: 0.2 }}
+              className={`absolute top-full left-0 w-full pt-4 z-40`}
+              onMouseEnter={() => setHoveredLink(hoveredLink)}
+              onMouseLeave={() => setHoveredLink(null)}
+            >
+              <div className={`
+                w-full shadow-xl border-t border-gray-100 dark:border-gray-800
+                ${isDarkMode ? 'bg-[#0b1120]/95 backdrop-blur-xl text-white' : 'bg-white/98 backdrop-blur-xl text-gray-900'}
+                rounded-b-2xl p-8
+              `}>
+                <div className="gard-container grid grid-cols-3 gap-8">
+                  {megaMenuData[hoveredLink as keyof typeof megaMenuData].map((item, idx) => (
+                    <Link 
+                      key={idx} 
+                      href={item.href}
+                      className="group block p-4 rounded-xl hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
+                    >
+                      <h4 className="font-bold text-primary dark:text-white text-lg mb-1 group-hover:text-accent transition-colors flex items-center">
+                        {item.title}
+                      </h4>
+                      <p className="text-sm text-gray-600 dark:text-gray-300">
+                        {item.desc}
+                      </p>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Botón de menú móvil */}
         <button
@@ -184,4 +257,4 @@ export default function Header() {
       </div>
     </header>
   );
-} 
+}

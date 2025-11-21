@@ -28,6 +28,7 @@ import { getCiudadBySlug } from '@/lib/data/ciudad-data';
 import { servicesMetadata } from '@/app/servicios/serviceMetadata';
 import CloudflareImage from '@/components/CloudflareImage';
 import { cloudflareImages } from '@/lib/images';
+import { Button } from '@/components/ui/button';
 
 // Tipo para un servicio
 interface Servicio {
@@ -194,13 +195,12 @@ export default function CiudadPage() {
     <div className="min-h-screen">
       {/* Botón de cotización flotante */}
       <div className="fixed bottom-6 right-6 z-50">
-        <Link 
-          href={`/cotizar?ciudad=${ciudad.slug}`}
-          className="gard-btn gard-btn-primary gard-btn-lg shadow-lg rounded-full flex items-center gap-2 px-6"
-        >
-          <Phone className="h-5 w-5" />
-          Cotizar en {ciudad.nombre}
-        </Link>
+        <Button asChild variant="gard-primary" size="lg" className="shadow-lg rounded-full flex items-center gap-2 px-6">
+          <Link href={`/cotizar?ciudad=${ciudad.slug}`}>
+            <Phone className="h-5 w-5" />
+            Cotizar en {ciudad.nombre}
+          </Link>
+        </Button>
       </div>
 
       {/* Breadcrumbs SEO */}
@@ -234,20 +234,18 @@ export default function CiudadPage() {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center w-full max-w-md mx-auto">
-            <Link 
-              href={`#servicios-${ciudad.slug}`} 
-              className="w-full sm:flex-1 gard-btn gard-btn-outline gard-btn-lg bg-transparent border-white text-white hover:bg-white/20"
-            >
-              Ver Servicios
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Link>
-            <Link 
-              href="/cotizar" 
-              className="w-full sm:flex-1 gard-btn gard-btn-primary gard-btn-lg"
-            >
-              Cotizar Ahora
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Link>
+            <Button asChild variant="gard-outline" size="lg" className="w-full sm:flex-1 bg-transparent border-white text-white hover:bg-white/20">
+              <Link href={`#servicios-${ciudad.slug}`}>
+                Ver Servicios
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+            </Button>
+            <Button asChild variant="gard-primary" size="lg" className="w-full sm:flex-1">
+              <Link href="/cotizar">
+                Cotizar Ahora
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+            </Button>
           </div>
         </div>
         
@@ -408,20 +406,18 @@ export default function CiudadPage() {
                   Contáctanos para recibir asesoría especializada sobre seguridad en {ciudad.nombre}.
                 </p>
                 <div className="space-y-3">
-                  <Link 
-                    href={`/cotizar?ciudad=${ciudad.slug}`}
-                    className="gard-btn gard-btn-primary gard-btn-md inline-flex items-center w-full justify-center"
-                  >
-                    Solicitar cotización
-                    <ArrowRight size={16} className="ml-2" />
-                  </Link>
-                  <Link 
-                    href="/contacto"
-                    className="gard-btn gard-btn-outline gard-btn-md inline-flex items-center w-full justify-center"
-                  >
-                    Contactar asesor
-                    <Phone size={16} className="ml-2" />
-                  </Link>
+                  <Button asChild variant="gard-primary" size="sm" className="w-full justify-center inline-flex items-center">
+                    <Link href={`/cotizar?ciudad=${ciudad.slug}`}>
+                      Solicitar cotización
+                      <ArrowRight size={16} className="ml-2" />
+                    </Link>
+                  </Button>
+                  <Button asChild variant="gard-outline" size="sm" className="w-full justify-center inline-flex items-center">
+                    <Link href="/contacto">
+                      Contactar asesor
+                      <Phone size={16} className="ml-2" />
+                    </Link>
+                  </Button>
                 </div>
               </div>
             </div>

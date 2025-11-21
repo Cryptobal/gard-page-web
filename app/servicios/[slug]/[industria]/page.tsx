@@ -115,12 +115,12 @@ export default async function ServicioIndustriaPage({ params }: PageProps) {
       </section>
 
       {/* Sección de descripción específica */}
-      <section className="gard-section bg-[#0A0C12] relative">
-        <div className="absolute inset-0 bg-[url('/images/textures/noise-pattern.png')] opacity-10"></div>
+      <section className="gard-section bg-gray-50 dark:bg-[#0A0C12] relative">
+        <div className="absolute inset-0 bg-[url('/images/textures/noise-pattern.png')] opacity-5"></div>
         <div className="gard-container relative z-10">
           <div className="max-w-3xl mx-auto text-center mb-12">
-            <h2 className="text-heading-2 mb-6 text-white">{servicio.name} especializado para {industry.name}</h2>
-            <p className="text-body-lg text-gray-300 mb-12">
+            <h2 className="text-heading-2 mb-6 text-foreground dark:text-white">{servicio.name} especializado para {industry.name}</h2>
+            <p className="text-body-lg text-muted-foreground dark:text-gray-300 mb-12">
               {servicioIndustriaData.description || `Nuestro servicio de ${servicio.name.toLowerCase()} para el sector ${industry.name} combina nuestra experiencia en seguridad con un profundo conocimiento de los desafíos específicos de esta industria.`}
             </p>
           </div>
@@ -129,10 +129,10 @@ export default async function ServicioIndustriaPage({ params }: PageProps) {
             <div>
               <div className="space-y-6">
                 <div className="flex items-start">
-                  <CheckCircle className="h-6 w-6 text-[hsl(var(--gard-accent))] mr-4 mt-1" />
+                  <CheckCircle className="h-6 w-6 text-primary dark:text-[hsl(var(--gard-accent))] mr-4 mt-1" />
                   <div>
-                    <h3 className="text-heading-5 mb-2 text-white">Especialización sectorial</h3>
-                    <p className="text-gray-300">
+                    <h3 className="text-heading-5 mb-2 text-foreground dark:text-white">Especialización sectorial</h3>
+                    <p className="text-muted-foreground dark:text-gray-300">
                       Nuestro personal cuenta con capacitación específica sobre los protocolos y procesos 
                       de seguridad propios del sector {industry.name}, garantizando un servicio adaptado a 
                       sus necesidades particulares.
@@ -141,10 +141,10 @@ export default async function ServicioIndustriaPage({ params }: PageProps) {
                 </div>
                 
                 <div className="flex items-start">
-                  <CheckCircle className="h-6 w-6 text-[hsl(var(--gard-accent))] mr-4 mt-1" />
+                  <CheckCircle className="h-6 w-6 text-primary dark:text-[hsl(var(--gard-accent))] mr-4 mt-1" />
                   <div>
-                    <h3 className="text-heading-5 mb-2 text-white">Cumplimiento normativo</h3>
-                    <p className="text-gray-300">
+                    <h3 className="text-heading-5 mb-2 text-foreground dark:text-white">Cumplimiento normativo</h3>
+                    <p className="text-muted-foreground dark:text-gray-300">
                       Aseguramos el cumplimiento de todas las regulaciones y estándares específicos del 
                       sector {industry.name}, manteniendo su operación conforme y segura en todo momento.
                     </p>
@@ -152,10 +152,10 @@ export default async function ServicioIndustriaPage({ params }: PageProps) {
                 </div>
                 
                 <div className="flex items-start">
-                  <CheckCircle className="h-6 w-6 text-[hsl(var(--gard-accent))] mr-4 mt-1" />
+                  <CheckCircle className="h-6 w-6 text-primary dark:text-[hsl(var(--gard-accent))] mr-4 mt-1" />
                   <div>
-                    <h3 className="text-heading-5 mb-2 text-white">Respuesta personalizada</h3>
-                    <p className="text-gray-300">
+                    <h3 className="text-heading-5 mb-2 text-foreground dark:text-white">Respuesta personalizada</h3>
+                    <p className="text-muted-foreground dark:text-gray-300">
                       Diseñamos protocolos de {servicio.name.toLowerCase()} específicos para los riesgos 
                       y vulnerabilidades habituales en {industry.name}, garantizando una cobertura integral 
                       y eficiente.
@@ -166,33 +166,33 @@ export default async function ServicioIndustriaPage({ params }: PageProps) {
             </div>
             
             <div className="space-y-6">
-              <h3 className="text-heading-4 mb-4 text-white">Soluciones que ofrecemos</h3>
+              <h3 className="text-heading-4 mb-4 text-foreground dark:text-white">Soluciones que ofrecemos</h3>
               
-              <div className="bg-[hsl(var(--gard-card))] p-6 rounded-xl flex-grow border border-gray-700">
+              <div className="bg-white dark:bg-[hsl(var(--gard-card))] p-6 rounded-xl flex-grow border border-gray-200 dark:border-gray-700">
                 <ul className="space-y-4">
                   <li className="flex items-start">
-                    <div className="h-6 w-6 bg-green-900 rounded-full flex items-center justify-center mr-3 mt-1 flex-shrink-0">
-                      <CheckCircle className="h-4 w-4 text-green-400" />
+                    <div className="h-6 w-6 bg-primary/10 dark:bg-green-900 rounded-full flex items-center justify-center mr-3 mt-1 flex-shrink-0">
+                      <CheckCircle className="h-4 w-4 text-primary dark:text-green-400" />
                     </div>
-                    <p className="text-gray-300">
+                    <p className="text-muted-foreground dark:text-gray-300">
                       {servicioIndustriaData.soluciones?.[0] || `Personal especializado con capacitación específica en los procesos y riesgos del sector ${industry.name}.`}
                     </p>
                   </li>
                   
                   <li className="flex items-start">
-                    <div className="h-6 w-6 bg-green-900 rounded-full flex items-center justify-center mr-3 mt-1 flex-shrink-0">
-                      <CheckCircle className="h-4 w-4 text-green-400" />
+                    <div className="h-6 w-6 bg-primary/10 dark:bg-green-900 rounded-full flex items-center justify-center mr-3 mt-1 flex-shrink-0">
+                      <CheckCircle className="h-4 w-4 text-primary dark:text-green-400" />
                     </div>
-                    <p className="text-gray-300">
+                    <p className="text-muted-foreground dark:text-gray-300">
                       {servicioIndustriaData.soluciones?.[1] || `Tecnologías y procedimientos diseñados específicamente para abordar los desafíos de seguridad en ${industry.name}.`}
                     </p>
                   </li>
                   
                   <li className="flex items-start">
-                    <div className="h-6 w-6 bg-green-900 rounded-full flex items-center justify-center mr-3 mt-1 flex-shrink-0">
-                      <CheckCircle className="h-4 w-4 text-green-400" />
+                    <div className="h-6 w-6 bg-primary/10 dark:bg-green-900 rounded-full flex items-center justify-center mr-3 mt-1 flex-shrink-0">
+                      <CheckCircle className="h-4 w-4 text-primary dark:text-green-400" />
                     </div>
-                    <p className="text-gray-300">
+                    <p className="text-muted-foreground dark:text-gray-300">
                       {servicioIndustriaData.soluciones?.[2] || `Evaluaciones continuas y planes de mejora adaptados a la evolución de las amenazas en el sector ${industry.name}.`}
                     </p>
                   </li>
@@ -204,46 +204,46 @@ export default async function ServicioIndustriaPage({ params }: PageProps) {
       </section>
 
       {/* Beneficios principales */}
-      <section className="gard-section bg-[#0A0C12]">
+      <section className="gard-section bg-white dark:bg-[#0A0C12]">
         <div className="gard-container">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
             <div className="md:col-span-5 order-2 md:order-1">
-              <h2 className="text-heading-2 mb-6 text-white">Beneficios para su empresa</h2>
+              <h2 className="text-heading-2 mb-6 text-foreground dark:text-white">Beneficios para su empresa</h2>
               
               <div className="space-y-4">
                 {servicioIndustriaData.beneficios ? 
                   servicioIndustriaData.beneficios.map((beneficio: string, index: number) => (
                     <div key={index} className="flex items-start">
                       <div className="mt-1 mr-3">
-                        <ArrowRight className="h-5 w-5 text-[hsl(var(--gard-accent))]" />
+                        <ArrowRight className="h-5 w-5 text-primary dark:text-[hsl(var(--gard-accent))]" />
                       </div>
-                      <p className="text-gray-300">{beneficio}</p>
+                      <p className="text-muted-foreground dark:text-gray-300">{beneficio}</p>
                     </div>
                   )) : (
                     <>
                       <div className="flex items-start">
                         <div className="mt-1 mr-3">
-                          <ArrowRight className="h-5 w-5 text-[hsl(var(--gard-accent))]" />
+                          <ArrowRight className="h-5 w-5 text-primary dark:text-[hsl(var(--gard-accent))]" />
                         </div>
-                        <p className="text-gray-300">Reducción significativa de incidentes de seguridad específicos del sector {industry.name}.</p>
+                        <p className="text-muted-foreground dark:text-gray-300">Reducción significativa de incidentes de seguridad específicos del sector {industry.name}.</p>
                       </div>
                       <div className="flex items-start">
                         <div className="mt-1 mr-3">
-                          <ArrowRight className="h-5 w-5 text-[hsl(var(--gard-accent))]" />
+                          <ArrowRight className="h-5 w-5 text-primary dark:text-[hsl(var(--gard-accent))]" />
                         </div>
-                        <p className="text-gray-300">Cumplimiento garantizado de normativas y regulaciones sectoriales.</p>
+                        <p className="text-muted-foreground dark:text-gray-300">Cumplimiento garantizado de normativas y regulaciones sectoriales.</p>
                       </div>
                       <div className="flex items-start">
                         <div className="mt-1 mr-3">
-                          <ArrowRight className="h-5 w-5 text-[hsl(var(--gard-accent))]" />
+                          <ArrowRight className="h-5 w-5 text-primary dark:text-[hsl(var(--gard-accent))]" />
                         </div>
-                        <p className="text-gray-300">Optimización de costos al adaptar los servicios exactamente a sus necesidades.</p>
+                        <p className="text-muted-foreground dark:text-gray-300">Optimización de costos al adaptar los servicios exactamente a sus necesidades.</p>
                       </div>
                       <div className="flex items-start">
                         <div className="mt-1 mr-3">
-                          <ArrowRight className="h-5 w-5 text-[hsl(var(--gard-accent))]" />
+                          <ArrowRight className="h-5 w-5 text-primary dark:text-[hsl(var(--gard-accent))]" />
                         </div>
-                        <p className="text-gray-300">Mayor tranquilidad para su equipo, clientes y stakeholders.</p>
+                        <p className="text-muted-foreground dark:text-gray-300">Mayor tranquilidad para su equipo, clientes y stakeholders.</p>
                       </div>
                     </>
                   )}
@@ -275,58 +275,58 @@ export default async function ServicioIndustriaPage({ params }: PageProps) {
       </section>
 
       {/* Casos de éxito */}
-      <section className="gard-section bg-[#0A0C12] relative">
-        <div className="absolute inset-0 bg-[url('/images/textures/noise-pattern.png')] opacity-10"></div>
+      <section className="gard-section bg-gray-50 dark:bg-[#0A0C12] relative">
+        <div className="absolute inset-0 bg-[url('/images/textures/noise-pattern.png')] opacity-5"></div>
         <div className="gard-container relative z-10">
-          <h2 className="text-heading-2 mb-6 text-center text-white">Experiencia comprobada en {industry.name}</h2>
-          <p className="text-body-lg text-center text-gray-300 mb-12 max-w-3xl mx-auto">
+          <h2 className="text-heading-2 mb-6 text-center text-foreground dark:text-white">Experiencia comprobada en {industry.name}</h2>
+          <p className="text-body-lg text-center text-muted-foreground dark:text-gray-300 mb-12 max-w-3xl mx-auto">
             Empresas líderes en el sector {industry.name} confían en nuestras soluciones de {servicio.name.toLowerCase()}.
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-[hsl(var(--gard-card))] p-6 rounded-xl shadow-sm border border-gray-700">
+            <div className="bg-white dark:bg-[hsl(var(--gard-card))] p-6 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
               <div className="flex items-center mb-4">
-                <div className="h-12 w-12 bg-blue-900 rounded-full flex items-center justify-center mr-4">
-                  <span className="text-blue-300 text-xl font-bold">C</span>
+                <div className="h-12 w-12 bg-primary/10 dark:bg-blue-900 rounded-full flex items-center justify-center mr-4">
+                  <span className="text-primary dark:text-blue-300 text-xl font-bold">C</span>
                 </div>
                 <div>
-                  <h3 className="text-heading-5 text-white">Caso de estudio: Protección integral</h3>
-                  <p className="text-sm text-gray-400">Empresa líder en {industry.name}</p>
+                  <h3 className="text-heading-5 text-foreground dark:text-white">Caso de estudio: Protección integral</h3>
+                  <p className="text-sm text-muted-foreground dark:text-gray-400">Empresa líder en {industry.name}</p>
                 </div>
               </div>
-              <p className="text-gray-300 mb-4">
+              <p className="text-muted-foreground dark:text-gray-300 mb-4">
                 {servicioIndustriaData.casoExito || `Implementamos un sistema completo de ${servicio.name.toLowerCase()} para una empresa líder del sector ${industry.name}, logrando reducir los incidentes de seguridad en un 65% y optimizando los costos operativos relacionados con la seguridad.`}
               </p>
               <div className="flex justify-end">
-                <Link href="/contacto" className="text-[hsl(var(--gard-accent))] hover:underline text-sm flex items-center">
+                <Link href="/contacto" className="text-primary dark:text-[hsl(var(--gard-accent))] hover:underline text-sm flex items-center">
                   Solicitar información detallada
                   <ArrowRight className="ml-1 h-4 w-4" />
                 </Link>
               </div>
             </div>
             
-            <div className="bg-[hsl(var(--gard-card))] p-6 rounded-xl shadow-sm border border-gray-700">
+            <div className="bg-white dark:bg-[hsl(var(--gard-card))] p-6 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
               <div className="flex items-center mb-4">
-                <div className="h-12 w-12 bg-blue-900 rounded-full flex items-center justify-center mr-4">
-                  <span className="text-blue-300 text-xl font-bold">T</span>
+                <div className="h-12 w-12 bg-primary/10 dark:bg-blue-900 rounded-full flex items-center justify-center mr-4">
+                  <span className="text-primary dark:text-blue-300 text-xl font-bold">T</span>
                 </div>
                 <div>
-                  <h3 className="text-heading-5 text-white">Testimonios de clientes</h3>
-                  <p className="text-sm text-gray-400">La opinión de quienes confían en nosotros</p>
+                  <h3 className="text-heading-5 text-foreground dark:text-white">Testimonios de clientes</h3>
+                  <p className="text-sm text-muted-foreground dark:text-gray-400">La opinión de quienes confían en nosotros</p>
                 </div>
               </div>
               
-              <blockquote className="border-l-4 border-[hsl(var(--gard-accent))] pl-4 italic mb-4">
-                <p className="text-gray-300 mb-2">
+              <blockquote className="border-l-4 border-primary dark:border-[hsl(var(--gard-accent))] pl-4 italic mb-4">
+                <p className="text-muted-foreground dark:text-gray-300 mb-2">
                   {servicioIndustriaData.testimonio || `"El servicio de ${servicio.name.toLowerCase()} que Gard Security ha implementado en nuestras instalaciones ha superado todas nuestras expectativas. Su conocimiento del sector ${industry.name} fue clave para adaptar perfectamente la solución a nuestras necesidades específicas."`}
                 </p>
-                <footer className="text-sm text-gray-400">
+                <footer className="text-sm text-muted-foreground dark:text-gray-400">
                   - Director de Operaciones, empresa líder en {industry.name}
                 </footer>
               </blockquote>
               
               <div className="flex justify-end">
-                <Link href="/testimonios" className="text-[hsl(var(--gard-accent))] hover:underline text-sm flex items-center">
+                <Link href="/testimonios" className="text-primary dark:text-[hsl(var(--gard-accent))] hover:underline text-sm flex items-center">
                   Ver más testimonios
                   <ArrowRight className="ml-1 h-4 w-4" />
                 </Link>
@@ -394,7 +394,7 @@ export default async function ServicioIndustriaPage({ params }: PageProps) {
       <FormularioCotizacionSeccion 
         prefillServicio={servicio.name}
         prefillIndustria={industry.name}
-        className="bg-[#0A0C12]"
+        className="bg-white dark:bg-[#0A0C12]"
       />
     </main>
   );

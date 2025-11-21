@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect } from 'react';
-import { motion, LazyMotion, domAnimation } from 'framer-motion';
+import { motion, LazyMotion, domAnimation, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight, Phone, Clock, PlayCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import CloudflareImage from '@/components/CloudflareImage';
@@ -101,6 +101,10 @@ export default function GardHero({
   const videoRef = useRef<HTMLVideoElement>(null);
   const heroRef = useRef<HTMLElement>(null);
   
+  // Parallax Effect
+  const { scrollY } = useScroll();
+  const y = useTransform(scrollY, [0, 1000], [0, 300]); // Desplaza el fondo más lento que el scroll
+  
   // Reproducir/pausar video (para compatibilidad con videos que no sean de Cloudflare)
   const toggleVideo = () => {
     if (videoRef.current) {
@@ -143,18 +147,20 @@ export default function GardHero({
           borderBottom: '1px solid transparent' // Evita flash blanco entre secciones
         }}
       >
-        {/* Overlay con degradado */}
+        {/* Overlay con degradado - Ensure visibility in both modes */}
         {overlay && (
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent z-10 dark:from-[hsl(var(--gard-background-darkest))/90] dark:to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent z-10"></div>
         )}
         
-        {/* Video o imagen de fondo */}
-        <VideoBackground
-          videoId={videoId}
-          imageId={imageId}
-          title={title}
-          overlay={overlay}
-        />
+        {/* Video o imagen de fondo con Parallax */}
+        <motion.div style={{ y }} className="absolute inset-0 w-full h-full">
+          <VideoBackground
+            videoId={videoId}
+            imageId={imageId}
+            title={title}
+            overlay={overlay}
+          />
+        </motion.div>
         
         {/* Contenido del Hero */}
         <div className={`gard-hero-content z-20 py-16 md:py-24 ${variant === "home" ? "w-full px-4 md:px-6 lg:px-8" : "gard-container"}`}>

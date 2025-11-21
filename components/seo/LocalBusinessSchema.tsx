@@ -22,27 +22,27 @@ export default function LocalBusinessSchema() {
       "height": "60"
     },
     "image": "https://www.gard.cl/logos/gard.svg",
-    "description": "Empresa líder en seguridad privada B2B en Chile. Especializada en guardias certificados OS10, monitoreo 24/7, seguridad electrónica y soluciones integrales para minería, logística y edificios corporativos.",
+    "description": "Empresa líder en seguridad privada B2B en Chile. Especializada en guardias certificados OS10, monitoreo 24/7, seguridad electrónica y soluciones integrales para minería, industria, retail, colegios, logística y edificios corporativos.",
     
     // Dirección principal (Santiago)
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Av. Apoquindo 6410, Of. 701",
+      "streetAddress": "Lo Fontecilla 201, Of. 525",
       "addressLocality": "Las Condes",
       "addressRegion": "Región Metropolitana",
-      "postalCode": "7560969",
+      "postalCode": "7591018",
       "addressCountry": "CL"
     },
     
     // Coordenadas de oficina principal
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": -33.4124,
-      "longitude": -70.5767
+      "latitude": -33.3937,
+      "longitude": -70.5369
     },
     
     // Contacto
-    "telephone": "+56-2-XXXX-XXXX", // TODO: Actualizar con teléfono real
+    "telephone": "+56229872380",
     "email": "comercial@gard.cl",
     
     // Rango de precios
@@ -154,6 +154,10 @@ export default function LocalBusinessSchema() {
           "@type": "AdministrativeArea",
           "name": "Región de Valparaíso"
         }
+      },
+      {
+        "@type": "Country",
+        "name": "Chile"
       }
     ],
     
@@ -177,9 +181,8 @@ export default function LocalBusinessSchema() {
     // Misma organización que (para vincular con Organization Schema)
     "sameAs": [
       "https://www.linkedin.com/company/gard-security",
-      "https://www.facebook.com/gardsecurity",
-      "https://www.instagram.com/gardsecurity",
-      // TODO: Agregar redes sociales reales
+      "https://www.facebook.com/gardsecuritycl",
+      "https://www.instagram.com/gardsecurity"
     ],
     
     // Fundación
@@ -199,4 +202,3 @@ export default function LocalBusinessSchema() {
     />
   );
 }
-
