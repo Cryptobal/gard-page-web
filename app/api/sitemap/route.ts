@@ -6,6 +6,43 @@ import { serviciosPorIndustria } from '@/app/data/servicios-por-industria';
 import { industriesMetadata } from '@/app/industrias/industryMetadata';
 import { ciudades } from '@/lib/data/ciudad-data';
 
+const STATIC_LASTMOD = process.env.SITE_LASTMOD ?? '2025-10-09T00:00:00.000Z';
+
+const stableLastMod = (date?: string | null): string => {
+  // Si no hay fecha o es una cadena vacía, usar STATIC_LASTMOD
+  if (!date || typeof date !== 'string' || date.trim() === '') {
+    return STATIC_LASTMOD;
+  }
+  
+  try {
+    const parsed = new Date(date);
+    // Verificar si la fecha es válida
+    if (isNaN(parsed.getTime())) {
+      return STATIC_LASTMOD;
+    }
+    
+    // Verificar que la fecha esté en un rango razonable (años 1970-2100)
+    const year = parsed.getFullYear();
+    if (year < 1970 || year > 2100) {
+      return STATIC_LASTMOD;
+    }
+    
+    // Intentar generar el ISO string
+    const isoString = parsed.toISOString();
+    
+    // Verificar que el resultado sea válido
+    if (!isoString || isoString.length === 0) {
+      return STATIC_LASTMOD;
+    }
+    
+    return isoString;
+  } catch (error) {
+    // Si hay cualquier error al parsear, usar STATIC_LASTMOD
+    console.warn(`Error parsing date "${date}":`, error);
+    return STATIC_LASTMOD;
+  }
+};
+
 // Generar las rutas del sitemap
 async function generateSitemap() {
   const baseUrl = 'https://www.gard.cl';
@@ -26,7 +63,7 @@ async function generateSitemap() {
     '/blog',
   ].map((route) => ({
     url: `${baseUrl}${route}`,
-    lastModified: new Date().toISOString(),
+    lastModified: STATIC_LASTMOD,
     changeFrequency: 'monthly',
     priority: route === '' ? 1 : 0.8,
   }));
@@ -43,7 +80,7 @@ async function generateSitemap() {
     '/servicios/prevencion-intrusiones'
   ].map((route) => ({
     url: `${baseUrl}${route}`,
-    lastModified: new Date().toISOString(),
+    lastModified: STATIC_LASTMOD,
     changeFrequency: 'monthly',
     priority: 0.7,
   }));
@@ -58,7 +95,7 @@ async function generateSitemap() {
     
     return {
       url: `${baseUrl}/industrias/${slug}`,
-      lastModified: new Date().toISOString(),
+      lastModified: STATIC_LASTMOD,
       changeFrequency: 'monthly',
       priority: 0.7,
     };
@@ -68,25 +105,25 @@ async function generateSitemap() {
   const blogPosts = await getAllPosts();
   const blogPostPages = blogPosts.map((post) => ({
     url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: new Date(post.date).toISOString(),
+    lastModified: stableLastMod(post.date),
     changeFrequency: 'weekly',
     priority: 0.6,
   }));
   
   // Páginas de paginación del blog
   const totalPages = Math.ceil(blogPosts.length / POSTS_PER_PAGE);
-  const blogPaginationPages = Array.from({ length: totalPages - 1 }, (_, i) => ({
+  const blogPaginationPages = totalPages > 1 && blogPosts.length > 0 ? Array.from({ length: totalPages - 1 }, (_, i) => ({
     url: `${baseUrl}/blog/page/${i + 2}`, // Páginas 2 en adelante
-    lastModified: new Date().toISOString(),
+    lastModified: stableLastMod(blogPosts[0]?.date),
     changeFrequency: 'weekly',
     priority: 0.5,
-  }));
+  })) : [];
   
   // Páginas de etiquetas del blog
   const allTags = await getAllTags();
   const blogTagPages = allTags.map((tag) => ({
     url: `${baseUrl}/blog/tag/${encodeURIComponent(tag)}`,
-    lastModified: new Date().toISOString(),
+    lastModified: STATIC_LASTMOD,
     changeFrequency: 'monthly',
     priority: 0.6,
   }));
@@ -97,9 +134,10 @@ async function generateSitemap() {
     const { totalPages } = await getPostsByTag(tag);
     
     if (totalPages > 1) {
+      const { posts } = await getPostsByTag(tag);
       const pages = Array.from({ length: totalPages - 1 }, (_, i) => ({
         url: `${baseUrl}/blog/tag/${encodeURIComponent(tag)}/page/${i + 2}`, // Páginas 2 en adelante
-        lastModified: new Date().toISOString(),
+        lastModified: stableLastMod(posts[0]?.date),
         changeFrequency: 'weekly',
         priority: 0.5,
       }));
@@ -127,7 +165,7 @@ async function generateSitemap() {
         
       servicioIndustriaPages.push({
         url: `${baseUrl}/servicios-por-industria/${servicio.slug}/${industriaSlug}`,
-        lastModified: new Date().toISOString(),
+        lastModified: STATIC_LASTMOD,
         changeFrequency: 'monthly',
         priority: 0.9, // Alta prioridad para estas páginas clave de conversión
       });
@@ -142,7 +180,7 @@ async function generateSitemap() {
     for (const servicio of servicesMetadata) {
       ciudadServicioPages.push({
         url: `${baseUrl}/${ciudad.slug}/${servicio.slug}`,
-        lastModified: new Date().toISOString(),
+        lastModified: STATIC_LASTMOD,
         changeFrequency: 'monthly',
         priority: 0.9, // Alta prioridad para landing pages de conversión geolocalizada
       });
