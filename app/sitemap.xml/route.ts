@@ -6,10 +6,39 @@ import { serviciosPorIndustria, esCombinacionValida } from '../data/servicios-po
 
 const STATIC_LASTMOD = process.env.SITE_LASTMOD ?? '2025-10-09T00:00:00.000Z';
 
-const stableLastMod = (date?: string) => {
-  if (!date) return STATIC_LASTMOD;
-  const parsed = new Date(date);
-  return isNaN(parsed.getTime()) ? STATIC_LASTMOD : parsed.toISOString();
+const stableLastMod = (date?: string | null): string => {
+  // Si no hay fecha o es una cadena vacía, usar STATIC_LASTMOD
+  if (!date || typeof date !== 'string' || date.trim() === '') {
+    return STATIC_LASTMOD;
+  }
+  
+  try {
+    const parsed = new Date(date);
+    // Verificar si la fecha es válida
+    if (isNaN(parsed.getTime())) {
+      return STATIC_LASTMOD;
+    }
+    
+    // Verificar que la fecha esté en un rango razonable (años 1970-2100)
+    const year = parsed.getFullYear();
+    if (year < 1970 || year > 2100) {
+      return STATIC_LASTMOD;
+    }
+    
+    // Intentar generar el ISO string
+    const isoString = parsed.toISOString();
+    
+    // Verificar que el resultado sea válido
+    if (!isoString || isoString.length === 0) {
+      return STATIC_LASTMOD;
+    }
+    
+    return isoString;
+  } catch (error) {
+    // Si hay cualquier error al parsear, usar STATIC_LASTMOD
+    console.warn(`Error parsing date "${date}":`, error);
+    return STATIC_LASTMOD;
+  }
 };
 
 // Priorización de industrias según enfoque B2B
@@ -162,7 +191,7 @@ async function generateSitemap() {
   
   // Páginas de paginación del blog (solo la primera página adicional)
   const totalPages = Math.ceil(blogPosts.length / POSTS_PER_PAGE);
-  const blogPaginationPages = totalPages > 1 ? [
+  const blogPaginationPages = totalPages > 1 && blogPosts.length > 0 ? [
     {
       url: `${baseUrl}/blog/page/2`,
       lastModified: stableLastMod(blogPosts[0]?.date),
