@@ -47,9 +47,15 @@ const howToSteps = [
   { name: 'Alinear KPIs y reportes', text: 'Establecer KPIs: tiempo de respuesta, continuidad, incidentes y SLA mensuales.' },
 ];
 
-const reviews = [
+const reviews: Array<{
+  author: { name: string; type: 'Person' | 'Organization' };
+  datePublished: string;
+  ratingValue: number;
+  reviewBody: string;
+  name: string;
+}> = [
   {
-    author: { name: 'Gerente de Seguridad Minera', type: 'Person' },
+    author: { name: 'Gerente de Seguridad Minera', type: 'Person' as const },
     datePublished: '2025-05-01',
     ratingValue: 5,
     reviewBody:
@@ -57,7 +63,7 @@ const reviews = [
     name: 'Liderazgo en minería',
   },
   {
-    author: { name: 'Director de Logística', type: 'Person' },
+    author: { name: 'Director de Logística', type: 'Person' as const },
     datePublished: '2025-04-20',
     ratingValue: 5,
     reviewBody:
@@ -65,7 +71,7 @@ const reviews = [
     name: 'Resultados en logística',
   },
   {
-    author: { name: 'Administrador de Edificio Corporativo', type: 'Person' },
+    author: { name: 'Administrador de Edificio Corporativo', type: 'Person' as const },
     datePublished: '2025-04-05',
     ratingValue: 5,
     reviewBody:

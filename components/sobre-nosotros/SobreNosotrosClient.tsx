@@ -12,6 +12,29 @@ import GardHero from '@/components/layouts/GardHero';
 import ReviewSchema from '@/components/seo/ReviewSchema';
 
 export default function SobreNosotrosClient() {
+  const reviews: Array<{
+    author: { name: string; type: 'Person' | 'Organization' };
+    datePublished: string;
+    ratingValue: number;
+    reviewBody: string;
+    name: string;
+  }> = [
+    {
+      author: { name: 'Cliente Corporativo', type: 'Person' as const },
+      datePublished: '2025-05-01',
+      ratingValue: 5,
+      reviewBody: 'Servicio confiable, respuesta <15 minutos y guardias OS10 auditados. Reportes claros y equipos profesionales.',
+      name: 'Resultados corporativos',
+    },
+    {
+      author: { name: 'Gerente de Logística', type: 'Person' as const },
+      datePublished: '2025-04-18',
+      ratingValue: 5,
+      reviewBody: 'Reducción de mermas -85% con control de accesos y supervisión 24/7. Excelente visibilidad operacional.',
+      name: 'Logística optimizada',
+    },
+  ];
+
   return (
     <>
       {/* Componentes SEO */}
@@ -26,22 +49,7 @@ export default function SobreNosotrosClient() {
           description: 'Líder B2B en seguridad privada en Chile con 4.9/5 rating y 100% guardias OS10.',
         }}
         aggregateRating={{ ratingValue: 4.9, reviewCount: 127, bestRating: 5, worstRating: 1 }}
-        reviews={[
-          {
-            author: { name: 'Cliente Corporativo', type: 'Person' },
-            datePublished: '2025-05-01',
-            ratingValue: 5,
-            reviewBody: 'Servicio confiable, respuesta <15 minutos y guardias OS10 auditados. Reportes claros y equipos profesionales.',
-            name: 'Resultados corporativos',
-          },
-          {
-            author: { name: 'Gerente de Logística', type: 'Person' },
-            datePublished: '2025-04-18',
-            ratingValue: 5,
-            reviewBody: 'Reducción de mermas -85% con control de accesos y supervisión 24/7. Excelente visibilidad operacional.',
-            name: 'Logística optimizada',
-          },
-        ]}
+        reviews={reviews}
       />
       
       {/* Hero Section */}

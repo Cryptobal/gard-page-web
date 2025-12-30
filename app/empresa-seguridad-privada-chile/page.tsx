@@ -94,7 +94,13 @@ const faqs = [
   },
 ];
 
-const reviews = [
+const reviews: Array<{
+  author: { name: string; type: 'Person' | 'Organization' };
+  datePublished: string;
+  ratingValue: number;
+  reviewBody: string;
+  name: string;
+}> = [
   {
     author: { name: 'Gerente de Operaciones Mineras', type: 'Person' as const },
     datePublished: '2025-06-01',

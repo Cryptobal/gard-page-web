@@ -104,9 +104,15 @@ const faqs = [
   },
 ];
 
-const reviews = [
+const reviews: Array<{
+  author: { name: string; type: 'Person' | 'Organization' };
+  datePublished: string;
+  ratingValue: number;
+  reviewBody: string;
+  name: string;
+}> = [
   {
-    author: { name: 'Gerente de Seguridad Corporativa', type: 'Person' },
+    author: { name: 'Gerente de Seguridad Corporativa', type: 'Person' as const },
     datePublished: '2025-05-20',
     ratingValue: 5,
     reviewBody:
@@ -114,14 +120,14 @@ const reviews = [
     name: 'Edificios corporativos clase A',
   },
   {
-    author: { name: 'Jefe de Logística', type: 'Person' },
+    author: { name: 'Jefe de Logística', type: 'Person' as const },
     datePublished: '2025-04-30',
     ratingValue: 5,
     reviewBody: 'Reducción de mermas -80% en 6 meses. Guardias atentos, control de accesos y CCTV con analítica.',
     name: 'Logística y bodegas',
   },
   {
-    author: { name: 'Administrador de Condominio Comercial', type: 'Person' },
+    author: { name: 'Administrador de Condominio Comercial', type: 'Person' as const },
     datePublished: '2025-04-05',
     ratingValue: 5,
     reviewBody: 'Guardias profesionales, informes claros y supervisión permanente. Respuesta rápida ante incidencias.',
