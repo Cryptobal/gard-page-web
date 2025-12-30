@@ -14,6 +14,33 @@ interface PostCardProps {
   tags?: string[];
 }
 
+// Función helper para formatear fechas de forma segura
+function formatDateSafe(dateString: string, formatString: string = 'dd MMMM, yyyy'): string {
+  if (!dateString || typeof dateString !== 'string' || dateString.trim() === '') {
+    return 'Fecha no disponible';
+  }
+  
+  try {
+    const date = new Date(dateString);
+    
+    // Verificar si la fecha es válida
+    if (isNaN(date.getTime())) {
+      return 'Fecha no disponible';
+    }
+    
+    // Verificar que la fecha esté en un rango razonable (años 1970-2100)
+    const year = date.getFullYear();
+    if (year < 1970 || year > 2100) {
+      return 'Fecha no disponible';
+    }
+    
+    return format(date, formatString, { locale: es });
+  } catch (error) {
+    console.warn(`Error formatting date "${dateString}":`, error);
+    return 'Fecha no disponible';
+  }
+}
+
 export default function PostCard({
   slug,
   title,
@@ -22,8 +49,8 @@ export default function PostCard({
   imageId,
   tags,
 }: PostCardProps) {
-  // Formatear la fecha al español
-  const formattedDate = format(new Date(date), 'dd MMMM, yyyy', { locale: es });
+  // Formatear la fecha al español de forma segura
+  const formattedDate = formatDateSafe(date, 'dd MMMM, yyyy');
   
   return (
     <div className="gard-card-dark-accent">

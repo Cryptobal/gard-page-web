@@ -23,9 +23,36 @@ interface PostCardCompactProps {
   ultraCompact?: boolean;
 }
 
+// Función helper para formatear fechas de forma segura
+function formatDateSafe(dateString: string, formatString: string = 'dd MMM, yyyy'): string {
+  if (!dateString || typeof dateString !== 'string' || dateString.trim() === '') {
+    return 'Fecha no disponible';
+  }
+  
+  try {
+    const date = new Date(dateString);
+    
+    // Verificar si la fecha es válida
+    if (isNaN(date.getTime())) {
+      return 'Fecha no disponible';
+    }
+    
+    // Verificar que la fecha esté en un rango razonable (años 1970-2100)
+    const year = date.getFullYear();
+    if (year < 1970 || year > 2100) {
+      return 'Fecha no disponible';
+    }
+    
+    return format(date, formatString, { locale: es });
+  } catch (error) {
+    console.warn(`Error formatting date "${dateString}":`, error);
+    return 'Fecha no disponible';
+  }
+}
+
 export default function PostCardCompact({ post, showImage = true, ultraCompact = false }: PostCardCompactProps) {
   const { slug, title, date, tags, imageId } = post;
-  const formattedDate = format(new Date(date), 'dd MMM, yyyy', { locale: es });
+  const formattedDate = formatDateSafe(date, 'dd MMM, yyyy');
 
   return (
     <div 
