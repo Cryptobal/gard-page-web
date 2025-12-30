@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next';
 import { industries } from '@/app/data/industries';
-import { getAllPosts, POSTS_PER_PAGE, getAllTags, getPostsByTag } from '@/lib/blog';
+import { getAllPosts, POSTS_PER_PAGE } from '@/lib/blog';
 import { servicesMetadata } from '@/app/servicios/serviceMetadata';
 import { serviciosPorIndustria } from '@/app/data/servicios-por-industria';
 import { industriesMetadata } from '@/app/industrias/industryMetadata';
@@ -102,6 +102,7 @@ async function generateSitemap() {
   });
   
   // Páginas de blog dinámicas (posts individuales)
+  // Cachear getAllPosts() una sola vez para reutilizar en múltiples operaciones
   const blogPosts = await getAllPosts();
   const blogPostPages = blogPosts.map((post) => ({
     url: `${baseUrl}/blog/${post.slug}`,
@@ -119,8 +120,13 @@ async function generateSitemap() {
     priority: 0.5,
   })) : [];
   
-  // Páginas de etiquetas del blog
-  const allTags = await getAllTags();
+  // Páginas de etiquetas del blog - calcular desde blogPosts cacheado
+  const allTagsSet = new Set<string>();
+  blogPosts.forEach(post => {
+    post.tags?.forEach(tag => allTagsSet.add(tag));
+  });
+  const allTags = Array.from(allTagsSet);
+  
   const blogTagPages = allTags.map((tag) => ({
     url: `${baseUrl}/blog/tag/${encodeURIComponent(tag)}`,
     lastModified: STATIC_LASTMOD,
@@ -128,16 +134,17 @@ async function generateSitemap() {
     priority: 0.6,
   }));
 
-  // Páginas de paginación por etiqueta
+  // Páginas de paginación por etiqueta - optimizado para evitar llamadas duplicadas
   const blogTagPaginationPages = [];
   for (const tag of allTags) {
-    const { totalPages } = await getPostsByTag(tag);
+    // Filtrar posts por tag usando el array cacheado en lugar de llamar getPostsByTag
+    const filteredPosts = blogPosts.filter(post => post.tags?.includes(tag));
+    const tagTotalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE);
     
-    if (totalPages > 1) {
-      const { posts } = await getPostsByTag(tag);
-      const pages = Array.from({ length: totalPages - 1 }, (_, i) => ({
+    if (tagTotalPages > 1 && filteredPosts.length > 0) {
+      const pages = Array.from({ length: tagTotalPages - 1 }, (_, i) => ({
         url: `${baseUrl}/blog/tag/${encodeURIComponent(tag)}/page/${i + 2}`, // Páginas 2 en adelante
-        lastModified: stableLastMod(posts[0]?.date),
+        lastModified: stableLastMod(filteredPosts[0]?.date),
         changeFrequency: 'weekly',
         priority: 0.5,
       }));
