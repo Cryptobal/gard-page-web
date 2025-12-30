@@ -67,10 +67,10 @@ export default function LocalBusinessSchema() {
     // Rating agregado
     "aggregateRating": {
       "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "bestRating": "5",
-      "worstRating": "1",
-      "reviewCount": "127"
+      "ratingValue": 4.9,
+      "bestRating": 5,
+      "worstRating": 1,
+      "reviewCount": 127
     },
     
     // Áreas de servicio

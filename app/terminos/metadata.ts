@@ -9,12 +9,12 @@ export const metadata: Metadata = {
     follow: true
   },
   alternates: {
-    canonical: 'https://gard.cl/terminos'
+    canonical: 'https://www.gard.cl/terminos'
   },
   openGraph: {
     title: 'Términos y Condiciones | Gard Security',
     description: 'Conozca los términos y condiciones para la contratación de nuestros servicios de seguridad empresarial.',
-    url: 'https://gard.cl/terminos',
+    url: 'https://www.gard.cl/terminos',
     siteName: 'Gard Security',
     locale: 'es_CL',
     type: 'website',

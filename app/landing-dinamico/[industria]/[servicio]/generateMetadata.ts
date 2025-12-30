@@ -26,12 +26,12 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
   const description = `Protección con ${servicio.replace(/-/g, ' ')} especializado para el rubro ${industria.replace(/-/g, ' ')}. Soluciones avanzadas con Gard Security.`;
   
   // URL canónica
-  const url = `https://gard.cl/landing-dinamico/${industria}/${servicio}`;
+  const url = `https://www.gard.cl/landing-dinamico/${industria}/${servicio}`;
   
   // Imagen OG
   const ogImage = landingText.imageId 
     ? `https://imagedelivery.net/gGw8cfmEZedi85dYm6qcFw/${landingText.imageId}/public` 
-    : 'https://gard.cl/images/og-image.jpg';
+    : 'https://www.gard.cl/images/og-image.jpg';
   
   // Extraer UTM params y gclid para tracking
   const utm_source = searchParams.utm_source || '';

@@ -29,12 +29,12 @@ const cotizadorInteligente: Metadata = {
     follow: true
   },
   alternates: {
-    canonical: 'https://gard.cl/cotizador-inteligente'
+    canonical: 'https://www.gard.cl/cotizador-inteligente'
   },
   openGraph: {
     title: 'Cotizador Inteligente de Guardias de Seguridad | Gard Security',
     description: 'Calcula el costo de tu servicio de guardias de seguridad con nuestro cotizador inteligente. Configura turnos, horarios y recibe una cotización personalizada.',
-    url: 'https://gard.cl/cotizador-inteligente',
+    url: 'https://www.gard.cl/cotizador-inteligente',
     siteName: 'Gard Security',
     locale: 'es_CL',
     type: 'website',

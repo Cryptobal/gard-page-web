@@ -9,12 +9,12 @@ export const metadata: Metadata = {
     follow: true
   },
   alternates: {
-    canonical: 'https://gard.cl/reclutamiento'
+    canonical: 'https://www.gard.cl/reclutamiento'
   },
   openGraph: {
     title: 'Trabaja con Nosotros | Gard Security',
     description: 'Únete a nuestro equipo de profesionales en seguridad. Postula a guardias de seguridad, supervisores y cargos administrativos.',
-    url: 'https://gard.cl/reclutamiento',
+    url: 'https://www.gard.cl/reclutamiento',
     siteName: 'Gard Security',
     locale: 'es_CL',
     type: 'website',

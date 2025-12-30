@@ -37,6 +37,14 @@ const MAPEO_SERVICIOS_ANTIGUOS = {
 // Middleware para gestionar las diferentes rutas dinámicas
 export function middleware(request: NextRequest) {
   const url = request.nextUrl.clone();
+  const hostname = request.headers.get('host');
+
+  // Redirección canónica: forzar www en producción
+  if (hostname === 'gard.cl') {
+    url.hostname = 'www.gard.cl';
+    return NextResponse.redirect(url, 308);
+  }
+
   const { pathname } = url;
   
   // NO limpiar pathname - esto causaba problemas

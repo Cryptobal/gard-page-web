@@ -100,8 +100,8 @@ const formatNumber = (num: number): string => {
   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 };
 
-// Forzar revalidación para asegurar que los componentes nuevos se rendericen
-export const revalidate = 0; // Deshabilitar ISR temporalmente
+// ISR: Revalidar cada hora (3600 segundos) para balancear frescura y performance
+export const revalidate = 3600;
 
 // Generar metadata dinámica para SEO
 // Next.js 15: params es ahora una Promise

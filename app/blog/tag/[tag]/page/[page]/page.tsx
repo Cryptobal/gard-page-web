@@ -47,6 +47,7 @@ export async function generateMetadata({
 }: {
   params: Promise<{ tag: string; page: string }>;
 }): Promise<Metadata> {
+  const baseUrl = 'https://www.gard.cl';
   const resolvedParams = await params;
   const { tag, page } = resolvedParams;
   const pageNumber = parseInt(page, 10);
@@ -63,7 +64,7 @@ export async function generateMetadata({
     };
   }
 
-  const canonicalPath = `/blog/tag/${encodeURIComponent(tagName)}/page/${pageNumber}`;
+  const canonicalPath = `${baseUrl}/blog/tag/${encodeURIComponent(tagName)}/page/${pageNumber}`;
   
   // Preparar links para SEO (prev/next)
   const links: { [key: string]: string }[] = [];
@@ -88,15 +89,18 @@ export async function generateMetadata({
     });
   }
 
+  const robots = pageNumber >= 3 ? { index: false, follow: true } : { index: true, follow: true };
+
   return {
     title: `${capitalizedTag} (${pageNumber}) | Gard Security`,
     description: `Explora artículos sobre ${capitalizedTag}. Página ${pageNumber} de ${totalPages}. Consejos, tendencias y novedades sobre seguridad privada.`,
     openGraph: {
       title: `${capitalizedTag} (Página ${pageNumber}) | Blog de Seguridad Gard`,
       description: `Explora artículos sobre ${capitalizedTag}. Página ${pageNumber} de ${totalPages}. Información clave sobre seguridad privada para empresas.`,
+      url: canonicalPath,
       images: [
         {
-          url: 'https://gard.cl/og-image.jpg',
+          url: 'https://www.gard.cl/og-image.jpg',
           width: 1200,
           height: 630,
           alt: `Artículos sobre ${capitalizedTag} - Página ${pageNumber}`,
@@ -107,6 +111,7 @@ export async function generateMetadata({
     alternates: {
       canonical: canonicalPath,
     },
+    robots,
     // Incluir los enlaces prev/next para SEO
     ...(links.length > 0 ? { links } : {}),
   };

@@ -49,7 +49,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: content.metaDescription,
       type: 'website',
       locale: 'es_CL',
-      url: `https://gard.cl/${resolvedParams.ciudad}/${resolvedParams.servicio}`,
+        url: `https://www.gard.cl/${resolvedParams.ciudad}/${resolvedParams.servicio}`,
       siteName: 'Gard Security',
     },
   };

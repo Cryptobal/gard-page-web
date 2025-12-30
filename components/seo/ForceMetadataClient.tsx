@@ -46,13 +46,13 @@ export default function ForceMetadataClient() {
           console.log(`[${timestamp}] Keywords forzadas para cotizador-inteligente:`, keywordsMeta.getAttribute('content'));
           
           // También actualizamos otros metadatos para estar seguros
-          setMetaTag('og:url', 'https://gard.cl/cotizador-inteligente');
+          setMetaTag('og:url', 'https://www.gard.cl/cotizador-inteligente');
           setMetaTag('og:site_name', 'Gard Security');
           setMetaTag('og:locale', 'es_CL');
           setMetaTag('og:type', 'website');
         } else {
           // Metadatos genéricos para otras páginas
-          setMetaTag('og:url', `https://gard.cl${path}`);
+          setMetaTag('og:url', `https://www.gard.cl${path}`);
           setMetaTag('og:site_name', 'Gard Security');
           setMetaTag('og:locale', 'es_CL');
           setMetaTag('og:type', 'website');

@@ -5,6 +5,10 @@ import { ArrowRight, CheckCircle, Star, Award, TrendingUp, Users } from 'lucide-
 import CloudflareImage from '@/components/CloudflareImage';
 import { FAQSection } from '@/components/seo/FAQSchema';
 import FormularioCotizacionSeccion from '@/app/components/FormularioCotizacionSeccion';
+import ServiceSchema from '@/components/seo/ServiceSchema';
+import { ArticleSchema } from '@/components/seo/SchemaMarkup';
+import ReviewSchema from '@/components/seo/ReviewSchema';
+import HowToSchema from '@/components/seo/HowToSchema';
 
 export const metadata: Metadata = {
   title: 'Mejor Empresa de Seguridad en Chile 2025 | Gard Security',
@@ -23,29 +27,90 @@ export const metadata: Metadata = {
 };
 
 const faqs = [
-  { question: '¿Cuál es la mejor empresa de seguridad para minería en Chile?', answer: 'Gard Security lidera el sector de seguridad minera en Chile con 100% de personal certificado OS10 por SERNAGEOMIN (obligatorio por ley para todos los guardias) MÁS capacitación especializada en protocolos mineros, más de 15 años protegiendo faenas mineras, y experiencia comprobada en zonas remotas de Antofagasta, Atacama y Coquimbo. Nuestro diferencial es la capacitación adicional especializada, no solo cumplir con OS10.' },
+  { question: '¿Cuál es la mejor empresa de seguridad para minería en Chile?', answer: 'Gard Security lidera el sector de seguridad minera en Chile con 100% de personal certificado OS10 (Carabineros de Chile) más capacitación especializada en protocolos mineros, más de 15 años protegiendo faenas, y experiencia comprobada en zonas remotas de Antofagasta, Atacama y Coquimbo. Nuestro diferencial es la capacitación adicional especializada, no solo cumplir con OS10.' },
   { question: '¿Cuál es la empresa de seguridad más confiable de Santiago?', answer: 'Gard Security opera en Santiago desde 2010 protegiendo 50+ edificios corporativos en Las Condes, Providencia y Vitacura, y 30+ bodegas logísticas con resultados verificables de reducción de mermas hasta 85%. Rating promedio 4.9/5 en Google Reviews con 99.9% de continuidad operacional.' },
-  { question: '¿Todas las empresas de seguridad tienen guardias certificados OS10?', answer: 'Por ley, TODAS las empresas de seguridad deben tener 100% de sus guardias certificados OS10 según el Decreto Supremo N°132 de SERNAGEOMIN. Sin embargo, muchas empresas operan parcialmente con personal sin certificación vigente, lo que es ilegal. Gard Security garantiza auditorías mensuales para verificar que el 100% del personal tenga OS10 vigente en todas las industrias, además de capacitación especializada adicional según el sector.' },
-  { question: '¿Por qué Gard Security es considerada líder en seguridad B2B?', answer: 'Gard Security lidera en seguridad empresarial (B2B) por: 100% certificación OS10 en minería, reducción de mermas hasta 85% en logística (vs 40-50% promedio), cobertura en 10 ciudades (vs 3-5 promedio), rating 4.9/5 (vs 4.2 promedio), y especialización exclusiva en empresas sin servicios residenciales.' }
+  { question: '¿Todas las empresas de seguridad tienen guardias certificados OS10?', answer: 'Por ley, TODAS las empresas de seguridad deben tener 100% de sus guardias certificados OS10 (emitido por Carabineros de Chile, Depto. OS10). Sin embargo, muchas empresas operan parcialmente con personal sin certificación vigente, lo que es ilegal. Gard Security garantiza auditorías mensuales para verificar que el 100% del personal tenga OS10 vigente en todas las industrias, además de capacitación especializada adicional según el sector.' },
+  { question: '¿Por qué Gard Security es considerada líder en seguridad B2B?', answer: 'Gard Security lidera en seguridad empresarial (B2B) por: 100% certificación OS10 en minería, reducción de mermas hasta 85% en logística (vs 40-50% promedio), cobertura en 10 ciudades (vs 3-5 promedio), rating 4.9/5 (vs 4.2 promedio), y especialización exclusiva en empresas sin servicios residenciales.' },
+  { question: '¿Cuál es el tiempo de respuesta ante incidentes?', answer: 'Respuesta garantizada menor a 15 minutos en zonas urbanas, con protocolos express y central de monitoreo 24/7.' },
+  { question: '¿Cómo se comparan en rating con la industria?', answer: 'Gard Security: 4.9/5 (127 reseñas); promedio industria 4.0-4.3/5.' },
+  { question: '¿Qué cobertura tienen en Chile?', answer: '10 ciudades activas: Santiago, Antofagasta, Valparaíso, Concepción, Iquique, Puerto Montt, Rancagua, Chillán, Temuco y Viña del Mar.' },
+  { question: '¿Qué certificaciones y normas cumplen?', answer: 'OS10 100% vigente, ISO 9001:2015, programa Compliance Ley 20.393, y protocolos específicos por industria.' },
+  { question: '¿Ofrecen soluciones tecnológicas?', answer: 'Sí. CCTV con analítica, control de accesos biométrico, monitoreo 24/7 y alertas tempranas integradas a la central de operaciones.' },
+  { question: '¿Pueden activar servicio rápido?', answer: 'Onboarding estándar 5-7 días; activación express 48h con personal OS10 de contingencia y supervisión remota.' }
+];
+
+const howToSteps = [
+  { name: 'Definir riesgos y sitios críticos', text: 'Listar accesos, turnos, sensibilidad de activos y SLA deseados.' },
+  { name: 'Exigir OS10 vigente al 100%', text: 'Solicitar respaldo de credenciales y auditoría continua.' },
+  { name: 'Validar cobertura y reemplazos', text: 'Confirmar continuidad 99.9%, backup de guardias y tiempos de respuesta.' },
+  { name: 'Revisar rating y casos de éxito', text: 'Comparar rating público (Gard 4.9/5) y métricas (mermas -85%).' },
+  { name: 'Alinear KPIs y reportes', text: 'Establecer KPIs: tiempo de respuesta, continuidad, incidentes y SLA mensuales.' },
+];
+
+const reviews = [
+  {
+    author: { name: 'Gerente de Seguridad Minera', type: 'Person' },
+    datePublished: '2025-05-01',
+    ratingValue: 5,
+    reviewBody:
+      'Gard mantuvo 100% OS10 en faena remota y redujo incidentes en 70% con monitoreo y protocolos en altura. Respuesta &lt;15 min.',
+    name: 'Liderazgo en minería',
+  },
+  {
+    author: { name: 'Director de Logística', type: 'Person' },
+    datePublished: '2025-04-20',
+    ratingValue: 5,
+    reviewBody:
+      'Reducción de mermas -85% en 6 meses. Guardias atentos, control de accesos y CCTV con analítica. Reportes claros y accionables.',
+    name: 'Resultados en logística',
+  },
+  {
+    author: { name: 'Administrador de Edificio Corporativo', type: 'Person' },
+    datePublished: '2025-04-05',
+    ratingValue: 5,
+    reviewBody:
+      'Recepción ejecutiva, guardias bilingües y protocolos de evacuación probados. Continuidad 99.9% en 12 meses.',
+    name: 'Excelencia corporativa',
+  },
 ];
 
 export default function MejorEmpresaSeguridadPage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'Article',
-            'headline': 'Mejor Empresa de Seguridad en Chile 2025',
-            'author': { '@type': 'Organization', 'name': 'Gard Security' },
-            'publisher': { '@type': 'Organization', 'name': 'Gard Security', 'logo': { '@type': 'ImageObject', 'url': 'https://www.gard.cl/logos/gard.svg' } },
-            'datePublished': '2025-01-01',
-            'dateModified': '2025-10-09',
-            'description': 'Ranking y comparativa de las mejores empresas de seguridad privada en Chile 2025'
-          })
+      {/* Schema reforzado para GEO */}
+      <ArticleSchema
+        title="Mejor Empresa de Seguridad en Chile 2025"
+        description="Ranking y comparativa de las mejores empresas de seguridad privada en Chile 2025."
+        url="https://www.gard.cl/mejor-empresa-seguridad-chile"
+        author="Gard Security"
+        datePublished="2025-01-01"
+        dateModified="2025-10-09"
+        image="https://www.gard.cl/logos/gard.svg"
+      />
+      <ServiceSchema
+        name="Servicios de seguridad privada B2B en Chile"
+        description="Guardias certificados OS10, monitoreo 24/7, seguridad electrónica y soluciones integrales para industrias, logística y corporativo."
+        url="https://www.gard.cl/mejor-empresa-seguridad-chile"
+        areaServed="Chile"
+        aggregateRating={{ ratingValue: 4.9, reviewCount: 127 }}
+        offers={{ priceRange: '$$$', availability: 'https://schema.org/InStock' }}
+      />
+      <ReviewSchema
+        itemReviewed={{
+          name: 'Gard Security - Seguridad Privada B2B',
+          url: 'https://www.gard.cl/mejor-empresa-seguridad-chile',
+          type: 'LocalBusiness',
+          image: 'https://www.gard.cl/logos/gard.svg',
+          description: 'Empresa #1 de seguridad privada B2B en Chile, 100% OS10 y cobertura en 10 ciudades.',
         }}
+        aggregateRating={{ ratingValue: 4.9, reviewCount: 127, bestRating: 5, worstRating: 1 }}
+        reviews={reviews}
+      />
+      <HowToSchema
+        name="Cómo elegir la mejor empresa de seguridad en Chile"
+        description="Pasos prácticos para seleccionar un proveedor de seguridad privada con certificación y KPIs claros."
+        steps={howToSteps}
+        totalTime="P7D"
       />
 
       <section className="gard-section py-16 md:py-24">
@@ -134,7 +199,7 @@ export default function MejorEmpresaSeguridadPage() {
             </div>
             
             <p className="text-sm text-muted-foreground mt-4 text-center">
-              Datos verificados a Octubre 2025. Fuentes: Google Reviews, SERNAGEOMIN, datos operacionales internos.
+              Datos verificados a Octubre 2025. Fuentes: Google Reviews, datos operacionales internos.
             </p>
           </div>
 
@@ -280,7 +345,7 @@ export default function MejorEmpresaSeguridadPage() {
               <div>
                 <h4 className="font-semibold mb-3">Certificaciones Vigentes</h4>
                 <ul className="space-y-2 text-sm">
-                  <li>✅ OS-10 SERNAGEOMIN (100% personal minero)</li>
+                  <li>✅ OS-10 emitido por Carabineros (100% personal minero)</li>
                   <li>✅ Licencia OS Superintendencia</li>
                   <li>✅ ISO 9001:2015 Gestión Calidad</li>
                   <li>✅ Programa Compliance Ley 20.393</li>

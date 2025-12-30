@@ -54,7 +54,7 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
   const description = `Contrata ${servicioSlug.replace(/-/g, ' ')} en ${ciudadFormatted} con Gard Security. Protección confiable, rápida y personalizada para tu empresa o proyecto.`;
   
   // URL canónica
-  const url = `https://gard.cl/ciudades/${ciudadSlug}/${servicioSlug}`;
+  const url = `https://www.gard.cl/ciudades/${ciudadSlug}/${servicioSlug}`;
   
   // Imagen OG - manejar caso cuando contenido es nulo
   const defaultImage = `https://imagedelivery.net/gGw8cfmEZedi85dYm6qcFw/${cloudflareImages.hero.services}/public`;

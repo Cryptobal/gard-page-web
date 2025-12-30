@@ -9,12 +9,12 @@ export const metadata: Metadata = {
     follow: true
   },
   alternates: {
-    canonical: 'https://gard.cl/politica-ambiental'
+    canonical: 'https://www.gard.cl/politica-ambiental'
   },
   openGraph: {
     title: 'Política Ambiental | Gard Security',
     description: 'Conozca nuestro compromiso con el medio ambiente y las acciones que tomamos para reducir nuestro impacto ecológico.',
-    url: 'https://gard.cl/politica-ambiental',
+    url: 'https://www.gard.cl/politica-ambiental',
     siteName: 'Gard Security',
     locale: 'es_CL',
     type: 'website',

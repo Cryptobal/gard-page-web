@@ -8,7 +8,7 @@ export function generateMetadata(): Metadata {
   const description = "Soluciones de seguridad adaptadas a las necesidades específicas de cada ciudad de Chile. Guardias, cámaras, alarmas y más servicios personalizados.";
   
   // URL canónica
-  const url = "https://gard.cl/ciudades";
+  const url = "https://www.gard.cl/ciudades";
   
   // Imagen OG
   const ogImage = `https://imagedelivery.net/gGw8cfmEZedi85dYm6qcFw/${cloudflareImages.hero.services}/public`;

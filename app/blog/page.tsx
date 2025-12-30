@@ -28,7 +28,7 @@ export async function generateMetadata(): Promise<Metadata> {
       description: 'Descubre las últimas noticias, tendencias y consejos sobre seguridad privada, guardias de seguridad y protección empresarial en Chile.',
       images: [
         {
-          url: 'https://gard.cl/og-image.jpg',
+          url: 'https://www.gard.cl/og-image.jpg',
           width: 1200,
           height: 630,
           alt: 'Blog de Gard Security',

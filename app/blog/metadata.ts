@@ -9,12 +9,12 @@ export const metadata: Metadata = {
     follow: true
   },
   alternates: {
-    canonical: 'https://gard.cl/blog'
+    canonical: 'https://www.gard.cl/blog'
   },
   openGraph: {
     title: 'Blog de Seguridad Empresarial | Gard Security',
     description: 'Artículos, consejos y tendencias sobre seguridad empresarial, ciberseguridad y protección de activos para empresas.',
-    url: 'https://gard.cl/blog',
+    url: 'https://www.gard.cl/blog',
     siteName: 'Gard Security',
     locale: 'es_CL',
     type: 'website',

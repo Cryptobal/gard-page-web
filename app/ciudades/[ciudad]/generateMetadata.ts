@@ -35,7 +35,7 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
   const description = `Soluciones de seguridad adaptadas para ${ciudadFormatted}: ${ciudad.descripcion.substring(0, 100)}...`;
   
   // URL canónica
-  const url = `https://gard.cl/ciudades/${ciudadSlug}`;
+  const url = `https://www.gard.cl/ciudades/${ciudadSlug}`;
   
   // Imagen OG - usar imagen por defecto ya que CiudadData no tiene imageId
   const ogImage = `https://imagedelivery.net/gGw8cfmEZedi85dYm6qcFw/${cloudflareImages.hero.services}/public`;

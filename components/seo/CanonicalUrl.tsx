@@ -19,7 +19,7 @@ export default function CanonicalUrl() {
         const currentHref = existingCanonical.getAttribute('href');
         if (currentHref && !currentHref.includes('www.gard.cl')) {
           console.log('[CanonicalUrl] Actualizando canonical sin www:', currentHref);
-          const correctedHref = currentHref.replace('https://gard.cl', 'https://www.gard.cl');
+          const correctedHref = currentHref.replace('https://www.gard.cl', 'https://www.gard.cl');
           existingCanonical.setAttribute('href', correctedHref);
         }
         return null;

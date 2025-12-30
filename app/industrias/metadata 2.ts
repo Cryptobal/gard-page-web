@@ -9,12 +9,12 @@ export const metadata: Metadata = {
     follow: true
   },
   alternates: {
-    canonical: 'https://gard.cl/industrias'
+    canonical: 'https://www.gard.cl/industrias'
   },
   openGraph: {
     title: 'Soluciones de Seguridad por Industrias | Gard Security',
     description: 'Seguridad privada especializada para diferentes sectores: minería, retail, salud, educación e infraestructura crítica. Soluciones a medida para cada industria.',
-    url: 'https://gard.cl/industrias',
+    url: 'https://www.gard.cl/industrias',
     siteName: 'Gard Security',
     locale: 'es_CL',
     type: 'website',

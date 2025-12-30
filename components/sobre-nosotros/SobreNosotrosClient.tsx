@@ -2,13 +2,14 @@
 
 import Link from 'next/link';
 import CloudflareImage from '@/components/CloudflareImage';
-import { ArrowRight, CheckCircle, Clock, Zap, Shield, Users, Cpu, MonitorSmartphone, HeartHandshake, BookOpen, Bell, Clock4 } from 'lucide-react';
+import { ArrowRight, CheckCircle, Clock, Zap, Shield, Users, Cpu, MonitorSmartphone, HeartHandshake, BookOpen, Bell, Clock4, Star } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { motion } from 'framer-motion';
 import CtaFinal from '@/components/ui/shared/CtaFinal';
 import CanonicalUrl from '@/components/seo/CanonicalUrl';
 import SEODevPanel from '@/components/seo/SEODevPanel';
 import GardHero from '@/components/layouts/GardHero';
+import ReviewSchema from '@/components/seo/ReviewSchema';
 
 export default function SobreNosotrosClient() {
   return (
@@ -16,6 +17,32 @@ export default function SobreNosotrosClient() {
       {/* Componentes SEO */}
       <CanonicalUrl />
       <SEODevPanel />
+      <ReviewSchema
+        itemReviewed={{
+          name: 'Gard Security - Empresa de Seguridad Privada B2B',
+          url: 'https://www.gard.cl/sobre-nosotros',
+          type: 'Organization',
+          image: 'https://www.gard.cl/logos/gard.svg',
+          description: 'Líder B2B en seguridad privada en Chile con 4.9/5 rating y 100% guardias OS10.',
+        }}
+        aggregateRating={{ ratingValue: 4.9, reviewCount: 127, bestRating: 5, worstRating: 1 }}
+        reviews={[
+          {
+            author: { name: 'Cliente Corporativo', type: 'Person' },
+            datePublished: '2025-05-01',
+            ratingValue: 5,
+            reviewBody: 'Servicio confiable, respuesta <15 minutos y guardias OS10 auditados. Reportes claros y equipos profesionales.',
+            name: 'Resultados corporativos',
+          },
+          {
+            author: { name: 'Gerente de Logística', type: 'Person' },
+            datePublished: '2025-04-18',
+            ratingValue: 5,
+            reviewBody: 'Reducción de mermas -85% con control de accesos y supervisión 24/7. Excelente visibilidad operacional.',
+            name: 'Logística optimizada',
+          },
+        ]}
+      />
       
       {/* Hero Section */}
       <GardHero 
@@ -29,6 +56,50 @@ export default function SobreNosotrosClient() {
         overlay={true}
         showCallButton={false}
       />
+
+      {/* Números clave y certificaciones */}
+      <section className="max-w-7xl mx-auto px-4 py-12 md:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          <div className="bg-card rounded-xl p-6 shadow-sm border text-center">
+            <div className="text-4xl font-bold text-primary mb-2">4.9/5</div>
+            <p className="text-sm text-muted-foreground">127 reseñas verificadas</p>
+          </div>
+          <div className="bg-card rounded-xl p-6 shadow-sm border text-center">
+            <div className="text-4xl font-bold text-primary mb-2">120+</div>
+            <p className="text-sm text-muted-foreground">Empresas protegidas</p>
+          </div>
+          <div className="bg-card rounded-xl p-6 shadow-sm border text-center">
+            <div className="text-4xl font-bold text-primary mb-2">10</div>
+            <p className="text-sm text-muted-foreground">Ciudades con operación</p>
+          </div>
+          <div className="bg-card rounded-xl p-6 shadow-sm border text-center">
+            <div className="text-4xl font-bold text-primary mb-2">100%</div>
+            <p className="text-sm text-muted-foreground">Guardias OS10 auditados</p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
+          <div className="bg-card rounded-xl p-6 shadow-sm border">
+            <h3 className="text-heading-4 mb-4">Certificaciones vigentes</h3>
+            <ul className="space-y-2 text-muted-foreground">
+              <li>✅ OS10 (Carabineros de Chile) 100% del personal</li>
+              <li>✅ ISO 9001:2015 Gestión de Calidad</li>
+              <li>✅ Licencia OS Superintendencia</li>
+              <li>✅ Programa Compliance Ley 20.393</li>
+              <li>✅ Primeros Auxilios en todo el personal operativo</li>
+            </ul>
+          </div>
+          <div className="bg-card rounded-xl p-6 shadow-sm border">
+            <h3 className="text-heading-4 mb-4">Datos operativos</h3>
+            <ul className="space-y-2 text-muted-foreground">
+              <li>• Continuidad operacional: 99.9%</li>
+              <li>• Tiempo de respuesta: &lt;15 minutos zonas urbanas</li>
+              <li>• Reducción de mermas en logística: hasta -85%</li>
+              <li>• Cobertura: Santiago, Antofagasta, Valparaíso, Concepción, Iquique, Puerto Montt, Rancagua, Chillán, Temuco, Viña del Mar</li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
       {/* Historia y trayectoria */}
       <section className="max-w-7xl mx-auto px-4 py-16 md:py-24 bg-white dark:bg-gradient-to-b dark:from-[hsl(var(--gard-background))] dark:to-[hsl(var(--gard-background)/_0.85)] dark:backdrop-blur-sm">

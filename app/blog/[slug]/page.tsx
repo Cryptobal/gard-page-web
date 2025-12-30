@@ -36,7 +36,7 @@ export async function generateMetadata({
     title: `${shortenedTitle} | Gard Security`,
     description: post.description,
     keywords: post.tags || ['seguridad privada', 'blog gard', 'guardias de seguridad'],
-    authors: [{ name: 'Gard Security', url: 'https://gard.cl' }],
+    authors: [{ name: 'Gard Security', url: 'https://www.gard.cl' }],
     robots: 'index, follow',
     alternates: {
       canonical: `https://www.gard.cl/blog/${slug}`,

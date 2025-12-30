@@ -9,12 +9,12 @@ export const metadata: Metadata = {
     follow: true
   },
   alternates: {
-    canonical: 'https://gard.cl/privacidad'
+    canonical: 'https://www.gard.cl/privacidad'
   },
   openGraph: {
     title: 'Política de Privacidad | Gard Security',
     description: 'Conozca nuestra política de privacidad y cómo protegemos sus datos personales en Gard Security.',
-    url: 'https://gard.cl/privacidad',
+    url: 'https://www.gard.cl/privacidad',
     siteName: 'Gard Security',
     locale: 'es_CL',
     type: 'website',

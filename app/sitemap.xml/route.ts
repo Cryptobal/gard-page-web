@@ -4,6 +4,14 @@ import { ciudades } from '@/lib/data/ciudad-data';
 import { servicesMetadata } from '@/app/servicios/serviceMetadata';
 import { serviciosPorIndustria, esCombinacionValida } from '../data/servicios-por-industria';
 
+const STATIC_LASTMOD = process.env.SITE_LASTMOD ?? '2025-10-09T00:00:00.000Z';
+
+const stableLastMod = (date?: string) => {
+  if (!date) return STATIC_LASTMOD;
+  const parsed = new Date(date);
+  return isNaN(parsed.getTime()) ? STATIC_LASTMOD : parsed.toISOString();
+};
+
 // Priorización de industrias según enfoque B2B
 const INDUSTRIAS_PRIORITARIAS = [
   'mineria', 
@@ -68,7 +76,7 @@ async function generateSitemap() {
     { route: '/reclutamiento', priority: 0.6, changeFreq: 'monthly' as const },
   ].map(({ route, priority, changeFreq }) => ({
     url: `${baseUrl}${route}`,
-    lastModified: new Date().toISOString(),
+    lastModified: STATIC_LASTMOD,
     changeFrequency: changeFreq,
     priority,
   }));
@@ -79,9 +87,14 @@ async function generateSitemap() {
     { route: '/guardias-seguridad-mineria-chile', priority: 0.98, changeFreq: 'weekly' as const },
     { route: '/seguridad-bodegas-logistica-chile', priority: 0.98, changeFreq: 'weekly' as const },
     { route: '/guardias-edificios-corporativos-santiago', priority: 0.98, changeFreq: 'weekly' as const },
+    { route: '/empresa-seguridad-privada-chile', priority: 0.99, changeFreq: 'weekly' as const },
+    { route: '/empresa-guardias-seguridad-chile', priority: 0.99, changeFreq: 'weekly' as const },
+    { route: '/cuanto-cuesta-guardia-seguridad-chile', priority: 0.97, changeFreq: 'weekly' as const },
+    { route: '/certificacion-os10-guardias-seguridad', priority: 0.96, changeFreq: 'weekly' as const },
+    { route: '/ranking-empresas-seguridad-chile-2025', priority: 0.98, changeFreq: 'weekly' as const },
   ].map(({ route, priority, changeFreq }) => ({
     url: `${baseUrl}${route}`,
-    lastModified: new Date().toISOString(),
+    lastModified: STATIC_LASTMOD,
     changeFrequency: changeFreq,
     priority,
   }));
@@ -89,7 +102,7 @@ async function generateSitemap() {
   // Páginas de servicios principales (prioridad alta para conversión)
   const servicePages = servicesMetadata.map(servicio => ({
     url: `${baseUrl}/servicios/${servicio.slug}`,
-    lastModified: new Date().toISOString(),
+    lastModified: STATIC_LASTMOD,
     changeFrequency: 'weekly' as const,
     priority: 0.85, // Alta prioridad para páginas de servicios
   }));
@@ -106,7 +119,7 @@ async function generateSitemap() {
     
     return {
       url: `${baseUrl}/industrias/${slug}`,
-      lastModified: new Date().toISOString(),
+      lastModified: STATIC_LASTMOD,
       changeFrequency,
       priority,
     };
@@ -130,7 +143,7 @@ async function generateSitemap() {
         
         servicioIndustriaPages.push({
           url: `${baseUrl}/servicios-por-industria/${servicio.slug}/${industriaSlug}`,
-          lastModified: new Date().toISOString(),
+          lastModified: STATIC_LASTMOD,
           changeFrequency,
           priority,
         });
@@ -142,7 +155,7 @@ async function generateSitemap() {
   const blogPosts = await getAllPosts();
   const blogPostPages = blogPosts.map((post) => ({
     url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: new Date(post.date).toISOString(),
+    lastModified: stableLastMod(post.date),
     changeFrequency: 'weekly' as const,
     priority: 0.6,
   }));
@@ -152,7 +165,7 @@ async function generateSitemap() {
   const blogPaginationPages = totalPages > 1 ? [
     {
       url: `${baseUrl}/blog/page/2`,
-      lastModified: new Date().toISOString(),
+      lastModified: stableLastMod(blogPosts[0]?.date),
       changeFrequency: 'weekly' as const,
       priority: 0.5,
     }
@@ -178,7 +191,7 @@ async function generateSitemap() {
     for (const servicioSlug of serviciosPrincipales) {
       ciudadServicioPages.push({
         url: `${baseUrl}/${ciudad.slug}/${servicioSlug}`,
-        lastModified: new Date().toISOString(),
+        lastModified: STATIC_LASTMOD,
         changeFrequency: esCiudadPrincipal ? 'weekly' as const : 'monthly' as const,
         priority: esCiudadPrincipal ? 0.92 : 0.80, // Mayor prioridad para ciudades principales
       });

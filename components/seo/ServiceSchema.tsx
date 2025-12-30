@@ -29,7 +29,7 @@ interface ServiceSchemaProps {
  * <ServiceSchema
  *   name="Guardias de Seguridad para Minería"
  *   description="Servicio profesional de guardias..."
- *   url="https://gard.cl/servicios/guardias-de-seguridad"
+ *   url="https://www.gard.cl/servicios/guardias-de-seguridad"
  *   areaServed="Chile"
  *   aggregateRating={{ ratingValue: 4.9, reviewCount: 127 }}
  *   offers={{ priceRange: "$$$" }}

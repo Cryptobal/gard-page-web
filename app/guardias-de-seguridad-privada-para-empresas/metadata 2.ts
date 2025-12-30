@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Guardias de Seguridad para Empresas',
     description: 'Soluciones de seguridad operativa con guardias certificados, controlados por tecnología y con baja rotación.',
-    url: 'https://gard.cl/guardias-de-seguridad-privada-para-empresas',
+    url: 'https://www.gard.cl/guardias-de-seguridad-privada-para-empresas',
     siteName: 'Gard Security',
     type: 'article',
     locale: 'es_CL',

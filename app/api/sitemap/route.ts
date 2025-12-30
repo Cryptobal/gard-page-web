@@ -161,6 +161,14 @@ async function generateSitemap() {
     ...ciudadServicioPages
   ];
   
+  // NOTA: La validación de URLs (filterValidUrls) fue removida para mejorar el rendimiento
+  // del sitemap. Todas las URLs se generan dinámicamente desde fuentes de datos estructuradas
+  // (industries, servicesMetadata, ciudades, blogPosts) que son validadas en tiempo de build.
+  // Las URLs dinámicas solo se crean para combinaciones válidas mediante funciones como
+  // generateStaticParams() y esCombinacionValida(). Si es necesario validar URLs en runtime,
+  // se puede restaurar la función filterValidUrls() pero con procesamiento en lotes para
+  // evitar timeouts en el sitemap (puede contener miles de URLs).
+  
   return allUrls;
 }
 

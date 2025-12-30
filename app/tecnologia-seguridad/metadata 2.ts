@@ -11,12 +11,12 @@ export const metadata: Metadata = {
     'sistemas de monitoreo avanzados',
     'innovación en seguridad privada'
   ],
-  authors: [{ name: 'Gard Security', url: 'https://gard.cl' }],
+  authors: [{ name: 'Gard Security', url: 'https://www.gard.cl' }],
   robots: 'index, follow',
   openGraph: {
     title: 'Innovación en Seguridad | Gard Security',
     description: 'Soluciones tecnológicas de vanguardia para resguardar instalaciones, personas y activos críticos.',
-    url: 'https://gard.cl/tecnologia-seguridad',
+    url: 'https://www.gard.cl/tecnologia-seguridad',
     siteName: 'Gard Security',
     locale: 'es_CL',
     type: 'website',

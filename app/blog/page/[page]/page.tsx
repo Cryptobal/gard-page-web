@@ -24,6 +24,7 @@ export async function generateMetadata({
 }: {
   params: Promise<{ page: string }>;
 }): Promise<Metadata> {
+  const baseUrl = 'https://www.gard.cl';
   const resolvedParams = await params;
   const pageNumber = parseInt(resolvedParams.page, 10);
   const allPosts = await getAllPosts();
@@ -57,6 +58,9 @@ export async function generateMetadata({
     });
   }
 
+  const canonical = pageNumber === 1 ? `${baseUrl}/blog` : `${baseUrl}/blog/page/${pageNumber}`;
+  const robots = pageNumber >= 3 ? { index: false, follow: true } : { index: true, follow: true };
+
   return {
     title: pageNumber === 1 
       ? 'Blog de Seguridad | Gard Security' 
@@ -67,9 +71,10 @@ export async function generateMetadata({
         ? 'Blog de Seguridad Privada | Gard Security' 
         : `Página ${pageNumber} | Blog de Seguridad Privada | Gard Security`,
       description: `Explora artículos sobre seguridad privada y guardias de seguridad en Chile. ${pageNumber > 1 ? `Página ${pageNumber} de ${totalPages}.` : ''}`,
+      url: canonical,
       images: [
         {
-          url: 'https://gard.cl/og-image.jpg',
+          url: 'https://www.gard.cl/og-image.jpg',
           width: 1200,
           height: 630,
           alt: `Blog de Gard Security - Página ${pageNumber}`,
@@ -77,10 +82,11 @@ export async function generateMetadata({
       ],
     },
     alternates: {
-      canonical: pageNumber === 1 ? '/blog' : `/blog/page/${pageNumber}`,
+      canonical,
     },
+    robots,
     // Incluir los enlaces prev/next para SEO
-    ...(links.length > 0 ? { alternates: { canonical: pageNumber === 1 ? '/blog' : `/blog/page/${pageNumber}` }, links } : {}),
+    ...(links.length > 0 ? { links } : {}),
   };
 }
 

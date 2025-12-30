@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Sobre Nosotros | Gard Security',
     description: 'Descubre la historia de Gard Security y por qué más de 100 empresas ya confían en nosotros.',
-    url: 'https://gard.cl/sobre-nosotros',
+    url: 'https://www.gard.cl/sobre-nosotros',
     siteName: 'Gard Security',
     type: 'website',
     locale: 'es_CL',

@@ -9,7 +9,6 @@ import CookieConsent from './components/cookie/CookieConsent';
 import ClientScripts from './components/ClientScripts';
 import ClientWrapper from './ClientWrapper';
 import { metadata } from './metadata';
-import CanonicalUrl from '@/components/seo/CanonicalUrl';
 import LocalBusinessSchema from '@/components/seo/LocalBusinessSchema';
 
 // Obtener GTM ID desde variables de entorno
@@ -30,8 +29,6 @@ export default function RootLayout({
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
-        {/* MODIFICACIÓN SEO: Añadir componente para asegurar etiquetas canónicas */}
-        <CanonicalUrl />
         {/* Perf: preconnect/dns-prefetch para dominios críticos de imágenes/video */}
         <link rel="preconnect" href="https://imagedelivery.net" />
         <link rel="dns-prefetch" href="https://imagedelivery.net" />

@@ -50,7 +50,7 @@ const metadataInfo = {
   openGraph: {
     title: 'Cotizador de Guardias de Seguridad | Calcula el Costo de tu Servicio | Gard Security',
     description: 'Calcula el costo de guardias de seguridad para tu empresa. Cotización instantánea y personalizada para servicios de seguridad industrial, retail, corporativa y más.',
-    url: 'https://gard.cl/cotizador-inteligente',
+    url: 'https://www.gard.cl/cotizador-inteligente',
     siteName: 'Gard Security',
     locale: 'es_CL',
     type: 'website',

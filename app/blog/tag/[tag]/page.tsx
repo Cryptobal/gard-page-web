@@ -29,10 +29,11 @@ export async function generateStaticParams() {
  * Next.js 15: params es ahora una Promise
  */
 export async function generateMetadata({ params }: { params: Promise<{ tag: string }> }): Promise<Metadata> {
+  const baseUrl = 'https://www.gard.cl';
   const resolvedParams = await params;
   const tagName = decodeURIComponent(resolvedParams.tag);
   const capitalizedTag = capitalize(tagName);
-  const canonicalPath = `/blog/tag/${encodeURIComponent(tagName)}`;
+  const canonicalPath = `${baseUrl}/blog/tag/${encodeURIComponent(tagName)}`;
   
   const { totalPages } = await getPostsByTag(tagName, 1);
   
@@ -55,13 +56,14 @@ export async function generateMetadata({ params }: { params: Promise<{ tag: stri
       description: `Explora artículos del blog relacionados con ${capitalizedTag}. Información clave sobre seguridad privada para empresas.`,
       images: [
         {
-          url: 'https://gard.cl/og-image.jpg',
+          url: 'https://www.gard.cl/og-image.jpg',
           width: 1200,
           height: 630,
           alt: `Artículos sobre ${capitalizedTag}`,
         },
       ],
       type: 'website',
+      url: canonicalPath,
     },
     alternates: {
       canonical: canonicalPath,

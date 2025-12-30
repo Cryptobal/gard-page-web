@@ -15,9 +15,9 @@ interface BreadcrumbSchemaProps {
  * 
  * @example
  * <BreadcrumbSchema items={[
- *   { name: 'Inicio', url: 'https://gard.cl' },
- *   { name: 'Industrias', url: 'https://gard.cl/industrias' },
- *   { name: 'Minería', url: 'https://gard.cl/industrias/mineria' }
+ *   { name: 'Inicio', url: 'https://www.gard.cl' },
+ *   { name: 'Industrias', url: 'https://www.gard.cl/industrias' },
+ *   { name: 'Minería', url: 'https://www.gard.cl/industrias/mineria' }
  * ]} />
  */
 export default function BreadcrumbSchema({ items }: BreadcrumbSchemaProps) {

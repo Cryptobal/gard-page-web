@@ -22,13 +22,8 @@ Disallow: /static/
 Allow: /_next/static/
 Allow: /_next/image
 
-# Bloquear solo build data innecesarios
+# Bloquear build data innecesarios
 Disallow: /_next/data/
-
-# No indexar páginas de paginación más allá de la página 2
-Disallow: /blog/page/[3-9]
-Disallow: /blog/page/[1-9][0-9]
-Disallow: /blog/tag/*/page/
 
 # Crawl-delay para evitar sobrecarga del servidor
 Crawl-delay: 1

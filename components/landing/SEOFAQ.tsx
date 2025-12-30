@@ -40,7 +40,7 @@ export default function SEOFAQ({ faqs, industria, servicio }: SEOFAQProps) {
     "provider": {
       "@type": "Organization",
       "name": "Gard Security",
-      "url": "https://gard.cl"
+      "url": "https://www.gard.cl"
     },
     "areaServed": {
       "@type": "Country",

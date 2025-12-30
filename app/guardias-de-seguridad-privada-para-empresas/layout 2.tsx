@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     description: 'Cotiza en línea y obtén una estimación inmediata del costo mensual de contratar guardias de seguridad según tus necesidades específicas.',
     images: [
       {
-        url: 'https://gard.cl/og-image.jpg',
+        url: 'https://www.gard.cl/og-image.jpg',
         width: 1200,
         height: 630,
         alt: 'Guardias de seguridad Gard Security',

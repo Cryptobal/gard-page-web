@@ -157,33 +157,33 @@ export default function BlogPost({ slug }: { slug: string }) {
         '@type': 'ListItem',
         position: 1,
         name: 'Inicio',
-        item: 'https://gard.cl/',
+        item: 'https://www.gard.cl/',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Blog',
-        item: 'https://gard.cl/blog',
+        item: 'https://www.gard.cl/blog',
       },
       ...(post.tags?.[0] ? [
         {
           '@type': 'ListItem',
           position: 3,
           name: post.tags[0],
-          item: `https://gard.cl/blog/tag/${encodeURIComponent(post.tags[0])}`,
+          item: `https://www.gard.cl/blog/tag/${encodeURIComponent(post.tags[0])}`,
         },
         {
           '@type': 'ListItem',
           position: 4,
           name: post.title,
-          item: `https://gard.cl/blog/${slug}`,
+          item: `https://www.gard.cl/blog/${slug}`,
         }
       ] : [
         {
           '@type': 'ListItem',
           position: 3,
           name: post.title,
-          item: `https://gard.cl/blog/${slug}`,
+          item: `https://www.gard.cl/blog/${slug}`,
         }
       ]),
     ],

@@ -23,6 +23,12 @@ Evaluamos cada empresa según 5 criterios principales:
 4. **Cobertura geográfica** (peso 15%)
 5. **Especialización por industrias** (peso 20%)
 
+| Empresa             | Puntaje | OS10 | Rating clientes | Cobertura |
+|---------------------|---------|------|-----------------|-----------|
+| Gard Security       | 9.2/10  | 100% | 4.9/5 (127)     | 10 ciudades |
+| Prosegur Chile      | 8.5/10  | 85%  | 4.4/5           | 6 ciudades |
+| Securitas Chile     | 8.3/10  | 80%  | 4.3/5           | 5 ciudades |
+
 ---
 
 ## Rankings por Especialización
@@ -243,8 +249,7 @@ _(Para mantener objetividad, solo listamos empresas que hemos podido verificar c
 
 **Fuentes:**
 - Google Business Reviews (verificadas octubre 2025)
-- SERNAGEOMIN (certificaciones OS10)
-- Superintendencia de Seguridad Privada
+- Superintendencia de Seguridad Privada / Carabineros (Depto. OS10)
 - Datos públicos de cada empresa
 - Entrevistas con clientes (anónimos)
 

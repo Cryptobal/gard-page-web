@@ -3,7 +3,7 @@ import { industries } from './data/industries';
 import { getAllPosts, POSTS_PER_PAGE, getAllTags, getPostsByTag } from '@/lib/blog';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://gard.cl';
+  const baseUrl = 'https://www.gard.cl';
   
   // Páginas estáticas
   const staticPages = [

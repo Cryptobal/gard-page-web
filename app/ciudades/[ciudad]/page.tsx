@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { notFound, useParams } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { 
@@ -167,9 +167,31 @@ export default function CiudadPage() {
   const ciudad = getCiudadBySlug(params.ciudad);
   const [servicioSeleccionado, setServicioSeleccionado] = useState<string | null>(null);
   
-  // Si la ciudad no existe, mostrar 404
+  // Si la ciudad no existe, mostrar página 404 personalizada
   if (!ciudad) {
-    notFound();
+    return (
+      <div className="min-h-screen gard-container py-16 md:py-24 text-center">
+        <h1 className="text-heading-2 mb-6">Ciudad no encontrada</h1>
+        <p className="text-body-lg mb-8 max-w-2xl mx-auto">
+          Lo sentimos, la ciudad que estás buscando no está disponible.
+          Es posible que la URL haya cambiado o que la página haya sido eliminada.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <Link
+            href="/ciudades"
+            className="gard-btn gard-btn-primary inline-flex items-center justify-center"
+          >
+            <span>Ver todas las ciudades</span>
+          </Link>
+          <Link
+            href="/"
+            className="gard-btn gard-btn-outline inline-flex items-center justify-center"
+          >
+            <span>Volver al Inicio</span>
+          </Link>
+        </div>
+      </div>
+    );
   }
   
   // Animaciones

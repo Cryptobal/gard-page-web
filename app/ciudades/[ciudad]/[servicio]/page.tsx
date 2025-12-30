@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect } from 'react';
-import { notFound, useParams, useSearchParams } from 'next/navigation';
+import { useParams, useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { 
@@ -88,9 +88,37 @@ export default function CiudadServicioPage() {
   const ciudad = getCiudadBySlug(params.ciudad);
   const servicioMetadata = servicesMetadata.find(s => s.slug === params.servicio);
   
-  // Si la ciudad o el servicio no existen, mostrar 404
+  // Si la ciudad o el servicio no existen, mostrar página 404 personalizada
   if (!ciudad || !servicioMetadata) {
-    notFound();
+    return (
+      <div className="min-h-screen gard-container py-16 md:py-24 text-center">
+        <h1 className="text-heading-2 mb-6">Página no encontrada</h1>
+        <p className="text-body-lg mb-8 max-w-2xl mx-auto">
+          Lo sentimos, la combinación de ciudad y servicio que estás buscando no está disponible.
+          Es posible que la URL haya cambiado o que la página haya sido eliminada.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <Link
+            href="/ciudades"
+            className="gard-btn gard-btn-primary inline-flex items-center justify-center"
+          >
+            <span>Ver todas las ciudades</span>
+          </Link>
+          <Link
+            href="/servicios"
+            className="gard-btn gard-btn-outline inline-flex items-center justify-center"
+          >
+            <span>Ver servicios</span>
+          </Link>
+          <Link
+            href="/"
+            className="gard-btn gard-btn-outline inline-flex items-center justify-center"
+          >
+            <span>Volver al Inicio</span>
+          </Link>
+        </div>
+      </div>
+    );
   }
   
   // Traducir el slug de la URL al slug usado en los datos
@@ -102,9 +130,37 @@ export default function CiudadServicioPage() {
   // Obtener el contenido personalizado para ciudad-servicio
   const contenido = getCiudadServicioContent(params.ciudad, servicioSlugDatos, ciudad, servicioFormatted);
   
-  // Si no hay contenido personalizado, mostrar 404
+  // Si no hay contenido personalizado, mostrar página 404 personalizada
   if (!contenido) {
-    notFound();
+    return (
+      <div className="min-h-screen gard-container py-16 md:py-24 text-center">
+        <h1 className="text-heading-2 mb-6">Contenido no encontrado</h1>
+        <p className="text-body-lg mb-8 max-w-2xl mx-auto">
+          Lo sentimos, no hay contenido disponible para esta combinación de ciudad y servicio.
+          Es posible que la página esté en desarrollo o que la combinación no sea válida.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <Link
+            href={`/ciudades/${params.ciudad}`}
+            className="gard-btn gard-btn-primary inline-flex items-center justify-center"
+          >
+            <span>Ver servicios en esta ciudad</span>
+          </Link>
+          <Link
+            href="/servicios"
+            className="gard-btn gard-btn-outline inline-flex items-center justify-center"
+          >
+            <span>Ver todos los servicios</span>
+          </Link>
+          <Link
+            href="/"
+            className="gard-btn gard-btn-outline inline-flex items-center justify-center"
+          >
+            <span>Volver al Inicio</span>
+          </Link>
+        </div>
+      </div>
+    );
   }
   
   // Obtener FAQs para este servicio
