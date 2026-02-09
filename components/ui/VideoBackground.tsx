@@ -9,6 +9,7 @@ interface VideoBackgroundProps {
   title?: string;
   className?: string;
   overlay?: boolean;
+  posterUrl?: string;
 }
 
 const FALLBACK_VIDEO_IDS = [
@@ -21,7 +22,8 @@ export default function VideoBackground({
   imageId, 
   title = "Video de fondo",
   className = "",
-  overlay = true 
+  overlay = true,
+  posterUrl
 }: VideoBackgroundProps) {
   const [mounted, setMounted] = useState(false);
   const [videoError, setVideoError] = useState(false);
@@ -74,6 +76,7 @@ export default function VideoBackground({
           className="w-full h-full absolute inset-0 object-cover"
           preload="auto"
           title={title}
+          poster={posterUrl}
           onError={handleVideoError}
         />
       </div>

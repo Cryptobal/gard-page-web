@@ -103,10 +103,10 @@ export default function ClientesCarrusel() {
   }, []);
 
   return (
-    <section className="gard-section py-16 md:py-24 w-full bg-gray-50 dark:bg-[hsl(var(--gard-background))]">
+    <section className="gard-section-md w-full bg-gray-50 dark:bg-[hsl(var(--gard-background))]">
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-semibold mb-4 text-primary dark:text-white">
+          <h2 className="text-heading-2 mb-4 text-primary dark:text-white">
             Empresas que confían en nosotros
           </h2>
           <p className="text-body-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">

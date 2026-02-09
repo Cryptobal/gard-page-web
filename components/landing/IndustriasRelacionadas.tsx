@@ -43,7 +43,7 @@ export default function IndustriasRelacionadas({
   }
 
   return (
-    <section className={`gard-section py-16 md:py-20 bg-gray-50 dark:bg-gray-900 ${className}`}>
+    <section className={`gard-section-sm bg-gray-50 dark:bg-gray-900 ${className}`}>
       <div className="gard-container max-w-7xl mx-auto px-4">
         <div className="text-center mb-12">
           <div className="inline-flex items-center rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary dark:text-accent mb-4">

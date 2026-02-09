@@ -7,7 +7,7 @@ import ThemeToggle from './ThemeToggle';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import CloudflareImage from './CloudflareImage';
 import { cloudflareImages } from '@/lib/images';
-import { motion, AnimatePresence } from 'framer-motion';
+// framer-motion removed for performance - using CSS transitions instead
 import { useTheme } from 'next-themes';
 
 const navLinks = [
@@ -85,8 +85,8 @@ export default function Header() {
     fixed top-0 left-0 right-0 z-50 w-full 
     transition-all duration-500 ease-out
     ${scrolled 
-      ? `py-2 md:py-3 shadow-xl backdrop-blur-xl ${isDarkMode ? 'bg-[#0b1120]/95' : 'bg-white/95'} border-b border-gray-200/20`
-      : `py-4 md:py-6 shadow-none ${isDarkMode ? 'bg-[#0b1120]/60' : 'bg-white/60'} backdrop-blur-lg`
+      ? `py-2 md:py-3 shadow-xl backdrop-blur-xl ${isDarkMode ? 'bg-[hsl(var(--gard-header-bg))]/95' : 'bg-white/95'} border-b border-gray-200/20`
+      : `py-4 md:py-6 shadow-none ${isDarkMode ? 'bg-[hsl(var(--gard-header-bg))]/60' : 'bg-white/60'} backdrop-blur-lg`
     }
   `;
 
@@ -152,43 +152,37 @@ export default function Header() {
           <ThemeToggle />
         </nav>
 
-        {/* Mega Menu Container */}
-        <AnimatePresence>
-          {hoveredLink && megaMenuData[hoveredLink as keyof typeof megaMenuData] && (
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 10 }}
-              transition={{ duration: 0.2 }}
-              className={`absolute top-full left-0 w-full pt-4 z-40`}
-              onMouseEnter={() => setHoveredLink(hoveredLink)}
-              onMouseLeave={() => setHoveredLink(null)}
-            >
-              <div className={`
-                w-full shadow-xl border-t border-gray-100 dark:border-gray-800
-                ${isDarkMode ? 'bg-[#0b1120]/95 backdrop-blur-xl text-white' : 'bg-white/98 backdrop-blur-xl text-gray-900'}
-                rounded-b-2xl p-8
-              `}>
-                <div className="gard-container grid grid-cols-3 gap-8">
-                  {megaMenuData[hoveredLink as keyof typeof megaMenuData].map((item, idx) => (
-                    <Link 
-                      key={idx} 
-                      href={item.href}
-                      className="group block p-4 rounded-xl hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
-                    >
-                      <h4 className="font-bold text-primary dark:text-white text-lg mb-1 group-hover:text-accent transition-colors flex items-center">
-                        {item.title}
-                      </h4>
-                      <p className="text-sm text-gray-600 dark:text-gray-300">
-                        {item.desc}
-                      </p>
-                    </Link>
-                  ))}
-                </div>
+        {/* Mega Menu Container - CSS transitions instead of framer-motion */}
+        {megaMenuData[hoveredLink as keyof typeof megaMenuData] && (
+          <div
+            className={`absolute top-full left-0 w-full pt-4 z-40 mega-menu ${hoveredLink ? 'active' : ''}`}
+            onMouseEnter={() => setHoveredLink(hoveredLink)}
+            onMouseLeave={() => setHoveredLink(null)}
+          >
+            <div className={`
+              w-full shadow-xl border-t border-gray-100 dark:border-gray-800
+              ${isDarkMode ? 'bg-[hsl(var(--gard-header-bg))]/95 backdrop-blur-xl text-white' : 'bg-white/98 backdrop-blur-xl text-gray-900'}
+              rounded-b-2xl p-8
+            `}>
+              <div className="gard-container grid grid-cols-3 gap-8">
+                {megaMenuData[hoveredLink as keyof typeof megaMenuData].map((item, idx) => (
+                  <Link 
+                    key={idx} 
+                    href={item.href}
+                    className="group block p-4 rounded-xl hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
+                  >
+                    <h4 className="font-bold text-primary dark:text-white text-lg mb-1 group-hover:text-accent transition-colors flex items-center">
+                      {item.title}
+                    </h4>
+                    <p className="text-sm text-gray-600 dark:text-gray-300">
+                      {item.desc}
+                    </p>
+                  </Link>
+                ))}
               </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+            </div>
+          </div>
+        )}
 
         {/* Botón de menú móvil */}
         <button
@@ -209,16 +203,12 @@ export default function Header() {
           )}
         </button>
 
-        {/* Menú móvil - Siempre con fondo para mejor legibilidad */}
+        {/* Menú móvil - CSS transitions instead of framer-motion */}
         {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.2 }}
-            className={`fixed inset-0 z-40 md:hidden pt-20 h-screen ${
+          <div
+            className={`fixed inset-0 z-40 md:hidden pt-20 h-screen mobile-menu ${isOpen ? 'active' : ''} ${
               isDarkMode 
-                ? 'bg-[#0b1120]/95 backdrop-blur-md' 
+                ? 'bg-[hsl(var(--gard-header-bg))]/95 backdrop-blur-md' 
                 : 'bg-white/95 backdrop-blur-md shadow-lg'
             }`}
             style={{
@@ -252,7 +242,7 @@ export default function Header() {
                 <ThemeToggle />
               </div>
             </nav>
-          </motion.div>
+          </div>
         )}
       </div>
     </header>

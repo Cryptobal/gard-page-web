@@ -46,7 +46,7 @@
     --gard-primary-foreground: 0 0% 100%;
     --gard-secondary: 215 80% 25%;
     --gard-secondary-foreground: 0 0% 100%;
-    --gard-accent: 18 100% 50%;
+    --gard-accent: 18 100% 42%;  /* Oscurecido para mejor contraste WCAG AA (de 50% a 42%) */
     --gard-accent-foreground: 0 0% 100%;
     /* Enhanced Light Mode Contrast - Ensuring darker text on white */
     --gard-foreground: 220 25% 15%;      /* Darker gray/blue for better readability */
@@ -82,6 +82,10 @@
     --gard-input: 220 10% 20%;
     --gard-ring: 215 100% 60%;
     --gard-ring-accent: 18 100% 60%;
+    
+    /* Backgrounds específicos para componentes */
+    --gard-header-bg: 220 14% 6%;            /* Reemplaza #0b1120 */
+    --gard-footer-bg: 220 20% 4%;            /* Reemplaza #050a15 */
   }
 
   body {
@@ -204,6 +208,18 @@
     @apply py-24 md:py-32;
   }
 
+  .gard-section-sm {
+    @apply py-12 md:py-16;
+  }
+
+  .gard-section-md {
+    @apply py-16 md:py-24;
+  }
+
+  .gard-section-lg {
+    @apply py-32 md:py-40;
+  }
+
   .gard-section-alt {
     @apply bg-gray-50 dark:bg-[hsl(var(--gard-background))];
   }
@@ -282,6 +298,32 @@
     @apply border-white text-white hover:bg-white/10;
   }
 
+  /* Mega menu transitions - CSS instead of framer-motion */
+  .mega-menu {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    pointer-events: none;
+  }
+  
+  .mega-menu.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  /* Mobile menu transitions */
+  .mobile-menu {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+  
+  .mobile-menu.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
   /* Tarjetas y Contenedores */
   .gard-card {
     @apply bg-card shadow-md border border-gray-200/60 rounded-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-xl;
@@ -347,55 +389,15 @@
   .gard-card-dark-accent {
     @apply bg-card dark:bg-[hsl(var(--gard-card))] dark:border-[1px] dark:border-[hsl(var(--gard-accent)/_0.15)] shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg dark:hover:border-[hsl(var(--gard-accent)/_0.3)] dark:hover:shadow-[0_10px_30px_-10px_rgba(249,115,22,0.15)];
   }
+
+  /* Pattern background for stats section */
+  .gard-pattern-dots {
+    background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.4' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
+    background-repeat: repeat;
+  }
 }
 
-@layer utilities {
-  /* Clases de fondo */
-  .bg-background {
-    background-color: hsl(var(--gard-background));
-  }
-  .bg-foreground {
-    color: hsl(var(--gard-foreground));
-  }
-  .bg-card {
-    background-color: hsl(var(--gard-card));
-  }
-  .bg-popover {
-    background-color: hsl(var(--gard-popover));
-  }
-  .bg-muted {
-    background-color: hsl(var(--gard-muted));
-  }
-  .bg-primary {
-    background-color: hsl(var(--gard-primary));
-  }
-  .bg-secondary {
-    background-color: hsl(var(--gard-secondary));
-  }
-  .bg-accent {
-    background-color: hsl(var(--gard-accent));
-  }
-
-  /* Clases de texto */
-  .text-foreground {
-    color: hsl(var(--gard-foreground));
-  }
-  .text-primary {
-    color: hsl(var(--gard-primary));
-  }
-  .text-secondary {
-    color: hsl(var(--gard-secondary));
-  }
-  .text-muted {
-    color: hsl(var(--gard-muted));
-  }
-  .text-muted-foreground {
-    color: hsl(var(--gard-muted-foreground));
-  }
-  .text-accent {
-    color: hsl(var(--gard-accent));
-  }
-}
+/* Tailwind genera automáticamente las clases .bg-* y .text-* desde tailwind.config.js */
 
 /* Ajustes para secciones hero y primera sección de cada página */
 /* Esta regla evita que las secciones hero se superpongan con el header fijo en dispositivos móviles */

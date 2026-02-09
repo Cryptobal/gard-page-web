@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1920, height=1080">
+  <title>Slide 17 - Presencia en Terreno | Gard Security</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --azul-profundo: #2B3A67;
+      --teal: #1A7F8E;
+      --white: #FFFFFF;
+      --navy-oscuro: #1C2541;
+      --terracota: #B84A32;
+      --azul-muy-oscuro: #0F1C2E;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--navy-oscuro);
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Fondo */
+    .bg-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--navy-oscuro) 0%, var(--azul-muy-oscuro) 100%);
+    }
+
+    .bg-pattern {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(26, 127, 142, 0.08) 1px, transparent 1px);
+      background-size: 30px 30px;
+    }
+
+    /* Header */
+    .header {
+      position: absolute;
+      top: 50px;
+      left: 80px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      opacity: 0;
+      animation: fadeIn 0.6s ease-out 0.2s forwards;
+      z-index: 10;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    .slide-number {
+      width: 50px;
+      height: 50px;
+      background: var(--teal);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 20px;
+      color: white;
+      box-shadow: 0 4px 20px rgba(26, 127, 142, 0.5);
+    }
+
+    .header-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.6);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+    }
+
+    /* Título */
+    .main-title {
+      position: absolute;
+      top: 130px;
+      left: 80px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: slideUp 0.7s ease-out 0.3s forwards;
+    }
+
+    .main-title h1 {
+      font-size: 44px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+
+    .main-title h1 span {
+      color: var(--teal);
+    }
+
+    .main-title p {
+      font-size: 17px;
+      color: rgba(255,255,255,0.6);
+    }
+
+    @keyframes slideUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Layout principal */
+    .main-layout {
+      position: absolute;
+      top: 260px;
+      left: 80px;
+      right: 80px;
+      bottom: 130px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+    }
+
+    /* Panel izquierdo - Dotación */
+    .dotacion-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      opacity: 0;
+      animation: fadeIn 0.7s ease-out 0.5s forwards;
+    }
+
+    .panel-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid rgba(26, 127, 142, 0.3);
+    }
+
+    .panel-icon {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, var(--teal) 0%, var(--azul-profundo) 100%);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      box-shadow: 0 8px 25px rgba(26, 127, 142, 0.3);
+    }
+
+    .panel-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .panel-subtitle {
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+      margin-top: 3px;
+    }
+
+    /* Cards de dotación */
+    .dotacion-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .dotacion-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 25px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .dotacion-card:hover {
+      border-color: var(--teal);
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(26, 127, 142, 0.2);
+    }
+
+    .dotacion-value {
+      font-size: 48px;
+      font-weight: 800;
+      color: var(--teal);
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    .dotacion-value.placeholder {
+      font-size: 32px;
+      color: rgba(26, 127, 142, 0.7);
+    }
+
+    .dotacion-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 5px;
+    }
+
+    .dotacion-meta {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* Tabla de turnos */
+    .turnos-section {
+      margin-top: 10px;
+    }
+
+    .turnos-header {
+      font-size: 14px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .turnos-table {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .turno-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .turno-row:last-child {
+      border-bottom: none;
+    }
+
+    .turno-row.header-row {
+      background: rgba(26, 127, 142, 0.15);
+    }
+
+    .turno-cell {
+      padding: 14px 18px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.8);
+      border-right: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .turno-cell:last-child {
+      border-right: none;
+    }
+
+    .turno-cell.header-cell {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--teal);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .turno-cell .placeholder-text {
+      color: rgba(255,255,255,0.4);
+      font-style: italic;
+    }
+
+    /* Panel derecho - Cobertura visual */
+    .cobertura-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      opacity: 0;
+      animation: fadeIn 0.7s ease-out 0.7s forwards;
+    }
+
+    /* Esquema de instalación */
+    .instalacion-visual {
+      flex: 1;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      padding: 30px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .visual-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--teal);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+    }
+
+    .instalacion-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      gap: 15px;
+      height: calc(100% - 40px);
+    }
+
+    .zona-card {
+      background: rgba(26, 127, 142, 0.1);
+      border: 1px dashed rgba(26, 127, 142, 0.3);
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 15px;
+      transition: all 0.3s ease;
+    }
+
+    .zona-card:hover {
+      background: rgba(26, 127, 142, 0.2);
+      border-style: solid;
+      transform: scale(1.05);
+    }
+
+    .zona-card.acceso {
+      background: rgba(26, 127, 142, 0.25);
+      border-color: var(--teal);
+      border-style: solid;
+    }
+
+    .zona-card.central {
+      grid-column: 2;
+      grid-row: 2;
+      background: rgba(43, 58, 103, 0.3);
+      border-color: var(--azul-profundo);
+      border-style: solid;
+    }
+
+    .zona-icon {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .zona-text {
+      font-size: 11px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.8);
+      text-align: center;
+    }
+
+    .zona-text.placeholder {
+      color: rgba(255,255,255,0.5);
+      font-style: italic;
+    }
+
+    /* Leyenda */
+    .leyenda {
+      display: flex;
+      gap: 25px;
+      padding: 20px;
+      background: rgba(255,255,255,0.02);
+      border-radius: 12px;
+    }
+
+    .leyenda-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .leyenda-dot {
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+    }
+
+    .leyenda-dot.acceso {
+      background: rgba(26, 127, 142, 0.5);
+      border: 2px solid var(--teal);
+    }
+
+    .leyenda-dot.ronda {
+      background: rgba(26, 127, 142, 0.2);
+      border: 2px dashed rgba(26, 127, 142, 0.5);
+    }
+
+    .leyenda-dot.central {
+      background: rgba(43, 58, 103, 0.5);
+      border: 2px solid var(--azul-profundo);
+    }
+
+    .leyenda-text {
+      font-size: 12px;
+      color: rgba(255,255,255,0.7);
+    }
+
+    /* Nota inferior */
+    .note-bar {
+      position: absolute;
+      bottom: 40px;
+      left: 80px;
+      right: 80px;
+      background: rgba(26, 127, 142, 0.1);
+      border: 1px solid rgba(26, 127, 142, 0.25);
+      border-radius: 14px;
+      padding: 20px 30px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      opacity: 0;
+      animation: fadeIn 0.6s ease-out 1s forwards;
+    }
+
+    .note-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--teal);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .note-text {
+      font-size: 15px;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .note-text span {
+      color: var(--teal);
+      font-weight: 600;
+    }
+
+    /* Footer */
+    .footer {
+      position: absolute;
+      bottom: 10px;
+      right: 80px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      opacity: 0;
+      animation: fadeIn 0.5s ease-out 1.2s forwards;
+    }
+
+    .logo-small {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--teal) 0%, var(--azul-profundo) 100%);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 16px;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-gradient"></div>
+  <div class="bg-pattern"></div>
+
+  <div class="header">
+    <div class="slide-number">17</div>
+    <span class="header-title">Dotación y Cobertura</span>
+  </div>
+
+  <div class="main-title">
+    <h1>Presencia en <span>Terreno</span></h1>
+    <p>Distribución del personal según requerimientos del servicio</p>
+  </div>
+
+  <div class="main-layout">
+    <!-- Panel Dotación -->
+    <div class="dotacion-panel">
+      <div class="panel-header">
+        <div class="panel-icon">👥</div>
+        <div>
+          <h3 class="panel-title">Dotación Propuesta</h3>
+          <p class="panel-subtitle">Según alcance acordado</p>
+        </div>
+      </div>
+
+      <div class="dotacion-grid">
+        <div class="dotacion-card">
+          <div class="dotacion-value placeholder">[N]</div>
+          <div class="dotacion-label">Guardias Diurnos</div>
+          <div class="dotacion-meta">Turno de día</div>
+        </div>
+        <div class="dotacion-card">
+          <div class="dotacion-value placeholder">[N]</div>
+          <div class="dotacion-label">Guardias Nocturnos</div>
+          <div class="dotacion-meta">Turno de noche</div>
+        </div>
+        <div class="dotacion-card">
+          <div class="dotacion-value placeholder">[N]</div>
+          <div class="dotacion-label">Supervisores</div>
+          <div class="dotacion-meta">Cobertura del servicio</div>
+        </div>
+        <div class="dotacion-card">
+          <div class="dotacion-value placeholder">[N]</div>
+          <div class="dotacion-label">Total Dotación</div>
+          <div class="dotacion-meta">Personal asignado</div>
+        </div>
+      </div>
+
+      <div class="turnos-section">
+        <div class="turnos-header">Esquema de Turnos</div>
+        <div class="turnos-table">
+          <div class="turno-row header-row">
+            <div class="turno-cell header-cell">Turno</div>
+            <div class="turno-cell header-cell">Horario</div>
+            <div class="turno-cell header-cell">Dotación</div>
+          </div>
+          <div class="turno-row">
+            <div class="turno-cell">Diurno</div>
+            <div class="turno-cell"><span class="placeholder-text">[Definir]</span></div>
+            <div class="turno-cell"><span class="placeholder-text">[N] guardias</span></div>
+          </div>
+          <div class="turno-row">
+            <div class="turno-cell">Nocturno</div>
+            <div class="turno-cell"><span class="placeholder-text">[Definir]</span></div>
+            <div class="turno-cell"><span class="placeholder-text">[N] guardias</span></div>
+          </div>
+          <div class="turno-row">
+            <div class="turno-cell">Fines de Semana</div>
+            <div class="turno-cell"><span class="placeholder-text">[Definir]</span></div>
+            <div class="turno-cell"><span class="placeholder-text">[N] guardias</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panel Cobertura Visual -->
+    <div class="cobertura-panel">
+      <div class="panel-header">
+        <div class="panel-icon">🗺️</div>
+        <div>
+          <h3 class="panel-title">Esquema de Cobertura</h3>
+          <p class="panel-subtitle">Distribución en instalación</p>
+        </div>
+      </div>
+
+      <div class="instalacion-visual">
+        <span class="visual-label">Zonas de Control</span>
+        <div class="instalacion-grid">
+          <div class="zona-card acceso">
+            <span class="zona-icon">🚪</span>
+            <span class="zona-text">Acceso<br>Principal</span>
+          </div>
+          <div class="zona-card">
+            <span class="zona-icon">🔄</span>
+            <span class="zona-text placeholder">[Zona 1]</span>
+          </div>
+          <div class="zona-card">
+            <span class="zona-icon">🔄</span>
+            <span class="zona-text placeholder">[Zona 2]</span>
+          </div>
+          <div class="zona-card">
+            <span class="zona-icon">🔄</span>
+            <span class="zona-text placeholder">[Zona 3]</span>
+          </div>
+          <div class="zona-card central">
+            <span class="zona-icon">🏢</span>
+            <span class="zona-text">Central de<br>Operaciones</span>
+          </div>
+          <div class="zona-card">
+            <span class="zona-icon">🔄</span>
+            <span class="zona-text placeholder">[Zona 4]</span>
+          </div>
+          <div class="zona-card">
+            <span class="zona-icon">🔄</span>
+            <span class="zona-text placeholder">[Zona 5]</span>
+          </div>
+          <div class="zona-card acceso">
+            <span class="zona-icon">🚪</span>
+            <span class="zona-text">Acceso<br>Secundario</span>
+          </div>
+          <div class="zona-card">
+            <span class="zona-icon">🅿️</span>
+            <span class="zona-text placeholder">[Estacionamiento]</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="leyenda">
+        <div class="leyenda-item">
+          <div class="leyenda-dot acceso"></div>
+          <span class="leyenda-text">Punto de acceso fijo</span>
+        </div>
+        <div class="leyenda-item">
+          <div class="leyenda-dot ronda"></div>
+          <span class="leyenda-text">Zona de ronda</span>
+        </div>
+        <div class="leyenda-item">
+          <div class="leyenda-dot central"></div>
+          <span class="leyenda-text">Central de operaciones</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="note-bar">
+    <div class="note-icon">📋</div>
+    <p class="note-text">El esquema es <span>referencial</span> y se ajustará según el <span>levantamiento en terreno</span> con el cliente.</p>
+  </div>
+
+  <div class="footer">
+    <div class="logo-small">G</div>
+  </div>
+</body>
+</html>

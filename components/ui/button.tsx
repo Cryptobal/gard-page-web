@@ -8,24 +8,17 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground shadow-sm hover:opacity-90",
+        default: "bg-primary text-white shadow-md hover:shadow-lg hover:shadow-primary/20 hover:opacity-90 hover:scale-105 gard-btn-glow",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
-          "border-2 border-primary text-primary bg-background hover:bg-primary/10 hover:text-primary",
+          "border-2 border-primary text-primary bg-background hover:bg-primary/5 hover:text-primary hover:scale-105",
+        "outline-orange": "border-2 border-accent text-accent hover:bg-accent/5 hover:text-accent hover:border-accent hover:scale-105",
         secondary:
-          "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/90",
-        ghost: "text-primary hover:bg-primary/10 hover:text-primary",
+          "bg-secondary text-white shadow-md hover:shadow-lg hover:bg-secondary/90 hover:scale-105",
+        ghost: "text-primary hover:bg-primary/5 hover:text-primary hover:scale-105",
         link: "text-primary underline-offset-4 hover:underline",
-        accent: "bg-accent text-white shadow-sm hover:bg-accent/90",
-        
-        // Legacy Gard variants mapping to new standard variants or maintaining specific styles if different
-        "gard-primary": "bg-primary text-white shadow-md hover:shadow-lg hover:shadow-primary/20 hover:opacity-90 hover:scale-105 gard-btn-glow transition-all duration-300",
-        "gard-secondary": "bg-secondary text-white shadow-md hover:shadow-lg hover:bg-secondary/90 hover:scale-105 transition-all duration-300",
-        "gard-outline": "border-2 border-primary text-primary hover:bg-primary/5 hover:text-primary hover:scale-105 transition-all duration-300",
-        "gard-outline-orange": "border-2 border-accent text-accent hover:bg-accent/5 hover:text-accent hover:border-accent hover:scale-105 transition-all duration-300",
-        "gard-ghost": "text-primary hover:bg-primary/5 hover:text-primary hover:scale-105 transition-all duration-300",
-        "gard-accent": "bg-accent text-white shadow-md hover:shadow-lg hover:shadow-accent/20 hover:bg-accent/90 hover:scale-105 gard-btn-glow transition-all duration-300",
+        accent: "bg-accent text-white shadow-md hover:shadow-lg hover:shadow-accent/20 hover:bg-accent/90 hover:scale-105 gard-btn-glow",
       },
       size: {
         default: "h-10 px-4 py-2",

@@ -113,7 +113,7 @@ export default function OurServices({
   };
 
   return (
-    <section className="gard-section py-16 md:py-24 bg-white dark:bg-[hsl(var(--gard-background))]">
+    <section className="gard-section-md bg-white dark:bg-[hsl(var(--gard-background))]">
       <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12 xl:px-16">
         <div className="text-center mb-12">
           <h2 className="text-heading-2 mb-4">{title}</h2>

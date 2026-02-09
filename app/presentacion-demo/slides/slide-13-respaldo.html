@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1920, height=1080">
+  <title>Slide 13 - Respaldo Documental | Gard Security</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --azul-profundo: #2B3A67;
+      --teal: #1A7F8E;
+      --white: #FFFFFF;
+      --navy-oscuro: #1C2541;
+      --terracota: #B84A32;
+      --azul-muy-oscuro: #0F1C2E;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--navy-oscuro);
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Fondo */
+    .bg-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--navy-oscuro) 0%, var(--azul-muy-oscuro) 100%);
+    }
+
+    .bg-pattern {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(26, 127, 142, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(26, 127, 142, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    /* Header */
+    .header {
+      position: absolute;
+      top: 50px;
+      left: 80px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      opacity: 0;
+      animation: fadeIn 0.6s ease-out 0.2s forwards;
+      z-index: 10;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    .slide-number {
+      width: 50px;
+      height: 50px;
+      background: var(--teal);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 20px;
+      color: white;
+      box-shadow: 0 4px 20px rgba(26, 127, 142, 0.5);
+    }
+
+    .header-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.6);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+    }
+
+    /* Título */
+    .main-title {
+      position: absolute;
+      top: 130px;
+      left: 80px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: slideUp 0.7s ease-out 0.3s forwards;
+    }
+
+    .main-title h1 {
+      font-size: 44px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+
+    .main-title h1 span {
+      color: var(--teal);
+    }
+
+    .main-title p {
+      font-size: 17px;
+      color: rgba(255,255,255,0.6);
+    }
+
+    @keyframes slideUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Layout principal */
+    .content-layout {
+      position: absolute;
+      top: 260px;
+      left: 80px;
+      right: 80px;
+      bottom: 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 30px;
+    }
+
+    /* Columnas de documentos */
+    .doc-column {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .doc-column:nth-child(1) { animation: colIn 0.6s ease-out 0.5s forwards; }
+    .doc-column:nth-child(2) { animation: colIn 0.6s ease-out 0.7s forwards; }
+    .doc-column:nth-child(3) { animation: colIn 0.6s ease-out 0.9s forwards; }
+
+    @keyframes colIn {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .column-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid rgba(26, 127, 142, 0.3);
+      margin-bottom: 10px;
+    }
+
+    .column-icon {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, var(--teal) 0%, var(--azul-profundo) 100%);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      box-shadow: 0 8px 25px rgba(26, 127, 142, 0.3);
+    }
+
+    .column-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .column-subtitle {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      margin-top: 3px;
+    }
+
+    /* Items de documentos */
+    .doc-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .doc-item {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      transition: all 0.3s ease;
+    }
+
+    .doc-item:hover {
+      background: rgba(26, 127, 142, 0.1);
+      border-color: rgba(26, 127, 142, 0.3);
+      transform: translateX(8px);
+    }
+
+    .doc-check {
+      width: 32px;
+      height: 32px;
+      background: rgba(26, 127, 142, 0.15);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.3s ease;
+    }
+
+    .doc-item:hover .doc-check {
+      background: var(--teal);
+    }
+
+    .check-icon {
+      font-size: 14px;
+      color: var(--teal);
+      transition: all 0.3s ease;
+    }
+
+    .doc-item:hover .check-icon {
+      color: var(--white);
+    }
+
+    .doc-text {
+      font-size: 14px;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.4;
+    }
+
+    /* Nota inferior */
+    .note-bar {
+      position: absolute;
+      bottom: 40px;
+      left: 80px;
+      right: 80px;
+      background: rgba(26, 127, 142, 0.1);
+      border: 1px solid rgba(26, 127, 142, 0.25);
+      border-radius: 14px;
+      padding: 20px 30px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      opacity: 0;
+      animation: fadeIn 0.6s ease-out 1.2s forwards;
+    }
+
+    .note-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--teal);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .note-content {
+      flex: 1;
+    }
+
+    .note-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--teal);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 5px;
+    }
+
+    .note-text {
+      font-size: 15px;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .note-text span {
+      color: var(--teal);
+      font-weight: 600;
+    }
+
+    /* Footer */
+    .footer {
+      position: absolute;
+      bottom: 10px;
+      right: 80px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      opacity: 0;
+      animation: fadeIn 0.5s ease-out 1.4s forwards;
+    }
+
+    .logo-small {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--teal) 0%, var(--azul-profundo) 100%);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 16px;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-gradient"></div>
+  <div class="bg-pattern"></div>
+
+  <div class="header">
+    <div class="slide-number">13</div>
+    <span class="header-title">Trazabilidad Documental</span>
+  </div>
+
+  <div class="main-title">
+    <h1>Respaldo <span>Documental</span></h1>
+    <p>Documentación estructurada, disponible y verificable</p>
+  </div>
+
+  <div class="content-layout">
+    <!-- Columna 1: Empresa -->
+    <div class="doc-column">
+      <div class="column-header">
+        <div class="column-icon">🏢</div>
+        <div>
+          <h3 class="column-title">Empresa</h3>
+          <p class="column-subtitle">Documentos corporativos</p>
+        </div>
+      </div>
+      <div class="doc-list">
+        <div class="doc-item">
+          <div class="doc-check"><span class="check-icon">✓</span></div>
+          <span class="doc-text">Certificado OS10 empresa vigente</span>
+        </div>
+        <div class="doc-item">
+          <div class="doc-check"><span class="check-icon">✓</span></div>
+          <span class="doc-text">Escritura de constitución</span>
+        </div>
+        <div class="doc-item">
+          <div class="doc-check"><span class="check-icon">✓</span></div>
+          <span class="doc-text">Certificado de vigencia</span>
+        </div>
+        <div class="doc-item">
+          <div class="doc-check"><span class="check-icon">✓</span></div>
+          <span class="doc-text">Póliza de responsabilidad civil</span>
+        </div>
+        <div class="doc-item">
+          <div class="doc-check"><span class="check-icon">✓</span></div>
+          <span class="doc-text">Certificado de antecedentes laborales</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Columna 2: Personal -->
+    <div class="doc-column">
+      <div class="column-header">
+        <div class="column-icon">👤</div>
+        <div>
+          <h3 class="column-title">Personal</h3>
+          <p class="column-subtitle">Documentos por trabajador</p>
+        </div>
+      </div>
+      <div class="doc-list">
+        <div class="doc-item">
+          <div class="doc-check"><span class="check-icon">✓</span></div>
+          <span class="doc-text">Credencial OS10 vigente</span>
+        </div>
+        <div class="doc-item">
+          <div class="doc-check"><span class="check-icon">✓</span></div>
+          <span class="doc-text">Contrato de trabajo firmado</span>
+        </div>
+        <div class="doc-item">
+          <div class="doc-check"><span class="check-icon">✓</span></div>
+          <span class="doc-text">Anexo de funciones específicas</span>
+        </div>
+        <div class="doc-item">
+          <div class="doc-check"><span class="check-icon">✓</span></div>
+          <span class="doc-text">Registro de inducción</span>
+        </div>
+        <div class="doc-item">
+          <div class="doc-check"><span class="check-icon">✓</span></div>
+          <span class="doc-text">ODI firmada (Obligación de Informar)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Columna 3: Operación -->
+    <div class="doc-column">
+      <div class="column-header">
+        <div class="column-icon">📋</div>
+        <div>
+          <h3 class="column-title">Operación</h3>
+          <p class="column-subtitle">Documentos de servicio</p>
+        </div>
+      </div>
+      <div class="doc-list">
+        <div class="doc-item">
+          <div class="doc-check"><span class="check-icon">✓</span></div>
+          <span class="doc-text">Procedimientos operativos</span>
+        </div>
+        <div class="doc-item">
+          <div class="doc-check"><span class="check-icon">✓</span></div>
+          <span class="doc-text">Registros de supervisión</span>
+        </div>
+        <div class="doc-item">
+          <div class="doc-check"><span class="check-icon">✓</span></div>
+          <span class="doc-text">Bitácoras de turno</span>
+        </div>
+        <div class="doc-item">
+          <div class="doc-check"><span class="check-icon">✓</span></div>
+          <span class="doc-text">Informes de incidentes</span>
+        </div>
+        <div class="doc-item">
+          <div class="doc-check"><span class="check-icon">✓</span></div>
+          <span class="doc-text">Reportes mensuales al cliente</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="note-bar">
+    <div class="note-icon">📁</div>
+    <div class="note-content">
+      <span class="note-label">Disponibilidad</span>
+      <p class="note-text">Toda la documentación está <span>disponible para auditoría</span> y puede entregarse al cliente según requerimiento.</p>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="logo-small">G</div>
+  </div>
+</body>
+</html>

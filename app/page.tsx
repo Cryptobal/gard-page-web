@@ -8,9 +8,12 @@ import {
   Shield, 
   Eye, 
   ShieldCheck, 
-  BarChart4, 
   CheckCircle,
-  HelpCircle
+  HelpCircle,
+  Users,
+  Calendar,
+  Activity,
+  Headphones
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -68,7 +71,7 @@ export default function Home() {
       <ClientCarousel />
 
       {/* Información corporativa */}
-      <section className="gard-section py-16 md:py-24 bg-[hsl(var(--gard-background))] text-foreground dark:text-white">
+      <section className="gard-section-md bg-[hsl(var(--gard-background))] text-foreground dark:text-white">
         <div className="gard-container">
           <div className="gard-grid-2 items-center gap-12">
             <div>
@@ -110,7 +113,7 @@ export default function Home() {
               </ul>
               
               <div className="mt-8">
-                <Button asChild variant="gard-primary" size="lg">
+                <Button asChild variant="default" size="lg">
                   <Link href="/sobre-nosotros">
                     Conocer más sobre nosotros
                   </Link>
@@ -121,7 +124,7 @@ export default function Home() {
             <div className="relative h-[500px] rounded-2xl overflow-hidden">
               <CloudflareImage
                 imageId="2c554c0e-8f87-4f58-1ad5-29cbe6360600"
-                alt="El equipo de Gard Security"
+                alt="Equipo profesional de Gard Security durante reunión de planificación de seguridad con clientes empresariales"
                 fill
                 objectFit="cover"
                 className="shadow-[inset_0_0_60px_rgba(0,0,0,0.3)]"
@@ -133,39 +136,34 @@ export default function Home() {
       </section>
 
       {/* Estadísticas */}
-      <section className="gard-section bg-[radial-gradient(circle_at_center,hsl(var(--gard-background)),hsl(var(--gard-card)))] text-foreground dark:text-white relative overflow-hidden">
+      <section className="gard-section bg-[radial-gradient(circle_at_center,hsl(var(--gard-background)),hsl(var(--gard-card)))] text-foreground dark:text-white relative overflow-hidden" aria-label="Estadísticas de la empresa">
         {/* Patrón de fondo sutil */}
-        <div className="absolute inset-0 opacity-5" 
-             style={{
-               backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.4' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E\")",
-               backgroundRepeat: "repeat"
-             }}>
-        </div>
+        <div className="absolute inset-0 opacity-5 gard-pattern-dots"></div>
         
         <div className="gard-container text-center relative z-10">
-          <h2 className="text-heading-2 mb-12 text-foreground dark:text-white">Nuestro impacto en números</h2>
+          <h2 className="text-heading-2 mb-12">Nuestro impacto en números</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             <div className="p-6 bg-white/5 rounded-xl backdrop-blur-sm border border-black/5 dark:border-white/10 shadow-md transform hover:scale-105 transition duration-300">
-              <BarChart4 className="h-14 w-14 mx-auto mb-4 text-primary dark:text-accent" />
+              <Users className="h-14 w-14 mx-auto mb-4 text-primary dark:text-accent" />
               <div className="text-5xl font-bold mb-3 text-foreground dark:text-white">50+</div>
               <p className="text-body-base text-muted-foreground dark:text-gray-100">Clientes satisfechos</p>
             </div>
             
             <div className="p-6 bg-white/5 rounded-xl backdrop-blur-sm border border-black/5 dark:border-white/10 shadow-md transform hover:scale-105 transition duration-300">
-              <BarChart4 className="h-14 w-14 mx-auto mb-4 text-primary dark:text-accent" />
+              <Calendar className="h-14 w-14 mx-auto mb-4 text-primary dark:text-accent" />
               <div className="text-5xl font-bold mb-3 text-foreground dark:text-white">8+</div>
               <p className="text-body-base text-muted-foreground dark:text-gray-100">Años de experiencia</p>
             </div>
             
             <div className="p-6 bg-white/5 rounded-xl backdrop-blur-sm border border-black/5 dark:border-white/10 shadow-md transform hover:scale-105 transition duration-300">
-              <BarChart4 className="h-14 w-14 mx-auto mb-4 text-primary dark:text-accent" />
+              <Activity className="h-14 w-14 mx-auto mb-4 text-primary dark:text-accent" />
               <div className="text-5xl font-bold mb-3 text-foreground dark:text-white">99.9%</div>
               <p className="text-body-base text-muted-foreground dark:text-gray-100">Actividad operativa</p>
             </div>
             
             <div className="p-6 bg-white/5 rounded-xl backdrop-blur-sm border border-black/5 dark:border-white/10 shadow-md transform hover:scale-105 transition duration-300">
-              <BarChart4 className="h-14 w-14 mx-auto mb-4 text-primary dark:text-accent" />
+              <Headphones className="h-14 w-14 mx-auto mb-4 text-primary dark:text-accent" />
               <div className="text-5xl font-bold mb-3 text-foreground dark:text-white">24/7</div>
               <p className="text-body-base text-muted-foreground dark:text-gray-100">Central operativa</p>
             </div>

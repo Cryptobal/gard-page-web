@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1920, height=1080">
+  <title>Slide 19 - Experiencia y Sectores | Gard Security</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --azul-profundo: #2B3A67;
+      --teal: #1A7F8E;
+      --white: #FFFFFF;
+      --navy-oscuro: #1C2541;
+      --terracota: #B84A32;
+      --azul-muy-oscuro: #0F1C2E;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--navy-oscuro);
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Fondo */
+    .bg-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--navy-oscuro) 0%, var(--azul-muy-oscuro) 100%);
+    }
+
+    .bg-pattern {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(26, 127, 142, 0.06) 1px, transparent 1px);
+      background-size: 35px 35px;
+    }
+
+    /* Header */
+    .header {
+      position: absolute;
+      top: 50px;
+      left: 80px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      opacity: 0;
+      animation: fadeIn 0.6s ease-out 0.2s forwards;
+      z-index: 10;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    .slide-number {
+      width: 50px;
+      height: 50px;
+      background: var(--teal);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 20px;
+      color: white;
+      box-shadow: 0 4px 20px rgba(26, 127, 142, 0.5);
+    }
+
+    .header-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.6);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+    }
+
+    /* Título */
+    .main-title {
+      position: absolute;
+      top: 130px;
+      left: 80px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: slideUp 0.7s ease-out 0.3s forwards;
+    }
+
+    .main-title h1 {
+      font-size: 44px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+
+    .main-title h1 span {
+      color: var(--teal);
+    }
+
+    .main-title p {
+      font-size: 17px;
+      color: rgba(255,255,255,0.6);
+    }
+
+    @keyframes slideUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Layout principal */
+    .main-layout {
+      position: absolute;
+      top: 260px;
+      left: 80px;
+      right: 80px;
+      bottom: 80px;
+      display: grid;
+      grid-template-columns: 400px 1fr;
+      gap: 50px;
+    }
+
+    /* Panel izquierdo - Cifras */
+    .stats-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      opacity: 0;
+      animation: fadeIn 0.7s ease-out 0.5s forwards;
+    }
+
+    .stats-header {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--teal);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid rgba(26, 127, 142, 0.3);
+    }
+
+    .stat-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 30px;
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+      border-color: var(--teal);
+      transform: translateX(10px);
+      box-shadow: 0 10px 30px rgba(26, 127, 142, 0.15);
+    }
+
+    .stat-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, var(--teal) 0%, var(--azul-profundo) 100%);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      flex-shrink: 0;
+      box-shadow: 0 8px 25px rgba(26, 127, 142, 0.3);
+    }
+
+    .stat-content {
+      flex: 1;
+    }
+
+    .stat-value {
+      font-size: 36px;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat-value.placeholder {
+      color: var(--teal);
+      font-size: 28px;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.4;
+    }
+
+    /* Certificaciones */
+    .certs-section {
+      margin-top: auto;
+      padding: 25px;
+      background: rgba(26, 127, 142, 0.1);
+      border: 1px solid rgba(26, 127, 142, 0.25);
+      border-radius: 16px;
+    }
+
+    .certs-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 15px;
+    }
+
+    .certs-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .cert-badge {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 8px;
+      padding: 10px 15px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .cert-badge:hover {
+      background: rgba(26, 127, 142, 0.2);
+      border-color: var(--teal);
+    }
+
+    .cert-badge .badge-icon {
+      font-size: 16px;
+    }
+
+    /* Panel derecho - Sectores */
+    .sectors-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      opacity: 0;
+      animation: fadeIn 0.7s ease-out 0.7s forwards;
+    }
+
+    .sectors-header {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--teal);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid rgba(26, 127, 142, 0.3);
+    }
+
+    /* Grid de sectores */
+    .sectors-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      gap: 20px;
+      flex: 1;
+    }
+
+    .sector-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 25px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .sector-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--teal);
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+    }
+
+    .sector-card:hover {
+      border-color: var(--teal);
+      transform: translateY(-8px);
+      box-shadow: 0 20px 50px rgba(26, 127, 142, 0.2);
+      background: rgba(26, 127, 142, 0.08);
+    }
+
+    .sector-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .sector-icon {
+      font-size: 40px;
+      margin-bottom: 15px;
+      transition: all 0.4s ease;
+    }
+
+    .sector-card:hover .sector-icon {
+      transform: scale(1.2);
+    }
+
+    .sector-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 5px;
+    }
+
+    .sector-desc {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.4;
+    }
+
+    /* Nota de confidencialidad */
+    .confidence-note {
+      position: absolute;
+      bottom: 30px;
+      left: 80px;
+      right: 80px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      opacity: 0;
+      animation: fadeIn 0.5s ease-out 1s forwards;
+    }
+
+    .note-icon {
+      width: 36px;
+      height: 36px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .note-text {
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+      font-style: italic;
+    }
+
+    /* Footer */
+    .footer {
+      position: absolute;
+      bottom: 30px;
+      right: 80px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      opacity: 0;
+      animation: fadeIn 0.5s ease-out 1.2s forwards;
+    }
+
+    .logo-small {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--teal) 0%, var(--azul-profundo) 100%);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 16px;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-gradient"></div>
+  <div class="bg-pattern"></div>
+
+  <div class="header">
+    <div class="slide-number">19</div>
+    <span class="header-title">Trayectoria</span>
+  </div>
+
+  <div class="main-title">
+    <h1>Experiencia y <span>Sectores</span></h1>
+    <p>Respaldo operativo en diversos rubros y contextos</p>
+  </div>
+
+  <div class="main-layout">
+    <!-- Panel Cifras -->
+    <div class="stats-panel">
+      <span class="stats-header">Cifras de Respaldo</span>
+
+      <div class="stat-card">
+        <div class="stat-icon">📅</div>
+        <div class="stat-content">
+          <div class="stat-value placeholder">[N+]</div>
+          <div class="stat-label">Años de operación en el mercado</div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon">🏢</div>
+        <div class="stat-content">
+          <div class="stat-value placeholder">[N+]</div>
+          <div class="stat-label">Clientes activos</div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon">👥</div>
+        <div class="stat-content">
+          <div class="stat-value placeholder">[N+]</div>
+          <div class="stat-label">Guardias en operación</div>
+        </div>
+      </div>
+
+      <div class="certs-section">
+        <h4 class="certs-title">Certificaciones y Registros</h4>
+        <div class="certs-list">
+          <div class="cert-badge">
+            <span class="badge-icon">🛡️</span>
+            OS10 Vigente
+          </div>
+          <div class="cert-badge">
+            <span class="badge-icon">📋</span>
+            F30 / F30-1
+          </div>
+          <div class="cert-badge">
+            <span class="badge-icon">✓</span>
+            Antecedentes Laborales
+          </div>
+          <div class="cert-badge">
+            <span class="badge-icon">📄</span>
+            Póliza RC
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panel Sectores -->
+    <div class="sectors-panel">
+      <span class="sectors-header">Sectores Atendidos</span>
+
+      <div class="sectors-grid">
+        <div class="sector-card">
+          <span class="sector-icon">🏭</span>
+          <span class="sector-name">Industrial</span>
+          <span class="sector-desc">Plantas y manufactura</span>
+        </div>
+
+        <div class="sector-card">
+          <span class="sector-icon">📦</span>
+          <span class="sector-name">Logística</span>
+          <span class="sector-desc">Bodegas y distribución</span>
+        </div>
+
+        <div class="sector-card">
+          <span class="sector-icon">🏗️</span>
+          <span class="sector-name">Construcción</span>
+          <span class="sector-desc">Obras y proyectos</span>
+        </div>
+
+        <div class="sector-card">
+          <span class="sector-icon">🏢</span>
+          <span class="sector-name">Corporativo</span>
+          <span class="sector-desc">Oficinas y edificios</span>
+        </div>
+
+        <div class="sector-card">
+          <span class="sector-icon">🛒</span>
+          <span class="sector-name">Retail</span>
+          <span class="sector-desc">Comercio y tiendas</span>
+        </div>
+
+        <div class="sector-card">
+          <span class="sector-icon">🏥</span>
+          <span class="sector-name">Salud</span>
+          <span class="sector-desc">Clínicas y centros médicos</span>
+        </div>
+
+        <div class="sector-card">
+          <span class="sector-icon">🎓</span>
+          <span class="sector-name">Educación</span>
+          <span class="sector-desc">Colegios y universidades</span>
+        </div>
+
+        <div class="sector-card">
+          <span class="sector-icon">🏨</span>
+          <span class="sector-name">Hotelería</span>
+          <span class="sector-desc">Hoteles y resorts</span>
+        </div>
+
+        <div class="sector-card">
+          <span class="sector-icon">🏛️</span>
+          <span class="sector-name">Institucional</span>
+          <span class="sector-desc">Entidades públicas</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="confidence-note">
+    <div class="note-icon">🔒</div>
+    <p class="note-text">Referencias específicas disponibles bajo acuerdo de confidencialidad.</p>
+  </div>
+
+  <div class="footer">
+    <div class="logo-small">G</div>
+  </div>
+</body>
+</html>

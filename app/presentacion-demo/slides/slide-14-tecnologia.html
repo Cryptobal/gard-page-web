@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1920, height=1080">
+  <title>Slide 14 - Tecnología y Trazabilidad | Gard Security</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --azul-profundo: #2B3A67;
+      --teal: #1A7F8E;
+      --white: #FFFFFF;
+      --navy-oscuro: #1C2541;
+      --terracota: #B84A32;
+      --azul-muy-oscuro: #0F1C2E;
+      --gris-claro: #f8fafc;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--gris-claro);
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Fondo con gradiente sutil */
+    .bg-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--gris-claro) 0%, #e8f4f5 100%);
+    }
+
+    /* Header bar */
+    .header-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 8px;
+      background: linear-gradient(90deg, var(--navy-oscuro) 0%, var(--teal) 50%, var(--azul-profundo) 100%);
+      transform: scaleX(0);
+      transform-origin: left;
+      animation: barExpand 0.8s ease-out 0.2s forwards;
+    }
+
+    @keyframes barExpand {
+      0% { transform: scaleX(0); }
+      100% { transform: scaleX(1); }
+    }
+
+    /* Header */
+    .header {
+      position: absolute;
+      top: 50px;
+      left: 80px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      opacity: 0;
+      animation: fadeIn 0.6s ease-out 0.3s forwards;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    .slide-number {
+      width: 50px;
+      height: 50px;
+      background: var(--teal);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 20px;
+      color: white;
+      box-shadow: 0 4px 20px rgba(26, 127, 142, 0.4);
+    }
+
+    .header-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--azul-profundo);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+    }
+
+    /* Título */
+    .main-title {
+      position: absolute;
+      top: 130px;
+      left: 80px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: slideUp 0.7s ease-out 0.4s forwards;
+    }
+
+    .main-title h1 {
+      font-size: 46px;
+      font-weight: 700;
+      color: var(--navy-oscuro);
+      margin-bottom: 10px;
+    }
+
+    .main-title h1 span {
+      color: var(--teal);
+    }
+
+    .main-title p {
+      font-size: 17px;
+      color: #64748b;
+    }
+
+    @keyframes slideUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Layout principal */
+    .main-layout {
+      position: absolute;
+      top: 260px;
+      left: 80px;
+      right: 80px;
+      bottom: 140px;
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: 50px;
+    }
+
+    /* Diagrama central */
+    .diagram-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tech-hub {
+      position: relative;
+      width: 600px;
+      height: 500px;
+      opacity: 0;
+      animation: fadeIn 0.8s ease-out 0.6s forwards;
+    }
+
+    /* Centro del hub */
+    .hub-center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 180px;
+      height: 180px;
+      background: linear-gradient(135deg, var(--teal) 0%, var(--azul-profundo) 100%);
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 20px 60px rgba(26, 127, 142, 0.4);
+      z-index: 10;
+    }
+
+    .hub-center::before {
+      content: '';
+      position: absolute;
+      inset: -15px;
+      border: 3px solid rgba(26, 127, 142, 0.3);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .hub-center::after {
+      content: '';
+      position: absolute;
+      inset: -30px;
+      border: 2px solid rgba(26, 127, 142, 0.15);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite 0.5s;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.05); opacity: 0.7; }
+    }
+
+    .hub-icon {
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+
+    .hub-text {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--white);
+      text-align: center;
+    }
+
+    /* Nodos orbitales */
+    .orbit-node {
+      position: absolute;
+      width: 130px;
+      height: 130px;
+      background: var(--white);
+      border: 2px solid #e2e8f0;
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 15px;
+      transition: all 0.4s ease;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    }
+
+    .orbit-node:hover {
+      transform: scale(1.1);
+      border-color: var(--teal);
+      box-shadow: 0 15px 40px rgba(26, 127, 142, 0.2);
+    }
+
+    .orbit-node.node-1 { top: 0; left: 50%; transform: translateX(-50%); }
+    .orbit-node.node-2 { top: 80px; right: 20px; }
+    .orbit-node.node-3 { bottom: 80px; right: 20px; }
+    .orbit-node.node-4 { bottom: 0; left: 50%; transform: translateX(-50%); }
+    .orbit-node.node-5 { bottom: 80px; left: 20px; }
+    .orbit-node.node-6 { top: 80px; left: 20px; }
+
+    .orbit-node:hover { transform: scale(1.1) !important; }
+
+    .node-icon {
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+
+    .node-text {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--navy-oscuro);
+      text-align: center;
+      line-height: 1.3;
+    }
+
+    /* Líneas de conexión SVG */
+    .connections-svg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .connection-line {
+      stroke: rgba(26, 127, 142, 0.3);
+      stroke-width: 2;
+      fill: none;
+      stroke-dasharray: 8 4;
+      animation: dash 20s linear infinite;
+    }
+
+    @keyframes dash {
+      to { stroke-dashoffset: -100; }
+    }
+
+    /* Panel lateral - Beneficios */
+    .benefits-panel {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 40px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      transform: translateX(30px);
+      animation: panelIn 0.7s ease-out 0.8s forwards;
+    }
+
+    @keyframes panelIn {
+      0% { opacity: 0; transform: translateX(30px); }
+      100% { opacity: 1; transform: translateX(0); }
+    }
+
+    .panel-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid rgba(26, 127, 142, 0.1);
+    }
+
+    .panel-icon {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, var(--teal) 0%, var(--azul-profundo) 100%);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+
+    .panel-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--navy-oscuro);
+    }
+
+    .benefits-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      flex: 1;
+    }
+
+    .benefit-item {
+      display: flex;
+      gap: 15px;
+      padding: 20px;
+      background: rgba(26, 127, 142, 0.05);
+      border-radius: 14px;
+      transition: all 0.3s ease;
+    }
+
+    .benefit-item:hover {
+      background: rgba(26, 127, 142, 0.1);
+      transform: translateX(5px);
+    }
+
+    .benefit-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--white);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    .benefit-content h4 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--navy-oscuro);
+      margin-bottom: 5px;
+    }
+
+    .benefit-content p {
+      font-size: 13px;
+      color: #64748b;
+      line-height: 1.5;
+    }
+
+    /* Barra inferior */
+    .bottom-bar {
+      position: absolute;
+      bottom: 40px;
+      left: 80px;
+      right: 80px;
+      background: linear-gradient(135deg, var(--navy-oscuro) 0%, var(--azul-muy-oscuro) 100%);
+      border-radius: 16px;
+      padding: 25px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      opacity: 0;
+      animation: fadeIn 0.6s ease-out 1.2s forwards;
+    }
+
+    .bar-message {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .bar-icon {
+      width: 46px;
+      height: 46px;
+      background: var(--teal);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+    }
+
+    .bar-text {
+      font-size: 16px;
+      color: var(--white);
+      font-weight: 500;
+    }
+
+    .bar-text span {
+      color: var(--teal);
+      font-weight: 700;
+    }
+
+    .bar-tags {
+      display: flex;
+      gap: 12px;
+    }
+
+    .bar-tag {
+      background: rgba(26, 127, 142, 0.2);
+      color: var(--teal);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 20px;
+    }
+
+    /* Footer */
+    .footer {
+      position: absolute;
+      bottom: 10px;
+      right: 80px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      opacity: 0;
+      animation: fadeIn 0.5s ease-out 1.4s forwards;
+    }
+
+    .logo-small {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--teal) 0%, var(--azul-profundo) 100%);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 16px;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-gradient"></div>
+  <div class="header-bar"></div>
+
+  <div class="header">
+    <div class="slide-number">14</div>
+    <span class="header-title">Control Digital</span>
+  </div>
+
+  <div class="main-title">
+    <h1>Tecnología y <span>Trazabilidad</span></h1>
+    <p>Herramientas digitales que aseguran registro, control y visibilidad</p>
+  </div>
+
+  <div class="main-layout">
+    <!-- Diagrama Hub -->
+    <div class="diagram-section">
+      <div class="tech-hub">
+        <!-- SVG Conexiones -->
+        <svg class="connections-svg" viewBox="0 0 600 500">
+          <line class="connection-line" x1="300" y1="170" x2="300" y2="65" />
+          <line class="connection-line" x1="370" y1="210" x2="460" y2="145" />
+          <line class="connection-line" x1="370" y1="290" x2="460" y2="355" />
+          <line class="connection-line" x1="300" y1="330" x2="300" y2="435" />
+          <line class="connection-line" x1="230" y1="290" x2="140" y2="355" />
+          <line class="connection-line" x1="230" y1="210" x2="140" y2="145" />
+        </svg>
+
+        <!-- Centro -->
+        <div class="hub-center">
+          <span class="hub-icon">🖥️</span>
+          <span class="hub-text">Sistema de<br>Control</span>
+        </div>
+
+        <!-- Nodos -->
+        <div class="orbit-node node-1">
+          <span class="node-icon">📱</span>
+          <span class="node-text">App Móvil<br>Guardias</span>
+        </div>
+
+        <div class="orbit-node node-2">
+          <span class="node-icon">📍</span>
+          <span class="node-text">Control de<br>Rondas</span>
+        </div>
+
+        <div class="orbit-node node-3">
+          <span class="node-icon">⏱️</span>
+          <span class="node-text">Registro<br>Asistencia</span>
+        </div>
+
+        <div class="orbit-node node-4">
+          <span class="node-icon">📋</span>
+          <span class="node-text">Bitácora<br>Digital</span>
+        </div>
+
+        <div class="orbit-node node-5">
+          <span class="node-icon">🚨</span>
+          <span class="node-text">Reporte<br>Incidentes</span>
+        </div>
+
+        <div class="orbit-node node-6">
+          <span class="node-icon">📊</span>
+          <span class="node-text">Dashboard<br>Cliente</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panel Beneficios -->
+    <div class="benefits-panel">
+      <div class="panel-header">
+        <div class="panel-icon">✓</div>
+        <h3 class="panel-title">Beneficios Clave</h3>
+      </div>
+      <ul class="benefits-list">
+        <li class="benefit-item">
+          <div class="benefit-icon">👁️</div>
+          <div class="benefit-content">
+            <h4>Visibilidad en Tiempo Real</h4>
+            <p>Seguimiento de actividades y ubicación del personal en terreno.</p>
+          </div>
+        </li>
+        <li class="benefit-item">
+          <div class="benefit-icon">📝</div>
+          <div class="benefit-content">
+            <h4>Registro Automático</h4>
+            <p>Eventos documentados con fecha, hora y geolocalización.</p>
+          </div>
+        </li>
+        <li class="benefit-item">
+          <div class="benefit-icon">🔍</div>
+          <div class="benefit-content">
+            <h4>Auditoría Simplificada</h4>
+            <p>Historial completo disponible para consulta y verificación.</p>
+          </div>
+        </li>
+        <li class="benefit-item">
+          <div class="benefit-icon">📈</div>
+          <div class="benefit-content">
+            <h4>Datos para Decisiones</h4>
+            <p>Información estructurada para análisis y mejora continua.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <div class="bar-message">
+      <div class="bar-icon">💡</div>
+      <p class="bar-text">La tecnología <span>no reemplaza la supervisión humana</span>: la potencia con datos verificables.</p>
+    </div>
+    <div class="bar-tags">
+      <span class="bar-tag">Trazabilidad</span>
+      <span class="bar-tag">Evidencia</span>
+      <span class="bar-tag">Control</span>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="logo-small">G</div>
+  </div>
+</body>
+</html>

@@ -34,6 +34,8 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://imagedelivery.net" />
         <link rel="preconnect" href="https://iframe.cloudflarestream.com" />
         <link rel="dns-prefetch" href="https://iframe.cloudflarestream.com" />
+        
+        {/* DNS prefetch for Google Fonts - next/font handles preloading automatically */}
 
         {/* LocalBusiness Schema - Optimizado para SEO Local */}
         <LocalBusinessSchema />
@@ -58,13 +60,21 @@ export default function RootLayout({
           }
         }) }} />
       </head>
-      <body className={`${inter.variable} ${poppins.variable}`}>
+      <body className={`${inter.variable} ${poppins.variable} min-h-screen flex flex-col`}>
+        {/* Skip to content link for keyboard navigation */}
+        <a 
+          href="#main-content" 
+          className="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:top-4 focus:left-4 focus:bg-primary focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+        >
+          Ir al contenido principal
+        </a>
+        
         <ClientWrapper>
           <CookieConsent>
             <ClientScripts gtmId={GTM_ID} gaId={GA_ID} />
             
             <Header />
-            <main className="flex-grow">
+            <main id="main-content" className="flex-grow">
               {children}
             </main>
             <Footer />

@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1920, height=1080">
+  <title>Slide 18 - Equipamiento | Gard Security</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --azul-profundo: #2B3A67;
+      --teal: #1A7F8E;
+      --white: #FFFFFF;
+      --navy-oscuro: #1C2541;
+      --terracota: #B84A32;
+      --azul-muy-oscuro: #0F1C2E;
+      --gris-claro: #f8fafc;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--gris-claro);
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Fondo */
+    .bg-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, var(--white) 0%, var(--gris-claro) 100%);
+    }
+
+    /* Header bar */
+    .header-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 8px;
+      background: linear-gradient(90deg, var(--navy-oscuro) 0%, var(--teal) 100%);
+      transform: scaleX(0);
+      transform-origin: left;
+      animation: barExpand 0.8s ease-out 0.2s forwards;
+    }
+
+    @keyframes barExpand {
+      0% { transform: scaleX(0); }
+      100% { transform: scaleX(1); }
+    }
+
+    /* Header */
+    .header {
+      position: absolute;
+      top: 50px;
+      left: 80px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      opacity: 0;
+      animation: fadeIn 0.6s ease-out 0.3s forwards;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    .slide-number {
+      width: 50px;
+      height: 50px;
+      background: var(--teal);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 20px;
+      color: white;
+      box-shadow: 0 4px 20px rgba(26, 127, 142, 0.4);
+    }
+
+    .header-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--azul-profundo);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+    }
+
+    /* Título */
+    .main-title {
+      position: absolute;
+      top: 130px;
+      left: 80px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: slideUp 0.7s ease-out 0.4s forwards;
+    }
+
+    .main-title h1 {
+      font-size: 46px;
+      font-weight: 700;
+      color: var(--navy-oscuro);
+      margin-bottom: 10px;
+    }
+
+    .main-title h1 span {
+      color: var(--teal);
+    }
+
+    .main-title p {
+      font-size: 17px;
+      color: #64748b;
+    }
+
+    @keyframes slideUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Grid principal */
+    .equipment-grid {
+      position: absolute;
+      top: 260px;
+      left: 80px;
+      right: 80px;
+      bottom: 130px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    /* Categoría de equipamiento */
+    .equipment-category {
+      background: var(--white);
+      border: 1px solid #e2e8f0;
+      border-radius: 20px;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.4s ease;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .equipment-category:nth-child(1) { animation: cardIn 0.5s ease-out 0.5s forwards; }
+    .equipment-category:nth-child(2) { animation: cardIn 0.5s ease-out 0.65s forwards; }
+    .equipment-category:nth-child(3) { animation: cardIn 0.5s ease-out 0.8s forwards; }
+
+    @keyframes cardIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .equipment-category:hover {
+      border-color: var(--teal);
+      box-shadow: 0 20px 50px rgba(26, 127, 142, 0.12);
+      transform: translateY(-5px);
+    }
+
+    .category-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid rgba(26, 127, 142, 0.1);
+      margin-bottom: 20px;
+    }
+
+    .category-icon {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, rgba(26, 127, 142, 0.15) 0%, rgba(43, 58, 103, 0.1) 100%);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      transition: all 0.4s ease;
+    }
+
+    .equipment-category:hover .category-icon {
+      background: linear-gradient(135deg, var(--teal) 0%, var(--azul-profundo) 100%);
+      transform: scale(1.1);
+    }
+
+    .category-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--navy-oscuro);
+    }
+
+    .category-subtitle {
+      font-size: 12px;
+      color: #94a3b8;
+      margin-top: 3px;
+    }
+
+    /* Lista de items */
+    .items-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex: 1;
+    }
+
+    .item-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      background: rgba(26, 127, 142, 0.03);
+      border-radius: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .item-row:hover {
+      background: rgba(26, 127, 142, 0.08);
+      transform: translateX(5px);
+    }
+
+    .item-check {
+      width: 26px;
+      height: 26px;
+      background: rgba(26, 127, 142, 0.15);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.3s ease;
+    }
+
+    .item-row:hover .item-check {
+      background: var(--teal);
+    }
+
+    .check-icon {
+      font-size: 12px;
+      color: var(--teal);
+      transition: all 0.3s ease;
+    }
+
+    .item-row:hover .check-icon {
+      color: var(--white);
+    }
+
+    .item-text {
+      font-size: 14px;
+      color: var(--navy-oscuro);
+      flex: 1;
+    }
+
+    .item-qty {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--teal);
+      background: rgba(26, 127, 142, 0.1);
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+
+    .item-qty.placeholder {
+      color: #94a3b8;
+      background: rgba(148, 163, 184, 0.1);
+      font-style: italic;
+    }
+
+    /* Nota de provisión */
+    .provision-note {
+      margin-top: auto;
+      padding-top: 15px;
+      border-top: 1px dashed rgba(26, 127, 142, 0.2);
+    }
+
+    .provision-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #64748b;
+      background: rgba(100, 116, 139, 0.1);
+      padding: 6px 12px;
+      border-radius: 20px;
+    }
+
+    .provision-tag.gard {
+      color: var(--teal);
+      background: rgba(26, 127, 142, 0.1);
+    }
+
+    /* Barra inferior */
+    .bottom-bar {
+      position: absolute;
+      bottom: 40px;
+      left: 80px;
+      right: 80px;
+      background: linear-gradient(135deg, var(--navy-oscuro) 0%, var(--azul-muy-oscuro) 100%);
+      border-radius: 16px;
+      padding: 25px 35px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      opacity: 0;
+      animation: fadeIn 0.6s ease-out 1s forwards;
+    }
+
+    .bar-message {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .bar-icon {
+      width: 46px;
+      height: 46px;
+      background: var(--teal);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+    }
+
+    .bar-text {
+      font-size: 15px;
+      color: var(--white);
+    }
+
+    .bar-text span {
+      color: var(--teal);
+      font-weight: 600;
+    }
+
+    .bar-legend {
+      display: flex;
+      gap: 20px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .legend-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 4px;
+    }
+
+    .legend-dot.gard {
+      background: var(--teal);
+    }
+
+    .legend-dot.cliente {
+      background: #94a3b8;
+    }
+
+    .legend-text {
+      font-size: 12px;
+      color: rgba(255,255,255,0.7);
+    }
+
+    /* Footer */
+    .footer {
+      position: absolute;
+      bottom: 10px;
+      right: 80px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      opacity: 0;
+      animation: fadeIn 0.5s ease-out 1.2s forwards;
+    }
+
+    .logo-small {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--teal) 0%, var(--azul-profundo) 100%);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 16px;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-gradient"></div>
+  <div class="header-bar"></div>
+
+  <div class="header">
+    <div class="slide-number">18</div>
+    <span class="header-title">Recursos del Servicio</span>
+  </div>
+
+  <div class="main-title">
+    <h1><span>Equipamiento</span></h1>
+    <p>Recursos provistos por Gard Security y requerimientos del cliente</p>
+  </div>
+
+  <div class="equipment-grid">
+    <!-- Categoría 1: Vestimenta -->
+    <div class="equipment-category">
+      <div class="category-header">
+        <div class="category-icon">👔</div>
+        <div>
+          <h3 class="category-title">Vestimenta</h3>
+          <p class="category-subtitle">Uniforme del personal</p>
+        </div>
+      </div>
+      <ul class="items-list">
+        <li class="item-row">
+          <div class="item-check"><span class="check-icon">✓</span></div>
+          <span class="item-text">Uniforme completo institucional</span>
+          <span class="item-qty placeholder">[N] sets</span>
+        </li>
+        <li class="item-row">
+          <div class="item-check"><span class="check-icon">✓</span></div>
+          <span class="item-text">Calzado de seguridad</span>
+          <span class="item-qty placeholder">[N] pares</span>
+        </li>
+        <li class="item-row">
+          <div class="item-check"><span class="check-icon">✓</span></div>
+          <span class="item-text">Credencial institucional</span>
+          <span class="item-qty placeholder">[N] unid.</span>
+        </li>
+        <li class="item-row">
+          <div class="item-check"><span class="check-icon">✓</span></div>
+          <span class="item-text">Elementos reflectantes (si aplica)</span>
+          <span class="item-qty placeholder">[N] unid.</span>
+        </li>
+      </ul>
+      <div class="provision-note">
+        <span class="provision-tag gard">✓ Provisto por Gard</span>
+      </div>
+    </div>
+
+    <!-- Categoría 2: Comunicaciones -->
+    <div class="equipment-category">
+      <div class="category-header">
+        <div class="category-icon">📻</div>
+        <div>
+          <h3 class="category-title">Comunicaciones</h3>
+          <p class="category-subtitle">Equipos de coordinación</p>
+        </div>
+      </div>
+      <ul class="items-list">
+        <li class="item-row">
+          <div class="item-check"><span class="check-icon">✓</span></div>
+          <span class="item-text">Radio de comunicación</span>
+          <span class="item-qty placeholder">[N] unid.</span>
+        </li>
+        <li class="item-row">
+          <div class="item-check"><span class="check-icon">✓</span></div>
+          <span class="item-text">Teléfono celular de servicio</span>
+          <span class="item-qty placeholder">[N] unid.</span>
+        </li>
+        <li class="item-row">
+          <div class="item-check"><span class="check-icon">✓</span></div>
+          <span class="item-text">Cargadores y accesorios</span>
+          <span class="item-qty placeholder">[N] sets</span>
+        </li>
+        <li class="item-row">
+          <div class="item-check"><span class="check-icon">✓</span></div>
+          <span class="item-text">Linterna táctica</span>
+          <span class="item-qty placeholder">[N] unid.</span>
+        </li>
+      </ul>
+      <div class="provision-note">
+        <span class="provision-tag gard">✓ Provisto por Gard</span>
+      </div>
+    </div>
+
+    <!-- Categoría 3: Infraestructura -->
+    <div class="equipment-category">
+      <div class="category-header">
+        <div class="category-icon">🏗️</div>
+        <div>
+          <h3 class="category-title">Infraestructura</h3>
+          <p class="category-subtitle">Facilidades en terreno</p>
+        </div>
+      </div>
+      <ul class="items-list">
+        <li class="item-row">
+          <div class="item-check"><span class="check-icon">○</span></div>
+          <span class="item-text">Garita o punto de control</span>
+          <span class="item-qty placeholder">[Definir]</span>
+        </li>
+        <li class="item-row">
+          <div class="item-check"><span class="check-icon">○</span></div>
+          <span class="item-text">Servicios higiénicos</span>
+          <span class="item-qty placeholder">[Definir]</span>
+        </li>
+        <li class="item-row">
+          <div class="item-check"><span class="check-icon">○</span></div>
+          <span class="item-text">Espacio para descanso</span>
+          <span class="item-qty placeholder">[Definir]</span>
+        </li>
+        <li class="item-row">
+          <div class="item-check"><span class="check-icon">○</span></div>
+          <span class="item-text">Conexión eléctrica y datos</span>
+          <span class="item-qty placeholder">[Definir]</span>
+        </li>
+      </ul>
+      <div class="provision-note">
+        <span class="provision-tag">○ Provisto por Cliente</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <div class="bar-message">
+      <div class="bar-icon">📋</div>
+      <p class="bar-text">El detalle de equipamiento se <span>confirma en la propuesta económica</span> según alcance final.</p>
+    </div>
+    <div class="bar-legend">
+      <div class="legend-item">
+        <div class="legend-dot gard"></div>
+        <span class="legend-text">Gard provee</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-dot cliente"></div>
+        <span class="legend-text">Cliente provee</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="logo-small">G</div>
+  </div>
+</body>
+</html>

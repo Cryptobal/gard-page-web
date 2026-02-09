@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1920, height=1080">
+  <title>Slide 3 - El Riesgo Real del Mandante | Gard Security</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --azul-profundo: #2B3A67;
+      --teal: #1A7F8E;
+      --white: #FFFFFF;
+      --navy-oscuro: #1C2541;
+      --terracota: #B84A32;
+      --azul-muy-oscuro: #0F1C2E;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--azul-muy-oscuro);
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Fondo con micro-patrón animado */
+    .bg-pattern {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(26, 127, 142, 0.08) 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: patternMove 40s linear infinite;
+    }
+
+    @keyframes patternMove {
+      0% { background-position: 0 0; }
+      100% { background-position: 50px 50px; }
+    }
+
+    /* Gradiente superior */
+    .gradient-top {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 400px;
+      background: linear-gradient(180deg, rgba(26, 127, 142, 0.15) 0%, transparent 100%);
+      pointer-events: none;
+    }
+
+    /* Header */
+    .header {
+      position: absolute;
+      top: 50px;
+      left: 80px;
+      right: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      opacity: 0;
+      animation: fadeIn 0.6s ease-out 0.2s forwards;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .slide-number {
+      width: 50px;
+      height: 50px;
+      background: var(--teal);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 20px;
+      color: white;
+      box-shadow: 0 4px 20px rgba(26, 127, 142, 0.5);
+    }
+
+    .header-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.6);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+    }
+
+    /* Título principal */
+    .main-title {
+      position: absolute;
+      top: 130px;
+      left: 80px;
+      right: 80px;
+      text-align: center;
+    }
+
+    .main-title h1 {
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 15px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: slideUp 0.7s ease-out 0.4s forwards;
+    }
+
+    .main-title p {
+      font-size: 18px;
+      color: rgba(255,255,255,0.7);
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.6;
+      opacity: 0;
+      animation: fadeIn 0.6s ease-out 0.6s forwards;
+    }
+
+    @keyframes slideUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Contenedor del triángulo */
+    .triangle-container {
+      position: absolute;
+      top: 280px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 520px;
+    }
+
+    /* SVG del triángulo */
+    .triangle-svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .triangle-path {
+      fill: none;
+      stroke: var(--teal);
+      stroke-width: 3;
+      stroke-dasharray: 1500;
+      stroke-dashoffset: 1500;
+      animation: drawTriangle 2s ease-out 0.8s forwards;
+      filter: drop-shadow(0 0 20px rgba(26, 127, 142, 0.5));
+    }
+
+    @keyframes drawTriangle {
+      0% { stroke-dashoffset: 1500; }
+      100% { stroke-dashoffset: 0; }
+    }
+
+    .triangle-glow {
+      fill: rgba(26, 127, 142, 0.05);
+      opacity: 0;
+      animation: glowIn 1s ease-out 2s forwards;
+    }
+
+    @keyframes glowIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    /* Nodos del triángulo */
+    .node {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      opacity: 0;
+      transform: scale(0.8);
+    }
+
+    .node-top {
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%) scale(0.8);
+      animation: nodeIn 0.6s ease-out 1.5s forwards;
+    }
+
+    .node-left {
+      bottom: 20px;
+      left: -80px;
+      animation: nodeIn 0.6s ease-out 1.7s forwards;
+    }
+
+    .node-right {
+      bottom: 20px;
+      right: -80px;
+      animation: nodeIn 0.6s ease-out 1.9s forwards;
+    }
+
+    @keyframes nodeIn {
+      0% { opacity: 0; transform: scale(0.8); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    .node-top { animation: nodeInTop 0.6s ease-out 1.5s forwards; }
+    @keyframes nodeInTop {
+      0% { opacity: 0; transform: translateX(-50%) scale(0.8); }
+      100% { opacity: 1; transform: translateX(-50%) scale(1); }
+    }
+
+    .node-circle {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--teal) 0%, var(--azul-profundo) 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 30px rgba(26, 127, 142, 0.4);
+      position: relative;
+    }
+
+    .node-circle::before {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 2px solid rgba(26, 127, 142, 0.3);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.1); opacity: 0.5; }
+    }
+
+    .node-icon {
+      font-size: 28px;
+    }
+
+    .node-label {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+
+    .node-sublabel {
+      font-size: 12px;
+      color: rgba(255,255,255,0.6);
+      text-align: center;
+      max-width: 150px;
+    }
+
+    /* Centro del triángulo */
+    .center-node {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -30%);
+      text-align: center;
+      opacity: 0;
+      animation: centerIn 0.8s ease-out 2.2s forwards;
+    }
+
+    @keyframes centerIn {
+      0% { opacity: 0; transform: translate(-50%, -30%) scale(0.5); }
+      100% { opacity: 1; transform: translate(-50%, -30%) scale(1); }
+    }
+
+    .center-circle {
+      width: 140px;
+      height: 140px;
+      background: radial-gradient(circle, var(--terracota) 0%, #8B3A28 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 15px;
+      box-shadow: 0 10px 40px rgba(184, 74, 50, 0.5);
+      animation: centerPulse 3s ease-in-out infinite;
+    }
+
+    @keyframes centerPulse {
+      0%, 100% { box-shadow: 0 10px 40px rgba(184, 74, 50, 0.5); }
+      50% { box-shadow: 0 10px 60px rgba(184, 74, 50, 0.8); }
+    }
+
+    .center-text {
+      font-size: 14px;
+      font-weight: 700;
+      color: white;
+      text-align: center;
+      line-height: 1.3;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .center-label {
+      font-size: 13px;
+      color: rgba(255,255,255,0.8);
+      font-weight: 600;
+    }
+
+    /* Ecuación visual */
+    .equation {
+      position: absolute;
+      bottom: 120px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      opacity: 0;
+      animation: fadeIn 0.8s ease-out 2.5s forwards;
+    }
+
+    .equation-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 25px;
+      background: rgba(26, 127, 142, 0.15);
+      border: 1px solid rgba(26, 127, 142, 0.3);
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+    }
+
+    .equation-item span {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    .equation-icon {
+      font-size: 18px;
+      color: var(--teal);
+    }
+
+    .equation-operator {
+      font-size: 24px;
+      font-weight: 300;
+      color: var(--teal);
+    }
+
+    .equation-result {
+      background: linear-gradient(135deg, var(--teal) 0%, var(--azul-profundo) 100%);
+      border: none;
+      box-shadow: 0 8px 30px rgba(26, 127, 142, 0.4);
+    }
+
+    /* Bullets inferiores */
+    .risk-bullets {
+      position: absolute;
+      bottom: 30px;
+      left: 80px;
+      right: 80px;
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .risk-bullet {
+      flex: 1;
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .risk-bullet:nth-child(1) { animation: bulletIn 0.5s ease-out 2.7s forwards; }
+    .risk-bullet:nth-child(2) { animation: bulletIn 0.5s ease-out 2.85s forwards; }
+    .risk-bullet:nth-child(3) { animation: bulletIn 0.5s ease-out 3s forwards; }
+
+    @keyframes bulletIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .bullet-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(26, 127, 142, 0.2);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .bullet-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--teal);
+      fill: none;
+      stroke-width: 2;
+    }
+
+    .bullet-content h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--teal);
+      margin-bottom: 5px;
+    }
+
+    .bullet-content p {
+      font-size: 13px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.5;
+    }
+
+    /* Footer */
+    .footer {
+      position: absolute;
+      bottom: 30px;
+      right: 80px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      opacity: 0;
+      animation: fadeIn 0.5s ease-out 3.2s forwards;
+    }
+
+    .logo-small {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--teal) 0%, var(--azul-profundo) 100%);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 16px;
+      color: white;
+    }
+
+    /* Partículas de fondo */
+    .particles {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: var(--teal);
+      border-radius: 50%;
+      opacity: 0.2;
+      animation: floatParticle 15s infinite ease-in-out;
+    }
+
+    .particle:nth-child(1) { left: 5%; top: 30%; animation-delay: 0s; }
+    .particle:nth-child(2) { left: 15%; top: 70%; animation-delay: -3s; }
+    .particle:nth-child(3) { left: 85%; top: 25%; animation-delay: -6s; }
+    .particle:nth-child(4) { left: 90%; top: 60%; animation-delay: -9s; }
+    .particle:nth-child(5) { left: 10%; top: 50%; animation-delay: -12s; }
+
+    @keyframes floatParticle {
+      0%, 100% { transform: translate(0, 0); opacity: 0.2; }
+      50% { transform: translate(20px, -30px); opacity: 0.5; }
+    }
+
+    /* Líneas conectoras animadas */
+    .connector-lines {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .connector {
+      position: absolute;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--teal), transparent);
+      opacity: 0;
+      animation: connectorPulse 4s ease-in-out infinite;
+    }
+
+    .connector-1 {
+      top: 400px;
+      left: 200px;
+      width: 150px;
+      transform: rotate(-30deg);
+      animation-delay: 3s;
+    }
+
+    .connector-2 {
+      top: 400px;
+      right: 200px;
+      width: 150px;
+      transform: rotate(30deg);
+      animation-delay: 3.5s;
+    }
+
+    @keyframes connectorPulse {
+      0%, 100% { opacity: 0; }
+      50% { opacity: 0.3; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-pattern"></div>
+  <div class="gradient-top"></div>
+  
+  <div class="particles">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+  </div>
+
+  <div class="connector-lines">
+    <div class="connector connector-1"></div>
+    <div class="connector connector-2"></div>
+  </div>
+
+  <div class="header">
+    <div class="header-left">
+      <div class="slide-number">03</div>
+      <span class="header-title">Entendimiento del Riesgo</span>
+    </div>
+  </div>
+
+  <div class="main-title">
+    <h1>El Riesgo Real del Mandante</h1>
+    <p>En seguridad privada, el riesgo no se limita a eventos delictuales. Las pérdidas más costosas provienen de fallas operacionales, exposición legal y quiebres de continuidad.</p>
+  </div>
+
+  <div class="triangle-container">
+    <svg class="triangle-svg" viewBox="0 0 600 520">
+      <path class="triangle-glow" d="M300,50 L550,470 L50,470 Z" />
+      <path class="triangle-path" d="M300,50 L550,470 L50,470 Z" />
+    </svg>
+
+    <!-- Nodo superior: Operacional -->
+    <div class="node node-top">
+      <div class="node-circle">
+        <span class="node-icon">⚙️</span>
+      </div>
+      <span class="node-label">Operacional</span>
+      <span class="node-sublabel">Funciones, rondas, control de acceso</span>
+    </div>
+
+    <!-- Nodo izquierdo: Legal/Laboral -->
+    <div class="node node-left">
+      <div class="node-circle">
+        <span class="node-icon">⚖️</span>
+      </div>
+      <span class="node-label">Legal-Laboral</span>
+      <span class="node-sublabel">Documentación, normativa, exposición</span>
+    </div>
+
+    <!-- Nodo derecho: Continuidad -->
+    <div class="node node-right">
+      <div class="node-circle">
+        <span class="node-icon">🔄</span>
+      </div>
+      <span class="node-label">Continuidad</span>
+      <span class="node-sublabel">Ausencias, rotación, reemplazos</span>
+    </div>
+
+    <!-- Centro: Riesgo Total -->
+    <div class="center-node">
+      <div class="center-circle">
+        <span class="center-text">Riesgo<br>Total del<br>Mandante</span>
+      </div>
+      <span class="center-label">Exposición integral</span>
+    </div>
+  </div>
+
+  <div class="equation">
+    <div class="equation-item">
+      <span class="equation-icon">🎯</span>
+      <span>Control</span>
+    </div>
+    <span class="equation-operator">+</span>
+    <div class="equation-item">
+      <span class="equation-icon">✓</span>
+      <span>Cumplimiento</span>
+    </div>
+    <span class="equation-operator">+</span>
+    <div class="equation-item">
+      <span class="equation-icon">📋</span>
+      <span>Evidencia</span>
+    </div>
+    <span class="equation-operator">=</span>
+    <div class="equation-item equation-result">
+      <span class="equation-icon">🛡️</span>
+      <span>Reducción del Riesgo</span>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="logo-small">G</div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1920, height=1080">
+  <title>Slide 12 - Cumplimiento Normativo | Gard Security</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --azul-profundo: #2B3A67;
+      --teal: #1A7F8E;
+      --white: #FFFFFF;
+      --navy-oscuro: #1C2541;
+      --terracota: #B84A32;
+      --azul-muy-oscuro: #0F1C2E;
+      --gris-claro: #f8fafc;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--white);
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Header bar */
+    .header-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 8px;
+      background: linear-gradient(90deg, var(--navy-oscuro) 0%, var(--teal) 100%);
+      transform: scaleX(0);
+      transform-origin: left;
+      animation: barExpand 0.8s ease-out 0.2s forwards;
+    }
+
+    @keyframes barExpand {
+      0% { transform: scaleX(0); }
+      100% { transform: scaleX(1); }
+    }
+
+    /* Header */
+    .header {
+      position: absolute;
+      top: 50px;
+      left: 80px;
+      right: 80px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      opacity: 0;
+      animation: fadeIn 0.6s ease-out 0.3s forwards;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    .slide-number {
+      width: 50px;
+      height: 50px;
+      background: var(--teal);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 20px;
+      color: white;
+      box-shadow: 0 4px 20px rgba(26, 127, 142, 0.4);
+    }
+
+    .header-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--azul-profundo);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+    }
+
+    /* Título */
+    .main-title {
+      position: absolute;
+      top: 130px;
+      left: 80px;
+      right: 500px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: slideUp 0.7s ease-out 0.4s forwards;
+    }
+
+    .main-title h1 {
+      font-size: 46px;
+      font-weight: 700;
+      color: var(--navy-oscuro);
+      margin-bottom: 15px;
+    }
+
+    .main-title h1 span {
+      color: var(--teal);
+    }
+
+    @keyframes slideUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Promesa box */
+    .promesa-box {
+      position: absolute;
+      top: 130px;
+      right: 80px;
+      width: 400px;
+      background: linear-gradient(135deg, rgba(26, 127, 142, 0.1) 0%, rgba(43, 58, 103, 0.1) 100%);
+      border: 1px solid rgba(26, 127, 142, 0.2);
+      border-radius: 16px;
+      padding: 25px 30px;
+      opacity: 0;
+      animation: fadeIn 0.6s ease-out 0.6s forwards;
+    }
+
+    .promesa-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--teal);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+
+    .promesa-text {
+      font-size: 15px;
+      color: var(--navy-oscuro);
+      line-height: 1.6;
+    }
+
+    /* Grid de compliance */
+    .compliance-grid {
+      position: absolute;
+      top: 280px;
+      left: 80px;
+      right: 80px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      gap: 25px;
+      height: 520px;
+    }
+
+    .compliance-card {
+      background: var(--white);
+      border: 1px solid #e2e8f0;
+      border-radius: 20px;
+      padding: 35px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .compliance-card:nth-child(1) { animation: cardIn 0.5s ease-out 0.7s forwards; }
+    .compliance-card:nth-child(2) { animation: cardIn 0.5s ease-out 0.85s forwards; }
+    .compliance-card:nth-child(3) { animation: cardIn 0.5s ease-out 1s forwards; }
+    .compliance-card:nth-child(4) { animation: cardIn 0.5s ease-out 1.15s forwards; }
+
+    @keyframes cardIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .compliance-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 6px;
+      height: 100%;
+      background: var(--teal);
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform 0.4s ease;
+    }
+
+    .compliance-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 50px rgba(26, 127, 142, 0.12);
+      border-color: var(--teal);
+    }
+
+    .compliance-card:hover::before {
+      transform: scaleY(1);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .card-icon {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, rgba(26, 127, 142, 0.15) 0%, rgba(43, 58, 103, 0.1) 100%);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      transition: all 0.4s ease;
+    }
+
+    .compliance-card:hover .card-icon {
+      background: linear-gradient(135deg, var(--teal) 0%, var(--azul-profundo) 100%);
+      transform: scale(1.1);
+    }
+
+    .card-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--navy-oscuro);
+    }
+
+    .card-content {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .content-row {
+      display: flex;
+      gap: 12px;
+    }
+
+    .row-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 5px 10px;
+      border-radius: 6px;
+      flex-shrink: 0;
+      width: 80px;
+      text-align: center;
+    }
+
+    .label-norma {
+      background: rgba(26, 127, 142, 0.15);
+      color: var(--teal);
+    }
+
+    .label-riesgo {
+      background: rgba(184, 74, 50, 0.1);
+      color: var(--terracota);
+    }
+
+    .label-evidencia {
+      background: rgba(43, 58, 103, 0.1);
+      color: var(--azul-profundo);
+    }
+
+    .row-text {
+      font-size: 14px;
+      color: #64748b;
+      line-height: 1.5;
+    }
+
+    /* Sección Control inferior */
+    .control-section {
+      position: absolute;
+      bottom: 50px;
+      left: 80px;
+      right: 80px;
+      background: linear-gradient(135deg, var(--navy-oscuro) 0%, var(--azul-muy-oscuro) 100%);
+      border-radius: 20px;
+      padding: 30px 40px;
+      display: flex;
+      align-items: center;
+      gap: 50px;
+      opacity: 0;
+      animation: fadeIn 0.7s ease-out 1.4s forwards;
+    }
+
+    .control-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      flex-shrink: 0;
+    }
+
+    .control-icon {
+      width: 50px;
+      height: 50px;
+      background: var(--teal);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      box-shadow: 0 8px 25px rgba(26, 127, 142, 0.4);
+    }
+
+    .control-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--teal);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .control-items {
+      display: flex;
+      gap: 40px;
+      flex: 1;
+    }
+
+    .control-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .item-check {
+      width: 28px;
+      height: 28px;
+      background: rgba(26, 127, 142, 0.2);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: var(--teal);
+    }
+
+    .item-text {
+      font-size: 14px;
+      color: rgba(255,255,255,0.85);
+    }
+
+    /* Footer */
+    .footer {
+      position: absolute;
+      bottom: 15px;
+      right: 80px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      opacity: 0;
+      animation: fadeIn 0.5s ease-out 1.6s forwards;
+    }
+
+    .logo-small {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--teal) 0%, var(--azul-profundo) 100%);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 16px;
+      color: white;
+    }
+
+    /* Decoración */
+    .bg-decoration {
+      position: absolute;
+      bottom: 150px;
+      right: -100px;
+      width: 400px;
+      height: 400px;
+      border: 1px solid rgba(26, 127, 142, 0.08);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="header-bar"></div>
+  <div class="bg-decoration"></div>
+
+  <div class="header">
+    <div class="slide-number">12</div>
+    <span class="header-title">Marco Regulatorio</span>
+  </div>
+
+  <div class="main-title">
+    <h1>Cumplimiento <span>Normativo</span></h1>
+  </div>
+
+  <div class="promesa-box">
+    <span class="promesa-label">Promesa</span>
+    <p class="promesa-text">Reducimos exposición del mandante a contingencias legales y sancionatorias mediante cumplimiento verificable.</p>
+  </div>
+
+  <div class="compliance-grid">
+    <!-- Card 1: OS10 -->
+    <div class="compliance-card">
+      <div class="card-header">
+        <div class="card-icon">🛡️</div>
+        <h3 class="card-title">Normativa OS10</h3>
+      </div>
+      <div class="card-content">
+        <div class="content-row">
+          <span class="row-label label-norma">Norma</span>
+          <span class="row-text">Decreto Supremo N°93 - Reglamento de Seguridad Privada</span>
+        </div>
+        <div class="content-row">
+          <span class="row-label label-riesgo">Riesgo</span>
+          <span class="row-text">Multas, clausura, responsabilidad solidaria del mandante</span>
+        </div>
+        <div class="content-row">
+          <span class="row-label label-evidencia">Evidencia</span>
+          <span class="row-text">Certificación empresa y personal vigente</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2: Laboral -->
+    <div class="compliance-card">
+      <div class="card-header">
+        <div class="card-icon">⚖️</div>
+        <h3 class="card-title">Legislación Laboral</h3>
+      </div>
+      <div class="card-content">
+        <div class="content-row">
+          <span class="row-label label-norma">Norma</span>
+          <span class="row-text">Código del Trabajo y normativa previsional vigente</span>
+        </div>
+        <div class="content-row">
+          <span class="row-label label-riesgo">Riesgo</span>
+          <span class="row-text">Demandas laborales, fiscalización DT, sanciones</span>
+        </div>
+        <div class="content-row">
+          <span class="row-label label-evidencia">Evidencia</span>
+          <span class="row-text">Contratos, liquidaciones, cotizaciones al día</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3: Subcontratación -->
+    <div class="compliance-card">
+      <div class="card-header">
+        <div class="card-icon">📋</div>
+        <h3 class="card-title">Subcontratación</h3>
+      </div>
+      <div class="card-content">
+        <div class="content-row">
+          <span class="row-label label-norma">Norma</span>
+          <span class="row-text">Ley 20.123 de Subcontratación y responsabilidades</span>
+        </div>
+        <div class="content-row">
+          <span class="row-label label-riesgo">Riesgo</span>
+          <span class="row-text">Responsabilidad subsidiaria/solidaria del mandante</span>
+        </div>
+        <div class="content-row">
+          <span class="row-label label-evidencia">Evidencia</span>
+          <span class="row-text">Certificados de cumplimiento laboral y previsional</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 4: PRL -->
+    <div class="compliance-card">
+      <div class="card-header">
+        <div class="card-icon">🦺</div>
+        <h3 class="card-title">Prevención de Riesgos</h3>
+      </div>
+      <div class="card-content">
+        <div class="content-row">
+          <span class="row-label label-norma">Norma</span>
+          <span class="row-text">Ley 16.744 y DS 594 sobre condiciones sanitarias</span>
+        </div>
+        <div class="content-row">
+          <span class="row-label label-riesgo">Riesgo</span>
+          <span class="row-text">Accidentes laborales, multas SEREMI, responsabilidad civil</span>
+        </div>
+        <div class="content-row">
+          <span class="row-label label-evidencia">Evidencia</span>
+          <span class="row-text">ODI, capacitaciones, EPP según requerimiento</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="control-section">
+    <div class="control-header">
+      <div class="control-icon">✓</div>
+      <span class="control-label">Control</span>
+    </div>
+    <div class="control-items">
+      <div class="control-item">
+        <span class="item-check">✓</span>
+        <span class="item-text">Documentación disponible y verificable</span>
+      </div>
+      <div class="control-item">
+        <span class="item-check">✓</span>
+        <span class="item-text">Protocolos y registros operativos</span>
+      </div>
+      <div class="control-item">
+        <span class="item-check">✓</span>
+        <span class="item-text">Trazabilidad de eventos y acciones correctivas</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="logo-small">G</div>
+  </div>
+</body>
+</html>

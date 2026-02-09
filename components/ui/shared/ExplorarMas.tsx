@@ -76,7 +76,7 @@ export default function ExplorarMas({
 
   if (loading && showBlog) {
     return (
-      <section className={`gard-section py-16 md:py-20 bg-gray-50 dark:bg-gray-900 ${className}`}>
+      <section className={`gard-section-sm bg-gray-50 dark:bg-gray-900 ${className}`}>
         <div className="gard-container max-w-7xl mx-auto px-4">
           <div className="animate-pulse">
             <div className="h-8 bg-gray-200 dark:bg-gray-700 rounded w-1/3 mx-auto mb-4"></div>

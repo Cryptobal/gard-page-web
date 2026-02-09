@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1920, height=1080">
+  <title>Slide 21 - Incluye / Excluye | Gard Security</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --azul-profundo: #2B3A67;
+      --teal: #1A7F8E;
+      --white: #FFFFFF;
+      --navy-oscuro: #1C2541;
+      --terracota: #B84A32;
+      --azul-muy-oscuro: #0F1C2E;
+      --verde: #10b981;
+      --rojo: #ef4444;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--navy-oscuro);
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Fondo */
+    .bg-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--navy-oscuro) 0%, var(--azul-muy-oscuro) 100%);
+    }
+
+    .bg-pattern {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    /* Header */
+    .header {
+      position: absolute;
+      top: 50px;
+      left: 80px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      opacity: 0;
+      animation: fadeIn 0.6s ease-out 0.2s forwards;
+      z-index: 10;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    .slide-number {
+      width: 50px;
+      height: 50px;
+      background: var(--teal);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 20px;
+      color: white;
+      box-shadow: 0 4px 20px rgba(26, 127, 142, 0.5);
+    }
+
+    .header-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.6);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+    }
+
+    /* Título */
+    .main-title {
+      position: absolute;
+      top: 130px;
+      left: 80px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: slideUp 0.7s ease-out 0.3s forwards;
+    }
+
+    .main-title h1 {
+      font-size: 44px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+
+    .main-title h1 .incluye {
+      color: var(--teal);
+    }
+
+    .main-title h1 .excluye {
+      color: var(--terracota);
+    }
+
+    .main-title p {
+      font-size: 17px;
+      color: rgba(255,255,255,0.6);
+    }
+
+    @keyframes slideUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Layout principal - dos columnas */
+    .main-layout {
+      position: absolute;
+      top: 260px;
+      left: 80px;
+      right: 80px;
+      bottom: 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    /* Columna Incluye */
+    .column-incluye {
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      transform: translateX(-30px);
+      animation: colLeft 0.7s ease-out 0.5s forwards;
+    }
+
+    @keyframes colLeft {
+      0% { opacity: 0; transform: translateX(-30px); }
+      100% { opacity: 1; transform: translateX(0); }
+    }
+
+    /* Columna Excluye */
+    .column-excluye {
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      transform: translateX(30px);
+      animation: colRight 0.7s ease-out 0.7s forwards;
+    }
+
+    @keyframes colRight {
+      0% { opacity: 0; transform: translateX(30px); }
+      100% { opacity: 1; transform: translateX(0); }
+    }
+
+    /* Headers de columna */
+    .column-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 25px 30px;
+      border-radius: 16px 16px 0 0;
+      margin-bottom: 0;
+    }
+
+    .column-incluye .column-header {
+      background: linear-gradient(135deg, var(--teal) 0%, #147a89 100%);
+    }
+
+    .column-excluye .column-header {
+      background: linear-gradient(135deg, var(--terracota) 0%, #9a3a28 100%);
+    }
+
+    .column-icon {
+      width: 50px;
+      height: 50px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+    }
+
+    .column-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    /* Contenido de columnas */
+    .column-content {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-top: none;
+      border-radius: 0 0 16px 16px;
+      padding: 25px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .column-incluye .column-content {
+      border-color: rgba(26, 127, 142, 0.3);
+    }
+
+    .column-excluye .column-content {
+      border-color: rgba(184, 74, 50, 0.3);
+    }
+
+    /* Items de lista */
+    .list-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+      padding: 18px 20px;
+      background: rgba(255,255,255,0.02);
+      border-radius: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .list-item:hover {
+      background: rgba(255,255,255,0.05);
+      transform: translateX(8px);
+    }
+
+    .column-incluye .list-item:hover {
+      background: rgba(26, 127, 142, 0.1);
+    }
+
+    .column-excluye .list-item:hover {
+      background: rgba(184, 74, 50, 0.1);
+    }
+
+    .item-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .column-incluye .item-icon {
+      background: rgba(26, 127, 142, 0.2);
+      color: var(--teal);
+    }
+
+    .column-excluye .item-icon {
+      background: rgba(184, 74, 50, 0.2);
+      color: var(--terracota);
+    }
+
+    .item-text {
+      font-size: 15px;
+      color: rgba(255,255,255,0.9);
+      line-height: 1.5;
+    }
+
+    /* Separador visual central */
+    .center-divider {
+      position: absolute;
+      top: 260px;
+      bottom: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      background: linear-gradient(180deg, 
+        transparent 0%, 
+        rgba(255,255,255,0.1) 20%, 
+        rgba(255,255,255,0.1) 80%, 
+        transparent 100%);
+      opacity: 0;
+      animation: fadeIn 0.5s ease-out 0.9s forwards;
+    }
+
+    .divider-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 50px;
+      height: 50px;
+      background: var(--navy-oscuro);
+      border: 2px solid rgba(255,255,255,0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    /* Footer */
+    .footer {
+      position: absolute;
+      bottom: 30px;
+      right: 80px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      opacity: 0;
+      animation: fadeIn 0.5s ease-out 1s forwards;
+    }
+
+    .logo-small {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--teal) 0%, var(--azul-profundo) 100%);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 16px;
+      color: white;
+    }
+
+    .footer-text {
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-gradient"></div>
+  <div class="bg-pattern"></div>
+
+  <div class="header">
+    <div class="slide-number">21</div>
+    <span class="header-title">Alcance del Servicio</span>
+  </div>
+
+  <div class="main-title">
+    <h1><span class="incluye">Incluye</span> / <span class="excluye">Excluye</span></h1>
+    <p>Delimitación clara del alcance contratado</p>
+  </div>
+
+  <div class="main-layout">
+    <!-- Columna INCLUYE -->
+    <div class="column-incluye">
+      <div class="column-header">
+        <div class="column-icon">✓</div>
+        <h3 class="column-title">Incluye</h3>
+      </div>
+      <div class="column-content">
+        <div class="list-item">
+          <div class="item-icon">✓</div>
+          <span class="item-text">Personal con acreditación OS10 vigente y contrato laboral conforme a ley</span>
+        </div>
+        <div class="list-item">
+          <div class="item-icon">✓</div>
+          <span class="item-text">Uniforme completo institucional y credencial de identificación</span>
+        </div>
+        <div class="list-item">
+          <div class="item-icon">✓</div>
+          <span class="item-text">Equipamiento operativo: radio, linterna y elementos de registro</span>
+        </div>
+        <div class="list-item">
+          <div class="item-icon">✓</div>
+          <span class="item-text">Supervisión programada y aleatoria según frecuencia acordada</span>
+        </div>
+        <div class="list-item">
+          <div class="item-icon">✓</div>
+          <span class="item-text">Capacitación inicial y continua del personal asignado</span>
+        </div>
+        <div class="list-item">
+          <div class="item-icon">✓</div>
+          <span class="item-text">Reportes operativos y ejecutivos según frecuencia definida</span>
+        </div>
+        <div class="list-item">
+          <div class="item-icon">✓</div>
+          <span class="item-text">Gestión de reemplazos ante ausencias o contingencias</span>
+        </div>
+        <div class="list-item">
+          <div class="item-icon">✓</div>
+          <span class="item-text">Cobertura de responsabilidad civil mediante póliza vigente</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Columna EXCLUYE -->
+    <div class="column-excluye">
+      <div class="column-header">
+        <div class="column-icon">✗</div>
+        <h3 class="column-title">Excluye</h3>
+      </div>
+      <div class="column-content">
+        <div class="list-item">
+          <div class="item-icon">✗</div>
+          <span class="item-text">Infraestructura física: garita, baños, espacio de descanso</span>
+        </div>
+        <div class="list-item">
+          <div class="item-icon">✗</div>
+          <span class="item-text">Servicios básicos: electricidad, agua, conectividad en puesto</span>
+        </div>
+        <div class="list-item">
+          <div class="item-icon">✗</div>
+          <span class="item-text">Sistemas de CCTV, alarmas o control de acceso tecnológico</span>
+        </div>
+        <div class="list-item">
+          <div class="item-icon">✗</div>
+          <span class="item-text">Horas extraordinarias no contempladas en dotación base</span>
+        </div>
+        <div class="list-item">
+          <div class="item-icon">✗</div>
+          <span class="item-text">Servicios de custodia de valores o transporte de caudales</span>
+        </div>
+        <div class="list-item">
+          <div class="item-icon">✗</div>
+          <span class="item-text">Funciones ajenas a seguridad (aseo, recepción, mensajería)</span>
+        </div>
+        <div class="list-item">
+          <div class="item-icon">✗</div>
+          <span class="item-text">Armamento o equipamiento de defensa personal</span>
+        </div>
+        <div class="list-item">
+          <div class="item-icon">✗</div>
+          <span class="item-text">Cobertura de eventos especiales sin coordinación previa</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Separador central -->
+  <div class="center-divider">
+    <div class="divider-icon">⚖️</div>
+  </div>
+
+  <div class="footer">
+    <div class="logo-small">G</div>
+    <span class="footer-text">El alcance puede ajustarse según acuerdo entre las partes</span>
+  </div>
+</body>
+</html>

@@ -179,7 +179,7 @@ export default function FormularioCotizacionSeccion({
     <section 
       ref={sectionRef}
       id={id}
-      className={`gard-section py-16 md:py-24 bg-gray-50 dark:bg-[#0A0C12] ${className}`}
+      className={`gard-section-md bg-gray-50 dark:bg-[#0A0C12] ${className}`}
       data-section="formulario-cotizacion"
       // Aumentar el margen de scroll para mejorar la posición en móviles
       style={{ scrollMarginTop: '80px' }}

@@ -14,7 +14,7 @@ export default function Footer() {
 
   return (
     <footer 
-      className="bg-white dark:bg-[#050a15] border-t border-gray-200 dark:border-gray-800 py-16 px-8 md:px-20 dark:text-white/80 text-gray-700 transition-colors duration-300"
+      className="bg-white dark:bg-[hsl(var(--gard-footer-bg))] border-t border-gray-200 dark:border-gray-800 py-16 px-8 md:px-20 dark:text-white/80 text-gray-700 transition-colors duration-300"
       itemScope
       itemType="https://schema.org/Organization"
     >

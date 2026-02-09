@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1920, height=1080">
+  <title>Slide 22 - Próximos Pasos | Gard Security</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --azul-profundo: #2B3A67;
+      --teal: #1A7F8E;
+      --white: #FFFFFF;
+      --navy-oscuro: #1C2541;
+      --terracota: #B84A32;
+      --azul-muy-oscuro: #0F1C2E;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--navy-oscuro);
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Fondo con gradiente */
+    .bg-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--azul-muy-oscuro) 0%, var(--navy-oscuro) 50%, var(--azul-profundo) 100%);
+    }
+
+    /* Patrón de fondo animado */
+    .bg-pattern {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(26, 127, 142, 0.1) 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: patternMove 30s linear infinite;
+    }
+
+    @keyframes patternMove {
+      0% { background-position: 0 0; }
+      100% { background-position: 50px 50px; }
+    }
+
+    /* Glow decorativo */
+    .glow-orb {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.15;
+      pointer-events: none;
+    }
+
+    .glow-orb.orb-1 {
+      top: -200px;
+      right: -100px;
+      background: var(--teal);
+      animation: float 8s ease-in-out infinite;
+    }
+
+    .glow-orb.orb-2 {
+      bottom: -200px;
+      left: -100px;
+      background: var(--azul-profundo);
+      animation: float 10s ease-in-out infinite reverse;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(30px, 30px); }
+    }
+
+    /* Header */
+    .header {
+      position: absolute;
+      top: 50px;
+      left: 80px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      opacity: 0;
+      animation: fadeIn 0.6s ease-out 0.2s forwards;
+      z-index: 10;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    .slide-number {
+      width: 50px;
+      height: 50px;
+      background: var(--teal);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 20px;
+      color: white;
+      box-shadow: 0 4px 20px rgba(26, 127, 142, 0.5);
+    }
+
+    .header-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.6);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+    }
+
+    /* Contenido central */
+    .main-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      max-width: 1000px;
+      z-index: 10;
+    }
+
+    /* Logo grande */
+    .logo-large {
+      width: 120px;
+      height: 120px;
+      background: linear-gradient(135deg, var(--teal) 0%, var(--azul-profundo) 100%);
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 56px;
+      color: white;
+      margin: 0 auto 40px;
+      box-shadow: 0 20px 60px rgba(26, 127, 142, 0.4);
+      opacity: 0;
+      transform: scale(0.8);
+      animation: logoIn 0.8s ease-out 0.3s forwards;
+    }
+
+    @keyframes logoIn {
+      0% { opacity: 0; transform: scale(0.8); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    /* Título */
+    .main-title {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: slideUp 0.7s ease-out 0.5s forwards;
+    }
+
+    .main-title h1 {
+      font-size: 52px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .main-title h1 span {
+      color: var(--teal);
+    }
+
+    .main-title p {
+      font-size: 20px;
+      color: rgba(255,255,255,0.7);
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    @keyframes slideUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Próximos pasos */
+    .steps-container {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin: 50px 0;
+      opacity: 0;
+      animation: fadeIn 0.7s ease-out 0.8s forwards;
+    }
+
+    .step-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      padding: 30px 35px;
+      width: 280px;
+      text-align: center;
+      transition: all 0.4s ease;
+      position: relative;
+    }
+
+    .step-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background: var(--teal);
+      border-radius: 0 0 4px 4px;
+      opacity: 0;
+      transition: all 0.4s ease;
+    }
+
+    .step-card:hover {
+      border-color: var(--teal);
+      transform: translateY(-10px);
+      box-shadow: 0 20px 50px rgba(26, 127, 142, 0.2);
+      background: rgba(26, 127, 142, 0.1);
+    }
+
+    .step-card:hover::before {
+      opacity: 1;
+    }
+
+    .step-number {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, var(--teal) 0%, var(--azul-profundo) 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: 700;
+      color: white;
+      margin: 0 auto 20px;
+      box-shadow: 0 8px 25px rgba(26, 127, 142, 0.3);
+    }
+
+    .step-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+
+    .step-desc {
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.5;
+    }
+
+    /* Contacto */
+    .contact-section {
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+      opacity: 0;
+      animation: fadeIn 0.7s ease-out 1s forwards;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .contact-icon {
+      width: 50px;
+      height: 50px;
+      background: rgba(26, 127, 142, 0.15);
+      border: 1px solid rgba(26, 127, 142, 0.3);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      transition: all 0.3s ease;
+    }
+
+    .contact-item:hover .contact-icon {
+      background: var(--teal);
+      transform: scale(1.1);
+    }
+
+    .contact-info {
+      text-align: left;
+    }
+
+    .contact-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+
+    .contact-value {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    .contact-value.placeholder {
+      color: rgba(255,255,255,0.4);
+      font-style: italic;
+    }
+
+    /* Tagline final */
+    .tagline {
+      position: absolute;
+      bottom: 100px;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      opacity: 0;
+      animation: fadeIn 0.6s ease-out 1.2s forwards;
+    }
+
+    .tagline p {
+      font-size: 18px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.6);
+      font-style: italic;
+    }
+
+    .tagline p span {
+      color: var(--teal);
+      font-weight: 700;
+    }
+
+    /* Footer */
+    .footer {
+      position: absolute;
+      bottom: 30px;
+      left: 80px;
+      right: 80px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      opacity: 0;
+      animation: fadeIn 0.5s ease-out 1.4s forwards;
+    }
+
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-small {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--teal) 0%, var(--azul-profundo) 100%);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 16px;
+      color: white;
+    }
+
+    .footer-text {
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+    }
+
+    .footer-right {
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-gradient"></div>
+  <div class="bg-pattern"></div>
+  <div class="glow-orb orb-1"></div>
+  <div class="glow-orb orb-2"></div>
+
+  <div class="header">
+    <div class="slide-number">22</div>
+    <span class="header-title">Cierre</span>
+  </div>
+
+  <div class="main-content">
+    <div class="logo-large">G</div>
+
+    <div class="main-title">
+      <h1>¿Listos para <span>comenzar</span>?</h1>
+      <p>Estamos preparados para entregar un servicio de seguridad con control, evidencia y compromiso real con su operación.</p>
+    </div>
+
+    <div class="steps-container">
+      <div class="step-card">
+        <div class="step-number">1</div>
+        <h4 class="step-title">Reunión de Ajuste</h4>
+        <p class="step-desc">Revisamos alcance, resolvemos dudas y afinamos detalles operativos.</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-number">2</div>
+        <h4 class="step-title">Propuesta Final</h4>
+        <p class="step-desc">Entregamos cotización definitiva según acuerdos de la reunión.</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-number">3</div>
+        <h4 class="step-title">Inicio de Servicio</h4>
+        <p class="step-desc">Firma de contrato, inducción y puesta en marcha del servicio.</p>
+      </div>
+    </div>
+
+    <div class="contact-section">
+      <div class="contact-item">
+        <div class="contact-icon">👤</div>
+        <div class="contact-info">
+          <span class="contact-label">Ejecutivo</span>
+          <span class="contact-value placeholder">[Nombre Contacto]</span>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-icon">📧</div>
+        <div class="contact-info">
+          <span class="contact-label">Email</span>
+          <span class="contact-value placeholder">[email@gard.cl]</span>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-icon">📱</div>
+        <div class="contact-info">
+          <span class="contact-label">Teléfono</span>
+          <span class="contact-value placeholder">[+56 9 XXXX XXXX]</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tagline">
+    <p>"No entregamos solo guardias. Entregamos <span>control operacional</span>."</p>
+  </div>
+
+  <div class="footer">
+    <div class="footer-left">
+      <div class="logo-small">G</div>
+      <span class="footer-text">Gard Security · Seguridad Privada</span>
+    </div>
+    <div class="footer-right">
+      Documento confidencial – Uso exclusivo del cliente
+    </div>
+  </div>
+</body>
+</html>

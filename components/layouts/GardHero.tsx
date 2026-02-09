@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect } from 'react';
-import { motion, LazyMotion, domAnimation, useScroll, useTransform } from 'framer-motion';
+import { motion, LazyMotion, domAnimation, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 import { ArrowRight, Phone, Clock, PlayCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import CloudflareImage from '@/components/CloudflareImage';
@@ -100,10 +100,20 @@ export default function GardHero({
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const heroRef = useRef<HTMLElement>(null);
+  const prefersReducedMotion = useReducedMotion();
   
-  // Parallax Effect
+  // Parallax Effect - Deshabilitado en mobile y si el usuario prefiere reduced motion
   const { scrollY } = useScroll();
-  const y = useTransform(scrollY, [0, 1000], [0, 300]); // Desplaza el fondo más lento que el scroll
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+  
+  const y = useTransform(scrollY, [0, 1000], [0, prefersReducedMotion || isMobile ? 0 : 300]);
   
   // Reproducir/pausar video (para compatibilidad con videos que no sean de Cloudflare)
   const toggleVideo = () => {
@@ -159,6 +169,7 @@ export default function GardHero({
             imageId={imageId}
             title={title}
             overlay={overlay}
+            posterUrl={imageId ? getCloudflareImageUrl(imageId, { width: 1920, quality: 85 }) : undefined}
           />
         </motion.div>
         
@@ -204,7 +215,7 @@ export default function GardHero({
                     transition: { duration: 0.5 }
                   }
                 }}
-                className={`font-bold leading-tight text-white font-title ${variant === "home" ? "text-4xl sm:text-5xl md:text-6xl" : "text-3xl sm:text-4xl md:text-5xl"}`}
+                className={`text-white font-title ${variant === "home" ? "text-heading-1 md:!text-6xl" : "text-heading-1"}`}
               >
                 {title}
               </motion.h1>
@@ -238,9 +249,9 @@ export default function GardHero({
               >
                 {onScrollToForm ? (
                     <Button 
-                      variant="gard-primary" 
+                      variant="default" 
                       size="lg" 
-                      className="rounded-xl shadow-xl hover:shadow-2xl w-full sm:w-auto transform hover:scale-105 transition-all duration-300 bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary"
+                      className="rounded-xl shadow-xl hover:shadow-2xl w-full sm:w-auto bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary"
                       onClick={handleCtaClick}
                     >
                       {ctaTexto}
@@ -249,9 +260,9 @@ export default function GardHero({
                 ) : (
                   <Link href={ctaHref}>
                     <Button 
-                      variant="gard-primary" 
+                      variant="default" 
                       size="lg" 
-                      className="rounded-xl shadow-xl hover:shadow-2xl w-full sm:w-auto transform hover:scale-105 transition-all duration-300 bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary"
+                      className="rounded-xl shadow-xl hover:shadow-2xl w-full sm:w-auto bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary"
                     >
                       {ctaTexto}
                       <ArrowRight className="ml-2 h-5 w-5" />
@@ -261,7 +272,7 @@ export default function GardHero({
                 
                 {showCallButton && (
                   <Button 
-                    variant="gard-outline-orange" 
+                    variant="outline-orange" 
                     size="lg" 
                     className="rounded-xl backdrop-blur-sm w-full sm:w-auto"
                     onClick={() => window.location.href = `tel:${phoneNumber}`}

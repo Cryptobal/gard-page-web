@@ -99,7 +99,7 @@ export default function GuardiasAntofagastaPage() {
       </section>
 
       {/* Por qué Gard en Antofagasta */}
-      <section className="gard-section py-16 md:py-24 bg-white dark:bg-gray-900">
+      <section className="gard-section-md bg-white dark:bg-gray-900">
         <div className="gard-container max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-heading-2 mb-4">¿Por Qué Somos #1 en Seguridad en Antofagasta?</h2>
@@ -161,7 +161,7 @@ export default function GuardiasAntofagastaPage() {
       </section>
 
       {/* Sectores que Protegemos en Antofagasta */}
-      <section className="gard-section py-16 md:py-24 bg-gray-50 dark:bg-gray-800">
+      <section className="gard-section-md bg-gray-50 dark:bg-gray-800">
         <div className="gard-container max-w-7xl mx-auto px-4">
           <h2 className="text-heading-2 mb-12 text-center">Sectores que Protegemos en Antofagasta</h2>
           
@@ -274,7 +274,7 @@ export default function GuardiasAntofagastaPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="gard-section py-16 bg-primary text-white">
+      <section className="gard-section-sm bg-primary text-white">
         <div className="gard-container max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             ¿Necesita Seguridad en Antofagasta?

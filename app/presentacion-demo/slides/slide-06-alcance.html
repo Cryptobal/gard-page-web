@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1920, height=1080">
+  <title>Slide 6 - Alcance del Servicio | Gard Security</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --azul-profundo: #2B3A67;
+      --teal: #1A7F8E;
+      --white: #FFFFFF;
+      --navy-oscuro: #1C2541;
+      --terracota: #B84A32;
+      --azul-muy-oscuro: #0F1C2E;
+      --gris-claro: #f8fafc;
+      --gris-borde: #e2e8f0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--white);
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Header bar */
+    .header-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 8px;
+      background: linear-gradient(90deg, var(--teal) 0%, var(--azul-profundo) 50%, var(--navy-oscuro) 100%);
+      transform: scaleX(0);
+      transform-origin: left;
+      animation: barExpand 0.8s ease-out 0.2s forwards;
+    }
+
+    @keyframes barExpand {
+      0% { transform: scaleX(0); }
+      100% { transform: scaleX(1); }
+    }
+
+    /* Header */
+    .header {
+      position: absolute;
+      top: 50px;
+      left: 80px;
+      right: 80px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      opacity: 0;
+      animation: fadeIn 0.6s ease-out 0.3s forwards;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    .slide-number {
+      width: 50px;
+      height: 50px;
+      background: var(--teal);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 20px;
+      color: white;
+      box-shadow: 0 4px 20px rgba(26, 127, 142, 0.4);
+    }
+
+    .header-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--azul-profundo);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+    }
+
+    /* Título principal */
+    .main-title {
+      position: absolute;
+      top: 130px;
+      left: 80px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: slideUp 0.7s ease-out 0.4s forwards;
+    }
+
+    .main-title h1 {
+      font-size: 46px;
+      font-weight: 700;
+      color: var(--navy-oscuro);
+      margin-bottom: 10px;
+    }
+
+    .main-title h1 span {
+      color: var(--teal);
+    }
+
+    .main-title p {
+      font-size: 18px;
+      color: #64748b;
+    }
+
+    @keyframes slideUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Contenedor principal */
+    .content-container {
+      position: absolute;
+      top: 260px;
+      left: 80px;
+      right: 80px;
+      bottom: 80px;
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 50px;
+    }
+
+    /* Tabla */
+    .table-container {
+      background: var(--white);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 50px rgba(0,0,0,0.08);
+      border: 1px solid var(--gris-borde);
+      opacity: 0;
+      transform: translateY(20px);
+      animation: slideUp 0.7s ease-out 0.6s forwards;
+    }
+
+    .table-header {
+      background: linear-gradient(135deg, var(--navy-oscuro) 0%, var(--azul-muy-oscuro) 100%);
+      display: grid;
+      grid-template-columns: 2fr 3fr 1.5fr 2fr;
+      gap: 0;
+    }
+
+    .table-header-cell {
+      padding: 22px 25px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-right: 1px solid rgba(255,255,255,0.1);
+      opacity: 0;
+      animation: fadeIn 0.4s ease-out forwards;
+    }
+
+    .table-header-cell:nth-child(1) { animation-delay: 0.8s; }
+    .table-header-cell:nth-child(2) { animation-delay: 0.9s; }
+    .table-header-cell:nth-child(3) { animation-delay: 1s; }
+    .table-header-cell:nth-child(4) { animation-delay: 1.1s; border-right: none; }
+
+    .table-body {
+      background: var(--white);
+    }
+
+    .table-row {
+      display: grid;
+      grid-template-columns: 2fr 3fr 1.5fr 2fr;
+      border-bottom: 1px solid var(--gris-borde);
+      transition: all 0.3s ease;
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+
+    .table-row:nth-child(1) { animation: rowIn 0.5s ease-out 1.2s forwards; }
+    .table-row:nth-child(2) { animation: rowIn 0.5s ease-out 1.35s forwards; }
+    .table-row:nth-child(3) { animation: rowIn 0.5s ease-out 1.5s forwards; }
+    .table-row:nth-child(4) { animation: rowIn 0.5s ease-out 1.65s forwards; }
+
+    @keyframes rowIn {
+      0% { opacity: 0; transform: translateX(-20px); }
+      100% { opacity: 1; transform: translateX(0); }
+    }
+
+    .table-row:last-child {
+      border-bottom: none;
+    }
+
+    .table-row:hover {
+      background: rgba(26, 127, 142, 0.05);
+    }
+
+    .table-row:nth-child(even) {
+      background: var(--gris-claro);
+    }
+
+    .table-row:nth-child(even):hover {
+      background: rgba(26, 127, 142, 0.08);
+    }
+
+    .table-cell {
+      padding: 24px 25px;
+      font-size: 15px;
+      color: #334155;
+      border-right: 1px solid var(--gris-borde);
+      display: flex;
+      align-items: center;
+    }
+
+    .table-cell:last-child {
+      border-right: none;
+    }
+
+    .cell-component {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .component-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(26, 127, 142, 0.1);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .component-name {
+      font-weight: 600;
+      color: var(--navy-oscuro);
+    }
+
+    .cell-placeholder {
+      color: #94a3b8;
+      font-style: italic;
+      background: rgba(0,0,0,0.03);
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    .cell-evidence {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .evidence-tag {
+      background: rgba(26, 127, 142, 0.1);
+      color: var(--teal);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 20px;
+    }
+
+    /* Panel lateral - Supuestos */
+    .side-panel {
+      opacity: 0;
+      transform: translateX(30px);
+      animation: panelIn 0.7s ease-out 1s forwards;
+    }
+
+    @keyframes panelIn {
+      0% { opacity: 0; transform: translateX(30px); }
+      100% { opacity: 1; transform: translateX(0); }
+    }
+
+    .supuestos-card {
+      background: linear-gradient(135deg, #ecfeff 0%, #cffafe 100%);
+      border: 2px solid var(--teal);
+      border-radius: 20px;
+      padding: 35px;
+      margin-bottom: 25px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .supuestos-card::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 150px;
+      height: 150px;
+      background: radial-gradient(circle, rgba(26, 127, 142, 0.15) 0%, transparent 70%);
+      animation: pulseGlow 4s ease-in-out infinite;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.2); opacity: 0.8; }
+    }
+
+    .supuestos-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 25px;
+    }
+
+    .supuestos-icon {
+      width: 46px;
+      height: 46px;
+      background: var(--teal);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      box-shadow: 0 4px 15px rgba(26, 127, 142, 0.4);
+    }
+
+    .supuestos-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--navy-oscuro);
+    }
+
+    .supuestos-list {
+      list-style: none;
+    }
+
+    .supuestos-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(26, 127, 142, 0.15);
+      font-size: 14px;
+      color: #334155;
+      line-height: 1.5;
+    }
+
+    .supuestos-list li:last-child {
+      border-bottom: none;
+    }
+
+    .supuestos-list li::before {
+      content: '•';
+      color: var(--teal);
+      font-size: 20px;
+      font-weight: bold;
+      line-height: 1;
+    }
+
+    /* Nota adicional */
+    .note-card {
+      background: var(--gris-claro);
+      border-radius: 16px;
+      padding: 25px;
+      border: 1px solid var(--gris-borde);
+    }
+
+    .note-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .note-icon {
+      font-size: 18px;
+    }
+
+    .note-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--azul-profundo);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .note-text {
+      font-size: 14px;
+      color: #64748b;
+      line-height: 1.6;
+    }
+
+    /* Footer */
+    .footer {
+      position: absolute;
+      bottom: 30px;
+      right: 80px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      opacity: 0;
+      animation: fadeIn 0.5s ease-out 2s forwards;
+    }
+
+    .logo-small {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--teal) 0%, var(--azul-profundo) 100%);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 16px;
+      color: white;
+    }
+
+    /* Decoración */
+    .bg-decoration {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle at bottom left, rgba(26, 127, 142, 0.03) 0%, transparent 60%);
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="header-bar"></div>
+  <div class="bg-decoration"></div>
+
+  <div class="header">
+    <div class="slide-number">06</div>
+    <span class="header-title">Definición del Servicio</span>
+  </div>
+
+  <div class="main-title">
+    <h1>Alcance del <span>Servicio</span></h1>
+    <p>Componentes operativos y frecuencia de ejecución</p>
+  </div>
+
+  <div class="content-container">
+    <!-- Tabla principal -->
+    <div class="table-container">
+      <div class="table-header">
+        <div class="table-header-cell">Componente</div>
+        <div class="table-header-cell">Descripción</div>
+        <div class="table-header-cell">Frecuencia</div>
+        <div class="table-header-cell">Evidencia</div>
+      </div>
+      <div class="table-body">
+        <div class="table-row">
+          <div class="table-cell">
+            <div class="cell-component">
+              <div class="component-icon">🚪</div>
+              <span class="component-name">Control de Accesos</span>
+            </div>
+          </div>
+          <div class="table-cell">Registro y control según protocolo definido</div>
+          <div class="table-cell"><span class="cell-placeholder">[ Definir ]</span></div>
+          <div class="table-cell">
+            <div class="cell-evidence">
+              <span class="evidence-tag">Bitácora</span>
+              <span class="evidence-tag">Registro</span>
+            </div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell">
+            <div class="cell-component">
+              <div class="component-icon">🔄</div>
+              <span class="component-name">Rondas</span>
+            </div>
+          </div>
+          <div class="table-cell">Perimetrales e internas según plan</div>
+          <div class="table-cell"><span class="cell-placeholder">[ Definir ]</span></div>
+          <div class="table-cell">
+            <div class="cell-evidence">
+              <span class="evidence-tag">Checkpoints</span>
+              <span class="evidence-tag">Evidencia</span>
+            </div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell">
+            <div class="cell-component">
+              <div class="component-icon">👁️</div>
+              <span class="component-name">Prevención</span>
+            </div>
+          </div>
+          <div class="table-cell">Observación activa y disuasión permanente</div>
+          <div class="table-cell">Continuo</div>
+          <div class="table-cell">
+            <div class="cell-evidence">
+              <span class="evidence-tag">Reportes</span>
+            </div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell">
+            <div class="cell-component">
+              <div class="component-icon">⚡</div>
+              <span class="component-name">Incidentes</span>
+            </div>
+          </div>
+          <div class="table-cell">Registro, escalamiento y cierre formal</div>
+          <div class="table-cell">Según evento</div>
+          <div class="table-cell">
+            <div class="cell-evidence">
+              <span class="evidence-tag">Informe</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panel lateral -->
+    <div class="side-panel">
+      <div class="supuestos-card">
+        <div class="supuestos-header">
+          <div class="supuestos-icon">📌</div>
+          <h3 class="supuestos-title">Supuestos Operativos</h3>
+        </div>
+        <ul class="supuestos-list">
+          <li>Horarios y dotación según lo definido en la sección económica</li>
+          <li>Protocolos específicos se formalizan durante la implementación</li>
+          <li>Frecuencias ajustables según criticidad del sitio</li>
+          <li>Equipamiento base incluido; adicionales según acuerdo</li>
+        </ul>
+      </div>
+
+      <div class="note-card">
+        <div class="note-header">
+          <span class="note-icon">💡</span>
+          <span class="note-label">Nota</span>
+        </div>
+        <p class="note-text">El alcance final se valida en la visita técnica y queda formalizado en el contrato de servicio.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="logo-small">G</div>
+  </div>
+</body>
+</html>

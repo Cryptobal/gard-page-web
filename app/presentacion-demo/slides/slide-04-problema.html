@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1920, height=1080">
+  <title>Slide 4 - El Problema que Resolvemos | Gard Security</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --azul-profundo: #2B3A67;
+      --teal: #1A7F8E;
+      --white: #FFFFFF;
+      --navy-oscuro: #1C2541;
+      --terracota: #B84A32;
+      --azul-muy-oscuro: #0F1C2E;
+      --gris-claro: #f8fafc;
+      --gris-medio: #e2e8f0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--white);
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Header */
+    .header {
+      position: absolute;
+      top: 50px;
+      left: 80px;
+      right: 80px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      opacity: 0;
+      animation: fadeIn 0.6s ease-out 0.2s forwards;
+      z-index: 10;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    .slide-number {
+      width: 50px;
+      height: 50px;
+      background: var(--teal);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 20px;
+      color: white;
+      box-shadow: 0 4px 20px rgba(26, 127, 142, 0.4);
+    }
+
+    .header-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--azul-profundo);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+    }
+
+    /* Título principal */
+    .main-title {
+      position: absolute;
+      top: 130px;
+      left: 80px;
+      right: 80px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: slideUp 0.7s ease-out 0.3s forwards;
+    }
+
+    .main-title h1 {
+      font-size: 46px;
+      font-weight: 700;
+      color: var(--navy-oscuro);
+    }
+
+    .main-title h1 span {
+      color: var(--teal);
+    }
+
+    @keyframes slideUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Contenedor split */
+    .split-container {
+      position: absolute;
+      top: 220px;
+      left: 80px;
+      right: 80px;
+      bottom: 180px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+
+    /* Panel izquierdo - Problema */
+    .panel-left {
+      background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+      border-radius: 24px 0 0 24px;
+      padding: 50px;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateX(-30px);
+      animation: panelInLeft 0.7s ease-out 0.5s forwards;
+    }
+
+    @keyframes panelInLeft {
+      0% { opacity: 0; transform: translateX(-30px); }
+      100% { opacity: 1; transform: translateX(0); }
+    }
+
+    .panel-left::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(184, 74, 50, 0.1) 0%, transparent 70%);
+      animation: pulseGlow 4s ease-in-out infinite;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.2); opacity: 0.8; }
+    }
+
+    /* Panel derecho - Solución */
+    .panel-right {
+      background: linear-gradient(135deg, #ecfeff 0%, #cffafe 100%);
+      border-radius: 0 24px 24px 0;
+      padding: 50px;
+      position: relative;
+      overflow: hidden;
+      border-left: 4px solid var(--teal);
+      opacity: 0;
+      transform: translateX(30px);
+      animation: panelInRight 0.7s ease-out 0.7s forwards;
+    }
+
+    @keyframes panelInRight {
+      0% { opacity: 0; transform: translateX(30px); }
+      100% { opacity: 1; transform: translateX(0); }
+    }
+
+    .panel-right::before {
+      content: '';
+      position: absolute;
+      bottom: -100px;
+      left: -100px;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(26, 127, 142, 0.15) 0%, transparent 70%);
+      animation: pulseGlow 4s ease-in-out infinite;
+      animation-delay: 2s;
+    }
+
+    /* Encabezado de panel */
+    .panel-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 35px;
+    }
+
+    .panel-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+    }
+
+    .panel-left .panel-icon {
+      background: rgba(184, 74, 50, 0.15);
+    }
+
+    .panel-right .panel-icon {
+      background: rgba(26, 127, 142, 0.2);
+    }
+
+    .panel-label {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .panel-left .panel-label {
+      color: var(--terracota);
+    }
+
+    .panel-right .panel-label {
+      color: var(--teal);
+    }
+
+    .panel-title {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .panel-left .panel-title {
+      color: #7f1d1d;
+    }
+
+    .panel-right .panel-title {
+      color: var(--navy-oscuro);
+    }
+
+    /* Lista de items */
+    .item-list {
+      list-style: none;
+    }
+
+    .item-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      opacity: 0;
+      transform: translateY(15px);
+    }
+
+    .panel-left .item-list li:nth-child(1) { animation: itemIn 0.4s ease-out 0.9s forwards; }
+    .panel-left .item-list li:nth-child(2) { animation: itemIn 0.4s ease-out 1s forwards; }
+    .panel-left .item-list li:nth-child(3) { animation: itemIn 0.4s ease-out 1.1s forwards; }
+    .panel-left .item-list li:nth-child(4) { animation: itemIn 0.4s ease-out 1.2s forwards; }
+
+    .panel-right .item-list li:nth-child(1) { animation: itemIn 0.4s ease-out 1.1s forwards; }
+    .panel-right .item-list li:nth-child(2) { animation: itemIn 0.4s ease-out 1.2s forwards; }
+    .panel-right .item-list li:nth-child(3) { animation: itemIn 0.4s ease-out 1.3s forwards; }
+    .panel-right .item-list li:nth-child(4) { animation: itemIn 0.4s ease-out 1.4s forwards; }
+    .panel-right .item-list li:nth-child(5) { animation: itemIn 0.4s ease-out 1.5s forwards; }
+
+    @keyframes itemIn {
+      0% { opacity: 0; transform: translateY(15px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .item-list li:last-child {
+      border-bottom: none;
+    }
+
+    .item-bullet {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 14px;
+    }
+
+    .panel-left .item-bullet {
+      background: rgba(184, 74, 50, 0.15);
+      color: var(--terracota);
+    }
+
+    .panel-right .item-bullet {
+      background: rgba(26, 127, 142, 0.2);
+      color: var(--teal);
+    }
+
+    .item-text {
+      font-size: 16px;
+      line-height: 1.5;
+      color: #334155;
+    }
+
+    /* Separador central animado */
+    .center-divider {
+      position: absolute;
+      top: 220px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: calc(100% - 400px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 5;
+    }
+
+    .divider-circle {
+      width: 60px;
+      height: 60px;
+      background: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+      opacity: 0;
+      transform: scale(0);
+      animation: circleIn 0.5s ease-out 1s forwards;
+    }
+
+    @keyframes circleIn {
+      0% { opacity: 0; transform: scale(0); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    .divider-arrow {
+      font-size: 28px;
+      color: var(--teal);
+      animation: arrowPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes arrowPulse {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(5px); }
+    }
+
+    /* Barra de resultado inferior */
+    .result-bar {
+      position: absolute;
+      bottom: 80px;
+      left: 80px;
+      right: 80px;
+      background: linear-gradient(135deg, var(--navy-oscuro) 0%, var(--azul-muy-oscuro) 100%);
+      border-radius: 16px;
+      padding: 28px 40px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: resultIn 0.7s ease-out 1.6s forwards;
+      overflow: hidden;
+    }
+
+    @keyframes resultIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .result-bar::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(26, 127, 142, 0.2), transparent);
+      animation: shimmer 3s ease-in-out infinite;
+      animation-delay: 2s;
+    }
+
+    @keyframes shimmer {
+      0% { left: -100%; }
+      100% { left: 100%; }
+    }
+
+    .result-icon {
+      width: 50px;
+      height: 50px;
+      background: var(--teal);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      flex-shrink: 0;
+      box-shadow: 0 4px 15px rgba(26, 127, 142, 0.4);
+    }
+
+    .result-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--teal);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 5px;
+    }
+
+    .result-text {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    .result-text span {
+      color: var(--teal);
+    }
+
+    /* Footer logo */
+    .footer {
+      position: absolute;
+      bottom: 30px;
+      right: 80px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      opacity: 0;
+      animation: fadeIn 0.5s ease-out 2s forwards;
+    }
+
+    .logo-small {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--teal) 0%, var(--azul-profundo) 100%);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 16px;
+      color: white;
+    }
+
+    /* Decoración de fondo */
+    .bg-decoration {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle at top right, rgba(26, 127, 142, 0.05) 0%, transparent 60%);
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-decoration"></div>
+
+  <div class="header">
+    <div class="slide-number">04</div>
+    <span class="header-title">Propuesta de Valor</span>
+  </div>
+
+  <div class="main-title">
+    <h1>El Problema que <span>Resolvemos</span></h1>
+  </div>
+
+  <div class="split-container">
+    <!-- Panel Problema -->
+    <div class="panel-left">
+      <div class="panel-header">
+        <div class="panel-icon">⚠️</div>
+        <div>
+          <span class="panel-label">Diagnóstico</span>
+          <h3 class="panel-title">Situación Típica del Mercado</h3>
+        </div>
+      </div>
+      <ul class="item-list">
+        <li>
+          <span class="item-bullet">✗</span>
+          <span class="item-text">Se contrata dotación, pero no existe control continuo sobre la operación</span>
+        </li>
+        <li>
+          <span class="item-bullet">✗</span>
+          <span class="item-text">Reportes informales sin evidencia verificable ni trazabilidad</span>
+        </li>
+        <li>
+          <span class="item-bullet">✗</span>
+          <span class="item-text">Supervisión reactiva que detecta problemas cuando ya escalaron</span>
+        </li>
+        <li>
+          <span class="item-bullet">✗</span>
+          <span class="item-text">Riesgos laborales y normativos gestionados "a posteriori"</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Panel Solución -->
+    <div class="panel-right">
+      <div class="panel-header">
+        <div class="panel-icon">✓</div>
+        <div>
+          <span class="panel-label">Nuestra Respuesta</span>
+          <h3 class="panel-title">Respuesta Gard Security</h3>
+        </div>
+      </div>
+      <ul class="item-list">
+        <li>
+          <span class="item-bullet">✓</span>
+          <span class="item-text">Definición de procedimientos específicos por instalación</span>
+        </li>
+        <li>
+          <span class="item-bullet">✓</span>
+          <span class="item-text">Supervisión activa y validaciones programadas en terreno</span>
+        </li>
+        <li>
+          <span class="item-bullet">✓</span>
+          <span class="item-text">Registro digital de rondas, turnos e incidencias con evidencia</span>
+        </li>
+        <li>
+          <span class="item-bullet">✓</span>
+          <span class="item-text">Cumplimiento normativo verificable (OS10 + laboral)</span>
+        </li>
+        <li>
+          <span class="item-bullet">✓</span>
+          <span class="item-text">Reportabilidad ejecutiva con métricas accionables</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="center-divider">
+    <div class="divider-circle">
+      <span class="divider-arrow">→</span>
+    </div>
+  </div>
+
+  <div class="result-bar">
+    <div class="result-icon">🎯</div>
+    <div>
+      <span class="result-label">Resultado</span>
+      <p class="result-text">El cliente obtiene <span>seguridad como proceso controlado</span>, no como "servicio a ciegas"</p>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="logo-small">G</div>
+  </div>
+</body>
+</html>
