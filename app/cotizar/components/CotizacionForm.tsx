@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useState, useEffect, useRef, RefCallback } from 'react';
-import { useForm } from 'react-hook-form';
+import React, { useState, useEffect, useRef, useCallback, RefCallback } from 'react';
+import { useForm, useFieldArray } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { Loader2 } from 'lucide-react';
+import { Loader2, Plus, Trash2, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -22,13 +22,34 @@ import { useGtmEvent } from '../../components/EventTracker';
 import API_URLS from '@/app/config/api';
 import { trackFormSubmission } from '@/lib/analytics/formTracking';
 
-// Declaración simplificada para Google Maps API
+// Declaración para Google Maps API
 declare global {
   interface Window {
     google: any;
   }
 }
 
+// ── Días de la semana ──
+const WEEKDAYS = [
+  { value: 'lunes', label: 'Lun' },
+  { value: 'martes', label: 'Mar' },
+  { value: 'miercoles', label: 'Mié' },
+  { value: 'jueves', label: 'Jue' },
+  { value: 'viernes', label: 'Vie' },
+  { value: 'sabado', label: 'Sáb' },
+  { value: 'domingo', label: 'Dom' },
+];
+
+// ── Schema de dotación ──
+const dotacionItemSchema = z.object({
+  puesto: z.string().min(1, 'Selecciona un puesto'),
+  cantidad: z.number().int().min(1, 'Mínimo 1').max(100),
+  dias: z.array(z.string()).min(1, 'Selecciona al menos un día'),
+  horaInicio: z.string().min(1, 'Requerido'),
+  horaFin: z.string().min(1, 'Requerido'),
+});
+
+// ── Schema principal ──
 const formSchema = z.object({
   nombre: z.string().min(2, { message: 'El nombre es obligatorio' }),
   apellido: z.string().min(2, { message: 'El apellido es obligatorio' }),
@@ -42,7 +63,8 @@ const formSchema = z.object({
   longitude: z.number().optional(),
   tipoIndustria: z.string().min(1, { message: 'Selecciona un tipo de industria' }),
   servicioRequerido: z.string().min(1, { message: 'Selecciona un servicio requerido' }),
-  cotizacion: z.string().min(3, { message: 'Proporciona los detalles de tu solicitud' }),
+  cotizacion: z.string().optional(),
+  dotacion: z.array(dotacionItemSchema).optional(),
   utm_source: z.string().optional(),
   utm_medium: z.string().optional(),
   utm_campaign: z.string().optional(),
@@ -50,19 +72,28 @@ const formSchema = z.object({
   utm_content: z.string().optional(),
   gclid: z.string().optional(),
   landing_page: z.string().optional(),
-});
+}).refine((data) => {
+  if (data.servicioRequerido === 'Guardias de Seguridad') {
+    return data.dotacion && data.dotacion.length >= 1;
+  }
+  return true;
+}, { message: 'Agrega al menos un puesto de trabajo', path: ['dotacion'] });
+
+// Puestos por defecto si OPAI no responde
+const PUESTOS_DEFAULT = [
+  { value: 'Portería', label: 'Portería' },
+  { value: 'Recepción', label: 'Recepción' },
+  { value: 'Ronda', label: 'Ronda' },
+  { value: 'CCTV (Centro de Control)', label: 'CCTV (Centro de Control)' },
+  { value: 'Control de Acceso', label: 'Control de Acceso' },
+  { value: 'Supervisión', label: 'Supervisión' },
+  { value: 'Otro', label: 'Otro' },
+];
 
 // Lista de servicios
 const servicios = [
   'Guardias de Seguridad',
-  'Vigilancia Electrónica',
-  'Control de Acceso',
-  'Monitoreo 24/7',
-  'Seguridad Perimetral',
-  'Drones de Seguridad',
-  'Consultoría de Seguridad',
-  'Auditoría de Seguridad',
-  'Prevención de Intrusiones',
+  'Seguridad Electrónica',
   'Otro',
 ];
 
@@ -73,17 +104,41 @@ interface CotizacionFormProps {
   prefillIndustria?: string;
 }
 
-// Función para generar el enlace de Google Maps
 const getGoogleMapsLink = (direccion: string) => {
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(direccion)}`;
 };
+
+// OPAI public config URL
+const OPAI_URL = process.env.NEXT_PUBLIC_OPAI_API_URL || 'https://opai.gard.cl';
 
 export default function CotizacionForm({ prefillServicio, prefillIndustria }: CotizacionFormProps = {}) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formStatus, setFormStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const autocompleteInputRef = useRef<HTMLInputElement | null>(null);
   const [mapLoaded, setMapLoaded] = useState(false);
+  const [puestosOptions, setPuestosOptions] = useState<{ value: string; label: string }[]>([]);
+  const [industriesOptions, setIndustriesOptions] = useState<{ value: string; label: string }[]>([]);
   const { pushEvent } = useGtmEvent();
+
+  // Fetch puestos e industrias desde OPAI (se reflejan cambios del CRM)
+  useEffect(() => {
+    async function fetchConfig() {
+      try {
+        const res = await fetch(`${OPAI_URL}/api/public/config`);
+        if (!res.ok) return;
+        const contentType = res.headers.get('content-type');
+        if (!contentType?.includes('application/json')) return;
+        const data = await res.json();
+        if (data.success && data.data) {
+          if (data.data.puestos?.length) setPuestosOptions(data.data.puestos);
+          if (data.data.industries?.length) setIndustriesOptions(data.data.industries);
+        }
+      } catch {
+        // Fallback silencioso: el formulario usa opciones por defecto si OPAI no está disponible
+      }
+    }
+    fetchConfig();
+  }, []);
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -101,6 +156,7 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
       tipoIndustria: '',
       servicioRequerido: '',
       cotizacion: '',
+      dotacion: [],
       utm_source: '',
       utm_medium: '',
       utm_campaign: '',
@@ -111,93 +167,74 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
     },
   });
 
-  const { setValue } = form;
+  const { setValue, watch } = form;
 
-  // Crear una ref callback que pueda ser usada directamente
+  const { fields, append, remove } = useFieldArray({
+    control: form.control,
+    name: 'dotacion',
+  });
+
+  const servicioActual = watch('servicioRequerido');
+  const isGuardias = servicioActual === 'Guardias de Seguridad';
+
+  // Ref callback for Google Maps autocomplete
   const autocompleteRef: RefCallback<HTMLInputElement> = (element) => {
     autocompleteInputRef.current = element;
   };
 
-  // Efecto para recuperar datos desde sessionStorage
+  // Recover saved data from sessionStorage
   useEffect(() => {
     if (typeof window === 'undefined') return;
     
-    // Obtener valores guardados en navegación previa o desde props
     const savedIndustry = prefillIndustria || sessionStorage.getItem('user_industry') || '';
     const savedService = prefillServicio || sessionStorage.getItem('user_service') || '';
     
-    // Rellenar formulario con datos guardados si existen
     if (savedIndustry) {
       setValue('tipoIndustria', savedIndustry);
-      console.log('✅ Industria cargada:', savedIndustry);
     }
     
-    // Autocompletar el servicio requerido si existe
     if (savedService) {
-      // Buscar coincidencia en la lista de servicios
       const servicioEncontrado = servicios.find(s => 
         s.toLowerCase().includes(savedService.toLowerCase())
       );
-      
       if (servicioEncontrado) {
         setValue('servicioRequerido', servicioEncontrado);
-        console.log('✅ Servicio requerido cargado:', servicioEncontrado);
       }
-      
-      // Personalizar el texto de cotización con el servicio
       const cotizacionInicial = `Estoy interesado en contratar servicios de ${savedService}`;
       setValue('cotizacion', cotizacionInicial);
-      console.log('✅ Servicio cargado:', savedService);
     }
     
-    // Capturar parámetros UTM de la URL y localStorage
+    // Capture UTM params
     const urlParams = new URLSearchParams(window.location.search);
-    
-    // Lista de parámetros a capturar
-    const trackingParams = [
-      'utm_source', 
-      'utm_medium', 
-      'utm_campaign', 
-      'utm_term', 
-      'utm_content', 
-      'gclid'
-    ];
-    
-    // Capturar valores de URL o localStorage
+    const trackingParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid'];
     trackingParams.forEach(param => {
-      // Priorizar valor de URL
       const value = urlParams.get(param) || localStorage.getItem(param) || sessionStorage.getItem(param) || '';
       if (value) {
         setValue(param as keyof FormValues, value);
-        // Guardar en storage para persistencia
         localStorage.setItem(param, value);
         sessionStorage.setItem(param, value);
-        console.log(`✅ Parámetro capturado: ${param}=${value}`);
       }
     });
     
-    // Capturar landing_page (página actual)
     const landing = window.location.pathname;
     setValue('landing_page', landing);
     localStorage.setItem('landing_page', landing);
     sessionStorage.setItem('landing_page', landing);
   }, [setValue, prefillServicio, prefillIndustria]);
 
+  // Google Maps loader
   useEffect(() => {
-    // Carga de la API de Google Maps
     const loader = new Loader({
       apiKey: 'AIzaSyBHIoHJDp6StLJlUAQV_gK7woFsEYgbzHY',
       version: 'weekly',
       libraries: ['places'],
     });
-
-    loader.load().then(() => {
-      setMapLoaded(true);
-    }).catch(error => {
+    loader.load().then(() => setMapLoaded(true)).catch(error => {
       console.error('Error cargando Google Maps API:', error);
     });
   }, []);
 
+  // Google Maps autocomplete
   useEffect(() => {
     if (!mapLoaded || !autocompleteInputRef.current) return;
 
@@ -206,31 +243,15 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
       componentRestrictions: { country: 'cl' },
     });
 
-    // Determinar si estamos en un dispositivo móvil
     const isMobile = window.innerWidth < 768;
-    
-    // Ajustar opciones de autocompletado para móviles
     if (isMobile) {
-      // Limitar el número de predicciones en móviles para evitar que ocupe demasiado espacio
-      autocomplete.setOptions({
-        fields: ['formatted_address', 'geometry', 'address_components'],
-      });
+      autocomplete.setOptions({ fields: ['formatted_address', 'geometry', 'address_components'] });
     }
 
-    // Prevenir el scroll automático en móviles cuando se abre el autocompletado
     if (isMobile && autocompleteInputRef.current) {
       autocompleteInputRef.current.addEventListener('focus', (e) => {
-        // Mantener la posición de scroll actual
         const currentScrollPos = window.scrollY;
-        
-        // Pequeño retraso para asegurar que el evento se maneja después de que el navegador
-        // intente hacer scroll automáticamente
-        setTimeout(() => {
-          window.scrollTo({
-            top: currentScrollPos,
-            behavior: 'auto'
-          });
-        }, 10);
+        setTimeout(() => { window.scrollTo({ top: currentScrollPos, behavior: 'auto' }); }, 10);
       });
     }
 
@@ -239,129 +260,197 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
       if (!place.address_components) return;
 
       setValue('direccion', place.formatted_address || '');
-
-      // Extraer comuna y ciudad
       let comuna = '';
       let ciudad = '';
-
       place.address_components.forEach((component: any) => {
         const types = component.types;
-        
-        if (types.includes('locality')) {
-          ciudad = component.long_name;
-        }
-        
-        if (types.includes('administrative_area_level_3') || 
-            types.includes('sublocality_level_1') || 
-            types.includes('sublocality')) {
+        if (types.includes('locality')) ciudad = component.long_name;
+        if (types.includes('administrative_area_level_3') || types.includes('sublocality_level_1') || types.includes('sublocality')) {
           comuna = component.long_name;
         }
       });
-
-      // Seguir capturando comuna y ciudad pero no mostrarlos visualmente
       setValue('comuna', comuna);
       setValue('ciudad', ciudad);
-
-      // Extraer coordenadas de latitud y longitud
       if (place.geometry && place.geometry.location) {
         setValue('latitude', place.geometry.location.lat());
         setValue('longitude', place.geometry.location.lng());
-        console.log('Coordenadas extraídas:', {
-          latitude: place.geometry.location.lat(),
-          longitude: place.geometry.location.lng()
-        });
-      }
-      
-      // En móviles, después de seleccionar una dirección, asegurar que el usuario
-      // pueda seguir viendo el formulario correctamente
-      if (isMobile) {
-        // Pequeño retraso para dar tiempo a que se complete el autocompletado
-        setTimeout(() => {
-          // Obtener el siguiente campo después de la dirección para asegurar una buena UX
-          const nextField = document.querySelector('[name="tipoIndustria"]');
-          if (nextField) {
-            // Scroll para asegurar que los campos siguientes sean visibles
-            window.scrollBy({
-              top: 100,
-              behavior: 'smooth'
-            });
-          }
-        }, 300);
       }
     });
 
     return () => {
-      // Cleanup si es necesario
       if (isMobile && autocompleteInputRef.current) {
         autocompleteInputRef.current.removeEventListener('focus', () => {});
       }
     };
   }, [mapLoaded, setValue]);
 
+  // Presets de días y turnos (para facilitar al usuario)
+  const PRESETS = {
+    todaSemana: { dias: ['lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado', 'domingo'], horaInicio: '08:00', horaFin: '20:00' },
+    lunVie: { dias: ['lunes', 'martes', 'miercoles', 'jueves', 'viernes'], horaInicio: '08:00', horaFin: '20:00' },
+    finSemana: { dias: ['sabado', 'domingo'], horaInicio: '08:00', horaFin: '20:00' },
+    deDia: { horaInicio: '08:00', horaFin: '20:00' },
+    deNoche: { horaInicio: '20:00', horaFin: '08:00' },
+  };
+
+  const applyPreset = useCallback((index: number, preset: keyof typeof PRESETS) => {
+    const p = PRESETS[preset];
+    if ('dias' in p && Array.isArray(p.dias)) setValue(`dotacion.${index}.dias`, p.dias);
+    setValue(`dotacion.${index}.horaInicio`, p.horaInicio);
+    setValue(`dotacion.${index}.horaFin`, p.horaFin);
+  }, [setValue]);
+
+  const puestosParaSelect = puestosOptions.length > 0 ? puestosOptions : PUESTOS_DEFAULT;
+  const addPuesto = useCallback(() => {
+    append({
+      puesto: puestosParaSelect[0]?.value || '',
+      cantidad: 1,
+      dias: ['lunes', 'martes', 'miercoles', 'jueves', 'viernes'],
+      horaInicio: '08:00',
+      horaFin: '20:00',
+    });
+  }, [append, puestosParaSelect]);
+
+  // Toggle day helper
+  const toggleDay = (index: number, day: string) => {
+    const current = watch(`dotacion.${index}.dias`) || [];
+    if (current.includes(day)) {
+      setValue(`dotacion.${index}.dias`, current.filter((d: string) => d !== day));
+    } else {
+      setValue(`dotacion.${index}.dias`, [...current, day]);
+    }
+  };
+
   const onSubmit = async (data: FormValues) => {
     try {
       setIsSubmitting(true);
       
-      // Asegurar que los parámetros UTM estén incluidos antes de enviar
-      const completeData = {
-        ...data,
-        // Estandarizar nombres de campos
+      // Map to OPAI public leads format
+      const opaiPayload = {
+        nombre: data.nombre,
+        apellido: data.apellido,
+        email: data.email,
+        celular: data.telefono,
+        empresa: data.empresa,
+        direccion: data.direccion,
+        comuna: data.comuna || '',
+        ciudad: data.ciudad || '',
+        pagina_web: '',
         industria: data.tipoIndustria,
-        servicio: data.servicioRequerido,
-        comentarios: data.cotizacion,
-        utm_source: data.utm_source || localStorage.getItem('utm_source') || '',
-        utm_medium: data.utm_medium || localStorage.getItem('utm_medium') || '',
-        utm_campaign: data.utm_campaign || localStorage.getItem('utm_campaign') || '',
-        utm_term: data.utm_term || localStorage.getItem('utm_term') || '',
-        utm_content: data.utm_content || localStorage.getItem('utm_content') || '',
-        gclid: data.gclid || localStorage.getItem('gclid') || '',
-        landing_page: data.landing_page || localStorage.getItem('landing_page') || window.location.pathname,
-        // Agregar el enlace de Google Maps
-        direccionGoogleMaps: getGoogleMapsLink(data.direccion),
-        // Metadatos adicionales
-        fecha: new Date().toISOString(),
-        tipoFormulario: 'cotizacion_basica'
+        servicio: data.servicioRequerido === 'Guardias de Seguridad' ? 'guardias_seguridad'
+          : data.servicioRequerido === 'Seguridad Electrónica' ? 'seguridad_electronica'
+          : 'otro',
+        detalle: (data.cotizacion || '') + (data.utm_source ? `\n\n[UTM: ${data.utm_source}/${data.utm_medium}/${data.utm_campaign}]` : ''),
+        dotacion: isGuardias && data.dotacion && data.dotacion.length > 0 ? data.dotacion : undefined,
       };
       
       const response = await fetch(API_URLS.COTIZACION, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(completeData),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(opaiPayload),
       });
       
       if (response.ok) {
         setFormStatus('success');
         form.reset();
-        // Limpiar sessionStorage después de enviar el formulario
         sessionStorage.removeItem('user_service');
         sessionStorage.removeItem('user_industry');
         sessionStorage.removeItem('user_service_slug');
         sessionStorage.removeItem('user_industry_slug');
         
-        // Evento de formulario enviado usando el helper centralizado
         trackFormSubmission({
           formType: 'cotizacion',
           additionalData: {
             tipo_industria: data.tipoIndustria,
             servicio_requerido: data.servicioRequerido,
             pagina_origen: window.location.pathname,
-            // Incluir explícitamente parámetros UTM
-            utm_source: completeData.utm_source,
-            utm_medium: completeData.utm_medium,
-            utm_campaign: completeData.utm_campaign,
-            utm_term: completeData.utm_term,
-            utm_content: completeData.utm_content,
-            gclid: completeData.gclid,
-            landing_page: completeData.landing_page
+            utm_source: data.utm_source || '',
+            utm_medium: data.utm_medium || '',
+            utm_campaign: data.utm_campaign || '',
+            utm_term: data.utm_term || '',
+            utm_content: data.utm_content || '',
+            gclid: data.gclid || '',
+            landing_page: data.landing_page || '',
+            dotacion_puestos: data.dotacion?.length || 0,
+            dotacion_guardias: data.dotacion?.reduce((sum, d) => sum + d.cantidad, 0) || 0,
           }
         });
       } else {
-        setFormStatus('error');
+        // Fallback 1: intentar solo envío de emails (OPAI responde pero lead falló)
+        const emailOnlyRes = await fetch(API_URLS.COTIZACION, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ ...opaiPayload, emailOnly: true }),
+        });
+        if (emailOnlyRes.ok) {
+          setFormStatus('success');
+          form.reset();
+          sessionStorage.removeItem('user_service');
+          sessionStorage.removeItem('user_industry');
+          sessionStorage.removeItem('user_service_slug');
+          sessionStorage.removeItem('user_industry_slug');
+        } else {
+          // Fallback 2: Make webhook (configurar Make para enviar email)
+          try {
+            await fetch(API_URLS.COTIZACION_FALLBACK, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ ...opaiPayload, source: 'cotizacion_fallback', opaiFailed: true }),
+            });
+          } catch (_) { /* Make también puede fallar */ }
+          setFormStatus('error');
+        }
       }
     } catch (error) {
-      setFormStatus('error');
+      // Fallback: error de red o OPAI caído - intentar email-only y luego Make
+      const fallbackPayload = {
+        nombre: data.nombre,
+        apellido: data.apellido,
+        email: data.email,
+        celular: data.telefono,
+        empresa: data.empresa,
+        direccion: data.direccion,
+        comuna: data.comuna || '',
+        ciudad: data.ciudad || '',
+        industria: data.tipoIndustria,
+        servicio: data.servicioRequerido === 'Guardias de Seguridad' ? 'guardias_seguridad'
+          : data.servicioRequerido === 'Seguridad Electrónica' ? 'seguridad_electronica'
+          : 'otro',
+        detalle: data.cotizacion || '',
+        dotacion: isGuardias && data.dotacion && data.dotacion.length > 0 ? data.dotacion : undefined,
+        emailOnly: true,
+      };
+      try {
+        const emailOnlyRes = await fetch(API_URLS.COTIZACION, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(fallbackPayload),
+        });
+        if (emailOnlyRes.ok) {
+          setFormStatus('success');
+          form.reset();
+          sessionStorage.removeItem('user_service');
+          sessionStorage.removeItem('user_industry');
+          sessionStorage.removeItem('user_service_slug');
+          sessionStorage.removeItem('user_industry_slug');
+        } else {
+          await fetch(API_URLS.COTIZACION_FALLBACK, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ ...fallbackPayload, source: 'cotizacion_fallback', opaiFailed: true }),
+          });
+          setFormStatus('error');
+        }
+      } catch (_) {
+        try {
+          await fetch(API_URLS.COTIZACION_FALLBACK, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ ...fallbackPayload, source: 'cotizacion_fallback', opaiFailed: true }),
+          });
+        } catch (_) { /* Make también puede fallar */ }
+        setFormStatus('error');
+      }
       console.error('Error al enviar el formulario:', error);
     } finally {
       setIsSubmitting(false);
@@ -372,8 +461,13 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
     <div className="bg-card rounded-xl shadow-sm p-6 md:p-8 border border-gray-200 dark:border-gray-700">
       {formStatus === 'success' ? (
         <div className="text-center py-8">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-100 dark:bg-green-900/30 mb-4">
+            <svg className="w-8 h-8 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
           <h2 className="text-heading-4 text-primary mb-4">¡Tu solicitud ha sido enviada correctamente!</h2>
-          <p className="text-body-base mb-6">Te contactaremos en menos de 12 horas.</p>
+          <p className="text-body-base mb-6">Nuestro equipo comercial revisará tu requerimiento y te contactará en menos de 12 horas hábiles.</p>
           <Button 
             onClick={() => setFormStatus('idle')}
             variant="default"
@@ -385,218 +479,310 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
       ) : (
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            {/* ── Datos de contacto ── */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <FormField
-                control={form.control}
-                name="nombre"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Nombre <span className="text-red-500">*</span></FormLabel>
-                    <FormControl>
-                      <Input placeholder="Tu nombre" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              
-              <FormField
-                control={form.control}
-                name="apellido"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Apellido <span className="text-red-500">*</span></FormLabel>
-                    <FormControl>
-                      <Input placeholder="Tu apellido" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+              <FormField control={form.control} name="nombre" render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Nombre <span className="text-red-500">*</span></FormLabel>
+                  <FormControl><Input placeholder="Tu nombre" {...field} /></FormControl>
+                  <FormMessage />
+                </FormItem>
+              )} />
+              <FormField control={form.control} name="apellido" render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Apellido <span className="text-red-500">*</span></FormLabel>
+                  <FormControl><Input placeholder="Tu apellido" {...field} /></FormControl>
+                  <FormMessage />
+                </FormItem>
+              )} />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Email de contacto <span className="text-red-500">*</span></FormLabel>
-                    <FormControl>
-                      <Input type="email" placeholder="correo@ejemplo.com" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              
-              <FormField
-                control={form.control}
-                name="telefono"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Número de teléfono <span className="text-red-500">*</span></FormLabel>
-                    <FormControl>
-                      <Input
-                        type="tel"
-                        placeholder="912345678"
-                        maxLength={9}
-                        {...field}
-                        onChange={(e) => {
-                          // Solo permitir números
-                          const value = e.target.value.replace(/\D/g, '');
-                          field.onChange(value);
-                        }}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+              <FormField control={form.control} name="email" render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Email de contacto <span className="text-red-500">*</span></FormLabel>
+                  <FormControl><Input type="email" placeholder="correo@ejemplo.com" {...field} /></FormControl>
+                  <FormMessage />
+                </FormItem>
+              )} />
+              <FormField control={form.control} name="telefono" render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Número de teléfono <span className="text-red-500">*</span></FormLabel>
+                  <FormControl>
+                    <Input type="tel" placeholder="912345678" maxLength={9} {...field}
+                      onChange={(e) => { field.onChange(e.target.value.replace(/\D/g, '')); }} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )} />
             </div>
 
-            <FormField
-              control={form.control}
-              name="empresa"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Empresa <span className="text-red-500">*</span></FormLabel>
-                  <FormControl>
-                    <Input placeholder="Nombre de tu empresa" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+            {/* ── Datos de empresa ── */}
+            <FormField control={form.control} name="empresa" render={({ field }) => (
+              <FormItem>
+                <FormLabel>Empresa <span className="text-red-500">*</span></FormLabel>
+                <FormControl><Input placeholder="Nombre de tu empresa" {...field} /></FormControl>
+                <FormMessage />
+              </FormItem>
+            )} />
 
-            <FormField
-              control={form.control}
-              name="direccion"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Dirección o ubicación del servicio <span className="text-red-500">*</span></FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder="Ingresa la dirección"
-                      {...field}
-                      ref={autocompleteRef}
-                      // Añadir atributos para mejorar la experiencia móvil
-                      autoComplete="street-address"
-                      onFocus={(e) => {
-                        // En móviles, asegurar que el campo permanezca visible al enfocarlo
-                        if (window.innerWidth < 768) {
-                          // Pequeño retraso para permitir que el teclado aparezca primero
-                          setTimeout(() => {
-                            e.target.scrollIntoView({
-                              behavior: 'smooth',
-                              block: 'center'
-                            });
-                          }, 100);
-                        }
-                      }}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+            <FormField control={form.control} name="direccion" render={({ field }) => (
+              <FormItem>
+                <FormLabel>Dirección o ubicación del servicio <span className="text-red-500">*</span></FormLabel>
+                <FormControl>
+                  <Input placeholder="Ingresa la dirección" {...field} ref={autocompleteRef}
+                    autoComplete="street-address"
+                    onFocus={(e) => {
+                      if (window.innerWidth < 768) {
+                        setTimeout(() => { e.target.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 100);
+                      }
+                    }} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )} />
 
             <input type="hidden" {...form.register('comuna')} />
             <input type="hidden" {...form.register('ciudad')} />
             <input type="hidden" {...form.register('latitude')} />
             <input type="hidden" {...form.register('longitude')} />
 
+            {/* ── Servicio ── */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <FormField
-                control={form.control}
-                name="tipoIndustria"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Tipo de industria <span className="text-red-500">*</span></FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Selecciona el tipo de industria" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        <SelectItem value="Banca y Finanzas">Banca y Finanzas</SelectItem>
-                        <SelectItem value="Retail y Centros Comerciales">Retail y Centros Comerciales</SelectItem>
-                        <SelectItem value="Salud (Hospitales y Clínicas)">Salud (Hospitales y Clínicas)</SelectItem>
-                        <SelectItem value="Educación (Colegios y Universidades)">Educación (Colegios y Universidades)</SelectItem>
-                        <SelectItem value="Infraestructura Crítica">Infraestructura Crítica</SelectItem>
-                        <SelectItem value="Transporte y Logística">Transporte y Logística</SelectItem>
-                        <SelectItem value="Construcción e Inmobiliario">Construcción e Inmobiliario</SelectItem>
-                        <SelectItem value="Minería y Energía">Minería y Energía</SelectItem>
-                        <SelectItem value="Corporativo y Oficinas">Corporativo y Oficinas</SelectItem>
-                        <SelectItem value="Condominios y Residencias">Condominios y Residencias</SelectItem>
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="servicioRequerido"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Servicio requerido <span className="text-red-500">*</span></FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Selecciona el servicio que necesitas" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        {servicios.map((servicio) => (
-                          <SelectItem key={servicio} value={servicio}>{servicio}</SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-
-            <FormField
-              control={form.control}
-              name="cotizacion"
-              render={({ field }) => (
+              <FormField control={form.control} name="tipoIndustria" render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Cotización <span className="text-red-500">*</span></FormLabel>
-                  <FormControl>
-                    <Textarea 
-                      placeholder="Explícanos tus necesidades de seguridad para ofrecerte una cotización personalizada" 
-                      rows={5}
-                      {...field} 
-                    />
-                  </FormControl>
+                  <FormLabel>Tipo de industria <span className="text-red-500">*</span></FormLabel>
+                  <Select onValueChange={field.onChange} value={field.value}>
+                    <FormControl>
+                      <SelectTrigger><SelectValue placeholder="Selecciona el tipo de industria" /></SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {(industriesOptions.length ? industriesOptions : [
+                        { value: 'Banca y Finanzas', label: 'Banca y Finanzas' },
+                        { value: 'Retail y Centros Comerciales', label: 'Retail y Centros Comerciales' },
+                        { value: 'Salud (Hospitales y Clínicas)', label: 'Salud (Hospitales y Clínicas)' },
+                        { value: 'Educación (Colegios y Universidades)', label: 'Educación (Colegios y Universidades)' },
+                        { value: 'Infraestructura Crítica', label: 'Infraestructura Crítica' },
+                        { value: 'Transporte y Logística', label: 'Transporte y Logística' },
+                        { value: 'Construcción e Inmobiliario', label: 'Construcción e Inmobiliario' },
+                        { value: 'Minería y Energía', label: 'Minería y Energía' },
+                        { value: 'Corporativo y Oficinas', label: 'Corporativo y Oficinas' },
+                        { value: 'Condominios y Residencias', label: 'Condominios y Residencias' },
+                        { value: 'Sector Privado', label: 'Sector Privado' },
+                        { value: 'Otra', label: 'Otra' },
+                      ]).map((opt) => (
+                        <SelectItem key={opt.value} value={opt.value}>{opt.label}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                   <FormMessage />
                 </FormItem>
-              )}
-            />
+              )} />
 
+              <FormField control={form.control} name="servicioRequerido" render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Servicio requerido <span className="text-red-500">*</span></FormLabel>
+                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <FormControl>
+                      <SelectTrigger><SelectValue placeholder="Selecciona el servicio que necesitas" /></SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {servicios.map((servicio) => (
+                        <SelectItem key={servicio} value={servicio}>{servicio}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )} />
+            </div>
+
+            {/* ══════════════════════════════════════════════════════════════ */}
+            {/* ── ESTRUCTURA DE DOTACIÓN (solo Guardias de Seguridad) - ARRIBA de Cotización ── */}
+            {/* ══════════════════════════════════════════════════════════════ */}
+            {isGuardias && (
+              <div className="rounded-xl border-2 border-primary/20 bg-primary/5 dark:bg-primary/10 p-5 space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Shield className="h-5 w-5 text-primary" />
+                    <div>
+                      <h3 className="text-base font-semibold">Estructura de Dotación <span className="text-red-500">*</span></h3>
+                      <p className="text-sm text-muted-foreground">
+                        Define los puestos de trabajo que necesitas
+                      </p>
+                    </div>
+                  </div>
+                  <Button type="button" variant="default" size="sm" className="gap-1.5 rounded-xl" onClick={addPuesto}>
+                    <Plus className="h-4 w-4" />
+                    <span className="hidden sm:inline">Agregar</span>
+                  </Button>
+                </div>
+
+                {fields.length === 0 ? (
+                  <div className="text-center py-6 border-2 border-dashed border-border rounded-lg">
+                    <p className="text-sm text-muted-foreground mb-2">
+                      Agrega al menos un puesto de trabajo
+                    </p>
+                    <Button type="button" variant="ghost" size="sm" onClick={addPuesto} className="text-primary">
+                      + Agregar primer puesto
+                    </Button>
+                  </div>
+                ) : (
+                  <div className="space-y-3">
+                    {fields.map((field, index) => (
+                      <div key={field.id} className="bg-card rounded-lg p-4 border border-border shadow-sm space-y-3">
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm font-semibold text-primary">Puesto #{index + 1}</span>
+                          <Button type="button" variant="ghost" size="sm" className="h-8 text-destructive hover:text-destructive" onClick={() => remove(index)}>
+                            <Trash2 className="h-4 w-4 mr-1" /> Eliminar
+                          </Button>
+                        </div>
+
+                        {/* Presets rápidos: días y turno */}
+                        <div className="space-y-2">
+                          <p className="text-xs font-medium text-muted-foreground">Días de servicio — elige uno:</p>
+                          <div className="flex flex-wrap gap-2">
+                            {(['todaSemana', 'lunVie', 'finSemana'] as const).map((preset) => (
+                              <button key={preset} type="button" onClick={() => applyPreset(index, preset)}
+                                className="px-3 py-1.5 rounded-lg text-xs font-medium bg-muted hover:bg-primary/20 hover:text-primary transition-colors">
+                                {preset === 'todaSemana' ? 'Toda la semana' : preset === 'lunVie' ? 'Lunes a viernes' : 'Solo fin de semana'}
+                              </button>
+                            ))}
+                          </div>
+                          <p className="text-xs font-medium text-muted-foreground mt-2">Turno:</p>
+                          <div className="flex flex-wrap gap-2">
+                            {(['deDia', 'deNoche'] as const).map((preset) => (
+                              <button key={preset} type="button" onClick={() => applyPreset(index, preset)}
+                                className="px-3 py-1.5 rounded-lg text-xs font-medium bg-muted hover:bg-primary/20 hover:text-primary transition-colors">
+                                {preset === 'deDia' ? 'De día (08:00–20:00)' : 'De noche (20:00–08:00)'}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                          <FormField control={form.control} name={`dotacion.${index}.puesto`} render={({ field: f }) => (
+                            <FormItem>
+                              <FormLabel className="text-xs">Puesto de trabajo</FormLabel>
+                              <FormControl>
+                                <Select onValueChange={f.onChange} value={f.value}>
+                                  <SelectTrigger><SelectValue placeholder="Selecciona un puesto" /></SelectTrigger>
+                                  <SelectContent>
+                                    {puestosParaSelect.map(p => (
+                                      <SelectItem key={p.value} value={p.value}>{p.label}</SelectItem>
+                                    ))}
+                                  </SelectContent>
+                                </Select>
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )} />
+
+                          <FormField control={form.control} name={`dotacion.${index}.cantidad`} render={({ field: f }) => (
+                            <FormItem>
+                              <FormLabel className="text-xs">Cantidad de puestos</FormLabel>
+                              <FormControl>
+                                <Input type="number" min={1} max={100} {...f}
+                                  onChange={(e) => f.onChange(parseInt(e.target.value) || 1)} />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )} />
+
+                          <FormField control={form.control} name={`dotacion.${index}.horaInicio`} render={({ field: f }) => (
+                            <FormItem>
+                              <FormLabel className="text-xs">Hora inicio</FormLabel>
+                              <FormControl>
+                                <Select onValueChange={f.onChange} value={f.value}>
+                                  <SelectTrigger><SelectValue /></SelectTrigger>
+                                  <SelectContent>
+                                    {Array.from({ length: 24 }, (_, i) => {
+                                      const h = i.toString().padStart(2, '0') + ':00';
+                                      return <SelectItem key={h} value={h}>{h}</SelectItem>;
+                                    })}
+                                  </SelectContent>
+                                </Select>
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )} />
+
+                          <FormField control={form.control} name={`dotacion.${index}.horaFin`} render={({ field: f }) => (
+                            <FormItem>
+                              <FormLabel className="text-xs">Hora fin</FormLabel>
+                              <FormControl>
+                                <Select onValueChange={f.onChange} value={f.value}>
+                                  <SelectTrigger><SelectValue /></SelectTrigger>
+                                  <SelectContent>
+                                    {Array.from({ length: 24 }, (_, i) => {
+                                      const h = i.toString().padStart(2, '0') + ':00';
+                                      return <SelectItem key={h} value={h}>{h}</SelectItem>;
+                                    })}
+                                  </SelectContent>
+                                </Select>
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )} />
+
+                          <div className="sm:col-span-2">
+                            <label className="text-xs font-medium mb-2 block">O selecciona días manualmente</label>
+                            <div className="flex flex-wrap gap-1.5">
+                              {WEEKDAYS.map(day => {
+                                const dias = watch(`dotacion.${index}.dias`) || [];
+                                const isActive = dias.includes(day.value);
+                                return (
+                                  <button key={day.value} type="button" onClick={() => toggleDay(index, day.value)}
+                                    className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
+                                      isActive ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground hover:bg-muted/80'
+                                    }`}>
+                                    {day.label}
+                                  </button>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+
+                    <div className="flex items-center justify-between px-3 py-2 bg-primary/10 rounded-lg text-sm">
+                      <span className="font-medium">
+                        Total: {fields.length} tipo{fields.length > 1 ? 's' : ''} de puesto · {
+                          (watch('dotacion') || []).reduce((sum, d) => sum + (d?.cantidad || 0), 0)
+                        } puesto{(watch('dotacion') || []).reduce((sum, d) => sum + (d?.cantidad || 0), 0) !== 1 ? 's' : ''}
+                      </span>
+                      <Button type="button" variant="ghost" size="sm" onClick={addPuesto} className="text-primary text-xs">
+                        + Otro puesto
+                      </Button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* ── Descripción (opcional) ── */}
+            <FormField control={form.control} name="cotizacion" render={({ field }) => (
+              <FormItem>
+                <FormLabel>Descripción adicional (opcional)</FormLabel>
+                <FormControl>
+                  <Textarea placeholder="Si quieres, agrega más detalles sobre tu necesidad de seguridad..." rows={4} {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )} />
+
+            {/* ── Error message ── */}
             {formStatus === 'error' && (
-              <div className="bg-red-50 p-4 rounded-md text-red-700 text-sm">
+              <div className="bg-red-50 dark:bg-red-900/20 p-4 rounded-md text-red-700 dark:text-red-300 text-sm">
                 Hubo un error al enviar. Intenta nuevamente.
               </div>
             )}
 
-            <Button 
-              type="submit" 
-              disabled={isSubmitting}
-              variant="default"
-              size="lg"
-              className="w-full md:w-auto rounded-2xl"
-            >
+            {/* ── Submit ── */}
+            <Button type="submit" disabled={isSubmitting} variant="default" size="lg" className="w-full md:w-auto rounded-2xl">
               {isSubmitting ? (
-                <>
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Enviando...
-                </>
+                <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Enviando...</>
               ) : (
                 "Enviar Cotización"
               )}
@@ -606,4 +792,4 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
       )}
     </div>
   );
-} 
+}

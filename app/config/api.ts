@@ -24,11 +24,18 @@ const esProduccion = (): boolean => {
   return window.location.hostname === 'gard.cl' || window.location.hostname.includes('vercel.app');
 };
 
+// OPAI API URL (for direct lead integration)
+const OPAI_URL = process.env.NEXT_PUBLIC_OPAI_API_URL || 'https://opai.gard.cl';
+
 // URLs de API
 export const API_URLS = {
   CONTACTO: 'https://hook.us1.make.com/oq1dihqjq7xbl2xbk9wbbdp02h37831a',
   
-  COTIZACION: 'https://hook.us1.make.com/oq1dihqjq7xbl2xbk9wbbdp02h37831a',
+  // Cotización ahora va directo a OPAI (crea lead + notificación + email)
+  COTIZACION: `${OPAI_URL}/api/public/leads`,
+  
+  // Fallback: si OPAI falla, enviar a Make para que mande email (configurar Make para envío de email)
+  COTIZACION_FALLBACK: 'https://hook.us1.make.com/oq1dihqjq7xbl2xbk9wbbdp02h37831a',
   
   COTIZACION_INTELIGENTE: 'https://hook.us1.make.com/oq1dihqjq7xbl2xbk9wbbdp02h37831a',
   
