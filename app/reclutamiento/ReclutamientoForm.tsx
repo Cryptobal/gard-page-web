@@ -582,7 +582,7 @@ export default function ReclutamientoForm() {
                   <p className="text-muted-foreground mb-6">
                     Hemos recibido correctamente tu información. Nuestro equipo de recursos humanos revisará tu perfil y te contactará si tu candidatura avanza en el proceso de selección.
                   </p>
-                  <Button variant="gard-primary" className="rounded-xl">
+                  <Button variant="default" className="rounded-xl">
                     Volver al Inicio
                   </Button>
                 </div>

@@ -490,7 +490,7 @@ export default function CotizadorFormulario() {
               
               <motion.button
                 onClick={() => setShowForm(true)}
-                className={cn(buttonVariants({ variant: "gard-primary", size: "lg" }), "flex items-center mt-4")}
+                className={cn(buttonVariants({ variant: "default", size: "lg" }), "flex items-center mt-4")}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -536,7 +536,7 @@ export default function CotizadorFormulario() {
                         setShowForm(false);
                         setSubmitSuccess(false);
                       }}
-                      className={buttonVariants({ variant: "gard-primary" })}
+                      className={buttonVariants({ variant: "default" })}
                     >
                       Cerrar
                     </button>
@@ -759,7 +759,7 @@ export default function CotizadorFormulario() {
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className={buttonVariants({ variant: "gard-primary" })}
+                        className={buttonVariants({ variant: "default" })}
                       >
                         {isSubmitting ? (
                           <>

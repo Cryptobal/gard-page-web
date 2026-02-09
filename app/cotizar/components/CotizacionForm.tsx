@@ -376,7 +376,7 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
           <p className="text-body-base mb-6">Te contactaremos en menos de 12 horas.</p>
           <Button 
             onClick={() => setFormStatus('idle')}
-            variant="gard-primary"
+            variant="default"
             className="rounded-2xl"
           >
             Enviar otra cotización
@@ -588,7 +588,7 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
             <Button 
               type="submit" 
               disabled={isSubmitting}
-              variant="gard-primary"
+              variant="default"
               size="lg"
               className="w-full md:w-auto rounded-2xl"
             >

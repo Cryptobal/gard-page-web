@@ -217,7 +217,7 @@ export default function CiudadPage() {
     <div className="min-h-screen">
       {/* Botón de cotización flotante */}
       <div className="fixed bottom-6 right-6 z-50">
-        <Button asChild variant="gard-primary" size="lg" className="shadow-lg rounded-full flex items-center gap-2 px-6">
+        <Button asChild variant="default" size="lg" className="shadow-lg rounded-full flex items-center gap-2 px-6">
           <Link href={`/cotizar?ciudad=${ciudad.slug}`}>
             <Phone className="h-5 w-5" />
             Cotizar en {ciudad.nombre}
@@ -256,13 +256,13 @@ export default function CiudadPage() {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center w-full max-w-md mx-auto">
-            <Button asChild variant="gard-outline" size="lg" className="w-full sm:flex-1 bg-transparent border-white text-white hover:bg-white/20">
+            <Button asChild variant="outline" size="lg" className="w-full sm:flex-1 bg-transparent border-white text-white hover:bg-white/20">
               <Link href={`#servicios-${ciudad.slug}`}>
                 Ver Servicios
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
-            <Button asChild variant="gard-primary" size="lg" className="w-full sm:flex-1">
+            <Button asChild variant="default" size="lg" className="w-full sm:flex-1">
               <Link href="/cotizar">
                 Cotizar Ahora
                 <ArrowRight className="ml-2 h-5 w-5" />
@@ -428,13 +428,13 @@ export default function CiudadPage() {
                   Contáctanos para recibir asesoría especializada sobre seguridad en {ciudad.nombre}.
                 </p>
                 <div className="space-y-3">
-                  <Button asChild variant="gard-primary" size="sm" className="w-full justify-center inline-flex items-center">
+                  <Button asChild variant="default" size="sm" className="w-full justify-center inline-flex items-center">
                     <Link href={`/cotizar?ciudad=${ciudad.slug}`}>
                       Solicitar cotización
                       <ArrowRight size={16} className="ml-2" />
                     </Link>
                   </Button>
-                  <Button asChild variant="gard-outline" size="sm" className="w-full justify-center inline-flex items-center">
+                  <Button asChild variant="outline" size="sm" className="w-full justify-center inline-flex items-center">
                     <Link href="/contacto">
                       Contactar asesor
                       <Phone size={16} className="ml-2" />

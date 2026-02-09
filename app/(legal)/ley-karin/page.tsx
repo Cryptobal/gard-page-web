@@ -424,7 +424,7 @@ export default function LeyKarin() {
           {/* Botón de envío */}
           <Button
             type="submit"
-            variant="gard-primary"
+            variant="default"
             className="w-full rounded-2xl py-3 text-lg mt-2"
             disabled={loading}
           >

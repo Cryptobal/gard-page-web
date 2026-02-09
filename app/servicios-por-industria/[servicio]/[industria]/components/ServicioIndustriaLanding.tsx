@@ -318,7 +318,7 @@ export default function ServicioIndustriaLanding({ content, params }: ServicioIn
               <div className="flex items-center justify-between gap-3">
                 <div className="flex-1">
                   <Button 
-                    variant="gard-accent" 
+                    variant="accent" 
                     size="lg" 
                     className="w-full rounded-xl"
                     onClick={scrollToForm}
@@ -455,7 +455,7 @@ export default function ServicioIndustriaLanding({ content, params }: ServicioIn
                   className="flex flex-col sm:flex-row gap-4 pt-6"
                 >
                   <Button 
-                    variant="gard-primary" 
+                    variant="default" 
                     size="lg" 
                     className="rounded-xl shadow-lg w-full sm:w-auto"
                     onClick={scrollToForm}
@@ -579,7 +579,7 @@ export default function ServicioIndustriaLanding({ content, params }: ServicioIn
                   className="flex justify-center"
                 >
                   <Button 
-                    variant="gard-primary" 
+                    variant="default" 
                     size="lg" 
                     className="gard-btn-lg rounded-xl"
                     onClick={scrollToForm}
@@ -674,7 +674,7 @@ export default function ServicioIndustriaLanding({ content, params }: ServicioIn
               className="flex justify-center mt-12"
             >
               <Button 
-                variant="gard-outline" 
+                variant="outline" 
                 size="lg" 
                 className="gard-btn-lg rounded-xl border-accent text-accent hover:bg-accent/10"
                 onClick={scrollToForm}
@@ -732,7 +732,7 @@ export default function ServicioIndustriaLanding({ content, params }: ServicioIn
                     Si tienes necesidades especiales o requieres protección para otra área no listada, contáctanos para una evaluación personalizada.
                   </p>
                   <Button 
-                    variant="gard-primary" 
+                    variant="default" 
                     className="px-4 py-2 rounded-xl hover:bg-accent transition-colors"
                     onClick={scrollToForm}
                   >

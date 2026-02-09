@@ -556,3 +556,10 @@ main > section:first-child:not(.gard-hero) {
     @apply px-2 py-2;
   }
 }
+
+/* Print: fondo blanco para páginas de impresión (presentacion-demo/print) */
+@media print {
+  body {
+    background: white !important;
+  }
+}

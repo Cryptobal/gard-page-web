@@ -169,7 +169,7 @@ export default function GardHero({
             imageId={imageId}
             title={title}
             overlay={overlay}
-            posterUrl={imageId ? getCloudflareImageUrl(imageId, { width: 1920, quality: 85 }) : undefined}
+            posterUrl={imageId ? getCloudflareImageUrl(imageId, 'public', { width: 1920, quality: 85 }) : undefined}
           />
         </motion.div>
         

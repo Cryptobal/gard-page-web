@@ -330,7 +330,7 @@ export default function CiudadServicioLanding({ content, params }: CiudadServici
               <div className="flex items-center justify-between gap-3">
                 <div className="flex-1">
                   <Button 
-                    variant="gard-accent" 
+                    variant="accent" 
                     size="lg" 
                     className="w-full rounded-xl"
                     onClick={scrollToForm}
@@ -339,7 +339,7 @@ export default function CiudadServicioLanding({ content, params }: CiudadServici
                   </Button>
                 </div>
                 <Button 
-                  variant="gard-outline-orange" 
+                  variant="outline-orange" 
                   size="icon"
                   className="rounded-full"
                   onClick={() => window.location.href = 'tel:+56229872380'}
@@ -475,7 +475,7 @@ export default function CiudadServicioLanding({ content, params }: CiudadServici
                   className="flex flex-col sm:flex-row gap-4 pt-6"
                 >
                   <Button 
-                    variant="gard-primary" 
+                    variant="default" 
                     size="lg" 
                     className="rounded-xl shadow-lg w-full sm:w-auto"
                     onClick={scrollToForm}
@@ -485,7 +485,7 @@ export default function CiudadServicioLanding({ content, params }: CiudadServici
                   </Button>
                   
                   <Button 
-                    variant="gard-outline-orange" 
+                    variant="outline-orange" 
                     size="lg" 
                     className="rounded-xl backdrop-blur-sm w-full sm:w-auto"
                     onClick={() => window.location.href = 'tel:+56229872380'}
@@ -609,7 +609,7 @@ export default function CiudadServicioLanding({ content, params }: CiudadServici
                   className="flex justify-center"
                 >
                   <Button 
-                    variant="gard-primary" 
+                    variant="default" 
                     size="lg" 
                     className="gard-btn-lg rounded-xl"
                     onClick={scrollToForm}
@@ -704,7 +704,7 @@ export default function CiudadServicioLanding({ content, params }: CiudadServici
               className="flex justify-center mt-12"
             >
               <Button 
-                variant="gard-outline-orange" 
+                variant="outline-orange" 
                 size="lg" 
                 className="gard-btn-lg rounded-xl"
                 onClick={scrollToForm}
@@ -762,7 +762,7 @@ export default function CiudadServicioLanding({ content, params }: CiudadServici
                     Trabajamos en todas las zonas de {ciudadFormatted}. Contáctenos para obtener información específica sobre su ubicación.
                   </p>
                   <Button 
-                    variant="gard-outline" 
+                    variant="outline" 
                     size="sm"
                     className="rounded-lg mt-1"
                     onClick={scrollToForm}

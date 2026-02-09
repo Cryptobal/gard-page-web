@@ -232,7 +232,7 @@ export default async function ServicioPage({ params }: { params: Promise<{ slug:
           <p className="text-white text-lg md:text-xl opacity-90 max-w-3xl mb-8">
             {servicio.description}
           </p>
-          <Button asChild variant="gard-primary" size="lg" className="inline-flex items-center">
+          <Button asChild variant="default" size="lg" className="inline-flex items-center">
             <a href="#cotizar">
               Cotizar este servicio <ArrowRight className="ml-2 h-5 w-5" />
             </a>

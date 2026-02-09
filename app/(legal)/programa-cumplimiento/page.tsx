@@ -179,7 +179,7 @@ export default function ProgramaCumplimiento() {
           {enviado ? (
             <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-700 text-green-800 dark:text-green-300 p-4 rounded-xl text-center">¡Denuncia enviada con éxito!</div>
           ) : (
-            <Button type="submit" variant="gard-primary" className="w-full rounded-2xl py-3 text-lg" disabled={loading}>{loading ? "Enviando..." : "Enviar denuncia"}</Button>
+            <Button type="submit" variant="default" className="w-full rounded-2xl py-3 text-lg" disabled={loading}>{loading ? "Enviando..." : "Enviar denuncia"}</Button>
           )}
         </form>
         <footer className="mt-12 text-center text-xs text-gray-500 dark:text-gray-400">

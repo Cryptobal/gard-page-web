@@ -48,7 +48,7 @@ export const CallToAction: React.FC<CallToActionProps> = ({
           </h2>
           <Link href={href} passHref>
             <Button 
-              variant={variant === "primary" ? "gard-primary" : "gard-secondary"} 
+              variant={variant === "primary" ? "default" : "secondary"} 
               className="px-6 py-3 text-base rounded-full hover:scale-105 transition-all mx-auto"
               aria-label={buttonText}
             >

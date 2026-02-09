@@ -233,7 +233,7 @@ export default async function IndustriaPage({ params }: { params: Promise<{ slug
             {industry.subtitle || `Soluciones de seguridad especializadas para el sector ${industry.name}`}
           </p>
           
-          <Button asChild variant="gard-primary" size="lg" className="inline-flex items-center">
+          <Button asChild variant="default" size="lg" className="inline-flex items-center">
             <a href="#cotizar">
               Cotizar para mi empresa <ArrowRight className="ml-2 h-5 w-5" />
             </a>
@@ -257,7 +257,7 @@ export default async function IndustriaPage({ params }: { params: Promise<{ slug
               </div>
               
               <div className="mt-8">
-                <Button asChild variant="gard-primary" className="inline-flex items-center">
+                <Button asChild variant="default" className="inline-flex items-center">
                   <a href="#cotizar">
                     Solicitar cotización <ArrowRight className="ml-2 h-5 w-5" />
                   </a>

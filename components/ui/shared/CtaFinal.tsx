@@ -54,7 +54,7 @@ export default function CtaFinal({
         <Link 
           href={ctaHref}
           className={cn(
-            buttonVariants({ variant: "gard-primary", size: "lg" }),
+            buttonVariants({ variant: "default", size: "lg" }),
             "text-base md:text-lg px-8 py-3 rounded-full hover:scale-105 transition-all duration-200 shadow-md hover:shadow-xl"
           )}
         >
