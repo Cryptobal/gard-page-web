@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef, useCallback, RefCallback } from 're
 import { useForm, useFieldArray } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { Loader2, Plus, Trash2, Shield } from 'lucide-react';
+import { Loader2, Plus, Trash2, Shield, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -468,13 +468,24 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
           </div>
           <h2 className="text-heading-4 text-primary mb-4">¡Tu solicitud ha sido enviada correctamente!</h2>
           <p className="text-body-base mb-6">Nuestro equipo comercial revisará tu requerimiento y te contactará en menos de 12 horas hábiles.</p>
-          <Button 
-            onClick={() => setFormStatus('idle')}
-            variant="default"
-            className="rounded-2xl"
-          >
-            Enviar otra cotización
-          </Button>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center items-center mb-6">
+            <a
+              href="https://wa.me/56982307771"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 gard-btn gard-btn-primary gard-btn-lg rounded-2xl hover:scale-[1.02] transition-transform"
+            >
+              <MessageCircle className="h-5 w-5 text-primary dark:text-accent" aria-hidden />
+              Contactar por WhatsApp
+            </a>
+            <Button
+              onClick={() => setFormStatus('idle')}
+              variant="secondary"
+              className="rounded-2xl"
+            >
+              Enviar otra cotización
+            </Button>
+          </div>
         </div>
       ) : (
         <Form {...form}>
