@@ -4,7 +4,13 @@ import React, { useState, useEffect, useRef, useCallback, RefCallback } from 're
 import { useForm, useFieldArray } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { Loader2, Plus, Trash2, Shield, MessageCircle } from 'lucide-react';
+import { Loader2, Plus, Trash2, Shield, MessageCircle, ArrowLeft } from 'lucide-react';
+import DotacionQuickBuilder, {
+  type QuickPuesto,
+  buildDotacion,
+  createDefaultQuickPuesto,
+  type DotacionApiItem,
+} from './DotacionQuickBuilder';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -20,7 +26,7 @@ import {
 import { Loader } from '@googlemaps/js-api-loader';
 import { useGtmEvent } from '../../components/EventTracker';
 import API_URLS from '@/app/config/api';
-import { getPaginaWebFromEmail, diasParaOpai } from '@/lib/opaiPayload';
+import { getPaginaWebFromEmail } from '@/lib/opaiPayload';
 import { trackFormSubmission } from '@/lib/analytics/formTracking';
 
 // Declaración para Google Maps API
@@ -73,12 +79,9 @@ const formSchema = z.object({
   utm_content: z.string().optional(),
   gclid: z.string().optional(),
   landing_page: z.string().optional(),
-}).refine((data) => {
-  if (data.servicioRequerido === 'Guardias de Seguridad') {
-    return data.dotacion && data.dotacion.length >= 1;
-  }
-  return true;
-}, { message: 'Agrega al menos un puesto de trabajo', path: ['dotacion'] });
+});
+// NOTE: The dotacion validation for "Guardias de Seguridad" is now handled
+// at submit time, since quick mode manages dotacion outside React Hook Form.
 
 // Puestos por defecto si OPAI no responde
 const PUESTOS_DEFAULT = [
@@ -91,11 +94,11 @@ const PUESTOS_DEFAULT = [
   { value: 'Otro', label: 'Otro' },
 ];
 
-// Lista de servicios
-const servicios = [
-  'Guardias de Seguridad',
-  'Seguridad Electrónica',
-  'Otro',
+// Lista de servicios (fallback si OPAI no responde)
+const SERVICIOS_DEFAULT = [
+  { value: 'guardias_seguridad', label: 'Guardias de Seguridad' },
+  { value: 'seguridad_electronica', label: 'Seguridad Electrónica' },
+  { value: 'otro', label: 'Otro' },
 ];
 
 type FormValues = z.infer<typeof formSchema>;
@@ -149,7 +152,14 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
   const [mapLoaded, setMapLoaded] = useState(false);
   const [puestosOptions, setPuestosOptions] = useState<{ value: string; label: string }[]>([]);
   const [industriesOptions, setIndustriesOptions] = useState<{ value: string; label: string }[]>([]);
+  const [serviceTypesOptions, setServiceTypesOptions] = useState<{ value: string; label: string }[]>([]);
   const { pushEvent } = useGtmEvent();
+
+  // ── Dotación: modo rápido vs manual ──
+  const [dotacionMode, setDotacionMode] = useState<'quick' | 'manual'>('quick');
+  const [quickPuestos, setQuickPuestos] = useState<QuickPuesto[]>([
+    createDefaultQuickPuesto(),
+  ]);
 
   // Fetch puestos e industrias desde OPAI (se reflejan cambios del CRM)
   useEffect(() => {
@@ -163,6 +173,7 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
         if (data.success && data.data) {
           if (data.data.puestos?.length) setPuestosOptions(data.data.puestos);
           if (data.data.industries?.length) setIndustriesOptions(data.data.industries);
+          if (data.data.serviceTypes?.length) setServiceTypesOptions(data.data.serviceTypes);
         }
       } catch {
         // Fallback silencioso: el formulario usa opciones por defecto si OPAI no está disponible
@@ -206,7 +217,7 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
   });
 
   const servicioActual = watch('servicioRequerido');
-  const isGuardias = servicioActual === 'Guardias de Seguridad';
+  const isGuardias = servicioActual === 'guardias_seguridad' || servicioActual === 'Guardias de Seguridad';
 
   // Ref callback for Google Maps autocomplete
   const autocompleteRef: RefCallback<HTMLInputElement> = (element) => {
@@ -225,11 +236,14 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
     }
     
     if (savedService) {
-      const servicioEncontrado = servicios.find(s => 
-        s.toLowerCase().includes(savedService.toLowerCase())
+      // Try to match with API values or defaults
+      const allServices = serviceTypesOptions.length > 0 ? serviceTypesOptions : SERVICIOS_DEFAULT;
+      const servicioEncontrado = allServices.find(s => 
+        s.value.toLowerCase().includes(savedService.toLowerCase()) ||
+        s.label.toLowerCase().includes(savedService.toLowerCase())
       );
       if (servicioEncontrado) {
-        setValue('servicioRequerido', servicioEncontrado);
+        setValue('servicioRequerido', servicioEncontrado.value);
       }
       const cotizacionInicial = `Estoy interesado en contratar servicios de ${savedService}`;
       setValue('cotizacion', cotizacionInicial);
@@ -372,7 +386,93 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
     }
   };
 
+  // ── Cambio de modo: Quick ↔ Manual ──
+  const switchToManual = useCallback(() => {
+    // Mapear puestos rápidos al formato manual
+    const dotacionFromQuick = buildDotacion(quickPuestos);
+    // Limpiar campos actuales y poblar con los datos rápidos
+    const currentDotacion = form.getValues('dotacion') || [];
+    // Reemplazar con los datos del quick builder
+    while (fields.length > 0) remove(0);
+    dotacionFromQuick.forEach((d) => {
+      append({
+        puesto: d.puesto,
+        cantidad: d.cantidad,
+        dias: d.dias,
+        horaInicio: d.horaInicio,
+        horaFin: d.horaFin,
+      });
+    });
+    setDotacionMode('manual');
+  }, [quickPuestos, form, fields.length, remove, append]);
+
+  const switchToQuick = useCallback(() => {
+    // Intentar mapear puestos manuales a quick format
+    const manualDotacion = form.getValues('dotacion') || [];
+    const ALL_WEEK = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado', 'domingo'];
+    const WEEKDAYS_ONLY = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes'];
+    const WEEKEND_ONLY = ['sabado', 'domingo'];
+
+    const arraysEqual = (a: string[], b: string[]) =>
+      a.length === b.length && a.every((v) => b.includes(v));
+
+    let hasCustomConfig = false;
+    const mappedPuestos: QuickPuesto[] = manualDotacion.map((d) => {
+      let dias: QuickPuesto['dias'] = 'toda_semana';
+      if (arraysEqual(d.dias || [], ALL_WEEK)) dias = 'toda_semana';
+      else if (arraysEqual(d.dias || [], WEEKDAYS_ONLY)) dias = 'lunes_viernes';
+      else if (arraysEqual(d.dias || [], WEEKEND_ONLY)) dias = 'fin_semana';
+      else hasCustomConfig = true;
+
+      let jornada: QuickPuesto['jornada'] = '24h';
+      let turno: QuickPuesto['turno'] = 'dia';
+      if (d.horaInicio === '00:00' && d.horaFin === '00:00') {
+        jornada = '24h';
+      } else if (d.horaInicio === '08:00' && d.horaFin === '20:00') {
+        jornada = '12h'; turno = 'dia';
+      } else if (d.horaInicio === '20:00' && d.horaFin === '08:00') {
+        jornada = '12h'; turno = 'noche';
+      } else {
+        hasCustomConfig = true;
+      }
+
+      return {
+        id: createDefaultQuickPuesto().id,
+        dias,
+        jornada,
+        turno,
+        cantidad: d.cantidad || 1,
+      };
+    });
+
+    if (hasCustomConfig) {
+      const confirmar = window.confirm(
+        'Algunos puestos tienen configuración personalizada que se perderá al volver al modo rápido. ¿Continuar?'
+      );
+      if (!confirmar) return;
+    }
+
+    if (mappedPuestos.length > 0) {
+      setQuickPuestos(mappedPuestos);
+    } else {
+      setQuickPuestos([createDefaultQuickPuesto()]);
+    }
+    setDotacionMode('quick');
+  }, [form]);
+
   const onSubmit = async (data: FormValues) => {
+    // Validar dotación para Guardias de Seguridad
+    if (isGuardias) {
+      if (dotacionMode === 'quick' && quickPuestos.length === 0) {
+        form.setError('dotacion', { message: 'Agrega al menos un puesto de trabajo' });
+        return;
+      }
+      if (dotacionMode === 'manual' && (!data.dotacion || data.dotacion.length === 0)) {
+        form.setError('dotacion', { message: 'Agrega al menos un puesto de trabajo' });
+        return;
+      }
+    }
+
     try {
       setIsSubmitting(true);
       
@@ -399,15 +499,21 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
       const detalleCompleto = (data.cotizacion || '') + (data.utm_source ? `\n\n[UTM: ${data.utm_source}/${data.utm_medium}/${data.utm_campaign}]` : '');
       const detalleTruncado = detalleCompleto.length > 5000 ? detalleCompleto.slice(0, 4997) + '...' : detalleCompleto;
 
-      const dotacionOpai = isGuardias && data.dotacion && data.dotacion.length > 0
-        ? data.dotacion.map((d) => ({
+      // Build dotacion from quick mode or manual mode
+      let dotacionOpai: DotacionApiItem[] | undefined;
+      if (isGuardias) {
+        if (dotacionMode === 'quick' && quickPuestos.length > 0) {
+          dotacionOpai = buildDotacion(quickPuestos);
+        } else if (data.dotacion && data.dotacion.length > 0) {
+          dotacionOpai = data.dotacion.map((d) => ({
             puesto: d.puesto,
             cantidad: d.cantidad,
-            dias: diasParaOpai(d.dias || []),
+            dias: d.dias || [],
             horaInicio: d.horaInicio || '08:00',
             horaFin: d.horaFin || '20:00',
-          }))
-        : undefined;
+          }));
+        }
+      }
 
       // Map to OPAI public leads format
       const opaiPayload = {
@@ -423,12 +529,10 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
         lng: data.longitude != null ? data.longitude : undefined,
         pagina_web: getPaginaWebFromEmail(data.email),
         industria: data.tipoIndustria,
-        servicio: data.servicioRequerido === 'Guardias de Seguridad' ? 'guardias_seguridad'
-          : data.servicioRequerido === 'Seguridad Electrónica' ? 'seguridad_electronica'
-          : 'otro',
+        servicio: data.servicioRequerido,
         detalle: detalleTruncado,
         dotacion: dotacionOpai,
-        source: 'web_cotizador',
+        source: 'web_cotizador' as const,
         whatsapp_prefilled_message: whatsappMessage,
         whatsapp_message_comercial_to_cliente: whatsappComercialToClient,
       };
@@ -443,6 +547,8 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
         setLastSuccessData({ nombre: data.nombre, apellido: data.apellido, empresa: data.empresa, cotizacion: data.cotizacion || '' });
         setFormStatus('success');
         form.reset();
+        setQuickPuestos([createDefaultQuickPuesto()]);
+        setDotacionMode('quick');
         sessionStorage.removeItem('user_service');
         sessionStorage.removeItem('user_industry');
         sessionStorage.removeItem('user_service_slug');
@@ -476,6 +582,8 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
           setLastSuccessData({ nombre: data.nombre, apellido: data.apellido, empresa: data.empresa, cotizacion: data.cotizacion || '' });
           setFormStatus('success');
           form.reset();
+          setQuickPuestos([createDefaultQuickPuesto()]);
+          setDotacionMode('quick');
           sessionStorage.removeItem('user_service');
           sessionStorage.removeItem('user_industry');
           sessionStorage.removeItem('user_service_slug');
@@ -505,15 +613,20 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
         data.dotacion?.map((d) => ({ puesto: d.puesto, cantidad: d.cantidad })),
         data.cotizacion || ''
       );
-      const dotacionFallback = isGuardias && data.dotacion && data.dotacion.length > 0
-        ? data.dotacion.map((d) => ({
+      let dotacionFallback: DotacionApiItem[] | undefined;
+      if (isGuardias) {
+        if (dotacionMode === 'quick' && quickPuestos.length > 0) {
+          dotacionFallback = buildDotacion(quickPuestos);
+        } else if (data.dotacion && data.dotacion.length > 0) {
+          dotacionFallback = data.dotacion.map((d) => ({
             puesto: d.puesto,
             cantidad: d.cantidad,
-            dias: diasParaOpai(d.dias || []),
+            dias: d.dias || [],
             horaInicio: d.horaInicio || '08:00',
             horaFin: d.horaFin || '20:00',
-          }))
-        : undefined;
+          }));
+        }
+      }
       const fallbackPayload = {
         nombre: data.nombre,
         apellido: data.apellido,
@@ -527,12 +640,10 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
         lng: data.longitude != null ? data.longitude : undefined,
         pagina_web: getPaginaWebFromEmail(data.email),
         industria: data.tipoIndustria,
-        servicio: data.servicioRequerido === 'Guardias de Seguridad' ? 'guardias_seguridad'
-          : data.servicioRequerido === 'Seguridad Electrónica' ? 'seguridad_electronica'
-          : 'otro',
+        servicio: data.servicioRequerido,
         detalle: (data.cotizacion || '').slice(0, 5000),
         dotacion: dotacionFallback,
-        source: 'web_cotizador',
+        source: 'web_cotizador' as const,
         emailOnly: true,
         whatsapp_prefilled_message: whatsappMessageFallback,
         whatsapp_message_comercial_to_cliente: whatsappComercialFallback,
@@ -547,6 +658,8 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
           setLastSuccessData({ nombre: data.nombre, apellido: data.apellido, empresa: data.empresa, cotizacion: data.cotizacion || '' });
           setFormStatus('success');
           form.reset();
+          setQuickPuestos([createDefaultQuickPuesto()]);
+          setDotacionMode('quick');
           sessionStorage.removeItem('user_service');
           sessionStorage.removeItem('user_industry');
           sessionStorage.removeItem('user_service_slug');
@@ -716,13 +829,13 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
               <FormField control={form.control} name="servicioRequerido" render={({ field }) => (
                 <FormItem>
                   <FormLabel>Servicio requerido <span className="text-red-500">*</span></FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <Select onValueChange={field.onChange} value={field.value}>
                     <FormControl>
                       <SelectTrigger><SelectValue placeholder="Selecciona el servicio que necesitas" /></SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      {servicios.map((servicio) => (
-                        <SelectItem key={servicio} value={servicio}>{servicio}</SelectItem>
+                      {(serviceTypesOptions.length > 0 ? serviceTypesOptions : SERVICIOS_DEFAULT).map((opt) => (
+                        <SelectItem key={opt.value} value={opt.value}>{opt.label}</SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
@@ -732,189 +845,215 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
             </div>
 
             {/* ══════════════════════════════════════════════════════════════ */}
-            {/* ── ESTRUCTURA DE DOTACIÓN (solo Guardias de Seguridad) - ARRIBA de Cotización ── */}
+            {/* ── ESTRUCTURA DE DOTACIÓN (solo Guardias de Seguridad) ── */}
             {/* ══════════════════════════════════════════════════════════════ */}
             {isGuardias && (
-              <div className="rounded-xl border-2 border-primary/20 bg-primary/5 dark:bg-primary/10 p-5 space-y-4">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <Shield className="h-5 w-5 text-primary" />
-                    <div>
-                      <h3 className="text-base font-semibold">Estructura de Dotación <span className="text-red-500">*</span></h3>
-                      <p className="text-sm text-muted-foreground">
-                        Define los puestos de trabajo que necesitas
-                      </p>
-                    </div>
-                  </div>
-                  <Button type="button" variant="default" size="sm" className="gap-1.5 rounded-xl" onClick={addPuesto}>
-                    <Plus className="h-4 w-4" />
-                    <span className="hidden sm:inline">Agregar</span>
-                  </Button>
-                </div>
-
-                {fields.length === 0 ? (
-                  <div className="text-center py-6 border-2 border-dashed border-border rounded-lg">
-                    <p className="text-sm text-muted-foreground mb-2">
-                      Agrega al menos un puesto de trabajo
-                    </p>
-                    <Button type="button" variant="ghost" size="sm" onClick={addPuesto} className="text-primary">
-                      + Agregar primer puesto
-                    </Button>
-                  </div>
+              <>
+                {dotacionMode === 'quick' ? (
+                  /* ── MODO RÁPIDO: Constructor visual ── */
+                  <DotacionQuickBuilder
+                    puestos={quickPuestos}
+                    onChange={setQuickPuestos}
+                    onSwitchToManual={switchToManual}
+                  />
                 ) : (
-                  <div className="space-y-3">
-                    {fields.map((field, index) => (
-                      <div key={field.id} className="bg-card rounded-lg p-4 border border-border shadow-sm space-y-3">
-                        <div className="flex items-center justify-between">
-                          <span className="text-sm font-semibold text-primary">Puesto #{index + 1}</span>
-                          <Button type="button" variant="ghost" size="sm" className="h-8 text-destructive hover:text-destructive" onClick={() => remove(index)}>
-                            <Trash2 className="h-4 w-4 mr-1" /> Eliminar
-                          </Button>
-                        </div>
-
-                        {/* Presets rápidos: días y turno */}
-                        <div className="space-y-2">
-                          <p className="text-xs font-medium text-muted-foreground">Días de servicio — elige uno:</p>
-                          <div className="flex flex-wrap gap-2">
-                            {(['todaSemana', 'lunVie', 'finSemana'] as const).map((preset) => {
-                              const isActive = isDiasPresetActive(index, preset);
-                              return (
-                                <button
-                                  key={preset}
-                                  type="button"
-                                  onClick={() => applyPreset(index, preset)}
-                                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
-                                    isActive
-                                      ? 'bg-primary text-primary-foreground ring-2 ring-primary ring-offset-2 ring-offset-background'
-                                      : 'bg-muted hover:bg-primary/20 hover:text-primary'
-                                  }`}
-                                >
-                                  {preset === 'todaSemana' ? 'Toda la semana' : preset === 'lunVie' ? 'Lunes a viernes' : 'Solo fin de semana'}
-                                </button>
-                              );
-                            })}
-                          </div>
-                          <p className="text-xs font-medium text-muted-foreground mt-2">Turno:</p>
-                          <div className="flex flex-wrap gap-2">
-                            {(['deDia', 'deNoche'] as const).map((preset) => {
-                              const isActive = isTurnoPresetActive(index, preset);
-                              return (
-                                <button
-                                  key={preset}
-                                  type="button"
-                                  onClick={() => applyPreset(index, preset)}
-                                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
-                                    isActive
-                                      ? 'bg-primary text-primary-foreground ring-2 ring-primary ring-offset-2 ring-offset-background'
-                                      : 'bg-muted hover:bg-primary/20 hover:text-primary'
-                                  }`}
-                                >
-                                  {preset === 'deDia' ? 'De día (08:00–20:00)' : 'De noche (20:00–08:00)'}
-                                </button>
-                              );
-                            })}
-                          </div>
-                        </div>
-
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                          <FormField control={form.control} name={`dotacion.${index}.puesto`} render={({ field: f }) => (
-                            <FormItem>
-                              <FormLabel className="text-xs">Puesto de trabajo</FormLabel>
-                              <FormControl>
-                                <Select onValueChange={f.onChange} value={f.value}>
-                                  <SelectTrigger><SelectValue placeholder="Selecciona un puesto" /></SelectTrigger>
-                                  <SelectContent>
-                                    {puestosParaSelect.map(p => (
-                                      <SelectItem key={p.value} value={p.value}>{p.label}</SelectItem>
-                                    ))}
-                                  </SelectContent>
-                                </Select>
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )} />
-
-                          <FormField control={form.control} name={`dotacion.${index}.cantidad`} render={({ field: f }) => (
-                            <FormItem>
-                              <FormLabel className="text-xs">Cantidad de puestos</FormLabel>
-                              <FormControl>
-                                <Input type="number" min={1} max={100} {...f}
-                                  onChange={(e) => f.onChange(parseInt(e.target.value) || 1)} />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )} />
-
-                          <FormField control={form.control} name={`dotacion.${index}.horaInicio`} render={({ field: f }) => (
-                            <FormItem>
-                              <FormLabel className="text-xs">Hora inicio</FormLabel>
-                              <FormControl>
-                                <Select onValueChange={f.onChange} value={f.value}>
-                                  <SelectTrigger><SelectValue /></SelectTrigger>
-                                  <SelectContent>
-                                    {Array.from({ length: 24 }, (_, i) => {
-                                      const h = i.toString().padStart(2, '0') + ':00';
-                                      return <SelectItem key={h} value={h}>{h}</SelectItem>;
-                                    })}
-                                  </SelectContent>
-                                </Select>
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )} />
-
-                          <FormField control={form.control} name={`dotacion.${index}.horaFin`} render={({ field: f }) => (
-                            <FormItem>
-                              <FormLabel className="text-xs">Hora fin</FormLabel>
-                              <FormControl>
-                                <Select onValueChange={f.onChange} value={f.value}>
-                                  <SelectTrigger><SelectValue /></SelectTrigger>
-                                  <SelectContent>
-                                    {Array.from({ length: 24 }, (_, i) => {
-                                      const h = i.toString().padStart(2, '0') + ':00';
-                                      return <SelectItem key={h} value={h}>{h}</SelectItem>;
-                                    })}
-                                  </SelectContent>
-                                </Select>
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )} />
-
-                          <div className="sm:col-span-2">
-                            <label className="text-xs font-medium mb-2 block">O selecciona días manualmente</label>
-                            <div className="flex flex-wrap gap-1.5">
-                              {WEEKDAYS.map(day => {
-                                const dias = watch(`dotacion.${index}.dias`) || [];
-                                const isActive = dias.includes(day.value);
-                                return (
-                                  <button key={day.value} type="button" onClick={() => toggleDay(index, day.value)}
-                                    className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
-                                      isActive ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground hover:bg-muted/80'
-                                    }`}>
-                                    {day.label}
-                                  </button>
-                                );
-                              })}
-                            </div>
-                          </div>
+                  /* ── MODO MANUAL: Formulario detallado ── */
+                  <div className="rounded-xl border-2 border-primary/20 bg-primary/5 dark:bg-primary/10 p-5 space-y-4">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <Shield className="h-5 w-5 text-primary" />
+                        <div>
+                          <h3 className="text-base font-semibold">Estructura de Dotación <span className="text-red-500">*</span></h3>
+                          <p className="text-sm text-muted-foreground">
+                            Configura horarios personalizados
+                          </p>
                         </div>
                       </div>
-                    ))}
-
-                    <div className="flex items-center justify-between px-3 py-2 bg-primary/10 rounded-lg text-sm">
-                      <span className="font-medium">
-                        Total: {fields.length} tipo{fields.length > 1 ? 's' : ''} de puesto · {
-                          (watch('dotacion') || []).reduce((sum, d) => sum + (d?.cantidad || 0), 0)
-                        } puesto{(watch('dotacion') || []).reduce((sum, d) => sum + (d?.cantidad || 0), 0) !== 1 ? 's' : ''}
-                      </span>
-                      <Button type="button" variant="ghost" size="sm" onClick={addPuesto} className="text-primary text-xs">
-                        + Otro puesto
+                      <Button type="button" variant="default" size="sm" className="gap-1.5 rounded-xl" onClick={addPuesto}>
+                        <Plus className="h-4 w-4" />
+                        <span className="hidden sm:inline">Agregar</span>
                       </Button>
+                    </div>
+
+                    {fields.length === 0 ? (
+                      <div className="text-center py-6 border-2 border-dashed border-border rounded-lg">
+                        <p className="text-sm text-muted-foreground mb-2">
+                          Agrega al menos un puesto de trabajo
+                        </p>
+                        <Button type="button" variant="ghost" size="sm" onClick={addPuesto} className="text-primary">
+                          + Agregar primer puesto
+                        </Button>
+                      </div>
+                    ) : (
+                      <div className="space-y-3">
+                        {fields.map((field, index) => (
+                          <div key={field.id} className="bg-card rounded-lg p-4 border border-border shadow-sm space-y-3">
+                            <div className="flex items-center justify-between">
+                              <span className="text-sm font-semibold text-primary">Puesto #{index + 1}</span>
+                              <Button type="button" variant="ghost" size="sm" className="h-8 text-destructive hover:text-destructive" onClick={() => remove(index)}>
+                                <Trash2 className="h-4 w-4 mr-1" /> Eliminar
+                              </Button>
+                            </div>
+
+                            {/* Presets rápidos: días y turno */}
+                            <div className="space-y-2">
+                              <p className="text-xs font-medium text-muted-foreground">Días de servicio — elige uno:</p>
+                              <div className="flex flex-wrap gap-2">
+                                {(['todaSemana', 'lunVie', 'finSemana'] as const).map((preset) => {
+                                  const isActive = isDiasPresetActive(index, preset);
+                                  return (
+                                    <button
+                                      key={preset}
+                                      type="button"
+                                      onClick={() => applyPreset(index, preset)}
+                                      className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
+                                        isActive
+                                          ? 'bg-primary text-primary-foreground ring-2 ring-primary ring-offset-2 ring-offset-background'
+                                          : 'bg-muted hover:bg-primary/20 hover:text-primary'
+                                      }`}
+                                    >
+                                      {preset === 'todaSemana' ? 'Toda la semana' : preset === 'lunVie' ? 'Lunes a viernes' : 'Solo fin de semana'}
+                                    </button>
+                                  );
+                                })}
+                              </div>
+                              <p className="text-xs font-medium text-muted-foreground mt-2">Turno:</p>
+                              <div className="flex flex-wrap gap-2">
+                                {(['deDia', 'deNoche'] as const).map((preset) => {
+                                  const isActive = isTurnoPresetActive(index, preset);
+                                  return (
+                                    <button
+                                      key={preset}
+                                      type="button"
+                                      onClick={() => applyPreset(index, preset)}
+                                      className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
+                                        isActive
+                                          ? 'bg-primary text-primary-foreground ring-2 ring-primary ring-offset-2 ring-offset-background'
+                                          : 'bg-muted hover:bg-primary/20 hover:text-primary'
+                                      }`}
+                                    >
+                                      {preset === 'deDia' ? 'De día (08:00–20:00)' : 'De noche (20:00–08:00)'}
+                                    </button>
+                                  );
+                                })}
+                              </div>
+                            </div>
+
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                              <FormField control={form.control} name={`dotacion.${index}.puesto`} render={({ field: f }) => (
+                                <FormItem>
+                                  <FormLabel className="text-xs">Puesto de trabajo</FormLabel>
+                                  <FormControl>
+                                    <Select onValueChange={f.onChange} value={f.value}>
+                                      <SelectTrigger><SelectValue placeholder="Selecciona un puesto" /></SelectTrigger>
+                                      <SelectContent>
+                                        {puestosParaSelect.map(p => (
+                                          <SelectItem key={p.value} value={p.value}>{p.label}</SelectItem>
+                                        ))}
+                                      </SelectContent>
+                                    </Select>
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )} />
+
+                              <FormField control={form.control} name={`dotacion.${index}.cantidad`} render={({ field: f }) => (
+                                <FormItem>
+                                  <FormLabel className="text-xs">Cantidad de puestos</FormLabel>
+                                  <FormControl>
+                                    <Input type="number" min={1} max={100} {...f}
+                                      onChange={(e) => f.onChange(parseInt(e.target.value) || 1)} />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )} />
+
+                              <FormField control={form.control} name={`dotacion.${index}.horaInicio`} render={({ field: f }) => (
+                                <FormItem>
+                                  <FormLabel className="text-xs">Hora inicio</FormLabel>
+                                  <FormControl>
+                                    <Select onValueChange={f.onChange} value={f.value}>
+                                      <SelectTrigger><SelectValue /></SelectTrigger>
+                                      <SelectContent>
+                                        {Array.from({ length: 24 }, (_, i) => {
+                                          const h = i.toString().padStart(2, '0') + ':00';
+                                          return <SelectItem key={h} value={h}>{h}</SelectItem>;
+                                        })}
+                                      </SelectContent>
+                                    </Select>
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )} />
+
+                              <FormField control={form.control} name={`dotacion.${index}.horaFin`} render={({ field: f }) => (
+                                <FormItem>
+                                  <FormLabel className="text-xs">Hora fin</FormLabel>
+                                  <FormControl>
+                                    <Select onValueChange={f.onChange} value={f.value}>
+                                      <SelectTrigger><SelectValue /></SelectTrigger>
+                                      <SelectContent>
+                                        {Array.from({ length: 24 }, (_, i) => {
+                                          const h = i.toString().padStart(2, '0') + ':00';
+                                          return <SelectItem key={h} value={h}>{h}</SelectItem>;
+                                        })}
+                                      </SelectContent>
+                                    </Select>
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )} />
+
+                              <div className="sm:col-span-2">
+                                <label className="text-xs font-medium mb-2 block">O selecciona días manualmente</label>
+                                <div className="flex flex-wrap gap-1.5">
+                                  {WEEKDAYS.map(day => {
+                                    const dias = watch(`dotacion.${index}.dias`) || [];
+                                    const isActive = dias.includes(day.value);
+                                    return (
+                                      <button key={day.value} type="button" onClick={() => toggleDay(index, day.value)}
+                                        className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
+                                          isActive ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground hover:bg-muted/80'
+                                        }`}>
+                                        {day.label}
+                                      </button>
+                                    );
+                                  })}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+
+                        <div className="flex items-center justify-between px-3 py-2 bg-primary/10 rounded-lg text-sm">
+                          <span className="font-medium">
+                            Total: {fields.length} tipo{fields.length > 1 ? 's' : ''} de puesto · {
+                              (watch('dotacion') || []).reduce((sum, d) => sum + (d?.cantidad || 0), 0)
+                            } puesto{(watch('dotacion') || []).reduce((sum, d) => sum + (d?.cantidad || 0), 0) !== 1 ? 's' : ''}
+                          </span>
+                          <Button type="button" variant="ghost" size="sm" onClick={addPuesto} className="text-primary text-xs">
+                            + Otro puesto
+                          </Button>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Link para volver al modo rápido */}
+                    <div className="rounded-xl border border-gray-200 dark:border-white/10 p-3.5 text-center">
+                      <button
+                        type="button"
+                        onClick={switchToQuick}
+                        className="inline-flex items-center gap-1.5 text-sm text-gray-500 dark:text-white/50 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                      >
+                        <ArrowLeft className="h-4 w-4" />
+                        <span className="font-medium text-blue-600 dark:text-blue-400 underline underline-offset-2">
+                          Volver al modo rápido
+                        </span>
+                      </button>
                     </div>
                   </div>
                 )}
-              </div>
+              </>
             )}
 
             {/* ── Descripción (opcional) ── */}
