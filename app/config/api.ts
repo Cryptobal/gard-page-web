@@ -31,13 +31,12 @@ const OPAI_URL = process.env.NEXT_PUBLIC_OPAI_API_URL || 'https://opai.gard.cl';
 export const API_URLS = {
   CONTACTO: 'https://hook.us1.make.com/oq1dihqjq7xbl2xbk9wbbdp02h37831a',
   
-  // Cotización ahora va directo a OPAI (crea lead + notificación + email)
+  // Cotización y Cotizador Inteligente van a OPAI (crea lead + emails con links WhatsApp)
   COTIZACION: `${OPAI_URL}/api/public/leads`,
+  COTIZACION_INTELIGENTE: `${OPAI_URL}/api/public/leads`,
   
-  // Fallback: si OPAI falla, enviar a Make para que mande email (configurar Make para envío de email)
+  // Fallback: si OPAI falla, enviar a Make (solo cotizar; cotizador inteligente solo OPAI)
   COTIZACION_FALLBACK: 'https://hook.us1.make.com/oq1dihqjq7xbl2xbk9wbbdp02h37831a',
-  
-  COTIZACION_INTELIGENTE: 'https://hook.us1.make.com/oq1dihqjq7xbl2xbk9wbbdp02h37831a',
   
   RECLUTAMIENTO: esProduccion() 
     ? 'https://hook.us1.make.com/5ozb2y5aucrr75d2xtpshmlyckds9nl4'

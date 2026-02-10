@@ -28,7 +28,8 @@ import {
   Phone,
   MapPin,
   X,
-  Check
+  Check,
+  MessageCircle
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import {
@@ -51,6 +52,28 @@ import { Button } from '@/components/ui/button';
 // Opciones predefinidas para los controles de selección
 const OPCIONES_TIPO_TURNO: TipoTurno[] = ['2x5', '5x2', '4x4', '7x7', '14x14'];
 const OPCIONES_HORARIO: TipoHorario[] = ['Día', 'Noche', '24 horas'];
+
+// WhatsApp comercial (link en email al cliente y en modal de éxito)
+const WHATSAPP_COMERCIAL = '56982307771';
+
+function buildWhatsAppClienteMessage(nombre: string, apellido: string, empresa: string, detalle: string): string {
+  const base = `Hola, ${nombre}. Soy ${nombre} ${apellido} de ${empresa}. Te envío una cotización y el detalle de la cotización.`;
+  return detalle?.trim() ? `${base}\n\n${detalle.trim()}` : base;
+}
+
+function buildWhatsAppComercialToClientMessage(
+  nombreCliente: string,
+  empresa: string,
+  direccion: string,
+  comuna: string,
+  ciudad: string,
+  resumenRoles: string,
+  comentarios: string
+): string {
+  const ubicacion = [direccion, comuna, ciudad].filter(Boolean).join(', ') || direccion;
+  const consisteEn = resumenRoles + (comentarios?.trim() ? `. ${comentarios.trim()}` : '');
+  return `Hola ${nombreCliente}, te contacto de gard.cl. Nos enviaste una cotización para la empresa ${empresa}, ubicada en ${ubicacion}, que consiste en ${consisteEn}.`;
+}
 
 // Interfaz para el Tooltip
 interface TooltipProps {
@@ -195,6 +218,8 @@ export default function CotizadorInteligenteV2() {
   const [formErrors, setFormErrors] = useState<{[key: string]: string}>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  // Datos del último envío exitoso (para mensaje WhatsApp en modal)
+  const [lastSuccessData, setLastSuccessData] = useState<{ nombre: string; apellido: string; empresa: string; detalle: string } | null>(null);
   
   // Estados para Google Maps
   const [mapLoaded, setMapLoaded] = useState(false);
@@ -505,6 +530,21 @@ export default function CotizadorInteligenteV2() {
         return `🛡️ Turno ${rol.tipoTurno} | ${rol.horario} | ${rol.puestos} puesto(s) | ${rol.diasSemana} días/semana | ${rol.horasDia} hrs/día | Sueldo: $${rol.sueldoLiquido.toLocaleString('es-CL')} | Costo: $${costoEstimado.toLocaleString('es-CL')}`;
       }).join('\n');
 
+      const detalleCompleto = (formData.comentarios?.trim() ? formData.comentarios.trim() + '\n\n' : '') + rolesSolicitados;
+      const resumenRoles = roles.map(r => `${r.puestos} guardia(s) ${r.tipoTurno} ${r.horario}`).join(', ');
+
+      // Mensajes para links WhatsApp (email al cliente y email a comercial)
+      const whatsappPrefilled = buildWhatsAppClienteMessage(formData.nombre, formData.apellido, formData.empresa, detalleCompleto);
+      const whatsappComercialToClient = buildWhatsAppComercialToClientMessage(
+        formData.nombre,
+        formData.empresa,
+        formData.direccion,
+        formData.comuna || '',
+        formData.ciudad || '',
+        resumenRoles,
+        formData.comentarios || ''
+      );
+
       // Asegurar que los parámetros UTM estén incluidos
       const utmData = {
         utm_source: formData.utm_source || localStorage.getItem('utm_source') || '',
@@ -516,20 +556,25 @@ export default function CotizadorInteligenteV2() {
         landing_page: formData.landing_page || localStorage.getItem('landing_page') || window.location.pathname,
       };
 
-      // Preparar datos para enviar con campos estandarizados
+      // Payload en formato OPAI (mismo endpoint que /cotizar) para emails con links WhatsApp
       const dataToSend = {
         ...formData,
         ...utmData,
-        // Estandarizar nombres de campos
-        industria: formData.rubro,
-        servicio: 'Guardias de Seguridad', // El cotizador inteligente es específico para guardias
-        comentarios: formData.comentarios,
+        nombre: formData.nombre,
+        apellido: formData.apellido,
+        email: formData.email,
+        celular: formData.telefono,
+        empresa: formData.empresa,
         direccion: formData.direccion,
+        comuna: formData.comuna || '',
+        ciudad: formData.ciudad || '',
+        industria: formData.rubro,
+        servicio: 'guardias_seguridad',
+        detalle: detalleCompleto,
+        tipo_formulario: 'cotizador_inteligente',
         direccionGoogleMaps: getGoogleMapsLink(formData.direccion),
-        // Metadatos adicionales
         fecha: new Date().toISOString(),
         tipoFormulario: 'cotizacion_inteligente',
-        // Datos específicos del cotizador inteligente
         roles: roles.map(rol => ({
           tipoTurno: rol.tipoTurno,
           horario: rol.horario,
@@ -549,12 +594,13 @@ export default function CotizadorInteligenteV2() {
             sueldoLiquido: rol.sueldoLiquido
           })),
           valorCotizacion: costoTotal
-        }
+        },
+        whatsapp_prefilled_message: whatsappPrefilled,
+        whatsapp_message_comercial_to_cliente: whatsappComercialToClient,
       };
       
-      console.log('Enviando datos al backend:', dataToSend);
+      console.log('Enviando datos a OPAI:', dataToSend);
       
-      // Enviar al endpoint del backend
       const response = await fetch(API_URLS.COTIZACION_INTELIGENTE, {
         method: 'POST',
         headers: {
@@ -564,6 +610,12 @@ export default function CotizadorInteligenteV2() {
       });
       
       if (response.ok) {
+        setLastSuccessData({
+          nombre: formData.nombre,
+          apellido: formData.apellido,
+          empresa: formData.empresa,
+          detalle: detalleCompleto,
+        });
         setSubmitSuccess(true);
         // Resetear formulario después de envío exitoso
         setFormData({
@@ -762,12 +814,27 @@ export default function CotizadorInteligenteV2() {
                       <Check className="h-8 w-8 text-primary" />
                     </motion.div>
                     <h2 className="text-2xl font-bold mb-3">¡Cotización enviada con éxito!</h2>
-                    <p className="text-muted-foreground mb-8">
+                    <p className="text-muted-foreground mb-6">
                       Nos pondremos en contacto contigo lo antes posible para coordinar los detalles de tu servicio.
                     </p>
-                    <Button onClick={() => setShowForm(false)} variant="outline">
-                      Cerrar
-                    </Button>
+                    <div className="flex flex-col sm:flex-row gap-3 justify-center items-center mb-6">
+                      <a
+                        href={`https://wa.me/${WHATSAPP_COMERCIAL}?text=${encodeURIComponent(
+                          lastSuccessData
+                            ? buildWhatsAppClienteMessage(lastSuccessData.nombre, lastSuccessData.apellido, lastSuccessData.empresa, lastSuccessData.detalle)
+                            : 'Hola. Te envío una cotización y el detalle de la cotización.'
+                        )}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-medium bg-primary text-primary-foreground hover:opacity-90 transition-opacity"
+                      >
+                        <MessageCircle className="h-5 w-5" aria-hidden />
+                        Contactar por WhatsApp
+                      </a>
+                      <Button onClick={() => { setLastSuccessData(null); setShowForm(false); }} variant="outline">
+                        Cerrar
+                      </Button>
+                    </div>
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-6">

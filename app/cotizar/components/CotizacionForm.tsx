@@ -111,9 +111,39 @@ const getGoogleMapsLink = (direccion: string) => {
 // OPAI public config URL
 const OPAI_URL = process.env.NEXT_PUBLIC_OPAI_API_URL || 'https://opai.gard.cl';
 
+// Mensaje predefinido para WhatsApp (modal y email al cliente)
+function buildWhatsAppCotizacionMessage(nombre: string, apellido: string, empresa: string, detalle?: string): string {
+  const base = `Hola, ${nombre}. Soy ${nombre} ${apellido} de ${empresa}. Te envío una cotización y el detalle de la cotización.`;
+  return detalle?.trim() ? `${base}\n\n${detalle.trim()}` : base;
+}
+
+// Mensaje para el link de WhatsApp en el email a comercial@gard.cl (para que comercial le escriba al cliente)
+function buildWhatsAppComercialToClientMessage(
+  nombreCliente: string,
+  empresa: string,
+  direccion: string,
+  comuna: string,
+  ciudad: string,
+  servicioRequerido: string,
+  dotacion: Array<{ puesto: string; cantidad: number }> | undefined,
+  detalleCotizacion: string
+): string {
+  const ubicacion = [direccion, comuna, ciudad].filter(Boolean).join(', ') || direccion;
+  let consisteEn: string;
+  if (dotacion && dotacion.length > 0) {
+    const partes = dotacion.map((d) => `${d.cantidad} puesto${d.cantidad !== 1 ? 's' : ''} de ${d.puesto}`);
+    consisteEn = partes.join(', ');
+    if (detalleCotizacion?.trim()) consisteEn += `. ${detalleCotizacion.trim()}`;
+  } else {
+    consisteEn = detalleCotizacion?.trim() || servicioRequerido;
+  }
+  return `Hola ${nombreCliente}, te contacto de gard.cl. Nos enviaste una cotización para la empresa ${empresa}, ubicada en ${ubicacion}, que consiste en ${consisteEn}.`;
+}
+
 export default function CotizacionForm({ prefillServicio, prefillIndustria }: CotizacionFormProps = {}) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formStatus, setFormStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [lastSuccessData, setLastSuccessData] = useState<{ nombre: string; apellido: string; empresa: string; cotizacion: string } | null>(null);
   const autocompleteInputRef = useRef<HTMLInputElement | null>(null);
   const [mapLoaded, setMapLoaded] = useState(false);
   const [puestosOptions, setPuestosOptions] = useState<{ value: string; label: string }[]>([]);
@@ -300,6 +330,23 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
     setValue(`dotacion.${index}.horaFin`, p.horaFin);
   }, [setValue]);
 
+  // Comparar arrays de días (sin importar orden) para marcar preset activo
+  const diasMatch = (current: string[], expected: string[]) =>
+    current.length === expected.length && current.every((d) => expected.includes(d)) && expected.every((d) => current.includes(d));
+
+  const isDiasPresetActive = (index: number, preset: 'todaSemana' | 'lunVie' | 'finSemana') => {
+    const dias = watch(`dotacion.${index}.dias`) || [];
+    const p = PRESETS[preset];
+    return 'dias' in p && Array.isArray(p.dias) && diasMatch(dias, p.dias);
+  };
+
+  const isTurnoPresetActive = (index: number, preset: 'deDia' | 'deNoche') => {
+    const inicio = watch(`dotacion.${index}.horaInicio`);
+    const fin = watch(`dotacion.${index}.horaFin`);
+    const p = PRESETS[preset];
+    return inicio === p.horaInicio && fin === p.horaFin;
+  };
+
   const puestosParaSelect = puestosOptions.length > 0 ? puestosOptions : PUESTOS_DEFAULT;
   const addPuesto = useCallback(() => {
     append({
@@ -325,6 +372,26 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
     try {
       setIsSubmitting(true);
       
+      // Mensaje para WhatsApp (botón del modal y link en el email al cliente)
+      const whatsappMessage = buildWhatsAppCotizacionMessage(
+        data.nombre,
+        data.apellido,
+        data.empresa,
+        data.cotizacion || ''
+      );
+
+      // Mensaje para el link de WhatsApp en el email a comercial@gard.cl (para responder al cliente)
+      const whatsappComercialToClient = buildWhatsAppComercialToClientMessage(
+        data.nombre,
+        data.empresa,
+        data.direccion,
+        data.comuna || '',
+        data.ciudad || '',
+        data.servicioRequerido,
+        data.dotacion?.map((d) => ({ puesto: d.puesto, cantidad: d.cantidad })),
+        data.cotizacion || ''
+      );
+
       // Map to OPAI public leads format
       const opaiPayload = {
         nombre: data.nombre,
@@ -342,6 +409,8 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
           : 'otro',
         detalle: (data.cotizacion || '') + (data.utm_source ? `\n\n[UTM: ${data.utm_source}/${data.utm_medium}/${data.utm_campaign}]` : ''),
         dotacion: isGuardias && data.dotacion && data.dotacion.length > 0 ? data.dotacion : undefined,
+        whatsapp_prefilled_message: whatsappMessage,
+        whatsapp_message_comercial_to_cliente: whatsappComercialToClient,
       };
       
       const response = await fetch(API_URLS.COTIZACION, {
@@ -351,6 +420,7 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
       });
       
       if (response.ok) {
+        setLastSuccessData({ nombre: data.nombre, apellido: data.apellido, empresa: data.empresa, cotizacion: data.cotizacion || '' });
         setFormStatus('success');
         form.reset();
         sessionStorage.removeItem('user_service');
@@ -383,6 +453,7 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
           body: JSON.stringify({ ...opaiPayload, emailOnly: true }),
         });
         if (emailOnlyRes.ok) {
+          setLastSuccessData({ nombre: data.nombre, apellido: data.apellido, empresa: data.empresa, cotizacion: data.cotizacion || '' });
           setFormStatus('success');
           form.reset();
           sessionStorage.removeItem('user_service');
@@ -403,6 +474,17 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
       }
     } catch (error) {
       // Fallback: error de red o OPAI caído - intentar email-only y luego Make
+      const whatsappMessageFallback = buildWhatsAppCotizacionMessage(data.nombre, data.apellido, data.empresa, data.cotizacion || '');
+      const whatsappComercialFallback = buildWhatsAppComercialToClientMessage(
+        data.nombre,
+        data.empresa,
+        data.direccion,
+        data.comuna || '',
+        data.ciudad || '',
+        data.servicioRequerido,
+        data.dotacion?.map((d) => ({ puesto: d.puesto, cantidad: d.cantidad })),
+        data.cotizacion || ''
+      );
       const fallbackPayload = {
         nombre: data.nombre,
         apellido: data.apellido,
@@ -419,6 +501,8 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
         detalle: data.cotizacion || '',
         dotacion: isGuardias && data.dotacion && data.dotacion.length > 0 ? data.dotacion : undefined,
         emailOnly: true,
+        whatsapp_prefilled_message: whatsappMessageFallback,
+        whatsapp_message_comercial_to_cliente: whatsappComercialFallback,
       };
       try {
         const emailOnlyRes = await fetch(API_URLS.COTIZACION, {
@@ -427,6 +511,7 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
           body: JSON.stringify(fallbackPayload),
         });
         if (emailOnlyRes.ok) {
+          setLastSuccessData({ nombre: data.nombre, apellido: data.apellido, empresa: data.empresa, cotizacion: data.cotizacion || '' });
           setFormStatus('success');
           form.reset();
           sessionStorage.removeItem('user_service');
@@ -451,6 +536,7 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
         } catch (_) { /* Make también puede fallar */ }
         setFormStatus('error');
       }
+      setLastSuccessData(null);
       console.error('Error al enviar el formulario:', error);
     } finally {
       setIsSubmitting(false);
@@ -470,7 +556,11 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
           <p className="text-body-base mb-6">Nuestro equipo comercial revisará tu requerimiento y te contactará en menos de 12 horas hábiles.</p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center items-center mb-6">
             <a
-              href="https://wa.me/56982307771"
+              href={`https://wa.me/56982307771?text=${encodeURIComponent(
+                lastSuccessData
+                  ? buildWhatsAppCotizacionMessage(lastSuccessData.nombre, lastSuccessData.apellido, lastSuccessData.empresa, lastSuccessData.cotizacion)
+                  : 'Hola. Te envío una cotización y el detalle de la cotización.'
+              )}`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 gard-btn gard-btn-primary gard-btn-lg rounded-2xl hover:scale-[1.02] transition-transform"
@@ -479,7 +569,7 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
               Contactar por WhatsApp
             </a>
             <Button
-              onClick={() => setFormStatus('idle')}
+              onClick={() => { setLastSuccessData(null); setFormStatus('idle'); }}
               variant="secondary"
               className="rounded-2xl"
             >
@@ -653,21 +743,43 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
                         <div className="space-y-2">
                           <p className="text-xs font-medium text-muted-foreground">Días de servicio — elige uno:</p>
                           <div className="flex flex-wrap gap-2">
-                            {(['todaSemana', 'lunVie', 'finSemana'] as const).map((preset) => (
-                              <button key={preset} type="button" onClick={() => applyPreset(index, preset)}
-                                className="px-3 py-1.5 rounded-lg text-xs font-medium bg-muted hover:bg-primary/20 hover:text-primary transition-colors">
-                                {preset === 'todaSemana' ? 'Toda la semana' : preset === 'lunVie' ? 'Lunes a viernes' : 'Solo fin de semana'}
-                              </button>
-                            ))}
+                            {(['todaSemana', 'lunVie', 'finSemana'] as const).map((preset) => {
+                              const isActive = isDiasPresetActive(index, preset);
+                              return (
+                                <button
+                                  key={preset}
+                                  type="button"
+                                  onClick={() => applyPreset(index, preset)}
+                                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
+                                    isActive
+                                      ? 'bg-primary text-primary-foreground ring-2 ring-primary ring-offset-2 ring-offset-background'
+                                      : 'bg-muted hover:bg-primary/20 hover:text-primary'
+                                  }`}
+                                >
+                                  {preset === 'todaSemana' ? 'Toda la semana' : preset === 'lunVie' ? 'Lunes a viernes' : 'Solo fin de semana'}
+                                </button>
+                              );
+                            })}
                           </div>
                           <p className="text-xs font-medium text-muted-foreground mt-2">Turno:</p>
                           <div className="flex flex-wrap gap-2">
-                            {(['deDia', 'deNoche'] as const).map((preset) => (
-                              <button key={preset} type="button" onClick={() => applyPreset(index, preset)}
-                                className="px-3 py-1.5 rounded-lg text-xs font-medium bg-muted hover:bg-primary/20 hover:text-primary transition-colors">
-                                {preset === 'deDia' ? 'De día (08:00–20:00)' : 'De noche (20:00–08:00)'}
-                              </button>
-                            ))}
+                            {(['deDia', 'deNoche'] as const).map((preset) => {
+                              const isActive = isTurnoPresetActive(index, preset);
+                              return (
+                                <button
+                                  key={preset}
+                                  type="button"
+                                  onClick={() => applyPreset(index, preset)}
+                                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
+                                    isActive
+                                      ? 'bg-primary text-primary-foreground ring-2 ring-primary ring-offset-2 ring-offset-background'
+                                      : 'bg-muted hover:bg-primary/20 hover:text-primary'
+                                  }`}
+                                >
+                                  {preset === 'deDia' ? 'De día (08:00–20:00)' : 'De noche (20:00–08:00)'}
+                                </button>
+                              );
+                            })}
                           </div>
                         </div>
 
