@@ -20,6 +20,7 @@ import {
 import { Loader } from '@googlemaps/js-api-loader';
 import { useGtmEvent } from '../../components/EventTracker';
 import API_URLS from '@/app/config/api';
+import { getPaginaWebFromEmail, diasParaOpai } from '@/lib/opaiPayload';
 import { trackFormSubmission } from '@/lib/analytics/formTracking';
 
 // Declaración para Google Maps API
@@ -272,11 +273,9 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
       types: ['address'],
       componentRestrictions: { country: 'cl' },
     });
+    autocomplete.setOptions({ fields: ['formatted_address', 'geometry', 'address_components'] });
 
     const isMobile = window.innerWidth < 768;
-    if (isMobile) {
-      autocomplete.setOptions({ fields: ['formatted_address', 'geometry', 'address_components'] });
-    }
 
     if (isMobile && autocompleteInputRef.current) {
       autocompleteInputRef.current.addEventListener('focus', (e) => {
@@ -292,13 +291,18 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
       setValue('direccion', place.formatted_address || '');
       let comuna = '';
       let ciudad = '';
+      let region = '';
       place.address_components.forEach((component: any) => {
         const types = component.types;
         if (types.includes('locality')) ciudad = component.long_name;
+        if (types.includes('administrative_area_level_1')) region = component.long_name;
         if (types.includes('administrative_area_level_3') || types.includes('sublocality_level_1') || types.includes('sublocality')) {
           comuna = component.long_name;
         }
       });
+      if (region && (region.includes('Metropolitana') || region.includes('Santiago'))) {
+        ciudad = 'Santiago';
+      }
       setValue('comuna', comuna);
       setValue('ciudad', ciudad);
       if (place.geometry && place.geometry.location) {
@@ -392,6 +396,19 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
         data.cotizacion || ''
       );
 
+      const detalleCompleto = (data.cotizacion || '') + (data.utm_source ? `\n\n[UTM: ${data.utm_source}/${data.utm_medium}/${data.utm_campaign}]` : '');
+      const detalleTruncado = detalleCompleto.length > 5000 ? detalleCompleto.slice(0, 4997) + '...' : detalleCompleto;
+
+      const dotacionOpai = isGuardias && data.dotacion && data.dotacion.length > 0
+        ? data.dotacion.map((d) => ({
+            puesto: d.puesto,
+            cantidad: d.cantidad,
+            dias: diasParaOpai(d.dias || []),
+            horaInicio: d.horaInicio || '08:00',
+            horaFin: d.horaFin || '20:00',
+          }))
+        : undefined;
+
       // Map to OPAI public leads format
       const opaiPayload = {
         nombre: data.nombre,
@@ -402,13 +419,16 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
         direccion: data.direccion,
         comuna: data.comuna || '',
         ciudad: data.ciudad || '',
-        pagina_web: '',
+        lat: data.latitude != null ? data.latitude : undefined,
+        lng: data.longitude != null ? data.longitude : undefined,
+        pagina_web: getPaginaWebFromEmail(data.email),
         industria: data.tipoIndustria,
         servicio: data.servicioRequerido === 'Guardias de Seguridad' ? 'guardias_seguridad'
           : data.servicioRequerido === 'Seguridad Electrónica' ? 'seguridad_electronica'
           : 'otro',
-        detalle: (data.cotizacion || '') + (data.utm_source ? `\n\n[UTM: ${data.utm_source}/${data.utm_medium}/${data.utm_campaign}]` : ''),
-        dotacion: isGuardias && data.dotacion && data.dotacion.length > 0 ? data.dotacion : undefined,
+        detalle: detalleTruncado,
+        dotacion: dotacionOpai,
+        source: 'web_cotizador',
         whatsapp_prefilled_message: whatsappMessage,
         whatsapp_message_comercial_to_cliente: whatsappComercialToClient,
       };
@@ -485,6 +505,15 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
         data.dotacion?.map((d) => ({ puesto: d.puesto, cantidad: d.cantidad })),
         data.cotizacion || ''
       );
+      const dotacionFallback = isGuardias && data.dotacion && data.dotacion.length > 0
+        ? data.dotacion.map((d) => ({
+            puesto: d.puesto,
+            cantidad: d.cantidad,
+            dias: diasParaOpai(d.dias || []),
+            horaInicio: d.horaInicio || '08:00',
+            horaFin: d.horaFin || '20:00',
+          }))
+        : undefined;
       const fallbackPayload = {
         nombre: data.nombre,
         apellido: data.apellido,
@@ -494,12 +523,16 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
         direccion: data.direccion,
         comuna: data.comuna || '',
         ciudad: data.ciudad || '',
+        lat: data.latitude != null ? data.latitude : undefined,
+        lng: data.longitude != null ? data.longitude : undefined,
+        pagina_web: getPaginaWebFromEmail(data.email),
         industria: data.tipoIndustria,
         servicio: data.servicioRequerido === 'Guardias de Seguridad' ? 'guardias_seguridad'
           : data.servicioRequerido === 'Seguridad Electrónica' ? 'seguridad_electronica'
           : 'otro',
-        detalle: data.cotizacion || '',
-        dotacion: isGuardias && data.dotacion && data.dotacion.length > 0 ? data.dotacion : undefined,
+        detalle: (data.cotizacion || '').slice(0, 5000),
+        dotacion: dotacionFallback,
+        source: 'web_cotizador',
         emailOnly: true,
         whatsapp_prefilled_message: whatsappMessageFallback,
         whatsapp_message_comercial_to_cliente: whatsappComercialFallback,

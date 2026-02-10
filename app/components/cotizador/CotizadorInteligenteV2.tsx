@@ -46,6 +46,7 @@ import {
 } from '@/lib/calculadora-costos';
 import { Loader } from '@googlemaps/js-api-loader';
 import API_URLS from '@/app/config/api';
+import { getPaginaWebFromEmail } from '@/lib/opaiPayload';
 import { trackFormSubmission } from '@/lib/analytics/formTracking';
 import { Button } from '@/components/ui/button';
 
@@ -273,6 +274,7 @@ export default function CotizadorInteligenteV2() {
             types: ['address'],
             componentRestrictions: { country: 'cl' },
           });
+          autocomplete.setOptions({ fields: ['formatted_address', 'geometry', 'address_components'] });
 
           autocomplete.addListener('place_changed', () => {
             const place = autocomplete.getPlace();
@@ -283,23 +285,23 @@ export default function CotizadorInteligenteV2() {
               direccion: place.formatted_address || ''
             }));
 
-            // Extraer comuna y ciudad
             let comuna = '';
             let ciudad = '';
+            let region = '';
 
             place.address_components.forEach((component: any) => {
               const types = component.types;
-              
-              if (types.includes('locality')) {
-                ciudad = component.long_name;
-              }
-              
-              if (types.includes('administrative_area_level_3') || 
-                  types.includes('sublocality_level_1') || 
+              if (types.includes('locality')) ciudad = component.long_name;
+              if (types.includes('administrative_area_level_1')) region = component.long_name;
+              if (types.includes('administrative_area_level_3') ||
+                  types.includes('sublocality_level_1') ||
                   types.includes('sublocality')) {
                 comuna = component.long_name;
               }
             });
+            if (region && (region.includes('Metropolitana') || region.includes('Santiago'))) {
+              ciudad = 'Santiago';
+            }
 
             setFormData(prev => ({
               ...prev,
@@ -556,6 +558,8 @@ export default function CotizadorInteligenteV2() {
         landing_page: formData.landing_page || localStorage.getItem('landing_page') || window.location.pathname,
       };
 
+      const detalleTruncado = detalleCompleto.length > 5000 ? detalleCompleto.slice(0, 4997) + '...' : detalleCompleto;
+
       // Payload en formato OPAI (mismo endpoint que /cotizar) para emails con links WhatsApp
       const dataToSend = {
         ...formData,
@@ -568,9 +572,13 @@ export default function CotizadorInteligenteV2() {
         direccion: formData.direccion,
         comuna: formData.comuna || '',
         ciudad: formData.ciudad || '',
+        lat: formData.latitude != null ? formData.latitude : undefined,
+        lng: formData.longitude != null ? formData.longitude : undefined,
+        pagina_web: getPaginaWebFromEmail(formData.email),
         industria: formData.rubro,
         servicio: 'guardias_seguridad',
-        detalle: detalleCompleto,
+        detalle: detalleTruncado,
+        source: 'web_cotizador_inteligente',
         tipo_formulario: 'cotizador_inteligente',
         direccionGoogleMaps: getGoogleMapsLink(formData.direccion),
         fecha: new Date().toISOString(),
