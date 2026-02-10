@@ -152,7 +152,6 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
   const [mapLoaded, setMapLoaded] = useState(false);
   const [puestosOptions, setPuestosOptions] = useState<{ value: string; label: string }[]>([]);
   const [industriesOptions, setIndustriesOptions] = useState<{ value: string; label: string }[]>([]);
-  const [serviceTypesOptions, setServiceTypesOptions] = useState<{ value: string; label: string }[]>([]);
   const { pushEvent } = useGtmEvent();
 
   // ── Dotación: modo rápido vs manual ──
@@ -173,7 +172,6 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
         if (data.success && data.data) {
           if (data.data.puestos?.length) setPuestosOptions(data.data.puestos);
           if (data.data.industries?.length) setIndustriesOptions(data.data.industries);
-          if (data.data.serviceTypes?.length) setServiceTypesOptions(data.data.serviceTypes);
         }
       } catch {
         // Fallback silencioso: el formulario usa opciones por defecto si OPAI no está disponible
@@ -236,9 +234,7 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
     }
     
     if (savedService) {
-      // Try to match with API values or defaults
-      const allServices = serviceTypesOptions.length > 0 ? serviceTypesOptions : SERVICIOS_DEFAULT;
-      const servicioEncontrado = allServices.find(s => 
+      const servicioEncontrado = SERVICIOS_DEFAULT.find(s => 
         s.value.toLowerCase().includes(savedService.toLowerCase()) ||
         s.label.toLowerCase().includes(savedService.toLowerCase())
       );
@@ -834,7 +830,7 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
                       <SelectTrigger><SelectValue placeholder="Selecciona el servicio que necesitas" /></SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      {(serviceTypesOptions.length > 0 ? serviceTypesOptions : SERVICIOS_DEFAULT).map((opt) => (
+                      {SERVICIOS_DEFAULT.map((opt) => (
                         <SelectItem key={opt.value} value={opt.value}>{opt.label}</SelectItem>
                       ))}
                     </SelectContent>
