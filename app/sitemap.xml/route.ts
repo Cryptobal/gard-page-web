@@ -136,18 +136,22 @@ async function generateSitemap() {
     priority: 0.85, // Alta prioridad para páginas de servicios
   }));
 
-  // Páginas de industrias dinámicas con prioridades diferenciadas
-  const industryPages = industries.map((industry) => {
-    const slug = industry.name.toLowerCase()
+  // Pre-calcular slugs de industrias para evitar normalización redundante en bucles
+  const industriesWithSlugs = industries.map(industry => ({
+    ...industry,
+    slug: industry.name.toLowerCase()
       .normalize('NFD')
       .replace(/[\u0300-\u036f]/g, '')
       .replace(/[^\w\s]/g, '')
-      .replace(/\s+/g, '-');
-    
-    const { priority, changeFrequency } = getIndustriaPriority(slug);
+      .replace(/\s+/g, '-')
+  }));
+
+  // Páginas de industrias dinámicas con prioridades diferenciadas
+  const industryPages = industriesWithSlugs.map((industry) => {
+    const { priority, changeFrequency } = getIndustriaPriority(industry.slug);
     
     return {
-      url: `${baseUrl}/industrias/${slug}`,
+      url: `${baseUrl}/industrias/${industry.slug}`,
       lastModified: STATIC_LASTMOD,
       changeFrequency,
       priority,
@@ -158,20 +162,14 @@ async function generateSitemap() {
   const servicioIndustriaPages = [];
   
   for (const servicio of servicesMetadata) {
-    for (const industria of industries) {
-      const industriaSlug = industria.name.toLowerCase()
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '')
-        .replace(/[^\w\s]/g, '')
-        .replace(/\s+/g, '-');
-      
-      if (esCombinacionValida(servicio.slug, industriaSlug)) {
-        const { priority: basePriority, changeFrequency } = getIndustriaPriority(industriaSlug);
+    for (const industria of industriesWithSlugs) {
+      if (esCombinacionValida(servicio.slug, industria.slug)) {
+        const { priority: basePriority, changeFrequency } = getIndustriaPriority(industria.slug);
         // Las páginas servicio+industria tienen +0.05 de prioridad sobre las páginas de industria sola
         const priority = Math.min(basePriority + 0.05, 1.0);
         
         servicioIndustriaPages.push({
-          url: `${baseUrl}/servicios-por-industria/${servicio.slug}/${industriaSlug}`,
+          url: `${baseUrl}/servicios-por-industria/${servicio.slug}/${industria.slug}`,
           lastModified: STATIC_LASTMOD,
           changeFrequency,
           priority,
