@@ -3,7 +3,7 @@ export const industriesMetadata = [
     slug: 'mineria',
     name: 'Minería',
     title: 'Guardias de Seguridad para Minería en Chile | Gard Security',
-    description: 'Protección especializada 24/7 para mineras. Personal certificado OS10, monitoreo remoto y respuesta inmediata. +15 años protegiendo operaciones mineras. Cotice aquí.',
+    description: 'Protección especializada 24/7 para mineras. Personal certificado OS10, monitoreo remoto y respuesta inmediata. +10 años protegiendo operaciones mineras. Cotice aquí.',
     keywords: ['guardias seguridad minería', 'seguridad minera chile', 'guardias certificados OS10', 'seguridad industrial minería', 'protección faenas mineras'],
     
     // Contenido expandido para SEO
@@ -11,7 +11,7 @@ export const industriesMetadata = [
     descriptionTitle: 'Seguridad Minera de Clase Mundial',
     descriptionParagraphs: [
       'La industria minera en Chile enfrenta desafíos de seguridad únicos debido a la ubicación remota de las faenas, el alto valor de los activos y las exigentes normativas de SERNAGEOMIN. En Gard Security, entendemos que la seguridad en minería no es solo vigilancia: es protección de vidas, activos críticos y continuidad operacional.',
-      'Contamos con más de 15 años de experiencia protegiendo operaciones mineras en zonas remotas de Chile, incluyendo Antofagasta, Atacama y Coquimbo. Como es obligatorio por ley, el 100% de nuestro personal cuenta con certificación OS10 vigente de SERNAGEOMIN. Además, nuestros guardias en minería reciben capacitación especializada adicional en protocolos mineros, primeros auxilios en altura y manejo de emergencias en zonas remotas.',
+      'Contamos con más de 10 años de experiencia protegiendo operaciones mineras en zonas remotas de Chile, incluyendo Antofagasta, Atacama y Coquimbo. Como es obligatorio por ley, el 100% de nuestro personal cuenta con certificación OS10 vigente de SERNAGEOMIN. Además, nuestros guardias en minería reciben capacitación especializada adicional en protocolos mineros, primeros auxilios en altura y manejo de emergencias en zonas remotas.',
       'Nuestros protocolos de seguridad minera incluyen control de acceso biométrico en puntos críticos, rondas programadas con tecnología RFID, monitoreo remoto 24/7 con cámaras PTZ de alta definición, y respuesta ante emergencias coordinada con equipos de rescate. Cada guardia recibe capacitación específica en primeros auxilios en altura, manejo de situaciones de emergencia en faenas y protocolos anti-intrusión.',
       'Trabajamos con mineras de cobre, litio, oro y otros minerales, adaptando nuestros servicios a las particularidades de cada operación. Ya sea una faena a cielo abierto, subterránea o de procesamiento, diseñamos soluciones de seguridad que no interfieren con la productividad pero garantizan protección total.',
       'Además de guardias certificados, proveemos tecnología especializada para minería: drones de vigilancia perimetral con visión nocturna, sistemas de detección de intrusos en zonas extensas, comunicación satelital para zonas sin cobertura celular, y plataformas de gestión de incidentes integradas con los sistemas de la minera.'

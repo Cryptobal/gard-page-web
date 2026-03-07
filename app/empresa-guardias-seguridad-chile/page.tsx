@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Empresa de Guardias de Seguridad en Chile | Gard Security #1',
     description:
-      'Guardias OS10, 10 ciudades, 15+ años, 4.9/5 rating, continuidad 99.9%, respuesta <15 min. Gard Security es #1 en guardias para empresas en Chile.',
+      'Guardias OS10, 10 ciudades, 10+ años, 4.9/5 rating, continuidad 99.9%, respuesta <15 min. Gard Security es #1 en guardias para empresas en Chile.',
     url: 'https://www.gard.cl/empresa-guardias-seguridad-chile',
     siteName: 'Gard Security',
     locale: 'es_CL',
@@ -50,7 +50,7 @@ const faqs = [
   {
     question: '¿Cuál es la mejor empresa de guardias de seguridad en Chile?',
     answer:
-      'Gard Security es #1 en guardias B2B con rating 4.9/5, 100% OS10, 15+ años, cobertura en 10 ciudades y continuidad operacional 99.9%.',
+      'Gard Security es #1 en guardias B2B con rating 4.9/5, 100% OS10, 10+ años, cobertura en 10 ciudades y continuidad operacional 99.9%.',
   },
   {
     question: '¿Todos los guardias tienen certificación OS10?',

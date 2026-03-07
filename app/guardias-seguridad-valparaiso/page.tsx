@@ -9,7 +9,7 @@ import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 
 export const metadata: Metadata = {
   title: 'Guardias de Seguridad en Valparaíso | Puerto y Patrimonio | Gard Security',
-  description: 'Guardias de seguridad en Valparaíso especializados en puertos, zonas patrimoniales y turismo. Protección 24/7 para empresas, edificios y eventos. +15 años de experiencia. Cotice.',
+  description: 'Guardias de seguridad en Valparaíso especializados en puertos, zonas patrimoniales y turismo. Protección 24/7 para empresas, edificios y eventos. +10 años de experiencia. Cotice.',
   keywords: ['guardias seguridad valparaíso', 'seguridad puerto valparaíso', 'vigilancia patrimonio', 'empresa seguridad valparaíso', 'guardias 24/7 valparaíso'],
   robots: { index: true, follow: true },
   alternates: { canonical: 'https://www.gard.cl/guardias-seguridad-valparaiso' },
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 
 const faqs = [
   { question: '¿Por qué contratar guardias de seguridad en Valparaíso?', answer: 'Valparaíso, como principal puerto de Chile y Patrimonio de la Humanidad UNESCO, requiere seguridad especializada para proteger operaciones portuarias, zonas turísticas patrimoniales y edificios gubernamentales (Congreso Nacional). Nuestros guardias tienen experiencia en protocolos portuarios, vigilancia turística y protección patrimonial.' },
-  { question: '¿Qué experiencia tienen en seguridad portuaria?', answer: 'Contamos con más de 15 años protegiendo operaciones portuarias en Valparaíso: terminales de carga, recintos portuarios, bodegas de importación/exportación y zonas de embarque. Nuestros guardias conocen protocolos marítimos, coordinación con Capitanía de Puerto y normativas de seguridad portuaria.' },
+  { question: '¿Qué experiencia tienen en seguridad portuaria?', answer: 'Contamos con más de 10 años protegiendo operaciones portuarias en Valparaíso: terminales de carga, recintos portuarios, bodegas de importación/exportación y zonas de embarque. Nuestros guardias conocen protocolos marítimos, coordinación con Capitanía de Puerto y normativas de seguridad portuaria.' },
   { question: '¿Cuánto cuesta contratar guardias en Valparaíso?', answer: 'Se cotiza según turnos, puestos y riesgo (portuario, patrimonial, corporativo). Enviamos propuesta cerrada en 24h sin cifras genéricas.' },
   { question: '¿Cubren Viña del Mar además de Valparaíso?', answer: 'Sí, cubrimos toda la región de Valparaíso incluyendo Viña del Mar, Con Con, Quilpué y Villa Alemana. Tenemos equipos especializados para zonas turísticas, balnearios, edificios corporativos y centros comerciales en toda el área metropolitana.' }
 ];
@@ -80,7 +80,7 @@ export default function GuardiasValparaisoPage() {
           <div className="flex flex-wrap justify-center gap-4 mb-8">
             <div className="flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
               <CheckCircle className="h-5 w-5 text-green-400 mr-2" />
-              <span className="text-white font-medium">15+ Años en Valparaíso</span>
+              <span className="text-white font-medium">10+ Años en Valparaíso</span>
             </div>
             <div className="flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
               <CheckCircle className="h-5 w-5 text-green-400 mr-2" />
@@ -280,7 +280,7 @@ export default function GuardiasValparaisoPage() {
             Proteja su Operación en Valparaíso
           </h2>
           <p className="text-xl mb-8 text-white/90">
-            Especialistas en seguridad portuaria, patrimonial y turística con +15 años en la región
+            Especialistas en seguridad portuaria, patrimonial y turística con +10 años en la región
           </p>
           <a href="#cotizar" className="gard-btn bg-white text-primary hover:bg-white/90 gard-btn-lg inline-flex items-center">
             Solicitar Cotización <ArrowRight className="ml-2 h-5 w-5" />

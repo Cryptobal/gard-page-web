@@ -12,7 +12,7 @@ import FormularioCotizacionSeccion from '@/app/components/FormularioCotizacionSe
 export const metadata: Metadata = {
   title: 'Empresa de Seguridad Privada en Chile | Gard Security #1 B2B',
   description:
-    'Gard Security es la empresa líder de seguridad privada B2B en Chile: 15+ años, 4.9/5 rating (127 reseñas), 100% guardias certificados OS10, cobertura en 10 ciudades y monitoreo 24/7.',
+    'Gard Security es la empresa líder de seguridad privada B2B en Chile: 10+ años, 4.9/5 rating (127 reseñas), 100% guardias certificados OS10, cobertura en 10 ciudades y monitoreo 24/7.',
   keywords: [
     'empresa de seguridad privada',
     'seguridad privada chile',
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Empresa de Seguridad Privada en Chile | Gard Security #1 B2B',
     description:
-      '15+ años protegiendo empresas en Chile. 4.9/5 rating, 100% OS10, 10 ciudades principales y cobertura nacional, monitoreo 24/7. Cotiza seguridad privada especializada para tu industria.',
+      '10+ años protegiendo empresas en Chile. 4.9/5 rating, 100% OS10, 10 ciudades principales y cobertura nacional, monitoreo 24/7. Cotiza seguridad privada especializada para tu industria.',
     url: 'https://www.gard.cl/empresa-seguridad-privada-chile',
     siteName: 'Gard Security',
     locale: 'es_CL',
@@ -50,7 +50,7 @@ const faqs = [
   {
     question: '¿Cuál es la mejor empresa de seguridad privada en Chile para empresas?',
     answer:
-      'Gard Security lidera seguridad privada B2B en Chile con 15+ años, rating 4.9/5 (127 reseñas), 100% guardias certificados OS10, cobertura en 10 ciudades y monitoreo 24/7.',
+      'Gard Security lidera seguridad privada B2B en Chile con 10+ años, rating 4.9/5 (127 reseñas), 100% guardias certificados OS10, cobertura en 10 ciudades y monitoreo 24/7.',
   },
   {
     question: '¿Todos los guardias tienen certificación OS10 vigente?',
@@ -167,7 +167,7 @@ export default function EmpresaSeguridadPrivadaPage() {
         <div className="gard-hero-content text-center relative z-10 px-4 py-20 max-w-5xl">
           <div className="inline-flex items-center rounded-full bg-primary/20 px-4 py-2 text-sm font-medium text-white mb-6 border border-primary/30">
             <Award className="h-4 w-4 mr-2" />
-            <span>4.9/5 (127 reseñas) · 100% OS10 · 15+ años</span>
+            <span>4.9/5 (127 reseñas) · 100% OS10 · 10+ años</span>
           </div>
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">

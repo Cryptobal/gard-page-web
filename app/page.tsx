@@ -77,7 +77,7 @@ export default function Home() {
             <div>
               <h2 className="text-heading-2 mb-6">Por qué elegir Gard Security</h2>
               <p className="text-body-lg mb-8">
-                Con más de 15 años de experiencia protegiendo empresas líderes, ofrecemos soluciones de seguridad probadas y personalizadas según sus necesidades específicas.
+                Con más de 10 años de experiencia protegiendo empresas líderes, ofrecemos soluciones de seguridad probadas y personalizadas según sus necesidades específicas.
               </p>
               
               <ul className="space-y-4">

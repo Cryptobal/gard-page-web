@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   keywords: 'seguridad privada, guardias de seguridad, empresa de seguridad, vigilancia, protección, Gard Security, Chile',
   authors: [{ name: 'Gard Security' }],
   creator: 'Gard Security',
+  manifest: '/manifest.json',
   icons: {
     icon: [
       { url: '/icons/icon-48x48.png', sizes: '48x48', type: 'image/png' },

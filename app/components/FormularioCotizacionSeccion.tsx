@@ -219,7 +219,7 @@ export default function FormularioCotizacionSeccion({
               <ul className="space-y-4">
                 <li className="flex items-start gap-4 group">
                   <div className="w-2 h-2 bg-primary rounded-full mt-2 group-hover:scale-125 transition-transform duration-300"></div>
-                  <span className="text-muted-foreground dark:text-gray-200 group-hover:text-primary dark:group-hover:text-white transition-colors duration-300">Especialistas en seguridad con más de 15 años de experiencia</span>
+                  <span className="text-muted-foreground dark:text-gray-200 group-hover:text-primary dark:group-hover:text-white transition-colors duration-300">Especialistas en seguridad con más de 10 años de experiencia</span>
                 </li>
                 <li className="flex items-start gap-4 group">
                   <div className="w-2 h-2 bg-primary rounded-full mt-2 group-hover:scale-125 transition-transform duration-300"></div>

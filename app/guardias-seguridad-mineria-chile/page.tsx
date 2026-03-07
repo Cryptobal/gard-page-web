@@ -10,13 +10,13 @@ import FormularioCotizacionSeccion from '@/app/components/FormularioCotizacionSe
 
 export const metadata: Metadata = {
   title: 'Guardias de Seguridad para Minería Chile | Certificados OS10',
-  description: 'Guardias certificados OS10 para faenas mineras. Protección 24/7, monitoreo remoto y respuesta inmediata. +15 años protegiendo operaciones mineras en Chile. Cotice en línea ahora.',
+  description: 'Guardias certificados OS10 para faenas mineras. Protección 24/7, monitoreo remoto y respuesta inmediata. +10 años protegiendo operaciones mineras en Chile. Cotice en línea ahora.',
   keywords: ['guardias seguridad minería chile', 'guardias certificados OS10', 'seguridad faenas mineras', 'guardias para minas', 'seguridad industrial minería'],
   robots: { index: true, follow: true },
   alternates: { canonical: 'https://www.gard.cl/guardias-seguridad-mineria-chile' },
   openGraph: {
     title: 'Guardias de Seguridad para Minería Chile | Certificados OS10 | Gard Security',
-    description: 'Guardias certificados OS10 para faenas mineras. Protección 24/7, monitoreo remoto y respuesta inmediata. +15 años protegiendo las principales mineras de Chile.',
+    description: 'Guardias certificados OS10 para faenas mineras. Protección 24/7, monitoreo remoto y respuesta inmediata. +10 años protegiendo las principales mineras de Chile.',
     url: 'https://www.gard.cl/guardias-seguridad-mineria-chile',
     siteName: 'Gard Security',
     locale: 'es_CL',
@@ -61,7 +61,7 @@ export default function GuardiasSeguridadMineriaPage() {
         <div className="gard-hero-content text-center relative z-10 px-4 py-20 max-w-5xl">
           <div className="inline-flex items-center rounded-full bg-primary/20 px-4 py-2 text-sm font-medium text-white mb-6 border border-primary/30">
             <Award className="h-4 w-4 mr-2" />
-            <span>+15 Años Protegiendo Operaciones Mineras en Chile</span>
+            <span>+10 Años Protegiendo Operaciones Mineras en Chile</span>
           </div>
           
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">

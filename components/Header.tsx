@@ -23,6 +23,7 @@ const navLinks = [
   },
   { href: '/tecnologia-seguridad', label: 'Tecnologías' },
   { href: '/reclutamiento', label: 'Trabaja con Nosotros' },
+  { href: '/blog', label: 'Blog' },
   { href: '/cotizar', label: 'Cotizar', isCTA: true },
 ];
 

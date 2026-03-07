@@ -8,7 +8,6 @@ import CloudflareImage from '@/components/CloudflareImage';
 import dynamic from 'next/dynamic';
 
 const VideoBackground = dynamic(() => import('@/components/ui/VideoBackground'), {
-  ssr: false,
   loading: () => null
 });
 import { getCloudflareImageUrl } from '@/lib/images';
@@ -162,16 +161,27 @@ export default function GardHero({
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent z-10"></div>
         )}
         
-        {/* Video o imagen de fondo con Parallax */}
-        <motion.div style={{ y }} className="absolute inset-0 w-full h-full">
-          <VideoBackground
-            videoId={videoId}
-            imageId={imageId}
-            title={title}
-            overlay={overlay}
-            posterUrl={imageId ? getCloudflareImageUrl(imageId, 'public', { width: 1920, quality: 85 }) : undefined}
-          />
-        </motion.div>
+        {/* Video layer - fades in over the dark gradient background when ready */}
+        {videoId ? (
+          <motion.div style={{ y }} className="absolute inset-0 w-full h-full">
+            <VideoBackground
+              videoId={videoId}
+              title={title}
+              overlay={overlay}
+            />
+          </motion.div>
+        ) : imageId ? (
+          <motion.div style={{ y }} className="absolute inset-0 w-full h-full">
+            <CloudflareImage
+              imageId={imageId}
+              alt={title}
+              fill
+              priority
+              className="object-cover"
+              sizes="100vw"
+            />
+          </motion.div>
+        ) : null}
         
         {/* Contenido del Hero */}
         <div className={`gard-hero-content z-20 py-16 md:py-24 ${variant === "home" ? "w-full px-4 md:px-6 lg:px-8" : "gard-container"}`}>

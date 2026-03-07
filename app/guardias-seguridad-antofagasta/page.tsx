@@ -9,7 +9,7 @@ import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 
 export const metadata: Metadata = {
   title: 'Guardias de Seguridad en Antofagasta | Certificados OS10 | Gard Security',
-  description: 'Guardias de seguridad certificados OS10 en Antofagasta. Especializados en minería, puertos y zonas industriales. Respuesta inmediata 24/7. +15 años de experiencia. Cotice ahora.',
+  description: 'Guardias de seguridad certificados OS10 en Antofagasta. Especializados en minería, puertos y zonas industriales. Respuesta inmediata 24/7. +10 años de experiencia. Cotice ahora.',
   keywords: ['guardias seguridad antofagasta', 'seguridad minera antofagasta', 'guardias certificados os10 antofagasta', 'empresa seguridad antofagasta', 'vigilancia 24/7 antofagasta'],
   robots: { index: true, follow: true },
   alternates: { canonical: 'https://www.gard.cl/guardias-seguridad-antofagasta' },
@@ -80,7 +80,7 @@ export default function GuardiasAntofagastaPage() {
           <div className="flex flex-wrap justify-center gap-4 mb-8">
             <div className="flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
               <CheckCircle className="h-5 w-5 text-green-400 mr-2" />
-              <span className="text-white font-medium">15+ Años en Antofagasta</span>
+              <span className="text-white font-medium">10+ Años en Antofagasta</span>
             </div>
             <div className="flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
               <CheckCircle className="h-5 w-5 text-green-400 mr-2" />
@@ -104,7 +104,7 @@ export default function GuardiasAntofagastaPage() {
           <div className="text-center mb-12">
             <h2 className="text-heading-2 mb-4">¿Por Qué Somos #1 en Seguridad en Antofagasta?</h2>
             <p className="text-body-lg text-muted-foreground max-w-3xl mx-auto">
-              Más de 15 años protegiendo operaciones mineras, puertos y zonas industriales en Antofagasta y la región
+              Más de 10 años protegiendo operaciones mineras, puertos y zonas industriales en Antofagasta y la región
             </p>
           </div>
 
@@ -280,7 +280,7 @@ export default function GuardiasAntofagastaPage() {
             ¿Necesita Seguridad en Antofagasta?
           </h2>
           <p className="text-xl mb-8 text-white/90">
-            Más de 15 años protegiendo operaciones mineras e industriales en la capital del cobre de Chile
+            Más de 10 años protegiendo operaciones mineras e industriales en la capital del cobre de Chile
           </p>
           <a href="#cotizar" className="gard-btn bg-white text-primary hover:bg-white/90 gard-btn-lg inline-flex items-center">
             Solicitar Cotización Ahora <ArrowRight className="ml-2 h-5 w-5" />

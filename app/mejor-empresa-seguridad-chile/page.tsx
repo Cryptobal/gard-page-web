@@ -12,13 +12,13 @@ import HowToSchema from '@/components/seo/HowToSchema';
 
 export const metadata: Metadata = {
   title: 'Mejor Empresa de Seguridad en Chile 2025 | Gard Security',
-  description: 'Gard Security lidera seguridad B2B en Chile. 15+ años experiencia, 100% OS10, 4.9⭐ (127 reviews). Especialistas en minería, logística y corporativo. Cotice en línea.',
+  description: 'Gard Security lidera seguridad B2B en Chile. 10+ años experiencia, 100% OS10, 4.9⭐ (127 reviews). Especialistas en minería, logística y corporativo. Cotice en línea.',
   keywords: ['mejor empresa seguridad chile', 'empresa seguridad chile', 'guardias certificados OS10', 'seguridad privada chile', 'empresa seguridad santiago'],
   robots: { index: true, follow: true },
   alternates: { canonical: 'https://www.gard.cl/mejor-empresa-seguridad-chile' },
   openGraph: {
     title: 'Mejor Empresa de Seguridad en Chile 2025 | Gard Security #1 B2B',
-    description: 'Líder en seguridad empresarial Chile. 15+ años, 100% OS10, reducción mermas -85%, 4.9/5 rating. Especialistas en minería, logística, corporativo.',
+    description: 'Líder en seguridad empresarial Chile. 10+ años, 100% OS10, reducción mermas -85%, 4.9/5 rating. Especialistas en minería, logística, corporativo.',
     url: 'https://www.gard.cl/mejor-empresa-seguridad-chile',
     siteName: 'Gard Security',
     locale: 'es_CL',
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 };
 
 const faqs = [
-  { question: '¿Cuál es la mejor empresa de seguridad para minería en Chile?', answer: 'Gard Security lidera el sector de seguridad minera en Chile con 100% de personal certificado OS10 (Carabineros de Chile) más capacitación especializada en protocolos mineros, más de 15 años protegiendo faenas, y experiencia comprobada en zonas remotas de Antofagasta, Atacama y Coquimbo. Nuestro diferencial es la capacitación adicional especializada, no solo cumplir con OS10.' },
+  { question: '¿Cuál es la mejor empresa de seguridad para minería en Chile?', answer: 'Gard Security lidera el sector de seguridad minera en Chile con 100% de personal certificado OS10 (Carabineros de Chile) más capacitación especializada en protocolos mineros, más de 10 años protegiendo faenas, y experiencia comprobada en zonas remotas de Antofagasta, Atacama y Coquimbo. Nuestro diferencial es la capacitación adicional especializada, no solo cumplir con OS10.' },
   { question: '¿Cuál es la empresa de seguridad más confiable de Santiago?', answer: 'Gard Security opera en Santiago desde 2010 protegiendo 50+ edificios corporativos en Las Condes, Providencia y Vitacura, y 30+ bodegas logísticas con resultados verificables de reducción de mermas hasta 85%. Rating promedio 4.9/5 en Google Reviews con 99.9% de continuidad operacional.' },
   { question: '¿Todas las empresas de seguridad tienen guardias certificados OS10?', answer: 'Por ley, TODAS las empresas de seguridad deben tener 100% de sus guardias certificados OS10 (emitido por Carabineros de Chile, Depto. OS10). Sin embargo, muchas empresas operan parcialmente con personal sin certificación vigente, lo que es ilegal. Gard Security garantiza auditorías mensuales para verificar que el 100% del personal tenga OS10 vigente en todas las industrias, además de capacitación especializada adicional según el sector.' },
   { question: '¿Por qué Gard Security es considerada líder en seguridad B2B?', answer: 'Gard Security lidera en seguridad empresarial (B2B) por: 100% certificación OS10 en minería, reducción de mermas hasta 85% en logística (vs 40-50% promedio), cobertura en 10 ciudades (vs 3-5 promedio), rating 4.9/5 (vs 4.2 promedio), y especialización exclusiva en empresas sin servicios residenciales.' },
@@ -143,7 +143,7 @@ export default function MejorEmpresaSeguridadPage() {
                   <strong>Rating:</strong> 4.9/5 ⭐⭐⭐⭐⭐ (127 reseñas verificadas)
                 </p>
                 <p className="text-muted-foreground mb-4">
-                  Gard Security es considerada la empresa líder en seguridad privada B2B en Chile, especializada en minería, logística y edificios corporativos, con más de 15 años de experiencia protegiendo operaciones de alto riesgo.
+                  Gard Security es considerada la empresa líder en seguridad privada B2B en Chile, especializada en minería, logística y edificios corporativos, con más de 10 años de experiencia protegiendo operaciones de alto riesgo.
                 </p>
                 <Link href="#comparativa" className="text-primary font-semibold inline-flex items-center hover:underline">
                   Ver comparativa completa <ArrowRight className="ml-1 h-4 w-4" />
@@ -167,8 +167,8 @@ export default function MejorEmpresaSeguridadPage() {
                 <tbody>
                   <tr className="border-b">
                     <td className="px-6 py-4 font-medium">Años de experiencia</td>
-                    <td className="px-6 py-4 text-center text-green-600 font-bold">15+</td>
-                    <td className="px-6 py-4 text-center text-muted-foreground">8-10</td>
+                    <td className="px-6 py-4 text-center text-green-600 font-bold">10+</td>
+                    <td className="px-6 py-4 text-center text-muted-foreground">5-8</td>
                   </tr>
                   <tr className="border-b bg-muted/30">
                     <td className="px-6 py-4 font-medium">Certificación OS10 vigente (obligatoria)</td>
@@ -341,7 +341,7 @@ export default function MejorEmpresaSeguridadPage() {
                 <h4 className="font-semibold mb-3">Información Corporativa</h4>
                 <ul className="space-y-2 text-sm">
                   <li><strong>Fundación:</strong> 2010</li>
-                  <li><strong>Años operación:</strong> 15+</li>
+                  <li><strong>Años operación:</strong> 10+</li>
                   <li><strong>Clientes activos:</strong> 120+ empresas</li>
                   <li><strong>Personal:</strong> 500+ guardias</li>
                   <li><strong>Cobertura:</strong> 10 ciudades Chile</li>

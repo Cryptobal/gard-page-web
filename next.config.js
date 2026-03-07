@@ -23,16 +23,12 @@ const nextConfig = {
   
   // Optimización de webpack
   webpack: (config, { dev, isServer }) => {
-    // Configuración para videos
+    // Videos: usar asset/resource nativo (sin file-loader)
     config.module.rules.push({
       test: /\.(mp4|webm)$/,
-      use: {
-        loader: 'file-loader',
-        options: {
-          publicPath: '/_next/static/videos/',
-          outputPath: 'static/videos/',
-          name: '[name].[hash].[ext]',
-        },
+      type: 'asset/resource',
+      generator: {
+        filename: 'static/videos/[name].[hash][ext]',
       },
     });
 
@@ -57,15 +53,15 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ['lucide-react', '@radix-ui/react-icons', 'framer-motion'],
     scrollRestoration: true,
-    // Turbo features disponibles en Next 15 (estable)
-    turbo: {
-      rules: {
-        '*.svg': {
-          loaders: ['@svgr/webpack'],
-          as: '*.js',
-        },
-      },
-    },
+    // Turbo SVG deshabilitado - requiere @svgr/webpack instalado
+    // turbo: {
+    //   rules: {
+    //     '*.svg': {
+    //       loaders: ['@svgr/webpack'],
+    //       as: '*.js',
+    //     },
+    //   },
+    // },
   },
   
   // COMENTADO PARA SOLUCIONAR PROBLEMA DE GOOGLE ADS - las URLs del feed no tienen trailing slash

@@ -157,7 +157,7 @@ export default function OurServices({
                 
                 <div className="flex justify-center mt-auto relative z-20">
                   <span className="inline-flex items-center text-primary dark:text-[hsl(var(--gard-accent))] font-semibold group-hover:text-primary/80 transition-colors duration-300">
-                    Saber más <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
+                    Conoce {service.name} <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
                   </span>
                 </div>
               </Link>
@@ -210,7 +210,7 @@ export default function OurServices({
                   
                   <div className="flex justify-center mt-auto relative z-20">
                     <span className="inline-flex items-center text-primary dark:text-[hsl(var(--gard-accent))] font-medium">
-                      Saber más <ArrowRight className="ml-1 h-4 w-4" />
+                      Conoce {serviciosFiltrados[currentIndex].name} <ArrowRight className="ml-1 h-4 w-4" />
                     </span>
                   </div>
                 </Link>

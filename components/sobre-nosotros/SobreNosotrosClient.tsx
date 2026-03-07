@@ -120,7 +120,7 @@ export default function SobreNosotrosClient() {
                 Gard Security nace desde la experiencia real de empresarios del rubro, que entendieron que la seguridad no se trata solo de presencia física, sino de estrategia, eficiencia y tecnología.
               </p>
               <p className="text-body-base mb-6">
-                Con más de dos décadas operando en sectores como minería, infraestructura crítica y retail, desarrollamos un modelo operativo robusto, flexible y escalable.
+                Con más de 10 años operando en sectores como minería, infraestructura crítica y retail, desarrollamos un modelo operativo robusto, flexible y escalable.
               </p>
               <p className="text-body-base">
                 Nuestra historia es la de cientos de empresas que confiaron en nosotros para proteger su negocio y su gente.
