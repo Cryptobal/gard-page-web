@@ -11,7 +11,7 @@ tags:
   - protocolos seguridad
   - eventos chile
 category: Servicios de Seguridad
-imageId: "seguridad-eventos-masivos-chile-2025"
+imageId: "5eea1064-8a2d-4e8b-5606-d28775467a00"
 ---
 
 # Seguridad en Eventos Masivos Chile 2025: Costos, Protocolos y Casos Reales

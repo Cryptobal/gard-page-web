@@ -11,7 +11,7 @@ tags:
   - cumplimiento normativo
   - emergencias empresas
 category: Seguridad Corporativa
-imageId: "protocolo-emergencias-corporativas-chile"
+imageId: "0ba18961-6cc4-4e17-7473-00213237b400"
 ---
 
 # Protocolo de Emergencias Corporativas: Guía Completa Chile 2025

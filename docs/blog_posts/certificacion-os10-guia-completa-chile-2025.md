@@ -4,7 +4,7 @@ description: "Todo sobre certificación OS10 de Carabineros en Chile 2025: requi
 date: "2025-01-15"
 author: "Gard Security"
 tags: ["certificación os10", "carabineros chile", "guardias de seguridad", "normativa chile", "seguridad privada"]
-imageId: "certificacion-os10-chile"
+imageId: "8bc35c05-93da-4a2a-f46e-a926bd422d00"
 ---
 
 # Certificación OS10 Carabineros Chile: Guía Completa 2025 - Obligatoria para Todos los Guardias

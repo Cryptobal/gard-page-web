@@ -11,7 +11,7 @@ tags:
   - formación seguridad
   - Carabineros Chile
 category: Recursos Humanos en Seguridad
-imageId: "certificacion-guardias-seguridad-chile"
+imageId: "8bc35c05-93da-4a2a-f46e-a926bd422d00"
 ---
 
 # Capacitación y Certificación de Guardias de Seguridad en Chile 2025: Guía Completa OS10

@@ -50,8 +50,13 @@ export async function getPostBySlug(slug: string): Promise<BlogPost> {
     .process(markdownContent);
   const contentHtml = processedContent.toString();
   
-  // Usar el imageId del frontmatter si existe, de lo contrario usar un ID genérico
-  const imageId = data.imageId || cloudflareImages.sections.services;
+  const isValidCloudflareId = (id: string) =>
+    /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/.test(id);
+
+  const rawImageId = data.imageId;
+  const imageId = (rawImageId && isValidCloudflareId(rawImageId))
+    ? rawImageId
+    : cloudflareImages.sections.services;
   
   return {
     slug,

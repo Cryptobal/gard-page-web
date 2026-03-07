@@ -4,7 +4,7 @@ description: "Guía completa con precios actualizados 2025 para contratar guardi
 date: "2025-01-15"
 author: "Gard Security"
 tags: ["costos", "guardias de seguridad", "precios chile", "cotización"]
-imageId: "precio-guardias-seguridad-chile"
+imageId: "772e4ec0-e6ed-473d-baf9-54db58967c00"
 ---
 
 # Cuánto Cuesta Contratar Guardias de Seguridad en Chile 2025: Precios Reales por Industria

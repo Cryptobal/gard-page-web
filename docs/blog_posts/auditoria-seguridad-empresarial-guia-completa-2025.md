@@ -11,7 +11,7 @@ tags:
   - seguridad corporativa
   - mejora continua
 category: Consultoría de Seguridad
-imageId: "auditoria-seguridad-empresarial-2025"
+imageId: "678cad4f-9b0d-49e6-3bbd-0d747a2fdc00"
 ---
 
 # Auditoría de Seguridad Empresarial: Qué Evaluar y Cómo Implementar Mejoras Chile 2025

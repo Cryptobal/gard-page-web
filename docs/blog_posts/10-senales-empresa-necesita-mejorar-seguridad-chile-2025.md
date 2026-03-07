@@ -11,7 +11,7 @@ tags:
   - auditoría empresas
   - prevención pérdidas
 category: Prevención y Mejora
-imageId: "senales-mejorar-seguridad-empresas"
+imageId: "5eea1064-8a2d-4e8b-5606-d28775467a00"
 ---
 
 # 10 Señales de que tu Empresa Necesita Mejorar su Seguridad Chile 2025
