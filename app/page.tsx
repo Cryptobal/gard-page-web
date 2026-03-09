@@ -1,8 +1,41 @@
 import React, { Suspense } from 'react';
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import CloudflareImage from '@/components/CloudflareImage';
 import { cloudflareImages } from '@/lib/images';
+
+const OG_IMAGE_URL = 'https://imagedelivery.net/gGw8cfmEZedi85dYm6qcFw/4824f8b9-abb0-4e77-c654-efe920697b00/public';
+
+export const metadata: Metadata = {
+  title: 'Empresa de Seguridad Privada en Chile | Gard Security',
+  description: 'Gard Security: empresa líder en seguridad privada para empresas en Chile. Guardias certificados OS10, monitoreo 24/7, drones y seguridad electrónica. Cotiza sin compromiso.',
+  alternates: {
+    canonical: 'https://www.gard.cl',
+  },
+  openGraph: {
+    title: 'Empresa de Seguridad Privada en Chile | Gard Security',
+    description: 'Más de 15 años protegiendo empresas líderes en Chile. Guardias certificados, monitoreo 24/7, seguridad electrónica y drones. Presencia en 10 ciudades.',
+    url: 'https://www.gard.cl',
+    siteName: 'Gard Security',
+    locale: 'es_CL',
+    type: 'website',
+    images: [
+      {
+        url: OG_IMAGE_URL,
+        width: 1200,
+        height: 630,
+        alt: 'Gard Security — Empresa de Seguridad Privada en Chile',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Empresa de Seguridad Privada en Chile | Gard Security',
+    description: 'Guardias certificados OS10, monitoreo 24/7, drones y seguridad electrónica. Cotiza sin compromiso.',
+    images: [OG_IMAGE_URL],
+  },
+};
 import { 
   ArrowRight, 
   Shield, 

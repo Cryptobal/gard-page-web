@@ -1,7 +1,12 @@
 import fs from "fs";
 import path from "path";
+import type { Metadata } from "next";
 import PrintAuto from "./PrintAuto";
 import styles from "./page.module.css";
+
+export const metadata: Metadata = {
+  robots: { index: false, follow: false },
+};
 
 const SLIDES_DIR = path.join(
   process.cwd(),

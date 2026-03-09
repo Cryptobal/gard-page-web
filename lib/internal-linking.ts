@@ -77,10 +77,19 @@ function buildKeywordMap(): Map<string, { url: string; text: string; priority: n
     { keyword: 'empresa de seguridad', url: '/sobre-nosotros', priority: 5 },
     { keyword: 'seguridad empresarial', url: '/servicios', priority: 5 },
     { keyword: 'vigilancia privada', url: '/servicios', priority: 5 },
-    { keyword: 'monitoreo 24/7', url: '/servicios/monitoreo', priority: 7 },
+    { keyword: 'monitoreo 24/7', url: '/servicios/central-monitoreo', priority: 7 },
+    { keyword: 'monitoreo', url: '/servicios/central-monitoreo', priority: 6 },
     { keyword: 'drones de seguridad', url: '/servicios/drones-seguridad', priority: 9 },
+    { keyword: 'seguridad electrónica', url: '/servicios/seguridad-electronica', priority: 9 },
     { keyword: 'cámaras de seguridad', url: '/servicios/seguridad-electronica', priority: 7 },
-    { keyword: 'control de acceso', url: '/servicios/seguridad-perimetral', priority: 7 }
+    { keyword: 'control de acceso', url: '/servicios/seguridad-perimetral', priority: 7 },
+    { keyword: 'seguridad perimetral', url: '/servicios/seguridad-perimetral', priority: 9 },
+    { keyword: 'auditoría de seguridad', url: '/servicios/auditoria-seguridad', priority: 9 },
+    { keyword: 'consultoría de seguridad', url: '/servicios/consultoria', priority: 9 },
+    { keyword: 'prevención de intrusiones', url: '/servicios/prevencion-intrusiones', priority: 9 },
+    { keyword: 'minería', url: '/industrias/mineria', priority: 8 },
+    { keyword: 'logística', url: '/industrias/transporte-y-logistica', priority: 8 },
+    { keyword: 'cotizar', url: '/cotizar', priority: 5 }
   ];
 
   genericKeywords.forEach(({ keyword, url, priority }) => {

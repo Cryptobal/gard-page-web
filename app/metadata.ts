@@ -26,6 +26,7 @@ export const metadata: Metadata = {
     ],
   },
   // Agregamos openGraph por defecto
+  // TODO: Reemplazar con /og-default.jpg cuando Carlos tenga la imagen 1200x630 con logo Gard + tagline
   openGraph: {
     type: 'website',
     locale: 'es_CL',
@@ -33,6 +34,20 @@ export const metadata: Metadata = {
     siteName: 'Gard Security',
     title: 'Gard Security Chile',
     description: 'Empresa líder en seguridad privada para empresas e industrias. Ofrecemos guardias de seguridad, monitoreo 24/7, sistemas de vigilancia y soluciones integrales para proteger tu negocio.',
+    images: [
+      {
+        url: 'https://imagedelivery.net/gGw8cfmEZedi85dYm6qcFw/4824f8b9-abb0-4e77-c654-efe920697b00/public',
+        width: 1200,
+        height: 630,
+        alt: 'Gard Security — Empresa de Seguridad Privada en Chile',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Gard Security Chile',
+    description: 'Empresa líder en seguridad privada para empresas e industrias en Chile.',
+    images: ['https://imagedelivery.net/gGw8cfmEZedi85dYm6qcFw/4824f8b9-abb0-4e77-c654-efe920697b00/public'],
   },
   robots: {
     index: true,

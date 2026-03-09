@@ -13,5 +13,18 @@ export const metadata: Metadata = {
     siteName: 'Gard Security',
     locale: 'es_CL',
     type: 'website',
-  }
+    images: [
+      {
+        url: 'https://imagedelivery.net/gGw8cfmEZedi85dYm6qcFw/4824f8b9-abb0-4e77-c654-efe920697b00/public',
+        width: 1200,
+        height: 630,
+        alt: 'Cotiza Servicios de Seguridad | Gard Security',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Cotiza Seguridad Privada | Gard Security',
+    description: 'Cotización personalizada en menos de 12 horas hábiles.',
+  },
 }; 

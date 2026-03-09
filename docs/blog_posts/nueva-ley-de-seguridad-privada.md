@@ -14,6 +14,8 @@ category: Seguridad Privada
 imageUrl: /images/blog/nueva-ley-de-seguridad-privada.jpg
 ---
 
+> **En resumen:** La Ley 21.659 de Seguridad Privada (2024) establece requisitos de capacitación y registro nacional para guardias y vigilantes. Gard Security cumple 100% con la normativa y mantiene certificación OS10 vigente en todo su personal.
+
 		<div data-elementor-type="wp-post" data-elementor-id="1731" class="elementor elementor-1731" data-elementor-post-type="post">
 				<div class="elementor-element elementor-element-ef6ca58 e-flex e-con-boxed e-con e-parent" data-id="ef6ca58" data-element_type="container">
 					<div class="e-con-inner">

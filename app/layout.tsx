@@ -24,7 +24,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es" suppressHydrationWarning>
+    <html lang="es-CL" suppressHydrationWarning>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -34,6 +34,7 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://imagedelivery.net" />
         <link rel="preconnect" href="https://iframe.cloudflarestream.com" />
         <link rel="dns-prefetch" href="https://iframe.cloudflarestream.com" />
+        <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM Information" />
         
         {/* DNS prefetch for Google Fonts - next/font handles preloading automatically */}
 

@@ -58,6 +58,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   const canonical = `https://www.gard.cl/servicios/${servicio.slug}`;
 
+  const ogImageUrl = 'https://imagedelivery.net/gGw8cfmEZedi85dYm6qcFw/4824f8b9-abb0-4e77-c654-efe920697b00/public';
+
   return {
     title: servicio.title,
     description: servicio.description,
@@ -73,6 +75,20 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       siteName: 'Gard Security',
       type: 'article',
       locale: 'es_CL',
+      images: [
+        {
+          url: ogImageUrl,
+          width: 1200,
+          height: 630,
+          alt: `${servicio.title} | Gard Security`,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: servicio.title,
+      description: servicio.description,
+      images: [ogImageUrl],
     },
   };
 }

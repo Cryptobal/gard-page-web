@@ -3,9 +3,9 @@ import { cloudflareImages } from '@/lib/images';
 
 // Función para generar metadatos
 export function generateMetadata(): Metadata {
-  // Título y descripción optimizados para SEO
-  const title = "Servicios de Seguridad en Ciudades de Chile | Gard Security";
-  const description = "Soluciones de seguridad adaptadas a las necesidades específicas de cada ciudad de Chile. Guardias, cámaras, alarmas y más servicios personalizados.";
+  // Título y descripción optimizados para SEO - Cobertura Nacional
+  const title = "Cobertura Nacional de Seguridad Privada | Gard Security";
+  const description = "Gard Security opera en 10 ciudades de Chile: Santiago, Antofagasta, Valparaíso, Concepción, Iquique, Puerto Montt, Rancagua, Chillán, Temuco y Viña del Mar. Guardias certificados OS10, monitoreo 24/7 y cotización local.";
   
   // URL canónica
   const url = "https://www.gard.cl/ciudades";

@@ -147,6 +147,7 @@ function buildWhatsAppComercialToClientMessage(
 export default function CotizacionForm({ prefillServicio, prefillIndustria }: CotizacionFormProps = {}) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formStatus, setFormStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [honeypot, setHoneypot] = useState('');
   const [lastSuccessData, setLastSuccessData] = useState<{ nombre: string; apellido: string; empresa: string; cotizacion: string } | null>(null);
   const autocompleteInputRef = useRef<HTMLInputElement | null>(null);
   const [mapLoaded, setMapLoaded] = useState(false);
@@ -457,6 +458,12 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
   }, [form]);
 
   const onSubmit = async (data: FormValues) => {
+    // Honeypot anti-spam: si un bot llenó este campo, simular éxito sin enviar
+    if (honeypot) {
+      setFormStatus('success');
+      return;
+    }
+
     // Validar dotación para Guardias de Seguridad
     if (isGuardias) {
       if (dotacionMode === 'quick' && quickPuestos.length === 0) {
@@ -722,6 +729,17 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
       ) : (
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            {/* Honeypot anti-spam: campo invisible que los bots llenan */}
+            <input
+              type="text"
+              name="website"
+              value={honeypot}
+              onChange={(e) => setHoneypot(e.target.value)}
+              style={{ position: 'absolute', left: '-9999px', opacity: 0, height: 0, width: 0, pointerEvents: 'none' }}
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+            />
             {/* ── Datos de contacto ── */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <FormField control={form.control} name="nombre" render={({ field }) => (

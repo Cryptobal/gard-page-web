@@ -14,6 +14,8 @@ category: Seguridad Privada
 imageUrl: /images/blog/innovacion-en-seguridad-privada-drones-en-seguridad.jpg
 ---
 
+> **En resumen:** Gard Security utiliza drones para vigilancia perimetral, detección de intrusiones y monitoreo de grandes áreas. La tecnología complementa a los guardias tradicionales con cobertura aérea 24/7. Cotiza en gard.cl/servicios/drones-seguridad.
+
 		<div data-elementor-type="wp-post" data-elementor-id="3233" class="elementor elementor-3233" data-elementor-post-type="post">
 				<div class="elementor-element elementor-element-5eb6c4c9 e-flex e-con-boxed e-con e-parent" data-id="5eb6c4c9" data-element_type="container">
 					<div class="e-con-inner">

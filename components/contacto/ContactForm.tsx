@@ -12,6 +12,7 @@ export default function ContactForm() {
     telefono: '',
     mensaje: ''
   });
+  const [honeypot, setHoneypot] = useState('');
   const [loading, setLoading] = useState(false);
   const [enviado, setEnviado] = useState(false);
   const [error, setError] = useState('');
@@ -32,6 +33,11 @@ export default function ContactForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (honeypot) {
+      setEnviado(true);
+      setFormData({ nombre: '', email: '', telefono: '', mensaje: '' });
+      return;
+    }
     setLoading(true);
     setError('');
     
@@ -98,6 +104,16 @@ export default function ContactForm() {
         </div>
       ) : (
         <form className="space-y-5" onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="website"
+            value={honeypot}
+            onChange={(e) => setHoneypot(e.target.value)}
+            style={{ position: 'absolute', left: '-9999px', opacity: 0, height: 0, width: 0, pointerEvents: 'none' }}
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+          />
           <div>
             <label htmlFor="nombre" className="block text-sm font-medium mb-2">
               Nombre completo <span className="text-red-500">*</span>

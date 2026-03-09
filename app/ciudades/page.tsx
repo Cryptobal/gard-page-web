@@ -40,9 +40,12 @@ export default function CiudadesPage() {
     <>
       <div className="py-16">
         <div className="max-w-7xl mx-auto px-4">
-          <h1 className="text-3xl font-bold mb-8">Ciudades</h1>
-          <p className="text-xl">
-            Explore nuestros servicios de seguridad por ciudad.
+          <h1 className="text-3xl font-bold mb-8">Cobertura Nacional de Seguridad Privada</h1>
+          <p className="text-xl text-muted-foreground dark:text-gray-300 mb-4">
+            Gard Security opera en 10 ciudades de Chile con guardias certificados OS10, monitoreo 24/7 y soluciones adaptadas a cada región. Cotiza servicios de seguridad en tu ciudad.
+          </p>
+          <p className="text-base text-muted-foreground dark:text-gray-400 mb-8">
+            Santiago, Antofagasta, Valparaíso, Concepción, Iquique, Puerto Montt, Rancagua, Chillán, Temuco y Viña del Mar.
           </p>
           <div className="mt-8 grid md:grid-cols-3 gap-6">
             {getAllCiudades().map((ciudad) => (
