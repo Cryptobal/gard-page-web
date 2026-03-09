@@ -10,11 +10,18 @@ import remarkGfm from 'remark-gfm';
 export interface BlogPost {
   slug: string;
   title: string;
+  seoTitle?: string;
   date: string;
   description: string;
+  author?: string;
+  keywords?: string[];
   tags?: string[];
   category?: string;
   imageId?: string;
+  faqSchema?: Array<{
+    question: string;
+    answer: string;
+  }>;
   content: string;
 }
 
@@ -61,11 +68,15 @@ export async function getPostBySlug(slug: string): Promise<BlogPost> {
   return {
     slug,
     title: data.title || '',
+    seoTitle: data.seoTitle || undefined,
     date: data.date || '',
     description: data.description || '',
+    author: data.author || undefined,
+    keywords: data.keywords || undefined,
     tags: data.tags || [],
     category: data.category || 'General',
     imageId,
+    faqSchema: data.faqSchema || [],
     content: contentHtml,
   };
 }

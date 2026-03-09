@@ -18,11 +18,18 @@ import { addInternalLinks } from '@/lib/internal-linking';
 interface BlogPost {
   slug: string;
   title: string;
+  seoTitle?: string;
   date: string;
   description: string;
+  author?: string;
+  keywords?: string[];
   tags?: string[];
   category?: string;
   imageId?: string;
+  faqSchema?: Array<{
+    question: string;
+    answer: string;
+  }>;
   content: string;
 }
 
@@ -163,7 +170,7 @@ export default function BlogPost({ slug }: { slug: string }) {
     datePublished: post.date,
     author: {
       '@type': 'Organization',
-      name: 'Gard Security',
+      name: post.author || 'Gard Security',
     },
     publisher: {
       '@type': 'Organization',
@@ -216,6 +223,21 @@ export default function BlogPost({ slug }: { slug: string }) {
     ],
   };
 
+  const faqPageSchema = post.faqSchema?.length
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: post.faqSchema.map((faq) => ({
+          '@type': 'Question',
+          name: faq.question,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: faq.answer,
+          },
+        })),
+      }
+    : null;
+
   // Función auxiliar para limpiar HTML potencialmente peligroso y agregar enlaces internos
   // No es una solución completa de seguridad pero elimina los scripts
   const processHtml = (html: string) => {
@@ -239,6 +261,13 @@ export default function BlogPost({ slug }: { slug: string }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
       />
+
+      {faqPageSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqPageSchema) }}
+        />
+      )}
       
       <script
         type="application/ld+json"
