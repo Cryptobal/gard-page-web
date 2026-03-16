@@ -60,12 +60,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   
   // Páginas de blog dinámicas (posts individuales) - incluye OPAI automáticamente
   const blogPosts = await getAllPosts();
-  const blogPostPages = blogPosts.map((post) => ({
-    url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: new Date(post.date),
-    changeFrequency: 'weekly' as const,
-    priority: 0.6,
-  }));
+  const blogPostPages = blogPosts.map((post) => {
+    const date = post.date ? new Date(post.date) : new Date();
+    const lastModified = isNaN(date.getTime()) ? new Date() : date;
+    return {
+      url: `${baseUrl}/blog/${post.slug}`,
+      lastModified,
+      changeFrequency: 'weekly' as const,
+      priority: 0.6,
+    };
+  });
   
   // Páginas de paginación del blog
   const totalPages = Math.ceil(blogPosts.length / POSTS_PER_PAGE);
