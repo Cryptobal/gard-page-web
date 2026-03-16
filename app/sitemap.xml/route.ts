@@ -1,5 +1,7 @@
 import { industries } from '../data/industries';
 import { getAllPosts, POSTS_PER_PAGE } from '@/lib/blog';
+
+export const dynamic = 'force-dynamic';
 import { ciudades } from '@/lib/data/ciudad-data';
 import { servicesMetadata } from '@/app/servicios/serviceMetadata';
 import { serviciosPorIndustria, esCombinacionValida } from '../data/servicios-por-industria';

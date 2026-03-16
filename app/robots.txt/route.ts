@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 export function GET() {
   const content = `# https://www.robotstxt.org/robotstxt.html
 
