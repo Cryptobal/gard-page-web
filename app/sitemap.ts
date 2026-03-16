@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next';
-import { industries } from './data/industries';
+import { industriesMetadata } from './industrias/industryMetadata';
 import { getAllPosts, POSTS_PER_PAGE, getAllTags, getPostsByTag } from '@/lib/blog';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -11,7 +11,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/servicios',
     '/industrias',
     '/sobre-nosotros',
-    '/tecnologias',
     '/contacto',
     '/politica-de-privacidad',
     '/terminos-de-servicio',
@@ -42,21 +41,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  // Páginas de industrias dinámicas
-  const industryPages = industries.map((industry) => {
-    const slug = industry.name.toLowerCase()
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
-      .replace(/[^\w\s]/g, '')
-      .replace(/\s+/g, '-');
-    
-    return {
-      url: `${baseUrl}/industrias/${slug}`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.7,
-    };
-  });
+  // Páginas de industrias dinámicas (usar slugs de industryMetadata para coincidir con rutas)
+  const industryPages = industriesMetadata.map((industry) => ({
+    url: `${baseUrl}/industrias/${industry.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }));
   
   // Páginas de blog dinámicas (posts individuales) - incluye OPAI automáticamente
   const blogPosts = await getAllPosts();

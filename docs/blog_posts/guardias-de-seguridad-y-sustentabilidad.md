@@ -1,7 +1,7 @@
 ---
 title: 'Guardias de seguridad y sustentabilidad: el compromiso ambiental de Gard Security'
 slug: guardias-de-seguridad-y-sustentabilidad
-date: '2025-7-8'
+date: '2025-07-08'
 description: >-
   Descubre cómo Gard Security integra prácticas sustentables en sus servicios de seguridad privada. Conoce las acciones eco-friendly, vehículos eléctricos, tecnología limpia y el compromiso ambiental que nos hace diferentes en la industria de la seguridad.
 tags:
