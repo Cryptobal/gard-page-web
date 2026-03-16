@@ -89,7 +89,9 @@ function buildKeywordMap(): Map<string, { url: string; text: string; priority: n
     { keyword: 'prevención de intrusiones', url: '/servicios/prevencion-intrusiones', priority: 9 },
     { keyword: 'minería', url: '/industrias/mineria', priority: 8 },
     { keyword: 'logística', url: '/industrias/transporte-y-logistica', priority: 8 },
-    { keyword: 'cotizar', url: '/cotizar', priority: 5 }
+    { keyword: 'cotizar', url: '/cotizar', priority: 5 },
+    { keyword: 'tecnología de seguridad', url: '/tecnologia-seguridad', priority: 8 },
+    { keyword: 'tecnologia seguridad', url: '/tecnologia-seguridad', priority: 8 }
   ];
 
   genericKeywords.forEach(({ keyword, url, priority }) => {

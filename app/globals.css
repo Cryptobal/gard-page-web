@@ -483,10 +483,16 @@ main > section:first-child:not(.gard-hero) {
 }
 
 .blog-content blockquote {
-  border-left: 4px solid var(--tw-prose-quote-borders);
-  padding-left: 1rem;
+  border-left: 4px solid #0d9488;
+  padding: 1rem 1.25rem;
   font-style: italic;
   margin: 1.5rem 0;
+  background: rgba(13, 148, 136, 0.08);
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.dark .blog-content blockquote {
+  background: rgba(13, 148, 136, 0.12);
 }
 
 .dark .blog-content {
@@ -507,7 +513,7 @@ main > section:first-child:not(.gard-hero) {
 }
 
 .dark .blog-content blockquote {
-  border-color: var(--tw-prose-invert-quote-borders);
+  border-color: #0d9488;
 }
 
 /* Clases específicas de Elementor */

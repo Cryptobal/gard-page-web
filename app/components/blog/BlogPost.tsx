@@ -26,6 +26,7 @@ interface BlogPost {
   tags?: string[];
   category?: string;
   imageId?: string;
+  heroGradient?: boolean;
   faqSchema?: Array<{
     question: string;
     answer: string;
@@ -158,31 +159,76 @@ export default function BlogPost({ slug }: { slug: string }) {
   // Una vez que tenemos el post, mostrar su contenido
   const formattedDate = formatDateSafe(post.date, 'dd MMMM, yyyy');
 
-  // Schema.org para artículos
-  const articleSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
-    headline: post.title,
-    description: post.description,
-    image: post.imageId 
-      ? `https://imagedelivery.net/${CLOUDFLARE_ACCOUNT_HASH}/${post.imageId}/public`
-      : `https://imagedelivery.net/${CLOUDFLARE_ACCOUNT_HASH}/5eea1064-8a2d-4e8b-5606-d28775467a00/public`,
-    datePublished: post.date,
-    author: {
-      '@type': 'Organization',
-      name: post.author || 'Gard Security',
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: 'Gard Security',
-      logo: {
-        '@type': 'ImageObject',
-        url: `https://imagedelivery.net/${CLOUDFLARE_ACCOUNT_HASH}/7661cf51-c66b-4419-9229-e6e50f76ff00/public`,
-      },
-    },
-  };
+  // Schemas JSON-LD personalizados para OPAI (SEO optimizado)
+  const OPAI_SLUG = 'opai-erp-inteligencia-artificial-seguridad-privada-chile';
+  const isOpaiPost = slug === OPAI_SLUG;
 
-  // Schema.org para breadcrumbs
+  const articleSchema = isOpaiPost
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: 'OPAI: Cómo Gard Security Construyó el Primer ERP con Inteligencia Artificial para Seguridad Privada en Chile',
+        description: 'Gard Security construyó OPAI, el primer ERP con inteligencia artificial diseñado para seguridad privada en Chile.',
+        author: [
+          { '@type': 'Organization', name: 'Gard Security', url: 'https://www.gard.cl' },
+          { '@type': 'Organization', name: 'LX3', url: 'https://lx3.ai' },
+        ],
+        publisher: {
+          '@type': 'Organization',
+          name: 'Gard Security',
+          url: 'https://www.gard.cl',
+          logo: {
+            '@type': 'ImageObject',
+            url: 'https://www.gard.cl/logo.png',
+          },
+        },
+        datePublished: '2026-03-16',
+        dateModified: '2026-03-16',
+        mainEntityOfPage: 'https://www.gard.cl/blog/opai-erp-inteligencia-artificial-seguridad-privada-chile',
+        keywords: ['software seguridad privada Chile', 'ERP seguridad privada', 'inteligencia artificial seguridad privada', 'OPAI', 'Gard Security'],
+      }
+    : {
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        headline: post.title,
+        description: post.description,
+        image: post.imageId
+          ? `https://imagedelivery.net/${CLOUDFLARE_ACCOUNT_HASH}/${post.imageId}/public`
+          : `https://imagedelivery.net/${CLOUDFLARE_ACCOUNT_HASH}/5eea1064-8a2d-4e8b-5606-d28775467a00/public`,
+        datePublished: post.date,
+        author: {
+          '@type': 'Organization',
+          name: post.author || 'Gard Security',
+        },
+        publisher: {
+          '@type': 'Organization',
+          name: 'Gard Security',
+          logo: {
+            '@type': 'ImageObject',
+            url: `https://imagedelivery.net/${CLOUDFLARE_ACCOUNT_HASH}/7661cf51-c66b-4419-9229-e6e50f76ff00/public`,
+          },
+        },
+      };
+
+  const organizationSchema = isOpaiPost
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        name: 'Gard Security',
+        url: 'https://www.gard.cl',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: 'Lo Fontecilla 201, oficina 525',
+          addressLocality: 'Las Condes',
+          addressRegion: 'Santiago',
+          addressCountry: 'CL',
+        },
+        telephone: '+56968727644',
+        email: 'comercial@gard.cl',
+      }
+    : null;
+
+  // Schema.org para breadcrumbs (OPAI: 3 niveles; otros: con tag si existe)
   const breadcrumbSchema = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -199,27 +245,29 @@ export default function BlogPost({ slug }: { slug: string }) {
         name: 'Blog',
         item: 'https://www.gard.cl/blog',
       },
-      ...(post.tags?.[0] ? [
-        {
-          '@type': 'ListItem',
-          position: 3,
-          name: post.tags[0],
-          item: `https://www.gard.cl/blog/tag/${encodeURIComponent(post.tags[0])}`,
-        },
-        {
-          '@type': 'ListItem',
-          position: 4,
-          name: post.title,
-          item: `https://www.gard.cl/blog/${slug}`,
-        }
-      ] : [
-        {
-          '@type': 'ListItem',
-          position: 3,
-          name: post.title,
-          item: `https://www.gard.cl/blog/${slug}`,
-        }
-      ]),
+      ...(isOpaiPost || !post.tags?.[0]
+        ? [
+            {
+              '@type': 'ListItem',
+              position: 3,
+              name: post.title,
+              item: `https://www.gard.cl/blog/${slug}`,
+            },
+          ]
+        : [
+            {
+              '@type': 'ListItem',
+              position: 3,
+              name: post.tags[0],
+              item: `https://www.gard.cl/blog/tag/${encodeURIComponent(post.tags[0])}`,
+            },
+            {
+              '@type': 'ListItem',
+              position: 4,
+              name: post.title,
+              item: `https://www.gard.cl/blog/${slug}`,
+            },
+          ]),
     ],
   };
 
@@ -268,6 +316,13 @@ export default function BlogPost({ slug }: { slug: string }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqPageSchema) }}
         />
       )}
+
+      {organizationSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+      )}
       
       <script
         type="application/ld+json"
@@ -287,7 +342,7 @@ export default function BlogPost({ slug }: { slug: string }) {
           <li>
             <Link href="/blog" className="hover:underline text-primary dark:text-accent font-medium">Blog</Link>
           </li>
-          {post.tags?.[0] && (
+          {post.tags?.[0] && !isOpaiPost && (
             <>
               <li>/</li>
               <li>
@@ -306,7 +361,16 @@ export default function BlogPost({ slug }: { slug: string }) {
       
       {/* Hero del artículo */}
       <header className="mb-8">
-        {post.imageId && (
+        {post.heroGradient ? (
+          <div
+            className="aspect-video md:aspect-[21/9] relative rounded-2xl overflow-hidden mb-8 m-0 flex items-center justify-center bg-gradient-to-br from-[#1e3a8a] to-[#0d9488]"
+            style={{ minHeight: '280px' }}
+          >
+            <h1 className="text-2xl md:text-4xl font-bold text-white text-center px-6 max-w-4xl">
+              {post.title}
+            </h1>
+          </div>
+        ) : post.imageId ? (
           <figure className="aspect-video md:aspect-[21/9] relative rounded-2xl overflow-hidden mb-8 m-0">
             <CloudflareImage
               imageId={post.imageId}
@@ -317,12 +381,14 @@ export default function BlogPost({ slug }: { slug: string }) {
               sizes="(max-width: 768px) 100vw, 1200px"
             />
           </figure>
-        )}
+        ) : null}
         
         <div className="text-center max-w-3xl mx-auto">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            {post.title}
-          </h1>
+          {!post.heroGradient && (
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+              {post.title}
+            </h1>
+          )}
           
           <div className="flex justify-center items-center gap-4 text-sm text-gray-500 dark:text-gray-400 mb-6">
             <time dateTime={post.date}>{formattedDate}</time>

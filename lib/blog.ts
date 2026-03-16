@@ -18,6 +18,7 @@ export interface BlogPost {
   tags?: string[];
   category?: string;
   imageId?: string;
+  heroGradient?: boolean;
   faqSchema?: Array<{
     question: string;
     answer: string;
@@ -76,6 +77,7 @@ export async function getPostBySlug(slug: string): Promise<BlogPost> {
     tags: data.tags || [],
     category: data.category || 'General',
     imageId,
+    heroGradient: data.heroGradient || false,
     faqSchema: data.faqSchema || [],
     content: contentHtml,
   };
