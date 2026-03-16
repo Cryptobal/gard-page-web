@@ -1,6 +1,8 @@
 import { MetadataRoute } from 'next';
 import { industriesMetadata } from './industrias/industryMetadata';
-import { getAllPosts, POSTS_PER_PAGE, getAllTags, getPostsByTag } from '@/lib/blog';
+import { getAllPosts, POSTS_PER_PAGE } from '@/lib/blog';
+
+export const dynamic = 'force-dynamic';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://www.gard.cl';
@@ -71,8 +73,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.5,
   }));
   
-  // Páginas de etiquetas del blog
-  const allTags = await getAllTags();
+  // Páginas de etiquetas del blog (computar desde blogPosts para evitar N+1 llamadas a getAllPosts)
+  const allTags = Array.from(new Set(blogPosts.flatMap((p) => p.tags || [])));
   const blogTagPages = allTags.map((tag) => ({
     url: `${baseUrl}/blog/tag/${encodeURIComponent(tag)}`,
     lastModified: new Date(),
@@ -80,20 +82,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }));
 
-  // Páginas de paginación por etiqueta
-  const blogTagPaginationPages = [];
+  // Páginas de paginación por etiqueta (computar desde blogPosts, sin llamar getPostsByTag)
+  const blogTagPaginationPages: MetadataRoute.Sitemap = [];
   for (const tag of allTags) {
-    const { totalPages } = await getPostsByTag(tag);
-    
+    const count = blogPosts.filter((p) => p.tags?.includes(tag)).length;
+    const totalPages = Math.ceil(count / POSTS_PER_PAGE);
     if (totalPages > 1) {
-      const pages = Array.from({ length: totalPages - 1 }, (_, i) => ({
-        url: `${baseUrl}/blog/tag/${encodeURIComponent(tag)}/page/${i + 2}`,
-        lastModified: new Date(),
-        changeFrequency: 'weekly' as const,
-        priority: 0.5,
-      }));
-      
-      blogTagPaginationPages.push(...pages);
+      for (let i = 0; i < totalPages - 1; i++) {
+        blogTagPaginationPages.push({
+          url: `${baseUrl}/blog/tag/${encodeURIComponent(tag)}/page/${i + 2}`,
+          lastModified: new Date(),
+          changeFrequency: 'weekly' as const,
+          priority: 0.5,
+        });
+      }
     }
   }
 
