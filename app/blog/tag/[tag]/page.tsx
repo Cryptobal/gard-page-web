@@ -135,6 +135,7 @@ export default async function TagPage({ params }: { params: Promise<{ tag: strin
             date={post.date}
             excerpt={post.description}
             imageId={post.imageId}
+            cardImage={post.cardImage}
             tags={post.tags}
           />
         ))}

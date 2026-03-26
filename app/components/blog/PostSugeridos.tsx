@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import CloudflareImage from '@/components/CloudflareImage';
 
 // Definición de la interfaz BlogPost sin importarla del servidor
@@ -13,6 +14,7 @@ interface BlogPost {
   tags?: string[];
   category?: string;
   imageId?: string;
+  cardImage?: string;
   content: string;
 }
 
@@ -94,7 +96,15 @@ export default function PostSugeridos({ currentSlug, currentTags = [] }: PostSug
             <Link href={`/blog/${post.slug}`} className="block h-full flex flex-col">
               {/* Imagen */}
               <div className="aspect-video relative overflow-hidden">
-                {post.imageId ? (
+                {post.cardImage ? (
+                  <Image
+                    src={post.cardImage}
+                    alt={post.title}
+                    fill
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 33vw, 25vw"
+                  />
+                ) : post.imageId ? (
                   <CloudflareImage
                     imageId={post.imageId}
                     alt={post.title}

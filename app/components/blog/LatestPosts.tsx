@@ -15,6 +15,7 @@ interface BlogPost {
   tags?: string[];
   category?: string;
   imageId?: string;
+  cardImage?: string;
   content: string;
 }
 
@@ -143,6 +144,7 @@ export default function LatestPosts({
                 date={post.date}
                 excerpt={post.description}
                 imageId={showImage ? post.imageId : undefined}
+                cardImage={showImage ? post.cardImage : undefined}
                 tags={post.tags}
               />
             )}

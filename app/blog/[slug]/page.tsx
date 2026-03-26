@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 import { getPostBySlug, getAllPostSlugs } from '@/lib/blog';
 import BlogPost from '@/app/components/blog/BlogPost';
-import { CLOUDFLARE_ACCOUNT_HASH } from '@/lib/images';
 import { notFound } from 'next/navigation';
+import { getBlogPostShareImageUrl } from '@/lib/blog-og-image';
 
 // Generar rutas estáticas para todos los posts
 export async function generateStaticParams() {
@@ -25,9 +25,9 @@ export async function generateMetadata({
     return {} as Metadata;
   }
 
-  const ogImageUrl = post.imageId 
-    ? `https://imagedelivery.net/${CLOUDFLARE_ACCOUNT_HASH}/${post.imageId}/public`
-    : `https://imagedelivery.net/${CLOUDFLARE_ACCOUNT_HASH}/5eea1064-8a2d-4e8b-5606-d28775467a00/public`;
+  const ogImageUrl = getBlogPostShareImageUrl(post.cardImage, post.imageId);
+  const ogWidth = post.cardImage ? 800 : 1200;
+  const ogHeight = post.cardImage ? 450 : 630;
 
   const metaTitle = post.seoTitle || post.title;
 
@@ -52,8 +52,8 @@ export async function generateMetadata({
       images: [
         {
           url: ogImageUrl,
-          width: 1200,
-          height: 630,
+          width: ogWidth,
+          height: ogHeight,
           alt: post.title,
         },
       ],

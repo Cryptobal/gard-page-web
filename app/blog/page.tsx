@@ -87,6 +87,7 @@ export default async function BlogPage() {
               date={post.date}
               excerpt={post.description}
               imageId={post.imageId}
+              cardImage={post.cardImage}
               tags={post.tags}
             />
           ))}

@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
 import CloudflareImage from '@/components/CloudflareImage';
@@ -14,6 +15,7 @@ interface BlogPost {
   tags?: string[];
   category?: string;
   imageId?: string;
+  cardImage?: string;
   content: string;
 }
 
@@ -51,8 +53,9 @@ function formatDateSafe(dateString: string, formatString: string = 'dd MMM, yyyy
 }
 
 export default function PostCardCompact({ post, showImage = true, ultraCompact = false }: PostCardCompactProps) {
-  const { slug, title, date, tags, imageId } = post;
+  const { slug, title, date, tags, imageId, cardImage } = post;
   const formattedDate = formatDateSafe(date, 'dd MMM, yyyy');
+  const cover = cardImage || imageId;
 
   return (
     <div 
@@ -62,19 +65,29 @@ export default function PostCardCompact({ post, showImage = true, ultraCompact =
           : 'flex flex-col md:flex-row gap-4 items-start mb-6'
       }`}
     >
-      {showImage && imageId && (
+      {showImage && cover && (
         <div className={`
           overflow-hidden rounded-lg flex-shrink-0 relative 
           ${ultraCompact ? 'w-full h-20' : 'w-full md:w-24 h-20'}
         `}>
           <Link href={`/blog/${slug}`} className="block">
-            <CloudflareImage
-              imageId={imageId}
-              alt={title}
-              fill
-              className="object-cover transition-transform duration-500 group-hover:scale-105"
-              sizes="(max-width: 768px) 100vw, 200px"
-            />
+            {cardImage ? (
+              <Image
+                src={cardImage}
+                alt={title}
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                sizes="(max-width: 768px) 100vw, 200px"
+              />
+            ) : (
+              <CloudflareImage
+                imageId={imageId!}
+                alt={title}
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                sizes="(max-width: 768px) 100vw, 200px"
+              />
+            )}
           </Link>
         </div>
       )}

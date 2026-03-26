@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import CloudflareImage from '@/components/CloudflareImage';
 import { industries } from '@/app/data/industries';
 import { services } from '@/app/data/services';
@@ -14,6 +15,7 @@ interface BlogPost {
   description: string;
   tags?: string[];
   imageId?: string;
+  cardImage?: string;
 }
 
 interface BlogSidebarProps {
@@ -103,15 +105,25 @@ export default function BlogSidebar({ currentSlug, currentTags = [] }: BlogSideb
                 className="group block"
               >
                 <div className="flex gap-3">
-                  {post.imageId && (
+                  {(post.cardImage || post.imageId) && (
                     <div className="relative w-16 h-16 flex-shrink-0 rounded-lg overflow-hidden">
-                      <CloudflareImage
-                        imageId={post.imageId}
-                        alt={post.title}
-                        fill
-                        className="object-cover transition-transform group-hover:scale-110"
-                        sizes="64px"
-                      />
+                      {post.cardImage ? (
+                        <Image
+                          src={post.cardImage}
+                          alt={post.title}
+                          fill
+                          className="object-cover transition-transform group-hover:scale-110"
+                          sizes="64px"
+                        />
+                      ) : (
+                        <CloudflareImage
+                          imageId={post.imageId!}
+                          alt={post.title}
+                          fill
+                          className="object-cover transition-transform group-hover:scale-110"
+                          sizes="64px"
+                        />
+                      )}
                     </div>
                   )}
                   <div className="flex-1 min-w-0">

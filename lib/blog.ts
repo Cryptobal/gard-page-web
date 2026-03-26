@@ -17,6 +17,10 @@ export interface BlogPost {
   keywords?: string[];
   tags?: string[];
   category?: string;
+  /** Imagen hero del artículo servida desde /public (ej. /blog/foo-hero.png) */
+  heroImage?: string;
+  /** Miniatura para cards del listado y Open Graph (ej. /blog/foo-thumb.png) */
+  cardImage?: string;
   imageId?: string;
   heroGradient?: boolean;
   faqSchema?: Array<{
@@ -62,10 +66,19 @@ export async function getPostBySlug(slug: string): Promise<BlogPost> {
     /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/.test(id);
 
   const rawImageId = data.imageId;
-  const imageId = (rawImageId && isValidCloudflareId(rawImageId))
-    ? rawImageId
-    : cloudflareImages.sections.services;
-  
+  const cardImage =
+    typeof data.cardImage === 'string' ? data.cardImage.trim() : undefined;
+  const heroImage =
+    typeof data.heroImage === 'string' ? data.heroImage.trim() : undefined;
+  const hasLocalCard = Boolean(cardImage?.startsWith('/'));
+
+  const imageId =
+    rawImageId && isValidCloudflareId(rawImageId)
+      ? rawImageId
+      : hasLocalCard
+        ? undefined
+        : cloudflareImages.sections.services;
+
   return {
     slug,
     title: data.title || '',
@@ -76,6 +89,8 @@ export async function getPostBySlug(slug: string): Promise<BlogPost> {
     keywords: data.keywords || undefined,
     tags: data.tags || [],
     category: data.category || 'General',
+    heroImage: heroImage?.startsWith('/') ? heroImage : undefined,
+    cardImage: hasLocalCard ? cardImage : undefined,
     imageId,
     heroGradient: data.heroGradient || false,
     faqSchema: data.faqSchema || [],

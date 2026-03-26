@@ -158,6 +158,7 @@ export default async function BlogPaginatedPage({
               date={post.date}
               excerpt={post.description}
               imageId={post.imageId}
+              cardImage={post.cardImage}
               tags={post.tags}
             />
           ))}

@@ -1,11 +1,13 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import CloudflareImage from '@/components/CloudflareImage';
+import { getBlogPostShareImageUrl } from '@/lib/blog-og-image';
 import BlogLayout from '@/app/components/blog/BlogLayout';
 import PostSugeridos from '@/app/components/blog/PostSugeridos';
 import BlogSidebar from '@/components/blog/BlogSidebar';
@@ -26,6 +28,8 @@ interface BlogPost {
   tags?: string[];
   category?: string;
   imageId?: string;
+  heroImage?: string;
+  cardImage?: string;
   heroGradient?: boolean;
   faqSchema?: Array<{
     question: string;
@@ -192,9 +196,7 @@ export default function BlogPost({ slug }: { slug: string }) {
         '@type': 'BlogPosting',
         headline: post.title,
         description: post.description,
-        image: post.imageId
-          ? `https://imagedelivery.net/${CLOUDFLARE_ACCOUNT_HASH}/${post.imageId}/public`
-          : `https://imagedelivery.net/${CLOUDFLARE_ACCOUNT_HASH}/5eea1064-8a2d-4e8b-5606-d28775467a00/public`,
+        image: getBlogPostShareImageUrl(post.cardImage, post.imageId),
         datePublished: post.date,
         author: {
           '@type': 'Organization',
@@ -370,6 +372,17 @@ export default function BlogPost({ slug }: { slug: string }) {
               {post.title}
             </h1>
           </div>
+        ) : post.heroImage?.startsWith('/') ? (
+          <figure className="aspect-video md:aspect-[21/9] relative rounded-2xl overflow-hidden mb-8 m-0">
+            <Image
+              src={post.heroImage}
+              alt={post.title}
+              fill
+              className="object-cover"
+              priority
+              sizes="(max-width: 768px) 100vw, 1200px"
+            />
+          </figure>
         ) : post.imageId ? (
           <figure className="aspect-video md:aspect-[21/9] relative rounded-2xl overflow-hidden mb-8 m-0">
             <CloudflareImage

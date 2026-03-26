@@ -1,6 +1,7 @@
 "use client";
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
 import CloudflareImage from '@/components/CloudflareImage';
@@ -11,6 +12,8 @@ interface PostCardProps {
   date: string;
   excerpt: string;
   imageId?: string;
+  /** Miniatura en /public (ej. /blog/foo-thumb.png) */
+  cardImage?: string;
   tags?: string[];
 }
 
@@ -47,26 +50,38 @@ export default function PostCard({
   date,
   excerpt,
   imageId,
+  cardImage,
   tags,
 }: PostCardProps) {
   // Formatear la fecha al español de forma segura
   const formattedDate = formatDateSafe(date, 'dd MMMM, yyyy');
-  
+  const showCover = Boolean(cardImage || imageId);
+
   return (
     <div className="gard-card-dark-accent">
       <div>
         <Link href={`/blog/${slug}`} className="block group">
-          {imageId ? (
+          {showCover ? (
             <div className="aspect-video relative overflow-hidden rounded-t-2xl">
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent z-10 dark:from-[hsl(var(--gard-background-darkest))/60] dark:to-transparent"></div>
-              <CloudflareImage
-                imageId={imageId}
-                alt={title}
-                fill
-                className="transition-transform duration-500 group-hover:scale-105"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                priority={false}
-              />
+              {cardImage ? (
+                <Image
+                  src={cardImage}
+                  alt={title}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                />
+              ) : (
+                <CloudflareImage
+                  imageId={imageId!}
+                  alt={title}
+                  fill
+                  className="transition-transform duration-500 group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  priority={false}
+                />
+              )}
             </div>
           ) : (
             <div className="aspect-video bg-gray-200 dark:bg-[hsl(var(--gard-background))] rounded-t-2xl" />
