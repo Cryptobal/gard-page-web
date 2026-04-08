@@ -51,7 +51,7 @@ const payload = {
     "Hola Prueba, te contacto de gard.cl. Nos enviaste una cotización para la empresa Test Gard Web, ubicada en Av. Prueba 123, Santiago, Las Condes, Santiago, que consiste en 2 puestos de Guardia de Seguridad, 1 puesto de Guardia de Seguridad. Prueba de envío desde cotizador web...",
 };
 
-const url = `${OPAI_URL}/api/public/leads`;
+const url = `${OPAI_URL}/api/public/gard/leads`;
 
 async function main() {
   console.log("Enviando prueba a OPAI:", url);

@@ -32,8 +32,9 @@ export const API_URLS = {
   CONTACTO: 'https://hook.us1.make.com/oq1dihqjq7xbl2xbk9wbbdp02h37831a',
   
   // Cotización y Cotizador Inteligente van a OPAI (crea lead + emails con links WhatsApp)
-  COTIZACION: `${OPAI_URL}/api/public/leads`,
-  COTIZACION_INTELIGENTE: `${OPAI_URL}/api/public/leads`,
+  // El endpoint requiere tenantSlug en la ruta (ej: "gard")
+  COTIZACION: `${OPAI_URL}/api/public/gard/leads`,
+  COTIZACION_INTELIGENTE: `${OPAI_URL}/api/public/gard/leads`,
   
   // Fallback: si OPAI falla, enviar a Make (solo cotizar; cotizador inteligente solo OPAI)
   COTIZACION_FALLBACK: 'https://hook.us1.make.com/oq1dihqjq7xbl2xbk9wbbdp02h37831a',
