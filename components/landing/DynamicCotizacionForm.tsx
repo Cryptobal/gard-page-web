@@ -245,8 +245,13 @@ export default function DynamicCotizacionForm({
         servicio
       });
       
-      // Mostrar mensaje de éxito
+      // Mostrar mensaje de éxito y scrollear al panel de confirmación
       setSuccessMessage('¡Formulario enviado! Nos pondremos en contacto contigo a la brevedad.');
+      if (typeof window !== 'undefined') {
+        setTimeout(() => {
+          document.getElementById('cotizacion-form')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 100);
+      }
       
       // Resetear formulario
       setFormData({
@@ -275,17 +280,32 @@ export default function DynamicCotizacionForm({
     }
   };
   
+  // Si el form ya fue enviado exitosamente, mostrar panel de confirmación en lugar del form
+  if (successMessage) {
+    return (
+      <div
+        id="cotizacion-form"
+        className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-green-200 dark:border-green-800 text-center space-y-4"
+      >
+        <div className="mx-auto w-16 h-16 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
+          <CheckCircle className="h-10 w-10 text-green-600 dark:text-green-400" />
+        </div>
+        <h3 className="text-2xl font-bold text-gray-900 dark:text-white">¡Cotización enviada!</h3>
+        <p className="text-gray-600 dark:text-gray-300 max-w-md mx-auto">
+          Recibimos tu solicitud de cotización de <strong>{servicio.replace(/-/g, ' ')}</strong>.
+          Nuestro equipo comercial se pondrá en contacto contigo en menos de 12 horas hábiles.
+        </p>
+        <p className="text-sm text-gray-500 dark:text-gray-400">
+          También te enviamos un email de confirmación.
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-4">
-      {successMessage && (
-        <div className="bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-300 p-4 rounded-xl flex items-start gap-3">
-          <CheckCircle className="h-5 w-5 mt-0.5 flex-shrink-0" />
-          <p>{successMessage}</p>
-        </div>
-      )}
-      
-      <form 
-        onSubmit={handleSubmit} 
+      <form
+        onSubmit={handleSubmit}
         className="gard-card space-y-4 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm"
         id="cotizacion-form"
       >

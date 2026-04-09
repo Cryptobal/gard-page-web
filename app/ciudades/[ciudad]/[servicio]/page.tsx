@@ -198,63 +198,10 @@ export default function CiudadServicioPage() {
     }
   };
   
-  // Botón flotante para móviles
-  const FloatingButton = () => (
-    <motion.div
-      initial={{ y: 100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ delay: 0.8, type: "spring", stiffness: 260, damping: 20 }}
-      className="fixed bottom-6 right-4 z-50 md:hidden"
-    >
-      <button
-        onClick={() => scrollToSection('cotizacion-form')}
-        className="flex items-center justify-center gap-2 bg-accent hover:bg-accent/90 text-white font-semibold py-4 px-6 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
-      >
-        <span>Cotiza Ahora</span> <ArrowRight size={18} className="animate-pulse" />
-      </button>
-    </motion.div>
-  );
-  
   return (
     <>
-      {/* Cabecera con logo */}
-      <header className="w-full bg-white dark:bg-gray-900 py-6 shadow-sm fixed top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 flex justify-between">
-          <Link href="/">
-            <CloudflareImage
-              imageId={cloudflareImages.logo.default}
-              alt="Gard Security"
-              width={150}
-              height={50}
-              priority
-            />
-          </Link>
-          
-          <nav className="hidden md:flex items-center space-x-6">
-            <Link 
-              href="/ciudades"
-              className="text-gray-600 hover:text-primary transition-colors"
-            >
-              Ciudades
-            </Link>
-            <Link 
-              href="/servicios"
-              className="text-gray-600 hover:text-primary transition-colors"
-            >
-              Servicios
-            </Link>
-            <button
-              onClick={() => scrollToSection('cotizacion-form')}
-              className="bg-primary hover:bg-primary/90 text-white font-semibold py-2 px-4 rounded-lg transition-all"
-            >
-              Cotizar
-            </button>
-          </nav>
-        </div>
-      </header>
-      
-      {/* Hero principal */}
-      <section className="w-full bg-gradient-to-br from-gray-900 to-gray-800 text-white pt-32 pb-20">
+      {/* Hero principal (el Header global viene del layout raíz) */}
+      <section className="w-full bg-gradient-to-br from-gray-900 to-gray-800 text-white pt-20 pb-20">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center text-primary-foreground/70 mb-2 overflow-visible flex-wrap">
             <Link href="/ciudades" className="hover:text-white whitespace-nowrap">Ciudades</Link>
@@ -275,7 +222,7 @@ export default function CiudadServicioPage() {
                 Seguridad en {ciudad.nombre}
               </span>
               <h1 className="text-4xl font-bold md:text-5xl text-white">
-                {`${params.servicio.replace(/-/g, ' ').charAt(0).toUpperCase() + params.servicio.replace(/-/g, ' ').slice(1)} de Seguridad en ${ciudad.nombre} para Empresas`}
+                {`${servicioMetadata.title.split('|')[0].trim()} en ${ciudad.nombre} para Empresas`}
               </h1>
               <p className="text-xl text-gray-300">
                 {contenido.intro || `Servicio profesional de ${params.servicio.replace(/-/g, ' ')} en ${ciudad.nombre}`}
@@ -726,7 +673,6 @@ export default function CiudadServicioPage() {
       </section>
       
       {/* Botón flotante para móviles */}
-      <FloatingButton />
     </>
   );
 } 
