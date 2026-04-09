@@ -123,19 +123,48 @@ export default function LeyKarin() {
       setLoading(false);
       return;
     }
-    // Preparar payload
-    const payload: any = { ...form };
-    // Si no hay archivo, eliminar campos de evidencia (asegurar que sean opcionales en el payload)
-    if (!form.evidencia) {
-      payload.evidencia = undefined;
-      payload.evidencia_nombre = undefined;
-      payload.evidencia_tipo = undefined;
-    }
     try {
+      // Si hay archivo, subirlo primero al endpoint de upload de OPAI
+      let fileUrl: string | undefined;
+      let fileName: string | undefined;
+      if (form.evidencia && fileInputRef.current?.files?.[0]) {
+        const uploadBody = new FormData();
+        uploadBody.append("file", fileInputRef.current.files[0]);
+        const uploadRes = await fetch(API_URLS.LEGAL_UPLOAD, {
+          method: "POST",
+          body: uploadBody,
+        });
+        const uploadData = await uploadRes.json();
+        if (uploadRes.ok && uploadData.success) {
+          fileUrl = uploadData.data.url;
+          fileName = uploadData.data.fileName;
+        }
+      }
+
+      // Payload para OPAI /api/public/gard/messages
+      const opaiPayload = {
+        type: 'denuncia_ley_karin' as const,
+        anonymous: form.anonimo,
+        name: form.anonimo ? undefined : form.nombre,
+        email: form.anonimo ? undefined : form.email,
+        phone: form.anonimo ? undefined : form.telefono,
+        subject: `Denuncia Ley Karin: ${form.tipo}`,
+        body: form.descripcion,
+        fileUrl,
+        fileName,
+        metadata: {
+          tipo: form.tipo,
+          fecha_hecho: form.fecha_hecho,
+          lugar_hecho: form.lugar_hecho,
+          persona_involucrada: form.persona_involucrada,
+          testigos: form.testigos,
+        },
+      };
+
       const res = await fetch(API_URLS.LEGAL_DENUNCIAS, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+        body: JSON.stringify(opaiPayload),
       });
       if (res.ok) {
         setEnviado(true);

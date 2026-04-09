@@ -34,10 +34,17 @@ export default function ProgramaCumplimiento() {
     setLoading(true);
     setError("");
     try {
+      const opaiPayload = {
+        type: 'denuncia_programa_cumplimiento' as const,
+        anonymous: form.anonimo,
+        name: form.anonimo ? undefined : form.nombre,
+        email: form.anonimo ? undefined : form.email,
+        body: form.descripcion,
+      };
       const res = await fetch(API_URLS.LEGAL_DENUNCIAS, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify(opaiPayload),
       });
       if (res.ok) {
         setEnviado(true);

@@ -42,23 +42,13 @@ export default function ContactForm() {
     setError('');
     
     try {
-      // Preparar datos en formato estandarizado
-      const dataToSend = {
-        ...formData,
-        // Estandarizar nombres de campos
-        apellido: '', // El formulario de contacto no tiene apellido
-        empresa: '', // El formulario de contacto no tiene empresa
-        direccion: '', // El formulario de contacto no tiene dirección
-        comuna: '', // El formulario de contacto no tiene comuna
-        ciudad: '', // El formulario de contacto no tiene ciudad
-        latitude: undefined,
-        longitude: undefined,
-        industria: 'General', // Contacto general
-        servicio: 'Consulta General', // Consulta general
-        comentarios: formData.mensaje, // Mapear mensaje a comentarios
-        // Metadatos adicionales
-        fecha: new Date().toISOString(),
-        tipoFormulario: 'contacto'
+      // Payload para OPAI /api/public/gard/messages
+      const opaiPayload = {
+        type: 'contacto' as const,
+        name: formData.nombre,
+        email: formData.email,
+        phone: formData.telefono,
+        body: formData.mensaje,
       };
 
       const response = await fetch(API_URLS.CONTACTO, {
@@ -66,9 +56,9 @@ export default function ContactForm() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(dataToSend),
+        body: JSON.stringify(opaiPayload),
       });
-      
+
       if (response.ok) {
         setEnviado(true);
         setFormData({ nombre: '', email: '', telefono: '', mensaje: '' });
