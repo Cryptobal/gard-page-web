@@ -46,7 +46,8 @@ export default function ReclutamientoForm() {
 
   // Google Maps autocomplete
   const addressInputRef = useRef<HTMLInputElement>(null);
-  const autocompleteRef = useRef<google.maps.places.Autocomplete | null>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const autocompleteRef = useRef<any>(null);
 
   const [form, setForm] = useState({
     firstName: '',
