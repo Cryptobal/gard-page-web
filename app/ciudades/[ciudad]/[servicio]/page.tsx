@@ -128,7 +128,10 @@ export default function CiudadServicioPage() {
   const servicioFormatted = getLandingText(params.servicio, servicioSlugDatos);
   
   // Obtener el contenido personalizado para ciudad-servicio
-  const contenido = getCiudadServicioContent(params.ciudad, servicioSlugDatos, ciudad, servicioFormatted);
+  // NOTA: pasamos params.servicio (slug original de la URL, ej: "guardias-de-seguridad")
+  // porque getCiudadServicioContent busca en servicesMetadata que usa esos slugs largos.
+  // servicioSlugDatos es la versión corta ("guardias") usada solo por getLandingText.
+  const contenido = getCiudadServicioContent(params.ciudad, params.servicio, ciudad, servicioFormatted);
   
   // Si no hay contenido personalizado, mostrar página 404 personalizada
   if (!contenido) {

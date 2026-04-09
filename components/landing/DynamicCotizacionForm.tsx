@@ -182,28 +182,60 @@ export default function DynamicCotizacionForm({
         throw new Error('Por favor ingresa un email válido');
       }
       
-      // Datos a enviar incluyendo industria y servicio con campos estandarizados
-      const dataToSend = {
-        ...formData,
-        industria,
-        servicio,
-        comentarios: formData.mensaje || 'Solicitud de cotización desde landing dinámico',
-        // Metadatos adicionales
-        fecha: new Date().toISOString(),
-        tipoFormulario: 'landing_dinamico'
+      // Mapear servicio de URL ("guardias-de-seguridad") al enum que espera OPAI
+      const servicioMap: Record<string, string> = {
+        'guardias-de-seguridad': 'guardias_seguridad',
+        'seguridad-electronica': 'seguridad_electronica',
+        'central-monitoreo': 'central_monitoreo',
+        'drones-seguridad': 'drones',
+        'consultoria': 'consultoria',
       };
-      
-      // Enviar al webhook
-      const response = await fetch(API_URLS.LANDING_DINAMICO, {
+      const servicioOpai = servicioMap[servicio] || 'guardias_seguridad';
+
+      // Payload compatible con el schema público de OPAI (/api/public/gard/leads)
+      const opaiPayload = {
+        nombre: formData.nombre,
+        apellido: formData.apellido,
+        email: formData.email,
+        celular: formData.telefono,
+        empresa: formData.empresa,
+        direccion: formData.direccion || undefined,
+        comuna: formData.comuna || undefined,
+        ciudad: formData.ciudad || undefined,
+        lat: formData.latitude,
+        lng: formData.longitude,
+        industria: industria || undefined,
+        servicio: servicioOpai,
+        detalle: formData.mensaje || `Solicitud desde landing dinámico (${industria} / ${servicio})`,
+        source: 'web_cotizador' as const,
+      };
+
+      // Enviar a OPAI (crea lead en CRM y dispara emails)
+      const response = await fetch(API_URLS.COTIZACION, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(dataToSend),
+        body: JSON.stringify(opaiPayload),
       });
-      
+
       if (!response.ok) {
-        throw new Error('Error al enviar el formulario');
+        // Fallback a webhook Make si OPAI falla, para no perder el lead
+        const fallbackRes = await fetch(API_URLS.LANDING_DINAMICO, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            ...formData,
+            industria,
+            servicio,
+            comentarios: formData.mensaje || 'Solicitud de cotización desde landing dinámico',
+            fecha: new Date().toISOString(),
+            tipoFormulario: 'landing_dinamico',
+          }),
+        });
+        if (!fallbackRes.ok) {
+          throw new Error('Error al enviar el formulario');
+        }
       }
       
       // Lanzar evento de formulario enviado usando el helper centralizado
