@@ -540,151 +540,62 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
         whatsapp_message_comercial_to_cliente: whatsappComercialToClient,
       };
       
-      const response = await fetch(API_URLS.COTIZACION, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(opaiPayload),
-      });
-      
-      if (response.ok) {
-        setLastSuccessData({ nombre: data.nombre, apellido: data.apellido, empresa: data.empresa, cotizacion: data.cotizacion || '' });
-        setFormStatus('success');
-        form.reset();
-        setQuickPuestos([createDefaultQuickPuesto()]);
-        setDotacionMode('quick');
-        sessionStorage.removeItem('user_service');
-        sessionStorage.removeItem('user_industry');
-        sessionStorage.removeItem('user_service_slug');
-        sessionStorage.removeItem('user_industry_slug');
-        
-        trackFormSubmission({
-          formType: 'cotizacion',
-          additionalData: {
-            tipo_industria: data.tipoIndustria,
-            servicio_requerido: data.servicioRequerido,
-            pagina_origen: window.location.pathname,
-            utm_source: data.utm_source || '',
-            utm_medium: data.utm_medium || '',
-            utm_campaign: data.utm_campaign || '',
-            utm_term: data.utm_term || '',
-            utm_content: data.utm_content || '',
-            gclid: data.gclid || '',
-            landing_page: data.landing_page || '',
-            dotacion_puestos: data.dotacion?.length || 0,
-            dotacion_guardias: data.dotacion?.reduce((sum, d) => sum + d.cantidad, 0) || 0,
-          }
-        });
-      } else {
-        // Fallback 1: intentar solo envío de emails (OPAI responde pero lead falló)
-        const emailOnlyRes = await fetch(API_URLS.COTIZACION, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ ...opaiPayload, emailOnly: true }),
-        });
-        if (emailOnlyRes.ok) {
-          setLastSuccessData({ nombre: data.nombre, apellido: data.apellido, empresa: data.empresa, cotizacion: data.cotizacion || '' });
-          setFormStatus('success');
-          form.reset();
-          setQuickPuestos([createDefaultQuickPuesto()]);
-          setDotacionMode('quick');
-          sessionStorage.removeItem('user_service');
-          sessionStorage.removeItem('user_industry');
-          sessionStorage.removeItem('user_service_slug');
-          sessionStorage.removeItem('user_industry_slug');
-        } else {
-          // Fallback 2: Make webhook (configurar Make para enviar email)
-          try {
-            await fetch(API_URLS.COTIZACION_FALLBACK, {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ ...opaiPayload, source: 'cotizacion_fallback', opaiFailed: true }),
+      // Enviar a OPAI con retry automático (hasta 2 reintentos)
+      const MAX_RETRIES = 2;
+      let lastError: unknown = null;
+      let success = false;
+
+      for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
+        try {
+          if (attempt > 0) await new Promise((r) => setTimeout(r, 1500 * attempt));
+          const response = await fetch(API_URLS.COTIZACION, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(opaiPayload),
+          });
+          if (response.ok) {
+            success = true;
+            setLastSuccessData({ nombre: data.nombre, apellido: data.apellido, empresa: data.empresa, cotizacion: data.cotizacion || '' });
+            setFormStatus('success');
+            form.reset();
+            setQuickPuestos([createDefaultQuickPuesto()]);
+            setDotacionMode('quick');
+            sessionStorage.removeItem('user_service');
+            sessionStorage.removeItem('user_industry');
+            sessionStorage.removeItem('user_service_slug');
+            sessionStorage.removeItem('user_industry_slug');
+            trackFormSubmission({
+              formType: 'cotizacion',
+              additionalData: {
+                tipo_industria: data.tipoIndustria,
+                servicio_requerido: data.servicioRequerido,
+                pagina_origen: window.location.pathname,
+                utm_source: data.utm_source || '',
+                utm_medium: data.utm_medium || '',
+                utm_campaign: data.utm_campaign || '',
+                utm_term: data.utm_term || '',
+                utm_content: data.utm_content || '',
+                gclid: data.gclid || '',
+                landing_page: data.landing_page || '',
+                dotacion_puestos: data.dotacion?.length || 0,
+                dotacion_guardias: data.dotacion?.reduce((sum, d) => sum + d.cantidad, 0) || 0,
+              }
             });
-          } catch (_) { /* Make también puede fallar */ }
-          setFormStatus('error');
+            break;
+          }
+          lastError = new Error(`OPAI respondió ${response.status}`);
+        } catch (err) {
+          lastError = err;
         }
+      }
+
+      if (!success) {
+        setFormStatus('error');
+        setLastSuccessData(null);
+        console.error('Error al enviar cotización a OPAI después de reintentos:', lastError);
       }
     } catch (error) {
-      // Fallback: error de red o OPAI caído - intentar email-only y luego Make
-      const whatsappMessageFallback = buildWhatsAppCotizacionMessage(data.nombre, data.apellido, data.empresa, data.cotizacion || '');
-      const whatsappComercialFallback = buildWhatsAppComercialToClientMessage(
-        data.nombre,
-        data.empresa,
-        data.direccion,
-        data.comuna || '',
-        data.ciudad || '',
-        data.servicioRequerido,
-        data.dotacion?.map((d) => ({ puesto: d.puesto, cantidad: d.cantidad })),
-        data.cotizacion || ''
-      );
-      let dotacionFallback: DotacionApiItem[] | undefined;
-      if (isGuardias) {
-        if (dotacionMode === 'quick' && quickPuestos.length > 0) {
-          dotacionFallback = buildDotacion(quickPuestos);
-        } else if (data.dotacion && data.dotacion.length > 0) {
-          dotacionFallback = data.dotacion.map((d) => ({
-            puesto: d.puesto,
-            cantidad: d.cantidad,
-            dias: d.dias || [],
-            horaInicio: d.horaInicio || '08:00',
-            horaFin: d.horaFin || '20:00',
-          }));
-        }
-      }
-      const fallbackPayload = {
-        nombre: data.nombre,
-        apellido: data.apellido,
-        email: data.email,
-        celular: data.telefono,
-        empresa: data.empresa,
-        direccion: data.direccion,
-        comuna: data.comuna || '',
-        ciudad: data.ciudad || '',
-        lat: data.latitude != null ? data.latitude : undefined,
-        lng: data.longitude != null ? data.longitude : undefined,
-        pagina_web: getPaginaWebFromEmail(data.email),
-        industria: data.tipoIndustria,
-        servicio: data.servicioRequerido,
-        detalle: (data.cotizacion || '').slice(0, 5000),
-        dotacion: dotacionFallback,
-        source: 'web_cotizador' as const,
-        emailOnly: true,
-        whatsapp_prefilled_message: whatsappMessageFallback,
-        whatsapp_message_comercial_to_cliente: whatsappComercialFallback,
-      };
-      try {
-        const emailOnlyRes = await fetch(API_URLS.COTIZACION, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(fallbackPayload),
-        });
-        if (emailOnlyRes.ok) {
-          setLastSuccessData({ nombre: data.nombre, apellido: data.apellido, empresa: data.empresa, cotizacion: data.cotizacion || '' });
-          setFormStatus('success');
-          form.reset();
-          setQuickPuestos([createDefaultQuickPuesto()]);
-          setDotacionMode('quick');
-          sessionStorage.removeItem('user_service');
-          sessionStorage.removeItem('user_industry');
-          sessionStorage.removeItem('user_service_slug');
-          sessionStorage.removeItem('user_industry_slug');
-        } else {
-          await fetch(API_URLS.COTIZACION_FALLBACK, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ ...fallbackPayload, source: 'cotizacion_fallback', opaiFailed: true }),
-          });
-          setFormStatus('error');
-        }
-      } catch (_) {
-        try {
-          await fetch(API_URLS.COTIZACION_FALLBACK, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ ...fallbackPayload, source: 'cotizacion_fallback', opaiFailed: true }),
-          });
-        } catch (_) { /* Make también puede fallar */ }
-        setFormStatus('error');
-      }
+      setFormStatus('error');
       setLastSuccessData(null);
       console.error('Error al enviar el formulario:', error);
     } finally {

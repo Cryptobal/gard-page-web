@@ -38,21 +38,10 @@ export const API_URLS = {
   COTIZACION: `${OPAI_URL}/api/public/gard/leads`,
   COTIZACION_INTELIGENTE: `${OPAI_URL}/api/public/gard/leads`,
 
-  // Fallback: si OPAI falla, enviar a Make (solo cotizar; cotizador inteligente solo OPAI)
-  COTIZACION_FALLBACK: 'https://hook.us1.make.com/oq1dihqjq7xbl2xbk9wbbdp02h37831a',
-
-  // Landing dinámico (ciudades/servicios) también va a OPAI con fallback Make
-  LANDING_DINAMICO: 'https://hook.us1.make.com/oq1dihqjq7xbl2xbk9wbbdp02h37831a',
-
   // Reclutamiento → OPAI postulación (espejo del form de opai.gard.cl)
   POSTULACION: `${OPAI_URL}/api/public/gard/postulacion`,
   POSTULACION_UPLOAD: `${OPAI_URL}/api/public/gard/postulacion/upload`,
   POSTULACION_DOC_TYPES: `${OPAI_URL}/api/public/gard/postulacion/document-types`,
-
-  // Legacy Make webhooks (mantener por si se necesitan como fallback)
-  RECLUTAMIENTO_LEGACY: 'https://hook.us1.make.com/5ozb2y5aucrr75d2xtpshmlyckds9nl4',
-  LEGAL_LEGACY: 'https://hook.us1.make.com/v3rknlt7mxqvjtna74iajcyfku7vnfj2',
-  CONTACTO_LEGACY: 'https://hook.us1.make.com/oq1dihqjq7xbl2xbk9wbbdp02h37831a',
 };
 
 export default API_URLS;

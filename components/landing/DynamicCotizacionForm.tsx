@@ -210,32 +210,32 @@ export default function DynamicCotizacionForm({
         source: 'web_cotizador' as const,
       };
 
-      // Enviar a OPAI (crea lead en CRM y dispara emails)
-      const response = await fetch(API_URLS.COTIZACION, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(opaiPayload),
-      });
+      // Enviar a OPAI con retry automático (hasta 2 reintentos)
+      const MAX_RETRIES = 2;
+      let lastError: unknown = null;
+      let sent = false;
 
-      if (!response.ok) {
-        // Fallback a webhook Make si OPAI falla, para no perder el lead
-        const fallbackRes = await fetch(API_URLS.LANDING_DINAMICO, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            ...formData,
-            industria,
-            servicio,
-            comentarios: formData.mensaje || 'Solicitud de cotización desde landing dinámico',
-            fecha: new Date().toISOString(),
-            tipoFormulario: 'landing_dinamico',
-          }),
-        });
-        if (!fallbackRes.ok) {
-          throw new Error('Error al enviar el formulario');
+      for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
+        try {
+          if (attempt > 0) await new Promise((r) => setTimeout(r, 1500 * attempt));
+          const response = await fetch(API_URLS.COTIZACION, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(opaiPayload),
+          });
+          if (response.ok) {
+            sent = true;
+            break;
+          }
+          lastError = new Error(`OPAI respondió ${response.status}`);
+        } catch (err) {
+          lastError = err;
         }
+      }
+
+      if (!sent) {
+        console.error('Error al enviar cotización landing a OPAI después de reintentos:', lastError);
+        throw new Error('Error al enviar el formulario');
       }
       
       // Lanzar evento de formulario enviado usando el helper centralizado
