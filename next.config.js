@@ -2,6 +2,10 @@
 const nextConfig = {
   reactStrictMode: true,
   // swcMinify removido - es el default en Next.js 15
+
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   
   // Optimización de imágenes
   images: {

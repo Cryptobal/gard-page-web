@@ -34,7 +34,7 @@ The server starts in ~1 second. No env vars are strictly required for local dev 
 ### Lint, typecheck, build
 - **Lint**: `pnpm lint` — the repo has pre-existing ESLint errors (unescaped entities, hooks rules). These are not regressions. The `.eslintrc.json` file (extends `next/core-web-vitals`) is needed for `pnpm lint` to run non-interactively; without it, Next.js prompts for interactive configuration.
 - **Typecheck**: `pnpm typecheck` — runs `tsc --noEmit`. Should pass cleanly.
-- **Build**: `pnpm build` — note that if `.eslintrc.json` is present, the build will fail on the pre-existing lint errors. The production build on Vercel works because it has its own ESLint configuration. To build locally, either remove `.eslintrc.json` before building or add `eslint.ignoreDuringBuilds: true` to `next.config.js`.
+- **Build**: `pnpm build` — `next.config.js` has `eslint.ignoreDuringBuilds: true` so the build skips linting (pre-existing lint errors would otherwise block it).
 - **Tests**: `pnpm test` is a no-op (`echo 'No tests configured yet'`).
 
 ### Key gotchas
