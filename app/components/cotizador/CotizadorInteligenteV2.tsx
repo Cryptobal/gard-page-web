@@ -663,7 +663,8 @@ export default function CotizadorInteligenteV2() {
           }
         });
       } else {
-        console.error('Error al enviar formulario:', response.statusText);
+        const errBody = await response.text().catch(() => '');
+        console.error(`Error al enviar formulario: OPAI ${response.status}: ${errBody}`);
       }
     } catch (error) {
       console.error('Error al enviar formulario:', error);
