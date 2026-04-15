@@ -583,7 +583,8 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
             });
             break;
           }
-          lastError = new Error(`OPAI respondió ${response.status}`);
+          const errBody = await response.text().catch(() => '');
+          lastError = new Error(`OPAI ${response.status}: ${errBody}`);
         } catch (err) {
           lastError = err;
         }
