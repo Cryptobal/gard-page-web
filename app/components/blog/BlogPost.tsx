@@ -193,22 +193,30 @@ export default function BlogPost({ slug }: { slug: string }) {
       }
     : {
         '@context': 'https://schema.org',
-        '@type': 'BlogPosting',
+        '@type': 'Article',
         headline: post.title,
         description: post.description,
-        image: getBlogPostShareImageUrl(post.cardImage, post.imageId),
+        image: [getBlogPostShareImageUrl(post.cardImage, post.imageId)],
         datePublished: post.date,
+        dateModified: post.date,
         author: {
           '@type': 'Organization',
           name: post.author || 'Gard Security',
+          url: 'https://www.gard.cl',
         },
         publisher: {
           '@type': 'Organization',
+          '@id': 'https://www.gard.cl/#organization',
           name: 'Gard Security',
+          url: 'https://www.gard.cl',
           logo: {
             '@type': 'ImageObject',
             url: `https://imagedelivery.net/${CLOUDFLARE_ACCOUNT_HASH}/7661cf51-c66b-4419-9229-e6e50f76ff00/public`,
           },
+        },
+        mainEntityOfPage: {
+          '@type': 'WebPage',
+          '@id': `https://www.gard.cl/blog/${slug}`,
         },
       };
 
