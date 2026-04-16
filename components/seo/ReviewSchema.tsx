@@ -31,13 +31,19 @@ interface ReviewSchemaProps {
   };
   aggregateRating: AggregateRatingInput;
   reviews: ReviewItem[];
+  /**
+   * URL externa de verificación del rating (ej: Google Business Profile).
+   * CRÍTICO pasar esto cuando se use aggregateRating — evita clasificación
+   * como "self-serving review" por parte de Google (política 2019+).
+   */
+  verificationUrl?: string;
 }
 
 /**
  * ReviewSchema - JSON-LD para reseñas y rating agregado
  * Optimiza rich snippets y ayuda a las IAs a citar evidencias verificables.
  */
-export default function ReviewSchema({ itemReviewed, aggregateRating, reviews }: ReviewSchemaProps) {
+export default function ReviewSchema({ itemReviewed, aggregateRating, reviews, verificationUrl }: ReviewSchemaProps) {
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'Product',
@@ -52,6 +58,7 @@ export default function ReviewSchema({ itemReviewed, aggregateRating, reviews }:
       bestRating: aggregateRating.bestRating ?? 5,
       worstRating: aggregateRating.worstRating ?? 1,
     },
+    ...(verificationUrl ? { sameAs: [verificationUrl] } : {}),
     review: reviews.map((review) => ({
       '@type': 'Review',
       name: review.name ?? `${itemReviewed.name} - Reseña`,

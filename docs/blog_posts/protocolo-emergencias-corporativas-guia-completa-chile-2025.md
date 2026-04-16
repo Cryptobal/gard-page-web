@@ -924,7 +924,7 @@ Gard Security ofrece servicios integrales de seguridad con especialización en g
 - 📋 Cotización: www.gard.cl/cotizar
 
 **Última actualización:** Noviembre 2025  
-**Fuente:** Ley 16.744, Código del Trabajo Chile, Protocolos Bomberos de Chile, experiencia Gard Security 15+ años
+**Fuente:** Ley 16.744, Código del Trabajo Chile, Protocolos Bomberos de Chile, experiencia Gard Security 10+ años
 
 ---
 

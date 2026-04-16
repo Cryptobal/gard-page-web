@@ -13,7 +13,7 @@ const yearsOfExperience = Math.max(1, new Date().getFullYear() - FOUNDING_YEAR);
 
 export const metadata: Metadata = {
   title: 'Empresa de Seguridad Privada en Chile | Gard Security',
-  description: 'Gard Security: empresa líder en seguridad privada para empresas en Chile. Guardias certificados OS10, monitoreo 24/7, drones y seguridad electrónica. Cotiza sin compromiso.',
+  description: 'Empresa de seguridad privada para empresas en Chile. Guardias de seguridad certificados OS10, monitoreo 24/7, drones y seguridad electrónica. Cobertura en 10 ciudades. Cotiza sin compromiso.',
   alternates: {
     canonical: 'https://www.gard.cl',
   },
@@ -84,9 +84,9 @@ export default function Home() {
   return (
     <>
       {/* Hero principal */}
-      <GardHero 
-        title="Seguridad de Clase Mundial para Empresas Exigentes"
-        subtitle="Protegemos lo que más importa con soluciones integrales diseñadas para los desafíos de seguridad más complejos."
+      <GardHero
+        title="Empresa de Seguridad Privada para Empresas en Chile"
+        subtitle="Guardias certificados OS10, monitoreo 24/7, drones y seguridad electrónica para minería, faenas industriales y oficinas corporativas. Cobertura en 10 ciudades."
         ctaTexto="Cotizar Ahora"
         ctaHref="#cotizar"
         videoId="ac93b4a10e87873748171425b9f8066d"
@@ -94,7 +94,7 @@ export default function Home() {
         variant="home"
         badge={{
           icon: <Shield className="h-4 w-4" />,
-          text: "Expertos en Seguridad Empresarial"
+          text: "Guardias de Seguridad Certificados OS10"
         }}
       />
 

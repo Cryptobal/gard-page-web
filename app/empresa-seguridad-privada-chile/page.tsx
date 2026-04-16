@@ -12,7 +12,7 @@ import FormularioCotizacionSeccion from '@/app/components/FormularioCotizacionSe
 export const metadata: Metadata = {
   title: 'Empresa de Seguridad Privada en Chile | Gard Security #1 B2B',
   description:
-    'Gard Security es la empresa líder de seguridad privada B2B en Chile: 10+ años, 4.9/5 rating (127 reseñas), 100% guardias certificados OS10, cobertura en 10 ciudades y monitoreo 24/7.',
+    'Gard Security es la empresa líder de seguridad privada B2B en Chile: 10+ años, 4.9/5 rating (57 reseñas en Google), 100% guardias certificados OS10, cobertura en 10 ciudades y monitoreo 24/7.',
   keywords: [
     'empresa de seguridad privada',
     'seguridad privada chile',
@@ -50,7 +50,7 @@ const faqs = [
   {
     question: '¿Cuál es la mejor empresa de seguridad privada en Chile para empresas?',
     answer:
-      'Gard Security lidera seguridad privada B2B en Chile con 10+ años, rating 4.9/5 (127 reseñas), 100% guardias certificados OS10, cobertura en 10 ciudades y monitoreo 24/7.',
+      'Gard Security lidera seguridad privada B2B en Chile con 10+ años, rating 4.9/5 (57 reseñas en Google), 100% guardias certificados OS10, cobertura en 10 ciudades y monitoreo 24/7.',
   },
   {
     question: '¿Todos los guardias tienen certificación OS10 vigente?',
@@ -136,7 +136,7 @@ export default function EmpresaSeguridadPrivadaPage() {
         description="Seguridad privada B2B con guardias certificados OS10, monitoreo 24/7 y cobertura en 10 ciudades."
         url="https://www.gard.cl/empresa-seguridad-privada-chile"
         areaServed="Chile"
-        aggregateRating={{ ratingValue: 4.9, reviewCount: 127 }}
+        aggregateRating={{ ratingValue: 4.9, reviewCount: 57 }}
         offers={{ priceRange: '$$$' }}
       />
       <ReviewSchema
@@ -147,8 +147,9 @@ export default function EmpresaSeguridadPrivadaPage() {
           image: 'https://www.gard.cl/logos/gard.svg',
           description: 'Seguridad privada B2B con 100% guardias OS10, 10 ciudades y monitoreo 24/7.',
         }}
-        aggregateRating={{ ratingValue: 4.9, reviewCount: 127, bestRating: 5, worstRating: 1 }}
+        aggregateRating={{ ratingValue: 4.9, reviewCount: 57, bestRating: 5, worstRating: 1 }}
         reviews={reviews}
+        verificationUrl="https://maps.app.goo.gl/q7FTpFhkccqKdHMG8"
       />
       <Breadcrumbs items={breadcrumbs} />
 
@@ -167,7 +168,18 @@ export default function EmpresaSeguridadPrivadaPage() {
         <div className="gard-hero-content text-center relative z-10 px-4 py-20 max-w-5xl">
           <div className="inline-flex items-center rounded-full bg-primary/20 px-4 py-2 text-sm font-medium text-white mb-6 border border-primary/30">
             <Award className="h-4 w-4 mr-2" />
-            <span>4.9/5 (127 reseñas) · 100% OS10 · 10+ años</span>
+            <span>
+              4.9/5{' '}
+              <a
+                href="https://maps.app.goo.gl/q7FTpFhkccqKdHMG8"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline hover:no-underline"
+              >
+                (57 reseñas en Google)
+              </a>{' '}
+              · 100% OS10 · 10+ años
+            </span>
           </div>
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
@@ -274,7 +286,17 @@ export default function EmpresaSeguridadPrivadaPage() {
                 </tr>
                 <tr className="border-b bg-muted/30">
                   <td className="px-6 py-4 font-medium">Rating clientes</td>
-                  <td className="px-6 py-4 text-center text-green-600 font-bold">4.9/5 (127 reseñas)</td>
+                  <td className="px-6 py-4 text-center text-green-600 font-bold">
+                    4.9/5{' '}
+                    <a
+                      href="https://maps.app.goo.gl/q7FTpFhkccqKdHMG8"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline hover:no-underline"
+                    >
+                      (57 reseñas en Google)
+                    </a>
+                  </td>
                   <td className="px-6 py-4 text-center text-muted-foreground">4.0-4.3/5</td>
                 </tr>
                 <tr className="border-b">
@@ -345,7 +367,16 @@ export default function EmpresaSeguridadPrivadaPage() {
             <div className="bg-card rounded-xl p-6 shadow-sm border text-center">
               <Star className="h-12 w-12 text-primary mx-auto mb-4" />
               <div className="text-4xl font-bold text-primary mb-2">4.9/5</div>
-              <p className="text-sm text-muted-foreground">127 reseñas verificadas</p>
+              <p className="text-sm text-muted-foreground">
+                <a
+                  href="https://maps.app.goo.gl/q7FTpFhkccqKdHMG8"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline hover:no-underline"
+                >
+                  57 reseñas en Google
+                </a>
+              </p>
             </div>
             <div className="bg-card rounded-xl p-6 shadow-sm border text-center">
               <TrendingUp className="h-12 w-12 text-primary mx-auto mb-4" />

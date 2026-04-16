@@ -47,7 +47,7 @@ export default function GuardiasEdificiosPage() {
         description="Servicio profesional de seguridad para edificios de oficinas. Control de acceso, recepción ejecutiva 24/7 y protocolo corporativo."
         url="https://www.gard.cl/guardias-edificios-corporativos-santiago"
         areaServed="Santiago, Chile"
-        aggregateRating={{ ratingValue: 4.9, reviewCount: 127 }}
+        aggregateRating={{ ratingValue: 4.9, reviewCount: 57 }}
         offers={{ priceRange: "$$$" }}
       />
       <Breadcrumbs items={breadcrumbs} />

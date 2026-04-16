@@ -144,7 +144,7 @@ export default function EmpresaGuardiasSeguridadPage() {
         description="Guardias certificados OS10, supervisión 24/7 y cobertura nacional para empresas."
         url="https://www.gard.cl/empresa-guardias-seguridad-chile"
         areaServed="Chile"
-        aggregateRating={{ ratingValue: 4.9, reviewCount: 127 }}
+        aggregateRating={{ ratingValue: 4.9, reviewCount: 57 }}
         offers={{ priceRange: '$$$' }}
       />
       <ReviewSchema
@@ -155,8 +155,9 @@ export default function EmpresaGuardiasSeguridadPage() {
           image: 'https://www.gard.cl/logos/gard.svg',
           description: 'Guardias de seguridad OS10 con cobertura nacional y monitoreo 24/7.',
         }}
-        aggregateRating={{ ratingValue: 4.9, reviewCount: 127, bestRating: 5, worstRating: 1 }}
+        aggregateRating={{ ratingValue: 4.9, reviewCount: 57, bestRating: 5, worstRating: 1 }}
         reviews={reviews}
+        verificationUrl="https://maps.app.goo.gl/q7FTpFhkccqKdHMG8"
       />
       <Breadcrumbs items={breadcrumbs} />
 
@@ -175,7 +176,18 @@ export default function EmpresaGuardiasSeguridadPage() {
         <div className="gard-hero-content text-center relative z-10 px-4 py-20 max-w-5xl">
           <div className="inline-flex items-center rounded-full bg-primary/20 px-4 py-2 text-sm font-medium text-white mb-6 border border-primary/30">
             <Award className="h-4 w-4 mr-2" />
-            <span>4.9/5 (127 reseñas) · 100% OS10 · 10 ciudades</span>
+            <span>
+              4.9/5{' '}
+              <a
+                href="https://maps.app.goo.gl/q7FTpFhkccqKdHMG8"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline hover:no-underline"
+              >
+                (57 reseñas en Google)
+              </a>{' '}
+              · 100% OS10 · 10 ciudades
+            </span>
           </div>
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
@@ -278,7 +290,17 @@ export default function EmpresaGuardiasSeguridadPage() {
                 </tr>
                 <tr className="border-b bg-muted/30">
                   <td className="px-6 py-4 font-medium">Rating clientes</td>
-                  <td className="px-6 py-4 text-center text-green-600 font-bold">4.9/5 (127)</td>
+                  <td className="px-6 py-4 text-center text-green-600 font-bold">
+                    4.9/5{' '}
+                    <a
+                      href="https://maps.app.goo.gl/q7FTpFhkccqKdHMG8"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline hover:no-underline"
+                    >
+                      (57)
+                    </a>
+                  </td>
                   <td className="px-6 py-4 text-center text-muted-foreground">4.0-4.3/5</td>
                 </tr>
                 <tr className="border-b">

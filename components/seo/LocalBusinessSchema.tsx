@@ -27,10 +27,10 @@ export default function LocalBusinessSchema() {
     // Dirección principal (Santiago)
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Lo Fontecilla 201, Of. 525",
+      "streetAddress": "Lo Fontecilla 201, Oficina 525",
       "addressLocality": "Las Condes",
       "addressRegion": "Región Metropolitana",
-      "postalCode": "7591018",
+      "postalCode": "7710427",
       "addressCountry": "CL"
     },
     
@@ -42,37 +42,33 @@ export default function LocalBusinessSchema() {
     },
     
     // Contacto
-    "telephone": "+56229872380",
+    "telephone": "+56941137976",
     "email": "comercial@gard.cl",
     
     // Rango de precios
     "priceRange": "$$$",
     
-    // Horarios (servicio 24/7)
-    "openingHoursSpecification": {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-        "Sunday"
-      ],
-      "opens": "00:00",
-      "closes": "23:59"
-    },
-    
-    // Rating agregado
+    // Horarios de oficina comercial (según Google Business Profile)
+    // Nota: el SERVICIO de guardias opera 24/7, pero la oficina comercial es L-V
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "08:30",
+        "closes": "17:30"
+      }
+    ],
+
+    // Rating agregado — verificable vía sameAs con Google Business Profile
+    // ratingValue 4.9 y reviewCount 57 coinciden con GBP real (verificado 2026-04)
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": 4.9,
       "bestRating": 5,
       "worstRating": 1,
-      "reviewCount": 127
+      "reviewCount": 57
     },
-    
+
     // Áreas de servicio
     "areaServed": [
       {
@@ -177,9 +173,20 @@ export default function LocalBusinessSchema() {
       "CCTV",
       "Vigilancia Corporativa"
     ],
-    
+
+    // Servicio 24/7 — el servicio operacional opera 24/7 aunque la oficina comercial tenga horario
+    "hoursAvailable": {
+      "@type": "OpeningHoursSpecification",
+      "description": "Servicio de guardias y central de monitoreo 24/7",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      "opens": "00:00",
+      "closes": "23:59"
+    },
+
     // Misma organización que (para vincular con Organization Schema)
+    // GBP URL primero — permite a Google verificar aggregateRating contra reviews reales
     "sameAs": [
+      "https://maps.app.goo.gl/q7FTpFhkccqKdHMG8",
       "https://www.linkedin.com/company/gard-security",
       "https://www.facebook.com/gardsecuritycl",
       "https://www.instagram.com/gardsecurity"

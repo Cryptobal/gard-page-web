@@ -47,7 +47,7 @@ export default function SeguridadBodegasPage() {
         description="Servicio especializado de seguridad para bodegas logísticas. Reducción de mermas, control de acceso y vigilancia 24/7."
         url="https://www.gard.cl/seguridad-bodegas-logistica-chile"
         areaServed="Chile"
-        aggregateRating={{ ratingValue: 4.9, reviewCount: 127 }}
+        aggregateRating={{ ratingValue: 4.9, reviewCount: 57 }}
         offers={{ priceRange: "$$" }}
       />
       <Breadcrumbs items={breadcrumbs} />

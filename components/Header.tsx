@@ -30,6 +30,7 @@ const navLinks = [
 // Mega Menu Data
 const megaMenuData = {
   Servicios: [
+    { title: 'Para Empresas (B2B)', href: '/guardias-de-seguridad-privada-para-empresas', desc: 'Landing comercial B2B: casos, comparativa, cotización rápida.' },
     { title: 'Guardias de Seguridad', href: '/servicios/guardias-de-seguridad', desc: 'Personal certificado OS10 para protección física.' },
     { title: 'Seguridad Electrónica', href: '/servicios/seguridad-electronica', desc: 'CCTV, alarmas y control de acceso avanzado.' },
     { title: 'Central de Monitoreo', href: '/servicios/central-monitoreo', desc: 'Vigilancia remota 24/7 con respuesta inmediata.' },

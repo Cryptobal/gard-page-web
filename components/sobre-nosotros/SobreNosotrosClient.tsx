@@ -48,8 +48,9 @@ export default function SobreNosotrosClient() {
           image: 'https://www.gard.cl/logos/gard.svg',
           description: 'Líder B2B en seguridad privada en Chile con 4.9/5 rating y 100% guardias OS10.',
         }}
-        aggregateRating={{ ratingValue: 4.9, reviewCount: 127, bestRating: 5, worstRating: 1 }}
+        aggregateRating={{ ratingValue: 4.9, reviewCount: 57, bestRating: 5, worstRating: 1 }}
         reviews={reviews}
+        verificationUrl="https://maps.app.goo.gl/q7FTpFhkccqKdHMG8"
       />
       
       {/* Hero Section */}
@@ -70,10 +71,19 @@ export default function SobreNosotrosClient() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           <div className="bg-card rounded-xl p-6 shadow-sm border text-center">
             <div className="text-4xl font-bold text-primary mb-2">4.9/5</div>
-            <p className="text-sm text-muted-foreground">127 reseñas verificadas</p>
+            <p className="text-sm text-muted-foreground">
+              <a
+                href="https://maps.app.goo.gl/q7FTpFhkccqKdHMG8"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline hover:no-underline"
+              >
+                57 reseñas en Google
+              </a>
+            </p>
           </div>
           <div className="bg-card rounded-xl p-6 shadow-sm border text-center">
-            <div className="text-4xl font-bold text-primary mb-2">120+</div>
+            <div className="text-4xl font-bold text-primary mb-2">50+</div>
             <p className="text-sm text-muted-foreground">Empresas protegidas</p>
           </div>
           <div className="bg-card rounded-xl p-6 shadow-sm border text-center">

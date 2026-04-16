@@ -4,10 +4,15 @@ interface ServiceSchemaProps {
   name: string;
   description: string;
   url: string;
-  areaServed?: string; // Ej: "Chile", "Santiago", etc.
+  serviceType?: string;
+  category?: string;
+  areaServed?: string | Array<{ type: 'City' | 'Country'; name: string }>;
   provider?: {
     name: string;
     url: string;
+  };
+  audience?: {
+    audienceType: string;
   };
   aggregateRating?: {
     ratingValue: number;
@@ -17,6 +22,13 @@ interface ServiceSchemaProps {
   offers?: {
     priceRange?: string;
     availability?: string;
+    priceCurrency?: string;
+    priceDescription?: string;
+    url?: string;
+  };
+  hasOfferCatalog?: {
+    name: string;
+    items: Array<{ name: string; url: string }>;
   };
 }
 
@@ -31,7 +43,7 @@ interface ServiceSchemaProps {
  *   description="Servicio profesional de guardias..."
  *   url="https://www.gard.cl/servicios/guardias-de-seguridad"
  *   areaServed="Chile"
- *   aggregateRating={{ ratingValue: 4.9, reviewCount: 127 }}
+ *   aggregateRating={{ ratingValue: 4.9, reviewCount: 57 }} // verificable vía provider.@id
  *   offers={{ priceRange: "$$$" }}
  * />
  */
@@ -39,13 +51,17 @@ export default function ServiceSchema({
   name,
   description,
   url,
+  serviceType,
+  category,
   areaServed = 'Chile',
   provider = {
     name: 'Gard Security',
     url: 'https://www.gard.cl'
   },
+  audience,
   aggregateRating,
-  offers
+  offers,
+  hasOfferCatalog
 }: ServiceSchemaProps) {
   const schema: any = {
     '@context': 'https://schema.org',
@@ -55,16 +71,29 @@ export default function ServiceSchema({
     'url': url,
     'provider': {
       '@type': 'Organization',
+      '@id': 'https://www.gard.cl/#organization',
       'name': provider.name,
       'url': provider.url
     }
   };
 
-  // Agregar área servida
-  if (areaServed) {
+  if (serviceType) schema.serviceType = serviceType;
+  if (category) schema.category = category;
+
+  // Agregar área servida (string simple o array de ciudades/países)
+  if (Array.isArray(areaServed)) {
+    schema.areaServed = areaServed.map((a) => ({ '@type': a.type, 'name': a.name }));
+  } else if (areaServed) {
     schema.areaServed = {
       '@type': areaServed.includes(',') ? 'City' : 'Country',
       'name': areaServed
+    };
+  }
+
+  if (audience) {
+    schema.audience = {
+      '@type': 'BusinessAudience',
+      'audienceType': audience.audienceType
     };
   }
 
@@ -86,9 +115,31 @@ export default function ServiceSchema({
       'availability': offers.availability || 'https://schema.org/InStock'
     };
 
-    if (offers.priceRange) {
-      schema.offers.priceRange = offers.priceRange;
+    if (offers.priceRange) schema.offers.priceRange = offers.priceRange;
+    if (offers.priceCurrency) schema.offers.priceCurrency = offers.priceCurrency;
+    if (offers.url) schema.offers.url = offers.url;
+    if (offers.priceDescription) {
+      schema.offers.priceSpecification = {
+        '@type': 'PriceSpecification',
+        'priceCurrency': offers.priceCurrency || 'CLP',
+        'description': offers.priceDescription
+      };
     }
+  }
+
+  if (hasOfferCatalog) {
+    schema.hasOfferCatalog = {
+      '@type': 'OfferCatalog',
+      'name': hasOfferCatalog.name,
+      'itemListElement': hasOfferCatalog.items.map((item) => ({
+        '@type': 'Offer',
+        'itemOffered': {
+          '@type': 'Service',
+          'name': item.name,
+          'url': item.url
+        }
+      }))
+    };
   }
 
   return (

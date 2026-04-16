@@ -47,7 +47,7 @@ export default function GuardiasSeguridadMineriaPage() {
         description="Servicio especializado de guardias certificados OS10 para faenas mineras. Protección 24/7 con personal capacitado y monitoreo remoto."
         url="https://www.gard.cl/guardias-seguridad-mineria-chile"
         areaServed="Chile"
-        aggregateRating={{ ratingValue: 4.9, reviewCount: 127 }}
+        aggregateRating={{ ratingValue: 4.9, reviewCount: 57 }}
         offers={{ priceRange: "$$$" }}
       />
       <Breadcrumbs items={breadcrumbs} />
