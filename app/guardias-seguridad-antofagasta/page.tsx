@@ -46,7 +46,7 @@ export default function GuardiasAntofagastaPage() {
         description="Guardias certificados OS10 especializados en minería, puertos y zonas industriales en Antofagasta"
         url="https://www.gard.cl/guardias-seguridad-antofagasta"
         areaServed="Antofagasta, Chile"
-        aggregateRating={{ ratingValue: 4.9, reviewCount: 127 }}
+        aggregateRating={{ ratingValue: 4.9, reviewCount: 57 }}
         offers={{ priceRange: "$$$", availability: "https://schema.org/InStock" }}
       />
 

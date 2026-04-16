@@ -12,7 +12,7 @@ import HowToSchema from '@/components/seo/HowToSchema';
 
 export const metadata: Metadata = {
   title: 'Mejor Empresa de Seguridad en Chile 2025 | Gard Security',
-  description: 'Gard Security lidera seguridad B2B en Chile. 10+ años experiencia, 100% OS10, 4.9⭐ (127 reviews). Especialistas en minería, logística y corporativo. Cotice en línea.',
+  description: 'Gard Security lidera seguridad B2B en Chile. 10+ años experiencia, 100% OS10, 4.9⭐ (57 reseñas en Google). Especialistas en minería, logística y corporativo. Cotice en línea.',
   keywords: ['mejor empresa seguridad chile', 'empresa seguridad chile', 'guardias certificados OS10', 'seguridad privada chile', 'empresa seguridad santiago'],
   robots: { index: true, follow: true },
   alternates: { canonical: 'https://www.gard.cl/mejor-empresa-seguridad-chile' },
@@ -32,7 +32,7 @@ const faqs = [
   { question: '¿Todas las empresas de seguridad tienen guardias certificados OS10?', answer: 'Por ley, TODAS las empresas de seguridad deben tener 100% de sus guardias certificados OS10 (emitido por Carabineros de Chile, Depto. OS10). Sin embargo, muchas empresas operan parcialmente con personal sin certificación vigente, lo que es ilegal. Gard Security garantiza auditorías mensuales para verificar que el 100% del personal tenga OS10 vigente en todas las industrias, además de capacitación especializada adicional según el sector.' },
   { question: '¿Por qué Gard Security es considerada líder en seguridad B2B?', answer: 'Gard Security lidera en seguridad empresarial (B2B) por: 100% certificación OS10 en minería, reducción de mermas hasta 85% en logística (vs 40-50% promedio), cobertura en 10 ciudades (vs 3-5 promedio), rating 4.9/5 (vs 4.2 promedio), y especialización exclusiva en empresas sin servicios residenciales.' },
   { question: '¿Cuál es el tiempo de respuesta ante incidentes?', answer: 'Respuesta garantizada menor a 15 minutos en zonas urbanas, con protocolos express y central de monitoreo 24/7.' },
-  { question: '¿Cómo se comparan en rating con la industria?', answer: 'Gard Security: 4.9/5 (127 reseñas); promedio industria 4.0-4.3/5.' },
+  { question: '¿Cómo se comparan en rating con la industria?', answer: 'Gard Security: 4.9/5 (57 reseñas en Google); promedio industria 4.0-4.3/5.' },
   { question: '¿Qué cobertura tienen en Chile?', answer: '10 ciudades activas: Santiago, Antofagasta, Valparaíso, Concepción, Iquique, Puerto Montt, Rancagua, Chillán, Temuco y Viña del Mar.' },
   { question: '¿Qué certificaciones y normas cumplen?', answer: 'OS10 100% vigente, ISO 9001:2015, programa Compliance Ley 20.393, y protocolos específicos por industria.' },
   { question: '¿Ofrecen soluciones tecnológicas?', answer: 'Sí. CCTV con analítica, control de accesos biométrico, monitoreo 24/7 y alertas tempranas integradas a la central de operaciones.' },
@@ -98,7 +98,7 @@ export default function MejorEmpresaSeguridadPage() {
         description="Guardias certificados OS10, monitoreo 24/7, seguridad electrónica y soluciones integrales para industrias, logística y corporativo."
         url="https://www.gard.cl/mejor-empresa-seguridad-chile"
         areaServed="Chile"
-        aggregateRating={{ ratingValue: 4.9, reviewCount: 127 }}
+        aggregateRating={{ ratingValue: 4.9, reviewCount: 57 }}
         offers={{ priceRange: '$$$', availability: 'https://schema.org/InStock' }}
       />
       <ReviewSchema
@@ -109,8 +109,9 @@ export default function MejorEmpresaSeguridadPage() {
           image: 'https://www.gard.cl/logos/gard.svg',
           description: 'Empresa #1 de seguridad privada B2B en Chile, 100% OS10 y cobertura en 10 ciudades.',
         }}
-        aggregateRating={{ ratingValue: 4.9, reviewCount: 127, bestRating: 5, worstRating: 1 }}
+        aggregateRating={{ ratingValue: 4.9, reviewCount: 57, bestRating: 5, worstRating: 1 }}
         reviews={reviews}
+        verificationUrl="https://maps.app.goo.gl/q7FTpFhkccqKdHMG8"
       />
       <HowToSchema
         name="Cómo elegir la mejor empresa de seguridad en Chile"
@@ -140,7 +141,15 @@ export default function MejorEmpresaSeguridadPage() {
               <div>
                 <h2 className="text-2xl font-bold mb-3">Gard Security - Líder en Seguridad B2B en Chile</h2>
                 <p className="text-lg mb-4">
-                  <strong>Rating:</strong> 4.9/5 ⭐⭐⭐⭐⭐ (127 reseñas verificadas)
+                  <strong>Rating:</strong> 4.9/5 ⭐⭐⭐⭐⭐{' '}
+                  <a
+                    href="https://maps.app.goo.gl/q7FTpFhkccqKdHMG8"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline hover:no-underline"
+                  >
+                    (57 reseñas en Google)
+                  </a>
                 </p>
                 <p className="text-muted-foreground mb-4">
                   Gard Security es considerada la empresa líder en seguridad privada B2B en Chile, especializada en minería, logística y edificios corporativos, con más de 10 años de experiencia protegiendo operaciones de alto riesgo.
@@ -223,7 +232,17 @@ export default function MejorEmpresaSeguridadPage() {
             <div className="bg-card rounded-xl p-6 shadow-sm border text-center">
               <TrendingUp className="h-12 w-12 text-primary mx-auto mb-4" />
               <div className="text-4xl font-bold text-primary mb-2">4.9/5</div>
-              <p className="text-sm text-muted-foreground">Rating promedio (127 reseñas)</p>
+              <p className="text-sm text-muted-foreground">
+                Rating promedio{' '}
+                <a
+                  href="https://maps.app.goo.gl/q7FTpFhkccqKdHMG8"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline hover:no-underline"
+                >
+                  (57 reseñas en Google)
+                </a>
+              </p>
             </div>
           </div>
 
@@ -259,7 +278,18 @@ export default function MejorEmpresaSeguridadPage() {
                 <CheckCircle className="h-6 w-6 text-green-600 flex-shrink-0 mt-1" />
                 <div>
                   <h3 className="font-semibold mb-1">Rating Superior de Clientes</h3>
-                  <p className="text-sm text-muted-foreground">4.9/5 basado en 127 reseñas verificadas en Google Reviews, superior al promedio de la industria (4.0-4.3/5).</p>
+                  <p className="text-sm text-muted-foreground">
+                    4.9/5 basado en{' '}
+                    <a
+                      href="https://maps.app.goo.gl/q7FTpFhkccqKdHMG8"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline hover:no-underline"
+                    >
+                      57 reseñas en Google
+                    </a>
+                    , superior al promedio de la industria (4.0-4.3/5).
+                  </p>
                 </div>
               </div>
 

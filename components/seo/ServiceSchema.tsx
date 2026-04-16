@@ -31,7 +31,7 @@ interface ServiceSchemaProps {
  *   description="Servicio profesional de guardias..."
  *   url="https://www.gard.cl/servicios/guardias-de-seguridad"
  *   areaServed="Chile"
- *   aggregateRating={{ ratingValue: 4.9, reviewCount: 127 }}
+ *   aggregateRating={{ ratingValue: 4.9, reviewCount: 57 }} // verificable vía provider.@id
  *   offers={{ priceRange: "$$$" }}
  * />
  */
@@ -55,6 +55,7 @@ export default function ServiceSchema({
     'url': url,
     'provider': {
       '@type': 'Organization',
+      '@id': 'https://www.gard.cl/#organization',
       'name': provider.name,
       'url': provider.url
     }

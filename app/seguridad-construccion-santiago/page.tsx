@@ -46,7 +46,7 @@ export default function SeguridadConstruccionPage() {
         description="Guardias especializados en seguridad para obras de construcción con protección 24/7"
         url="https://www.gard.cl/seguridad-construccion-santiago"
         areaServed="Santiago, Chile"
-        aggregateRating={{ ratingValue: 4.9, reviewCount: 127 }}
+        aggregateRating={{ ratingValue: 4.9, reviewCount: 57 }}
         offers={{ priceRange: "$$", availability: "https://schema.org/InStock" }}
       />
 

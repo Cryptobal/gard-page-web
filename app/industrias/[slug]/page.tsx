@@ -191,7 +191,7 @@ export default async function IndustriaPage({ params }: { params: Promise<{ slug
         areaServed="Chile"
         aggregateRating={{
           ratingValue: 4.9,
-          reviewCount: 127
+          reviewCount: 57
         }}
         offers={{
           priceRange: "$$$",

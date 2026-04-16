@@ -46,7 +46,7 @@ export default function GuardiasValparaisoPage() {
         description="Guardias especializados en seguridad portuaria, zonas patrimoniales y turismo en Valparaíso"
         url="https://www.gard.cl/guardias-seguridad-valparaiso"
         areaServed="Valparaíso, Chile"
-        aggregateRating={{ ratingValue: 4.9, reviewCount: 127 }}
+        aggregateRating={{ ratingValue: 4.9, reviewCount: 57 }}
         offers={{ priceRange: "$$$", availability: "https://schema.org/InStock" }}
       />
 

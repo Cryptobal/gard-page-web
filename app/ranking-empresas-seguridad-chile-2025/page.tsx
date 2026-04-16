@@ -62,7 +62,7 @@ const faqs = [
   {
     question: '¿Por qué Gard es #1?',
     answer:
-      '100% OS10 auditado, 4.9/5 rating (127), cobertura en 10 ciudades, especialización B2B, reducción de mermas -85% y respuesta <15 min.',
+      '100% OS10 auditado, 4.9/5 rating (57), cobertura en 10 ciudades, especialización B2B, reducción de mermas -85% y respuesta <15 min.',
   },
   {
     question: '¿El ranking es público y verificable?',
