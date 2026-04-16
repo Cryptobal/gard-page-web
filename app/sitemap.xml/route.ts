@@ -1,7 +1,10 @@
 import { industries } from '../data/industries';
 import { getAllPosts, POSTS_PER_PAGE } from '@/lib/blog';
 
-export const dynamic = 'force-dynamic';
+// Revalidar el sitemap cada 24 horas (ISR) en lugar de regenerar por request.
+// Esto mejora performance y reduce carga en el servidor sin afectar la frecuencia
+// con la que Google recrawlea el sitemap (Google respeta cache headers pero relee regularmente).
+export const revalidate = 86400;
 import { ciudades } from '@/lib/data/ciudad-data';
 import { servicesMetadata } from '@/app/servicios/serviceMetadata';
 import { serviciosPorIndustria, esCombinacionValida } from '../data/servicios-por-industria';
@@ -112,17 +115,30 @@ async function generateSitemap() {
     priority,
   }));
 
-  // Landing pages ultra-específicas para keywords comerciales (MÁXIMA PRIORIDAD)
+  // Landing pages ultra-específicas para keywords comerciales (MÁXIMA PRIORIDAD SEO)
   const landingPagesEspecificas = [
-    { route: '/mejor-empresa-seguridad-chile', priority: 0.99, changeFreq: 'weekly' as const }, // GEO optimization
+    // Top commercial intent - nacionales
+    { route: '/mejor-empresa-seguridad-chile', priority: 0.99, changeFreq: 'weekly' as const },
+    { route: '/empresa-seguridad-privada-chile', priority: 0.99, changeFreq: 'weekly' as const },
+    { route: '/empresa-guardias-seguridad-chile', priority: 0.99, changeFreq: 'weekly' as const },
+    { route: '/ranking-empresas-seguridad-chile-2025', priority: 0.98, changeFreq: 'weekly' as const },
+
+    // Landing por vertical de industria
     { route: '/guardias-seguridad-mineria-chile', priority: 0.98, changeFreq: 'weekly' as const },
     { route: '/seguridad-bodegas-logistica-chile', priority: 0.98, changeFreq: 'weekly' as const },
     { route: '/guardias-edificios-corporativos-santiago', priority: 0.98, changeFreq: 'weekly' as const },
-    { route: '/empresa-seguridad-privada-chile', priority: 0.99, changeFreq: 'weekly' as const },
-    { route: '/empresa-guardias-seguridad-chile', priority: 0.99, changeFreq: 'weekly' as const },
+    { route: '/seguridad-construccion-santiago', priority: 0.95, changeFreq: 'weekly' as const },
+
+    // Landing por ciudad (complementa la matriz ciudad×servicio)
+    { route: '/guardias-seguridad-antofagasta', priority: 0.95, changeFreq: 'weekly' as const },
+    { route: '/guardias-seguridad-valparaiso', priority: 0.95, changeFreq: 'weekly' as const },
+
+    // Landing informacionales con alto volumen de búsqueda
     { route: '/cuanto-cuesta-guardia-seguridad-chile', priority: 0.97, changeFreq: 'weekly' as const },
     { route: '/certificacion-os10-guardias-seguridad', priority: 0.96, changeFreq: 'weekly' as const },
-    { route: '/ranking-empresas-seguridad-chile-2025', priority: 0.98, changeFreq: 'weekly' as const },
+
+    // Landing B2B keyword-rich (URL larga, evaluación alta)
+    { route: '/guardias-de-seguridad-privada-para-empresas', priority: 0.97, changeFreq: 'weekly' as const },
   ].map(({ route, priority, changeFreq }) => ({
     url: `${baseUrl}${route}`,
     lastModified: STATIC_LASTMOD,
@@ -189,54 +205,129 @@ async function generateSitemap() {
     priority: 0.6,
   }));
   
-  // Páginas de paginación del blog (solo la primera página adicional)
-  const totalPages = Math.ceil(blogPosts.length / POSTS_PER_PAGE);
-  const blogPaginationPages = totalPages > 1 && blogPosts.length > 0 ? [
-    {
-      url: `${baseUrl}/blog/page/2`,
-      lastModified: stableLastMod(blogPosts[0]?.date),
+  // Páginas de paginación del blog — TODAS las páginas, no solo page 2
+  const totalBlogPages = Math.ceil(blogPosts.length / POSTS_PER_PAGE);
+  const blogPaginationPages = Array.from(
+    { length: Math.max(0, totalBlogPages - 1) },
+    (_, i) => ({
+      url: `${baseUrl}/blog/page/${i + 2}`,
+      lastModified: stableLastMod(blogPosts[i]?.date ?? blogPosts[0]?.date),
       changeFrequency: 'weekly' as const,
       priority: 0.5,
+    })
+  );
+
+  // Páginas de etiquetas del blog (computar desde blogPosts en memoria, evita N+1)
+  const allBlogTags = Array.from(
+    new Set(blogPosts.flatMap((p) => p.tags ?? []))
+  );
+
+  const blogTagPages = allBlogTags.map((tag) => ({
+    url: `${baseUrl}/blog/tag/${encodeURIComponent(tag)}`,
+    lastModified: STATIC_LASTMOD,
+    changeFrequency: 'monthly' as const,
+    priority: 0.6,
+  }));
+
+  // Páginas de paginación por etiqueta
+  const blogTagPaginationPages: Array<{
+    url: string;
+    lastModified: string;
+    changeFrequency: 'weekly' | 'monthly' | 'yearly';
+    priority: number;
+  }> = [];
+
+  for (const tag of allBlogTags) {
+    const countForTag = blogPosts.filter((p) => p.tags?.includes(tag)).length;
+    const tagTotalPages = Math.ceil(countForTag / POSTS_PER_PAGE);
+    if (tagTotalPages > 1) {
+      for (let i = 0; i < tagTotalPages - 1; i++) {
+        blogTagPaginationPages.push({
+          url: `${baseUrl}/blog/tag/${encodeURIComponent(tag)}/page/${i + 2}`,
+          lastModified: STATIC_LASTMOD,
+          changeFrequency: 'weekly',
+          priority: 0.5,
+        });
+      }
     }
-  ] : [];
+  }
   
-  // Landing pages dinámicas de ciudad/servicio - EXPANDIDO para SEO local
+  // Landing pages dinámicas de ciudad/servicio - MATRIZ COMPLETA 10×8 = 80 URLs
   const ciudadServicioPages = [];
-  
-  // Ciudades principales (metropolitanas y mineras)
+
+  // Ciudades principales (metropolitanas y mineras) — mayor prioridad SEO
   const ciudadesPrincipales = ['santiago', 'antofagasta', 'valparaiso', 'concepcion'];
-  
-  // Servicios principales para SEO local
+
+  // Servicios principales (alto intent B2B) — mayor prioridad
   const serviciosPrincipales = [
     'guardias-de-seguridad',
     'seguridad-electronica',
     'central-monitoreo',
-    'seguridad-perimetral'
+    'seguridad-perimetral',
   ];
-  
+
+  // Servicios secundarios (nicho / evaluación) — prioridad moderada
+  const serviciosSecundarios = [
+    'drones-seguridad',
+    'auditoria-seguridad',
+    'consultoria',
+    'prevencion-intrusiones',
+  ];
+
+  // Iterar TODOS los servicios (8) × TODAS las ciudades (10) = 80 combinaciones
   for (const ciudad of ciudades) {
     const esCiudadPrincipal = ciudadesPrincipales.includes(ciudad.slug);
-    
-    for (const servicioSlug of serviciosPrincipales) {
+
+    // Combinar ambos grupos de servicios
+    const todosLosServicios = [
+      ...serviciosPrincipales.map(s => ({ slug: s, esPrincipal: true })),
+      ...serviciosSecundarios.map(s => ({ slug: s, esPrincipal: false })),
+    ];
+
+    for (const { slug: servicioSlug, esPrincipal } of todosLosServicios) {
+      // Priorización 4-cuadrantes:
+      //   Ciudad principal + Servicio principal   → 0.92 (alto SEO comercial)
+      //   Ciudad principal + Servicio secundario  → 0.80
+      //   Ciudad regional  + Servicio principal   → 0.78
+      //   Ciudad regional  + Servicio secundario  → 0.65
+      let priority: number;
+      let changeFrequency: 'weekly' | 'monthly' | 'yearly';
+
+      if (esCiudadPrincipal && esPrincipal) {
+        priority = 0.92;
+        changeFrequency = 'weekly';
+      } else if (esCiudadPrincipal && !esPrincipal) {
+        priority = 0.80;
+        changeFrequency = 'monthly';
+      } else if (!esCiudadPrincipal && esPrincipal) {
+        priority = 0.78;
+        changeFrequency = 'monthly';
+      } else {
+        priority = 0.65;
+        changeFrequency = 'monthly';
+      }
+
       ciudadServicioPages.push({
         url: `${baseUrl}/${ciudad.slug}/${servicioSlug}`,
         lastModified: STATIC_LASTMOD,
-        changeFrequency: esCiudadPrincipal ? 'weekly' as const : 'monthly' as const,
-        priority: esCiudadPrincipal ? 0.92 : 0.80, // Mayor prioridad para ciudades principales
+        changeFrequency,
+        priority,
       });
     }
   }
 
-  // Combinamos todas las URLs (orden por prioridad)
+  // Combinamos todas las URLs — orden importa solo para humanos (Google las reordena igual)
   return [
     ...staticPages,
-    ...landingPagesEspecificas, // Landing pages de conversión primero
-    ...servicePages, 
-    ...servicioIndustriaPages,
-    ...ciudadServicioPages,
-    ...industryPages,
-    ...blogPostPages, 
-    ...blogPaginationPages,
+    ...landingPagesEspecificas,    // Landing pages de conversión (máxima prioridad)
+    ...servicePages,               // /servicios/{slug}
+    ...servicioIndustriaPages,     // /servicios-por-industria/{servicio}/{industria}
+    ...ciudadServicioPages,        // /{ciudad}/{servicio} — matriz 10×8
+    ...industryPages,              // /industrias/{slug}
+    ...blogPostPages,              // /blog/{slug}
+    ...blogPaginationPages,        // /blog/page/2, /3, ... (todas)
+    ...blogTagPages,               // /blog/tag/{tag}
+    ...blogTagPaginationPages,     // /blog/tag/{tag}/page/2, /3, ...
   ];
 }
 
