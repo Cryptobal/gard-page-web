@@ -99,6 +99,7 @@ async function generateSitemap() {
     { route: '', priority: 1.0, changeFreq: 'weekly' as const },
     { route: '/servicios', priority: 0.9, changeFreq: 'weekly' as const },
     { route: '/industrias', priority: 0.9, changeFreq: 'weekly' as const },
+    { route: '/ciudades', priority: 0.85, changeFreq: 'monthly' as const },
     { route: '/cotizar', priority: 0.95, changeFreq: 'weekly' as const }, // Página de conversión
     { route: '/sobre-nosotros', priority: 0.8, changeFreq: 'monthly' as const },
     { route: '/tecnologia-seguridad', priority: 0.75, changeFreq: 'monthly' as const },

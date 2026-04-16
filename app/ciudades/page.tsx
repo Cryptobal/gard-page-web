@@ -1,72 +1,78 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React from 'react';
 import Link from 'next/link';
-import { ciudades, getAllCiudades, getCiudadesByRegion, CiudadData } from '@/lib/data/ciudad-data';
+import { getAllCiudades, CiudadData } from '@/lib/data/ciudad-data';
 import { servicesMetadata } from '../servicios/serviceMetadata';
-import { 
-  MapPin, 
-  X, 
-  ChevronDown, 
-  ChevronRight, 
-  Users, 
-  Building, 
-  Shield, 
-  Calendar, 
-  Search, 
-  HelpCircle, 
-  ArrowRight, 
-  Phone,
-  Home
-} from 'lucide-react';
-import CloudflareImage from '@/components/CloudflareImage';
-import { cloudflareImages } from '@/lib/images';
+import { MapPin } from 'lucide-react';
+import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 
-// Definimos los tipos
+const BASE_URL = 'https://www.gard.cl';
+
 interface Ciudad extends CiudadData {}
 
-// Versión simplificada para permitir la compilación
 export default function CiudadesPage() {
-  const [regionSeleccionada, setRegionSeleccionada] = useState<string | null>(null);
-  const [ciudadSeleccionada, setCiudadSeleccionada] = useState<Ciudad | null>(null);
-  
-  // Función para agrupar ciudades por región
-  const agruparCiudadesPorRegion = () => {
-    return getCiudadesByRegion();
-  };
-  
+  const ciudades = getAllCiudades();
+
   return (
     <>
-      <div className="py-16">
-        <div className="max-w-7xl mx-auto px-4">
-          <h1 className="text-3xl font-bold mb-8">Cobertura Nacional de Seguridad Privada</h1>
-          <p className="text-xl text-muted-foreground dark:text-gray-300 mb-4">
-            Gard Security opera en 10 ciudades de Chile con guardias certificados OS10, monitoreo 24/7 y soluciones adaptadas a cada región. Cotiza servicios de seguridad en tu ciudad.
-          </p>
-          <p className="text-base text-muted-foreground dark:text-gray-400 mb-8">
-            Santiago, Antofagasta, Valparaíso, Concepción, Iquique, Puerto Montt, Rancagua, Chillán, Temuco y Viña del Mar.
-          </p>
-          <div className="mt-8 grid md:grid-cols-3 gap-6">
-            {getAllCiudades().map((ciudad) => (
-              <Link 
+      <BreadcrumbSchema
+        items={[
+          { name: 'Inicio', url: BASE_URL },
+          { name: 'Cobertura por Ciudad', url: `${BASE_URL}/ciudades` },
+        ]}
+      />
+
+      <section className="gard-section bg-white dark:bg-gray-900">
+        <div className="gard-container max-w-7xl mx-auto px-4">
+          <div className="max-w-4xl">
+            <h1 className="text-3xl md:text-4xl font-bold mb-6 font-title">
+              Cobertura de Guardias de Seguridad en Chile
+            </h1>
+            <p className="text-xl text-muted-foreground dark:text-gray-300 mb-4">
+              Gard Security opera con guardias certificados OS10 en 10 ciudades de Chile: Santiago, Antofagasta, Valparaíso, Concepción, Iquique, Puerto Montt, Rancagua, Chillán, Temuco y Viña del Mar.
+            </p>
+            <p className="text-base text-muted-foreground dark:text-gray-400 mb-12">
+              Selecciona tu ciudad para ver los servicios disponibles.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {ciudades.map((ciudad: Ciudad) => (
+              <article
                 key={ciudad.slug}
-                href={`/ciudades/${ciudad.slug}`}
-                className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-md transition-all"
+                className="p-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm hover:shadow-md transition-all"
               >
-                <h2 className="text-xl font-medium mb-2">{ciudad.nombre}</h2>
-                <div className="flex items-center text-gray-500 mb-4">
-                  <MapPin size={16} className="mr-1" />
-                  <span>{ciudad.region}</span>
+                <div className="flex items-center gap-2 mb-2">
+                  <MapPin size={18} className="text-primary" />
+                  <h2 className="text-xl font-semibold">{ciudad.nombre}</h2>
                 </div>
-                <p className="text-gray-600 dark:text-gray-300 line-clamp-2">
-                  {ciudad.descripcion.substring(0, 120)}...
+                <div className="text-sm text-gray-500 dark:text-gray-400 mb-3">{ciudad.region}</div>
+                <p className="text-sm text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">
+                  {ciudad.descripcion}
                 </p>
-              </Link>
+                <div>
+                  <div className="text-xs font-semibold text-primary uppercase tracking-wide mb-2">
+                    Servicios disponibles
+                  </div>
+                  <ul className="space-y-1">
+                    {servicesMetadata.map((servicio) => (
+                      <li key={servicio.slug}>
+                        <Link
+                          href={`/${ciudad.slug}/${servicio.slug}`}
+                          className="text-sm text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors"
+                        >
+                          {servicio.title.split('|')[0].trim()} en {ciudad.nombre}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </article>
             ))}
           </div>
         </div>
-      </div>
+      </section>
     </>
   );
-} 
+}
