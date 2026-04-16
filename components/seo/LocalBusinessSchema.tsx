@@ -64,15 +64,11 @@ export default function LocalBusinessSchema() {
       "closes": "23:59"
     },
     
-    // Rating agregado
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": 4.9,
-      "bestRating": 5,
-      "worstRating": 1,
-      "reviewCount": 127
-    },
-    
+    // NOTA: aggregateRating removed — Google no muestra stars para reviews self-serving
+    // en LocalBusiness schema (política desde 2019). Las reseñas reales se muestran desde
+    // Google Business Profile directamente. Si en el futuro se quiere recuperar star ratings,
+    // hay que marcar up Product/Service schemas con reviews de terceros verificables.
+
     // Áreas de servicio
     "areaServed": [
       {

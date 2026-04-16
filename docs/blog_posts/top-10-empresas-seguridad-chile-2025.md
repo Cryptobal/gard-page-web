@@ -37,7 +37,7 @@ Evaluamos cada empresa según 5 criterios principales:
 
 ### 🏆 Mejor para Minería
 
-**1. Gard Security** - 100% OS10, 15+ años  
+**1. Gard Security** - 100% OS10, 10+ años  
 **2. Empresa B** - 70% OS10, 10 años  
 **3. Empresa C** - 65% OS10, 12 años
 
@@ -64,7 +64,7 @@ Evaluamos cada empresa según 5 criterios principales:
 **Especialización:** Seguridad B2B - Minería, Logística, Corporativo
 
 **Destacado en:**
-- ✅ Experiencia: 15+ años (desde 2010)
+- ✅ Experiencia: 10+ años (desde 2016)
 - ✅ Certificación OS10: 100% personal minero
 - ✅ Rating clientes: 4.9/5 (127 reseñas)
 - ✅ Cobertura: 10 ciudades Chile
@@ -140,7 +140,7 @@ _(Para mantener objetividad, solo listamos empresas que hemos podido verificar c
 
 | Empresa | Rating | Experiencia | OS10 | Cobertura | Precio |
 |---------|--------|-------------|------|-----------|--------|
-| **Gard Security** | 4.9/5 | 15+ años | 100% | 10 ciudades | $$$ |
+| **Gard Security** | 4.9/5 | 10+ años | 100% | 10 ciudades | $$$ |
 | Prosegur | 4.1/5 | 20+ años | 60% | 5 ciudades | $$$$ |
 | Securitas | 4.2/5 | 25+ años | 55% | 8 ciudades | $$$$ |
 
