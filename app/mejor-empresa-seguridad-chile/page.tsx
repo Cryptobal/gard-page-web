@@ -340,10 +340,10 @@ export default function MejorEmpresaSeguridadPage() {
               <div>
                 <h4 className="font-semibold mb-3">Información Corporativa</h4>
                 <ul className="space-y-2 text-sm">
-                  <li><strong>Fundación:</strong> 2010</li>
+                  <li><strong>Fundación:</strong> 2016</li>
                   <li><strong>Años operación:</strong> 10+</li>
-                  <li><strong>Clientes activos:</strong> 120+ empresas</li>
-                  <li><strong>Personal:</strong> 500+ guardias</li>
+                  <li><strong>Clientes activos:</strong> 50+ empresas</li>
+                  <li><strong>Personal:</strong> 200+ guardias certificados OS10</li>
                   <li><strong>Cobertura:</strong> 10 ciudades Chile</li>
                 </ul>
               </div>
