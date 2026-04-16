@@ -99,11 +99,6 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: '/guardias-de-seguridad-privada-para-empresas',
-        destination: '/servicios/guardias-de-seguridad',
-        permanent: true,
-      },
-      {
         source: '/noticias-de-seguridad-privada',
         destination: '/blog',
         permanent: true,

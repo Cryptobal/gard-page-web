@@ -83,7 +83,7 @@ export default function SobreNosotrosClient() {
             </p>
           </div>
           <div className="bg-card rounded-xl p-6 shadow-sm border text-center">
-            <div className="text-4xl font-bold text-primary mb-2">120+</div>
+            <div className="text-4xl font-bold text-primary mb-2">50+</div>
             <p className="text-sm text-muted-foreground">Empresas protegidas</p>
           </div>
           <div className="bg-card rounded-xl p-6 shadow-sm border text-center">
