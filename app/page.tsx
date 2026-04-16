@@ -7,6 +7,10 @@ import { cloudflareImages } from '@/lib/images';
 
 const OG_IMAGE_URL = 'https://imagedelivery.net/gGw8cfmEZedi85dYm6qcFw/4824f8b9-abb0-4e77-c654-efe920697b00/public';
 
+// Año de fundación — actualización dinámica de años de experiencia
+const FOUNDING_YEAR = 2016;
+const yearsOfExperience = Math.max(1, new Date().getFullYear() - FOUNDING_YEAR);
+
 export const metadata: Metadata = {
   title: 'Empresa de Seguridad Privada en Chile | Gard Security',
   description: 'Gard Security: empresa líder en seguridad privada para empresas en Chile. Guardias certificados OS10, monitoreo 24/7, drones y seguridad electrónica. Cotiza sin compromiso.',
@@ -15,7 +19,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Empresa de Seguridad Privada en Chile | Gard Security',
-    description: 'Más de 15 años protegiendo empresas líderes en Chile. Guardias certificados, monitoreo 24/7, seguridad electrónica y drones. Presencia en 10 ciudades.',
+    description: `Más de ${yearsOfExperience} años protegiendo empresas líderes en Chile. Guardias certificados OS10, monitoreo 24/7, seguridad electrónica y drones. Presencia en 10 ciudades.`,
     url: 'https://www.gard.cl',
     siteName: 'Gard Security',
     locale: 'es_CL',
@@ -110,7 +114,7 @@ export default function Home() {
             <div>
               <h2 className="text-heading-2 mb-6">Por qué elegir Gard Security</h2>
               <p className="text-body-lg mb-8">
-                Con más de 10 años de experiencia protegiendo empresas líderes, ofrecemos soluciones de seguridad probadas y personalizadas según sus necesidades específicas.
+                Con más de {yearsOfExperience} años de experiencia protegiendo empresas líderes en Chile, ofrecemos soluciones de seguridad probadas y personalizadas según sus necesidades específicas.
               </p>
               
               <ul className="space-y-4">
@@ -185,14 +189,14 @@ export default function Home() {
             
             <div className="p-6 bg-white/5 rounded-xl backdrop-blur-sm border border-black/5 dark:border-white/10 shadow-md transform hover:scale-105 transition duration-300">
               <Calendar className="h-14 w-14 mx-auto mb-4 text-primary dark:text-accent" />
-              <div className="text-5xl font-bold mb-3 text-foreground dark:text-white">8+</div>
+              <div className="text-5xl font-bold mb-3 text-foreground dark:text-white">{yearsOfExperience}+</div>
               <p className="text-body-base text-muted-foreground dark:text-gray-100">Años de experiencia</p>
             </div>
             
             <div className="p-6 bg-white/5 rounded-xl backdrop-blur-sm border border-black/5 dark:border-white/10 shadow-md transform hover:scale-105 transition duration-300">
               <Activity className="h-14 w-14 mx-auto mb-4 text-primary dark:text-accent" />
-              <div className="text-5xl font-bold mb-3 text-foreground dark:text-white">99.9%</div>
-              <p className="text-body-base text-muted-foreground dark:text-gray-100">Actividad operativa</p>
+              <div className="text-5xl font-bold mb-3 text-foreground dark:text-white">200+</div>
+              <p className="text-body-base text-muted-foreground dark:text-gray-100">Guardias activos certificados OS10</p>
             </div>
             
             <div className="p-6 bg-white/5 rounded-xl backdrop-blur-sm border border-black/5 dark:border-white/10 shadow-md transform hover:scale-105 transition duration-300">

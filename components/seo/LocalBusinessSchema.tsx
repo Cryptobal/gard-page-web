@@ -22,7 +22,7 @@ export default function LocalBusinessSchema() {
       "height": "60"
     },
     "image": "https://www.gard.cl/logos/gard.svg",
-    "description": "Empresa líder en seguridad privada B2B en Chile. Especializada en guardias certificados OS10, monitoreo 24/7, seguridad electrónica y soluciones integrales para minería, industria, retail, colegios, logística y edificios corporativos.",
+    "description": "Empresa de seguridad privada B2B en Chile con más de 200 guardias certificados OS10 y cobertura en 10 ciudades. Especializada en minería, logística, edificios corporativos, retail, construcción y sector industrial. Monitoreo 24/7, seguridad electrónica, drones y auditoría de seguridad.",
     
     // Dirección principal (Santiago)
     "address": {
@@ -186,12 +186,13 @@ export default function LocalBusinessSchema() {
     ],
     
     // Fundación
-    "foundingDate": "2010",
-    
+    "foundingDate": "2016",
+
     // Número de empleados (aproximado)
     "numberOfEmployees": {
       "@type": "QuantitativeValue",
-      "value": "500"
+      "value": "200",
+      "unitText": "guardias activos certificados OS10"
     }
   };
 
