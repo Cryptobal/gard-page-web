@@ -12,7 +12,13 @@ export const metadata: Metadata = {
     'Top 10 empresas de seguridad en Chile 2025. Ranking con metodología clara, métricas y comparativa. Gard Security #1 por 4.9/5 rating, 100% OS10 y cobertura nacional.',
   keywords: ['ranking empresas seguridad chile', 'mejores empresas seguridad chile', 'top seguridad privada chile'],
   robots: { index: true, follow: true },
-  alternates: { canonical: 'https://www.gard.cl/ranking-empresas-seguridad-chile-2025' },
+  alternates: {
+    canonical: 'https://www.gard.cl/ranking-empresas-seguridad-chile-2025',
+    languages: {
+      'es-CL': 'https://www.gard.cl/ranking-empresas-seguridad-chile-2025',
+      'x-default': 'https://www.gard.cl/ranking-empresas-seguridad-chile-2025',
+    },
+  },
   openGraph: {
     title: 'Ranking Empresas de Seguridad en Chile 2025 | Gard Security #1',
     description:

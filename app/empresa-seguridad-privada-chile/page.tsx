@@ -21,7 +21,13 @@ export const metadata: Metadata = {
     'empresa de seguridad corporativa',
   ],
   robots: { index: true, follow: true },
-  alternates: { canonical: 'https://www.gard.cl/empresa-seguridad-privada-chile' },
+  alternates: {
+    canonical: 'https://www.gard.cl/empresa-seguridad-privada-chile',
+    languages: {
+      'es-CL': 'https://www.gard.cl/empresa-seguridad-privada-chile',
+      'x-default': 'https://www.gard.cl/empresa-seguridad-privada-chile',
+    },
+  },
   openGraph: {
     title: 'Empresa de Seguridad Privada en Chile | Gard Security #1 B2B',
     description:

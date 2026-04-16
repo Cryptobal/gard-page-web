@@ -56,6 +56,7 @@ export function generateMetadata(): Metadata {
       canonical: url,
       languages: {
         'es-CL': url,
+        'x-default': url,
       },
     },
     robots: {

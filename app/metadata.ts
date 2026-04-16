@@ -55,6 +55,13 @@ export const metadata: Metadata = {
     description: 'Empresa líder en seguridad privada para empresas e industrias en Chile.',
     images: ['/og-default.png'],
   },
+  alternates: {
+    canonical: 'https://www.gard.cl',
+    languages: {
+      'es-CL': 'https://www.gard.cl',
+      'x-default': 'https://www.gard.cl',
+    },
+  },
   robots: {
     index: true,
     follow: true,
