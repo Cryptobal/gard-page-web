@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0a2540"/>
+      <stop offset="1" stop-color="#0059A3"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <g transform="translate(80,145) scale(3.4)">
+    <path d="M50 5L15 20V50C15 70 30 85 50 95C70 85 85 70 85 50V20L50 5ZM50 10L80 23V50C80 67.5 67.5 80 50 90C32.5 80 20 67.5 20 50V23L50 10Z" fill="#ffffff"/>
+    <path d="M50 15L25 25V50C25 65 35 75 50 82.5C65 75 75 65 75 50V25L50 15ZM50 85C30 77.5 20 65 20 50V22.5L50 7.5L80 22.5V50C80 65 70 77.5 50 85Z" fill="#ffffff"/>
+    <path d="M42.5 62.5L30 50L35 45L42.5 52.5L65 30L70 35L42.5 62.5Z" fill="#ffffff"/>
+  </g>
+  <text x="480" y="220" font-family="Helvetica, Arial, sans-serif" font-size="72" font-weight="700" fill="#ffffff">Gard Security</text>
+  <text x="480" y="310" font-family="Helvetica, Arial, sans-serif" font-size="42" font-weight="500" fill="#ffffff">Empresa de Seguridad Privada</text>
+  <text x="480" y="360" font-family="Helvetica, Arial, sans-serif" font-size="42" font-weight="500" fill="#ffffff">para Empresas en Chile</text>
+  <text x="480" y="440" font-family="Helvetica, Arial, sans-serif" font-size="28" font-weight="400" fill="#c7e0ff">200+ guardias OS10  |  10 ciudades  |  Monitoreo 24/7</text>
+  <rect x="480" y="500" width="220" height="4" fill="#ffffff" opacity="0.6"/>
+  <text x="480" y="555" font-family="Helvetica, Arial, sans-serif" font-size="32" font-weight="700" fill="#ffffff">gard.cl</text>
+</svg>
