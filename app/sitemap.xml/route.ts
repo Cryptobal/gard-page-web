@@ -140,6 +140,12 @@ async function generateSitemap() {
 
     // Landing B2B keyword-rich (URL larga, evaluación alta)
     { route: '/guardias-de-seguridad-privada-para-empresas', priority: 0.97, changeFreq: 'weekly' as const },
+
+    // Páginas comparativas vs competidores (Fase 3)
+    { route: '/vs', priority: 0.85, changeFreq: 'monthly' as const },
+    { route: '/vs/prosegur-alternativa', priority: 0.88, changeFreq: 'monthly' as const },
+    { route: '/vs/g4s-alternativa', priority: 0.85, changeFreq: 'monthly' as const },
+    { route: '/vs/securitas-alternativa', priority: 0.85, changeFreq: 'monthly' as const },
   ].map(({ route, priority, changeFreq }) => ({
     url: `${baseUrl}${route}`,
     lastModified: STATIC_LASTMOD,
