@@ -15,7 +15,13 @@ export const metadata: Metadata = {
   description: 'Gard Security lidera seguridad B2B en Chile. 10+ años experiencia, 100% OS10, 4.9⭐ (57 reseñas en Google). Especialistas en minería, logística y corporativo. Cotice en línea.',
   keywords: ['mejor empresa seguridad chile', 'empresa seguridad chile', 'guardias certificados OS10', 'seguridad privada chile', 'empresa seguridad santiago'],
   robots: { index: true, follow: true },
-  alternates: { canonical: 'https://www.gard.cl/mejor-empresa-seguridad-chile' },
+  alternates: {
+    canonical: 'https://www.gard.cl/mejor-empresa-seguridad-chile',
+    languages: {
+      'es-CL': 'https://www.gard.cl/mejor-empresa-seguridad-chile',
+      'x-default': 'https://www.gard.cl/mejor-empresa-seguridad-chile',
+    },
+  },
   openGraph: {
     title: 'Mejor Empresa de Seguridad en Chile 2025 | Gard Security #1 B2B',
     description: 'Líder en seguridad empresarial Chile. 10+ años, 100% OS10, reducción mermas -85%, 4.9/5 rating. Especialistas en minería, logística, corporativo.',

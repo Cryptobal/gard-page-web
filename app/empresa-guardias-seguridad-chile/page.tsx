@@ -21,7 +21,13 @@ export const metadata: Metadata = {
     'guardias para edificios corporativos',
   ],
   robots: { index: true, follow: true },
-  alternates: { canonical: 'https://www.gard.cl/empresa-guardias-seguridad-chile' },
+  alternates: {
+    canonical: 'https://www.gard.cl/empresa-guardias-seguridad-chile',
+    languages: {
+      'es-CL': 'https://www.gard.cl/empresa-guardias-seguridad-chile',
+      'x-default': 'https://www.gard.cl/empresa-guardias-seguridad-chile',
+    },
+  },
   openGraph: {
     title: 'Empresa de Guardias de Seguridad en Chile | Gard Security #1',
     description:

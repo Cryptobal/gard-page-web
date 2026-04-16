@@ -14,8 +14,9 @@ const nextConfig = {
     ],
     formats: ['image/webp', 'image/avif'],
     minimumCacheTTL: 86400, // 24 horas
-    dangerouslyAllowSVG: true,
-    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    // dangerouslyAllowSVG removido — no se cargan SVGs remotos via next/image.
+    // Los SVGs locales se renderizan como <img src="/logos/*.svg"> (no pasan por next/image).
+    // Los lucide icons son componentes React inline, no remote-loaded.
   },
 
   // Optimización de compresión
@@ -163,7 +164,7 @@ const nextConfig = {
           
           // Rendimiento
           { key: 'X-DNS-Prefetch-Control', value: 'on' },
-          { key: 'Cache-Control', value: 'public, max-age=3600, s-maxage=3600' },
+          { key: 'Cache-Control', value: 'public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800' },
         ]
       },
       {

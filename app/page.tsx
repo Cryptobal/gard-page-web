@@ -16,6 +16,10 @@ export const metadata: Metadata = {
   description: 'Empresa de seguridad privada para empresas en Chile. Guardias de seguridad certificados OS10, monitoreo 24/7, drones y seguridad electrónica. Cobertura en 10 ciudades. Cotiza sin compromiso.',
   alternates: {
     canonical: 'https://www.gard.cl',
+    languages: {
+      'es-CL': 'https://www.gard.cl',
+      'x-default': 'https://www.gard.cl',
+    },
   },
   openGraph: {
     title: 'Empresa de Seguridad Privada en Chile | Gard Security',

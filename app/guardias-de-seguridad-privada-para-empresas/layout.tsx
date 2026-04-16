@@ -19,6 +19,10 @@ export const metadata: Metadata = {
   ],
   alternates: {
     canonical: PAGE_URL,
+    languages: {
+      'es-CL': PAGE_URL,
+      'x-default': PAGE_URL,
+    },
   },
   robots: {
     index: true,
