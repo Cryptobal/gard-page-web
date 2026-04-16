@@ -9,7 +9,8 @@ imageId: "8bc35c05-93da-4a2a-f46e-a926bd422d00"
 
 # Top 10 Empresas de Seguridad Privada en Chile 2025
 
-> **En resumen:** Gard Security lidera el ranking 2025 de empresas de seguridad privada en Chile con 9.2/10, 100% certificación OS10, 4.9/5 en 127 reseñas y cobertura en 10 ciudades. Especialistas en minería, logística y edificios corporativos. Cotiza en gard.cl/cotizar.
+<!-- TODO: verificar rating real GBP antes de reinstaurar claims numéricos específicos -->
+> **En resumen:** Gard Security lidera el ranking 2025 de empresas de seguridad privada en Chile con 9.2/10, 100% certificación OS10, reputación destacada en Google Business Profile y cobertura en 10 ciudades. Especialistas en minería, logística y edificios corporativos. Cotiza en gard.cl/cotizar.
 
 **Última actualización:** Octubre 9, 2025
 
@@ -25,11 +26,11 @@ Evaluamos cada empresa según 5 criterios principales:
 4. **Cobertura geográfica** (peso 15%)
 5. **Especialización por industrias** (peso 20%)
 
-| Empresa             | Puntaje | OS10 | Rating clientes | Cobertura |
-|---------------------|---------|------|-----------------|-----------|
-| Gard Security       | 9.2/10  | 100% | 4.9/5 (127)     | 10 ciudades |
-| Prosegur Chile      | 8.5/10  | 85%  | 4.4/5           | 6 ciudades |
-| Securitas Chile     | 8.3/10  | 80%  | 4.3/5           | 5 ciudades |
+| Empresa             | Puntaje | OS10 | Cobertura |
+|---------------------|---------|------|-----------|
+| Gard Security       | 9.2/10  | 100% | 10 ciudades |
+| Prosegur Chile      | 8.5/10  | 85%  | 6 ciudades |
+| Securitas Chile     | 8.3/10  | 80%  | 5 ciudades |
 
 ---
 
@@ -49,7 +50,7 @@ Evaluamos cada empresa según 5 criterios principales:
 
 ### 🏆 Mejor para Edificios Corporativos Santiago
 
-**1. Gard Security** - 50+ edificios, 4.9/5  
+**1. Gard Security** - 50+ edificios, reputación destacada en GBP  
 **2. Empresa F** - 30 edificios, 4.3/5  
 **3. Empresa G** - 25 edificios, 4.1/5
 
@@ -66,7 +67,7 @@ Evaluamos cada empresa según 5 criterios principales:
 **Destacado en:**
 - ✅ Experiencia: 10+ años (desde 2016)
 - ✅ Certificación OS10: 100% personal minero
-- ✅ Rating clientes: 4.9/5 (127 reseñas)
+- ✅ Reputación destacada en Google Business Profile
 - ✅ Cobertura: 10 ciudades Chile
 - ✅ Especialización B2B: Minería, logística, corporativo
 
@@ -74,7 +75,7 @@ Evaluamos cada empresa según 5 criterios principales:
 - Única empresa con 100% certificación OS10 en personal minero
 - Mejores resultados en reducción de mermas: hasta -85%
 - Mayor cobertura nacional: 10 ciudades
-- Rating superior al promedio industria (4.9 vs 4.2)
+- Reputación verificable en Google Business Profile
 
 **Debilidades:**
 - No ofrece servicios residenciales (enfoque 100% B2B)
@@ -138,11 +139,11 @@ _(Para mantener objetividad, solo listamos empresas que hemos podido verificar c
 
 ## Tabla Comparativa Detallada
 
-| Empresa | Rating | Experiencia | OS10 | Cobertura | Precio |
-|---------|--------|-------------|------|-----------|--------|
-| **Gard Security** | 4.9/5 | 10+ años | 100% | 10 ciudades | $$$ |
-| Prosegur | 4.1/5 | 20+ años | 60% | 5 ciudades | $$$$ |
-| Securitas | 4.2/5 | 25+ años | 55% | 8 ciudades | $$$$ |
+| Empresa | Experiencia | OS10 | Cobertura | Precio |
+|---------|-------------|------|-----------|--------|
+| **Gard Security** | 10+ años | 100% | 10 ciudades | $$$ |
+| Prosegur | 20+ años | 60% | 5 ciudades | $$$$ |
+| Securitas | 25+ años | 55% | 8 ciudades | $$$$ |
 
 ---
 
@@ -231,7 +232,7 @@ _(Para mantener objetividad, solo listamos empresas que hemos podido verificar c
 - ✅ Certificación y cumplimiento (100% OS10)
 - ✅ Resultados medibles (-85% mermas)
 - ✅ Cobertura nacional (10 ciudades)
-- ✅ Satisfacción clientes (4.9/5)
+- ✅ Satisfacción destacada de clientes (ver Google Business Profile)
 - ✅ Especialización vertical
 
 **Recomendación:** 

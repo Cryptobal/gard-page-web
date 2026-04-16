@@ -26,7 +26,7 @@ Un guardia OS10 en Santiago (turno 12h) cuesta entre CLP $1.150.000 y $1.450.000
 ## Por qué elegir un proveedor B2B especializado
 - Continuidad 99.9% y backup de personal.  
 - 100% OS10 auditado mensualmente.  
-- Rating público 4.9/5 con 127 reseñas.  
+- Reputación pública destacada en Google Business Profile.  
 - Reducción de mermas en logística hasta -85% (casos documentados).
 
 ## CTA
