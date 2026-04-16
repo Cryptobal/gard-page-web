@@ -385,6 +385,53 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Cobertura por Ciudad: 10 ciudades × top 3 servicios = 30 enlaces SEO */}
+        <section className="border-t border-gray-200 dark:border-white/10 mt-10 pt-8">
+          <h3 className="font-semibold text-primary dark:text-white text-lg mb-6">
+            Cobertura de Seguridad por Ciudad
+          </h3>
+          <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-6 gap-y-2 text-sm">
+            <li><Link href="/santiago/guardias-de-seguridad" className="text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors">Guardias Santiago</Link></li>
+            <li><Link href="/santiago/seguridad-electronica" className="text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors">Seguridad Electrónica Santiago</Link></li>
+            <li><Link href="/santiago/central-monitoreo" className="text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors">Monitoreo Santiago</Link></li>
+            <li><Link href="/antofagasta/guardias-de-seguridad" className="text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors">Guardias Antofagasta</Link></li>
+            <li><Link href="/antofagasta/seguridad-electronica" className="text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors">Seguridad Electrónica Antofagasta</Link></li>
+            <li><Link href="/antofagasta/central-monitoreo" className="text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors">Monitoreo Antofagasta</Link></li>
+            <li><Link href="/valparaiso/guardias-de-seguridad" className="text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors">Guardias Valparaíso</Link></li>
+            <li><Link href="/valparaiso/seguridad-electronica" className="text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors">Seguridad Electrónica Valparaíso</Link></li>
+            <li><Link href="/valparaiso/central-monitoreo" className="text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors">Monitoreo Valparaíso</Link></li>
+            <li><Link href="/concepcion/guardias-de-seguridad" className="text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors">Guardias Concepción</Link></li>
+            <li><Link href="/concepcion/seguridad-electronica" className="text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors">Seguridad Electrónica Concepción</Link></li>
+            <li><Link href="/concepcion/central-monitoreo" className="text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors">Monitoreo Concepción</Link></li>
+            <li><Link href="/iquique/guardias-de-seguridad" className="text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors">Guardias Iquique</Link></li>
+            <li><Link href="/iquique/seguridad-electronica" className="text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors">Seguridad Electrónica Iquique</Link></li>
+            <li><Link href="/iquique/central-monitoreo" className="text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors">Monitoreo Iquique</Link></li>
+            <li><Link href="/puerto-montt/guardias-de-seguridad" className="text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors">Guardias Puerto Montt</Link></li>
+            <li><Link href="/puerto-montt/seguridad-electronica" className="text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors">Seguridad Electrónica Puerto Montt</Link></li>
+            <li><Link href="/puerto-montt/central-monitoreo" className="text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors">Monitoreo Puerto Montt</Link></li>
+            <li><Link href="/rancagua/guardias-de-seguridad" className="text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors">Guardias Rancagua</Link></li>
+            <li><Link href="/rancagua/seguridad-electronica" className="text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors">Seguridad Electrónica Rancagua</Link></li>
+            <li><Link href="/rancagua/central-monitoreo" className="text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors">Monitoreo Rancagua</Link></li>
+            <li><Link href="/chillan/guardias-de-seguridad" className="text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors">Guardias Chillán</Link></li>
+            <li><Link href="/chillan/seguridad-electronica" className="text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors">Seguridad Electrónica Chillán</Link></li>
+            <li><Link href="/chillan/central-monitoreo" className="text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors">Monitoreo Chillán</Link></li>
+            <li><Link href="/temuco/guardias-de-seguridad" className="text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors">Guardias Temuco</Link></li>
+            <li><Link href="/temuco/seguridad-electronica" className="text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors">Seguridad Electrónica Temuco</Link></li>
+            <li><Link href="/temuco/central-monitoreo" className="text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors">Monitoreo Temuco</Link></li>
+            <li><Link href="/vina-del-mar/guardias-de-seguridad" className="text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors">Guardias Viña del Mar</Link></li>
+            <li><Link href="/vina-del-mar/seguridad-electronica" className="text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors">Seguridad Electrónica Viña del Mar</Link></li>
+            <li><Link href="/vina-del-mar/central-monitoreo" className="text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors">Monitoreo Viña del Mar</Link></li>
+          </ul>
+          <div className="mt-6">
+            <Link
+              href="/ciudades"
+              className="text-sm font-medium text-primary dark:text-accent hover:underline inline-flex items-center gap-1"
+            >
+              Ver todas las ciudades y servicios →
+            </Link>
+          </div>
+        </section>
+
         <div className="border-t border-gray-200 dark:border-white/10 mt-10 pt-6 text-center">
           <p className="text-gray-700 dark:text-blue-100/80 text-sm md:text-base" itemProp="name">
             © {currentYear} Gard Security. Todos los derechos reservados.
@@ -393,4 +440,4 @@ export default function Footer() {
       </div>
     </footer>
   );
-} 
+}

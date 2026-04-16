@@ -29,6 +29,7 @@ import CloudflareImage from '@/components/CloudflareImage';
 import ClientesCarrusel from '@/components/ClientesCarrusel';
 import { cn } from '@/lib/utils';
 import { Stream } from '@cloudflare/stream-react';
+import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 
 interface ServicioIndustriaLandingProps {
   content: ServicioIndustriaContent;
@@ -291,13 +292,23 @@ export default function ServicioIndustriaLanding({ content, params }: ServicioIn
   // Obtenemos el nombre formateado del servicio y la industria
   const servicioFormatted = params.servicio.replace(/-/g, ' ');
   const industriaFormatted = params.industria.replace(/-/g, ' ');
-  
+
   // Obtener el ID del video con fallback al video genérico
   const defaultVideoId = "ac93b4a10e87873748171425b9f8066d";
   const videoId = content.videoId || defaultVideoId;
 
+  // Schema SEO: BreadcrumbList derivado de params
+  const BASE_URL = 'https://www.gard.cl';
+  const canonicalUrl = `${BASE_URL}/servicios-por-industria/${params.servicio}/${params.industria}`;
+  const breadcrumbItems = [
+    { name: 'Inicio', url: BASE_URL },
+    { name: 'Servicios', url: `${BASE_URL}/servicios` },
+    { name: content.h1 || 'Servicio por Industria', url: canonicalUrl },
+  ];
+
   return (
     <LazyMotion features={domAnimation}>
+      <BreadcrumbSchema items={breadcrumbItems} />
       <div className="flex flex-col min-h-screen relative">
         {/* CTA Flotante en móvil (solo aparece al hacer scroll) */}
         <AnimatePresence>

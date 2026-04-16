@@ -26,6 +26,8 @@ import CloudflareImage from '@/components/CloudflareImage';
 import ClientesCarrusel from '@/components/ClientesCarrusel';
 import { cn } from '@/lib/utils';
 import { Stream } from '@cloudflare/stream-react';
+import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
+import ServiceSchema from '@/components/seo/ServiceSchema';
 
 // Mapeo de servicios a ID de videos de Cloudflare Stream
 const videosPorServicio = {
@@ -303,13 +305,32 @@ export default function CiudadServicioLanding({ content, params }: CiudadServici
   // Obtenemos el nombre formateado de la ciudad y el servicio
   const ciudadFormatted = params.ciudad.replace(/-/g, ' ');
   const servicioFormatted = params.servicio.replace(/-/g, ' ');
-  
+
   // Obtener el ID del video para el servicio actual con fallback al video genérico "Escudo Seguridad"
   const defaultVideoId = "ac93b4a10e87873748171425b9f8066d";
   const videoId = videosPorServicio[params.servicio as keyof typeof videosPorServicio] || defaultVideoId;
 
+  // Schemas SEO: BreadcrumbList + Service con areaServed por ciudad
+  const BASE_URL = 'https://www.gard.cl';
+  const canonicalUrl = `${BASE_URL}/${params.ciudad}/${params.servicio}`;
+  const ciudadCapitalizada = ciudadFormatted.replace(/\b\w/g, (c) => c.toUpperCase());
+  const breadcrumbItems = [
+    { name: 'Inicio', url: BASE_URL },
+    { name: 'Servicios', url: `${BASE_URL}/servicios` },
+    { name: content.h1, url: canonicalUrl },
+  ];
+
   return (
     <LazyMotion features={domAnimation}>
+      <BreadcrumbSchema items={breadcrumbItems} />
+      <ServiceSchema
+        name={content.h1}
+        description={content.metaDescription}
+        serviceType="Seguridad Privada"
+        category="Seguridad Privada"
+        url={canonicalUrl}
+        areaServed={[{ type: 'City', name: ciudadCapitalizada }]}
+      />
       <div className="flex flex-col min-h-screen relative">
         {/* CTA Flotante en móvil (solo aparece al hacer scroll) */}
         <AnimatePresence>

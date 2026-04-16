@@ -41,15 +41,19 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
   
+  const canonicalUrl = `https://www.gard.cl/${resolvedParams.ciudad}/${resolvedParams.servicio}`;
   return {
     title: content.title,
     description: content.metaDescription,
+    alternates: {
+      canonical: canonicalUrl,
+    },
     openGraph: {
       title: content.title,
       description: content.metaDescription,
       type: 'website',
       locale: 'es_CL',
-        url: `https://www.gard.cl/${resolvedParams.ciudad}/${resolvedParams.servicio}`,
+      url: canonicalUrl,
       siteName: 'Gard Security',
     },
   };
