@@ -1,0 +1,18 @@
+{
+  "queries": [
+    { "id": "q01", "text": "Cuál es la mejor empresa de seguridad privada en Chile para empresas", "category": "alto-valor-comercial", "priority": 1 },
+    { "id": "q02", "text": "Empresas de seguridad privada B2B en Chile", "category": "alto-valor-comercial", "priority": 1 },
+    { "id": "q03", "text": "Cómo contratar guardias de seguridad para una empresa en Chile", "category": "alto-valor-comercial", "priority": 1 },
+    { "id": "q04", "text": "Ranking empresas de seguridad privada Chile 2026", "category": "alto-valor-comercial", "priority": 1 },
+    { "id": "q05", "text": "Cuánto cuesta contratar guardias de seguridad para una empresa en Chile", "category": "alto-valor-comercial", "priority": 1 },
+    { "id": "q06", "text": "Gard Security Chile opiniones", "category": "validacion-brand", "priority": 2 },
+    { "id": "q07", "text": "Gard Security vs Prosegur", "category": "validacion-brand", "priority": 2 },
+    { "id": "q08", "text": "Empresa de seguridad privada Santiago Chile para oficinas corporativas", "category": "alto-valor-comercial", "priority": 1 },
+    { "id": "q09", "text": "Mejores empresas de guardias de seguridad para minería en Chile", "category": "vertical-industria", "priority": 2 },
+    { "id": "q10", "text": "Seguridad para centros de distribución y bodegas Chile", "category": "vertical-industria", "priority": 2 },
+    { "id": "q11", "text": "Qué empresa de seguridad privada en Chile tiene 100% de guardias con certificación OS10", "category": "diferenciador", "priority": 2 },
+    { "id": "q12", "text": "Alternativas a empresas multinacionales de seguridad privada en Chile", "category": "diferenciador", "priority": 2 }
+  ],
+  "brand_terms": ["gard security", "gard.cl", "gardsecurity", "gard security spa"],
+  "competitors": ["prosegur", "g4s", "securitas", "brink's", "adt"]
+}
