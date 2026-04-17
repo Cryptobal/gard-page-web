@@ -25,7 +25,7 @@ export const services = [
     description: "Supervisión centralizada de eventos con operadores expertos y protocolos personalizados.",
     imageId: "4a167a19-1ef9-430d-ec5e-ffbbc3c35300",
     icon: "MonitorSmartphone",
-    href: "/servicios/monitoreo",
+    href: "/servicios/central-monitoreo",
   },
   {
     name: "Seguridad Perimetral",

@@ -52,7 +52,7 @@ export default function Footer() {
                 <Linkedin className="w-6 h-6" />
               </a>
               <a 
-                href="https://twitter.com/gard_cl" 
+                href="https://x.com/gard_cl"
                 target="_blank" 
                 rel="noopener noreferrer"
                 aria-label="X (Twitter) - Síguenos en X"

@@ -34,8 +34,6 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://imagedelivery.net" />
         <link rel="preconnect" href="https://iframe.cloudflarestream.com" />
         <link rel="dns-prefetch" href="https://iframe.cloudflarestream.com" />
-        <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM Information" />
-        
         {/* DNS prefetch for Google Fonts - next/font handles preloading automatically */}
 
         {/* LocalBusiness Schema - Optimizado para SEO Local */}

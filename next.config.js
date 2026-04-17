@@ -87,7 +87,23 @@ const nextConfig = {
         destination: '/sobre-nosotros',
         permanent: true,
       },
-      
+      // Aliases SEO: URLs cortas antiguas que ahora retornan 4XX (Semrush)
+      {
+        source: '/nosotros',
+        destination: '/sobre-nosotros',
+        permanent: true,
+      },
+      {
+        source: '/trabajo',
+        destination: '/reclutamiento',
+        permanent: true,
+      },
+      {
+        source: '/servicios/monitoreo',
+        destination: '/servicios/central-monitoreo',
+        permanent: true,
+      },
+
       // Redirecciones de URLs antiguas manteniendo la estructura ciudad/servicio
       {
         source: '/automatizacion-y-domotica',

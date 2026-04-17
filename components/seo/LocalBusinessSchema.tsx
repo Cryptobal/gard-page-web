@@ -18,8 +18,8 @@ export default function LocalBusinessSchema() {
     "logo": {
       "@type": "ImageObject",
       "url": "https://www.gard.cl/logos/gard.svg",
-      "width": "250",
-      "height": "60"
+      "width": 250,
+      "height": 60
     },
     "image": "https://www.gard.cl/logos/gard.svg",
     "description": "Empresa de seguridad privada B2B en Chile con más de 200 guardias certificados OS10 y cobertura en 10 ciudades. Especializada en minería, logística, edificios corporativos, retail, construcción y sector industrial. Monitoreo 24/7, seguridad electrónica, drones y auditoría de seguridad.",
@@ -74,7 +74,7 @@ export default function LocalBusinessSchema() {
       {
         "@type": "City",
         "name": "Santiago",
-        "containedIn": {
+        "containedInPlace": {
           "@type": "AdministrativeArea",
           "name": "Región Metropolitana"
         }
@@ -82,7 +82,7 @@ export default function LocalBusinessSchema() {
       {
         "@type": "City",
         "name": "Antofagasta",
-        "containedIn": {
+        "containedInPlace": {
           "@type": "AdministrativeArea",
           "name": "Región de Antofagasta"
         }
@@ -90,7 +90,7 @@ export default function LocalBusinessSchema() {
       {
         "@type": "City",
         "name": "Valparaíso",
-        "containedIn": {
+        "containedInPlace": {
           "@type": "AdministrativeArea",
           "name": "Región de Valparaíso"
         }
@@ -98,7 +98,7 @@ export default function LocalBusinessSchema() {
       {
         "@type": "City",
         "name": "Concepción",
-        "containedIn": {
+        "containedInPlace": {
           "@type": "AdministrativeArea",
           "name": "Región del Biobío"
         }
@@ -106,7 +106,7 @@ export default function LocalBusinessSchema() {
       {
         "@type": "City",
         "name": "Iquique",
-        "containedIn": {
+        "containedInPlace": {
           "@type": "AdministrativeArea",
           "name": "Región de Tarapacá"
         }
@@ -114,7 +114,7 @@ export default function LocalBusinessSchema() {
       {
         "@type": "City",
         "name": "Puerto Montt",
-        "containedIn": {
+        "containedInPlace": {
           "@type": "AdministrativeArea",
           "name": "Región de Los Lagos"
         }
@@ -122,7 +122,7 @@ export default function LocalBusinessSchema() {
       {
         "@type": "City",
         "name": "Rancagua",
-        "containedIn": {
+        "containedInPlace": {
           "@type": "AdministrativeArea",
           "name": "Región de O'Higgins"
         }
@@ -130,7 +130,7 @@ export default function LocalBusinessSchema() {
       {
         "@type": "City",
         "name": "Chillán",
-        "containedIn": {
+        "containedInPlace": {
           "@type": "AdministrativeArea",
           "name": "Región de Ñuble"
         }
@@ -138,7 +138,7 @@ export default function LocalBusinessSchema() {
       {
         "@type": "City",
         "name": "Temuco",
-        "containedIn": {
+        "containedInPlace": {
           "@type": "AdministrativeArea",
           "name": "Región de La Araucanía"
         }
@@ -146,7 +146,7 @@ export default function LocalBusinessSchema() {
       {
         "@type": "City",
         "name": "Viña del Mar",
-        "containedIn": {
+        "containedInPlace": {
           "@type": "AdministrativeArea",
           "name": "Región de Valparaíso"
         }
@@ -174,22 +174,13 @@ export default function LocalBusinessSchema() {
       "Vigilancia Corporativa"
     ],
 
-    // Servicio 24/7 — el servicio operacional opera 24/7 aunque la oficina comercial tenga horario
-    "hoursAvailable": {
-      "@type": "OpeningHoursSpecification",
-      "description": "Servicio de guardias y central de monitoreo 24/7",
-      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-      "opens": "00:00",
-      "closes": "23:59"
-    },
-
     // Misma organización que (para vincular con Organization Schema)
     // GBP URL primero — permite a Google verificar aggregateRating contra reviews reales
     "sameAs": [
       "https://maps.app.goo.gl/q7FTpFhkccqKdHMG8",
       "https://www.linkedin.com/company/gard-security",
-      "https://www.facebook.com/gardsecuritycl",
-      "https://www.instagram.com/gardsecurity"
+      "https://www.instagram.com/gardsecuritycl",
+      "https://x.com/gard_cl"
     ],
     
     // Fundación
