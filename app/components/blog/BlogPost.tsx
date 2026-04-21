@@ -1,10 +1,6 @@
-'use client';
-
-import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
-import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import CloudflareImage from '@/components/CloudflareImage';
 import { getBlogPostShareImageUrl } from '@/lib/blog-og-image';
@@ -12,7 +8,6 @@ import BlogLayout from '@/app/components/blog/BlogLayout';
 import PostSugeridos from '@/app/components/blog/PostSugeridos';
 import BlogSidebar from '@/components/blog/BlogSidebar';
 import { CLOUDFLARE_ACCOUNT_HASH } from '@/lib/images';
-import { Button } from '@/components/ui/button';
 import BlogPostClient from '@/app/blog/[slug]/BlogPostClient';
 import { addInternalLinks } from '@/lib/internal-linking';
 
@@ -65,102 +60,8 @@ function formatDateSafe(dateString: string, formatString: string = 'dd MMMM, yyy
   }
 }
 
-export default function BlogPost({ slug }: { slug: string }) {
-  const [post, setPost] = useState<BlogPost | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const router = useRouter();
-
-  useEffect(() => {
-    const fetchPost = async () => {
-      try {
-        // Usar fetch para obtener el post desde la API
-        const apiUrl = `/api/blog/post/${slug}`;
-        console.log('Fetching post from:', apiUrl);
-        
-        const response = await fetch(apiUrl, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            'Cache-Control': 'no-cache'
-          },
-        });
-        
-        console.log('Response status:', response.status);
-        
-        if (!response.ok) {
-          if (response.status === 404) {
-            console.error('Post not found, redirecting to not-found page');
-            router.push('/blog/not-found');
-            return;
-          }
-          throw new Error(`Error ${response.status}: ${response.statusText}`);
-        }
-        
-        const data = await response.json();
-        console.log('Post data received:', data);
-        
-        if (!data.post) {
-          console.error('No post data in response');
-          setError('Datos del post no disponibles');
-          return;
-        }
-        
-        setPost(data.post);
-      } catch (error) {
-        console.error('Error fetching post:', error);
-        setError('No se pudo cargar el artículo. Por favor, inténtalo de nuevo más tarde.');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    if (slug) {
-      fetchPost();
-    }
-  }, [slug, router]);
-
-  const handleBackToBlog = () => {
-    router.push('/blog');
-  };
-
-  if (loading) {
-    return (
-      <BlogLayout showSidebar={true}>
-        <div className="animate-pulse space-y-8 max-w-3xl mx-auto">
-          <div className="h-6 bg-gray-200 dark:bg-gray-800 rounded-lg w-1/2 mx-auto mb-4"></div>
-          <div className="aspect-video rounded-xl bg-gray-200 dark:bg-gray-800"></div>
-          <div className="h-10 bg-gray-200 dark:bg-gray-800 rounded-lg w-3/4 mx-auto"></div>
-          <div className="h-4 bg-gray-200 dark:bg-gray-800 rounded-full w-1/2 mx-auto"></div>
-          <div className="space-y-4">
-            {Array.from({ length: 10 }).map((_, i) => (
-              <div key={i} className="h-4 bg-gray-200 dark:bg-gray-800 rounded-full"></div>
-            ))}
-          </div>
-        </div>
-      </BlogLayout>
-    );
-  }
-
-  if (error || !post) {
-    return (
-      <BlogLayout showSidebar={true}>
-        <div className="text-center py-16">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-            {error || 'No se pudo cargar el artículo'}
-          </h2>
-          <Button
-            onClick={handleBackToBlog}
-            className="bg-primary hover:bg-primary/90 text-white py-3 px-6 rounded-xl inline-flex items-center font-medium transition-colors"
-          >
-            Volver al Blog
-          </Button>
-        </div>
-      </BlogLayout>
-    );
-  }
-
-  // Una vez que tenemos el post, mostrar su contenido
+export default function BlogPost({ post }: { post: BlogPost }) {
+  const slug = post.slug;
   const formattedDate = formatDateSafe(post.date, 'dd MMMM, yyyy');
 
   // Schemas JSON-LD personalizados para OPAI (SEO optimizado)

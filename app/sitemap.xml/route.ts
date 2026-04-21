@@ -9,7 +9,7 @@ import { ciudades } from '@/lib/data/ciudad-data';
 import { servicesMetadata } from '@/app/servicios/serviceMetadata';
 import { serviciosPorIndustria, esCombinacionValida } from '../data/servicios-por-industria';
 
-const STATIC_LASTMOD = process.env.SITE_LASTMOD ?? '2025-10-09T00:00:00.000Z';
+const STATIC_LASTMOD = process.env.SITE_LASTMOD ?? '2026-04-21T00:00:00.000Z';
 
 const stableLastMod = (date?: string | null): string => {
   // Si no hay fecha o es una cadena vacía, usar STATIC_LASTMOD

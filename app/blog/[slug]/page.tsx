@@ -18,11 +18,15 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const post = await getPostBySlug(slug);
+  let post;
+  try {
+    post = await getPostBySlug(slug);
+  } catch {
+    notFound();
+  }
 
   if (!post) {
     notFound();
-    return {} as Metadata;
   }
 
   const ogImageUrl = getBlogPostShareImageUrl(post.cardImage, post.imageId);
@@ -73,13 +77,21 @@ export default async function BlogPostPage({
 }: {
   params: Promise<{ slug: string }>;
 }) {
-  const resolvedParams = await params;
-  // Verificar que tengamos un slug válido
-  if (!resolvedParams.slug) {
-    return notFound();
+  const { slug } = await params;
+  if (!slug) {
+    notFound();
   }
-  
-  console.log('Rendering BlogPostPage with slug:', resolvedParams.slug);
-  
-  return <BlogPost slug={resolvedParams.slug} />;
-} 
+
+  let post;
+  try {
+    post = await getPostBySlug(slug);
+  } catch {
+    notFound();
+  }
+
+  if (!post) {
+    notFound();
+  }
+
+  return <BlogPost post={post} />;
+}
