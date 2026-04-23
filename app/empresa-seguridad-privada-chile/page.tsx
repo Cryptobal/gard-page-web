@@ -151,7 +151,7 @@ export default function EmpresaSeguridadPrivadaPage() {
         }}
         aggregateRating={{ ratingValue: 4.9, reviewCount: 57, bestRating: 5, worstRating: 1 }}
         reviews={reviews}
-        verificationUrl="https://maps.app.goo.gl/q7FTpFhkccqKdHMG8"
+        verificationUrl="https://maps.app.goo.gl/ywW2rQEWu4g4xxxy8"
       />
       <Breadcrumbs items={breadcrumbs} />
 
@@ -173,7 +173,7 @@ export default function EmpresaSeguridadPrivadaPage() {
             <span>
               4.9/5{' '}
               <a
-                href="https://maps.app.goo.gl/q7FTpFhkccqKdHMG8"
+                href="https://maps.app.goo.gl/ywW2rQEWu4g4xxxy8"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="underline hover:no-underline"
@@ -291,7 +291,7 @@ export default function EmpresaSeguridadPrivadaPage() {
                   <td className="px-6 py-4 text-center text-green-600 font-bold">
                     4.9/5{' '}
                     <a
-                      href="https://maps.app.goo.gl/q7FTpFhkccqKdHMG8"
+                      href="https://maps.app.goo.gl/ywW2rQEWu4g4xxxy8"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="underline hover:no-underline"
@@ -371,7 +371,7 @@ export default function EmpresaSeguridadPrivadaPage() {
               <div className="text-4xl font-bold text-primary mb-2">4.9/5</div>
               <p className="text-sm text-muted-foreground">
                 <a
-                  href="https://maps.app.goo.gl/q7FTpFhkccqKdHMG8"
+                  href="https://maps.app.goo.gl/ywW2rQEWu4g4xxxy8"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="underline hover:no-underline"

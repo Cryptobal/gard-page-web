@@ -51,7 +51,7 @@ export default function SobreNosotrosClient() {
         }}
         aggregateRating={{ ratingValue: 4.9, reviewCount: 57, bestRating: 5, worstRating: 1 }}
         reviews={reviews}
-        verificationUrl="https://maps.app.goo.gl/q7FTpFhkccqKdHMG8"
+        verificationUrl="https://maps.app.goo.gl/ywW2rQEWu4g4xxxy8"
       />
       
       {/* Hero Section */}
@@ -74,7 +74,7 @@ export default function SobreNosotrosClient() {
             <div className="text-4xl font-bold text-primary mb-2">4.9/5</div>
             <p className="text-sm text-muted-foreground">
               <a
-                href="https://maps.app.goo.gl/q7FTpFhkccqKdHMG8"
+                href="https://maps.app.goo.gl/ywW2rQEWu4g4xxxy8"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="underline hover:no-underline"

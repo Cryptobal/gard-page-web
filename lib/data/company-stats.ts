@@ -49,6 +49,14 @@ export const companyStats = {
 
   /** Central de monitoreo operando 24/7. */
   monitoringCenter247: true,
+
+  /**
+   * URLs verificables del perfil público para cross-validación por Google
+   * (evita clasificación de AggregateRating como "self-serving reviews").
+   */
+  gmbShortUrl: 'https://maps.app.goo.gl/ywW2rQEWu4g4xxxy8',
+  gmbCanonicalUrl:
+    'https://www.google.com/maps/place/Gard+Security/data=!4m2!3m1!1s0x0:0x3fcad00015b6e4bd',
 } as const;
 
 export type CompanyStats = typeof companyStats;

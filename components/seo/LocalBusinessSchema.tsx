@@ -67,7 +67,8 @@ export default function LocalBusinessSchema() {
       "ratingValue": 4.9,
       "bestRating": 5,
       "worstRating": 1,
-      "reviewCount": 57
+      "reviewCount": 57,
+      "url": companyStats.gmbShortUrl
     },
 
     // Áreas de servicio
@@ -178,7 +179,8 @@ export default function LocalBusinessSchema() {
     // Misma organización que (para vincular con Organization Schema)
     // GBP URL primero — permite a Google verificar aggregateRating contra reviews reales
     "sameAs": [
-      "https://maps.app.goo.gl/q7FTpFhkccqKdHMG8",
+      "https://maps.app.goo.gl/ywW2rQEWu4g4xxxy8",
+      "https://www.google.com/maps/place/Gard+Security/data=!4m2!3m1!1s0x0:0x3fcad00015b6e4bd",
       "https://www.linkedin.com/company/gard-security",
       "https://www.instagram.com/gardsecuritycl",
       "https://x.com/gard_cl"

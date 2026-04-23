@@ -167,10 +167,17 @@ Según tu respuesta:
 6. **Indicar al usuario** las URLs a pegar en https://validator.schema.org/ para verificar después del deploy.
 
 ### Definition of Done
-- [ ] Schema válido según validator.schema.org
-- [ ] Opción ejecutada
-- [ ] Commit hecho
-- [ ] Si Opción B: archivo `docs/TODO-REVIEWS.md` creado
+- [ ] Schema válido según validator.schema.org (pendiente de validación post-deploy por el usuario)
+- [x] Opción ejecutada (Opción A: mantener con números reales — 4.9 / 57 reviews verificadas en GMB)
+- [x] Commit hecho
+- [x] Si Opción B: archivo `docs/TODO-REVIEWS.md` creado (N/A — no aplica, fue Opción A)
+
+**URLs a validar en validator.schema.org post-deploy** (Carlos):
+- https://www.gard.cl/ (LocalBusinessSchema con AggregateRating + url)
+- https://www.gard.cl/sobre-nosotros (ReviewSchema con verificationUrl)
+- https://www.gard.cl/mejor-empresa-seguridad-chile (ServiceSchema + ReviewSchema)
+- https://www.gard.cl/empresa-seguridad-privada-chile (ServiceSchema + ReviewSchema)
+- https://www.gard.cl/empresa-guardias-seguridad-chile (ServiceSchema + ReviewSchema)
 
 ---
 

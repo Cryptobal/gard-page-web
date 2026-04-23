@@ -118,7 +118,7 @@ export default function MejorEmpresaSeguridadPage() {
         }}
         aggregateRating={{ ratingValue: 4.9, reviewCount: 57, bestRating: 5, worstRating: 1 }}
         reviews={reviews}
-        verificationUrl="https://maps.app.goo.gl/q7FTpFhkccqKdHMG8"
+        verificationUrl="https://maps.app.goo.gl/ywW2rQEWu4g4xxxy8"
       />
       <HowToSchema
         name="Cómo elegir la mejor empresa de seguridad en Chile"
@@ -150,7 +150,7 @@ export default function MejorEmpresaSeguridadPage() {
                 <p className="text-lg mb-4">
                   <strong>Rating:</strong> 4.9/5 ⭐⭐⭐⭐⭐{' '}
                   <a
-                    href="https://maps.app.goo.gl/q7FTpFhkccqKdHMG8"
+                    href="https://maps.app.goo.gl/ywW2rQEWu4g4xxxy8"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="underline hover:no-underline"
@@ -242,7 +242,7 @@ export default function MejorEmpresaSeguridadPage() {
               <p className="text-sm text-muted-foreground">
                 Rating promedio{' '}
                 <a
-                  href="https://maps.app.goo.gl/q7FTpFhkccqKdHMG8"
+                  href="https://maps.app.goo.gl/ywW2rQEWu4g4xxxy8"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="underline hover:no-underline"
@@ -288,7 +288,7 @@ export default function MejorEmpresaSeguridadPage() {
                   <p className="text-sm text-muted-foreground">
                     4.9/5 basado en{' '}
                     <a
-                      href="https://maps.app.goo.gl/q7FTpFhkccqKdHMG8"
+                      href="https://maps.app.goo.gl/ywW2rQEWu4g4xxxy8"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="underline hover:no-underline"
