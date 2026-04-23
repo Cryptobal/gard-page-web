@@ -43,7 +43,7 @@
 
 - [x] Hacer `git checkout main && git pull`
 - [x] Crear branch: `git checkout -b seo-overhaul-2026`
-- [ ] Push: `git push -u origin seo-overhaul-2026` (pendiente de autorización del usuario)
+- [x] Push: `git push -u origin seo-overhaul-2026`
 
 **Al terminar**: confirmar al usuario que está en el branch correcto y pasar a Tarea 1.1.
 
