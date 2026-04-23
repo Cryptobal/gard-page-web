@@ -41,7 +41,7 @@ const ranking = [
     rating: '4.9/5',
     os10: '100%',
     cobertura: '10 ciudades',
-    diferenciador: 'B2B exclusivo, -85% mermas logística, respuesta <15 min',
+    diferenciador: 'B2B exclusivo, -85% mermas logística, continuidad 99.9%',
   },
   {
     name: 'Empresa B',
@@ -68,7 +68,7 @@ const faqs = [
   {
     question: '¿Por qué Gard es #1?',
     answer:
-      '100% OS10 auditado, 4.9/5 rating (57), cobertura en 10 ciudades, especialización B2B, reducción de mermas -85% y respuesta <15 min.',
+      '100% OS10 auditado, 4.9/5 rating (57), cobertura en 10 ciudades, especialización B2B, reducción de mermas -85% y continuidad operacional 99.9%.',
   },
   {
     question: '¿El ranking es público y verificable?',

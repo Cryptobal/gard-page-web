@@ -68,12 +68,11 @@ const faqs = [
   },
   {
     question: '¿Cuál es el tiempo de respuesta ante incidentes?',
-    answer:
-      'Menos de 15 minutos en Santiago y centros urbanos; protocolos express en 48h para activación en nuevas instalaciones; continuidad operacional 99.9% anual.',
+    answer: `Tiempo de respuesta promedio ${companyStats.avgIncidentResponseMinutesSantiago} minutos en Santiago zona urbana, medido sobre contratos activos. Protocolos express en 48h para activación en nuevas instalaciones; continuidad operacional ${companyStats.operationalContinuityPct}% anual.`,
   },
   {
     question: '¿Qué diferencia a Gard Security de otras empresas?',
-    answer: `Especialización B2B exclusiva, 100% OS10 auditado, reducción de mermas hasta 85% en logística, rating 4.9/5 y monitoreo 24/7 con respuesta <15 min. Cobertura en ${companyStats.citiesCovered} ciudades. Tenemos cobertura en todo Chile.`,
+    answer: `Especialización B2B exclusiva, 100% OS10 auditado, reducción de mermas hasta 85% en logística, rating 4.9/5 y monitoreo 24/7 con tiempo de respuesta promedio ${companyStats.avgIncidentResponseMinutesSantiago} min en zona urbana. Cobertura en ${companyStats.citiesCovered} ciudades. Tenemos cobertura en todo Chile.`,
   },
   {
     question: '¿Operan en regiones fuera de Santiago?',
@@ -91,43 +90,12 @@ const faqs = [
   },
   {
     question: '¿Cómo miden resultados y desempeño?',
-    answer:
-      'KPIs operativos auditables: continuidad 99.9%, tiempo de respuesta <15 min, reducción de mermas hasta 85% en logística, cumplimiento OS10 100%, reportes mensuales.',
+    answer: `KPIs operativos auditables: continuidad ${companyStats.operationalContinuityPct}%, tiempo de respuesta promedio ${companyStats.avgIncidentResponseMinutesSantiago} min en zona urbana, reducción de mermas hasta 85% en logística, cumplimiento OS10 100%, reportes mensuales.`,
   },
 ];
 
-const reviews: Array<{
-  author: { name: string; type: 'Person' | 'Organization' };
-  datePublished: string;
-  ratingValue: number;
-  reviewBody: string;
-  name: string;
-}> = [
-  {
-    author: { name: 'Gerente de Operaciones Mineras', type: 'Person' as const },
-    datePublished: '2025-06-01',
-    ratingValue: 5,
-    reviewBody:
-      'Gard Security redujo incidentes en faena minera en 70% con guardias OS10 auditados y protocolos en zonas remotas. Tiempos de respuesta consistentes <15 min.',
-    name: 'Resultados en minería',
-  },
-  {
-    author: { name: 'Director de Logística Retail', type: 'Person' as const },
-    datePublished: '2025-05-15',
-    ratingValue: 5,
-    reviewBody:
-      'Disminuimos mermas en CD principal en -85% con control de accesos y CCTV con analítica. Equipo 24/7 y reportes mensuales claros.',
-    name: 'Logística con reducción de mermas',
-  },
-  {
-    author: { name: 'Administrador de Edificio Corporativo', type: 'Person' as const },
-    datePublished: '2025-04-10',
-    ratingValue: 5,
-    reviewBody:
-      'Excelente servicio en edificio clase A: guardias bilingües, recepción ejecutiva y protocolos de evacuación probados. Rating interno 4.9/5.',
-    name: 'Seguridad corporativa premium',
-  },
-];
+// Reviews hardcoded inventados (Fase 1.3 residual) removidos. El
+// ReviewSchema mantiene aggregateRating verificable en GMB.
 
 export default function EmpresaSeguridadPrivadaPage() {
   return (
@@ -150,8 +118,7 @@ export default function EmpresaSeguridadPrivadaPage() {
           description: `Seguridad privada B2B con 100% guardias OS10, ${companyStats.citiesCovered} ciudades y monitoreo 24/7.`,
         }}
         aggregateRating={{ ratingValue: 4.9, reviewCount: 57, bestRating: 5, worstRating: 1 }}
-        reviews={reviews}
-        verificationUrl="https://maps.app.goo.gl/ywW2rQEWu4g4xxxy8"
+        verificationUrl={companyStats.gmbShortUrl}
       />
       <Breadcrumbs items={breadcrumbs} />
 
@@ -211,8 +178,8 @@ export default function EmpresaSeguridadPrivadaPage() {
             </div>
             <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6">
               <Clock className="h-10 w-10 text-primary mb-3" />
-              <h3 className="text-white font-semibold text-lg mb-2">Respuesta &lt;15 Min</h3>
-              <p className="text-white/80 text-sm">Monitoreo 24/7 y protocolos express con continuidad operacional 99.9%.</p>
+              <h3 className="text-white font-semibold text-lg mb-2">Respuesta {companyStats.avgIncidentResponseMinutesSantiago} Min Promedio</h3>
+              <p className="text-white/80 text-sm">Zona urbana Santiago. Monitoreo 24/7 y protocolos express con continuidad operacional {companyStats.operationalContinuityPct}%.</p>
             </div>
           </div>
         </div>
@@ -248,7 +215,7 @@ export default function EmpresaSeguridadPrivadaPage() {
               <CheckCircle className="h-8 w-8 text-primary flex-shrink-0" />
               <div>
                 <h3 className="text-xl font-semibold mb-2">Resultados Medibles</h3>
-                <p className="text-muted-foreground">Reducción de mermas hasta 85% en logística y tiempos de respuesta &lt;15 min en corporativo.</p>
+                <p className="text-muted-foreground">Reducción de mermas hasta 85% en logística y tiempo de respuesta promedio {companyStats.avgIncidentResponseMinutesSantiago} min en zona urbana.</p>
               </div>
             </div>
             <div className="flex gap-4">
@@ -317,8 +284,8 @@ export default function EmpresaSeguridadPrivadaPage() {
                   <td className="px-6 py-4 text-center text-muted-foreground">3-5</td>
                 </tr>
                 <tr>
-                  <td className="px-6 py-4 font-medium">Tiempo de respuesta</td>
-                  <td className="px-6 py-4 text-center text-green-600 font-bold">&lt;15 min</td>
+                  <td className="px-6 py-4 font-medium">Tiempo de respuesta (zona urbana)</td>
+                  <td className="px-6 py-4 text-center text-green-600 font-bold">{companyStats.avgIncidentResponseMinutesSantiago} min</td>
                   <td className="px-6 py-4 text-center text-muted-foreground">30-45 min</td>
                 </tr>
               </tbody>

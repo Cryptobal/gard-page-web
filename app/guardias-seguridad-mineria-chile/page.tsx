@@ -91,7 +91,7 @@ export default function GuardiasSeguridadMineriaPage() {
             </div>
             <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6">
               <Award className="h-10 w-10 text-primary mb-3" />
-              <h3 className="text-white font-semibold text-lg mb-2">Respuesta menor a 15 min</h3>
+              <h3 className="text-white font-semibold text-lg mb-2">Coordinación 24/7 con central propia</h3>
               <p className="text-white/80 text-sm">Tiempos de respuesta garantizados ante emergencias</p>
             </div>
           </div>

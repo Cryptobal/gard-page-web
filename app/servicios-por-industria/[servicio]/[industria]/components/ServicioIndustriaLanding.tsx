@@ -608,10 +608,10 @@ export default function ServicioIndustriaLanding({ content, params }: ServicioIn
           <div className="gard-container">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
               {[
-                { value: "+500", label: "Clientes Satisfechos" },
+                { value: "23", label: "Clientes B2B activos" },
                 { value: "24/7", label: "Servicio Continuo" },
-                { value: "15 min", label: "Tiempo de Respuesta" },
-                { value: "100%", label: "Personal Certificado" }
+                { value: "30 min", label: "Respuesta promedio (zona urbana)" },
+                { value: "100%", label: "Personal Certificado OS10" }
               ].map((stat, index) => (
                 <motion.div 
                   key={index}

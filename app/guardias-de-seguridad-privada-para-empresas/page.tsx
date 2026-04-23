@@ -63,11 +63,10 @@ const faqItems: FAQItem[] = [
   },
   {
     question: '¿Qué tiempo de respuesta ofrecen ante incidentes?',
-    answerText:
-      'Nuestros guardias en el sitio tienen protocolos de reacción inmediata (menos de 2 minutos para activar alertas y coordinación). Para refuerzos móviles desde nuestra central, el tiempo de respuesta promedio en la Región Metropolitana es inferior a 15 minutos. Contamos con central de monitoreo 24/7 que coordina con Carabineros, bomberos y ambulancia cuando la situación lo requiere.',
+    answerText: `Nuestros guardias en el sitio tienen protocolos de reacción inmediata (menos de 2 minutos para activar alertas y coordinación). Para refuerzos móviles desde nuestra central, el tiempo de respuesta promedio en la Región Metropolitana es de ${companyStats.avgIncidentResponseMinutesSantiago} minutos, medido sobre contratos activos. Contamos con central de monitoreo 24/7 que coordina con Carabineros, bomberos y ambulancia cuando la situación lo requiere.`,
     answerNode: (
       <p>
-        Nuestros guardias en el sitio tienen protocolos de reacción inmediata (menos de 2 minutos para activar alertas y coordinación). Para refuerzos móviles desde nuestra central, el tiempo de respuesta promedio en la Región Metropolitana es inferior a 15 minutos. Contamos con central de monitoreo 24/7 que coordina con Carabineros, bomberos y ambulancia cuando la situación lo requiere.
+        Nuestros guardias en el sitio tienen protocolos de reacción inmediata (menos de 2 minutos para activar alertas y coordinación). Para refuerzos móviles desde nuestra central, el tiempo de respuesta promedio en la Región Metropolitana es de {companyStats.avgIncidentResponseMinutesSantiago} minutos, medido sobre contratos activos. Contamos con central de monitoreo 24/7 que coordina con Carabineros, bomberos y ambulancia cuando la situación lo requiere.
       </p>
     ),
   },
@@ -331,7 +330,7 @@ export default function GuardiasParaEmpresasPage() {
                   ['Certificación OS10', '100% del personal auditada', '70-85% real en mercado'],
                   ['Supervisión digital en tiempo real', 'Sistema OPAI propio con IA', 'Planillas o apps básicas'],
                   ['Cobertura geográfica', '10 ciudades de Chile', 'Santiago o ciudad sede'],
-                  ['Tiempo de respuesta móvil', 'Menor a 15 min en RM', 'Variable, sin SLA'],
+                  ['Tiempo de respuesta móvil (RM)', `Promedio ${companyStats.avgIncidentResponseMinutesSantiago} min en zona urbana`, 'Variable, sin SLA'],
                   ['Reportería al cliente', 'Dashboard operativo en línea', 'Reporte mensual en PDF'],
                   ['Reemplazo ante ausencia', 'Pool de guardias, cobertura inmediata', 'Variable, según disponibilidad'],
                   ['Foco operacional', 'Exclusivo B2B', 'Mixto B2B/residencial'],

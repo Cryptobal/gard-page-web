@@ -27,7 +27,7 @@ const faqs = [
   { question: '¿Por qué contratar guardias de seguridad en Antofagasta?', answer: 'Antofagasta, como capital minera de Chile, requiere seguridad especializada para proteger faenas mineras, puertos y zonas industriales. Nuestros guardias están 100% certificados OS10 por SERNAGEOMIN y tienen experiencia comprobada en operaciones de alto riesgo en zonas remotas del norte de Chile.' },
   { question: '¿Qué certificación OS10 tienen sus guardias en Antofagasta?', answer: 'El 100% de nuestros guardias cuenta con certificación OS10 vigente de SERNAGEOMIN, como exige el Decreto Supremo N°132 para todos los guardias de seguridad en Chile. Nuestro diferencial es que además del OS10 obligatorio, nuestros guardias en minería tienen capacitación especializada en protocolos mineros, primeros auxilios en altura y emergencias en zonas remotas.' },
   { question: '¿Cuánto cuesta contratar guardias de seguridad en Antofagasta?', answer: 'Depende de puestos, turnos y logística en zonas remotas. Enviamos propuesta cerrada en 24h con personal OS10 y supervisión 24/7.' },
-  { question: '¿Cuál es el tiempo de respuesta en Antofagasta?', answer: 'En Antofagasta ciudad tenemos tiempo de respuesta promedio de 15 minutos. Para faenas mineras en zonas remotas (María Elena, Sierra Gorda, etc.) contamos con guardias residentes en la faena y comunicación satelital con nuestra central de monitoreo 24/7.' }
+  { question: '¿Cuál es el tiempo de respuesta en Antofagasta?', answer: 'En Antofagasta ciudad, nuestros guardias siguen protocolos de reacción inmediata en el sitio (alerta + coordinación con central en menos de 2 minutos). Para faenas mineras en zonas remotas (María Elena, Sierra Gorda, etc.) contamos con guardias residentes en la faena y comunicación satelital con nuestra central de monitoreo 24/7, coordinada con Carabineros y servicios de emergencia.' }
 ];
 
 export default function GuardiasAntofagastaPage() {
@@ -88,7 +88,7 @@ export default function GuardiasAntofagastaPage() {
             </div>
             <div className="flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
               <CheckCircle className="h-5 w-5 text-green-400 mr-2" />
-              <span className="text-white font-medium">Respuesta &lt;15 Min</span>
+              <span className="text-white font-medium">Central 24/7 Propia</span>
             </div>
           </div>
           
@@ -153,7 +153,7 @@ export default function GuardiasAntofagastaPage() {
               <Clock className="h-12 w-12 text-primary mb-4" />
               <h3 className="text-xl font-semibold mb-3">Respuesta Inmediata</h3>
               <p className="text-muted-foreground">
-                Tiempo de respuesta promedio de 15 minutos en Antofagasta ciudad. Para faenas remotas: guardias residentes en sitio con supervisión remota continua.
+                Protocolos de reacción inmediata en sitio con alerta a central en menos de 2 minutos. Para faenas remotas: guardias residentes en sitio con supervisión remota continua y comunicación satelital.
               </p>
             </div>
           </div>
