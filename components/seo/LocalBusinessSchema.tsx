@@ -155,7 +155,8 @@ export default function LocalBusinessSchema() {
       },
       {
         "@type": "Country",
-        "name": "Chile"
+        "name": "Chile",
+        "sameAs": "https://www.wikidata.org/wiki/Q298"
       }
     ],
     

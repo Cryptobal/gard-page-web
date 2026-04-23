@@ -305,33 +305,10 @@ export default async function ServicioIndustriaPage({ params }: PageProps) {
               </div>
             </div>
             
-            <div className="bg-white dark:bg-[hsl(var(--gard-card))] p-6 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
-              <div className="flex items-center mb-4">
-                <div className="h-12 w-12 bg-primary/10 dark:bg-blue-900 rounded-full flex items-center justify-center mr-4">
-                  <span className="text-primary dark:text-blue-300 text-xl font-bold">T</span>
-                </div>
-                <div>
-                  <h3 className="text-heading-5 text-foreground dark:text-white">Testimonios de clientes</h3>
-                  <p className="text-sm text-muted-foreground dark:text-gray-400">La opinión de quienes confían en nosotros</p>
-                </div>
-              </div>
-              
-              <blockquote className="border-l-4 border-primary dark:border-[hsl(var(--gard-accent))] pl-4 italic mb-4">
-                <p className="text-muted-foreground dark:text-gray-300 mb-2">
-                  {servicioIndustriaData.testimonio || `"El servicio de ${servicio.name.toLowerCase()} que Gard Security ha implementado en nuestras instalaciones ha superado todas nuestras expectativas. Su conocimiento del sector ${industry.name} fue clave para adaptar perfectamente la solución a nuestras necesidades específicas."`}
-                </p>
-                <footer className="text-sm text-muted-foreground dark:text-gray-400">
-                  - Director de Operaciones, empresa líder en {industry.name}
-                </footer>
-              </blockquote>
-              
-              <div className="flex justify-end">
-                <Link href="/testimonios" className="text-primary dark:text-[hsl(var(--gard-accent))] hover:underline text-sm flex items-center">
-                  Ver más testimonios
-                  <ArrowRight className="ml-1 h-4 w-4" />
-                </Link>
-              </div>
-            </div>
+            {/* Bloque de testimonios removido: solo publicamos quotes con consentimiento
+                explícito (ver lib/data/testimonials.ts). Cuando haya testimonios verificados
+                para esta combinación servicio+industria, se renderizarán desde la estructura
+                centralizada de Testimonial, no con fallbacks genéricos. */}
           </div>
         </div>
       </section>

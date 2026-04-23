@@ -405,10 +405,10 @@ C) Ejecución parcial: solo Santiago ahora, para desbloquear Tarea 2.2
 5. Marcar tarea como parcialmente completa. Esperar decisión del usuario para resto de ciudades.
 
 ### Definition of Done (versión Opción C)
-- [ ] Estructura tipada creada
-- [ ] Santiago lleno con datos verificables
-- [ ] Todas las fuentes citadas con URL
-- [ ] Commit hecho
+- [x] Estructura tipada creada (`lib/data/ciudades-dataset.ts` con tipo `CiudadDataset`, helpers `getCiudadDataset` y `isCiudadDatasetComplete`, 10 ciudades pre-declaradas con campos vacíos)
+- [ ] Santiago lleno con datos verificables — **pendiente**: requiere research en SPD/INE/CChC o ejecución Cowork nightly
+- [ ] Todas las fuentes citadas con URL — **pendiente**: se completan al llenar los datos
+- [x] Commit hecho (commit técnico de estructura; el commit de datos reales queda para cuando se llene Santiago)
 
 ---
 
@@ -586,9 +586,9 @@ Esta tarea crea el script que valida el contenido generado por Cowork.
 5. Commit: `feat(tooling): content validator for city-service pages`.
 
 ### Definition of Done
-- [ ] Script funcional
-- [ ] Santiago pasa todos los checks
-- [ ] Script documentado con ejemplo de uso en README
+- [x] Script funcional (`scripts/validate-ciudad-content.ts` + `pnpm run validate-ciudad`)
+- [ ] Santiago pasa todos los checks — **pendiente**: no se puede validar hasta que Santiago × guardias-de-seguridad tenga copy (depende de Tarea 2.2)
+- [x] Script documentado (docstrings completos + export `BANNED_PHRASES` + entry en `package.json`)
 
 ---
 
@@ -631,12 +631,16 @@ Cuando el usuario diga "arrancamos Fase 3", pedir foto-shotlist confirmado y pro
 # FASE 4 · Tuning técnico
 
 Tareas (resumen, spec completa en plan maestro):
-- [ ] 4.1 Migrar edge region a GRU1 (São Paulo)
-- [ ] 4.2 Hreflang es-CL + schema regional expandido
-- [ ] 4.3 Lighthouse CI en GitHub Actions
-- [ ] 4.4 GSC Indexing API via Cowork
+- [x] 4.1 Migrar edge region a GRU1 (São Paulo) — `vercel.json` actualizado; verificar post-deploy con `curl -sI https://www.gard.cl | grep x-vercel-id`
+- [x] 4.2 Hreflang es-CL + schema regional expandido — `app/metadata.ts` ya tenía `alternates.languages.es-CL`; agregado Wikidata `Q298` a `areaServed.Country` en `LocalBusinessSchema`; limpieza de "soluciones integrales" residual
+- [x] 4.3 Lighthouse CI en GitHub Actions — `.github/workflows/lighthouse.yml` + `lighthouserc.json` con gates perf ≥ 0.8, seo ≥ 0.95, LCP ≤ 2500ms, CLS ≤ 0.1
+- [x] 4.4 GSC Indexing API (script + docs) — `scripts/automations/gsc-indexing-submit.ts` listo (library-free, `crypto` + `fetch`); input `lib/data/recently-updated.json`; docs en `docs/COWORK-GSC-INDEXING.md`; **requiere que Carlos configure service account + env vars antes de correr en Cowork**
 
-Cuando el usuario diga "arrancamos Fase 4", ejecutar en este orden. Todas son código puro, sin bloqueos externos.
+Fase 4 completa del lado de código. Queda pendiente:
+1. Post-deploy de 4.1: validar `x-vercel-id: gru1::...` y TTFB desde Santiago.
+2. Post-deploy de 4.2: validar schemas en https://validator.schema.org/.
+3. Primer PR posterior: Lighthouse CI debería correr automáticamente.
+4. Setup Cowork: service account Google + env vars + cron nightly para 4.4.
 
 ---
 

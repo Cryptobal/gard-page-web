@@ -25,6 +25,7 @@ import { cn } from '@/lib/utils';
 import CountUp from 'react-countup';
 import Script from 'next/script';
 import { companyStats } from '@/lib/data/company-stats';
+import { testimonials } from '@/lib/data/testimonials';
 
 // IDs de imágenes para logos e imágenes
 const LOGO_GARD_BLANCO = '49b89002-6bb9-41b9-50ad-e6b91e5f6d00';
@@ -613,73 +614,56 @@ export default function CotizadorInteligentePage() {
       <BeneficiosPremium />
       
       {/* Testimonios y Casos de Éxito */}
-      <section className="py-20 bg-gray-50 dark:bg-gray-900">
-        <div className="max-w-7xl mx-auto px-4">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={fadeInUp}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
-              Empresas que confían en nuestros servicios
-            </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Más de 50 empresas de diferentes sectores han elegido nuestros servicios de seguridad
-            </p>
-          </motion.div>
+      {testimonials.length >= 3 && (
+        <section className="py-20 bg-gray-50 dark:bg-gray-900">
+          <div className="max-w-7xl mx-auto px-4">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={fadeInUp}
+              className="text-center mb-12"
+            >
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
+                Empresas que confían en nuestros servicios
+              </h2>
+              <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                Testimonios verificados de responsables de operaciones que trabajan con Gard Security hoy.
+              </p>
+            </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                empresa: "Retail Nacional",
-                sector: "Comercio",
-                testimonio: "La implementación de guardias de seguridad ha mejorado significativamente la seguridad en nuestros locales. El servicio es profesional y la atención es excelente.",
-                logo: "retail-logo"
-              },
-              {
-                empresa: "Empresa Industrial",
-                sector: "Manufactura",
-                testimonio: "Los guardias están altamente capacitados y el servicio 24/7 nos da la tranquilidad que necesitamos para operar con seguridad.",
-                logo: "industrial-logo"
-              },
-              {
-                empresa: "Centro Comercial",
-                sector: "Retail",
-                testimonio: "La cobertura completa y el profesionalismo de los guardias han mejorado la experiencia de nuestros visitantes y la seguridad del centro.",
-                logo: "mall-logo"
-              }
-            ].map((testimonio, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg"
-              >
-                <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center">
-                    <Building className="h-6 w-6 text-primary dark:text-accent" />
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {testimonials.map((t, index) => (
+                <motion.div
+                  key={t.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg"
+                >
+                  <div className="flex items-center mb-4">
+                    <div className="w-12 h-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center">
+                      <Building className="h-6 w-6 text-primary dark:text-accent" />
+                    </div>
+                    <div className="ml-4">
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                        {t.companyName}
+                      </h3>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">
+                        {t.clientRole}
+                      </p>
+                    </div>
                   </div>
-                  <div className="ml-4">
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                      {testimonio.empresa}
-                    </h3>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">
-                      {testimonio.sector}
-                    </p>
-                  </div>
-                </div>
-                <p className="text-gray-600 dark:text-gray-300">
-                  "{testimonio.testimonio}"
-                </p>
-              </motion.div>
-            ))}
+                  <p className="text-gray-600 dark:text-gray-300">
+                    &ldquo;{t.quote}&rdquo;
+                  </p>
+                </motion.div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
       
       {/* Preguntas frecuentes */}
       <section id="faqs" className="py-20 bg-gray-50 dark:bg-gray-900">
