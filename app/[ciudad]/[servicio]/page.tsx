@@ -4,8 +4,9 @@ import { getCiudadServicioContent } from '@/lib/data/getCiudadServicioContent';
 import { ciudades } from '@/lib/data/ciudad-data';
 import { servicesMetadata } from '@/app/servicios/serviceMetadata';
 import CiudadServicioLanding from './components/CiudadServicioLanding';
+import CiudadServicioGold from './components/CiudadServicioGold';
+import { getServicioCiudadCopy } from '@/lib/data/servicio-ciudad-copy';
 
-// Next.js 15: params es ahora una Promise
 interface PageProps {
   params: Promise<{
     ciudad: string;
@@ -13,10 +14,9 @@ interface PageProps {
   }>;
 }
 
-// Validar parámetros de URL para evitar páginas innecesarias
 export function generateStaticParams() {
   const params = [];
-  
+
   for (const ciudad of ciudades) {
     for (const servicio of servicesMetadata) {
       params.push({
@@ -25,29 +25,54 @@ export function generateStaticParams() {
       });
     }
   }
-  
+
   return params;
 }
 
-// Generar metadata dinámicamente para SEO
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const resolvedParams = await params;
-  const content = getCiudadServicioContent(resolvedParams.ciudad, resolvedParams.servicio);
-  
+  const canonicalUrl = `https://www.gard.cl/${resolvedParams.ciudad}/${resolvedParams.servicio}`;
+
+  // Si hay copy verificado para esta combinación, la metadata se construye
+  // desde el heroH1 y el intro de la plantilla de oro; sino cae al contenido
+  // genérico anterior.
+  const verifiedCopy = getServicioCiudadCopy(
+    resolvedParams.ciudad,
+    resolvedParams.servicio,
+  );
+  if (verifiedCopy) {
+    const description = verifiedCopy.introParagraph.slice(0, 180);
+    return {
+      title: `${verifiedCopy.heroH1} | Gard Security`,
+      description,
+      alternates: { canonical: canonicalUrl },
+      openGraph: {
+        title: verifiedCopy.heroH1,
+        description,
+        type: 'website',
+        locale: 'es_CL',
+        url: canonicalUrl,
+        siteName: 'Gard Security',
+      },
+    };
+  }
+
+  const content = getCiudadServicioContent(
+    resolvedParams.ciudad,
+    resolvedParams.servicio,
+  );
+
   if (!content) {
     return {
       title: 'Página no encontrada | Gard Security',
       description: 'Lo sentimos, no pudimos encontrar el servicio que estás buscando.',
     };
   }
-  
-  const canonicalUrl = `https://www.gard.cl/${resolvedParams.ciudad}/${resolvedParams.servicio}`;
+
   return {
     title: content.title,
     description: content.metaDescription,
-    alternates: {
-      canonical: canonicalUrl,
-    },
+    alternates: { canonical: canonicalUrl },
     openGraph: {
       title: content.title,
       description: content.metaDescription,
@@ -61,13 +86,26 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function CiudadServicioPage({ params }: PageProps) {
   const resolvedParams = await params;
-  // Obtener contenido dinámico combinando datos de ciudad y servicio
-  const content = getCiudadServicioContent(resolvedParams.ciudad, resolvedParams.servicio);
-  
-  // Si la combinación ciudad-servicio no existe, retornar 404
+
+  // Preferir el template "gold standard" cuando exista copy verificado
+  // para esta combinación ciudad × servicio. Fallback silencioso al
+  // template genérico anterior para el resto.
+  const verifiedCopy = getServicioCiudadCopy(
+    resolvedParams.ciudad,
+    resolvedParams.servicio,
+  );
+  if (verifiedCopy) {
+    return <CiudadServicioGold copy={verifiedCopy} />;
+  }
+
+  const content = getCiudadServicioContent(
+    resolvedParams.ciudad,
+    resolvedParams.servicio,
+  );
+
   if (!content) {
     notFound();
   }
-  
+
   return <CiudadServicioLanding content={content} params={resolvedParams} />;
-} 
+}
