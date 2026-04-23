@@ -280,7 +280,6 @@ const servicioIndustriaDataMap: Record<string, ServicioIndustriaData> = {
       "Sistemas de rotación adaptados a las necesidades operativas de minería 24/7"
     ],
     casoExito: "Implementamos un sistema integral de seguridad para una de las principales mineras del país, logrando reducir en un 85% los incidentes de seguridad y mejorando significativamente el cumplimiento normativo.",
-    testimonio: "La presencia de guardias especializados en minería no solo ha mejorado nuestra seguridad, sino que ha contribuido positivamente a nuestra cultura de seguridad operacional. Su conocimiento del sector hace la diferencia.",
     beneficios: [
       "Reducción de incidentes de seguridad en áreas críticas",
       "Cumplimiento estricto de normativas mineras de seguridad",
@@ -304,7 +303,6 @@ const servicioIndustriaDataMap: Record<string, ServicioIndustriaData> = {
       "Coordinación con sistemas electrónicos para maximizar la cobertura"
     ],
     casoExito: "Redujimos las pérdidas por hurto en un 67% para una cadena nacional de retail, implementando un sistema integrado de guardias visibles y encubiertos con tecnología de apoyo.",
-    testimonio: "La profesionalidad de los guardias de Gard ha transformado nuestra seguridad. Su enfoque discreto pero efectivo mantiene nuestra imagen de marca mientras protege nuestros activos.",
     beneficios: [
       "Reducción significativa de pérdidas por hurto",
       "Mejora de la experiencia de compra de los clientes",
@@ -330,7 +328,6 @@ const servicioIndustriaDataMap: Record<string, ServicioIndustriaData> = {
       "Procedimientos específicos para manejo de emergencias en entornos financieros"
     ],
     casoExito: "Implementamos un sistema de seguridad integral para una red de 14 sucursales bancarias, logrando cero incidentes de seguridad durante los últimos 2 años y mejorando la confianza de clientes y empleados.",
-    testimonio: "Los guardias de Gard Security han demostrado un nivel de profesionalismo excepcional, adaptándose perfectamente a los exigentes protocolos que requiere nuestro sector financiero.",
     beneficios: [
       "Cumplimiento de normativas de seguridad bancaria",
       "Prevención efectiva de incidentes en áreas de alto riesgo",
@@ -353,8 +350,7 @@ const servicioIndustriaDataMap: Record<string, ServicioIndustriaData> = {
       "Sistemas de vigilancia coordinada con múltiples puntos de control",
       "Protocolos especiales para eventos, periodos de alta afluencia y situaciones de emergencia"
     ],
-    casoExito: "Redujimos un 78% los incidentes de seguridad en un centro comercial de 150 locales, mejorando significativamente la experiencia de compra y la percepción de seguridad de los visitantes.",
-    testimonio: "El equipo de Gard ha transformado la seguridad de nuestro centro comercial, combinando perfectamente protección efectiva con trato amable hacia nuestros clientes."
+    casoExito: "Redujimos un 78% los incidentes de seguridad en un centro comercial de 150 locales, mejorando significativamente la experiencia de compra y la percepción de seguridad de los visitantes."
   },
   
   // Seguridad electrónica para centros de datos
@@ -371,7 +367,6 @@ const servicioIndustriaDataMap: Record<string, ServicioIndustriaData> = {
       "Integración con sistemas de alarma y notificación inmediata"
     ],
     casoExito: "Implementamos un sistema integral de seguridad electrónica para un centro de datos Tier III, logrando cumplimiento normativo total y cero incidentes de seguridad física en los últimos 3 años.",
-    testimonio: "Las soluciones de seguridad electrónica de Gard nos han permitido cumplir con los exigentes estándares internacionales de protección para centros de datos, garantizando la continuidad de nuestras operaciones.",
     beneficios: [
       "Cumplimiento de estándares internacionales Tier III/IV",
       "Detección y respuesta inmediata ante intentos de intrusión",
@@ -395,7 +390,6 @@ const servicioIndustriaDataMap: Record<string, ServicioIndustriaData> = {
       "Transmisión en tiempo real a central de monitoreo con análisis de imágenes"
     ],
     casoExito: "Implementamos un sistema de patrullaje con drones para una planta solar de 100 hectáreas, reduciendo costos de vigilancia en un 40% y detectando eficazmente intentos de intrusión y anomalías en los paneles.",
-    testimonio: "La vigilancia con drones ha revolucionado la seguridad de nuestras instalaciones energéticas, permitiéndonos cubrir extensas áreas con una eficiencia que era imposible con métodos tradicionales."
   }
 };
 
