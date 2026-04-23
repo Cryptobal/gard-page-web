@@ -102,7 +102,7 @@ export default function MejorEmpresaSeguridadPage() {
       />
       <ServiceSchema
         name="Servicios de seguridad privada B2B en Chile"
-        description="Guardias certificados OS10, monitoreo 24/7, seguridad electrónica y soluciones integrales para industrias, logística y corporativo."
+        description="Guardias certificados OS10, monitoreo 24/7, seguridad electrónica y servicios especializados para industrias, logística y corporativo."
         url="https://www.gard.cl/mejor-empresa-seguridad-chile"
         areaServed="Chile"
         aggregateRating={{ ratingValue: 4.9, reviewCount: 57 }}

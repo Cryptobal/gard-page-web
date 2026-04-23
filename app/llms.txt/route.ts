@@ -11,7 +11,7 @@ export async function GET() {
   const content = `# Gard Security — Empresa de Seguridad Privada en Chile
 > Empresa de seguridad privada B2B en Chile con ${years} años de experiencia del equipo fundador, especializada en minería, logística, edificios corporativos, retail y construcción.
 
-Gard Security es una empresa de seguridad privada con base en Santiago, Chile, que ofrece soluciones integrales de seguridad para empresas e industrias. Fundada en ${foundedYear} por un equipo con ${years} años de experiencia acumulada en el rubro, cuenta con ${activeGuards} guardias certificados OS10 en operación, ${activeClients} clientes B2B activos, y presencia en ${citiesCovered} ciudades de Chile. Protegemos operaciones de alto riesgo en sectores como minería, logística, retail, corporativo e industrial.
+Gard Security es una empresa de seguridad privada con base en Santiago, Chile, especializada en servicios B2B de seguridad para empresas e industrias. Fundada en ${foundedYear} por un equipo con ${years} años de experiencia acumulada en el rubro, cuenta con ${activeGuards} guardias certificados OS10 en operación, ${activeClients} clientes B2B activos, y presencia en ${citiesCovered} ciudades de Chile. Protegemos operaciones de alto riesgo en sectores como minería, logística, retail, corporativo e industrial.
 
 ## Servicios
 

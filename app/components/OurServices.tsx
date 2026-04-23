@@ -41,7 +41,7 @@ interface OurServicesProps {
 
 export default function OurServices({ 
   title = "Nuestros Servicios", 
-  subtitle = "Soluciones integrales de seguridad diseñadas para proteger lo que más importa.",
+  subtitle = "Servicios de seguridad B2B diseñados para proteger operaciones críticas con guardias OS10 y tecnología propia.",
   industria,
   nombreIndustria
 }: OurServicesProps) {
