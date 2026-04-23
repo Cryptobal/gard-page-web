@@ -245,9 +245,13 @@ Si no tenés ninguno listo hoy, respondé "ninguno" y dejamos el array vacío.
 5. Commit: `fix(seo): remove fabricated testimonials, prepare real-testimonial schema`.
 
 ### Definition of Done
-- [ ] Testimonios falsos no aparecen en el live
-- [ ] Estructura técnica lista para recibir reales
-- [ ] Template de email disponible en docs
+- [x] Testimonios falsos no aparecen en el live (removidos del homepage carousel y del ClientesCarrusel usado en ciudad/servicio)
+- [x] Estructura técnica lista para recibir reales (`lib/data/testimonials.ts` con tipo `Testimonial` + array vacío)
+- [x] Template de email disponible en docs (`docs/EMAIL-PEDIR-TESTIMONIO.md`)
+
+**Pendiente fuera de scope** (registrado como hallazgo paralelo en `SEO_OVERHAUL_PLAN.md`):
+- 7 testimonios inventados en `app/data/servicios-por-industria.ts`
+- 3 testimonios inline en `app/(landing-cotizador-inteligente)/cotizador-inteligente/page.tsx`
 
 ---
 

@@ -1070,6 +1070,14 @@ Problemas detectados durante la ejecución de tareas que quedan **fuera del scop
 - **Tarea 1.1 · Archivos duplicados "` 2.ts`", "` 2.md`", etc. en varios directorios**: hay duplicados de macOS/Finder en `lib/data/`, `docs/`, raíz. No afectan build pero pueden causar ruido. Sugerencia: limpieza de repo dedicada.
 - **Tarea 1.1 · Archivos de auditoría y resúmenes históricos en la raíz con claims obsoletos**: `AUDITORIA_DISEÑO_2026.md`, `AUDITORIA_GARD_CL_2025.md`, `RESUMEN_IMPLEMENTACION_COMPLETA_HOY.md`, `IMPLEMENTACION_SEO_FASE1_COMPLETA.md` contienen números desactualizados (`8+`, `15+`, `50+ Clientes`). No se tocaron en 1.1 porque son documentación histórica que no se sirve al frontend. Considerar moverlos a `docs/archive/` o eliminarlos.
 
+### Detectados durante Tarea 1.3 (2026-04-23)
+
+- **Tarea 1.3 · Testimonios inventados fuera del homepage** (no tocados por estar fuera del scope inmediato):
+  - `app/data/servicios-por-industria.ts` tiene **7 campos `testimonio`** hardcoded con quotes genéricas atribuidas implícitamente a clientes (se renderizan en páginas `/servicios-por-industria/[servicio]/[industria]`).
+  - `app/(landing-cotizador-inteligente)/cotizador-inteligente/page.tsx` tiene **3 testimonios inline hardcoded** (líneas 638, 644, 650).
+  - Acción sugerida: vaciar esos campos y refactorizar el render igual que en `ClientCarousel.tsx` (fallback a grilla de logos) cuando se aborde Tarea 1.3.bis o similar.
+- **Tarea 1.3 · Heading "Brindamos soluciones de seguridad"**: el copy viejo del carrusel usaba esa frase. Fue reemplazado por algo más específico, pero "soluciones" está cerca de la frase prohibida "soluciones integrales". Revisar en copy review general.
+
 ---
 
 **Última actualización**: 2026-04-23
