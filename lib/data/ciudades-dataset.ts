@@ -147,7 +147,61 @@ function emptyDataset(ciudad: string, region: string): CiudadDataset {
  * en `/lib/data/ciudad-data.ts`.
  */
 export const ciudadesDataset: Record<string, CiudadDataset> = {
-  santiago: emptyDataset('santiago', 'Metropolitana'),
+  santiago: {
+    ciudad: 'santiago',
+    region: 'Metropolitana',
+    // INE Censo 2024: 7.400.741 habitantes en la Región Metropolitana, concentrando
+    // el 40% de la población nacional (18.480.432). El Gran Santiago abarca las
+    // 52 comunas de la RM.
+    poblacion: 7_400_741,
+    poblacionAnio: 2024,
+    poblacionFuenteUrl: 'https://censo2024.ine.gob.cl/resultados/',
+    delitos2024: {
+      // Las tasas por 100k detalladas para RM están en el portal interactivo
+      // del CEAD (cead.minsegpublica.gob.cl). Los datos regionales de ENUSC
+      // 2024 reportan victimización por hogar: 11,0% hogares víctimas de
+      // delitos violentos, 22,1% víctimas de algún robo, 43,1% víctimas de
+      // al menos un delito en la RM. Las tasas por 100k quedan pendientes
+      // de extracción manual del portal CEAD.
+      roboLugarHabitadoTasa100k: null,
+      roboConViolenciaTasa100k: null,
+      hurtoTasa100k: null,
+      comunaMasAfectada: null,
+      fuenteUrl:
+        'https://www.ine.gob.cl/docs/default-source/seguridad-ciudadana/publicaciones-y-anuarios/2024/sintesis-metropolitana---enusc-2024.pdf',
+    },
+    // Según PIB Regional 2024 del Banco Central, los sectores líderes en la RM
+    // fueron comercio, transporte y servicios personales. La construcción
+    // concentró el 50% de los proyectos activos del país en 2024 (CChC).
+    industriasPredominantes: [
+      'Comercio y retail',
+      'Servicios financieros y corporativos',
+      'Logística y transporte',
+      'Construcción e infraestructura',
+      'Salud y educación',
+    ],
+    // Lista no exhaustiva de empresas con operación reconocible en RM,
+    // publicadas con fuente pública. Se evita nombrar clientes propios de
+    // Gard sin consentimiento.
+    empresasGrandesEnLaZona: [],
+    // CChC 2024: la RM concentró el 50% de los proyectos activos de
+    // construcción del país en el primer semestre 2024.
+    proyectosConstruccionActivos: null,
+    proyectosConstruccionFuente:
+      'https://cchc.cl/w/noticias/cchc-presenta-cifras-de-inversion-2025-y-proyecciones-2026-en-seminario-con-los-principales-sectores-productivos-del-pais',
+    puntosInteresSeguridad: [
+      'Aeropuerto Internacional Arturo Merino Benítez (SCL)',
+      'Terminal logístico Enea (Pudahuel)',
+      'Distrito financiero Apoquindo-El Golf',
+      'Parques industriales de Quilicura y San Bernardo',
+      'Eje corporativo Nueva Las Condes-Vitacura',
+      'Congreso Nacional (sede senatorial en Valparaíso, oficinas en RM)',
+    ],
+    particularidadesGeograficas:
+      'Valle rodeado por la Cordillera de los Andes (este) y la Cordillera de la Costa (oeste), con el río Mapocho atravesando la ciudad. La topografía de cuenca cerrada genera episodios de alta contaminación invernal que afectan visibilidad para CCTV exterior y requieren protocolos adaptados. Congestión vehicular en horas punta (07:30-10:00 y 17:30-20:30) impacta directamente en los tiempos de respuesta de refuerzos móviles.',
+    regulacionesLocalesRelevantes:
+      'Ordenanzas municipales específicas por comuna para control de acceso a edificios corporativos y uso de CCTV en espacios semi-públicos. Las 52 comunas del Gran Santiago tienen normativa diferenciada que impacta el despliegue de guardias en locales comerciales y edificios residenciales de uso mixto.',
+  },
   valparaiso: emptyDataset('valparaiso', 'Valparaíso'),
   'vina-del-mar': emptyDataset('vina-del-mar', 'Valparaíso'),
   concepcion: emptyDataset('concepcion', 'Biobío'),

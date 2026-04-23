@@ -119,7 +119,7 @@ export function validateCandidate(
   const errors: string[] = [];
   const warnings: string[] = [];
 
-  const { introParagraph, panoramaSeguridad, industriasRelevantes, faq, casoEstudio, ciudad } = candidate;
+  const { introParagraph, panoramaSeguridad, industriasRelevantes, faq, casoEstudio, kpisOperativos, ciudad } = candidate;
 
   const introWords = countWords(introParagraph);
   if (introWords < 150 || introWords > 200) {
@@ -167,10 +167,10 @@ export function validateCandidate(
     panoramaSeguridad,
     ...industriasRelevantes.flatMap((i) => [i.nombre, i.porQueImporta]),
     ...candidate.zonasCobertura.flatMap((z) => [z.nombre, z.descripcion]),
-    casoEstudio.cliente,
-    casoEstudio.problema,
-    casoEstudio.solucion,
-    casoEstudio.resultado,
+    ...kpisOperativos.flatMap((k) => [k.label, k.value, k.detail]),
+    ...(casoEstudio
+      ? [casoEstudio.cliente, casoEstudio.problema, casoEstudio.solucion, casoEstudio.resultado]
+      : []),
     ...faq.flatMap((f) => [f.pregunta, f.respuesta]),
   ].join('\n');
 
@@ -206,11 +206,30 @@ export function validateCandidate(
     );
   }
 
-  const unitRegex = /\d[\d.,]*\s*(%|clp|usd|\$|min|minutos|horas|hrs|h|dias|días|pts|puntos|guardias|incidentes|rondas)/i;
-  if (!unitRegex.test(casoEstudio.resultado)) {
+  const unitRegex = /\d[\d.,]*\s*(%|clp|usd|\$|min|minutos|horas|hrs|h|dias|d[ií]as|pts|puntos|guardias|incidentes|rondas)/i;
+  if (casoEstudio && !unitRegex.test(casoEstudio.resultado)) {
     errors.push(
       'casoEstudio.resultado no contiene un número con unidad (%, $, min, horas, etc).',
     );
+  }
+
+  if (!Array.isArray(kpisOperativos) || kpisOperativos.length < 4) {
+    errors.push(
+      `kpisOperativos tiene ${kpisOperativos?.length ?? 0} items; mínimo 4.`,
+    );
+  } else {
+    kpisOperativos.forEach((kpi, idx) => {
+      if (!unitRegex.test(kpi.value)) {
+        errors.push(
+          `kpisOperativos[${idx}].value "${kpi.value}" no contiene número con unidad (%, min, días, guardias, etc).`,
+        );
+      }
+      if (countWords(kpi.detail) < 4) {
+        warnings.push(
+          `kpisOperativos[${idx}].detail es muy corto (${countWords(kpi.detail)} palabras); se recomiendan 5-15 para contexto.`,
+        );
+      }
+    });
   }
 
   return {
