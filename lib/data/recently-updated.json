@@ -1,1 +1,72 @@
-[]
+[
+  {
+    "url": "https://www.gard.cl/",
+    "type": "URL_UPDATED",
+    "reason": "Fase 1.4 — H1 nuevo + metadata + AggregateRating.url → GMB"
+  },
+  {
+    "url": "https://www.gard.cl/mejor-empresa-seguridad-chile",
+    "type": "URL_UPDATED",
+    "reason": "Fase 1.1/1.2 — stats reales + AggregateRating.url + ServiceSchema"
+  },
+  {
+    "url": "https://www.gard.cl/empresa-seguridad-privada-chile",
+    "type": "URL_UPDATED",
+    "reason": "Fase 1.1/1.2 — metadata + ReviewSchema.verificationUrl + copy"
+  },
+  {
+    "url": "https://www.gard.cl/empresa-guardias-seguridad-chile",
+    "type": "URL_UPDATED",
+    "reason": "Fase 1.1/1.2 — metadata + ReviewSchema.verificationUrl + copy"
+  },
+  {
+    "url": "https://www.gard.cl/sobre-nosotros",
+    "type": "URL_UPDATED",
+    "reason": "Fase 1.1 — narrativa foundedYear vs leadershipExperience + ReviewSchema"
+  },
+  {
+    "url": "https://www.gard.cl/guardias-de-seguridad-privada-para-empresas",
+    "type": "URL_UPDATED",
+    "reason": "Fase 1.1 — stats cards (250 guardias, 9 años), narrativa equipo fundador"
+  },
+  {
+    "url": "https://www.gard.cl/guardias-seguridad-antofagasta",
+    "type": "URL_UPDATED",
+    "reason": "Fase 1.1 — remove unsubstantiated '15+ faenas' + cleanup copy"
+  },
+  {
+    "url": "https://www.gard.cl/guardias-seguridad-valparaiso",
+    "type": "URL_UPDATED",
+    "reason": "Fase 1.1 — remove '10+ años en Valparaíso' (inconsistente con foundedYear)"
+  },
+  {
+    "url": "https://www.gard.cl/guardias-seguridad-mineria-chile",
+    "type": "URL_UPDATED",
+    "reason": "Fase 1.1 — metadata actualizada con equipo fundador"
+  },
+  {
+    "url": "https://www.gard.cl/vs/prosegur-alternativa",
+    "type": "URL_UPDATED",
+    "reason": "Fase 1.1 — 200+ guardias → 250 guardias exactos"
+  },
+  {
+    "url": "https://www.gard.cl/vs/g4s-alternativa",
+    "type": "URL_UPDATED",
+    "reason": "Fase 1.1 — 200+ guardias → 250 guardias exactos"
+  },
+  {
+    "url": "https://www.gard.cl/vs/securitas-alternativa",
+    "type": "URL_UPDATED",
+    "reason": "Fase 1.1 — stats reales + copy cleanup"
+  },
+  {
+    "url": "https://www.gard.cl/industrias/mineria",
+    "type": "URL_UPDATED",
+    "reason": "Fase 4.2 — descriptionTitle 'Clase Mundial' removida (frase prohibida)"
+  },
+  {
+    "url": "https://www.gard.cl/industrias/edificios-corporativos",
+    "type": "URL_UPDATED",
+    "reason": "Fase 4.2 — descriptionTitle 'Clase Mundial' removida (frase prohibida)"
+  }
+]
