@@ -54,8 +54,8 @@ export default function GuardiasValparaisoPage() {
       <section className="gard-hero min-h-[70vh] flex flex-col justify-center items-center relative overflow-hidden">
         <div className="absolute inset-0">
           <CloudflareImage
-            imageId="8a12ef3b-4d91-4c89-e865-d1a2c4567b00"
-            alt="Guardias de seguridad en Valparaíso"
+            imageId="b0818218-7e38-4d9b-6dcf-5538e24b4e00"
+            alt="Guardia Gard Security en recepción corporativa en Valparaíso, certificada OS10"
             fill
             className="object-cover"
             priority

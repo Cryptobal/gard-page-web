@@ -137,8 +137,8 @@ export default function EmpresaGuardiasSeguridadPage() {
       <section className="gard-hero min-h-[70vh] flex flex-col justify-center items-center relative overflow-hidden">
         <div className="absolute inset-0">
           <CloudflareImage
-            imageId="77e4d99e-a497-44ad-6c70-88cc1d7f2e00"
-            alt="Guardias de seguridad de Gard en operación"
+            imageId="57d32c87-0757-48e9-747f-2f7e66737100"
+            alt="Equipo de guardias de seguridad Gard Security certificados OS10 frente a edificio corporativo con bandera chilena en Santiago, Chile"
             fill
             className="object-cover"
             priority

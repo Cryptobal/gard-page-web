@@ -21,7 +21,7 @@ export const cloudflareImages = {
   hero: {
     home: '4824f8b9-abb0-4e77-c654-efe920697b00',
     about: '7d33f2ab-1ad7-4f8d-11c3-e82a0b54db00',
-    services: '5eea1064-8a2d-4e8b-5606-d28775467a00',
+    services: '4613e018-4925-4fb0-1fee-ed8ede43cd00',
     contact: '428c1028-8f6b-455a-e110-38421eeb5700',
     reclutamiento: '4a46b63d-0e1b-4640-b95c-7f040a288c00',
   },
@@ -29,9 +29,9 @@ export const cloudflareImages = {
   // Imágenes para secciones
   sections: {
     about: '7d33f2ab-1ad7-4f8d-11c3-e82a0b54db00',
-    services: '5eea1064-8a2d-4e8b-5606-d28775467a00',
+    services: '4613e018-4925-4fb0-1fee-ed8ede43cd00',
     technologies: '678cad4f-9b0d-49e6-3bbd-0d747a2fdc00',
-    team: '7d33f2ab-1ad7-4f8d-11c3-e82a0b54db00',
+    team: '57d32c87-0757-48e9-747f-2f7e66737100',
   },
   
   // Iconos de servicios y características
@@ -46,10 +46,24 @@ export const cloudflareImages = {
   
   // Equipo
   team: {
-    ceo: '7d33f2ab-1ad7-4f8d-11c3-e82a0b54db00',
-    cto: '7d33f2ab-1ad7-4f8d-11c3-e82a0b54db00',
-    security: '7d33f2ab-1ad7-4f8d-11c3-e82a0b54db00',
-    support: '7d33f2ab-1ad7-4f8d-11c3-e82a0b54db00',
+    ceo: '57d32c87-0757-48e9-747f-2f7e66737100',
+    cto: '57d32c87-0757-48e9-747f-2f7e66737100',
+    security: '57d32c87-0757-48e9-747f-2f7e66737100',
+    support: '57d32c87-0757-48e9-747f-2f7e66737100',
+  },
+
+  // Fotos reales de guardias Gard (abril 2026) — fuente: scripts/guardias-fotos-ids.json
+  guardias: {
+    equipoHome: '57d32c87-0757-48e9-747f-2f7e66737100',                    // Home hero + Empresas (3 guardias bandera)
+    panoramico: '4613e018-4925-4fb0-1fee-ed8ede43cd00',                    // Banner hero / Sobre Nosotros (edif. patrimonial)
+    logistica: '71e50080-0802-4f2c-ce4f-b34f56f22900',                     // Bodegas / logística
+    recepcionMujer: 'b0818218-7e38-4d9b-6dcf-5538e24b4e00',                // Edificios corporativos (mujer)
+    accesoVehicular: '2539041c-4815-4194-1656-fa6993014200',               // Control acceso vehicular
+    industrialReflectante: '1e7b161c-a76a-44bf-2a38-67b0631f8f00',         // Construcción / retail industrial
+    residencialGorra: '0b92cbb0-137d-45a1-eda4-94c70eff7600',              // Condominios / edificios
+    lobbyPremium: 'a89d3b2e-9738-4c67-c34f-3682a516c800',                  // Edificios corporativos premium
+    institucionalNorte: '22439039-6cb0-4ed4-a362-5aebe3ffaa00',            // Antofagasta / gobierno
+    industrialGarita: '29d16f73-5388-479a-a0ad-84774cbce300',              // Minería / bodegas industriales
   },
   
   // Clientes y marcas

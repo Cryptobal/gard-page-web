@@ -54,8 +54,8 @@ export default function GuardiasAntofagastaPage() {
       <section className="gard-hero min-h-[70vh] flex flex-col justify-center items-center relative overflow-hidden">
         <div className="absolute inset-0">
           <CloudflareImage
-            imageId="a8f97e4d-3c02-4e12-c4b6-24c1da8ddb00"
-            alt="Guardias de seguridad en Antofagasta"
+            imageId="22439039-6cb0-4ed4-a362-5aebe3ffaa00"
+            alt="Guardia Gard Security en institución pública de la Región de Atacama / Antofagasta"
             fill
             className="object-cover"
             priority

@@ -27,6 +27,7 @@ import {
   Hotel
 } from 'lucide-react';
 import GaleriaImagenes from '@/components/GaleriaImagenes';
+import GuardiasEnAccion from '@/components/secciones/GuardiasEnAccion';
 import FormularioCotizacionSeccion from '@/app/components/FormularioCotizacionSeccion';
 import BreadcrumbSchema, { Breadcrumbs } from '@/components/seo/BreadcrumbSchema';
 import ServiceSchema from '@/components/seo/ServiceSchema';
@@ -257,7 +258,7 @@ export default async function ServicioPage({ params }: { params: Promise<{ slug:
         
         {/* Mostrar video o imagen dependiendo del servicio */}
         <div className="absolute inset-0 w-full h-full">
-          {(servicio.slug === 'auditoria-seguridad' || servicio.slug === 'consultoria') ? (
+          {(servicio.slug === 'auditoria-seguridad' || servicio.slug === 'consultoria' || servicio.slug === 'guardias-de-seguridad') ? (
             <CloudflareImage
               imageId={servicio.heroImageId}
               alt={`${servicio.name} - Gard Security`}
@@ -296,6 +297,9 @@ export default async function ServicioPage({ params }: { params: Promise<{ slug:
           </div>
         </section>
       )}
+
+      {/* Galería SEO-rica: guardias en acción (solo para el servicio de guardias) */}
+      {resolvedParams.slug === 'guardias-de-seguridad' && <GuardiasEnAccion />}
 
       {/* Industrias compatibles - Usamos el componente reutilizable */}
       <section className="gard-section py-16 md:py-24 bg-white dark:bg-[#0A0C12] relative">

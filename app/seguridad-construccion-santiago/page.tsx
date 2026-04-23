@@ -54,8 +54,8 @@ export default function SeguridadConstruccionPage() {
       <section className="gard-hero min-h-[70vh] flex flex-col justify-center items-center relative overflow-hidden">
         <div className="absolute inset-0">
           <CloudflareImage
-            imageId="5b23cd4e-7e45-4f89-b234-8c1a3456ef00"
-            alt="Seguridad para construcción en Santiago"
+            imageId="1e7b161c-a76a-44bf-2a38-67b0631f8f00"
+            alt="Guardia Gard Security con chaleco reflectante en obra de construcción en Santiago"
             fill
             className="object-cover"
             priority

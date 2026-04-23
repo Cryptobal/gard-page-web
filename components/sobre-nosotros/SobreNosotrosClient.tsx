@@ -38,7 +38,7 @@ export default function SobreNosotrosClient() {
       <GardHero 
         title="Somos Gard Security: tu socio en protección empresarial"
         subtitle="Equipo profesional resguardando instalaciones críticas, con tecnología avanzada y equipos altamente capacitados."
-        imageId="7d33f2ab-1ad7-4f8d-11c3-e82a0b54db00"
+        imageId="4613e018-4925-4fb0-1fee-ed8ede43cd00"
         badge={{
           icon: <Shield className="h-4 w-4" />,
           text: "Líderes en Seguridad"
@@ -121,7 +121,7 @@ export default function SobreNosotrosClient() {
             <div className="relative h-[300px] md:h-full rounded-xl overflow-hidden shadow-md">
               <div className="absolute inset-0 bg-gradient-to-tr from-black/40 to-transparent z-10"></div>
               <CloudflareImage
-                imageId="7d33f2ab-1ad7-4f8d-11c3-e82a0b54db00"
+                imageId="4613e018-4925-4fb0-1fee-ed8ede43cd00"
                 alt="Trayectoria de Gard Security"
                 fill
                 className="object-cover"

@@ -110,7 +110,7 @@ export const getServicioIndustriaContent = (
       ctaTexto: `Solicitar ${servicioBase} para ${nombreIndustria}`,
       imageId: industria.slug === 'mineria' ? '7d33f2ab-1ad7-4f8d-11c3-e82a0b54db00' : 
                industria.slug === 'retail' ? 'bee9d371-805c-4029-59f6-93cdfd916000' : 
-               '5eea1064-8a2d-4e8b-5606-d28775467a00'
+               '4613e018-4925-4fb0-1fee-ed8ede43cd00'
     };
   }
 };

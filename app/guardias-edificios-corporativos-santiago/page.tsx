@@ -54,7 +54,7 @@ export default function GuardiasEdificiosPage() {
 
       <section className="gard-hero min-h-[70vh] flex flex-col justify-center items-center relative overflow-hidden">
         <div className="absolute inset-0">
-          <CloudflareImage imageId="86f9c63c-0372-46c8-9f30-19631ac2e100" alt="Guardias para edificios corporativos Santiago" fill className="object-cover" priority />
+          <CloudflareImage imageId="a89d3b2e-9738-4c67-c34f-3682a516c800" alt="Guardia de seguridad Gard Security en recepción de edificio corporativo premium en Santiago" fill className="object-cover" priority />
           <div className="absolute inset-0 bg-black/60"></div>
         </div>
         

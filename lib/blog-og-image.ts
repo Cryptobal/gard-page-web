@@ -1,7 +1,7 @@
 import { CLOUDFLARE_ACCOUNT_HASH } from '@/lib/images';
 
 const SITE_ORIGIN = 'https://www.gard.cl';
-const DEFAULT_CLOUDFLARE_IMAGE_ID = '5eea1064-8a2d-4e8b-5606-d28775467a00';
+const DEFAULT_CLOUDFLARE_IMAGE_ID = '4613e018-4925-4fb0-1fee-ed8ede43cd00';
 
 function isValidCloudflareImageId(id: string): boolean {
   return /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/.test(id);

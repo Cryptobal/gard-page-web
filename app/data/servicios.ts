@@ -27,15 +27,15 @@ export const servicios: Servicio[] = [
     slug: "guardias-de-seguridad",
     icon: "ShieldCheck",
     description: "Guardias profesionales, entrenados y certificados para proteger personas, activos e instalaciones.",
-    heroImageId: "c0a460385f6fb9e90343feb3a97c55c3",
+    heroImageId: "57d32c87-0757-48e9-747f-2f7e66737100",
     gallery: [
-      "bc045c39-36bc-4abb-348d-c589687cb400",
-      "eed0de62-d623-47bd-0a3f-d2ca692c6300",
-      "2dd1b06a-afca-448a-8aaf-a995b00dd300",
-      "1106aceb-986e-4176-a9a9-f0ec1f80f700",
-      "5b95423f-4c59-4205-7b90-52e0667ca200",
-      "04e7aafd-831d-4b6f-666c-116605cc4400",
-      "fb852267-cb0c-4e3e-fa90-136c201e7000"
+      "4613e018-4925-4fb0-1fee-ed8ede43cd00",
+      "a89d3b2e-9738-4c67-c34f-3682a516c800",
+      "b0818218-7e38-4d9b-6dcf-5538e24b4e00",
+      "0b92cbb0-137d-45a1-eda4-94c70eff7600",
+      "1e7b161c-a76a-44bf-2a38-67b0631f8f00",
+      "29d16f73-5388-479a-a0ad-84774cbce300",
+      "2539041c-4815-4194-1656-fa6993014200"
     ],
     keywords: [
       "guardias de seguridad",
