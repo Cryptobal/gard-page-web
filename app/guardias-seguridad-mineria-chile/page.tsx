@@ -10,13 +10,13 @@ import FormularioCotizacionSeccion from '@/app/components/FormularioCotizacionSe
 
 export const metadata: Metadata = {
   title: 'Guardias de Seguridad para Minería Chile | Certificados OS10',
-  description: 'Guardias certificados OS10 para faenas mineras. Protección 24/7, monitoreo remoto y respuesta inmediata. +10 años protegiendo operaciones mineras en Chile. Cotice en línea ahora.',
+  description: 'Guardias certificados OS10 para faenas mineras. Protección 24/7, monitoreo remoto y respuesta inmediata. Protegemos operaciones mineras en Chile con equipo especializado. Cotice en línea ahora.',
   keywords: ['guardias seguridad minería chile', 'guardias certificados OS10', 'seguridad faenas mineras', 'guardias para minas', 'seguridad industrial minería'],
   robots: { index: true, follow: true },
   alternates: { canonical: 'https://www.gard.cl/guardias-seguridad-mineria-chile' },
   openGraph: {
     title: 'Guardias de Seguridad para Minería Chile | Certificados OS10 | Gard Security',
-    description: 'Guardias certificados OS10 para faenas mineras. Protección 24/7, monitoreo remoto y respuesta inmediata. +10 años protegiendo las principales mineras de Chile.',
+    description: 'Guardias certificados OS10 para faenas mineras. Protección 24/7, monitoreo remoto y respuesta inmediata. Protegemos las principales mineras de Chile con equipo especializado.',
     url: 'https://www.gard.cl/guardias-seguridad-mineria-chile',
     siteName: 'Gard Security',
     locale: 'es_CL',

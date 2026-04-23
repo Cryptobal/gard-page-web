@@ -6,8 +6,8 @@ import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 import FAQSchema from '@/components/seo/FAQSchema';
 import ServiceSchema from '@/components/seo/ServiceSchema';
 import FormularioCotizacionSeccion from '@/app/components/FormularioCotizacionSeccion';
+import { companyStats } from '@/lib/data/company-stats';
 
-const FOUNDING_YEAR = 2016;
 const BASE_URL = 'https://www.gard.cl';
 const CANONICAL_URL = `${BASE_URL}/guardias-de-seguridad-privada-para-empresas`;
 
@@ -73,11 +73,10 @@ const faqItems: FAQItem[] = [
   },
   {
     question: '¿Gard Security opera fuera de Santiago?',
-    answerText:
-      'Sí. Contamos con presencia operativa en 10 ciudades de Chile: Santiago, Antofagasta, Valparaíso, Concepción, Iquique, Puerto Montt, Rancagua, Chillán, Temuco y Viña del Mar. Para cobertura geográfica específica, consulta nuestras páginas por servicio y ciudad.',
+    answerText: `Sí. Contamos con presencia operativa en ${companyStats.citiesCovered} ciudades de Chile: Santiago, Antofagasta, Valparaíso, Concepción, Iquique, Puerto Montt, Rancagua, Chillán, Temuco y Viña del Mar. Para cobertura geográfica específica, consulta nuestras páginas por servicio y ciudad.`,
     answerNode: (
       <p>
-        Sí. Contamos con presencia operativa en 10 ciudades de Chile: Santiago, Antofagasta, Valparaíso, Concepción, Iquique, Puerto Montt, Rancagua, Chillán, Temuco y Viña del Mar. Para cobertura geográfica específica, consulta nuestras{' '}
+        Sí. Contamos con presencia operativa en {companyStats.citiesCovered} ciudades de Chile: Santiago, Antofagasta, Valparaíso, Concepción, Iquique, Puerto Montt, Rancagua, Chillán, Temuco y Viña del Mar. Para cobertura geográfica específica, consulta nuestras{' '}
         <Link href="/servicios/guardias-de-seguridad" className="text-primary underline">páginas por servicio</Link>{' '}
         y ciudad.
       </p>
@@ -112,7 +111,7 @@ const breadcrumbs = [
 ];
 
 export default function GuardiasParaEmpresasPage() {
-  const yearsOfExperience = Math.max(1, new Date().getFullYear() - FOUNDING_YEAR);
+  const yearsOfExperience = companyStats.leadershipYearsExperience;
 
   const faqsForSchema = faqItems.map((f) => ({ question: f.question, answer: f.answerText }));
 
@@ -122,7 +121,7 @@ export default function GuardiasParaEmpresasPage() {
       <FAQSchema faqs={faqsForSchema} />
       <ServiceSchema
         name="Guardias de Seguridad Privada para Empresas"
-        description={`Servicio B2B de guardias de seguridad privada certificados OS10 para empresas en Chile. Cobertura en 10 ciudades, especialización en minería, logística, retail, corporativo, construcción e industrial. ${yearsOfExperience}+ años de experiencia, 200+ guardias activos, supervisión 24/7.`}
+        description={`Servicio B2B de guardias de seguridad privada certificados OS10 para empresas en Chile. Cobertura en ${companyStats.citiesCovered} ciudades, especialización en minería, logística, retail, corporativo, construcción e industrial. ${yearsOfExperience}+ años de experiencia del equipo fundador, ${companyStats.activeGuards} guardias activos, supervisión 24/7.`}
         url={CANONICAL_URL}
         serviceType="Servicio de Guardias de Seguridad Privada B2B"
         category="Seguridad Privada"
@@ -181,7 +180,7 @@ export default function GuardiasParaEmpresasPage() {
           </h1>
 
           <p className="text-xl text-muted-foreground mb-8 max-w-3xl">
-            Servicio B2B de guardias de seguridad certificados OS10 para empresas en minería, logística, retail, corporativo, construcción e industrial. Más de 200 guardias activos, cobertura en 10 ciudades, supervisión 24/7 con tecnología propia.
+            Servicio B2B de guardias de seguridad certificados OS10 para empresas en minería, logística, retail, corporativo, construcción e industrial. {companyStats.activeGuards} guardias activos, cobertura en {companyStats.citiesCovered} ciudades, supervisión 24/7 con tecnología propia.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
@@ -199,15 +198,15 @@ export default function GuardiasParaEmpresasPage() {
 
           <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6 pt-8 border-t">
             <div>
-              <div className="text-3xl font-bold text-primary">200+</div>
+              <div className="text-3xl font-bold text-primary">{companyStats.activeGuards}</div>
               <div className="text-sm text-muted-foreground">Guardias activos OS10</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-primary">{yearsOfExperience}+</div>
-              <div className="text-sm text-muted-foreground">Años de experiencia</div>
+              <div className="text-3xl font-bold text-primary">{yearsOfExperience}</div>
+              <div className="text-sm text-muted-foreground">Años de experiencia del equipo</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-primary">10</div>
+              <div className="text-3xl font-bold text-primary">{companyStats.citiesCovered}</div>
               <div className="text-sm text-muted-foreground">Ciudades de cobertura</div>
             </div>
             <div>
@@ -232,7 +231,7 @@ export default function GuardiasParaEmpresasPage() {
               En Chile, la Ley 21.659 (Nueva Ley de Seguridad Privada) regula el ejercicio de la actividad, exigiendo certificación OS10 vigente para todos los guardias, registro de empresa de seguridad privada ante la autoridad competente, y cumplimiento de protocolos de capacitación continua. Contratar una empresa que cumpla íntegramente esta normativa no es opcional: es un requisito legal que protege a tu organización ante contingencias laborales, seguros y responsabilidad civil.
             </p>
             <p>
-              Gard Security fue fundada en 2016 y se especializa exclusivamente en el segmento B2B. El 100% de nuestros guardias cuenta con certificación OS10 vigente, están respaldados por central de monitoreo 24/7, y operan con el sistema OPAI — nuestra plataforma propia de gestión operativa con IA que digitaliza rondas, control de asistencia y reportería de incidentes.
+              Gard Security fue fundada en {companyStats.foundedYear} por un equipo con {companyStats.leadershipYearsExperience}+ años de experiencia en el rubro y se especializa exclusivamente en el segmento B2B. El 100% de nuestros guardias cuenta con certificación OS10 vigente, están respaldados por central de monitoreo 24/7, y operan con el sistema OPAI — nuestra plataforma propia de gestión operativa con IA que digitaliza rondas, control de asistencia y reportería de incidentes.
             </p>
           </div>
         </div>

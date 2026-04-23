@@ -24,6 +24,7 @@ import {
 import { cn } from '@/lib/utils';
 import CountUp from 'react-countup';
 import Script from 'next/script';
+import { companyStats } from '@/lib/data/company-stats';
 
 // IDs de imágenes para logos e imágenes
 const LOGO_GARD_BLANCO = '49b89002-6bb9-41b9-50ad-e6b91e5f6d00';
@@ -411,7 +412,7 @@ const ContadorEmpresas = () => {
           </span>
           {" "}empresas ya cotizaron este mes
         </p>
-        <p className="text-sm text-gray-400">Gard Security: más de 50 empresas confían en nosotros para su protección.</p>
+        <p className="text-sm text-gray-400">Gard Security: {companyStats.activeClients} empresas B2B confían en nosotros para su protección.</p>
       </div>
     </motion.div>
   );

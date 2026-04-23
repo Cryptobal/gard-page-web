@@ -59,7 +59,7 @@ export default function PrevencionIntrusionesParquesIndustrialesPage() {
           <p className="text-body-base mb-6">
             En Gard Security diseñamos e implementamos sistemas de prevención de intrusiones integrados,
             adaptados a las particularidades topográficas y operativas de cada parque industrial en Chile.
-            Nuestra propuesta articula tecnología de clase mundial con un equipo de guardias certificados
+            Nuestra propuesta articula tecnología avanzada con un equipo de guardias certificados
             OS-10 y una central de monitoreo activa 24/7, lista para coordinar respuesta con policía o
             seguridad local ante cualquier alarma verificada.
           </p>

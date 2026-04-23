@@ -57,6 +57,7 @@ export default function ReviewSchema({ itemReviewed, aggregateRating, reviews, v
       reviewCount: aggregateRating.reviewCount,
       bestRating: aggregateRating.bestRating ?? 5,
       worstRating: aggregateRating.worstRating ?? 1,
+      ...(verificationUrl ? { url: verificationUrl } : {}),
     },
     ...(verificationUrl ? { sameAs: [verificationUrl] } : {}),
     review: reviews.map((review) => ({

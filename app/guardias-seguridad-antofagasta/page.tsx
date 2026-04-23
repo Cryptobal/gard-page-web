@@ -9,7 +9,7 @@ import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 
 export const metadata: Metadata = {
   title: 'Guardias de Seguridad en Antofagasta | Certificados OS10 | Gard Security',
-  description: 'Guardias de seguridad certificados OS10 en Antofagasta. Especializados en minería, puertos y zonas industriales. Respuesta inmediata 24/7. +10 años de experiencia. Cotice ahora.',
+  description: 'Guardias de seguridad certificados OS10 en Antofagasta. Especializados en minería, puertos y zonas industriales. Respuesta inmediata 24/7. Cotice ahora.',
   keywords: ['guardias seguridad antofagasta', 'seguridad minera antofagasta', 'guardias certificados os10 antofagasta', 'empresa seguridad antofagasta', 'vigilancia 24/7 antofagasta'],
   robots: { index: true, follow: true },
   alternates: { canonical: 'https://www.gard.cl/guardias-seguridad-antofagasta' },
@@ -80,11 +80,11 @@ export default function GuardiasAntofagastaPage() {
           <div className="flex flex-wrap justify-center gap-4 mb-8">
             <div className="flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
               <CheckCircle className="h-5 w-5 text-green-400 mr-2" />
-              <span className="text-white font-medium">10+ Años en Antofagasta</span>
+              <span className="text-white font-medium">100% Guardias OS10</span>
             </div>
             <div className="flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
               <CheckCircle className="h-5 w-5 text-green-400 mr-2" />
-              <span className="text-white font-medium">15+ Faenas Protegidas</span>
+              <span className="text-white font-medium">Operaciones Mineras</span>
             </div>
             <div className="flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
               <CheckCircle className="h-5 w-5 text-green-400 mr-2" />
@@ -104,7 +104,7 @@ export default function GuardiasAntofagastaPage() {
           <div className="text-center mb-12">
             <h2 className="text-heading-2 mb-4">¿Por Qué Somos #1 en Seguridad en Antofagasta?</h2>
             <p className="text-body-lg text-muted-foreground max-w-3xl mx-auto">
-              Más de 10 años protegiendo operaciones mineras, puertos y zonas industriales en Antofagasta y la región
+              Protegemos operaciones mineras, puertos y zonas industriales en Antofagasta y la región con guardias certificados OS10 y un equipo con experiencia comprobada en minería del norte de Chile
             </p>
           </div>
 
@@ -135,9 +135,9 @@ export default function GuardiasAntofagastaPage() {
 
             <div className="bg-card rounded-2xl p-6 shadow-sm border">
               <Award className="h-12 w-12 text-primary mb-4" />
-              <h3 className="text-xl font-semibold mb-3">15+ Faenas Mineras</h3>
+              <h3 className="text-xl font-semibold mb-3">Faenas Mineras Protegidas</h3>
               <p className="text-muted-foreground">
-                Protegemos más de 15 operaciones mineras en Antofagasta y alrededores: cobre, litio, oro y otros minerales. Experiencia comprobada en minería a gran escala.
+                Protegemos operaciones mineras en Antofagasta y alrededores: cobre, litio, oro y otros minerales. Experiencia comprobada en minería a gran escala.
               </p>
             </div>
 
@@ -280,7 +280,7 @@ export default function GuardiasAntofagastaPage() {
             ¿Necesita Seguridad en Antofagasta?
           </h2>
           <p className="text-xl mb-8 text-white/90">
-            Más de 10 años protegiendo operaciones mineras e industriales en la capital del cobre de Chile
+            Guardias certificados OS10 protegiendo operaciones mineras e industriales en la capital del cobre de Chile
           </p>
           <a href="#cotizar" className="gard-btn bg-white text-primary hover:bg-white/90 gard-btn-lg inline-flex items-center">
             Solicitar Cotización Ahora <ArrowRight className="ml-2 h-5 w-5" />

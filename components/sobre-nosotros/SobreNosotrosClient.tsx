@@ -10,6 +10,7 @@ import CanonicalUrl from '@/components/seo/CanonicalUrl';
 import SEODevPanel from '@/components/seo/SEODevPanel';
 import GardHero from '@/components/layouts/GardHero';
 import ReviewSchema from '@/components/seo/ReviewSchema';
+import { companyStats } from '@/lib/data/company-stats';
 
 export default function SobreNosotrosClient() {
   const reviews: Array<{
@@ -50,7 +51,7 @@ export default function SobreNosotrosClient() {
         }}
         aggregateRating={{ ratingValue: 4.9, reviewCount: 57, bestRating: 5, worstRating: 1 }}
         reviews={reviews}
-        verificationUrl="https://maps.app.goo.gl/q7FTpFhkccqKdHMG8"
+        verificationUrl="https://maps.app.goo.gl/ywW2rQEWu4g4xxxy8"
       />
       
       {/* Hero Section */}
@@ -73,7 +74,7 @@ export default function SobreNosotrosClient() {
             <div className="text-4xl font-bold text-primary mb-2">4.9/5</div>
             <p className="text-sm text-muted-foreground">
               <a
-                href="https://maps.app.goo.gl/q7FTpFhkccqKdHMG8"
+                href="https://maps.app.goo.gl/ywW2rQEWu4g4xxxy8"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="underline hover:no-underline"
@@ -130,7 +131,7 @@ export default function SobreNosotrosClient() {
                 Gard Security nace desde la experiencia real de empresarios del rubro, que entendieron que la seguridad no se trata solo de presencia física, sino de estrategia, eficiencia y tecnología.
               </p>
               <p className="text-body-base mb-6">
-                Con más de 10 años operando en sectores como minería, infraestructura crítica y retail, desarrollamos un modelo operativo robusto, flexible y escalable.
+                Con un equipo fundador que acumula más de {companyStats.leadershipYearsExperience} años de experiencia en sectores como minería, infraestructura crítica y retail, desarrollamos un modelo operativo robusto, flexible y escalable.
               </p>
               <p className="text-body-base">
                 Nuestra historia es la de cientos de empresas que confiaron en nosotros para proteger su negocio y su gente.

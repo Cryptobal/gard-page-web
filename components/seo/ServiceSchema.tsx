@@ -1,4 +1,5 @@
 import React from 'react';
+import { companyStats } from '@/lib/data/company-stats';
 
 interface ServiceSchemaProps {
   name: string;
@@ -18,6 +19,7 @@ interface ServiceSchemaProps {
     ratingValue: number;
     reviewCount: number;
     bestRating?: number;
+    verificationUrl?: string;
   };
   offers?: {
     priceRange?: string;
@@ -104,7 +106,8 @@ export default function ServiceSchema({
       'ratingValue': aggregateRating.ratingValue,
       'reviewCount': aggregateRating.reviewCount,
       'bestRating': aggregateRating.bestRating || 5,
-      'worstRating': 1
+      'worstRating': 1,
+      'url': aggregateRating.verificationUrl || companyStats.gmbShortUrl,
     };
   }
 

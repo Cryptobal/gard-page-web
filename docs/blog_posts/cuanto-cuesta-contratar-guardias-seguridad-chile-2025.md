@@ -455,7 +455,7 @@ Costo Base = (N° guardias) × (Costo guardia/mes según turno) × (Factor regi�
 
 ## Solicita Tu Cotización Personalizada
 
-**Gard Security:** +15 años protegiendo empresas en Chile
+**Gard Security:** equipo fundador con más de 8 años protegiendo empresas en Chile
 - ✅ 100% personal certificado OS10 (minería)
 - ✅ Respuesta <15 minutos
 - ✅ Tecnología incluida

@@ -36,7 +36,7 @@ export default function Footer() {
               </div>
             </Link>
             <p className="dark:text-white/80 text-gray-700 text-sm md:text-base mt-4 max-w-xs text-center sm:text-left" itemProp="description">
-              Soluciones de seguridad de clase mundial para empresas exigentes. Protegemos lo que más importa.
+              Seguridad privada B2B para empresas en Chile. Guardias certificados OS10, monitoreo 24/7 y tecnología propia.
             </p>
             
             {/* Redes Sociales */}

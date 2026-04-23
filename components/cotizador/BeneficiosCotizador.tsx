@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Shield, Clock, Award, Users, Check } from 'lucide-react';
+import { companyStats } from '@/lib/data/company-stats';
 
 const beneficios = [
   {
@@ -74,7 +75,7 @@ const BeneficiosCotizador = () => {
           </h3>
           <div className="grid md:grid-cols-2 gap-4">
             {[
-              'Más de 10 años de experiencia',
+              `Más de ${companyStats.leadershipYearsExperience} años de experiencia del equipo fundador`,
               'Personal capacitado constantemente',
               'Supervisión permanente',
               'Tecnología de punta en seguridad',
