@@ -6,6 +6,9 @@ import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 import FAQSchema from '@/components/seo/FAQSchema';
 import ServiceSchema from '@/components/seo/ServiceSchema';
 import FormularioCotizacionSeccion from '@/app/components/FormularioCotizacionSeccion';
+import CloudflareImage from '@/components/CloudflareImage';
+import GuardiasEnAccion from '@/components/secciones/GuardiasEnAccion';
+import { cloudflareImages } from '@/lib/images';
 import { companyStats } from '@/lib/data/company-stats';
 
 const BASE_URL = 'https://www.gard.cl';
@@ -155,6 +158,31 @@ export default function GuardiasParaEmpresasPage() {
           ],
         }}
       />
+
+      {/* Banner hero con foto real de guardias Gard */}
+      <section
+        className="relative w-full h-[320px] md:h-[460px] lg:h-[520px] overflow-hidden"
+        aria-label="Equipo Gard Security en instalación patrimonial"
+      >
+        <CloudflareImage
+          imageId={cloudflareImages.guardias.panoramico}
+          alt="Equipo de guardias de seguridad Gard Security certificados OS10 frente a edificio patrimonial en Chile"
+          fill
+          priority
+          objectFit="cover"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-black/70" />
+        <div className="relative z-10 h-full container px-4 mx-auto max-w-5xl flex flex-col justify-end pb-10 md:pb-14">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/15 backdrop-blur-sm text-white text-sm font-semibold mb-4 w-fit">
+            <Shield className="h-4 w-4" />
+            <span>Guardias Gard Security — OS10 · Chile</span>
+          </div>
+          <p className="text-white text-lg md:text-2xl max-w-3xl font-medium drop-shadow">
+            {companyStats.activeGuards} guardias certificados OS10 protegiendo empresas en {companyStats.citiesCovered} ciudades de Chile.
+          </p>
+        </div>
+      </section>
 
       {/* Hero */}
       <section className="w-full py-16 md:py-24 lg:py-28 bg-gradient-to-br from-primary/5 via-background to-primary/5 dark:from-primary/10 dark:via-background dark:to-primary/10">
@@ -396,6 +424,9 @@ export default function GuardiasParaEmpresasPage() {
           </Button>
         </div>
       </section>
+
+      {/* Galería SEO-rica: guardias en acción */}
+      <GuardiasEnAccion />
 
       {/* Cotización */}
       <FormularioCotizacionSeccion prefillServicio="Guardias de Seguridad" />

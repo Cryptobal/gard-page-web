@@ -313,7 +313,7 @@ const getRandomSecurityFeature = (servicioNombre: string): string => {
  */
 const getImageIdByService = (servicioSlug: string): string => {
   const imageIds: Record<string, string> = {
-    'guardias-de-seguridad': '5eea1064-8a2d-4e8b-5606-d28775467a00',
+    'guardias-de-seguridad': '4613e018-4925-4fb0-1fee-ed8ede43cd00',
     'seguridad-electronica': '678cad4f-9b0d-49e6-3bbd-0d747a2fdc00',
     'central-monitoreo': '5c97d40c-bf3c-4413-6ead-c15f7c9aa100',
     'drones-seguridad': '5c97d40c-bf3c-4413-6ead-c15f7c9aa100',
@@ -323,5 +323,5 @@ const getImageIdByService = (servicioSlug: string): string => {
     'prevencion-intrusiones': 'eeaf472c-ab11-448b-f5e2-d18415147800'
   };
   
-  return imageIds[servicioSlug] || '5eea1064-8a2d-4e8b-5606-d28775467a00';
+  return imageIds[servicioSlug] || '4613e018-4925-4fb0-1fee-ed8ede43cd00';
 }; 

@@ -169,8 +169,8 @@ export default function Home() {
             
             <div className="relative h-[500px] rounded-2xl overflow-hidden">
               <CloudflareImage
-                imageId="2c554c0e-8f87-4f58-1ad5-29cbe6360600"
-                alt="Equipo profesional de Gard Security durante reunión de planificación de seguridad con clientes empresariales"
+                imageId="57d32c87-0757-48e9-747f-2f7e66737100"
+                alt="Equipo de guardias de seguridad Gard Security certificados OS10 en edificio corporativo en Santiago, Chile"
                 fill
                 objectFit="cover"
                 className="shadow-[inset_0_0_60px_rgba(0,0,0,0.3)]"

@@ -54,7 +54,7 @@ export default function SeguridadBodegasPage() {
 
       <section className="gard-hero min-h-[70vh] flex flex-col justify-center items-center relative overflow-hidden">
         <div className="absolute inset-0">
-          <CloudflareImage imageId="683f9081-3573-4e90-e733-5c1507350900" alt="Seguridad para bodegas logísticas Chile" fill className="object-cover" priority />
+          <CloudflareImage imageId="71e50080-0802-4f2c-ce4f-b34f56f22900" alt="Guardia Gard Security protegiendo bodega logística y centro de distribución en Chile" fill className="object-cover" priority />
           <div className="absolute inset-0 bg-black/60"></div>
         </div>
         

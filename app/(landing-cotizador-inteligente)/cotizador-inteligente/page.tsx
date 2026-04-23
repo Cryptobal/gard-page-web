@@ -31,7 +31,7 @@ import { testimonials } from '@/lib/data/testimonials';
 const LOGO_GARD_BLANCO = '49b89002-6bb9-41b9-50ad-e6b91e5f6d00';
 const ESCUDO_GARD_BLANCO = 'f1cad221-0c11-43c4-3142-a53a6febbd00';
 const HERO_VIDEO_ID = '173a0d7d07ffa39bb4c93e422d676e65';
-const GUARDIA_IMAGEN_ID = '5eea1064-8a2d-4e8b-5606-d28775467a00'; // Imagen de guardia trabajando
+const GUARDIA_IMAGEN_ID = '57d32c87-0757-48e9-747f-2f7e66737100'; // Equipo de guardias Gard con bandera chilena
 
 // Definir el metadata directamente en este archivo para evitar problemas de importación
 const metadataInfo = {

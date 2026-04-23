@@ -54,7 +54,7 @@ export default function GuardiasSeguridadMineriaPage() {
 
       <section className="gard-hero min-h-[70vh] flex flex-col justify-center items-center relative overflow-hidden">
         <div className="absolute inset-0">
-          <CloudflareImage imageId="77e4d99e-a497-44ad-6c70-88cc1d7f2e00" alt="Guardias de seguridad en faena minera Chile" fill className="object-cover" priority />
+          <CloudflareImage imageId="29d16f73-5388-479a-a0ad-84774cbce300" alt="Guardia Gard Security en control de acceso de faena minera en Chile, certificado OS10" fill className="object-cover" priority />
           <div className="absolute inset-0 bg-black/60"></div>
         </div>
         
