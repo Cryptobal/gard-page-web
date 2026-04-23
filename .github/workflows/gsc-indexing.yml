@@ -1,0 +1,50 @@
+name: GSC Indexing API cron
+
+on:
+  schedule:
+    # 03:00 UTC = 23:00 hora Chile (verano) / 00:00 (invierno).
+    # Horarios "en blanco" evitan picos de rate-limit en Google.
+    - cron: "0 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  submit:
+    name: Submit recently-updated URLs to Google
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.7.0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run GSC Indexing submit
+        env:
+          GSC_SERVICE_ACCOUNT_EMAIL: ${{ secrets.GSC_SERVICE_ACCOUNT_EMAIL }}
+          GSC_SERVICE_ACCOUNT_KEY: ${{ secrets.GSC_SERVICE_ACCOUNT_KEY }}
+          GSC_INDEXING_MAX_PER_RUN: "200"
+        run: pnpm run gsc-indexing
+
+      - name: Upload indexing log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gsc-indexing-log
+          path: cowork-logs/
+          if-no-files-found: ignore
+          retention-days: 30
