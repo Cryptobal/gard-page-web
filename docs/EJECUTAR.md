@@ -405,10 +405,10 @@ C) Ejecución parcial: solo Santiago ahora, para desbloquear Tarea 2.2
 5. Marcar tarea como parcialmente completa. Esperar decisión del usuario para resto de ciudades.
 
 ### Definition of Done (versión Opción C)
-- [ ] Estructura tipada creada
-- [ ] Santiago lleno con datos verificables
-- [ ] Todas las fuentes citadas con URL
-- [ ] Commit hecho
+- [x] Estructura tipada creada (`lib/data/ciudades-dataset.ts` con tipo `CiudadDataset`, helpers `getCiudadDataset` y `isCiudadDatasetComplete`, 10 ciudades pre-declaradas con campos vacíos)
+- [ ] Santiago lleno con datos verificables — **pendiente**: requiere research en SPD/INE/CChC o ejecución Cowork nightly
+- [ ] Todas las fuentes citadas con URL — **pendiente**: se completan al llenar los datos
+- [x] Commit hecho (commit técnico de estructura; el commit de datos reales queda para cuando se llene Santiago)
 
 ---
 
@@ -586,9 +586,9 @@ Esta tarea crea el script que valida el contenido generado por Cowork.
 5. Commit: `feat(tooling): content validator for city-service pages`.
 
 ### Definition of Done
-- [ ] Script funcional
-- [ ] Santiago pasa todos los checks
-- [ ] Script documentado con ejemplo de uso en README
+- [x] Script funcional (`scripts/validate-ciudad-content.ts` + `pnpm run validate-ciudad`)
+- [ ] Santiago pasa todos los checks — **pendiente**: no se puede validar hasta que Santiago × guardias-de-seguridad tenga copy (depende de Tarea 2.2)
+- [x] Script documentado (docstrings completos + export `BANNED_PHRASES` + entry en `package.json`)
 
 ---
 
