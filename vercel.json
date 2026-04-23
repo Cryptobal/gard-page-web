@@ -1,6 +1,7 @@
 {
   "framework": "nextjs",
   "cleanUrls": true,
+  "regions": ["gru1"],
   "headers": [
     {
       "source": "/(.*)",
@@ -12,4 +13,4 @@
       ]
     }
   ]
-} 
+}
