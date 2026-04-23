@@ -1,5 +1,10 @@
 [
   {
+    "url": "https://www.gard.cl/santiago/guardias-de-seguridad",
+    "type": "URL_UPDATED",
+    "reason": "Fase 2.2 gold-standard template live (new H1, ENUSC data, KPIs reales)"
+  },
+  {
     "url": "https://www.gard.cl/",
     "type": "URL_UPDATED",
     "reason": "Fase 1.4 — H1 nuevo + metadata + AggregateRating.url → GMB"

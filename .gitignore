@@ -63,6 +63,9 @@ node_modules
 
 # Cowork automation logs (GSC Indexing API, etc.)
 /cowork-logs/
+
+# OPAI showcase images (originales pesados, se suben a Cloudflare Images)
+/opai-images-anonimizadas/
 .clinerules/byterover-rules.md
 .kilocode/rules/byterover-rules.md
 .roo/rules/byterover-rules.md

@@ -85,6 +85,10 @@ const FormularioCotizacionSeccion = dynamic(() => import('./components/Formulari
   loading: () => <div className="h-96 bg-gray-50 dark:bg-gray-800 animate-pulse rounded-2xl" />
 });
 
+const OpaiHomepageSection = dynamic(() => import('@/components/landing/OpaiHomepageSection'), {
+  loading: () => <div className="h-[500px] bg-gray-50 dark:bg-gray-800 animate-pulse rounded-2xl" />
+});
+
 export default function Home() {
   return (
     <>
@@ -212,6 +216,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* OPAI · ERP propio de Gard Security */}
+      <OpaiHomepageSection />
 
       {/* Industrias que protegemos */}
       <section className="gard-section">

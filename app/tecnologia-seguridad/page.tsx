@@ -23,6 +23,7 @@ import {
 import TecnologiaLandingClient from './TecnologiaLandingClient';
 import GardHero from '@/components/layouts/GardHero';
 import FormularioCotizacionSeccion from '@/app/components/FormularioCotizacionSeccion';
+import { OPAI_IMAGES } from '@/lib/data/opai-images';
 
 export default function Page() {
   return (
@@ -36,7 +37,7 @@ export default function Page() {
         subtitle="Inteligencia artificial, videovigilancia avanzada y sistemas de monitoreo en tiempo real."
         ctaTexto="Conocer más"
         ctaHref="#cotizar"
-        imageId="678cad4f-9b0d-49e6-3bbd-0d747a2fdc00"
+        imageId={OPAI_IMAGES.pautaMensualErp.id}
         badge={{
           icon: <Cpu className="h-4 w-4" />,
           text: "Tecnología de Vanguardia"
@@ -129,8 +130,8 @@ export default function Page() {
             <div className="relative h-[400px] rounded-2xl overflow-hidden shadow-md">
               <div className="absolute inset-0 bg-gradient-to-tr from-black/40 to-transparent z-10 dark:from-[hsl(var(--gard-background-darkest))/60] dark:to-transparent"></div>
               <CloudflareImage
-                imageId="678cad4f-9b0d-49e6-3bbd-0d747a2fdc00"
-                alt="Supervisión y operación inteligente en seguridad privada"
+                imageId={OPAI_IMAGES.portalSupervisor.id}
+                alt={OPAI_IMAGES.portalSupervisor.alt}
                 fill
                 className="object-cover"
               />
@@ -236,8 +237,8 @@ export default function Page() {
             <div className="relative h-[400px] rounded-2xl overflow-hidden shadow-md order-1 lg:order-2">
               <div className="absolute inset-0 bg-gradient-to-bl from-black/40 to-transparent z-10"></div>
               <CloudflareImage
-                imageId="d0c7fd28-f94f-4138-d307-da723130fd00"
-                alt="Sistema de reportes con inteligencia artificial"
+                imageId={OPAI_IMAGES.mapaRondas.id}
+                alt={OPAI_IMAGES.mapaRondas.alt}
                 fill
                 className="object-cover"
               />
@@ -304,6 +305,148 @@ export default function Page() {
                 </p>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Sección Portal Cliente — visibilidad 24/7 */}
+      <section className="gard-section py-16 md:py-24 bg-white dark:bg-[hsl(var(--gard-background))]">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-heading-2 mb-6">Portal Cliente: Visibilidad 24/7 de tu operación</h2>
+              <p className="text-body-lg text-muted-foreground mb-6">
+                Cada cliente de Gard accede a su propio dashboard en OPAI con KPIs
+                operativos en vivo: cumplimiento mensual, rondas completadas,
+                Trust Score de la operación y actividad del equipo asignado.
+              </p>
+              <ul className="space-y-4">
+                <li className="flex items-start">
+                  <ArrowRight className="h-6 w-6 text-primary dark:text-[hsl(var(--gard-accent))] mr-2 shrink-0 mt-0.5" />
+                  <p className="text-body-base"><strong>Cumplimiento diario:</strong> gráficos de últimos 7/14/30 días con desviaciones y proyección.</p>
+                </li>
+                <li className="flex items-start">
+                  <ArrowRight className="h-6 w-6 text-primary dark:text-[hsl(var(--gard-accent))] mr-2 shrink-0 mt-0.5" />
+                  <p className="text-body-base"><strong>Equipo asignado:</strong> estado de guardias, alertas de cobertura y ATS en tiempo real.</p>
+                </li>
+                <li className="flex items-start">
+                  <ArrowRight className="h-6 w-6 text-primary dark:text-[hsl(var(--gard-accent))] mr-2 shrink-0 mt-0.5" />
+                  <p className="text-body-base"><strong>Documentos y accesos:</strong> contratos, anexos y tickets operativos en un solo lugar.</p>
+                </li>
+              </ul>
+            </div>
+            <div className="relative h-[400px] rounded-2xl overflow-hidden shadow-md">
+              <div className="absolute inset-0 bg-gradient-to-bl from-black/30 to-transparent z-10"></div>
+              <CloudflareImage
+                imageId={OPAI_IMAGES.portalCliente.id}
+                alt={OPAI_IMAGES.portalCliente.alt}
+                fill
+                className="object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Sección Portal Guardia — autoservicio del trabajador */}
+      <section className="gard-section py-16 md:py-24 bg-gray-50 dark:bg-[hsl(var(--gard-background-darker))]">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div className="order-2 md:order-1 relative h-[400px] rounded-2xl overflow-hidden shadow-md">
+              <div className="absolute inset-0 bg-gradient-to-tr from-black/30 to-transparent z-10"></div>
+              <CloudflareImage
+                imageId={OPAI_IMAGES.portalGuardia.id}
+                alt={OPAI_IMAGES.portalGuardia.alt}
+                fill
+                className="object-cover"
+              />
+            </div>
+            <div className="order-1 md:order-2">
+              <h2 className="text-heading-2 mb-6">Portal Guardia: autoservicio del trabajador</h2>
+              <p className="text-body-lg text-muted-foreground mb-6">
+                Cada guardia de Gard opera desde su celular: marca asistencia
+                biométrica, consulta su pauta, accede al protocolo del puesto,
+                gestiona solicitudes y revisa sus documentos laborales.
+              </p>
+              <ul className="space-y-4">
+                <li className="flex items-start">
+                  <ArrowRight className="h-6 w-6 text-primary dark:text-[hsl(var(--gard-accent))] mr-2 shrink-0 mt-0.5" />
+                  <p className="text-body-base"><strong>Marcación de asistencia:</strong> geolocalización + biometría, sin papel ni llamadas.</p>
+                </li>
+                <li className="flex items-start">
+                  <ArrowRight className="h-6 w-6 text-primary dark:text-[hsl(var(--gard-accent))] mr-2 shrink-0 mt-0.5" />
+                  <p className="text-body-base"><strong>Protocolo de puesto y exámenes:</strong> cada guardia ve exactamente lo que debe hacer.</p>
+                </li>
+                <li className="flex items-start">
+                  <ArrowRight className="h-6 w-6 text-primary dark:text-[hsl(var(--gard-accent))] mr-2 shrink-0 mt-0.5" />
+                  <p className="text-body-base"><strong>Solicitudes y documentos:</strong> turnos extra, vacaciones, contratos y anexos digitalizados.</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Sección Portal Control de Acceso */}
+      <section className="gard-section py-16 md:py-24 bg-white dark:bg-[hsl(var(--gard-background))]">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-heading-2 mb-6">Control de Acceso digital en cada instalación</h2>
+              <p className="text-body-lg text-muted-foreground mb-6">
+                Reemplazamos las planillas físicas de recepción por un portal
+                digital que registra cada visita con foto, RUT y empresa, y
+                entrega métricas de flujo en tiempo real a gerencia.
+              </p>
+              <ul className="space-y-4">
+                <li className="flex items-start">
+                  <ArrowRight className="h-6 w-6 text-primary dark:text-[hsl(var(--gard-accent))] mr-2 shrink-0 mt-0.5" />
+                  <p className="text-body-base"><strong>Registro en segundos:</strong> visita técnica, proveedor o visita social diferenciados.</p>
+                </li>
+                <li className="flex items-start">
+                  <ArrowRight className="h-6 w-6 text-primary dark:text-[hsl(var(--gard-accent))] mr-2 shrink-0 mt-0.5" />
+                  <p className="text-body-base"><strong>KPIs en vivo:</strong> en sitio ahora, entradas del día, promedio de registro.</p>
+                </li>
+                <li className="flex items-start">
+                  <ArrowRight className="h-6 w-6 text-primary dark:text-[hsl(var(--gard-accent))] mr-2 shrink-0 mt-0.5" />
+                  <p className="text-body-base"><strong>Trazabilidad total:</strong> histórico exportable para auditoría y ley de datos personales.</p>
+                </li>
+              </ul>
+            </div>
+            <div className="relative h-[400px] rounded-2xl overflow-hidden shadow-md">
+              <div className="absolute inset-0 bg-gradient-to-bl from-black/30 to-transparent z-10"></div>
+              <CloudflareImage
+                imageId={OPAI_IMAGES.portalControlAcceso.id}
+                alt={OPAI_IMAGES.portalControlAcceso.alt}
+                fill
+                className="object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Sección showcase — ERP completo */}
+      <section className="gard-section py-20 md:py-28 bg-gray-50 dark:bg-[hsl(var(--gard-background-darkest))]">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="max-w-3xl mx-auto text-center mb-12">
+            <h2 className="text-heading-2 mb-4">
+              OPAI no es solo control de rondas. Es tu operación completa.
+            </h2>
+            <p className="text-body-lg text-muted-foreground">
+              Pauta mensual, payroll, finanzas, personas, cumplimiento, portales.
+              Todo conectado en un solo ERP con IA integrada — desarrollado junto
+              a LX3.ai y operando hoy sobre la operación real de Gard Security.
+            </p>
+          </div>
+          <div className="max-w-6xl mx-auto rounded-2xl overflow-hidden border border-border shadow-2xl">
+            <CloudflareImage
+              imageId={OPAI_IMAGES.pautaMensualErp.id}
+              alt={OPAI_IMAGES.pautaMensualErp.alt}
+              width={1600}
+              height={1000}
+              className="w-full h-auto"
+            />
           </div>
         </div>
       </section>
