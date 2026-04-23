@@ -633,7 +633,7 @@ Cuando el usuario diga "arrancamos Fase 3", pedir foto-shotlist confirmado y pro
 Tareas (resumen, spec completa en plan maestro):
 - [x] 4.1 Migrar edge region a GRU1 (São Paulo) — `vercel.json` actualizado; verificar post-deploy con `curl -sI https://www.gard.cl | grep x-vercel-id`
 - [x] 4.2 Hreflang es-CL + schema regional expandido — `app/metadata.ts` ya tenía `alternates.languages.es-CL`; agregado Wikidata `Q298` a `areaServed.Country` en `LocalBusinessSchema`; limpieza de "soluciones integrales" residual
-- [x] 4.3 Lighthouse CI en GitHub Actions — `.github/workflows/lighthouse.yml` + `lighthouserc.json` con gates perf ≥ 0.8, seo ≥ 0.95, LCP ≤ 2500ms, CLS ≤ 0.1
+- [x] 4.3 Lighthouse CI en GitHub Actions — `.github/workflows/lighthouse.yml` + `lighthouserc.json`. Thresholds en modo "baseline 2026-04" (perf ≥0.5 error, LCP ≤7000ms error, CLS ≤0.1 error, SEO ≥0.95 error; accesibility/TBT/best-practices como warn). Endurecer progresivamente hacia meta del plan (perf ≥0.85, LCP ≤2500ms) a medida que se optimice el sitio
 - [x] 4.4 GSC Indexing API (script + docs) — `scripts/automations/gsc-indexing-submit.ts` listo (library-free, `crypto` + `fetch`); input `lib/data/recently-updated.json`; docs en `docs/COWORK-GSC-INDEXING.md`; **requiere que Carlos configure service account + env vars antes de correr en Cowork**
 
 Fase 4 completa del lado de código. Queda pendiente:
