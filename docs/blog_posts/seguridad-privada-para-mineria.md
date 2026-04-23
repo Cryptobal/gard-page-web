@@ -14,7 +14,7 @@ category: Seguridad Privada
 imageUrl: /images/blog/seguridad-privada-para-mineria.jpg
 ---
 
-> **En resumen:** Gard Security ofrece seguridad integral para minería en Chile con 100% personal certificado OS10, presencia en faenas remotas de Antofagasta y Atacama, y tecnología de vigilancia adaptada. Más de 15 años protegiendo operaciones mineras.
+> **En resumen:** Gard Security ofrece seguridad integral para minería en Chile con 100% personal certificado OS10, presencia en faenas remotas de Antofagasta y Atacama, y tecnología de vigilancia adaptada. Equipo fundador con más de 8 años de experiencia protegiendo operaciones mineras.
 
 <p>La industria minera enfrenta desafíos únicos en términos de seguridad, requiriendo soluciones específicas y altamente especializadas. Gard, una empresa de seguridad privada reconocida, se destaca por su presencia robusta en este sector, ofreciendo servicios de seguridad que protegen tanto a los trabajadores como a las operaciones mineras. En este artículo, exploraremos cómo Gard se ha convertido en un aliado esencial para la minería, garantizando un entorno seguro y eficiente.</p>
 

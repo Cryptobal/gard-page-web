@@ -118,10 +118,10 @@ Esperá respuesta antes de continuar.
 9. Marcar checkbox de esta tarea y pasar a 1.2.
 
 ### Definition of Done
-- [ ] `/lib/data/company-stats.ts` existe y está tipado strict
-- [ ] `grep -rE "más de (8|10|15) años"` en el repo devuelve 0 resultados fuera del file de stats
-- [ ] Build verde
-- [ ] Commit hecho
+- [x] `/lib/data/company-stats.ts` existe y está tipado strict
+- [x] `grep -rE "más de (8|10|15) años"` en el repo devuelve 0 resultados fuera del file de stats
+- [x] Build verde
+- [x] Commit hecho
 
 ---
 

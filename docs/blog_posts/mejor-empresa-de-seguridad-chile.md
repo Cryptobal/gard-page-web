@@ -14,7 +14,7 @@ category: General
 imageUrl: /images/blog/mejor-empresa-de-seguridad-chile.jpg
 ---
 
-> **En resumen:** Gard Security es considerada una de las mejores empresas de seguridad privada en Chile por su experiencia, capacitación del personal, uso de tecnología, reputación y servicios personalizados. Con más de 10 años protegiendo empresas, 100% certificación OS10 y reputación destacada en Google Business Profile.
+> **En resumen:** Gard Security es considerada una de las mejores empresas de seguridad privada en Chile por su experiencia, capacitación del personal, uso de tecnología, reputación y servicios personalizados. Con un equipo fundador que acumula más de 9 años de experiencia protegiendo empresas, 100% certificación OS10 y reputación destacada en Google Business Profile.
 
 <h1 class="wp-block-heading" id="h-gard-security-empresa-lider-en-seguridad-privada">Gard Security, empresa líder en seguridad privada</h1>
 

@@ -1,9 +1,11 @@
+import { companyStats } from '@/lib/data/company-stats';
+
 export const industriesMetadata = [
   {
     slug: 'mineria',
     name: 'Minería',
     title: 'Guardias de Seguridad para Minería en Chile | Gard Security',
-    description: 'Protección especializada 24/7 para mineras. Personal certificado OS10, monitoreo remoto y respuesta inmediata. +10 años protegiendo operaciones mineras. Cotice aquí.',
+    description: `Protección especializada 24/7 para mineras. Personal certificado OS10, monitoreo remoto y respuesta inmediata. Equipo fundador con ${companyStats.leadershipYearsExperience}+ años protegiendo operaciones mineras. Cotice aquí.`,
     keywords: ['guardias seguridad minería', 'seguridad minera chile', 'guardias certificados OS10', 'seguridad industrial minería', 'protección faenas mineras'],
     
     // Contenido expandido para SEO
@@ -11,7 +13,7 @@ export const industriesMetadata = [
     descriptionTitle: 'Seguridad Minera de Clase Mundial',
     descriptionParagraphs: [
       'La industria minera en Chile enfrenta desafíos de seguridad únicos debido a la ubicación remota de las faenas, el alto valor de los activos y las exigentes normativas de SERNAGEOMIN. En Gard Security, entendemos que la seguridad en minería no es solo vigilancia: es protección de vidas, activos críticos y continuidad operacional.',
-      'Contamos con más de 10 años de experiencia protegiendo operaciones mineras en zonas remotas de Chile, incluyendo Antofagasta, Atacama y Coquimbo. Como es obligatorio por ley, el 100% de nuestro personal cuenta con certificación OS10 vigente de SERNAGEOMIN. Además, nuestros guardias en minería reciben capacitación especializada adicional en protocolos mineros, primeros auxilios en altura y manejo de emergencias en zonas remotas.',
+      `Nuestro equipo fundador suma más de ${companyStats.leadershipYearsExperience} años de experiencia protegiendo operaciones mineras en zonas remotas de Chile, incluyendo Antofagasta, Atacama y Coquimbo. Como es obligatorio por ley, el 100% de nuestro personal cuenta con certificación OS10 vigente de SERNAGEOMIN. Además, nuestros guardias en minería reciben capacitación especializada adicional en protocolos mineros, primeros auxilios en altura y manejo de emergencias en zonas remotas.`,
       'Nuestros protocolos de seguridad minera incluyen control de acceso biométrico en puntos críticos, rondas programadas con tecnología RFID, monitoreo remoto 24/7 con cámaras PTZ de alta definición, y respuesta ante emergencias coordinada con equipos de rescate. Cada guardia recibe capacitación específica en primeros auxilios en altura, manejo de situaciones de emergencia en faenas y protocolos anti-intrusión.',
       'Trabajamos con mineras de cobre, litio, oro y otros minerales, adaptando nuestros servicios a las particularidades de cada operación. Ya sea una faena a cielo abierto, subterránea o de procesamiento, diseñamos soluciones de seguridad que no interfieren con la productividad pero garantizan protección total.',
       'Además de guardias certificados, proveemos tecnología especializada para minería: drones de vigilancia perimetral con visión nocturna, sistemas de detección de intrusos en zonas extensas, comunicación satelital para zonas sin cobertura celular, y plataformas de gestión de incidentes integradas con los sistemas de la minera.'
@@ -232,7 +234,7 @@ export const industriesMetadata = [
     descriptionTitle: 'Protección Corporativa de Clase Mundial',
     descriptionParagraphs: [
       'Los edificios corporativos requieren un nivel de seguridad que combine protección efectiva con una imagen profesional impecable. En Gard Security entendemos que en edificios clase A, la seguridad debe ser invisible pero omnipresente: guardias con presentación ejecutiva, protocolos discretos y tecnología de punta que no interfiera con la experiencia de ejecutivos, colaboradores y visitantes.',
-      'Con más de 50 edificios corporativos protegidos en Santiago (Las Condes, Providencia, Vitacura), hemos perfeccionado un modelo de seguridad que equilibra control estricto con hospitalidad profesional. Nuestros guardias actúan como primera línea de atención corporativa: reciben visitantes con cortesía, gestionan accesos con eficiencia y mantienen vigilancia constante sin ser intrusivos.',
+      'Protegiendo edificios corporativos en Santiago, hemos perfeccionado un modelo de seguridad que equilibra control estricto con hospitalidad profesional. Nuestros guardias actúan como primera línea de atención corporativa: reciben visitantes con cortesía, gestionan accesos con eficiencia y mantienen vigilancia constante sin ser intrusivos.',
       'Implementamos sistemas de control de acceso inteligente con reconocimiento facial o tarjetas RFID para colaboradores, registro digital de visitantes con generación automática de credenciales temporales, y trazabilidad completa de entradas/salidas. Todas las áreas comunes y accesos tienen cobertura de cámaras CCTV en alta definición conectadas a nuestra central de monitoreo 24/7.',
       'Nuestro protocolo de seguridad corporativa incluye gestión de emergencias (evacuaciones, primeros auxilios), coordinación con carabineros y bomberos, control de estacionamientos subterráneos, supervisión de áreas comunes (hall, ascensores, terrazas), y reportería mensual para administraciones de edificios con KPIs de incidentes, tiempos de respuesta y cumplimiento de protocolos.',
       'Trabajamos con edificios de oficinas clase A y A+, torres corporativas, centros empresariales y complejos de oficinas. Cada edificio tiene características únicas que consideramos: cantidad de empresas arrendatarias, flujo de personas, horarios de atención, eventos corporativos, y nivel de tecnología instalada. Nos integramos perfectamente con sistemas BMS (Building Management System) existentes.'

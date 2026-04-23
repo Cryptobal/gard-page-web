@@ -8,11 +8,11 @@ import ServiceSchema from '@/components/seo/ServiceSchema';
 import ReviewSchema from '@/components/seo/ReviewSchema';
 import { FAQSection } from '@/components/seo/FAQSchema';
 import FormularioCotizacionSeccion from '@/app/components/FormularioCotizacionSeccion';
+import { companyStats } from '@/lib/data/company-stats';
 
 export const metadata: Metadata = {
   title: 'Empresa de Seguridad Privada en Chile | Gard Security #1 B2B',
-  description:
-    'Gard Security es la empresa líder de seguridad privada B2B en Chile: 10+ años, 4.9/5 rating (57 reseñas en Google), 100% guardias certificados OS10, cobertura en 10 ciudades y monitoreo 24/7.',
+  description: `Gard Security es la empresa líder de seguridad privada B2B en Chile: ${companyStats.leadershipYearsExperience}+ años de experiencia del equipo fundador, 4.9/5 rating (57 reseñas en Google), 100% guardias certificados OS10, cobertura en ${companyStats.citiesCovered} ciudades y monitoreo 24/7.`,
   keywords: [
     'empresa de seguridad privada',
     'seguridad privada chile',
@@ -30,8 +30,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Empresa de Seguridad Privada en Chile | Gard Security #1 B2B',
-    description:
-      '10+ años protegiendo empresas en Chile. 4.9/5 rating, 100% OS10, 10 ciudades principales y cobertura nacional, monitoreo 24/7. Cotiza seguridad privada especializada para tu industria.',
+    description: `${companyStats.leadershipYearsExperience}+ años de experiencia del equipo fundador protegiendo empresas en Chile. 4.9/5 rating, 100% OS10, ${companyStats.citiesCovered} ciudades principales y cobertura nacional, monitoreo 24/7. Cotiza seguridad privada especializada para tu industria.`,
     url: 'https://www.gard.cl/empresa-seguridad-privada-chile',
     siteName: 'Gard Security',
     locale: 'es_CL',
@@ -55,8 +54,7 @@ const breadcrumbs = [
 const faqs = [
   {
     question: '¿Cuál es la mejor empresa de seguridad privada en Chile para empresas?',
-    answer:
-      'Gard Security lidera seguridad privada B2B en Chile con 10+ años, rating 4.9/5 (57 reseñas en Google), 100% guardias certificados OS10, cobertura en 10 ciudades y monitoreo 24/7.',
+    answer: `Gard Security lidera seguridad privada B2B en Chile con un equipo fundador de ${companyStats.leadershipYearsExperience}+ años de experiencia, rating 4.9/5 (57 reseñas en Google), 100% guardias certificados OS10, cobertura en ${companyStats.citiesCovered} ciudades y monitoreo 24/7.`,
   },
   {
     question: '¿Todos los guardias tienen certificación OS10 vigente?',
@@ -75,13 +73,11 @@ const faqs = [
   },
   {
     question: '¿Qué diferencia a Gard Security de otras empresas?',
-    answer:
-      'Especialización B2B exclusiva, 100% OS10 auditado, reducción de mermas hasta 85% en logística, rating 4.9/5 y monitoreo 24/7 con respuesta <15 min. Cobertura en 10 ciudades. Tenemos cobertura en todo Chile.',
+    answer: `Especialización B2B exclusiva, 100% OS10 auditado, reducción de mermas hasta 85% en logística, rating 4.9/5 y monitoreo 24/7 con respuesta <15 min. Cobertura en ${companyStats.citiesCovered} ciudades. Tenemos cobertura en todo Chile.`,
   },
   {
     question: '¿Operan en regiones fuera de Santiago?',
-    answer:
-      'Sí. Cobertura nacional en 10 ciudades: Santiago, Antofagasta, Valparaíso, Concepción, Iquique, Puerto Montt, Rancagua, Chillán, Temuco y Viña del Mar.',
+    answer: `Sí. Cobertura nacional en ${companyStats.citiesCovered} ciudades: Santiago, Antofagasta, Valparaíso, Concepción, Iquique, Puerto Montt, Rancagua, Chillán, Temuco y Viña del Mar.`,
   },
   {
     question: '¿Incluyen tecnología de seguridad electrónica?',
@@ -139,7 +135,7 @@ export default function EmpresaSeguridadPrivadaPage() {
       <BreadcrumbSchema items={breadcrumbs} />
       <ServiceSchema
         name="Empresa de Seguridad Privada para Empresas en Chile"
-        description="Seguridad privada B2B con guardias certificados OS10, monitoreo 24/7 y cobertura en 10 ciudades."
+        description={`Seguridad privada B2B con guardias certificados OS10, monitoreo 24/7 y cobertura en ${companyStats.citiesCovered} ciudades.`}
         url="https://www.gard.cl/empresa-seguridad-privada-chile"
         areaServed="Chile"
         aggregateRating={{ ratingValue: 4.9, reviewCount: 57 }}
@@ -151,7 +147,7 @@ export default function EmpresaSeguridadPrivadaPage() {
           url: 'https://www.gard.cl/empresa-seguridad-privada-chile',
           type: 'LocalBusiness',
           image: 'https://www.gard.cl/logos/gard.svg',
-          description: 'Seguridad privada B2B con 100% guardias OS10, 10 ciudades y monitoreo 24/7.',
+          description: `Seguridad privada B2B con 100% guardias OS10, ${companyStats.citiesCovered} ciudades y monitoreo 24/7.`,
         }}
         aggregateRating={{ ratingValue: 4.9, reviewCount: 57, bestRating: 5, worstRating: 1 }}
         reviews={reviews}
@@ -184,7 +180,7 @@ export default function EmpresaSeguridadPrivadaPage() {
               >
                 (57 reseñas en Google)
               </a>{' '}
-              · 100% OS10 · 10+ años
+              · 100% OS10 · {companyStats.leadershipYearsExperience}+ años del equipo
             </span>
           </div>
 
@@ -210,7 +206,7 @@ export default function EmpresaSeguridadPrivadaPage() {
             </div>
             <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6">
               <Globe2 className="h-10 w-10 text-primary mb-3" />
-              <h3 className="text-white font-semibold text-lg mb-2">Cobertura en 10 Ciudades</h3>
+              <h3 className="text-white font-semibold text-lg mb-2">Cobertura en {companyStats.citiesCovered} Ciudades</h3>
               <p className="text-white/80 text-sm">Operación en Santiago, Antofagasta, Valparaíso, Concepción, Iquique y más.</p>
             </div>
             <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6">
@@ -245,7 +241,7 @@ export default function EmpresaSeguridadPrivadaPage() {
               <CheckCircle className="h-8 w-8 text-primary flex-shrink-0" />
               <div>
                 <h3 className="text-xl font-semibold mb-2">Cobertura Nacional</h3>
-                <p className="text-muted-foreground">10 ciudades operativas con despliegue express en 48h y continuidad 99.9%.</p>
+                <p className="text-muted-foreground">{companyStats.citiesCovered} ciudades operativas con despliegue express en 48h y continuidad 99.9%.</p>
               </div>
             </div>
             <div className="flex gap-4">
@@ -317,7 +313,7 @@ export default function EmpresaSeguridadPrivadaPage() {
                 </tr>
                 <tr className="border-b">
                   <td className="px-6 py-4 font-medium">Cobertura ciudades Chile</td>
-                  <td className="px-6 py-4 text-center text-green-600 font-bold">10</td>
+                  <td className="px-6 py-4 text-center text-green-600 font-bold">{companyStats.citiesCovered}</td>
                   <td className="px-6 py-4 text-center text-muted-foreground">3-5</td>
                 </tr>
                 <tr>
@@ -344,12 +340,12 @@ export default function EmpresaSeguridadPrivadaPage() {
             <div className="bg-card rounded-xl p-6 shadow-sm border text-center">
               <Building2 className="h-10 w-10 text-primary mx-auto mb-4" />
               <h3 className="text-xl font-semibold mb-2">Edificios Corporativos</h3>
-              <p className="text-muted-foreground text-sm">50+ edificios clase A en Santiago, recepción ejecutiva y protocolos de evacuación.</p>
+              <p className="text-muted-foreground text-sm">Edificios clase A en Santiago, recepción ejecutiva y protocolos de evacuación.</p>
             </div>
             <div className="bg-card rounded-xl p-6 shadow-sm border text-center">
               <ShieldCheck className="h-10 w-10 text-primary mx-auto mb-4" />
               <h3 className="text-xl font-semibold mb-2">Logística y Bodegas</h3>
-              <p className="text-muted-foreground text-sm">30+ centros de distribución con reducción de mermas -85% y control de accesos.</p>
+              <p className="text-muted-foreground text-sm">Centros de distribución con reducción de mermas -85% y control de accesos.</p>
             </div>
             <div className="bg-card rounded-xl p-6 shadow-sm border text-center">
               <Award className="h-10 w-10 text-primary mx-auto mb-4" />
@@ -391,7 +387,7 @@ export default function EmpresaSeguridadPrivadaPage() {
             </div>
             <div className="bg-card rounded-xl p-6 shadow-sm border text-center">
               <Globe2 className="h-12 w-12 text-primary mx-auto mb-4" />
-              <div className="text-4xl font-bold text-primary mb-2">10</div>
+              <div className="text-4xl font-bold text-primary mb-2">{companyStats.citiesCovered}</div>
               <p className="text-sm text-muted-foreground">Ciudades con operación activa</p>
             </div>
           </div>

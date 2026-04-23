@@ -1,4 +1,5 @@
 import React from 'react';
+import { companyStats } from '@/lib/data/company-stats';
 
 /**
  * LocalBusiness Schema para SEO Local
@@ -22,7 +23,7 @@ export default function LocalBusinessSchema() {
       "height": 60
     },
     "image": "https://www.gard.cl/logos/gard.svg",
-    "description": "Empresa de seguridad privada B2B en Chile con más de 200 guardias certificados OS10 y cobertura en 10 ciudades. Especializada en minería, logística, edificios corporativos, retail, construcción y sector industrial. Monitoreo 24/7, seguridad electrónica, drones y auditoría de seguridad.",
+    "description": `Empresa de seguridad privada B2B en Chile con ${companyStats.activeGuards} guardias certificados OS10 y cobertura en ${companyStats.citiesCovered} ciudades. Especializada en minería, logística, edificios corporativos, retail, construcción y sector industrial. Monitoreo 24/7, seguridad electrónica, drones y auditoría de seguridad.`,
     
     // Dirección principal (Santiago)
     "address": {
@@ -184,12 +185,12 @@ export default function LocalBusinessSchema() {
     ],
     
     // Fundación
-    "foundingDate": "2016",
+    "foundingDate": String(companyStats.foundedYear),
 
     // Número de empleados (aproximado)
     "numberOfEmployees": {
       "@type": "QuantitativeValue",
-      "value": "200",
+      "value": String(companyStats.activeGuards),
       "unitText": "guardias activos certificados OS10"
     }
   };

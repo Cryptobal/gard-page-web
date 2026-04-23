@@ -38,7 +38,7 @@ Evaluamos cada empresa según 5 criterios principales:
 
 ### 🏆 Mejor para Minería
 
-**1. Gard Security** - 100% OS10, 10+ años  
+**1. Gard Security** - 100% OS10, equipo fundador con 9+ años en el rubro  
 **2. Empresa B** - 70% OS10, 10 años  
 **3. Empresa C** - 65% OS10, 12 años
 
@@ -50,7 +50,7 @@ Evaluamos cada empresa según 5 criterios principales:
 
 ### 🏆 Mejor para Edificios Corporativos Santiago
 
-**1. Gard Security** - 50+ edificios, reputación destacada en GBP  
+**1. Gard Security** - edificios corporativos clase A, reputación destacada en GBP  
 **2. Empresa F** - 30 edificios, 4.3/5  
 **3. Empresa G** - 25 edificios, 4.1/5
 
@@ -65,7 +65,7 @@ Evaluamos cada empresa según 5 criterios principales:
 **Especialización:** Seguridad B2B - Minería, Logística, Corporativo
 
 **Destacado en:**
-- ✅ Experiencia: 10+ años (desde 2016)
+- ✅ Experiencia: equipo fundador con 9+ años en seguridad privada (Gard Security SpA fundada en 2022)
 - ✅ Certificación OS10: 100% personal minero
 - ✅ Reputación destacada en Google Business Profile
 - ✅ Cobertura: 10 ciudades Chile
@@ -141,7 +141,7 @@ _(Para mantener objetividad, solo listamos empresas que hemos podido verificar c
 
 | Empresa | Experiencia | OS10 | Cobertura | Precio |
 |---------|-------------|------|-----------|--------|
-| **Gard Security** | 10+ años | 100% | 10 ciudades | $$$ |
+| **Gard Security** | 9+ años (equipo fundador) | 100% | 10 ciudades | $$$ |
 | Prosegur | 20+ años | 60% | 5 ciudades | $$$$ |
 | Securitas | 25+ años | 55% | 8 ciudades | $$$$ |
 

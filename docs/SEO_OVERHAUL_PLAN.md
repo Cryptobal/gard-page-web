@@ -1053,6 +1053,25 @@ Día 90
 
 ---
 
-**Última actualización**: 2026-04-22
+## Hallazgos paralelos
+
+Problemas detectados durante la ejecución de tareas que quedan **fuera del scope** de la tarea en curso y deberían abordarse en una tarea futura dedicada. Registrar con `<tarea donde se detectó> · <hallazgo> · <próxima acción sugerida>`.
+
+### Detectados durante Tarea 1.1 (2026-04-23)
+
+- **Tarea 1.1 · `npm run lint` no está configurado**: el proyecto no tiene ESLint inicializado (pide elegir config Strict/Base al correr). Para cumplir con la regla de `.cursorrules` "`npm run lint` — sin errores", hay que configurarlo. Sugerencia: tarea técnica dedicada en FASE 4 (tuning).
+- **Tarea 1.1 · Frases prohibidas detectadas en copy existente** (no tocadas en este pase por scope):
+  - `"Seguridad Minera de Clase Mundial"` en `app/industrias/industryMetadata.ts:11` (campo `descriptionTitle` de minería).
+  - `"soluciones integrales"` en `app/llms.txt/route.ts`, `components/landing/LandingSEOContent.tsx` y otros.
+  - Revisar en Tarea 1.4 o como subtarea de Fase 1.
+- **Tarea 1.1 · Claims sobre eventos históricos inconsistentes con `foundedYear = 2022`**:
+  - `docs/blog_posts/seguridad-eventos-masivos-chile-2025-costos-protocolos.md:614-620` afirma que Gard Security protegió "Lollapalooza Chile (2019-2024)" y "Cumbre APEC 2024". Gard fue fundada en 2022; el equipo fundador puede haberlo hecho desde otras empresas, pero el copy implica que fue Gard como entidad. Reescribir o atribuir al equipo fundador.
+- **Tarea 1.1 · AggregateRating hardcoded con ratingValue=4.9 y reviewCount=57**: afirmado en `app/mejor-empresa-seguridad-chile/page.tsx`, `app/empresa-seguridad-privada-chile/page.tsx`, `app/empresa-guardias-seguridad-chile/page.tsx`, `components/seo/LocalBusinessSchema.tsx`. Esto es exactamente lo que Tarea 1.2 va a auditar; dejar hasta que el usuario responda la Opción A/B.
+- **Tarea 1.1 · Archivos duplicados "` 2.ts`", "` 2.md`", etc. en varios directorios**: hay duplicados de macOS/Finder en `lib/data/`, `docs/`, raíz. No afectan build pero pueden causar ruido. Sugerencia: limpieza de repo dedicada.
+- **Tarea 1.1 · Archivos de auditoría y resúmenes históricos en la raíz con claims obsoletos**: `AUDITORIA_DISEÑO_2026.md`, `AUDITORIA_GARD_CL_2025.md`, `RESUMEN_IMPLEMENTACION_COMPLETA_HOY.md`, `IMPLEMENTACION_SEO_FASE1_COMPLETA.md` contienen números desactualizados (`8+`, `15+`, `50+ Clientes`). No se tocaron en 1.1 porque son documentación histórica que no se sirve al frontend. Considerar moverlos a `docs/archive/` o eliminarlos.
+
+---
+
+**Última actualización**: 2026-04-23
 **Owner**: Carlos
 **Co-piloto**: Claude (iteración continua)

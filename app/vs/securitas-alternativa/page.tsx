@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { ArrowRight, Scale } from 'lucide-react';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 import { FAQSection } from '@/components/seo/FAQSchema';
+import { companyStats } from '@/lib/data/company-stats';
 
 const BASE_URL = 'https://www.gard.cl';
 const PAGE_URL = `${BASE_URL}/vs/securitas-alternativa`;
@@ -45,8 +46,7 @@ const faqItems = [
   },
   {
     question: '¿Cuál es la cobertura geográfica de Gard Security comparada con Securitas?',
-    answer:
-      'Gard Security opera con presencia directa en 10 ciudades de Chile: Santiago, Antofagasta, Valparaíso, Concepción, Iquique, Puerto Montt, Rancagua, Chillán, Temuco y Viña del Mar. Securitas tiene cobertura amplia en el territorio chileno, con una base de clientes históricos considerable. Para empresas que requieren cobertura en ciudades principales con supervisión digital moderna, Gard Security es una alternativa ágil y especializada.',
+    answer: `Gard Security opera con presencia directa en ${companyStats.citiesCovered} ciudades de Chile: Santiago, Antofagasta, Valparaíso, Concepción, Iquique, Puerto Montt, Rancagua, Chillán, Temuco y Viña del Mar. Securitas tiene cobertura amplia en el territorio chileno, con una base de clientes históricos considerable. Para empresas que requieren cobertura en ciudades principales con supervisión digital moderna, Gard Security es una alternativa ágil y especializada.`,
   },
   {
     question: '¿Es complicado migrar el servicio de Securitas a Gard Security?',
@@ -77,7 +77,7 @@ export default function VsSecuritasPage() {
           </h1>
           <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
             Gard Security combina los estándares tradicionales del sector con tecnología moderna:
-            200+ guardias certificados OS10, cobertura en 10 ciudades, y sistema propio OPAI con
+            {' '}{companyStats.activeGuards} guardias certificados OS10, cobertura en {companyStats.citiesCovered} ciudades, y sistema propio OPAI con
             IA para supervisión digital en tiempo real. Evalúanos en paralelo a tu servicio actual.
           </p>
           <Link

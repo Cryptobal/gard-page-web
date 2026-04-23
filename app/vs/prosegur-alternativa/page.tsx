@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { ArrowRight, Scale } from 'lucide-react';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 import { FAQSection } from '@/components/seo/FAQSchema';
+import { companyStats } from '@/lib/data/company-stats';
 
 const BASE_URL = 'https://www.gard.cl';
 const PAGE_URL = `${BASE_URL}/vs/prosegur-alternativa`;
@@ -77,7 +78,7 @@ export default function VsProsegurPage() {
           </h1>
           <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
             Gard Security es una empresa de seguridad privada B2B chilena enfocada exclusivamente
-            en empresas. 200+ guardias certificados OS10, cobertura en 10 ciudades, y tecnología
+            en empresas. {companyStats.activeGuards} guardias certificados OS10, cobertura en {companyStats.citiesCovered} ciudades, y tecnología
             propia OPAI para supervisión digital en tiempo real. Evalúanos en paralelo a tu
             servicio actual.
           </p>

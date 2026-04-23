@@ -8,6 +8,7 @@ import {
   ChevronDown, ChevronUp, Award, BarChart2, Clock, 
   ThumbsUp, Settings, Search, Globe 
 } from 'lucide-react';
+import { companyStats } from '@/lib/data/company-stats';
 
 interface LandingSEOContentProps {
   industria: string;
@@ -67,7 +68,7 @@ export default function LandingSEOContent({
       },
       {
         titulo: getSubtituloSEO(1),
-        contenido: `Con más de 10 años de experiencia en el sector de seguridad privada, Gard Security se ha establecido como un socio confiable para empresas de todos los tamaños en el sector ${industriaNombre}. Nuestro enfoque personalizado significa que no ofrecemos soluciones genéricas sino planes de ${servicioNombre} adaptados específicamente a sus instalaciones, personal y requisitos operativos. Utilizamos una combinación de métodos probados y tecnologías innovadoras para crear un entorno seguro que proteja sus activos más valiosos mientras mantiene la eficiencia operativa. Además, nuestro servicio de atención al cliente 24/7 garantiza que siempre hay un profesional disponible para atender sus consultas o emergencias.`
+        contenido: `Con un equipo fundador que suma más de ${companyStats.leadershipYearsExperience} años de experiencia en el sector de seguridad privada, Gard Security se ha establecido como un socio confiable para empresas de todos los tamaños en el sector ${industriaNombre}. Nuestro enfoque personalizado significa que no ofrecemos soluciones genéricas sino planes de ${servicioNombre} adaptados específicamente a sus instalaciones, personal y requisitos operativos. Utilizamos una combinación de métodos probados y tecnologías innovadoras para crear un entorno seguro que proteja sus activos más valiosos mientras mantiene la eficiencia operativa. Además, nuestro servicio de atención al cliente 24/7 garantiza que siempre hay un profesional disponible para atender sus consultas o emergencias.`
       },
       {
         titulo: getSubtituloSEO(2),
@@ -99,7 +100,7 @@ export default function LandingSEOContent({
   const statsItems = [
     { value: '95%', label: 'Tasa de detección', icon: <BarChart2 className="w-5 h-5 text-accent" /> },
     { value: '24/7', label: 'Monitoreo continuo', icon: <Clock className="w-5 h-5 text-accent" /> },
-    { value: '10+', label: 'Años de experiencia', icon: <Award className="w-5 h-5 text-accent" /> },
+    { value: `${companyStats.leadershipYearsExperience}+`, label: 'Años de experiencia del equipo', icon: <Award className="w-5 h-5 text-accent" /> },
     { value: '100%', label: 'Satisfacción clientes', icon: <ThumbsUp className="w-5 h-5 text-accent" /> },
   ];
   

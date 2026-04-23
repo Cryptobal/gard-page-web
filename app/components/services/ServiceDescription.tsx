@@ -1,6 +1,7 @@
 import React from 'react';
 import { CheckCircle } from 'lucide-react';
 import LinkParamsAware from '@/app/components/LinkParamsAware';
+import { companyStats } from '@/lib/data/company-stats';
 
 interface ServiceDescriptionProps {
   title: string;
@@ -43,7 +44,7 @@ export default function ServiceDescription({
             <ul className="space-y-3">
               <li className="flex items-start">
                 <CheckCircle className="h-7 w-7 text-primary dark:text-accent mr-2 mt-0.5 flex-shrink-0" />
-                <span className="text-sm">Más de 10 años de experiencia</span>
+                <span className="text-sm">Más de {companyStats.leadershipYearsExperience} años de experiencia del equipo</span>
               </li>
               <li className="flex items-start">
                 <CheckCircle className="h-7 w-7 text-primary dark:text-accent mr-2 mt-0.5 flex-shrink-0" />

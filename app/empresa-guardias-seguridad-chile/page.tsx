@@ -8,6 +8,7 @@ import ServiceSchema from '@/components/seo/ServiceSchema';
 import ReviewSchema from '@/components/seo/ReviewSchema';
 import { FAQSection } from '@/components/seo/FAQSchema';
 import FormularioCotizacionSeccion from '@/app/components/FormularioCotizacionSeccion';
+import { companyStats } from '@/lib/data/company-stats';
 
 export const metadata: Metadata = {
   title: 'Empresa de Guardias de Seguridad en Chile | Gard Security #1',
@@ -30,8 +31,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Empresa de Guardias de Seguridad en Chile | Gard Security #1',
-    description:
-      'Guardias OS10, 10 ciudades, 10+ años, 4.9/5 rating, continuidad 99.9%, respuesta <15 min. Gard Security es #1 en guardias para empresas en Chile.',
+    description: `Guardias OS10, ${companyStats.citiesCovered} ciudades, equipo fundador con ${companyStats.leadershipYearsExperience}+ años de experiencia, 4.9/5 rating, continuidad 99.9%, respuesta <15 min. Gard Security es #1 en guardias para empresas en Chile.`,
     url: 'https://www.gard.cl/empresa-guardias-seguridad-chile',
     siteName: 'Gard Security',
     locale: 'es_CL',
@@ -55,8 +55,7 @@ const breadcrumbs = [
 const faqs = [
   {
     question: '¿Cuál es la mejor empresa de guardias de seguridad en Chile?',
-    answer:
-      'Gard Security es #1 en guardias B2B con rating 4.9/5, 100% OS10, 10+ años, cobertura en 10 ciudades y continuidad operacional 99.9%.',
+    answer: `Gard Security es #1 en guardias B2B con rating 4.9/5, 100% OS10, equipo fundador con ${companyStats.leadershipYearsExperience}+ años de experiencia, cobertura en ${companyStats.citiesCovered} ciudades y continuidad operacional 99.9%.`,
   },
   {
     question: '¿Todos los guardias tienen certificación OS10?',
@@ -81,12 +80,11 @@ const faqs = [
   {
     question: '¿Pueden cubrir edificios corporativos clase A?',
     answer:
-      'Sí. Más de 50 edificios clase A protegidos, con guardias bilingües, recepción ejecutiva y protocolos de evacuación probados.',
+      'Sí. Protegemos edificios clase A en zonas corporativas de Santiago, con guardias bilingües, recepción ejecutiva y protocolos de evacuación probados.',
   },
   {
     question: '¿Operan fuera de Santiago?',
-    answer:
-      'Cobertura en 10 ciudades: Santiago, Antofagasta, Valparaíso, Concepción, Iquique, Puerto Montt, Rancagua, Chillán, Temuco y Viña del Mar.',
+    answer: `Cobertura en ${companyStats.citiesCovered} ciudades: Santiago, Antofagasta, Valparaíso, Concepción, Iquique, Puerto Montt, Rancagua, Chillán, Temuco y Viña del Mar.`,
   },
   {
     question: '¿Incluyen supervisión y monitoreo?',
@@ -105,8 +103,7 @@ const faqs = [
   },
   {
     question: '¿Qué diferencia a Gard Security de otras empresas?',
-    answer:
-      'Especialización B2B exclusiva, 100% OS10 auditado, continuidad 99.9%, respuesta <15 min y cobertura en 10 ciudades. Tenemos cobertura en todo Chile.',
+    answer: `Especialización B2B exclusiva, 100% OS10 auditado, continuidad 99.9%, respuesta <15 min y cobertura en ${companyStats.citiesCovered} ciudades. Tenemos cobertura en todo Chile.`,
   },
 ];
 
@@ -192,7 +189,7 @@ export default function EmpresaGuardiasSeguridadPage() {
               >
                 (57 reseñas en Google)
               </a>{' '}
-              · 100% OS10 · 10 ciudades
+              · 100% OS10 · {companyStats.citiesCovered} ciudades
             </span>
           </div>
 
@@ -223,7 +220,7 @@ export default function EmpresaGuardiasSeguridadPage() {
             </div>
             <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6">
               <Users className="h-10 w-10 text-primary mb-3" />
-              <h3 className="text-white font-semibold text-lg mb-2">Cobertura 10 Ciudades</h3>
+              <h3 className="text-white font-semibold text-lg mb-2">Cobertura {companyStats.citiesCovered} Ciudades</h3>
               <p className="text-white/80 text-sm">Equipos operativos en Santiago, Antofagasta, Valparaíso, Concepción y más.</p>
             </div>
           </div>
@@ -311,7 +308,7 @@ export default function EmpresaGuardiasSeguridadPage() {
                 </tr>
                 <tr className="border-b">
                   <td className="px-6 py-4 font-medium">Cobertura ciudades</td>
-                  <td className="px-6 py-4 text-center text-green-600 font-bold">10</td>
+                  <td className="px-6 py-4 text-center text-green-600 font-bold">{companyStats.citiesCovered}</td>
                   <td className="px-6 py-4 text-center text-muted-foreground">3-5</td>
                 </tr>
                 <tr className="border-b bg-muted/30">

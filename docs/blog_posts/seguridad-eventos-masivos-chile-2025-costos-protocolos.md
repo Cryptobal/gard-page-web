@@ -613,7 +613,7 @@ Gard Security certifica a su personal en especialidades según tipo de evento.
 
 ### Por Qué Elegir Gard Security para Tu Evento
 
-**10+ años protegiendo eventos en Chile:**
+**Equipo fundador con más de 8 años protegiendo eventos en Chile:**
 - Lollapalooza Chile (2019-2024)
 - Cumbre APEC 2024
 - 100+ eventos corporativos anuales

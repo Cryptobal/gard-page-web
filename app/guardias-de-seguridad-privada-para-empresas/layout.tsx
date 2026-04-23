@@ -1,12 +1,12 @@
 import type { Metadata } from 'next';
+import { companyStats } from '@/lib/data/company-stats';
 
 const PAGE_URL = 'https://www.gard.cl/guardias-de-seguridad-privada-para-empresas';
 const OG_IMAGE_URL = 'https://imagedelivery.net/gGw8cfmEZedi85dYm6qcFw/4824f8b9-abb0-4e77-c654-efe920697b00/public';
 
 export const metadata: Metadata = {
   title: 'Guardias de Seguridad Privada para Empresas en Chile | Gard Security',
-  description:
-    'Servicio de guardias de seguridad privada para empresas en Chile. 200+ guardias certificados OS10, cobertura en 10 ciudades. Soluciones B2B para minería, logística, retail, corporativo y construcción. Cotización en menos de 12 horas.',
+  description: `Servicio de guardias de seguridad privada para empresas en Chile. ${companyStats.activeGuards} guardias certificados OS10, cobertura en ${companyStats.citiesCovered} ciudades. Soluciones B2B para minería, logística, retail, corporativo y construcción. Cotización en menos de 12 horas.`,
   keywords: [
     'guardias de seguridad privada para empresas',
     'guardias de seguridad para empresas',
@@ -36,8 +36,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Guardias de Seguridad Privada para Empresas en Chile | Gard Security',
-    description:
-      'Servicio B2B de guardias de seguridad certificados OS10 para empresas en Chile. Cobertura en 10 ciudades, especialistas en minería, logística, retail y corporativo.',
+    description: `Servicio B2B de guardias de seguridad certificados OS10 para empresas en Chile. Cobertura en ${companyStats.citiesCovered} ciudades, especialistas en minería, logística, retail y corporativo.`,
     url: PAGE_URL,
     siteName: 'Gard Security',
     locale: 'es_CL',
