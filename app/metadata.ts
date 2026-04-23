@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     default: 'Gard Security Chile', // Este valor solo se usa si la página hija no define título
   },
   // Agregamos una descripción por defecto para resolver el problema de páginas sin metadescripción
-  description: 'Empresa líder en seguridad privada para empresas e industrias. Ofrecemos guardias de seguridad, monitoreo 24/7, sistemas de vigilancia y soluciones integrales para proteger tu negocio.',
+  description: 'Empresa líder en seguridad privada B2B en Chile. Guardias certificados OS10, monitoreo 24/7, seguridad electrónica y drones para empresas e industrias.',
   // Agregamos keywords por defecto
   keywords: 'seguridad privada, guardias de seguridad, empresa de seguridad, vigilancia, protección, Gard Security, Chile',
   authors: [{ name: 'Gard Security' }],
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     url: 'https://www.gard.cl',
     siteName: 'Gard Security',
     title: 'Gard Security Chile',
-    description: 'Empresa líder en seguridad privada para empresas e industrias. Ofrecemos guardias de seguridad, monitoreo 24/7, sistemas de vigilancia y soluciones integrales para proteger tu negocio.',
+    description: 'Empresa líder en seguridad privada B2B en Chile. Guardias certificados OS10, monitoreo 24/7, seguridad electrónica y drones para empresas e industrias.',
     images: [
       {
         url: '/og-default.png',
