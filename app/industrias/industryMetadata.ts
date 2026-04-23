@@ -10,7 +10,7 @@ export const industriesMetadata = [
     
     // Contenido expandido para SEO
     subtitle: 'Protección especializada con personal 100% certificado OS10 por SERNAGEOMIN para faenas mineras en Chile',
-    descriptionTitle: 'Seguridad Minera de Clase Mundial',
+    descriptionTitle: 'Seguridad Minera Certificada OS10',
     descriptionParagraphs: [
       'La industria minera en Chile enfrenta desafíos de seguridad únicos debido a la ubicación remota de las faenas, el alto valor de los activos y las exigentes normativas de SERNAGEOMIN. En Gard Security, entendemos que la seguridad en minería no es solo vigilancia: es protección de vidas, activos críticos y continuidad operacional.',
       `Nuestro equipo fundador suma más de ${companyStats.leadershipYearsExperience} años de experiencia protegiendo operaciones mineras en zonas remotas de Chile, incluyendo Antofagasta, Atacama y Coquimbo. Como es obligatorio por ley, el 100% de nuestro personal cuenta con certificación OS10 vigente de SERNAGEOMIN. Además, nuestros guardias en minería reciben capacitación especializada adicional en protocolos mineros, primeros auxilios en altura y manejo de emergencias en zonas remotas.`,
@@ -231,7 +231,7 @@ export const industriesMetadata = [
     
     // Contenido expandido para SEO
     subtitle: 'Seguridad de nivel ejecutivo con protocolo corporativo, control de acceso inteligente y recepción profesional 24/7',
-    descriptionTitle: 'Protección Corporativa de Clase Mundial',
+    descriptionTitle: 'Protección Corporativa Profesional para Edificios Clase A',
     descriptionParagraphs: [
       'Los edificios corporativos requieren un nivel de seguridad que combine protección efectiva con una imagen profesional impecable. En Gard Security entendemos que en edificios clase A, la seguridad debe ser invisible pero omnipresente: guardias con presentación ejecutiva, protocolos discretos y tecnología de punta que no interfiera con la experiencia de ejecutivos, colaboradores y visitantes.',
       'Protegiendo edificios corporativos en Santiago, hemos perfeccionado un modelo de seguridad que equilibra control estricto con hospitalidad profesional. Nuestros guardias actúan como primera línea de atención corporativa: reciben visitantes con cortesía, gestionan accesos con eficiencia y mantienen vigilancia constante sin ser intrusivos.',

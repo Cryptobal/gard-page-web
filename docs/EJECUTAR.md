@@ -292,9 +292,12 @@ C) "Empresa de Seguridad Privada en Chile · Guardias Certificados OS10"
 6. Commit: `feat(seo): keyword-optimized H1 and metadata on homepage`.
 
 ### Definition of Done
-- [ ] Nuevo H1 live
-- [ ] Metadata coincide entre page metadata y OG tags
-- [ ] Commit hecho
+- [x] Nuevo H1 live ("Empresa de Seguridad Privada en Chile · Guardias OS10 con Cobertura Nacional 24/7" — opción A)
+- [x] Metadata coincide entre page metadata y OG tags (`HOME_DESCRIPTION` constante compartida)
+- [x] Commit hecho
+
+**Extras incluidos** (aplicando `.cursorrules` sobre frases prohibidas):
+- Eliminada "clase mundial" de `Footer.tsx`, `industryMetadata.ts` (x2), `LandingSEOContent.tsx`, `parques-industriales/page.tsx`.
 
 ---
 

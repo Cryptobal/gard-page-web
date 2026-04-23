@@ -10,9 +10,11 @@ const OG_IMAGE_URL = 'https://imagedelivery.net/gGw8cfmEZedi85dYm6qcFw/4824f8b9-
 
 const yearsOfExperience = companyStats.leadershipYearsExperience;
 
+const HOME_DESCRIPTION = `Guardias de seguridad certificados OS10, monitoreo 24/7, drones y seguridad electrónica. ${yearsOfExperience}+ años protegiendo empresas en ${companyStats.citiesCovered} ciudades de Chile. Cotización en menos de 12 horas.`;
+
 export const metadata: Metadata = {
   title: 'Empresa de Seguridad Privada en Chile | Gard Security',
-  description: `Empresa de seguridad privada para empresas en Chile. Guardias de seguridad certificados OS10, monitoreo 24/7, drones y seguridad electrónica. Cobertura en ${companyStats.citiesCovered} ciudades. Cotiza sin compromiso.`,
+  description: HOME_DESCRIPTION,
   alternates: {
     canonical: 'https://www.gard.cl',
     languages: {
@@ -22,7 +24,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Empresa de Seguridad Privada en Chile | Gard Security',
-    description: `Más de ${yearsOfExperience} años de experiencia protegiendo empresas líderes en Chile. Guardias certificados OS10, monitoreo 24/7, seguridad electrónica y drones. Presencia en ${companyStats.citiesCovered} ciudades.`,
+    description: HOME_DESCRIPTION,
     url: 'https://www.gard.cl',
     siteName: 'Gard Security',
     locale: 'es_CL',
@@ -39,7 +41,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Empresa de Seguridad Privada en Chile | Gard Security',
-    description: 'Guardias certificados OS10, monitoreo 24/7, drones y seguridad electrónica. Cotiza sin compromiso.',
+    description: HOME_DESCRIPTION,
     images: [OG_IMAGE_URL],
   },
 };
@@ -88,8 +90,8 @@ export default function Home() {
     <>
       {/* Hero principal */}
       <GardHero
-        title="Empresa de Seguridad Privada para Empresas en Chile"
-        subtitle={`Guardias certificados OS10, monitoreo 24/7, drones y seguridad electrónica para minería, faenas industriales y oficinas corporativas. Cobertura en ${companyStats.citiesCovered} ciudades.`}
+        title="Empresa de Seguridad Privada en Chile · Guardias OS10 con Cobertura Nacional 24/7"
+        subtitle={`Protegemos ${companyStats.activeClients} empresas en ${companyStats.citiesCovered} ciudades con guardias certificados OS10, monitoreo 24/7 y tecnología propia.`}
         ctaTexto="Cotizar Ahora"
         ctaHref="#cotizar"
         videoId="ac93b4a10e87873748171425b9f8066d"
