@@ -1,0 +1,79 @@
+# Cursor Rules · gard-page-web
+
+## Project context
+- **Producto**: gard.cl — sitio web de Gard Security (empresa de seguridad privada en Chile).
+- **Stack**: Next.js 15 (App Router), TypeScript strict, Tailwind CSS, deployment en Vercel, GitHub repo `Cryptobal/gard-page-web`, imágenes en Cloudflare Images.
+- **Idioma del contenido**: español de Chile (es-CL). Toda copy nueva debe sonar profesional pero natural, nunca calcada del inglés.
+- **Estado actual**: estoy ejecutando el plan `/docs/SEO_OVERHAUL_PLAN.md` (90 días, 4 fases). Cada cambio de código debe corresponder a una tarea numerada del plan.
+
+## Paths críticos del proyecto
+- Páginas dinámicas ciudad×servicio: `/app/[ciudad]/[servicio]/page.tsx`
+- Datos de ciudades: `/lib/data/ciudad-data.ts` (existente), `/lib/data/ciudades-dataset.ts` (a crear)
+- Metadata de servicios: `/app/servicios/serviceMetadata.ts`
+- Stats de empresa (fuente única de verdad): `/lib/data/company-stats.ts` (a crear)
+- Posts de blog: `/docs/blog_posts/` (markdown)
+- Sitemap: `/app/sitemap.ts`
+- Plan maestro SEO: `/docs/SEO_OVERHAUL_PLAN.md` ← consultar SIEMPRE antes de cambios mayores
+
+## Reglas de trabajo (innegociables)
+
+### Git workflow
+- Nunca commitear directo a `main`. Trabajar siempre en `seo-overhaul-2026` o feature branches derivadas (`seo/1.1-company-stats`, `seo/2.2-santiago-template`, etc.).
+- Cada tarea del plan = un commit (o un PR si toca >5 archivos).
+- Mensajes de commit: convention `tipo(scope): descripción` — ejemplos válidos:
+  - `refactor(seo): single source of truth for company stats`
+  - `feat(seo): keyword-optimized H1 on homepage`
+  - `fix(seo): remove unverified AggregateRating schema`
+- Antes de proponer un commit, mostrame el `git diff` resumido.
+
+### Antes de modificar código
+1. Si la tarea no está en el plan, preguntá si la agregamos al plan antes de ejecutar.
+2. Para tareas con keyword `[refactor]` o que toquen >3 archivos: listame primero TODOS los archivos a modificar y esperá confirmación.
+3. Si vas a crear un archivo nuevo, justificá por qué (vs. modificar uno existente).
+4. Nunca elimines archivos sin confirmación explícita.
+
+### Calidad de código
+- TypeScript strict. Nada de `any` salvo justificación.
+- Tipos exportados desde el mismo archivo donde se definen los datos.
+- Componentes nuevos: server components por default (App Router). Client components solo si hay state/interactividad real, marcados con `'use client'` y comentario explicando por qué.
+- Imports absolutos con alias `@/` cuando sea posible.
+- Tailwind: usar las clases del design system existente del proyecto. No inventar valores arbitrarios (`text-[#1a3b5c]`) sin pedir permiso.
+
+### SEO específico
+- **Nunca uses estas frases prohibidas en contenido nuevo** (penalizadas por Helpful Content):
+  - "soluciones integrales"
+  - "clase mundial"
+  - "excelencia en servicio"
+  - "plan de seguridad personalizado"
+  - "protocolos de emergencia específicos"
+  - "control de acceso especializado"
+  - "capacitado en situaciones de riesgo"
+- Cada nueva página debe tener: H1 único con keyword, meta description 140-160 chars, canonical, OG image, schema relevante.
+- Cifras de empresa (años, guardias, clientes): consumir SIEMPRE desde `companyStats` en `/lib/data/company-stats.ts`. Nunca hardcodear.
+
+### Validación pre-commit
+- Antes de marcar una tarea como hecha, correr en este orden:
+  1. `npm run build` — debe pasar sin warnings nuevos
+  2. `npm run lint` — sin errores
+  3. `npm run typecheck` (si existe)
+  4. Si tocaste schema.org: validar en https://validator.schema.org/
+  5. Mostrarme el resultado antes de hacer push
+
+### Comunicación conmigo
+- Idioma: español. Concreto, sin verborrea.
+- Cuando termines una tarea, decime exactamente qué tarea del plan quedó hecha (formato: "Tarea 1.1 ✅") y qué archivos modificaste.
+- Si encontrás un problema fuera del scope de la tarea actual, anótalo en `/docs/SEO_OVERHAUL_PLAN.md` sección "Hallazgos paralelos" en lugar de actuar.
+- Cuando tengas dudas, no asumas: preguntá una sola pregunta clara.
+
+## Lo que NO debés hacer
+- Generar contenido inventado (testimonios, estadísticas, números de clientes, años, casos de estudio).
+- Cambiar URLs de páginas indexadas sin redirect 301 explícito.
+- Eliminar el AggregateRating, FAQPage u otro schema sin actualizar también el componente que lo renderiza.
+- Push directo a producción.
+- Modificar `/app/sitemap.ts` sin avisarme — afecta indexación.
+
+## Cuando arrancás una sesión
+Si esta es tu primera interacción del día:
+1. Leé el estado actual del plan en `/docs/SEO_OVERHAUL_PLAN.md`.
+2. Identificá qué tareas están con `[ ]` (pendientes) en la fase activa.
+3. Preguntame cuál querés ejecutar HOY antes de escribir código.
