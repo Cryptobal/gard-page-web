@@ -11,7 +11,8 @@
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "test": "echo 'No tests configured yet'",
-    "validate-ciudad": "tsx scripts/validate-ciudad-content.ts"
+    "validate-ciudad": "tsx scripts/validate-ciudad-content.ts",
+    "gsc-indexing": "tsx scripts/automations/gsc-indexing-submit.ts"
   },
   "dependencies": {
     "@cloudflare/stream-react": "^1.9.3",

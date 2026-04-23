@@ -631,12 +631,16 @@ Cuando el usuario diga "arrancamos Fase 3", pedir foto-shotlist confirmado y pro
 # FASE 4 · Tuning técnico
 
 Tareas (resumen, spec completa en plan maestro):
-- [ ] 4.1 Migrar edge region a GRU1 (São Paulo)
-- [ ] 4.2 Hreflang es-CL + schema regional expandido
-- [ ] 4.3 Lighthouse CI en GitHub Actions
-- [ ] 4.4 GSC Indexing API via Cowork
+- [x] 4.1 Migrar edge region a GRU1 (São Paulo) — `vercel.json` actualizado; verificar post-deploy con `curl -sI https://www.gard.cl | grep x-vercel-id`
+- [x] 4.2 Hreflang es-CL + schema regional expandido — `app/metadata.ts` ya tenía `alternates.languages.es-CL`; agregado Wikidata `Q298` a `areaServed.Country` en `LocalBusinessSchema`; limpieza de "soluciones integrales" residual
+- [x] 4.3 Lighthouse CI en GitHub Actions — `.github/workflows/lighthouse.yml` + `lighthouserc.json` con gates perf ≥ 0.8, seo ≥ 0.95, LCP ≤ 2500ms, CLS ≤ 0.1
+- [x] 4.4 GSC Indexing API (script + docs) — `scripts/automations/gsc-indexing-submit.ts` listo (library-free, `crypto` + `fetch`); input `lib/data/recently-updated.json`; docs en `docs/COWORK-GSC-INDEXING.md`; **requiere que Carlos configure service account + env vars antes de correr en Cowork**
 
-Cuando el usuario diga "arrancamos Fase 4", ejecutar en este orden. Todas son código puro, sin bloqueos externos.
+Fase 4 completa del lado de código. Queda pendiente:
+1. Post-deploy de 4.1: validar `x-vercel-id: gru1::...` y TTFB desde Santiago.
+2. Post-deploy de 4.2: validar schemas en https://validator.schema.org/.
+3. Primer PR posterior: Lighthouse CI debería correr automáticamente.
+4. Setup Cowork: service account Google + env vars + cron nightly para 4.4.
 
 ---
 
