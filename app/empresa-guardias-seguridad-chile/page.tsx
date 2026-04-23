@@ -13,7 +13,7 @@ import { companyStats } from '@/lib/data/company-stats';
 export const metadata: Metadata = {
   title: 'Empresa de Guardias de Seguridad en Chile | Gard Security #1',
   description:
-    'Gard Security es la empresa líder de guardias de seguridad en Chile: 4.9/5 rating, 100% guardias OS10, cobertura nacional y tiempos de respuesta <15 min. Cotiza guardias para tu empresa.',
+    'Gard Security es la empresa líder de guardias de seguridad en Chile: 4.9/5 rating, 100% guardias OS10, cobertura nacional y central de monitoreo 24/7. Cotiza guardias para tu empresa.',
   keywords: [
     'empresa de guardias de seguridad',
     'guardias de seguridad chile',
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Empresa de Guardias de Seguridad en Chile | Gard Security #1',
-    description: `Guardias OS10, ${companyStats.citiesCovered} ciudades, equipo fundador con ${companyStats.leadershipYearsExperience}+ años de experiencia, 4.9/5 rating, continuidad 99.9%, respuesta <15 min. Gard Security es #1 en guardias para empresas en Chile.`,
+    description: `Guardias OS10, ${companyStats.citiesCovered} ciudades, equipo fundador con ${companyStats.leadershipYearsExperience}+ años de experiencia, 4.9/5 rating, continuidad ${companyStats.operationalContinuityPct}% y central 24/7. Gard Security es #1 en guardias para empresas en Chile.`,
     url: 'https://www.gard.cl/empresa-guardias-seguridad-chile',
     siteName: 'Gard Security',
     locale: 'es_CL',
@@ -69,8 +69,7 @@ const faqs = [
   },
   {
     question: '¿Cuál es el tiempo de respuesta ante incidentes?',
-    answer:
-      'Menos de 15 minutos en zonas urbanas. Protocolos escalables y central de monitoreo 24/7 para alertas y coordinación.',
+    answer: `Tiempo de respuesta promedio ${companyStats.avgIncidentResponseMinutesSantiago} minutos en zona urbana de Santiago (medido sobre contratos activos). Protocolos escalables y central de monitoreo 24/7 para alertas y coordinación con carabineros, bomberos y ambulancia.`,
   },
   {
     question: '¿Cuánto cuesta un guardia de seguridad en Santiago?',
@@ -103,40 +102,12 @@ const faqs = [
   },
   {
     question: '¿Qué diferencia a Gard Security de otras empresas?',
-    answer: `Especialización B2B exclusiva, 100% OS10 auditado, continuidad 99.9%, respuesta <15 min y cobertura en ${companyStats.citiesCovered} ciudades. Tenemos cobertura en todo Chile.`,
+    answer: `Especialización B2B exclusiva, 100% OS10 auditado, continuidad ${companyStats.operationalContinuityPct}%, tiempo de respuesta promedio ${companyStats.avgIncidentResponseMinutesSantiago} min en zona urbana y cobertura en ${companyStats.citiesCovered} ciudades. Tenemos cobertura en todo Chile.`,
   },
 ];
 
-const reviews: Array<{
-  author: { name: string; type: 'Person' | 'Organization' };
-  datePublished: string;
-  ratingValue: number;
-  reviewBody: string;
-  name: string;
-}> = [
-  {
-    author: { name: 'Gerente de Seguridad Corporativa', type: 'Person' as const },
-    datePublished: '2025-05-20',
-    ratingValue: 5,
-    reviewBody:
-      'Excelente despliegue en edificios clase A: guardias OS10, bilingües y con respuesta <15 min. Continuidad 99.9% en 12 meses.',
-    name: 'Edificios corporativos clase A',
-  },
-  {
-    author: { name: 'Jefe de Logística', type: 'Person' as const },
-    datePublished: '2025-04-30',
-    ratingValue: 5,
-    reviewBody: 'Reducción de mermas -80% en 6 meses. Guardias atentos, control de accesos y CCTV con analítica.',
-    name: 'Logística y bodegas',
-  },
-  {
-    author: { name: 'Administrador de Condominio Comercial', type: 'Person' as const },
-    datePublished: '2025-04-05',
-    ratingValue: 5,
-    reviewBody: 'Guardias profesionales, informes claros y supervisión permanente. Respuesta rápida ante incidencias.',
-    name: 'Complejo comercial',
-  },
-];
+// Reviews hardcoded inventados (Fase 1.3 residual) removidos. El
+// ReviewSchema mantiene aggregateRating verificable en GMB.
 
 export default function EmpresaGuardiasSeguridadPage() {
   return (
@@ -159,8 +130,7 @@ export default function EmpresaGuardiasSeguridadPage() {
           description: 'Guardias de seguridad OS10 con cobertura nacional y monitoreo 24/7.',
         }}
         aggregateRating={{ ratingValue: 4.9, reviewCount: 57, bestRating: 5, worstRating: 1 }}
-        reviews={reviews}
-        verificationUrl="https://maps.app.goo.gl/ywW2rQEWu4g4xxxy8"
+        verificationUrl={companyStats.gmbShortUrl}
       />
       <Breadcrumbs items={breadcrumbs} />
 
@@ -215,8 +185,8 @@ export default function EmpresaGuardiasSeguridadPage() {
             </div>
             <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6">
               <Timer className="h-10 w-10 text-primary mb-3" />
-              <h3 className="text-white font-semibold text-lg mb-2">Respuesta &lt;15 Min</h3>
-              <p className="text-white/80 text-sm">Central 24/7 y protocolos express para incidentes y nuevas activaciones.</p>
+              <h3 className="text-white font-semibold text-lg mb-2">Respuesta {companyStats.avgIncidentResponseMinutesSantiago} Min Promedio</h3>
+              <p className="text-white/80 text-sm">Zona urbana Santiago. Central 24/7 y protocolos express para incidentes y nuevas activaciones.</p>
             </div>
             <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6">
               <Users className="h-10 w-10 text-primary mb-3" />
@@ -255,7 +225,7 @@ export default function EmpresaGuardiasSeguridadPage() {
               <CheckCircle className="h-8 w-8 text-primary flex-shrink-0" />
               <div>
                 <h3 className="text-xl font-semibold mb-2">KPIs Transparentes</h3>
-                <p className="text-muted-foreground">Reportes mensuales, tiempos de respuesta &lt;15 min y cumplimiento contractual auditado.</p>
+                <p className="text-muted-foreground">Reportes mensuales, tiempo de respuesta promedio {companyStats.avgIncidentResponseMinutesSantiago} min en zona urbana y cumplimiento contractual auditado.</p>
               </div>
             </div>
             <div className="flex gap-4">
@@ -317,8 +287,8 @@ export default function EmpresaGuardiasSeguridadPage() {
                   <td className="px-6 py-4 text-center text-muted-foreground">95-97%</td>
                 </tr>
                 <tr className="border-b">
-                  <td className="px-6 py-4 font-medium">Tiempo de respuesta</td>
-                  <td className="px-6 py-4 text-center text-green-600 font-bold">&lt;15 min</td>
+                  <td className="px-6 py-4 font-medium">Tiempo de respuesta (zona urbana)</td>
+                  <td className="px-6 py-4 text-center text-green-600 font-bold">{companyStats.avgIncidentResponseMinutesSantiago} min</td>
                   <td className="px-6 py-4 text-center text-muted-foreground">30-45 min</td>
                 </tr>
               </tbody>

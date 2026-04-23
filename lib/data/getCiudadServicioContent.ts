@@ -1,5 +1,6 @@
 import { CiudadData, ciudades } from './ciudad-data';
 import { servicesMetadata } from '@/app/servicios/serviceMetadata';
+import { companyStats } from './company-stats';
 
 export interface CiudadServicioContent {
   title: string;
@@ -247,7 +248,7 @@ const generarFAQs = (ciudad: CiudadData, servicioNombre: string): { pregunta: st
   return [
     {
       pregunta: `¿Cuál es el tiempo de respuesta de ${servicioNombre} en ${ciudad.nombre}?`,
-      respuesta: `Nuestro tiempo de respuesta en ${ciudad.nombre} varía según el sector, pero garantizamos atención inmediata en menos de 15 minutos en el área urbana y tiempos optimizados para sectores más alejados como ${ciudad.barriosImportantes[ciudad.barriosImportantes.length - 1]}.`
+      respuesta: `Nuestro tiempo de respuesta promedio en ${ciudad.nombre} es de ${companyStats.avgIncidentResponseMinutesSantiago} minutos en zona urbana —medido sobre contratos activos— con tiempos adaptados para sectores más alejados como ${ciudad.barriosImportantes[ciudad.barriosImportantes.length - 1]}.`
     },
     {
       pregunta: `¿Tienen personal local en ${ciudad.nombre} para el servicio de ${servicioNombre}?`,

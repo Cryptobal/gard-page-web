@@ -30,7 +30,13 @@ interface ReviewSchemaProps {
     description?: string;
   };
   aggregateRating: AggregateRatingInput;
-  reviews: ReviewItem[];
+  /**
+   * Opcional. Solo incluir si hay testimonios VERIFICADOS (consentimiento
+   * escrito del cliente). Si se pasan reviews inventados, Google puede
+   * clasificar el schema como "self-serving review" y aplicar manual
+   * action. En su ausencia, el schema emite solo aggregateRating y sameAs.
+   */
+  reviews?: ReviewItem[];
   /**
    * URL externa de verificación del rating (ej: Google Business Profile).
    * CRÍTICO pasar esto cuando se use aggregateRating — evita clasificación
@@ -44,7 +50,8 @@ interface ReviewSchemaProps {
  * Optimiza rich snippets y ayuda a las IAs a citar evidencias verificables.
  */
 export default function ReviewSchema({ itemReviewed, aggregateRating, reviews, verificationUrl }: ReviewSchemaProps) {
-  const schema = {
+  const hasVerifiedReviews = Array.isArray(reviews) && reviews.length > 0;
+  const schema: Record<string, unknown> = {
     '@context': 'https://schema.org',
     '@type': 'Product',
     name: itemReviewed.name,
@@ -60,7 +67,10 @@ export default function ReviewSchema({ itemReviewed, aggregateRating, reviews, v
       ...(verificationUrl ? { url: verificationUrl } : {}),
     },
     ...(verificationUrl ? { sameAs: [verificationUrl] } : {}),
-    review: reviews.map((review) => ({
+  };
+
+  if (hasVerifiedReviews) {
+    schema.review = reviews!.map((review) => ({
       '@type': 'Review',
       name: review.name ?? `${itemReviewed.name} - Reseña`,
       reviewBody: review.reviewBody,
@@ -76,8 +86,8 @@ export default function ReviewSchema({ itemReviewed, aggregateRating, reviews, v
         name: review.author.name,
       },
       ...(review.url ? { url: review.url } : {}),
-    })),
-  };
+    }));
+  }
 
   return (
     <script

@@ -44,7 +44,7 @@ Gard Security es una empresa de seguridad privada con base en Santiago, Chile, e
 - ${activeGuards} guardias activos en operación
 - ${activeClients} clientes B2B activos en todo Chile
 - Presencia física en ${citiesCovered} ciudades: Santiago, Antofagasta, Valparaíso, Concepción, Iquique, Puerto Montt, Rancagua, Chillán, Temuco, Viña del Mar
-- Tiempo de respuesta menor a 15 minutos ante incidentes en Santiago
+- Tiempo de respuesta promedio ${companyStats.avgIncidentResponseMinutesSantiago} minutos ante incidentes en zona urbana de Santiago
 - Monitoreo 24/7 con operadores dedicados
 - Tecnología propia: Sistema OPAI para gestión operativa con IA
 - Empresa fundada en ${foundedYear}, con equipo fundador de ${years} años de experiencia en el rubro

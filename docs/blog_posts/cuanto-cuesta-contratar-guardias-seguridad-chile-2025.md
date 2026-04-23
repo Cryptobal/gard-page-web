@@ -257,7 +257,7 @@ Costo Base = (N° guardias) × (Costo guardia/mes según turno) × (Factor regi�
 | **Certificación OS10** | 100% personal | 60-70% | +40% más certificados |
 | **Tecnología incluida** | CCTV básico, checkpoints | Solo guardias | +$300k valor |
 | **Monitoreo 24/7** | Central propia | Subcontratado | Mayor control |
-| **Tiempo respuesta** | <15 min | 30-45 min | 2x más rápido |
+| **Tiempo respuesta (zona urbana)** | 30 min promedio | 30-45 min | Rango bajo del mercado |
 | **Continuidad** | 99.9% | 95-97% | Menos ausencias |
 | **Resultados logística** | -85% mermas | -40-50% | 1.7x mejor |
 
@@ -438,7 +438,7 @@ Costo Base = (N° guardias) × (Costo guardia/mes según turno) × (Factor regi�
 2. **Experiencia verificable** (referencias, años en el rubro)
 3. **Tecnología de respaldo** (CCTV, monitoreo, no solo guardias)
 4. **Cobertura de ausencias** (reemplazos garantizados)
-5. **Tiempo de respuesta** (<15 min en emergencias)
+5. **Tiempo de respuesta** (SLA claro, medido sobre contratos reales)
 6. **Precio competitivo** (pero no el más bajo)
 
 ### Recomendación Final
@@ -457,7 +457,7 @@ Costo Base = (N° guardias) × (Costo guardia/mes según turno) × (Factor regi�
 
 **Gard Security:** equipo fundador con más de 8 años protegiendo empresas en Chile
 - ✅ 100% personal certificado OS10 (minería)
-- ✅ Respuesta <15 minutos
+- ✅ Respuesta promedio 30 minutos en zona urbana Santiago
 - ✅ Tecnología incluida
 - ✅ Monitoreo 24/7 central propia
 - ✅ Cotización sin compromiso en 24-48h

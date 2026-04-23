@@ -69,7 +69,7 @@ export const industryFAQs: Record<string, FAQItem[]> = {
     },
     {
       question: '¿Qué hacen si ocurre un intento de robo en tránsito?',
-      answer: 'Nuestro protocolo incluye: activación inmediata de botón de pánico, notificación automática a Carabineros con ubicación exacta, despliegue de equipo de respuesta rápida más cercano, coordinación con autoridades para intercepción, y seguimiento hasta resolución. Contamos con tiempos de respuesta < 15 minutos en rutas principales.'
+      answer: 'Nuestro protocolo incluye: activación inmediata de botón de pánico, notificación automática a Carabineros con ubicación exacta, despliegue de equipo de respuesta rápida más cercano, coordinación con autoridades para intercepción, y seguimiento hasta resolución. Contamos con central de monitoreo 24/7 y tiempos de respuesta adaptados al tipo de sitio y zona geográfica.'
     }
   ],
   'edificios-corporativos': [

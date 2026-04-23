@@ -13,28 +13,9 @@ import ReviewSchema from '@/components/seo/ReviewSchema';
 import { companyStats } from '@/lib/data/company-stats';
 
 export default function SobreNosotrosClient() {
-  const reviews: Array<{
-    author: { name: string; type: 'Person' | 'Organization' };
-    datePublished: string;
-    ratingValue: number;
-    reviewBody: string;
-    name: string;
-  }> = [
-    {
-      author: { name: 'Cliente Corporativo', type: 'Person' as const },
-      datePublished: '2025-05-01',
-      ratingValue: 5,
-      reviewBody: 'Servicio confiable, respuesta <15 minutos y guardias OS10 auditados. Reportes claros y equipos profesionales.',
-      name: 'Resultados corporativos',
-    },
-    {
-      author: { name: 'Gerente de Logística', type: 'Person' as const },
-      datePublished: '2025-04-18',
-      ratingValue: 5,
-      reviewBody: 'Reducción de mermas -85% con control de accesos y supervisión 24/7. Excelente visibilidad operacional.',
-      name: 'Logística optimizada',
-    },
-  ];
+  // Reviews inventados (Fase 1.3 residual) removidos. El ReviewSchema mantiene
+  // aggregateRating verificable en GMB. Cuando haya testimonios reales en
+  // lib/data/testimonials.ts con consentimiento explícito se pasan al schema.
 
   return (
     <>
@@ -50,8 +31,7 @@ export default function SobreNosotrosClient() {
           description: 'Líder B2B en seguridad privada en Chile con 4.9/5 rating y 100% guardias OS10.',
         }}
         aggregateRating={{ ratingValue: 4.9, reviewCount: 57, bestRating: 5, worstRating: 1 }}
-        reviews={reviews}
-        verificationUrl="https://maps.app.goo.gl/ywW2rQEWu4g4xxxy8"
+        verificationUrl={companyStats.gmbShortUrl}
       />
       
       {/* Hero Section */}
@@ -112,7 +92,7 @@ export default function SobreNosotrosClient() {
             <h3 className="text-heading-4 mb-4">Datos operativos</h3>
             <ul className="space-y-2 text-muted-foreground">
               <li>• Continuidad operacional: 99.9%</li>
-              <li>• Tiempo de respuesta: &lt;15 minutos zonas urbanas</li>
+              <li>• Tiempo de respuesta promedio: {companyStats.avgIncidentResponseMinutesSantiago} minutos zonas urbanas</li>
               <li>• Reducción de mermas en logística: hasta -85%</li>
               <li>• Cobertura: Santiago, Antofagasta, Valparaíso, Concepción, Iquique, Puerto Montt, Rancagua, Chillán, Temuco, Viña del Mar</li>
             </ul>

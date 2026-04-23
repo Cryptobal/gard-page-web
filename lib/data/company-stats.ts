@@ -51,6 +51,28 @@ export const companyStats = {
   monitoringCenter247: true,
 
   /**
+   * Tiempo promedio de respuesta ante incidente en zona urbana (Santiago),
+   * en minutos. Medido internamente sobre contratos activos. No inflar a
+   * "<15 min" ni "tiempo récord": la honestidad verificable gana a Google
+   * y al cliente corporativo, que compara con lo que la industria entrega
+   * realmente (30-45 min).
+   */
+  avgIncidentResponseMinutesSantiago: 30,
+
+  /**
+   * Días hábiles promedio para onboarding de un nuevo sitio en Santiago
+   * (desde firma de contrato hasta guardia OS10 asignado y activo).
+   */
+  onboardingBusinessDaysSantiago: 5,
+
+  /**
+   * Continuidad operacional (uptime guardia vs contrato), medida como
+   * porcentaje de turnos cubiertos sobre turnos contratados. Auditable
+   * internamente sobre el histórico de contratos.
+   */
+  operationalContinuityPct: 99.9,
+
+  /**
    * URLs verificables del perfil público para cross-validación por Google
    * (evita clasificación de AggregateRating como "self-serving reviews").
    */

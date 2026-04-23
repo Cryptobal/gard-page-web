@@ -12,7 +12,7 @@ imageUrl: >-
   /images/blog/la-importancia-de-la-central-de-monitoreo-en-la-seguridad-de-empresas.jpg
 ---
 
-> **En resumen:** La central de monitoreo supervisa CCTV, alarmas y sensores en tiempo real 24/7. Gard Security opera central propia con operadores especializados y respuesta en menos de 15 minutos. Esencial para empresas e industrias.
+> **En resumen:** La central de monitoreo supervisa CCTV, alarmas y sensores en tiempo real 24/7. Gard Security opera central propia con operadores especializados, protocolos de reacción inmediata en sitio y coordinación con Carabineros y servicios de emergencia. Esencial para empresas e industrias.
 
 		<div data-elementor-type="wp-post" data-elementor-id="2729" class="elementor elementor-2729" data-elementor-post-type="post">
 				<div class="elementor-element elementor-element-11084899 e-flex e-con-boxed e-con e-parent" data-id="11084899" data-element_type="container">

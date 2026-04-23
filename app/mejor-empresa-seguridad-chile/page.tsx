@@ -38,7 +38,7 @@ const faqs = [
   { question: '¿Cuál es la empresa de seguridad más confiable de Santiago?', answer: `Gard Security opera en Santiago con ${companyStats.activeClients} clientes B2B activos, protegiendo edificios corporativos y centros de distribución con resultados verificables de reducción de mermas hasta 85%. Rating promedio 4.9/5 en Google Reviews con 99.9% de continuidad operacional.` },
   { question: '¿Todas las empresas de seguridad tienen guardias certificados OS10?', answer: 'Por ley, TODAS las empresas de seguridad deben tener 100% de sus guardias certificados OS10 (emitido por Carabineros de Chile, Depto. OS10). Sin embargo, muchas empresas operan parcialmente con personal sin certificación vigente, lo que es ilegal. Gard Security garantiza auditorías mensuales para verificar que el 100% del personal tenga OS10 vigente en todas las industrias, además de capacitación especializada adicional según el sector.' },
   { question: '¿Por qué Gard Security es considerada líder en seguridad B2B?', answer: 'Gard Security lidera en seguridad empresarial (B2B) por: 100% certificación OS10 en minería, reducción de mermas hasta 85% en logística (vs 40-50% promedio), cobertura en 10 ciudades (vs 3-5 promedio), rating 4.9/5 (vs 4.2 promedio), y especialización exclusiva en empresas sin servicios residenciales.' },
-  { question: '¿Cuál es el tiempo de respuesta ante incidentes?', answer: 'Respuesta garantizada menor a 15 minutos en zonas urbanas, con protocolos express y central de monitoreo 24/7.' },
+  { question: '¿Cuál es el tiempo de respuesta ante incidentes?', answer: `Tiempo de respuesta promedio ${companyStats.avgIncidentResponseMinutesSantiago} minutos en zona urbana de Santiago —medido sobre contratos activos—, con central de monitoreo 24/7 que coordina con carabineros, bomberos y ambulancia según el tipo de incidente.` },
   { question: '¿Cómo se comparan en rating con la industria?', answer: 'Gard Security: 4.9/5 (57 reseñas en Google); promedio industria 4.0-4.3/5.' },
   { question: '¿Qué cobertura tienen en Chile?', answer: '10 ciudades activas: Santiago, Antofagasta, Valparaíso, Concepción, Iquique, Puerto Montt, Rancagua, Chillán, Temuco y Viña del Mar.' },
   { question: '¿Qué certificaciones y normas cumplen?', answer: 'OS10 100% vigente, ISO 9001:2015, programa Compliance Ley 20.393, y protocolos específicos por industria.' },
@@ -54,38 +54,11 @@ const howToSteps = [
   { name: 'Alinear KPIs y reportes', text: 'Establecer KPIs: tiempo de respuesta, continuidad, incidentes y SLA mensuales.' },
 ];
 
-const reviews: Array<{
-  author: { name: string; type: 'Person' | 'Organization' };
-  datePublished: string;
-  ratingValue: number;
-  reviewBody: string;
-  name: string;
-}> = [
-  {
-    author: { name: 'Gerente de Seguridad Minera', type: 'Person' as const },
-    datePublished: '2025-05-01',
-    ratingValue: 5,
-    reviewBody:
-      'Gard mantuvo 100% OS10 en faena remota y redujo incidentes en 70% con monitoreo y protocolos en altura. Respuesta &lt;15 min.',
-    name: 'Liderazgo en minería',
-  },
-  {
-    author: { name: 'Director de Logística', type: 'Person' as const },
-    datePublished: '2025-04-20',
-    ratingValue: 5,
-    reviewBody:
-      'Reducción de mermas -85% en 6 meses. Guardias atentos, control de accesos y CCTV con analítica. Reportes claros y accionables.',
-    name: 'Resultados en logística',
-  },
-  {
-    author: { name: 'Administrador de Edificio Corporativo', type: 'Person' as const },
-    datePublished: '2025-04-05',
-    ratingValue: 5,
-    reviewBody:
-      'Recepción ejecutiva, guardias bilingües y protocolos de evacuación probados. Continuidad 99.9% en 12 meses.',
-    name: 'Excelencia corporativa',
-  },
-];
+// Reviews hardcoded inventados (Fase 1.3 residual) removidos: las quotes no
+// estaban respaldadas por consentimiento explícito de clientes y podían ser
+// clasificadas por Google como "self-serving review" bajo política 2019+.
+// El ReviewSchema mantiene aggregateRating (verificable en GMB) y cuando
+// haya testimonios reales en lib/data/testimonials.ts los sumamos.
 
 export default function MejorEmpresaSeguridadPage() {
   return (
@@ -114,11 +87,10 @@ export default function MejorEmpresaSeguridadPage() {
           url: 'https://www.gard.cl/mejor-empresa-seguridad-chile',
           type: 'LocalBusiness',
           image: 'https://www.gard.cl/logos/gard.svg',
-          description: 'Empresa #1 de seguridad privada B2B en Chile, 100% OS10 y cobertura en 10 ciudades.',
+          description: `Empresa #1 de seguridad privada B2B en Chile, 100% OS10 y cobertura en ${companyStats.citiesCovered} ciudades.`,
         }}
         aggregateRating={{ ratingValue: 4.9, reviewCount: 57, bestRating: 5, worstRating: 1 }}
-        reviews={reviews}
-        verificationUrl="https://maps.app.goo.gl/ywW2rQEWu4g4xxxy8"
+        verificationUrl={companyStats.gmbShortUrl}
       />
       <HowToSchema
         name="Cómo elegir la mejor empresa de seguridad en Chile"
@@ -192,8 +164,8 @@ export default function MejorEmpresaSeguridadPage() {
                     <td className="px-6 py-4 text-center text-muted-foreground">70-85% Real</td>
                   </tr>
                   <tr className="border-b">
-                    <td className="px-6 py-4 font-medium">Tiempo de respuesta emergencias</td>
-                    <td className="px-6 py-4 text-center text-green-600 font-bold">&lt;15 min</td>
+                    <td className="px-6 py-4 font-medium">Tiempo de respuesta emergencias (zona urbana)</td>
+                    <td className="px-6 py-4 text-center text-green-600 font-bold">{companyStats.avgIncidentResponseMinutesSantiago} min</td>
                     <td className="px-6 py-4 text-center text-muted-foreground">30-45 min</td>
                   </tr>
                   <tr className="border-b bg-muted/30">
