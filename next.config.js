@@ -201,6 +201,15 @@ const nextConfig = {
           { key: 'X-Robots-Tag', value: 'all' },
           { key: 'Cache-Control', value: 'public, max-age=86400, s-maxage=86400' },
         ],
+      },
+      {
+        // /cotizar usa cookies para asignar variante A/B; debe servirse fresh
+        // por usuario para que cada uno vea SU variante (no la cacheada).
+        source: '/cotizar',
+        headers: [
+          { key: 'Cache-Control', value: 'private, no-store, max-age=0, must-revalidate' },
+          { key: 'Vary', value: 'Cookie' },
+        ],
       }
     ];
   }

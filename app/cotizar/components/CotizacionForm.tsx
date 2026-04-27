@@ -28,6 +28,7 @@ import { useGtmEvent } from '../../components/EventTracker';
 import API_URLS from '@/app/config/api';
 import { getPaginaWebFromEmail } from '@/lib/opaiPayload';
 import { trackFormSubmission } from '@/lib/analytics/formTracking';
+import { getABVariantClient } from '@/lib/ab-testing-client';
 
 // Declaración para Google Maps API
 declare global {
@@ -156,6 +157,17 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
       }
     }
     fetchConfig();
+  }, []);
+
+  // A/B test exposure (Sprint 3)
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'cotizar_exposure',
+      ab_variant: getABVariantClient(),
+      variant_rendered: 'control',
+    });
   }, []);
 
   const form = useForm<FormValues>({
@@ -519,6 +531,7 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
             sessionStorage.removeItem('user_industry');
             sessionStorage.removeItem('user_service_slug');
             sessionStorage.removeItem('user_industry_slug');
+            const abVariant = getABVariantClient();
             trackFormSubmission({
               formType: 'cotizacion',
               additionalData: {
@@ -534,7 +547,15 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
                 landing_page: data.landing_page || '',
                 dotacion_puestos: data.dotacion?.length || 0,
                 dotacion_guardias: data.dotacion?.reduce((sum, d) => sum + d.cantidad, 0) || 0,
+                ab_variant: abVariant,
+                form_variant: 'control',
               }
+            });
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+              event: 'cotizacion_submit',
+              ab_variant: abVariant,
+              form_variant: 'control',
             });
             break;
           }

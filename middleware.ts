@@ -2,6 +2,22 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { esCombinacionValida } from '@/app/data/servicios-por-industria';
 
+// ── A/B test cotizar form (Sprint 3) ──
+const AB_COOKIE_NAME = 'gard_ab_cotizar_form';
+const AB_COOKIE_MAX_AGE = 60 * 60 * 24 * 90; // 90 días
+const AB_PATHS = [
+  '/cotizar',
+  '/ciudades',
+  '/industrias',
+  '/servicios',
+  '/empresa-seguridad-privada-chile',
+  '/guardias-de-seguridad-privada-para-empresas',
+];
+
+function isAbTestPath(pathname: string): boolean {
+  return AB_PATHS.some((p) => pathname === p || pathname.startsWith(p + '/'));
+}
+
 // Lista de ciudades válidas para comparar
 const CIUDADES_VALIDAS = [
   'santiago', 'valparaiso', 'concepcion', 'vina-del-mar', 'temuco', 'antofagasta',
@@ -53,15 +69,30 @@ export function middleware(request: NextRequest) {
   // Manejar URLs antiguas de landing-dinamico SOLAMENTE
   if (segments[0] === 'landing-dinamico' && segments.length === 3) {
     const [_, industria, servicio] = segments;
-    
+
     if (INDUSTRIAS_VALIDAS.includes(industria)) {
       url.pathname = `/servicios-por-industria/${servicio}/${industria}`;
       return NextResponse.redirect(url, 301);
     }
   }
-  
-  // Para todas las demás rutas, simplemente continuar
-  return NextResponse.next();
+
+  // ── A/B test: asignar cookie 50/50 en primera visita a paths relevantes ──
+  const response = NextResponse.next();
+  if (isAbTestPath(pathname)) {
+    const existing = request.cookies.get(AB_COOKIE_NAME)?.value;
+    if (existing !== 'control' && existing !== 'multistep') {
+      const variant: 'control' | 'multistep' = Math.random() < 0.5 ? 'control' : 'multistep';
+      response.cookies.set({
+        name: AB_COOKIE_NAME,
+        value: variant,
+        maxAge: AB_COOKIE_MAX_AGE,
+        path: '/',
+        sameSite: 'lax',
+        secure: process.env.NODE_ENV === 'production',
+      });
+    }
+  }
+  return response;
 }
 
 function isValidRoute(segments: string[]): boolean {
