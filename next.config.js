@@ -125,6 +125,18 @@ const nextConfig = {
         destination: '/servicios/drones-seguridad',
         permanent: true,
       },
+      // Paginations del blog antiguo (WordPress) — antes daban 404 final
+      // y GSC las reportaba como Soft 404 / redirect roto.
+      {
+        source: '/noticias-de-seguridad-privada/page/:page(\\d+)',
+        destination: '/blog/page/:page',
+        permanent: true,
+      },
+      {
+        source: '/noticias-de-seguridad-privada/:slug+',
+        destination: '/blog/:slug+',
+        permanent: true,
+      },
       {
         source: '/noticias-de-seguridad-privada',
         destination: '/blog',
