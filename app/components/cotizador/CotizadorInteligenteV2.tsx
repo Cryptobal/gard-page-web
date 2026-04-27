@@ -1008,7 +1008,7 @@ export default function CotizadorInteligenteV2() {
                       </span>
                       <span className="inline-flex items-center gap-1.5">
                         <Zap className="h-4 w-4 text-amber-500" />
-                        <span>Respuesta en menos de 5 min</span>
+                        <span>Respuesta en menos de 1 hora</span>
                       </span>
                       <span className="inline-flex items-center gap-1.5">
                         <Lock className="h-4 w-4 text-blue-600" />
