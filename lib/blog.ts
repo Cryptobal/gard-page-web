@@ -36,15 +36,17 @@ export const POSTS_PER_PAGE = 6;
 const postsDirectory = path.join(process.cwd(), 'docs/blog_posts');
 
 // Obtener todos los slugs de los posts
-export function getAllPostSlugs() {
+// App Router (Next.js 15): generateStaticParams espera [{ slug: '...' }],
+// no el formato legacy [{ params: { slug: '...' } }] del Pages Router.
+// Si devuelve formato incorrecto, las páginas se sirven dinámicamente
+// con `cache-control: no-store` y Google las marca como Soft 404.
+export function getAllPostSlugs(): Array<{ slug: string }> {
   const fileNames = fs.readdirSync(postsDirectory);
-  return fileNames.map((fileName) => {
-    return {
-      params: {
-        slug: fileName.replace(/\.md$/, ''),
-      },
-    };
-  });
+  return fileNames
+    .filter((fileName) => fileName.endsWith('.md'))
+    .map((fileName) => ({
+      slug: fileName.replace(/\.md$/, ''),
+    }));
 }
 
 // Obtener datos de un post específico por slug
