@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { esCombinacionValida } from '@/app/data/servicios-por-industria';
 
 // ── A/B test cotizar form (Sprint 3) ──
 const AB_COOKIE_NAME = 'gard_ab_cotizar_form';
@@ -17,12 +16,6 @@ const AB_PATHS = [
 function isAbTestPath(pathname: string): boolean {
   return AB_PATHS.some((p) => pathname === p || pathname.startsWith(p + '/'));
 }
-
-// Lista de ciudades válidas para comparar
-const CIUDADES_VALIDAS = [
-  'santiago', 'valparaiso', 'concepcion', 'vina-del-mar', 'temuco', 'antofagasta',
-  'iquique', 'puerto-montt', 'rancagua', 'chillan'
-];
 
 // Lista de servicios válidos
 const SERVICIOS_VALIDOS = [
@@ -41,13 +34,24 @@ const INDUSTRIAS_VALIDAS = [
   'sector-energetico', 'farmaceutica', 'instalaciones-deportivas'
 ];
 
-// Mapeo de servicios antiguos a nuevos
-const MAPEO_SERVICIOS_ANTIGUOS = {
+// Mapeo de slugs antiguos (URLs WordPress/Elementor) a slugs nuevos.
+// Usado por la redirección de /landing-dinamico/{industria}/{servicio}
+// hacia /servicios-por-industria/{servicio}/{industria}.
+const MAPEO_SERVICIOS_ANTIGUOS: Record<string, string> = {
   'guardias-privados': 'guardias-de-seguridad',
   'camaras-seguridad': 'seguridad-electronica',
   'alarmas': 'seguridad-electronica',
   'control-acceso': 'seguridad-electronica',
-  'monitoreo-remoto': 'central-monitoreo'
+  'monitoreo-remoto': 'central-monitoreo',
+};
+
+const MAPEO_INDUSTRIAS_ANTIGUAS: Record<string, string> = {
+  'hospitales': 'salud',
+  'corporativo': 'edificios-corporativos',
+  'logistica': 'transporte-y-logistica',
+  'oficinas': 'edificios-corporativos',
+  'colegios': 'educacion',
+  'universidades': 'educacion',
 };
 
 // Middleware para gestionar las diferentes rutas dinámicas
@@ -64,13 +68,19 @@ export function middleware(request: NextRequest) {
   // NO limpiar pathname - esto causaba problemas
   const segments = pathname.split('/').filter(Boolean);
   
-  // Manejar URLs antiguas de landing-dinamico SOLAMENTE
+  // Manejar URLs antiguas de landing-dinamico, normalizando tanto slugs
+  // antiguos de industria (hospitales→salud, corporativo→edificios-corporativos…)
+  // como de servicio (guardias-privados→guardias-de-seguridad, control-acceso→
+  // seguridad-electronica…). Antes solo aceptaba industrias ya en el slug
+  // nuevo, lo que dejaba 404 finales que GSC reportaba como Soft 404.
   if (segments[0] === 'landing-dinamico' && segments.length === 3) {
-    const [_, industria, servicio] = segments;
+    const [, industriaRaw, servicioRaw] = segments;
+    const industria = MAPEO_INDUSTRIAS_ANTIGUAS[industriaRaw] ?? industriaRaw;
+    const servicio = MAPEO_SERVICIOS_ANTIGUOS[servicioRaw] ?? servicioRaw;
 
-    if (INDUSTRIAS_VALIDAS.includes(industria)) {
+    if (INDUSTRIAS_VALIDAS.includes(industria) && SERVICIOS_VALIDOS.includes(servicio)) {
       url.pathname = `/servicios-por-industria/${servicio}/${industria}`;
-      return NextResponse.redirect(url, 301);
+      return NextResponse.redirect(url, 308);
     }
   }
 
@@ -91,33 +101,6 @@ export function middleware(request: NextRequest) {
     }
   }
   return response;
-}
-
-function isValidRoute(segments: string[]): boolean {
-  if (segments.length === 0) return true;
-  
-  // Rutas válidas de primer nivel
-  if (segments.length === 1) {
-    return ['blog', 'servicios', 'industrias', 'contacto', 'sobre-nosotros', 'tecnologia-seguridad'].includes(segments[0]);
-  }
-  
-  // Rutas ciudad/servicio
-  if (segments.length === 2) {
-    const [first, second] = segments;
-    return (
-      (CIUDADES_VALIDAS.includes(first) && SERVICIOS_VALIDOS.includes(second)) ||
-      (SERVICIOS_VALIDOS.includes(first) && INDUSTRIAS_VALIDAS.includes(second)) ||
-      (first === 'blog' && second.startsWith('tag'))
-    );
-  }
-  
-  // Rutas servicios-por-industria
-  if (segments.length === 3 && segments[0] === 'servicios-por-industria') {
-    const [_, servicio, industria] = segments;
-    return SERVICIOS_VALIDOS.includes(servicio) && INDUSTRIAS_VALIDAS.includes(industria);
-  }
-  
-  return false;
 }
 
 // Configurar el matcher para las rutas que necesitan procesamiento
