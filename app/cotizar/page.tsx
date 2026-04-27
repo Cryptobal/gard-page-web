@@ -1,11 +1,19 @@
 "use client";
 
 import CotizacionForm from './components/CotizacionForm';
+import CotizacionFormMultiStep from './components/CotizacionFormMultiStep';
 import UrlParamsProcessor from './components/UrlParamsProcessor';
 import { ArrowRight, Clipboard } from 'lucide-react';
 import GardHero from '@/components/layouts/GardHero';
-import { useRef, Suspense } from 'react';
-import Head from 'next/head';
+import { Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
+
+function CotizacionFormSwitch() {
+  const searchParams = useSearchParams();
+  const variant = searchParams?.get('v');
+  if (variant === 'multistep') return <CotizacionFormMultiStep />;
+  return <CotizacionForm />;
+}
 
 export default function CotizarPage() {
   // Función para desplazar al formulario cuando se hace clic en el botón
@@ -72,7 +80,9 @@ export default function CotizarPage() {
             </div>
             
             <div className="md:col-span-7">
-              <CotizacionForm />
+              <Suspense fallback={<CotizacionForm />}>
+                <CotizacionFormSwitch />
+              </Suspense>
             </div>
           </div>
         </div>
