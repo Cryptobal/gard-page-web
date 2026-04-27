@@ -633,14 +633,14 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
               <FormField control={form.control} name="nombre" render={({ field }) => (
                 <FormItem>
                   <FormLabel>Nombre <span className="text-red-500">*</span></FormLabel>
-                  <FormControl><Input placeholder="Tu nombre" {...field} /></FormControl>
+                  <FormControl><Input placeholder="Tu nombre" autoComplete="given-name" {...field} /></FormControl>
                   <FormMessage />
                 </FormItem>
               )} />
               <FormField control={form.control} name="apellido" render={({ field }) => (
                 <FormItem>
                   <FormLabel>Apellido <span className="text-red-500">*</span></FormLabel>
-                  <FormControl><Input placeholder="Tu apellido" {...field} /></FormControl>
+                  <FormControl><Input placeholder="Tu apellido" autoComplete="family-name" {...field} /></FormControl>
                   <FormMessage />
                 </FormItem>
               )} />
@@ -650,7 +650,7 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
               <FormField control={form.control} name="email" render={({ field }) => (
                 <FormItem>
                   <FormLabel>Email de contacto <span className="text-red-500">*</span></FormLabel>
-                  <FormControl><Input type="email" placeholder="correo@ejemplo.com" {...field} /></FormControl>
+                  <FormControl><Input type="email" placeholder="correo@ejemplo.com" autoComplete="email" {...field} /></FormControl>
                   <FormMessage />
                 </FormItem>
               )} />
@@ -658,7 +658,7 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
                 <FormItem>
                   <FormLabel>Número de teléfono <span className="text-red-500">*</span></FormLabel>
                   <FormControl>
-                    <Input type="tel" placeholder="912345678" maxLength={9} {...field}
+                    <Input type="tel" placeholder="912345678" maxLength={9} autoComplete="tel-national" {...field}
                       onChange={(e) => { field.onChange(e.target.value.replace(/\D/g, '')); }} />
                   </FormControl>
                   <FormMessage />
@@ -670,7 +670,7 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
             <FormField control={form.control} name="empresa" render={({ field }) => (
               <FormItem>
                 <FormLabel>Empresa <span className="text-red-500">*</span></FormLabel>
-                <FormControl><Input placeholder="Nombre de tu empresa" {...field} /></FormControl>
+                <FormControl><Input placeholder="Nombre de tu empresa" autoComplete="organization" {...field} /></FormControl>
                 <FormMessage />
               </FormItem>
             )} />
