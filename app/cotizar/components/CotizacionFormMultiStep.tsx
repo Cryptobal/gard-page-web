@@ -712,7 +712,7 @@ export default function CotizacionFormMultiStep({ prefillServicio, prefillIndust
             </svg>
           </div>
           <h2 className="text-heading-4 text-primary mb-4">¡Tu solicitud ha sido enviada!</h2>
-          <p className="text-body-base mb-6">Te contactaremos en los próximos minutos en horario hábil.</p>
+          <p className="text-body-base mb-6">Te contactaremos en menos de 1 hora en horario hábil.</p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center items-center mb-2">
             <a
               href={`https://wa.me/56982307771?text=${encodeURIComponent(
