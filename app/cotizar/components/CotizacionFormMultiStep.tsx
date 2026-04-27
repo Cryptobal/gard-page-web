@@ -87,6 +87,60 @@ type FormValues = z.infer<typeof formSchema>;
 
 const OPAI_URL = process.env.NEXT_PUBLIC_OPAI_API_URL || 'https://opai.gard.cl';
 
+// ─────────── Captura progresiva (partial_lead en localStorage) ───────────
+
+const PARTIAL_LEAD_KEY = 'gard_partial_lead_v1';
+const PARTIAL_LEAD_TTL_MS = 24 * 60 * 60 * 1000;
+
+type PartialLeadSelections = {
+  industriaId: string;
+  industriaValue: string;
+  cobertura: string;
+  cantidadId: string;
+  cantidad: number;
+  needsHelpCantidad: boolean;
+};
+
+type PartialLead = {
+  selections: PartialLeadSelections;
+  timestamp: number;
+};
+
+function savePartialLead(selections: PartialLeadSelections) {
+  if (typeof window === 'undefined') return;
+  try {
+    localStorage.setItem(PARTIAL_LEAD_KEY, JSON.stringify({ selections, timestamp: Date.now() }));
+  } catch {
+    // localStorage puede estar bloqueado (modo incógnito + cookies bloqueadas) — ignorar
+  }
+}
+
+function getPartialLead(): PartialLead | null {
+  if (typeof window === 'undefined') return null;
+  try {
+    const raw = localStorage.getItem(PARTIAL_LEAD_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as PartialLead;
+    if (!parsed?.selections || typeof parsed.timestamp !== 'number') return null;
+    if (Date.now() - parsed.timestamp > PARTIAL_LEAD_TTL_MS) {
+      localStorage.removeItem(PARTIAL_LEAD_KEY);
+      return null;
+    }
+    return parsed;
+  } catch {
+    return null;
+  }
+}
+
+function clearPartialLead() {
+  if (typeof window === 'undefined') return;
+  try {
+    localStorage.removeItem(PARTIAL_LEAD_KEY);
+  } catch {
+    // ignorar
+  }
+}
+
 function buildWhatsAppCotizacionMessage(nombre: string, apellido: string, empresa: string, detalle?: string): string {
   const base = `Hola, ${nombre}. Soy ${nombre} ${apellido} de ${empresa}. Te envío una cotización y el detalle de la cotización.`;
   return detalle?.trim() ? `${base}\n\n${detalle.trim()}` : base;
@@ -303,6 +357,7 @@ export default function CotizacionFormMultiStep({ prefillServicio, prefillIndust
   const [lastSuccessData, setLastSuccessData] = useState<{ nombre: string; apellido: string; empresa: string; cotizacion: string } | null>(null);
   const autocompleteInputRef = useRef<HTMLInputElement | null>(null);
   const [mapLoaded, setMapLoaded] = useState(false);
+  const [partialLead, setPartialLead] = useState<PartialLead | null>(null);
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -369,6 +424,25 @@ export default function CotizacionFormMultiStep({ prefillServicio, prefillIndust
   useEffect(() => {
     trackStep(currentStep, 'exposure');
   }, [currentStep]);
+
+  // Detectar partial lead pendiente al montar
+  useEffect(() => {
+    const pending = getPartialLead();
+    if (pending) {
+      setPartialLead(pending);
+      if (typeof window !== 'undefined') {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: 'cotiz_partial_lead_detected', variant: 'multistep' });
+      }
+    }
+  }, []);
+
+  // Persistir selecciones al llegar al paso 4 (antes de capturar datos personales)
+  useEffect(() => {
+    if (currentStep !== 4) return;
+    if (!selections.industriaValue) return;
+    savePartialLead(selections);
+  }, [currentStep, selections]);
 
   // Google Maps loader (solo cuando se llega a step 4)
   useEffect(() => {
@@ -523,6 +597,8 @@ export default function CotizacionFormMultiStep({ prefillServicio, prefillIndust
             });
             setFormStatus('success');
             form.reset();
+            clearPartialLead();
+            setPartialLead(null);
             sessionStorage.removeItem('user_service');
             sessionStorage.removeItem('user_industry');
             trackFormSubmission({
@@ -576,6 +652,36 @@ export default function CotizacionFormMultiStep({ prefillServicio, prefillIndust
     setDirection(1);
   };
 
+  const resumePartialLead = () => {
+    if (!partialLead) return;
+    const s = partialLead.selections;
+    setSelections({
+      industriaId: s.industriaId,
+      industriaValue: s.industriaValue,
+      cobertura: (s.cobertura as CoberturaId) || '',
+      cantidadId: s.cantidadId,
+      cantidad: s.cantidad,
+      needsHelpCantidad: s.needsHelpCantidad,
+    });
+    setValue('tipoIndustria', s.industriaValue);
+    setPartialLead(null);
+    setDirection(1);
+    setCurrentStep(4);
+    if (typeof window !== 'undefined') {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'cotiz_partial_lead_resumed', variant: 'multistep' });
+    }
+  };
+
+  const dismissPartialLead = () => {
+    clearPartialLead();
+    setPartialLead(null);
+    if (typeof window !== 'undefined') {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'cotiz_partial_lead_dismissed', variant: 'multistep' });
+    }
+  };
+
   if (formStatus === 'success') {
     return (
       <div className="bg-card rounded-xl shadow-sm p-6 md:p-8 border border-gray-200 dark:border-gray-700">
@@ -612,6 +718,33 @@ export default function CotizacionFormMultiStep({ prefillServicio, prefillIndust
 
   return (
     <div className="bg-card rounded-xl shadow-sm p-6 md:p-8 border border-gray-200 dark:border-gray-700">
+      <AnimatePresence>
+        {partialLead && (
+          <motion.div
+            key="partial-lead-banner"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.3 }}
+            className="mb-5 p-4 rounded-xl border border-amber-200 bg-amber-50 dark:bg-amber-900/20 dark:border-amber-700"
+          >
+            <p className="text-sm text-amber-900 dark:text-amber-200 mb-3">
+              👋 Te quedaste en una cotización
+              {partialLead.selections.industriaValue ? <> para <strong>{partialLead.selections.industriaValue}</strong></> : null}
+              . ¿Continuamos donde lo dejaste?
+            </p>
+            <div className="flex flex-wrap gap-2">
+              <Button type="button" size="sm" onClick={resumePartialLead} className="rounded-xl">
+                Sí, continuar
+              </Button>
+              <Button type="button" size="sm" variant="outline" onClick={dismissPartialLead} className="rounded-xl">
+                Empezar de cero
+              </Button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <ProgressBar current={currentStep} total={4} label={STEP_LABELS[currentStep - 1]} />
 
       <AnimatePresence mode="wait" custom={direction} initial={false}>

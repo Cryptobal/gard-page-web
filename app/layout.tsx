@@ -10,6 +10,7 @@ import ClientScripts from './components/ClientScripts';
 import ClientWrapper from './ClientWrapper';
 import { metadata } from './metadata';
 import LocalBusinessSchema from '@/components/seo/LocalBusinessSchema';
+import ExitIntentPopup from '@/components/ExitIntentPopup';
 
 // Obtener GTM ID desde variables de entorno
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || '';
@@ -76,6 +77,7 @@ export default function RootLayout({
             <main id="main-content" className="flex-grow">
               {children}
             </main>
+            <ExitIntentPopup />
             <Footer />
             <SpeedInsights />
             <Analytics />
