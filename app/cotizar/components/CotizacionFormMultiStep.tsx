@@ -53,6 +53,7 @@ import {
 import API_URLS from '@/app/config/api';
 import { getPaginaWebFromEmail } from '@/lib/opaiPayload';
 import { trackFormSubmission } from '@/lib/analytics/formTracking';
+import { getABVariantClient } from '@/lib/ab-testing-client';
 
 declare global {
   interface Window {
@@ -444,6 +445,17 @@ export default function CotizacionFormMultiStep({ prefillServicio, prefillIndust
     savePartialLead(selections);
   }, [currentStep, selections]);
 
+  // A/B test exposure (Sprint 3) — emite una vez al montar el componente
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'cotizar_exposure',
+      ab_variant: getABVariantClient(),
+      variant_rendered: 'multistep',
+    });
+  }, []);
+
   // Google Maps loader (solo cuando se llega a step 4)
   useEffect(() => {
     if (currentStep !== 4) return;
@@ -601,6 +613,7 @@ export default function CotizacionFormMultiStep({ prefillServicio, prefillIndust
             setPartialLead(null);
             sessionStorage.removeItem('user_service');
             sessionStorage.removeItem('user_industry');
+            const abVariant = getABVariantClient();
             trackFormSubmission({
               formType: 'cotizacion',
               additionalData: {
@@ -610,9 +623,16 @@ export default function CotizacionFormMultiStep({ prefillServicio, prefillIndust
                 form_variant: 'multistep',
                 cobertura_seleccionada: selections.cobertura,
                 cantidad_bucket: selections.cantidadId,
+                ab_variant: abVariant,
               },
             });
-            trackStep(4, 'submit', { industria: data.tipoIndustria, cobertura: selections.cobertura });
+            trackStep(4, 'submit', { industria: data.tipoIndustria, cobertura: selections.cobertura, ab_variant: abVariant });
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+              event: 'cotizacion_submit',
+              ab_variant: abVariant,
+              form_variant: 'multistep',
+            });
             break;
           }
           const errBody = await response.text().catch(() => '');
