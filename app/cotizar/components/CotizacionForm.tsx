@@ -104,6 +104,17 @@ const SERVICIOS_DEFAULT = [
 
 type FormValues = z.infer<typeof formSchema>;
 
+const FIELD_LABELS: Partial<Record<keyof FormValues, string>> = {
+  nombre: 'Nombre',
+  apellido: 'Apellido',
+  email: 'Email de contacto',
+  telefono: 'Número de teléfono',
+  empresa: 'Empresa',
+  direccion: 'Dirección',
+  tipoIndustria: 'Tipo de industria',
+  servicioRequerido: 'Servicio requerido',
+};
+
 interface CotizacionFormProps {
   prefillServicio?: string;
   prefillIndustria?: string;
@@ -616,7 +627,14 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
         </div>
       ) : (
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          <form onSubmit={form.handleSubmit(onSubmit, (errors) => {
+            const firstField = Object.keys(errors)[0];
+            if (firstField && typeof document !== 'undefined') {
+              const el = document.querySelector(`[name="${firstField}"]`) as HTMLElement | null;
+              el?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              el?.focus({ preventScroll: true });
+            }
+          })} className="space-y-6">
             {/* Honeypot anti-spam: campo invisible que los bots llenan */}
             <input
               type="text"
@@ -973,6 +991,21 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
             {formStatus === 'error' && (
               <div className="bg-red-50 dark:bg-red-900/20 p-4 rounded-md text-red-700 dark:text-red-300 text-sm">
                 Hubo un error al enviar. Intenta nuevamente.
+              </div>
+            )}
+
+            {/* ── Banner de validación ── */}
+            {form.formState.isSubmitted && Object.keys(form.formState.errors).length > 0 && (
+              <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-700 p-4 rounded-md text-sm text-red-700 dark:text-red-300">
+                <p className="font-semibold mb-1">Revisa estos campos antes de enviar:</p>
+                <ul className="list-disc list-inside space-y-0.5">
+                  {Object.entries(form.formState.errors).map(([field, error]) => (
+                    <li key={field}>
+                      <span className="font-medium">{FIELD_LABELS[field as keyof FormValues] || field}</span>
+                      {error?.message ? <>: {error.message as string}</> : null}
+                    </li>
+                  ))}
+                </ul>
               </div>
             )}
 

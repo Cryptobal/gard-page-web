@@ -9,7 +9,7 @@
 // duplicación. Hoy es duplicación intencional para mantener
 // CotizacionForm.tsx intacto durante el experimento.
 
-import React, { useState, useEffect, useRef, RefCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback, RefCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -85,6 +85,16 @@ const formSchema = z.object({
 });
 
 type FormValues = z.infer<typeof formSchema>;
+
+const FIELD_LABELS: Partial<Record<keyof FormValues, string>> = {
+  nombre: 'Nombre',
+  apellido: 'Apellido',
+  email: 'Email corporativo',
+  telefono: 'Teléfono',
+  empresa: 'Empresa',
+  direccion: 'Dirección del servicio',
+  tipoIndustria: 'Tipo de industria (paso 1)',
+};
 
 const OPAI_URL = process.env.NEXT_PUBLIC_OPAI_API_URL || 'https://opai.gard.cl';
 
@@ -357,6 +367,7 @@ export default function CotizacionFormMultiStep({ prefillServicio, prefillIndust
   const [honeypot, setHoneypot] = useState('');
   const [lastSuccessData, setLastSuccessData] = useState<{ nombre: string; apellido: string; empresa: string; cotizacion: string } | null>(null);
   const autocompleteInputRef = useRef<HTMLInputElement | null>(null);
+  const autocompleteAttachedRef = useRef(false);
   const [mapLoaded, setMapLoaded] = useState(false);
   const [partialLead, setPartialLead] = useState<PartialLead | null>(null);
 
@@ -388,8 +399,54 @@ export default function CotizacionFormMultiStep({ prefillServicio, prefillIndust
 
   const { setValue } = form;
 
+  // Attach Google Maps autocomplete al input. Idempotente: solo conecta una vez
+  // por instancia de elemento. Llamado tanto desde el ref callback (cuando el
+  // input monta) como desde el effect que setea mapLoaded=true (cuando Maps
+  // termina de cargar después de que el input ya estaba en el DOM).
+  const attachAutocomplete = useCallback((element: HTMLInputElement | null) => {
+    if (!element) return;
+    if (autocompleteAttachedRef.current) return;
+    if (typeof window === 'undefined' || !window.google?.maps?.places) return;
+    autocompleteAttachedRef.current = true;
+    const autocomplete = new window.google.maps.places.Autocomplete(element, {
+      types: ['address'],
+      componentRestrictions: { country: 'cl' },
+    });
+    autocomplete.setOptions({ fields: ['formatted_address', 'geometry', 'address_components'] });
+    autocomplete.addListener('place_changed', () => {
+      const place = autocomplete.getPlace();
+      if (!place.address_components) return;
+      setValue('direccion', place.formatted_address || '');
+      let comuna = '';
+      let ciudad = '';
+      let region = '';
+      place.address_components.forEach((component: any) => {
+        const types = component.types;
+        if (types.includes('locality')) ciudad = component.long_name;
+        if (types.includes('administrative_area_level_1')) region = component.long_name;
+        if (
+          types.includes('administrative_area_level_3') ||
+          types.includes('sublocality_level_1') ||
+          types.includes('sublocality')
+        ) {
+          comuna = component.long_name;
+        }
+      });
+      if (region && (region.includes('Metropolitana') || region.includes('Santiago'))) {
+        ciudad = 'Santiago';
+      }
+      setValue('comuna', comuna);
+      setValue('ciudad', ciudad);
+      if (place.geometry && place.geometry.location) {
+        setValue('latitude', place.geometry.location.lat());
+        setValue('longitude', place.geometry.location.lng());
+      }
+    });
+  }, [setValue]);
+
   const autocompleteRef: RefCallback<HTMLInputElement> = (element) => {
     autocompleteInputRef.current = element;
+    if (element && mapLoaded) attachAutocomplete(element);
   };
 
   // UTM + landing capture (replicado de CotizacionForm)
@@ -456,10 +513,15 @@ export default function CotizacionFormMultiStep({ prefillServicio, prefillIndust
     });
   }, []);
 
-  // Google Maps loader (solo cuando se llega a step 4)
+  // Google Maps loader — al montar el componente, no gateado por step 4.
+  // El control variant lo hace así y funciona; gatear al step 4 introduce
+  // un race entre el ref callback del input y el effect de attach.
   useEffect(() => {
-    if (currentStep !== 4) return;
     if (mapLoaded) return;
+    if (typeof window !== 'undefined' && window.google?.maps?.places) {
+      setMapLoaded(true);
+      return;
+    }
     const loader = new Loader({
       apiKey: 'AIzaSyBHIoHJDp6StLJlUAQV_gK7woFsEYgbzHY',
       version: 'weekly',
@@ -468,46 +530,15 @@ export default function CotizacionFormMultiStep({ prefillServicio, prefillIndust
     loader.load().then(() => setMapLoaded(true)).catch((error) => {
       console.error('Error cargando Google Maps API:', error);
     });
-  }, [currentStep, mapLoaded]);
+  }, [mapLoaded]);
 
-  // Google Maps autocomplete
+  // Cuando Maps termina de cargar y el input ya está en el DOM (caso: usuario
+  // llega a paso 4 antes de que cargue Maps), conectar autocomplete.
   useEffect(() => {
-    if (!mapLoaded || !autocompleteInputRef.current) return;
-    const autocomplete = new window.google.maps.places.Autocomplete(autocompleteInputRef.current, {
-      types: ['address'],
-      componentRestrictions: { country: 'cl' },
-    });
-    autocomplete.setOptions({ fields: ['formatted_address', 'geometry', 'address_components'] });
-    autocomplete.addListener('place_changed', () => {
-      const place = autocomplete.getPlace();
-      if (!place.address_components) return;
-      setValue('direccion', place.formatted_address || '');
-      let comuna = '';
-      let ciudad = '';
-      let region = '';
-      place.address_components.forEach((component: any) => {
-        const types = component.types;
-        if (types.includes('locality')) ciudad = component.long_name;
-        if (types.includes('administrative_area_level_1')) region = component.long_name;
-        if (
-          types.includes('administrative_area_level_3') ||
-          types.includes('sublocality_level_1') ||
-          types.includes('sublocality')
-        ) {
-          comuna = component.long_name;
-        }
-      });
-      if (region && (region.includes('Metropolitana') || region.includes('Santiago'))) {
-        ciudad = 'Santiago';
-      }
-      setValue('comuna', comuna);
-      setValue('ciudad', ciudad);
-      if (place.geometry && place.geometry.location) {
-        setValue('latitude', place.geometry.location.lat());
-        setValue('longitude', place.geometry.location.lng());
-      }
-    });
-  }, [mapLoaded, setValue]);
+    if (mapLoaded && autocompleteInputRef.current) {
+      attachAutocomplete(autocompleteInputRef.current);
+    }
+  }, [mapLoaded, attachAutocomplete]);
 
   const goToStep = (next: number) => {
     setDirection(next > currentStep ? 1 : -1);
@@ -653,6 +684,22 @@ export default function CotizacionFormMultiStep({ prefillServicio, prefillIndust
       console.error('Error al enviar el formulario:', error);
     } finally {
       setIsSubmitting(false);
+    }
+  };
+
+  const onSubmitError = (errors: Record<string, { message?: string } | undefined>) => {
+    // Si falta tipoIndustria (campo del paso 1, oculto en paso 4), volver al paso 1.
+    if (errors.tipoIndustria) {
+      setDirection(-1);
+      setCurrentStep(1);
+      return;
+    }
+    // Scroll al primer campo con error visible.
+    const firstField = Object.keys(errors)[0];
+    if (firstField && typeof document !== 'undefined') {
+      const el = document.querySelector(`[name="${firstField}"]`) as HTMLElement | null;
+      el?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      el?.focus({ preventScroll: true });
     }
   };
 
@@ -848,7 +895,7 @@ export default function CotizacionFormMultiStep({ prefillServicio, prefillIndust
               <p className="text-sm text-muted-foreground mb-5">Completa tus datos y nuestro equipo te contacta hoy.</p>
 
               <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
+                <form onSubmit={form.handleSubmit(onSubmit, onSubmitError)} className="space-y-5">
                   {/* Honeypot */}
                   <input
                     type="text"
@@ -936,6 +983,21 @@ export default function CotizacionFormMultiStep({ prefillServicio, prefillIndust
                   {formStatus === 'error' && (
                     <div className="bg-red-50 dark:bg-red-900/20 p-4 rounded-md text-red-700 dark:text-red-300 text-sm">
                       Hubo un error al enviar. Intenta nuevamente.
+                    </div>
+                  )}
+
+                  {/* Banner de validación: lista de campos faltantes/inválidos */}
+                  {form.formState.isSubmitted && Object.keys(form.formState.errors).length > 0 && (
+                    <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-700 p-4 rounded-md text-sm text-red-700 dark:text-red-300">
+                      <p className="font-semibold mb-1">Revisa estos campos antes de enviar:</p>
+                      <ul className="list-disc list-inside space-y-0.5">
+                        {Object.entries(form.formState.errors).map(([field, error]) => (
+                          <li key={field}>
+                            <span className="font-medium">{FIELD_LABELS[field as keyof FormValues] || field}</span>
+                            {error?.message ? <>: {error.message as string}</> : null}
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   )}
 
