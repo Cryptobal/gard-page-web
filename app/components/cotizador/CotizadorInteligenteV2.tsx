@@ -781,7 +781,7 @@ export default function CotizadorInteligenteV2() {
                 <Send className="h-4 w-4" />
                 <span>Solicitar Cotización</span>
               </button>
-              <p className="text-xs text-muted-foreground mt-3">Te contactaremos en los próximos minutos en horario hábil.</p>
+              <p className="text-xs text-muted-foreground mt-3">Te contactaremos en menos de 1 hora en horario hábil.</p>
             </div>
           </motion.div>
           

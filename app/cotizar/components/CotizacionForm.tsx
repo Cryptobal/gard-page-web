@@ -590,7 +590,7 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
             </svg>
           </div>
           <h2 className="text-heading-4 text-primary mb-4">¡Tu solicitud ha sido enviada correctamente!</h2>
-          <p className="text-body-base mb-6">Nuestro equipo comercial revisará tu requerimiento y te contactará en menos de 12 horas hábiles.</p>
+          <p className="text-body-base mb-6">Nuestro equipo comercial revisará tu requerimiento y te contactará en menos de 1 hora en horario hábil.</p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center items-center mb-6">
             <a
               href={`https://wa.me/56982307771?text=${encodeURIComponent(

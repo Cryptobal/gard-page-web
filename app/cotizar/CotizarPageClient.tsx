@@ -50,7 +50,7 @@ export default function CotizarPageClient({ variant }: CotizarPageClientProps) {
             <div className="md:col-span-5">
               <h2 className="text-heading-2 mb-6">Solicita tu cotización personalizada</h2>
               <p className="text-body-lg text-muted-foreground mb-8">
-                En Gard Security te ofrecemos soluciones adaptadas específicamente a tus necesidades de seguridad. Completa el formulario y nuestro equipo te contactará en menos de 12 horas hábiles.
+                En Gard Security te ofrecemos soluciones adaptadas específicamente a tus necesidades de seguridad. Completa el formulario y nuestro equipo te contactará en menos de 1 hora en horario hábil.
               </p>
 
               <div className="bg-muted/20 p-6 rounded-xl mb-8">
