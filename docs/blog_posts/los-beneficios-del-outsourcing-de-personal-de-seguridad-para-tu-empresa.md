@@ -27,7 +27,7 @@ imageUrl: >-
 <p>En un mundo cada vez más complejo y desafiante, la seguridad es una prioridad esencial para cualquier empresa. Externalizar o hacer outsourcing de personal de seguridad se ha convertido en una estrategia efectiva para muchas organizaciones que buscan mejorar la seguridad, reducir costos y centrarse en sus competencias principales. En este post, exploraremos los beneficios de esta práctica y cómo puede transformar la gestión de seguridad en tu empresa.</p><p><br></p>
 <p></p>
 <p></p>
-<h1 class="wp-block-heading">Beneficios de Externalizar el Personal de Seguridad</h1>
+<h2 class="wp-block-heading">Beneficios de Externalizar el Personal de Seguridad</h2>
 <p></p>
 <p></p>
 <h3 class="wp-block-heading" id="h-mejora-en-la-calidad-del-servicio">Mejora en la Calidad del Servicio</h3>

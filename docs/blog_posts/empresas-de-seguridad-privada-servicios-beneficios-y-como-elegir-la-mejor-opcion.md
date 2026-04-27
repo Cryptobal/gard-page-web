@@ -24,7 +24,7 @@ imageUrl: >-
 				<div class="elementor-element elementor-element-372decb elementor-widget elementor-widget-text-editor" data-id="372decb" data-element_type="widget" data-widget_type="text-editor.default">
 				<div class="elementor-widget-container">
 									<p></p>
-<h1 id="h-empresas-de-seguridad-privada" class="wp-block-heading">Empresas de Seguridad Privada</h1>
+<h2 id="h-empresas-de-seguridad-privada" class="wp-block-heading">Empresas de Seguridad Privada</h2>
 <p></p>
 <p></p>
 <p>Descubre todo sobre las empresas de seguridad privada: servicios, beneficios y cómo elegir la mejor opción para tus necesidades. Protege tu tranquilidad con expertos en seguridad.</p>

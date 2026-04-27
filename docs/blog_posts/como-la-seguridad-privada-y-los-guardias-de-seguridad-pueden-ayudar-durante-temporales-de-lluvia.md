@@ -27,7 +27,7 @@ imageUrl: >-
 <hr class="wp-block-separator has-alpha-channel-opacity">
 <p></p>
 <p></p>
-<h1 id="h-seguridad-privada-y-guardias-de-seguridad-apoyando-en-temporales" class="wp-block-heading">Seguridad Privada y Guardias de Seguridad apoyando en temporales</h1>
+<h2 id="h-seguridad-privada-y-guardias-de-seguridad-apoyando-en-temporales" class="wp-block-heading">Seguridad Privada y Guardias de Seguridad apoyando en temporales</h2>
 <p></p>
 <p></p>
 <p>Descubre cómo la seguridad privada y los guardias de seguridad son esenciales durante temporales de lluvia, protegiendo propiedades y personas en la zona central de Chile.</p>

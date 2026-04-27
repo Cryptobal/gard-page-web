@@ -17,7 +17,7 @@ imageUrl: >-
 ---
 
 
-<h1 class="wp-block-heading">Seguridad en estadios</h1>
+<h2 class="wp-block-heading">Seguridad en estadios</h2>
 
 
 

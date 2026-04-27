@@ -24,7 +24,7 @@ imageUrl: >-
 				<div class="elementor-element elementor-element-d866279 elementor-widget elementor-widget-text-editor" data-id="d866279" data-element_type="widget" data-widget_type="text-editor.default">
 				<div class="elementor-widget-container">
 									
-<h1 class="wp-block-heading" id="h-por-que-gard-security-se-destaca-entre-g4s-y-securitas">¿Por qué Gard Security se destaca entre G4S y Securitas?</h1>
+<h2 class="wp-block-heading" id="h-por-que-gard-security-se-destaca-entre-g4s-y-securitas">¿Por qué Gard Security se destaca entre G4S y Securitas?</h2>
 
 
 

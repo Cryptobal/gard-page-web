@@ -19,7 +19,7 @@ imageUrl: >-
 ---
 
 
-<h1 class="wp-block-heading" id="h-gard-security-respuesta-rapida-y-efectiva-ante-apagones-generales"><strong>Gard Security: Respuesta rápida y efectiva ante apagones generales</strong></h1>
+<h2 class="wp-block-heading" id="h-gard-security-respuesta-rapida-y-efectiva-ante-apagones-generales"><strong>Gard Security: Respuesta rápida y efectiva ante apagones generales</strong></h2>
 
 
 

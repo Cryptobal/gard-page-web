@@ -31,7 +31,7 @@ imageUrl: >-
 <p><br></p>
 <p></p>
 <p></p>
-<h1 class="wp-block-heading">¿Qué es una Central de Monitoreo?</h1>
+<h2 class="wp-block-heading">¿Qué es una Central de Monitoreo?</h2>
 <p></p>
 <p></p>
 <p>Una central de monitoreo es una instalación equipada con tecnología avanzada y personal especializado, dedicada a supervisar y gestionar sistemas de seguridad en tiempo real. Esta central recibe y analiza datos provenientes de diferentes dispositivos de seguridad como cámaras de vigilancia, sistemas de alarma, y sensores de movimiento. La información recopilada se utiliza para detectar y responder a incidentes de seguridad de manera oportuna y efectiva.</p>

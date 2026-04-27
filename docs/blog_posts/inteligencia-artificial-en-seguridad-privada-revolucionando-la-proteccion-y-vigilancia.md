@@ -24,7 +24,7 @@ imageUrl: >-
 				<div class="elementor-element elementor-element-3e07dcdc elementor-widget elementor-widget-text-editor" data-id="3e07dcdc" data-element_type="widget" data-widget_type="text-editor.default">
 				<div class="elementor-widget-container">
 									
-<h1 class="wp-block-heading" id="h-inteligencia-artificial-en-seguridad-privada">Inteligencia Artificial en Seguridad Privada</h1>
+<h2 class="wp-block-heading" id="h-inteligencia-artificial-en-seguridad-privada">Inteligencia Artificial en Seguridad Privada</h2>
 
 
 

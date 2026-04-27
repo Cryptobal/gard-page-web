@@ -22,10 +22,9 @@ imageUrl: /images/blog/seguridad-en-industrias-criticas.jpg
 				<div class="elementor-element elementor-element-151c9e9d elementor-widget elementor-widget-text-editor" data-id="151c9e9d" data-element_type="widget" data-widget_type="text-editor.default">
 				<div class="elementor-widget-container">
 									 <!-- Título de la página -->
-<title>Seguridad en Industrias Críticas: Minería y Transporte de Carga</title>
 
 <!-- Encabezado principal -->
-<h1 id="seguridad-en-industrias-criticas">Seguridad en Industrias Críticas</h1>
+<h2 id="seguridad-en-industrias-criticas">Seguridad en Industrias Críticas</h2>
 
 <!-- Introducción -->
 <p>Descubre cómo implementar soluciones de seguridad efectivas en industrias críticas como la minería y el transporte de carga. Protege tus operaciones y asegura el éxito.</p>

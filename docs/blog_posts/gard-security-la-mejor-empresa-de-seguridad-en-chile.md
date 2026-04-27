@@ -26,7 +26,7 @@ imageUrl: /images/blog/gard-security-la-mejor-empresa-de-seguridad-en-chile.jpg
 			<div class="elementor-widget-wrap elementor-element-populated">
 						<div class="elementor-element elementor-element-28df136 elementor-widget elementor-widget-heading" data-id="28df136" data-element_type="widget" data-widget_type="heading.default">
 				<div class="elementor-widget-container">
-					<h1 class="elementor-heading-title elementor-size-large"><a href="https://gard.cl/">Cómo Elegir la Mejor Empresa de Guardias de Seguridad​</a></h1>				</div>
+					<h2 class="elementor-heading-title elementor-size-large"><a href="https://gard.cl/">Cómo Elegir la Mejor Empresa de Guardias de Seguridad​</a></h2>				</div>
 				</div>
 				<div class="elementor-element elementor-element-2af2add elementor-widget elementor-widget-text-editor" data-id="2af2add" data-element_type="widget" data-widget_type="text-editor.default">
 				<div class="elementor-widget-container">

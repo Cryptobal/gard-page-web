@@ -19,7 +19,7 @@ imageUrl: /images/blog/prevencion-de-incendios-forestales.jpg
 			<div class="elementor-widget-wrap elementor-element-populated">
 						<div class="elementor-element elementor-element-c8d0960 elementor-widget elementor-widget-heading" data-id="c8d0960" data-element_type="widget" data-widget_type="heading.default">
 				<div class="elementor-widget-container">
-					<h1 class="elementor-heading-title elementor-size-default">La importancia de la seguridad privada en la prevención de incendios forestales</h1>				</div>
+					<h2 class="elementor-heading-title elementor-size-default">La importancia de la seguridad privada en la prevención de incendios forestales</h2>				</div>
 				</div>
 				<div class="elementor-element elementor-element-8fb1392 elementor-widget elementor-widget-image" data-id="8fb1392" data-element_type="widget" data-widget_type="image.default">
 				<div class="elementor-widget-container">

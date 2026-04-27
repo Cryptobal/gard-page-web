@@ -20,10 +20,9 @@ imageUrl: /images/blog/claves-en-la-seguridad-perimetral.jpg
 				<div class="elementor-element elementor-element-5bc3138f elementor-widget elementor-widget-text-editor" data-id="5bc3138f" data-element_type="widget" data-widget_type="text-editor.default">
 				<div class="elementor-widget-container">
 									<!-- Título de la página -->
-<title>Seguridad Perimetral en Empresas: Innovaciones y Casos de Éxito</title>
 
 <!-- Encabezado principal -->
-<h1 id="importancia-seguridad-perimetral-empresas">Importancia de la seguridad perimetral en empresas: Casos de éxito y soluciones innovadoras</h1>
+<h2 id="importancia-seguridad-perimetral-empresas">Importancia de la seguridad perimetral en empresas: Casos de éxito y soluciones innovadoras</h2>
 
 <!-- Introducción -->
 <h2 id="introduccion">Introducción</h2>

@@ -21,7 +21,7 @@ imageUrl: >-
 				<div class="elementor-element elementor-element-6fea03a4 elementor-widget elementor-widget-text-editor" data-id="6fea03a4" data-element_type="widget" data-widget_type="text-editor.default">
 				<div class="elementor-widget-container">
 									
-<h1 class="wp-block-heading" id="h-importancia-de-los-guardias-de-seguridad-en-empresas-de-seguridad-privada">Importancia de los guardias de seguridad en empresas de seguridad privada</h1>
+<h2 class="wp-block-heading" id="h-importancia-de-los-guardias-de-seguridad-en-empresas-de-seguridad-privada">Importancia de los guardias de seguridad en empresas de seguridad privada</h2>
 
 
 

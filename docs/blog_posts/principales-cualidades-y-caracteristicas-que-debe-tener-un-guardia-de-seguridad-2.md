@@ -24,7 +24,7 @@ imageUrl: >-
 			<div class="elementor-widget-wrap elementor-element-populated">
 						<div class="elementor-element elementor-element-62b01a0e elementor-widget elementor-widget-heading" data-id="62b01a0e" data-element_type="widget" data-widget_type="heading.default">
 				<div class="elementor-widget-container">
-					<h1 class="elementor-heading-title elementor-size-large"><a href="https://gard.cl/">Principales cualidades y características que debe tener un Guardia de Seguridad</a></h1>				</div>
+					<h2 class="elementor-heading-title elementor-size-large"><a href="https://gard.cl/">Principales cualidades y características que debe tener un Guardia de Seguridad</a></h2>				</div>
 				</div>
 				<div class="elementor-element elementor-element-2bcb4f8f elementor-widget elementor-widget-text-editor" data-id="2bcb4f8f" data-element_type="widget" data-widget_type="text-editor.default">
 				<div class="elementor-widget-container">

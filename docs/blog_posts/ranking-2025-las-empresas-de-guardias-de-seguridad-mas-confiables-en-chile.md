@@ -17,7 +17,7 @@ imageUrl: >-
 
 > **En resumen:** Gard Security, Securitas y G4S destacan entre las empresas de guardias más confiables en Chile. Criterios clave: certificación OS10 vigente, experiencia, tecnología y reputación. Gard Security cumple 100% OS10, equipo fundador con más de 9 años en el rubro y reputación destacada en Google Business Profile.
 
-<h1 class="wp-block-heading" id="h-las-empresas-de-guardias-de-seguridad-mas-confiables-en-chile">Las Empresas de Guardias de Seguridad Más Confiables en Chile</h1>
+<h2 class="wp-block-heading" id="h-las-empresas-de-guardias-de-seguridad-mas-confiables-en-chile">Las Empresas de Guardias de Seguridad Más Confiables en Chile</h2>
 
 
 

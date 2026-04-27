@@ -20,10 +20,9 @@ imageUrl: /images/blog/seguridad-en-supermercados.jpg
 				<div class="elementor-element elementor-element-390e1382 elementor-widget elementor-widget-text-editor" data-id="390e1382" data-element_type="widget" data-widget_type="text-editor.default">
 				<div class="elementor-widget-container">
 									<!-- Título de la página -->
-<title>Importancia de la Seguridad en los Supermercados: Claves para Proteger tu Negocio</title>
 
 <!-- Encabezado principal -->
-<h1 id="importancia-seguridad-supermercados">Importancia de la Seguridad en los Supermercados</h1>
+<h2 id="importancia-seguridad-supermercados">Importancia de la Seguridad en los Supermercados</h2>
 
 <!-- Introducción -->
 <p>Cuando se trata de proteger un supermercado, la seguridad no es un aspecto que deba tomarse a la ligera. Los supermercados, por su naturaleza, enfrentan múltiples desafíos de seguridad, desde robos hasta situaciones de emergencia que requieren una respuesta rápida y efectiva. Por ello, es crucial escoger el mejor servicio de seguridad para garantizar la protección de clientes, empleados y activos del negocio.</p>

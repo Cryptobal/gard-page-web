@@ -20,7 +20,7 @@ imageUrl: /images/blog/trabajo-de-guarida-de-seguridad.jpg
 				<div class="elementor-element elementor-element-1e9346eb elementor-widget elementor-widget-text-editor" data-id="1e9346eb" data-element_type="widget" data-widget_type="text-editor.default">
 				<div class="elementor-widget-container">
 									<p></p>
-<h1 class="wp-block-heading">Escoger la mejor empresa de seguridad para trabajar</h1>
+<h2 class="wp-block-heading">Escoger la mejor empresa de seguridad para trabajar</h2>
 <p></p>
 <p></p>
 <h2 class="wp-block-heading">Introducción</h2>

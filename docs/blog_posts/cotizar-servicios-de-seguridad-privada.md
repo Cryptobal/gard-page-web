@@ -15,7 +15,7 @@ imageUrl: /images/blog/cotizar-servicios-de-seguridad-privada.jpg
 ---
 
 
-<h1 class="wp-block-heading" id="h-cotizar-seguridad-privada-en-chile">Cotizar Seguridad Privada en Chile</h1>
+<h2 class="wp-block-heading" id="h-cotizar-seguridad-privada-en-chile">Cotizar Seguridad Privada en Chile</h2>
 
 
 

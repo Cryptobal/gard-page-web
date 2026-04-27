@@ -20,7 +20,6 @@ imageUrl: /images/blog/seguridad-en-retail.jpg
 				<div class="elementor-element elementor-element-5b5a5e97 elementor-widget elementor-widget-text-editor" data-id="5b5a5e97" data-element_type="widget" data-widget_type="text-editor.default">
 				<div class="elementor-widget-container">
 									<!-- Título de la página -->
-<title>10 Estrategias Esenciales para Prevenir Robos en el Retail</title>
 
 <!-- Introducción -->
 <p>Descubre 10 estrategias esenciales para prevenir robos en el retail. Protege tu negocio con estas claves efectivas y asegura la tranquilidad de tus operaciones.</p>

@@ -17,7 +17,7 @@ imageUrl: /images/blog/la-vigilancia-actual-un-esfuerzo-compartido.jpg
 ---
 
 
-<h1 class="wp-block-heading" id="h-mejora-la-vigilancia-con-gard-security">Mejora la Vigilancia con Gard Security</h1>
+<h2 class="wp-block-heading" id="h-mejora-la-vigilancia-con-gard-security">Mejora la Vigilancia con Gard Security</h2>
 
 
 
