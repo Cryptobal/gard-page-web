@@ -133,6 +133,7 @@ export default function Page() {
                 imageId={OPAI_IMAGES.portalSupervisor.id}
                 alt={OPAI_IMAGES.portalSupervisor.alt}
                 fill
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover"
               />
             </div>
@@ -240,6 +241,7 @@ export default function Page() {
                 imageId={OPAI_IMAGES.mapaRondas.id}
                 alt={OPAI_IMAGES.mapaRondas.alt}
                 fill
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover"
               />
             </div>
@@ -341,6 +343,7 @@ export default function Page() {
                 imageId={OPAI_IMAGES.portalCliente.id}
                 alt={OPAI_IMAGES.portalCliente.alt}
                 fill
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover"
               />
             </div>
@@ -358,6 +361,7 @@ export default function Page() {
                 imageId={OPAI_IMAGES.portalGuardia.id}
                 alt={OPAI_IMAGES.portalGuardia.alt}
                 fill
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover"
               />
             </div>
@@ -419,6 +423,7 @@ export default function Page() {
                 imageId={OPAI_IMAGES.portalControlAcceso.id}
                 alt={OPAI_IMAGES.portalControlAcceso.alt}
                 fill
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover"
               />
             </div>

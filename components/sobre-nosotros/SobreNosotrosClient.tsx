@@ -124,6 +124,7 @@ export default function SobreNosotrosClient() {
                 imageId="4613e018-4925-4fb0-1fee-ed8ede43cd00"
                 alt="Trayectoria de Gard Security"
                 fill
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover"
               />
             </div>

@@ -272,6 +272,7 @@ export default async function IndustriaPage({ params }: { params: Promise<{ slug
                   alt={`Seguridad para ${industry.name}`}
                   fill
                   objectFit="cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                   className="transition-transform duration-700 hover:scale-105"
                 />
               </div>
@@ -387,6 +388,7 @@ export default async function IndustriaPage({ params }: { params: Promise<{ slug
                       alt={client.name}
                       fill
                       objectFit="contain"
+                      sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw"
                     />
                   </div>
                 </div>

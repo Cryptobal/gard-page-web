@@ -29,7 +29,7 @@ export default function CloudflareImage({
   className = '',
   priority = false,
   fill = false,
-  sizes = '(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw',
+  sizes,
   quality = 85, // Reducido para mobile-first
   objectFit = 'cover',
   objectPosition = 'center',
@@ -39,7 +39,17 @@ export default function CloudflareImage({
   const imageLoader = ({ src, width, quality }: ImageLoaderProps) => {
     return `https://imagedelivery.net/${CLOUDFLARE_ACCOUNT_HASH}/${src}/${variant}?w=${width}&q=${quality || 75}&f=auto`;
   };
-  
+
+  // Default sizes:
+  // - Con `fill`: el contenedor suele ser full-bleed (heroes, cards a ancho de viewport),
+  //   por lo que pedimos 100vw para evitar pixelación al estirar versiones pequeñas.
+  //   Los grids/tarjetas chicas deben pasar `sizes` explícito.
+  // - Sin `fill`: mantenemos el default mobile-first para grids genéricos.
+  const resolvedSizes =
+    sizes ?? (fill
+      ? '100vw'
+      : '(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw');
+
   const imageProps = {
     loader: imageLoader,
     src: imageId,
@@ -47,7 +57,7 @@ export default function CloudflareImage({
     className: `${className} ${fill ? 'object-' + objectFit + ' object-' + objectPosition.replace(' ', '-') : ''}`,
     priority,
     quality,
-    sizes,
+    sizes: resolvedSizes,
     placeholder,
     // Simple placeholder base64 por defecto si se solicita blur y no se entrega uno específico
     blurDataURL: placeholder === 'blur' ? (blurDataURL || 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMDgwIiB2aWV3Qm94PSIwIDAgMTkyMCAxMDgwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxOTIwIiBoZWlnaHQ9IjEwODAiIGZpbGw9IiNlZWUiIC8+PC9zdmc+') : undefined,

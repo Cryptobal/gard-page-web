@@ -176,6 +176,7 @@ export default function PoliticaAmbientalPage() {
                 imageId="1b09642f-da1e-4247-52c6-acd8362d1a00"
                 alt="Seguridad responsable con el medio ambiente"
                 fill
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover rounded-2xl"
               />
             </div>

@@ -141,6 +141,7 @@ export default function OurServices({
                     imageId={service.imageId}
                     alt={service.name}
                     fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 33vw, 20vw"
                     className="rounded-xl object-cover w-full grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition duration-300 ease-in-out"
                   />
                 </div>
@@ -192,6 +193,7 @@ export default function OurServices({
                       imageId={serviciosFiltrados[currentIndex].imageId}
                       alt={serviciosFiltrados[currentIndex].name}
                       fill
+                      sizes="(max-width: 640px) 100vw, 300px"
                       className="rounded-xl object-cover w-full grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition duration-300 ease-in-out"
                     />
                   </div>

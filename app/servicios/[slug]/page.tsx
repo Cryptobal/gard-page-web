@@ -264,7 +264,10 @@ export default async function ServicioPage({ params }: { params: Promise<{ slug:
               alt={`${servicio.name} - Gard Security`}
               fill
               priority
+              quality={90}
+              sizes="100vw"
               className="object-cover"
+              objectPosition="center"
             />
           ) : (
             <CloudflareVideo
