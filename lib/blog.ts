@@ -49,6 +49,22 @@ export function getAllPostSlugs(): Array<{ slug: string }> {
     }));
 }
 
+// Limpia residuos legacy de WordPress/Elementor que llegaron junto al
+// markdown migrado: atributos data-*, clases elementor/wp-block, divs
+// vacíos, párrafos vacíos y <title> dentro del body. Estos residuos
+// degradan la calidad percibida del contenido para Googlebot y son una
+// causa documentada de Soft 404 en blogs migrados desde WordPress.
+function stripLegacyWordPressMarkup(htmlContent: string): string {
+  return htmlContent
+    .replace(/<title>[^<]*<\/title>/gi, '')
+    .replace(/\sdata-(elementor|element_type|widget_type|id|settings)(="[^"]*")?/gi, '')
+    .replace(/\sclass="(elementor|wp-block|e-con|e-flex|e-parent)[^"]*"/gi, '')
+    .replace(/<div(?:\s[^>]*)?>\s*<\/div>/gi, '')
+    .replace(/<p>\s*<\/p>/gi, '')
+    .replace(/(<br\s*\/?>\s*){3,}/gi, '<br>')
+    .replace(/[ \t]+/g, ' ');
+}
+
 // Obtener datos de un post específico por slug
 export async function getPostBySlug(slug: string): Promise<BlogPost> {
   const fullPath = path.join(postsDirectory, `${slug}.md`);
@@ -62,7 +78,7 @@ export async function getPostBySlug(slug: string): Promise<BlogPost> {
     .use(remarkGfm) // Soporte para GitHub Flavored Markdown (tablas, strikethrough, etc)
     .use(html, { sanitize: false }) // sanitize: false para permitir HTML en markdown
     .process(markdownContent);
-  const contentHtml = processedContent.toString();
+  const contentHtml = stripLegacyWordPressMarkup(processedContent.toString());
   
   const isValidCloudflareId = (id: string) =>
     /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/.test(id);
