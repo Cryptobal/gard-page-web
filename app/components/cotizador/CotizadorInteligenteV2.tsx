@@ -29,7 +29,10 @@ import {
   MapPin,
   X,
   Check,
-  MessageCircle
+  MessageCircle,
+  ShieldCheck,
+  Zap,
+  Lock
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import {
@@ -778,7 +781,7 @@ export default function CotizadorInteligenteV2() {
                 <Send className="h-4 w-4" />
                 <span>Solicitar Cotización</span>
               </button>
-              <p className="text-xs text-muted-foreground mt-3">Responderemos en menos de 24 horas.</p>
+              <p className="text-xs text-muted-foreground mt-3">Te contactaremos en los próximos minutos en horario hábil.</p>
             </div>
           </motion.div>
           
@@ -998,6 +1001,21 @@ export default function CotizadorInteligenteV2() {
                       {formErrors.comentarios && <p className="text-red-500 text-xs mt-1">{formErrors.comentarios}</p>}
                     </div>
                     
+                    <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 py-3 mb-1 text-xs text-muted-foreground border-y border-border/50">
+                      <span className="inline-flex items-center gap-1.5">
+                        <ShieldCheck className="h-4 w-4 text-emerald-600" />
+                        <span>OS-10 Certificados</span>
+                      </span>
+                      <span className="inline-flex items-center gap-1.5">
+                        <Zap className="h-4 w-4 text-amber-500" />
+                        <span>Respuesta en menos de 5 min</span>
+                      </span>
+                      <span className="inline-flex items-center gap-1.5">
+                        <Lock className="h-4 w-4 text-blue-600" />
+                        <span>Sin compromiso</span>
+                      </span>
+                    </div>
+
                     <div className="flex justify-end gap-3 pt-2">
                       <Button type="button" variant="outline" onClick={() => setShowForm(false)}>Cancelar</Button>
                       <Button type="submit" disabled={isSubmitting}>

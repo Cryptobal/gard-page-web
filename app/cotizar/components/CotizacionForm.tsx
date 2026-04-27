@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef, useCallback, RefCallback } from 're
 import { useForm, useFieldArray } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { Loader2, Plus, Trash2, Shield, MessageCircle, ArrowLeft } from 'lucide-react';
+import { Loader2, Plus, Trash2, Shield, ShieldCheck, MessageCircle, ArrowLeft, Zap, Lock } from 'lucide-react';
 import DotacionQuickBuilder, {
   type QuickPuesto,
   buildDotacion,
@@ -119,29 +119,6 @@ const OPAI_URL = process.env.NEXT_PUBLIC_OPAI_API_URL || 'https://opai.gard.cl';
 function buildWhatsAppCotizacionMessage(nombre: string, apellido: string, empresa: string, detalle?: string): string {
   const base = `Hola, ${nombre}. Soy ${nombre} ${apellido} de ${empresa}. Te envío una cotización y el detalle de la cotización.`;
   return detalle?.trim() ? `${base}\n\n${detalle.trim()}` : base;
-}
-
-// Mensaje para el link de WhatsApp en el email a comercial@gard.cl (para que comercial le escriba al cliente)
-function buildWhatsAppComercialToClientMessage(
-  nombreCliente: string,
-  empresa: string,
-  direccion: string,
-  comuna: string,
-  ciudad: string,
-  servicioRequerido: string,
-  dotacion: Array<{ puesto: string; cantidad: number }> | undefined,
-  detalleCotizacion: string
-): string {
-  const ubicacion = [direccion, comuna, ciudad].filter(Boolean).join(', ') || direccion;
-  let consisteEn: string;
-  if (dotacion && dotacion.length > 0) {
-    const partes = dotacion.map((d) => `${d.cantidad} puesto${d.cantidad !== 1 ? 's' : ''} de ${d.puesto}`);
-    consisteEn = partes.join(', ');
-    if (detalleCotizacion?.trim()) consisteEn += `. ${detalleCotizacion.trim()}`;
-  } else {
-    consisteEn = detalleCotizacion?.trim() || servicioRequerido;
-  }
-  return `Hola ${nombreCliente}, te contacto de gard.cl. Nos enviaste una cotización para la empresa ${empresa}, ubicada en ${ubicacion}, que consiste en ${consisteEn}.`;
 }
 
 export default function CotizacionForm({ prefillServicio, prefillIndustria }: CotizacionFormProps = {}) {
@@ -479,26 +456,6 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
     try {
       setIsSubmitting(true);
       
-      // Mensaje para WhatsApp (botón del modal y link en el email al cliente)
-      const whatsappMessage = buildWhatsAppCotizacionMessage(
-        data.nombre,
-        data.apellido,
-        data.empresa,
-        data.cotizacion || ''
-      );
-
-      // Mensaje para el link de WhatsApp en el email a comercial@gard.cl (para responder al cliente)
-      const whatsappComercialToClient = buildWhatsAppComercialToClientMessage(
-        data.nombre,
-        data.empresa,
-        data.direccion,
-        data.comuna || '',
-        data.ciudad || '',
-        data.servicioRequerido,
-        data.dotacion?.map((d) => ({ puesto: d.puesto, cantidad: d.cantidad })),
-        data.cotizacion || ''
-      );
-
       const detalleCompleto = (data.cotizacion || '') + (data.utm_source ? `\n\n[UTM: ${data.utm_source}/${data.utm_medium}/${data.utm_campaign}]` : '');
       const detalleTruncado = detalleCompleto.length > 5000 ? detalleCompleto.slice(0, 4997) + '...' : detalleCompleto;
 
@@ -536,8 +493,6 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
         detalle: detalleTruncado,
         dotacion: dotacionOpai,
         source: 'web_cotizador' as const,
-        whatsapp_prefilled_message: whatsappMessage,
-        whatsapp_message_comercial_to_cliente: whatsappComercialToClient,
       };
       
       // Enviar a OPAI con retry automático (hasta 2 reintentos)
@@ -1000,6 +955,22 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
               </div>
             )}
 
+            {/* ── Trust signals ── */}
+            <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 py-3 mb-3 text-xs text-muted-foreground border-y border-border/50">
+              <span className="inline-flex items-center gap-1.5">
+                <ShieldCheck className="h-4 w-4 text-emerald-600" />
+                <span>OS-10 Certificados</span>
+              </span>
+              <span className="inline-flex items-center gap-1.5">
+                <Zap className="h-4 w-4 text-amber-500" />
+                <span>Respuesta en menos de 5 min</span>
+              </span>
+              <span className="inline-flex items-center gap-1.5">
+                <Lock className="h-4 w-4 text-blue-600" />
+                <span>Sin compromiso</span>
+              </span>
+            </div>
+
             {/* ── Submit ── */}
             <Button type="submit" disabled={isSubmitting} variant="default" size="lg" className="w-full md:w-auto rounded-2xl">
               {isSubmitting ? (
@@ -1008,6 +979,10 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
                 "Enviar Cotización"
               )}
             </Button>
+            <p className="text-center text-xs text-muted-foreground mt-3 leading-relaxed">
+              Al enviar no te llamamos hasta que confirmes. Tus datos se manejan según nuestra{' '}
+              <a href="/privacidad" className="underline hover:text-foreground">política de privacidad</a>.
+            </p>
           </form>
         </Form>
       )}
