@@ -71,6 +71,16 @@ const nextConfig = {
   // Redirecciones para evitar errores 404 y contenido duplicado
   async redirects() {
     return [
+      // Redirección canónica del apex (gard.cl) al subdominio www, en 308
+      // (permanente). Antes vivía en middleware.ts pero Vercel respondía 307
+      // a nivel platform — un 307 dispersa señales de canónica entre Google.
+      // En next.config con `permanent: true` se garantiza 308.
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'gard.cl' }],
+        destination: 'https://www.gard.cl/:path*',
+        permanent: true,
+      },
       // Redirecciones básicas solamente
       {
         source: '/tecnologias',

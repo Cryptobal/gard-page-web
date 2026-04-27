@@ -51,15 +51,13 @@ const MAPEO_SERVICIOS_ANTIGUOS = {
 };
 
 // Middleware para gestionar las diferentes rutas dinámicas
+//
+// Nota: la redirección canónica gard.cl → www.gard.cl ahora vive en
+// next.config.js > redirects() con `permanent: true` (308 garantizado).
+// Antes estaba acá pero Vercel la servía como 307 a nivel platform y
+// generaba señales débiles de canónica para Googlebot.
 export function middleware(request: NextRequest) {
   const url = request.nextUrl.clone();
-  const hostname = request.headers.get('host');
-
-  // Redirección canónica: forzar www en producción
-  if (hostname === 'gard.cl') {
-    url.hostname = 'www.gard.cl';
-    return NextResponse.redirect(url, 308);
-  }
 
   const { pathname } = url;
   
