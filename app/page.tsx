@@ -266,7 +266,7 @@ export default function Home() {
                   ¿Buscas trabajo como guardia?
                 </h2>
                 <p className="text-base md:text-base text-[hsl(var(--gard-foreground))]/80 leading-snug">
-                  Postula en menos de un minuto. Con o sin OS-10. Te llamamos por WhatsApp.
+                  Postula en menos de un minuto. Te llamamos por WhatsApp.
                 </p>
               </div>
               <span className="w-full md:w-auto inline-flex items-center justify-center gap-2 h-14 md:h-12 px-8 md:px-6 rounded-full bg-[hsl(var(--gard-accent))] text-white text-base md:text-sm font-bold whitespace-nowrap shadow-lg group-hover:bg-[hsl(var(--gard-accent))]/90">
