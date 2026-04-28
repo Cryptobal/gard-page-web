@@ -1,11 +1,11 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React, { useRef, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import {
   ArrowRight, Shield, BadgeCheck, User, CheckCircle,
   Calendar, Briefcase, Users, FileCheck, GraduationCap,
-  DollarSign, Award, Smile
+  DollarSign, Award, Smile, Loader2
 } from 'lucide-react';
 import CloudflareImage from '@/components/CloudflareImage';
 import { cloudflareImages } from '@/lib/images';
@@ -174,7 +174,15 @@ export default function ReclutamientoPage() {
                 <p className="text-center mt-2 max-w-xl">Complete sus datos para ser considerado en nuestros procesos de selección</p>
               </div>
             </div>
-            <ReclutamientoForm />
+            <Suspense
+              fallback={
+                <div className="bg-[hsl(var(--gard-card))] rounded-2xl p-8 border border-[hsl(var(--gard-border))] flex items-center justify-center min-h-[200px]">
+                  <Loader2 className="h-6 w-6 animate-spin text-[hsl(var(--gard-accent))]" />
+                </div>
+              }
+            >
+              <ReclutamientoForm />
+            </Suspense>
           </motion.div>
         </div>
       </section>
