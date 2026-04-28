@@ -20,10 +20,9 @@ imageUrl: /images/blog/robo-hormiga.jpg
 				<div class="elementor-element elementor-element-6c612bc0 elementor-widget elementor-widget-text-editor" data-id="6c612bc0" data-element_type="widget" data-widget_type="text-editor.default">
 				<div class="elementor-widget-container">
 									<!-- Título de la página -->
-<title>Estrategias Efectivas para Prevenir el Robo Hormiga en tu Empresa</title>
 
 <!-- Encabezado principal -->
-<h1 id="estrategias-prevenir-robo-hormiga">Estrategias Efectivas para Prevenir el Robo Hormiga en tu Empresa</h1>
+<h2 id="estrategias-prevenir-robo-hormiga">Estrategias Efectivas para Prevenir el Robo Hormiga en tu Empresa</h2>
 
 <!-- Introducción -->
 <p>Descubre qué es el robo hormiga y cómo proteger tu empresa con estrategias de seguridad efectivas. Aprende a prevenir pérdidas y mejorar la seguridad de tu negocio.</p>

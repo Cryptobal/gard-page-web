@@ -71,6 +71,16 @@ const nextConfig = {
   // Redirecciones para evitar errores 404 y contenido duplicado
   async redirects() {
     return [
+      // Redirección canónica del apex (gard.cl) al subdominio www, en 308
+      // (permanente). Antes vivía en middleware.ts pero Vercel respondía 307
+      // a nivel platform — un 307 dispersa señales de canónica entre Google.
+      // En next.config con `permanent: true` se garantiza 308.
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'gard.cl' }],
+        destination: 'https://www.gard.cl/:path*',
+        permanent: true,
+      },
       // Redirecciones básicas solamente
       {
         source: '/tecnologias',
@@ -113,6 +123,18 @@ const nextConfig = {
       {
         source: '/drones-de-seguridad-para-empresas-e-industrias',
         destination: '/servicios/drones-seguridad',
+        permanent: true,
+      },
+      // Paginations del blog antiguo (WordPress) — antes daban 404 final
+      // y GSC las reportaba como Soft 404 / redirect roto.
+      {
+        source: '/noticias-de-seguridad-privada/page/:page(\\d+)',
+        destination: '/blog/page/:page',
+        permanent: true,
+      },
+      {
+        source: '/noticias-de-seguridad-privada/:slug+',
+        destination: '/blog/:slug+',
         permanent: true,
       },
       {

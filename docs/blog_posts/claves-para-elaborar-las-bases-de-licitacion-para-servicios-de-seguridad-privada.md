@@ -24,7 +24,7 @@ imageUrl: >-
 				<div class="elementor-element elementor-element-60d1327b elementor-widget elementor-widget-text-editor" data-id="60d1327b" data-element_type="widget" data-widget_type="text-editor.default">
 				<div class="elementor-widget-container">
 									<p></p>
-<h1 class="wp-block-heading">Como preparar una licitación de seguridad privada</h1>
+<h2 class="wp-block-heading">Como preparar una licitación de seguridad privada</h2>
 <p></p>
 <p></p>
 <p>En el mundo actual, la seguridad privada se ha convertido en un componente crucial para la protección de empresas e instituciones. Elaborar correctamente las bases de una licitación para contratar estos servicios es esencial para asegurar que se seleccionen proveedores competentes y confiables. En este post, exploraremos los aspectos técnicos y administrativos fundamentales que deben incluirse en estas bases para garantizar una selección eficiente y eficaz.</p>

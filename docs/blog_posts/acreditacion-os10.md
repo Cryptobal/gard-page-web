@@ -20,7 +20,7 @@ imageUrl: /images/blog/acreditacion-os10.jpg
 				<div class="elementor-element elementor-element-7efc44fc elementor-widget elementor-widget-text-editor" data-id="7efc44fc" data-element_type="widget" data-widget_type="text-editor.default">
 				<div class="elementor-widget-container">
 									
-<h1 class="wp-block-heading" id="h-os10-y-su-rol-en-la-seguridad-privada">OS10 y su rol en la Seguridad Privada</h1>
+<h2 class="wp-block-heading" id="h-os10-y-su-rol-en-la-seguridad-privada">OS10 y su rol en la Seguridad Privada</h2>
 
 
 

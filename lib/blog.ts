@@ -36,15 +36,33 @@ export const POSTS_PER_PAGE = 6;
 const postsDirectory = path.join(process.cwd(), 'docs/blog_posts');
 
 // Obtener todos los slugs de los posts
-export function getAllPostSlugs() {
+// App Router (Next.js 15): generateStaticParams espera [{ slug: '...' }],
+// no el formato legacy [{ params: { slug: '...' } }] del Pages Router.
+// Si devuelve formato incorrecto, las páginas se sirven dinámicamente
+// con `cache-control: no-store` y Google las marca como Soft 404.
+export function getAllPostSlugs(): Array<{ slug: string }> {
   const fileNames = fs.readdirSync(postsDirectory);
-  return fileNames.map((fileName) => {
-    return {
-      params: {
-        slug: fileName.replace(/\.md$/, ''),
-      },
-    };
-  });
+  return fileNames
+    .filter((fileName) => fileName.endsWith('.md'))
+    .map((fileName) => ({
+      slug: fileName.replace(/\.md$/, ''),
+    }));
+}
+
+// Limpia residuos legacy de WordPress/Elementor que llegaron junto al
+// markdown migrado: atributos data-*, clases elementor/wp-block, divs
+// vacíos, párrafos vacíos y <title> dentro del body. Estos residuos
+// degradan la calidad percibida del contenido para Googlebot y son una
+// causa documentada de Soft 404 en blogs migrados desde WordPress.
+function stripLegacyWordPressMarkup(htmlContent: string): string {
+  return htmlContent
+    .replace(/<title>[^<]*<\/title>/gi, '')
+    .replace(/\sdata-(elementor|element_type|widget_type|id|settings)(="[^"]*")?/gi, '')
+    .replace(/\sclass="(elementor|wp-block|e-con|e-flex|e-parent)[^"]*"/gi, '')
+    .replace(/<div(?:\s[^>]*)?>\s*<\/div>/gi, '')
+    .replace(/<p>\s*<\/p>/gi, '')
+    .replace(/(<br\s*\/?>\s*){3,}/gi, '<br>')
+    .replace(/[ \t]+/g, ' ');
 }
 
 // Obtener datos de un post específico por slug
@@ -60,7 +78,7 @@ export async function getPostBySlug(slug: string): Promise<BlogPost> {
     .use(remarkGfm) // Soporte para GitHub Flavored Markdown (tablas, strikethrough, etc)
     .use(html, { sanitize: false }) // sanitize: false para permitir HTML en markdown
     .process(markdownContent);
-  const contentHtml = processedContent.toString();
+  const contentHtml = stripLegacyWordPressMarkup(processedContent.toString());
   
   const isValidCloudflareId = (id: string) =>
     /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/.test(id);

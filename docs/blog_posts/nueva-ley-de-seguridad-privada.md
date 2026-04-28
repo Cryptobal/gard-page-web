@@ -22,7 +22,7 @@ imageUrl: /images/blog/nueva-ley-de-seguridad-privada.jpg
 				<div class="elementor-element elementor-element-4c092d91 elementor-widget elementor-widget-text-editor" data-id="4c092d91" data-element_type="widget" data-widget_type="text-editor.default">
 				<div class="elementor-widget-container">
 									<p></p>
-<h1><strong>Como afecta la nueva ley de Seguridad Privada a los actores de la industria</strong></h1>
+<h2><strong>Como afecta la nueva ley de Seguridad Privada a los actores de la industria</strong></h2>
 <p></p>
 <p class="">Con la promulgación de la nueva ley de seguridad privada en Chile, surgen interrogantes sobre cómo impactará esta normativa en el sector. En este post, analizaremos las diferencias y similitudes entre los guardias de seguridad y los vigilantes privados bajo el nuevo marco legal, enfocándonos en aspectos clave para empresas de seguridad privada como Gard Security.</p>
 <p></p>

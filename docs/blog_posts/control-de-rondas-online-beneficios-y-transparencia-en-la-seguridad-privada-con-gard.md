@@ -24,7 +24,7 @@ imageUrl: >-
 				<div class="elementor-element elementor-element-3a93e9c4 elementor-widget elementor-widget-text-editor" data-id="3a93e9c4" data-element_type="widget" data-widget_type="text-editor.default">
 				<div class="elementor-widget-container">
 									<p></p>
-<h1 class="wp-block-heading">Descubre qué es el control de rondas online, sus beneficios y características.</h1>
+<h2 class="wp-block-heading">Descubre qué es el control de rondas online, sus beneficios y características.</h2>
 <p></p>
 <p></p>
 <p>En el mundo de la seguridad privada, la tecnología juega un papel crucial en mejorar la eficiencia y la transparencia. Una herramienta fundamental en este ámbito es el control de rondas online. En este artículo, exploraremos qué es el control de rondas online, sus beneficios y características, y cómo Gard implementa esta solución para brindar un servicio de seguridad excepcional a sus clientes.</p>

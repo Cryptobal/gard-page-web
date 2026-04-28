@@ -21,7 +21,7 @@ imageUrl: >-
 			<div class="elementor-widget-wrap elementor-element-populated">
 						<div class="elementor-element elementor-element-63661d8b elementor-widget elementor-widget-heading" data-id="63661d8b" data-element_type="widget" data-widget_type="heading.default">
 				<div class="elementor-widget-container">
-					<h1 class="elementor-heading-title elementor-size-default">Nueva Era De La Seguridad Privada En Chile: Implicaciones De La Reciente Ley y el Compromiso de Gard Security</h1>				</div>
+					<h2 class="elementor-heading-title elementor-size-default">Nueva Era De La Seguridad Privada En Chile: Implicaciones De La Reciente Ley y el Compromiso de Gard Security</h2>				</div>
 				</div>
 				<div class="elementor-element elementor-element-7499192b elementor-widget elementor-widget-image" data-id="7499192b" data-element_type="widget" data-widget_type="image.default">
 				<div class="elementor-widget-container">

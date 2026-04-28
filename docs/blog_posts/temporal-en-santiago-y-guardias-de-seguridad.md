@@ -20,10 +20,9 @@ imageUrl: /images/blog/temporal-en-santiago-y-guardias-de-seguridad.jpg
 				<div class="elementor-element elementor-element-7b3926 elementor-widget elementor-widget-text-editor" data-id="7b3926" data-element_type="widget" data-widget_type="text-editor.default">
 				<div class="elementor-widget-container">
 									<!-- Título de la página -->
-<title>Guardias de Seguridad en Temporales de Viento y Lluvia: Protección durante Emergencias Climáticas</title>
 
 <!-- Encabezado principal -->
-<h1 id="guardias-seguridad-temporales-viento-lluvia">Guardias de Seguridad en Temporales de Viento y Lluvia</h1>
+<h2 id="guardias-seguridad-temporales-viento-lluvia">Guardias de Seguridad en Temporales de Viento y Lluvia</h2>
 
 <!-- Introducción -->
 <p>Descubre cómo la seguridad privada protege a empresas y propiedades durante eventos climáticos extremos, como el reciente temporal en Santiago con vientos de 125 km/h y cortes de luz masivos.</p>

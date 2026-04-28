@@ -20,7 +20,7 @@ imageUrl: /images/blog/ley-karin-en-seguridad-privada.jpg
 				<div class="elementor-element elementor-element-3a5580d0 elementor-widget elementor-widget-text-editor" data-id="3a5580d0" data-element_type="widget" data-widget_type="text-editor.default">
 				<div class="elementor-widget-container">
 									
-<h1 class="wp-block-heading" id="h-descubre-como-la-ley-karin-afecta-a-las-empresas-de-recursos-humanos-y-seguridad-privada-y-como-gard-security-asegura-el-cumplimiento-de-esta-normativa">Descubre cómo la Ley Karin afecta a las empresas de recursos humanos y seguridad privada, y cómo Gard Security asegura el cumplimiento de esta normativa.</h1>
+<h2 class="wp-block-heading" id="h-descubre-como-la-ley-karin-afecta-a-las-empresas-de-recursos-humanos-y-seguridad-privada-y-como-gard-security-asegura-el-cumplimiento-de-esta-normativa">Descubre cómo la Ley Karin afecta a las empresas de recursos humanos y seguridad privada, y cómo Gard Security asegura el cumplimiento de esta normativa.</h2>
 
 
 

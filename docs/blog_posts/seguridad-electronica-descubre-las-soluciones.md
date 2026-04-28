@@ -17,7 +17,7 @@ imageUrl: /images/blog/seguridad-electronica-descubre-las-soluciones.jpg
 				<div class="elementor-element elementor-element-72095086 elementor-widget elementor-widget-text-editor" data-id="72095086" data-element_type="widget" data-widget_type="text-editor.default">
 				<div class="elementor-widget-container">
 									<p></p>
-<h1 id="h-descubre-como-la-seguridad-electronica-previene-delitos" class="wp-block-heading">Descubre como la Seguridad Electrónica previene delitos</h1>
+<h2 id="h-descubre-como-la-seguridad-electronica-previene-delitos" class="wp-block-heading">Descubre como la Seguridad Electrónica previene delitos</h2>
 <div>&nbsp;</div>
 <p></p>
 <p></p>

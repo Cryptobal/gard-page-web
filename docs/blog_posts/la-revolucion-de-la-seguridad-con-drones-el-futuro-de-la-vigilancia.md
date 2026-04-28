@@ -31,7 +31,7 @@ imageUrl: >-
 		</section>
 				<div class="elementor-element elementor-element-8c29fa8 elementor-widget elementor-widget-heading" data-id="8c29fa8" data-element_type="widget" data-widget_type="heading.default">
 				<div class="elementor-widget-container">
-					<h1 class="elementor-heading-title elementor-size-default">La Revolución de la Seguridad con Drones: ¿El Futuro de la Vigilancia?</h1>				</div>
+					<h2 class="elementor-heading-title elementor-size-default">La Revolución de la Seguridad con Drones: ¿El Futuro de la Vigilancia?</h2>				</div>
 				</div>
 				<div class="elementor-element elementor-element-4d77b167 elementor-widget elementor-widget-text-editor" data-id="4d77b167" data-element_type="widget" data-widget_type="text-editor.default">
 				<div class="elementor-widget-container">

@@ -15,7 +15,7 @@ imageUrl: /images/blog/seguridad-privada-para-industrias.jpg
 ---
 
 
-<h1 class="wp-block-heading" id="h-seguridad-privada-para-industrias">Seguridad Privada para Industrias</h1>
+<h2 class="wp-block-heading" id="h-seguridad-privada-para-industrias">Seguridad Privada para Industrias</h2>
 
 
 

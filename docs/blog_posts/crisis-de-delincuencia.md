@@ -22,10 +22,9 @@ imageUrl: /images/blog/crisis-de-delincuencia.jpg
 				<div class="elementor-element elementor-element-3f507228 elementor-widget elementor-widget-text-editor" data-id="3f507228" data-element_type="widget" data-widget_type="text-editor.default">
 				<div class="elementor-widget-container">
 									<!-- Título de la página -->
-<title>Cuida tu Empresa frente a la Crisis de Delincuencia: 10 Consejos Clave</title>
 
 <!-- Encabezado principal -->
-<h1 id="cuida-tu-empresa-crisis-delincuencia">Cuida tu empresa frente a la crisis de delincuencia</h1>
+<h2 id="cuida-tu-empresa-crisis-delincuencia">Cuida tu empresa frente a la crisis de delincuencia</h2>
 
 <!-- Introducción -->
 <h2 id="introduccion">Introducción</h2>

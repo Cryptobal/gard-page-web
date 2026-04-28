@@ -28,7 +28,7 @@ imageUrl: /images/blog/innovacion-en-seguridad-privada-drones-en-seguridad.jpg
 				<div class="elementor-element elementor-element-50d43d59 elementor-widget elementor-widget-text-editor" data-id="50d43d59" data-element_type="widget" data-widget_type="text-editor.default">
 				<div class="elementor-widget-container">
 									<p></p>
-<h1 id="h-la-tecnologia-con-drones-llega-a-la-seguridad-privada" class="wp-block-heading">La Tecnología con Drones Llega a la Seguridad Privada</h1>
+<h2 id="h-la-tecnologia-con-drones-llega-a-la-seguridad-privada" class="wp-block-heading">La Tecnología con Drones Llega a la Seguridad Privada</h2>
 <p></p>
 <p>El avance de la tecnología ha impactado profundamente en diversas áreas, y la seguridad privada no es la excepción. En una reciente demostración, Gard Security, en colaboración con Heliboss, presentó cómo el uso de drones está transformando las estrategias de vigilancia y protección para empresas e industrias.</p>
 <p></p>
