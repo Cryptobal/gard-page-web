@@ -14,6 +14,7 @@ import FormularioCotizacionSeccion from '@/app/components/FormularioCotizacionSe
 import IndustriasRelacionadas from '@/components/landing/IndustriasRelacionadas';
 import ExplorarMas from '@/components/ui/shared/ExplorarMas';
 import { Button } from '@/components/ui/button';
+import { companyStats } from "@/lib/data/company-stats";
 
 // Interfaces para tipado
 interface Challenge {
@@ -189,10 +190,7 @@ export default async function IndustriaPage({ params }: { params: Promise<{ slug
         description={industry.description}
         url={`https://www.gard.cl/industrias/${industry.slug}`}
         areaServed="Chile"
-        aggregateRating={{
-          ratingValue: 4.9,
-          reviewCount: 57
-        }}
+        aggregateRating={{ ratingValue: companyStats.gmbRatingValue, reviewCount: companyStats.gmbReviewCount }}
         offers={{
           priceRange: "$$$",
           availability: "https://schema.org/InStock"

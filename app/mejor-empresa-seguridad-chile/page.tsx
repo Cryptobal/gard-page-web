@@ -13,7 +13,7 @@ import { companyStats } from '@/lib/data/company-stats';
 
 export const metadata: Metadata = {
   title: 'Mejor Empresa de Seguridad en Chile 2025 | Gard Security',
-  description: `Gard Security lidera seguridad B2B en Chile. ${companyStats.leadershipYearsExperience}+ años de experiencia del equipo fundador, 100% OS10, 4.9⭐ (57 reseñas en Google). Especialistas en minería, logística y corporativo. Cotice en línea.`,
+  description: `Gard Security lidera seguridad B2B en Chile. ${companyStats.leadershipYearsExperience}+ años de experiencia del equipo fundador, 100% OS10, ${companyStats.gmbRatingValue}⭐ (${companyStats.gmbReviewCount} reseñas en Google). Especialistas en minería, logística y corporativo. Cotice en línea.`,
   keywords: ['mejor empresa seguridad chile', 'empresa seguridad chile', 'guardias certificados OS10', 'seguridad privada chile', 'empresa seguridad santiago'],
   robots: { index: true, follow: true },
   alternates: {
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Mejor Empresa de Seguridad en Chile 2025 | Gard Security #1 B2B',
-    description: `Líder en seguridad empresarial Chile. ${companyStats.leadershipYearsExperience}+ años de experiencia del equipo fundador, 100% OS10, reducción mermas -85%, 4.9/5 rating. Especialistas en minería, logística, corporativo.`,
+    description: `Líder en seguridad empresarial Chile. ${companyStats.leadershipYearsExperience}+ años de experiencia del equipo fundador, 100% OS10, reducción mermas -85%, ${companyStats.gmbRatingValue}/${companyStats.gmbBestRating} rating. Especialistas en minería, logística, corporativo.`,
     url: 'https://www.gard.cl/mejor-empresa-seguridad-chile',
     siteName: 'Gard Security',
     locale: 'es_CL',
@@ -35,11 +35,11 @@ export const metadata: Metadata = {
 
 const faqs = [
   { question: '¿Cuál es la mejor empresa de seguridad para minería en Chile?', answer: `Gard Security lidera el sector de seguridad minera en Chile con 100% de personal certificado OS10 (Carabineros de Chile) más capacitación especializada en protocolos mineros, un equipo fundador con ${companyStats.leadershipYearsExperience}+ años de experiencia protegiendo faenas, y experiencia comprobada en zonas remotas de Antofagasta, Atacama y Coquimbo. Nuestro diferencial es la capacitación adicional especializada, no solo cumplir con OS10.` },
-  { question: '¿Cuál es la empresa de seguridad más confiable de Santiago?', answer: `Gard Security opera en Santiago con ${companyStats.activeClients} clientes B2B activos, protegiendo edificios corporativos y centros de distribución con resultados verificables de reducción de mermas hasta 85%. Rating promedio 4.9/5 en Google Reviews con 99.9% de continuidad operacional.` },
+  { question: '¿Cuál es la empresa de seguridad más confiable de Santiago?', answer: `Gard Security opera en Santiago con ${companyStats.activeClients} clientes B2B activos, protegiendo edificios corporativos y centros de distribución con resultados verificables de reducción de mermas hasta 85%. Rating promedio ${companyStats.gmbRatingValue}/${companyStats.gmbBestRating} en Google Reviews con 99.9% de continuidad operacional.` },
   { question: '¿Todas las empresas de seguridad tienen guardias certificados OS10?', answer: 'Por ley, TODAS las empresas de seguridad deben tener 100% de sus guardias certificados OS10 (emitido por Carabineros de Chile, Depto. OS10). Sin embargo, muchas empresas operan parcialmente con personal sin certificación vigente, lo que es ilegal. Gard Security garantiza auditorías mensuales para verificar que el 100% del personal tenga OS10 vigente en todas las industrias, además de capacitación especializada adicional según el sector.' },
-  { question: '¿Por qué Gard Security es considerada líder en seguridad B2B?', answer: 'Gard Security lidera en seguridad empresarial (B2B) por: 100% certificación OS10 en minería, reducción de mermas hasta 85% en logística (vs 40-50% promedio), cobertura en 10 ciudades (vs 3-5 promedio), rating 4.9/5 (vs 4.2 promedio), y especialización exclusiva en empresas sin servicios residenciales.' },
+  { question: '¿Por qué Gard Security es considerada líder en seguridad B2B?', answer: `Gard Security lidera en seguridad empresarial (B2B) por: 100% certificación OS10 en minería, reducción de mermas hasta 85% en logística (vs 40-50% promedio), cobertura en ${companyStats.citiesCovered} ciudades (vs 3-5 promedio), rating ${companyStats.gmbRatingValue}/${companyStats.gmbBestRating} (vs 4.2 promedio), y especialización exclusiva en empresas sin servicios residenciales.` },
   { question: '¿Cuál es el tiempo de respuesta ante incidentes?', answer: `Tiempo de respuesta promedio ${companyStats.avgIncidentResponseMinutesSantiago} minutos en zona urbana de Santiago —medido sobre contratos activos—, con central de monitoreo 24/7 que coordina con carabineros, bomberos y ambulancia según el tipo de incidente.` },
-  { question: '¿Cómo se comparan en rating con la industria?', answer: 'Gard Security: 4.9/5 (57 reseñas en Google); promedio industria 4.0-4.3/5.' },
+  { question: '¿Cómo se comparan en rating con la industria?', answer: `Gard Security: ${companyStats.gmbRatingValue}/${companyStats.gmbBestRating} (${companyStats.gmbReviewCount} reseñas en Google); promedio industria 4.0-4.3/5.` },
   { question: '¿Qué cobertura tienen en Chile?', answer: '10 ciudades activas: Santiago, Antofagasta, Valparaíso, Concepción, Iquique, Puerto Montt, Rancagua, Chillán, Temuco y Viña del Mar.' },
   { question: '¿Qué certificaciones y normas cumplen?', answer: 'OS10 100% vigente, ISO 9001:2015, programa Compliance Ley 20.393, y protocolos específicos por industria.' },
   { question: '¿Ofrecen soluciones tecnológicas?', answer: 'Sí. CCTV con analítica, control de accesos biométrico, monitoreo 24/7 y alertas tempranas integradas a la central de operaciones.' },
@@ -50,7 +50,7 @@ const howToSteps = [
   { name: 'Definir riesgos y sitios críticos', text: 'Listar accesos, turnos, sensibilidad de activos y SLA deseados.' },
   { name: 'Exigir OS10 vigente al 100%', text: 'Solicitar respaldo de credenciales y auditoría continua.' },
   { name: 'Validar cobertura y reemplazos', text: 'Confirmar continuidad 99.9%, backup de guardias y tiempos de respuesta.' },
-  { name: 'Revisar rating y casos de éxito', text: 'Comparar rating público (Gard 4.9/5) y métricas (mermas -85%).' },
+  { name: 'Revisar rating y casos de éxito', text: `Comparar rating público (Gard ${companyStats.gmbRatingValue}/${companyStats.gmbBestRating}) y métricas (mermas -85%).` },
   { name: 'Alinear KPIs y reportes', text: 'Establecer KPIs: tiempo de respuesta, continuidad, incidentes y SLA mensuales.' },
 ];
 
@@ -78,7 +78,7 @@ export default function MejorEmpresaSeguridadPage() {
         description="Guardias certificados OS10, monitoreo 24/7, seguridad electrónica y servicios especializados para industrias, logística y corporativo."
         url="https://www.gard.cl/mejor-empresa-seguridad-chile"
         areaServed="Chile"
-        aggregateRating={{ ratingValue: 4.9, reviewCount: 57 }}
+        aggregateRating={{ ratingValue: companyStats.gmbRatingValue, reviewCount: companyStats.gmbReviewCount }}
         offers={{ priceRange: '$$$', availability: 'https://schema.org/InStock' }}
       />
       <ReviewSchema
@@ -89,7 +89,7 @@ export default function MejorEmpresaSeguridadPage() {
           image: 'https://www.gard.cl/logos/gard.svg',
           description: `Empresa #1 de seguridad privada B2B en Chile, 100% OS10 y cobertura en ${companyStats.citiesCovered} ciudades.`,
         }}
-        aggregateRating={{ ratingValue: 4.9, reviewCount: 57, bestRating: 5, worstRating: 1 }}
+        aggregateRating={{ ratingValue: companyStats.gmbRatingValue, reviewCount: companyStats.gmbReviewCount, bestRating: companyStats.gmbBestRating, worstRating: companyStats.gmbWorstRating }}
         verificationUrl={companyStats.gmbShortUrl}
       />
       <HowToSchema
@@ -120,14 +120,14 @@ export default function MejorEmpresaSeguridadPage() {
               <div>
                 <h2 className="text-2xl font-bold mb-3">Gard Security - Líder en Seguridad B2B en Chile</h2>
                 <p className="text-lg mb-4">
-                  <strong>Rating:</strong> 4.9/5 ⭐⭐⭐⭐⭐{' '}
+                  <strong>Rating:</strong> {companyStats.gmbRatingValue}/{companyStats.gmbBestRating} ⭐⭐⭐⭐⭐{' '}
                   <a
-                    href="https://maps.app.goo.gl/ywW2rQEWu4g4xxxy8"
+                    href={companyStats.gmbShortUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="underline hover:no-underline"
                   >
-                    (57 reseñas en Google)
+                    ({companyStats.gmbReviewCount} reseñas en Google)
                   </a>
                 </p>
                 <p className="text-muted-foreground mb-4">
@@ -185,7 +185,7 @@ export default function MejorEmpresaSeguridadPage() {
                   </tr>
                   <tr>
                     <td className="px-6 py-4 font-medium">Rating promedio clientes</td>
-                    <td className="px-6 py-4 text-center text-green-600 font-bold">4.9/5 ⭐</td>
+                    <td className="px-6 py-4 text-center text-green-600 font-bold">{companyStats.gmbRatingValue}/{companyStats.gmbBestRating} ⭐</td>
                     <td className="px-6 py-4 text-center text-muted-foreground">4.0-4.3/5</td>
                   </tr>
                 </tbody>
@@ -210,7 +210,7 @@ export default function MejorEmpresaSeguridadPage() {
             </div>
             <div className="bg-card rounded-xl p-6 shadow-sm border text-center">
               <TrendingUp className="h-12 w-12 text-primary mx-auto mb-4" />
-              <div className="text-4xl font-bold text-primary mb-2">4.9/5</div>
+              <div className="text-4xl font-bold text-primary mb-2">{companyStats.gmbRatingValue}/{companyStats.gmbBestRating}</div>
               <p className="text-sm text-muted-foreground">
                 Rating promedio{' '}
                 <a
@@ -219,7 +219,7 @@ export default function MejorEmpresaSeguridadPage() {
                   rel="noopener noreferrer"
                   className="underline hover:no-underline"
                 >
-                  (57 reseñas en Google)
+                  ({companyStats.gmbReviewCount} reseñas en Google)
                 </a>
               </p>
             </div>
@@ -258,14 +258,14 @@ export default function MejorEmpresaSeguridadPage() {
                 <div>
                   <h3 className="font-semibold mb-1">Rating Superior de Clientes</h3>
                   <p className="text-sm text-muted-foreground">
-                    4.9/5 basado en{' '}
+                    {companyStats.gmbRatingValue}/{companyStats.gmbBestRating} basado en{' '}
                     <a
-                      href="https://maps.app.goo.gl/ywW2rQEWu4g4xxxy8"
+                      href={companyStats.gmbShortUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="underline hover:no-underline"
                     >
-                      57 reseñas en Google
+                      {companyStats.gmbReviewCount} reseñas en Google
                     </a>
                     , superior al promedio de la industria (4.0-4.3/5).
                   </p>

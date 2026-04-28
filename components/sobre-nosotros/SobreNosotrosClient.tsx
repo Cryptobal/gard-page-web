@@ -28,9 +28,14 @@ export default function SobreNosotrosClient() {
           url: 'https://www.gard.cl/sobre-nosotros',
           type: 'Organization',
           image: 'https://www.gard.cl/logos/gard.svg',
-          description: 'Líder B2B en seguridad privada en Chile con 4.9/5 rating y 100% guardias OS10.',
+          description: `Líder B2B en seguridad privada en Chile con ${companyStats.gmbRatingValue}/5 rating y ${companyStats.os10CertifiedPct}% guardias OS10.`,
         }}
-        aggregateRating={{ ratingValue: 4.9, reviewCount: 57, bestRating: 5, worstRating: 1 }}
+        aggregateRating={{
+          ratingValue: companyStats.gmbRatingValue,
+          reviewCount: companyStats.gmbReviewCount,
+          bestRating: companyStats.gmbBestRating,
+          worstRating: companyStats.gmbWorstRating,
+        }}
         verificationUrl={companyStats.gmbShortUrl}
       />
       
@@ -51,15 +56,15 @@ export default function SobreNosotrosClient() {
       <section className="max-w-7xl mx-auto px-4 py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           <div className="bg-card rounded-xl p-6 shadow-sm border text-center">
-            <div className="text-4xl font-bold text-primary mb-2">4.9/5</div>
+            <div className="text-4xl font-bold text-primary mb-2">{companyStats.gmbRatingValue}/{companyStats.gmbBestRating}</div>
             <p className="text-sm text-muted-foreground">
               <a
-                href="https://maps.app.goo.gl/ywW2rQEWu4g4xxxy8"
+                href={companyStats.gmbShortUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="underline hover:no-underline"
               >
-                57 reseñas en Google
+                {companyStats.gmbReviewCount} reseñas en Google
               </a>
             </p>
           </div>

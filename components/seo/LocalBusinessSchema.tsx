@@ -60,14 +60,15 @@ export default function LocalBusinessSchema() {
       }
     ],
 
-    // Rating agregado — verificable vía sameAs con Google Business Profile
-    // ratingValue 4.9 y reviewCount 57 coinciden con GBP real (verificado 2026-04)
+    // Rating agregado — verificable vía url con Google Business Profile.
+    // Los valores se leen de companyStats.gmbRatingValue / gmbReviewCount
+    // (single source of truth). Última verificación manual: ver companyStats.
     "aggregateRating": {
       "@type": "AggregateRating",
-      "ratingValue": 4.9,
-      "bestRating": 5,
-      "worstRating": 1,
-      "reviewCount": 57,
+      "ratingValue": companyStats.gmbRatingValue,
+      "bestRating": companyStats.gmbBestRating,
+      "worstRating": companyStats.gmbWorstRating,
+      "reviewCount": companyStats.gmbReviewCount,
       "url": companyStats.gmbShortUrl
     },
 

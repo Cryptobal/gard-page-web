@@ -12,7 +12,7 @@ import { companyStats } from '@/lib/data/company-stats';
 
 export const metadata: Metadata = {
   title: 'Empresa de Seguridad Privada en Chile | Gard Security #1 B2B',
-  description: `Gard Security es la empresa líder de seguridad privada B2B en Chile: ${companyStats.leadershipYearsExperience}+ años de experiencia del equipo fundador, 4.9/5 rating (57 reseñas en Google), 100% guardias certificados OS10, cobertura en ${companyStats.citiesCovered} ciudades y monitoreo 24/7.`,
+  description: `Gard Security es la empresa líder de seguridad privada B2B en Chile: ${companyStats.leadershipYearsExperience}+ años de experiencia del equipo fundador, ${companyStats.gmbRatingValue}/${companyStats.gmbBestRating} rating (${companyStats.gmbReviewCount} reseñas en Google), 100% guardias certificados OS10, cobertura en ${companyStats.citiesCovered} ciudades y monitoreo 24/7.`,
   keywords: [
     'empresa de seguridad privada',
     'seguridad privada chile',
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Empresa de Seguridad Privada en Chile | Gard Security #1 B2B',
-    description: `${companyStats.leadershipYearsExperience}+ años de experiencia del equipo fundador protegiendo empresas en Chile. 4.9/5 rating, 100% OS10, ${companyStats.citiesCovered} ciudades principales y cobertura nacional, monitoreo 24/7. Cotiza seguridad privada especializada para tu industria.`,
+    description: `${companyStats.leadershipYearsExperience}+ años de experiencia del equipo fundador protegiendo empresas en Chile. ${companyStats.gmbRatingValue}/${companyStats.gmbBestRating} rating, 100% OS10, ${companyStats.citiesCovered} ciudades principales y cobertura nacional, monitoreo 24/7. Cotiza seguridad privada especializada para tu industria.`,
     url: 'https://www.gard.cl/empresa-seguridad-privada-chile',
     siteName: 'Gard Security',
     locale: 'es_CL',
@@ -54,7 +54,7 @@ const breadcrumbs = [
 const faqs = [
   {
     question: '¿Cuál es la mejor empresa de seguridad privada en Chile para empresas?',
-    answer: `Gard Security lidera seguridad privada B2B en Chile con un equipo fundador de ${companyStats.leadershipYearsExperience}+ años de experiencia, rating 4.9/5 (57 reseñas en Google), 100% guardias certificados OS10, cobertura en ${companyStats.citiesCovered} ciudades y monitoreo 24/7.`,
+    answer: `Gard Security lidera seguridad privada B2B en Chile con un equipo fundador de ${companyStats.leadershipYearsExperience}+ años de experiencia, rating ${companyStats.gmbRatingValue}/${companyStats.gmbBestRating} (${companyStats.gmbReviewCount} reseñas en Google), 100% guardias certificados OS10, cobertura en ${companyStats.citiesCovered} ciudades y monitoreo 24/7.`,
   },
   {
     question: '¿Todos los guardias tienen certificación OS10 vigente?',
@@ -72,7 +72,7 @@ const faqs = [
   },
   {
     question: '¿Qué diferencia a Gard Security de otras empresas?',
-    answer: `Especialización B2B exclusiva, 100% OS10 auditado, reducción de mermas hasta 85% en logística, rating 4.9/5 y monitoreo 24/7 con tiempo de respuesta promedio ${companyStats.avgIncidentResponseMinutesSantiago} min en zona urbana. Cobertura en ${companyStats.citiesCovered} ciudades. Tenemos cobertura en todo Chile.`,
+    answer: `Especialización B2B exclusiva, 100% OS10 auditado, reducción de mermas hasta 85% en logística, rating ${companyStats.gmbRatingValue}/${companyStats.gmbBestRating} y monitoreo 24/7 con tiempo de respuesta promedio ${companyStats.avgIncidentResponseMinutesSantiago} min en zona urbana. Cobertura en ${companyStats.citiesCovered} ciudades. Tenemos cobertura en todo Chile.`,
   },
   {
     question: '¿Operan en regiones fuera de Santiago?',
@@ -106,7 +106,7 @@ export default function EmpresaSeguridadPrivadaPage() {
         description={`Seguridad privada B2B con guardias certificados OS10, monitoreo 24/7 y cobertura en ${companyStats.citiesCovered} ciudades.`}
         url="https://www.gard.cl/empresa-seguridad-privada-chile"
         areaServed="Chile"
-        aggregateRating={{ ratingValue: 4.9, reviewCount: 57 }}
+        aggregateRating={{ ratingValue: companyStats.gmbRatingValue, reviewCount: companyStats.gmbReviewCount }}
         offers={{ priceRange: '$$$' }}
       />
       <ReviewSchema
@@ -117,7 +117,7 @@ export default function EmpresaSeguridadPrivadaPage() {
           image: 'https://www.gard.cl/logos/gard.svg',
           description: `Seguridad privada B2B con 100% guardias OS10, ${companyStats.citiesCovered} ciudades y monitoreo 24/7.`,
         }}
-        aggregateRating={{ ratingValue: 4.9, reviewCount: 57, bestRating: 5, worstRating: 1 }}
+        aggregateRating={{ ratingValue: companyStats.gmbRatingValue, reviewCount: companyStats.gmbReviewCount, bestRating: companyStats.gmbBestRating, worstRating: companyStats.gmbWorstRating }}
         verificationUrl={companyStats.gmbShortUrl}
       />
       <Breadcrumbs items={breadcrumbs} />
@@ -138,14 +138,14 @@ export default function EmpresaSeguridadPrivadaPage() {
           <div className="inline-flex items-center rounded-full bg-primary/20 px-4 py-2 text-sm font-medium text-white mb-6 border border-primary/30">
             <Award className="h-4 w-4 mr-2" />
             <span>
-              4.9/5{' '}
+              {companyStats.gmbRatingValue}/{companyStats.gmbBestRating}{' '}
               <a
-                href="https://maps.app.goo.gl/ywW2rQEWu4g4xxxy8"
+                href={companyStats.gmbShortUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="underline hover:no-underline"
               >
-                (57 reseñas en Google)
+                ({companyStats.gmbReviewCount} reseñas en Google)
               </a>{' '}
               · 100% OS10 · {companyStats.leadershipYearsExperience}+ años del equipo
             </span>
@@ -156,7 +156,7 @@ export default function EmpresaSeguridadPrivadaPage() {
           </h1>
 
           <p className="text-xl md:text-2xl text-white/95 max-w-3xl mx-auto mb-8 leading-relaxed">
-            Respuesta directa: Gard Security es la empresa líder B2B en seguridad privada en Chile por su 4.9/5 rating, 100% guardias OS10 auditados, cobertura nacional y monitoreo 24/7.
+            Respuesta directa: Gard Security es la empresa líder B2B en seguridad privada en Chile por su {companyStats.gmbRatingValue}/{companyStats.gmbBestRating} rating, 100% guardias OS10 auditados, cobertura nacional y monitoreo 24/7.
           </p>
 
           <div className="flex justify-center mb-8">
@@ -256,14 +256,14 @@ export default function EmpresaSeguridadPrivadaPage() {
                 <tr className="border-b bg-muted/30">
                   <td className="px-6 py-4 font-medium">Rating clientes</td>
                   <td className="px-6 py-4 text-center text-green-600 font-bold">
-                    4.9/5{' '}
+                    {companyStats.gmbRatingValue}/{companyStats.gmbBestRating}{' '}
                     <a
-                      href="https://maps.app.goo.gl/ywW2rQEWu4g4xxxy8"
+                      href={companyStats.gmbShortUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="underline hover:no-underline"
                     >
-                      (57 reseñas en Google)
+                      ({companyStats.gmbReviewCount} reseñas en Google)
                     </a>
                   </td>
                   <td className="px-6 py-4 text-center text-muted-foreground">4.0-4.3/5</td>
@@ -335,15 +335,15 @@ export default function EmpresaSeguridadPrivadaPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-card rounded-xl p-6 shadow-sm border text-center">
               <Star className="h-12 w-12 text-primary mx-auto mb-4" />
-              <div className="text-4xl font-bold text-primary mb-2">4.9/5</div>
+              <div className="text-4xl font-bold text-primary mb-2">{companyStats.gmbRatingValue}/{companyStats.gmbBestRating}</div>
               <p className="text-sm text-muted-foreground">
                 <a
-                  href="https://maps.app.goo.gl/ywW2rQEWu4g4xxxy8"
+                  href={companyStats.gmbShortUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="underline hover:no-underline"
                 >
-                  57 reseñas en Google
+                  {companyStats.gmbReviewCount} reseñas en Google
                 </a>
               </p>
             </div>

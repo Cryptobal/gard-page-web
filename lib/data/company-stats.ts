@@ -79,6 +79,21 @@ export const companyStats = {
   gmbShortUrl: 'https://maps.app.goo.gl/ywW2rQEWu4g4xxxy8',
   gmbCanonicalUrl:
     'https://www.google.com/maps/place/Gard+Security/data=!4m2!3m1!1s0x0:0x3fcad00015b6e4bd',
+
+  /**
+   * AggregateRating real publicado en Google Business Profile.
+   *
+   * Estos números deben coincidir con lo visible en el GMB (gmbShortUrl).
+   * Si Google detecta divergencia entre el JSON-LD y el GMB cross-validado
+   * vía `aggregateRating.url`, puede emitir manual action por rich-results spam.
+   *
+   * Actualizar cuando los números reales del GMB cambien — y solo entonces.
+   * Última verificación manual contra GMB: 2026-04 (ratingValue: 4.9, reviewCount: 57).
+   */
+  gmbRatingValue: 4.9,
+  gmbReviewCount: 57,
+  gmbBestRating: 5,
+  gmbWorstRating: 1,
 } as const;
 
 export type CompanyStats = typeof companyStats;

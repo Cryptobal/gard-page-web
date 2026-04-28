@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation';
 import { ArrowRight, CheckCircle, ArrowUpRight, ShieldCheck, Shield, Eye, Plane, ClipboardCheck, FileText } from 'lucide-react';
 import { useEffect } from 'react';
 import dynamic from 'next/dynamic';
+import { companyStats } from "@/lib/data/company-stats";
 
 import { servicios, type Servicio } from '@/app/data/servicios';
 import { industries } from '@/app/data/industries';
@@ -226,10 +227,7 @@ export default async function ServicioPage({ params }: { params: Promise<{ slug:
         description={descripcionLarga}
         url={`https://www.gard.cl/servicios/${servicio.slug}`}
         areaServed="Chile"
-        aggregateRating={{
-          ratingValue: 4.9,
-          reviewCount: 57
-        }}
+        aggregateRating={{ ratingValue: companyStats.gmbRatingValue, reviewCount: companyStats.gmbReviewCount }}
         offers={{
           priceRange: "$$$",
           availability: "https://schema.org/InStock"
