@@ -13,6 +13,7 @@ import {
   normalizeMobileNineDigits,
   normalizeRut,
 } from '@/lib/postulacion-data';
+import { COMUNAS_CHILE } from '@/lib/comunas-chile';
 
 const POSTULACION_TOKEN = 'opai-postulacion-2026';
 const WHATSAPP_NUMBER = '56956062246';
@@ -328,11 +329,17 @@ export default function ReclutamientoForm() {
               <label className={labelClass}>Comuna donde vives *</label>
               <input
                 className={inputClass}
-                placeholder="Ej: Maipú, Antofagasta…"
+                placeholder="Empieza a escribir tu comuna…"
                 autoComplete="address-level2"
+                list="comunas-chile-list"
                 value={form.commune}
                 onChange={(e) => setForm((p) => ({ ...p, commune: e.target.value }))}
               />
+              <datalist id="comunas-chile-list">
+                {COMUNAS_CHILE.map((c) => (
+                  <option key={c} value={c} />
+                ))}
+              </datalist>
             </div>
           </div>
 

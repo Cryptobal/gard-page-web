@@ -2,6 +2,7 @@ import React, { Suspense } from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
+import { Briefcase } from 'lucide-react';
 import CloudflareImage from '@/components/CloudflareImage';
 import { cloudflareImages } from '@/lib/images';
 import { companyStats } from '@/lib/data/company-stats';
@@ -238,7 +239,29 @@ export default function Home() {
       {/* Formulario de cotización */}
       <FormularioCotizacionSeccion />
 
-      {/* CTA final - Eliminado porque ya tenemos el formulario */}
+      {/* CTA dirigido a postulantes guardia (captación pasiva en home B2B) */}
+      <section className="gard-section-md bg-[hsl(var(--gard-card))] border-t border-[hsl(var(--gard-border))]">
+        <div className="gard-container">
+          <div className="max-w-4xl mx-auto rounded-2xl bg-gradient-to-r from-[hsl(var(--gard-accent))]/10 to-[hsl(var(--gard-accent))]/5 border border-[hsl(var(--gard-accent))]/20 p-6 md:p-8 flex flex-col md:flex-row items-center gap-6">
+            <div className="flex items-center justify-center w-14 h-14 rounded-full bg-[hsl(var(--gard-accent))]/15 flex-shrink-0">
+              <Briefcase className="h-7 w-7 text-[hsl(var(--gard-accent))]" />
+            </div>
+            <div className="flex-1 text-center md:text-left">
+              <h3 className="text-lg md:text-xl font-bold mb-1">¿Eres guardia de seguridad?</h3>
+              <p className="text-sm md:text-base text-muted-foreground">
+                Únete a Gard Security. Postula en menos de un minuto — con o sin OS-10.
+              </p>
+            </div>
+            <Link
+              href="/reclutamiento?via=home_cta&utm_source=home&utm_medium=cta_footer"
+              className="inline-flex items-center gap-2 h-12 px-6 rounded-full bg-[hsl(var(--gard-accent))] text-white font-semibold hover:bg-[hsl(var(--gard-accent))]/90 transition-colors whitespace-nowrap"
+            >
+              Trabaja con nosotros
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
     </>
   );
 } 
