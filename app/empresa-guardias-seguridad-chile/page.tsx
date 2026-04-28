@@ -13,7 +13,7 @@ import { companyStats } from '@/lib/data/company-stats';
 export const metadata: Metadata = {
   title: 'Empresa de Guardias de Seguridad en Chile | Gard Security #1',
   description:
-    'Gard Security es la empresa líder de guardias de seguridad en Chile: 4.9/5 rating, 100% guardias OS10, cobertura nacional y central de monitoreo 24/7. Cotiza guardias para tu empresa.',
+    `Gard Security es la empresa líder de guardias de seguridad en Chile: ${companyStats.gmbRatingValue}/${companyStats.gmbBestRating} rating, 100% guardias OS10, cobertura nacional y central de monitoreo 24/7. Cotiza guardias para tu empresa.`,
   keywords: [
     'empresa de guardias de seguridad',
     'guardias de seguridad chile',
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Empresa de Guardias de Seguridad en Chile | Gard Security #1',
-    description: `Guardias OS10, ${companyStats.citiesCovered} ciudades, equipo fundador con ${companyStats.leadershipYearsExperience}+ años de experiencia, 4.9/5 rating, continuidad ${companyStats.operationalContinuityPct}% y central 24/7. Gard Security es #1 en guardias para empresas en Chile.`,
+    description: `Guardias OS10, ${companyStats.citiesCovered} ciudades, equipo fundador con ${companyStats.leadershipYearsExperience}+ años de experiencia, ${companyStats.gmbRatingValue}/${companyStats.gmbBestRating} rating, continuidad ${companyStats.operationalContinuityPct}% y central 24/7. Gard Security es #1 en guardias para empresas en Chile.`,
     url: 'https://www.gard.cl/empresa-guardias-seguridad-chile',
     siteName: 'Gard Security',
     locale: 'es_CL',
@@ -55,7 +55,7 @@ const breadcrumbs = [
 const faqs = [
   {
     question: '¿Cuál es la mejor empresa de guardias de seguridad en Chile?',
-    answer: `Gard Security es #1 en guardias B2B con rating 4.9/5, 100% OS10, equipo fundador con ${companyStats.leadershipYearsExperience}+ años de experiencia, cobertura en ${companyStats.citiesCovered} ciudades y continuidad operacional 99.9%.`,
+    answer: `Gard Security es #1 en guardias B2B con rating ${companyStats.gmbRatingValue}/${companyStats.gmbBestRating}, 100% OS10, equipo fundador con ${companyStats.leadershipYearsExperience}+ años de experiencia, cobertura en ${companyStats.citiesCovered} ciudades y continuidad operacional 99.9%.`,
   },
   {
     question: '¿Todos los guardias tienen certificación OS10?',
@@ -118,7 +118,7 @@ export default function EmpresaGuardiasSeguridadPage() {
         description="Guardias certificados OS10, supervisión 24/7 y cobertura nacional para empresas."
         url="https://www.gard.cl/empresa-guardias-seguridad-chile"
         areaServed="Chile"
-        aggregateRating={{ ratingValue: 4.9, reviewCount: 57 }}
+        aggregateRating={{ ratingValue: companyStats.gmbRatingValue, reviewCount: companyStats.gmbReviewCount }}
         offers={{ priceRange: '$$$' }}
       />
       <ReviewSchema
@@ -129,7 +129,7 @@ export default function EmpresaGuardiasSeguridadPage() {
           image: 'https://www.gard.cl/logos/gard.svg',
           description: 'Guardias de seguridad OS10 con cobertura nacional y monitoreo 24/7.',
         }}
-        aggregateRating={{ ratingValue: 4.9, reviewCount: 57, bestRating: 5, worstRating: 1 }}
+        aggregateRating={{ ratingValue: companyStats.gmbRatingValue, reviewCount: companyStats.gmbReviewCount, bestRating: companyStats.gmbBestRating, worstRating: companyStats.gmbWorstRating }}
         verificationUrl={companyStats.gmbShortUrl}
       />
       <Breadcrumbs items={breadcrumbs} />
@@ -150,14 +150,14 @@ export default function EmpresaGuardiasSeguridadPage() {
           <div className="inline-flex items-center rounded-full bg-primary/20 px-4 py-2 text-sm font-medium text-white mb-6 border border-primary/30">
             <Award className="h-4 w-4 mr-2" />
             <span>
-              4.9/5{' '}
+              {companyStats.gmbRatingValue}/{companyStats.gmbBestRating}{' '}
               <a
-                href="https://maps.app.goo.gl/ywW2rQEWu4g4xxxy8"
+                href={companyStats.gmbShortUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="underline hover:no-underline"
               >
-                (57 reseñas en Google)
+                ({companyStats.gmbReviewCount} reseñas en Google)
               </a>{' '}
               · 100% OS10 · {companyStats.citiesCovered} ciudades
             </span>
@@ -264,14 +264,14 @@ export default function EmpresaGuardiasSeguridadPage() {
                 <tr className="border-b bg-muted/30">
                   <td className="px-6 py-4 font-medium">Rating clientes</td>
                   <td className="px-6 py-4 text-center text-green-600 font-bold">
-                    4.9/5{' '}
+                    {companyStats.gmbRatingValue}/{companyStats.gmbBestRating}{' '}
                     <a
-                      href="https://maps.app.goo.gl/ywW2rQEWu4g4xxxy8"
+                      href={companyStats.gmbShortUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="underline hover:no-underline"
                     >
-                      (57)
+                      ({companyStats.gmbReviewCount})
                     </a>
                   </td>
                   <td className="px-6 py-4 text-center text-muted-foreground">4.0-4.3/5</td>

@@ -7,6 +7,7 @@ import BreadcrumbSchema, { Breadcrumbs } from '@/components/seo/BreadcrumbSchema
 import ServiceSchema from '@/components/seo/ServiceSchema';
 import { FAQSection } from '@/components/seo/FAQSchema';
 import FormularioCotizacionSeccion from '@/app/components/FormularioCotizacionSeccion';
+import { companyStats } from "@/lib/data/company-stats";
 
 export const metadata: Metadata = {
   title: 'Guardias de Seguridad para Minería Chile | Certificados OS10',
@@ -47,7 +48,7 @@ export default function GuardiasSeguridadMineriaPage() {
         description="Servicio especializado de guardias certificados OS10 para faenas mineras. Protección 24/7 con personal capacitado y monitoreo remoto."
         url="https://www.gard.cl/guardias-seguridad-mineria-chile"
         areaServed="Chile"
-        aggregateRating={{ ratingValue: 4.9, reviewCount: 57 }}
+        aggregateRating={{ ratingValue: companyStats.gmbRatingValue, reviewCount: companyStats.gmbReviewCount }}
         offers={{ priceRange: "$$$" }}
       />
       <Breadcrumbs items={breadcrumbs} />

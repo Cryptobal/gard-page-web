@@ -6,6 +6,7 @@ import { FAQSection } from '@/components/seo/FAQSchema';
 import FormularioCotizacionSeccion from '@/app/components/FormularioCotizacionSeccion';
 import ServiceSchema from '@/components/seo/ServiceSchema';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
+import { companyStats } from "@/lib/data/company-stats";
 
 export const metadata: Metadata = {
   title: 'Seguridad para Construcción en Santiago | Guardias para Obras | Gard Security',
@@ -46,7 +47,7 @@ export default function SeguridadConstruccionPage() {
         description="Guardias especializados en seguridad para obras de construcción con protección 24/7"
         url="https://www.gard.cl/seguridad-construccion-santiago"
         areaServed="Santiago, Chile"
-        aggregateRating={{ ratingValue: 4.9, reviewCount: 57 }}
+        aggregateRating={{ ratingValue: companyStats.gmbRatingValue, reviewCount: companyStats.gmbReviewCount }}
         offers={{ priceRange: "$$", availability: "https://schema.org/InStock" }}
       />
 

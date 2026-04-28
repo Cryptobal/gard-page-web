@@ -7,6 +7,7 @@ import BreadcrumbSchema, { Breadcrumbs } from '@/components/seo/BreadcrumbSchema
 import ServiceSchema from '@/components/seo/ServiceSchema';
 import { FAQSection } from '@/components/seo/FAQSchema';
 import FormularioCotizacionSeccion from '@/app/components/FormularioCotizacionSeccion';
+import { companyStats } from '@/lib/data/company-stats';
 
 export const metadata: Metadata = {
   title: 'Guardias para Edificios Corporativos Santiago | Recepción 24/7',
@@ -47,7 +48,7 @@ export default function GuardiasEdificiosPage() {
         description="Servicio profesional de seguridad para edificios de oficinas. Control de acceso, recepción ejecutiva 24/7 y protocolo corporativo."
         url="https://www.gard.cl/guardias-edificios-corporativos-santiago"
         areaServed="Santiago, Chile"
-        aggregateRating={{ ratingValue: 4.9, reviewCount: 57 }}
+        aggregateRating={{ ratingValue: companyStats.gmbRatingValue, reviewCount: companyStats.gmbReviewCount }}
         offers={{ priceRange: "$$$" }}
       />
       <Breadcrumbs items={breadcrumbs} />

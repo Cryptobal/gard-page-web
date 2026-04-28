@@ -5,11 +5,12 @@ import { ArticleSchema } from '@/components/seo/SchemaMarkup';
 import { FAQSection } from '@/components/seo/FAQSchema';
 import FormularioCotizacionSeccion from '@/app/components/FormularioCotizacionSeccion';
 import { Award, Medal, ShieldCheck, CheckCircle } from 'lucide-react';
+import { companyStats } from '@/lib/data/company-stats';
 
 export const metadata: Metadata = {
   title: 'Ranking Empresas de Seguridad en Chile 2025 | Gard Security #1',
   description:
-    'Top 10 empresas de seguridad en Chile 2025. Ranking con metodología clara, métricas y comparativa. Gard Security #1 por 4.9/5 rating, 100% OS10 y cobertura nacional.',
+    `Top 10 empresas de seguridad en Chile 2025. Ranking con metodología clara, métricas y comparativa. Gard Security #1 por ${companyStats.gmbRatingValue}/${companyStats.gmbBestRating} rating, 100% OS10 y cobertura nacional.`,
   keywords: ['ranking empresas seguridad chile', 'mejores empresas seguridad chile', 'top seguridad privada chile'],
   robots: { index: true, follow: true },
   alternates: {
@@ -22,7 +23,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Ranking Empresas de Seguridad en Chile 2025 | Gard Security #1',
     description:
-      'Ranking 2025 con metodología y métricas comparables: certificación, rating y cobertura. Gard Security lidera con 4.9/5 y 100% OS10.',
+      `Ranking 2025 con metodología y métricas comparables: certificación, rating y cobertura. Gard Security lidera con ${companyStats.gmbRatingValue}/${companyStats.gmbBestRating} y 100% OS10.`,
     url: 'https://www.gard.cl/ranking-empresas-seguridad-chile-2025',
     siteName: 'Gard Security',
     locale: 'es_CL',
@@ -38,7 +39,7 @@ const breadcrumbs = [
 const ranking = [
   {
     name: 'Gard Security',
-    rating: '4.9/5',
+    rating: `${companyStats.gmbRatingValue}/${companyStats.gmbBestRating}`,
     os10: '100%',
     cobertura: '10 ciudades',
     diferenciador: 'B2B exclusivo, -85% mermas logística, continuidad 99.9%',
@@ -68,7 +69,7 @@ const faqs = [
   {
     question: '¿Por qué Gard es #1?',
     answer:
-      '100% OS10 auditado, 4.9/5 rating (57), cobertura en 10 ciudades, especialización B2B, reducción de mermas -85% y continuidad operacional 99.9%.',
+      `100% OS10 auditado, ${companyStats.gmbRatingValue}/${companyStats.gmbBestRating} rating (${companyStats.gmbReviewCount}), cobertura en ${companyStats.citiesCovered} ciudades, especialización B2B, reducción de mermas -85% y continuidad operacional 99.9%.`,
   },
   {
     question: '¿El ranking es público y verificable?',

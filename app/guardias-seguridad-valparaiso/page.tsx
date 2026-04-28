@@ -6,6 +6,7 @@ import { FAQSection } from '@/components/seo/FAQSchema';
 import FormularioCotizacionSeccion from '@/app/components/FormularioCotizacionSeccion';
 import ServiceSchema from '@/components/seo/ServiceSchema';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
+import { companyStats } from "@/lib/data/company-stats";
 
 export const metadata: Metadata = {
   title: 'Guardias de Seguridad en Valparaíso | Puerto y Patrimonio | Gard Security',
@@ -46,7 +47,7 @@ export default function GuardiasValparaisoPage() {
         description="Guardias especializados en seguridad portuaria, zonas patrimoniales y turismo en Valparaíso"
         url="https://www.gard.cl/guardias-seguridad-valparaiso"
         areaServed="Valparaíso, Chile"
-        aggregateRating={{ ratingValue: 4.9, reviewCount: 57 }}
+        aggregateRating={{ ratingValue: companyStats.gmbRatingValue, reviewCount: companyStats.gmbReviewCount }}
         offers={{ priceRange: "$$$", availability: "https://schema.org/InStock" }}
       />
 

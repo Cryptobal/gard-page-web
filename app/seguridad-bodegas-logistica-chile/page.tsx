@@ -7,6 +7,7 @@ import BreadcrumbSchema, { Breadcrumbs } from '@/components/seo/BreadcrumbSchema
 import ServiceSchema from '@/components/seo/ServiceSchema';
 import { FAQSection } from '@/components/seo/FAQSchema';
 import FormularioCotizacionSeccion from '@/app/components/FormularioCotizacionSeccion';
+import { companyStats } from '@/lib/data/company-stats';
 
 export const metadata: Metadata = {
   title: 'Seguridad para Bodegas Logísticas Chile | Reducimos Mermas 85%',
@@ -47,7 +48,7 @@ export default function SeguridadBodegasPage() {
         description="Servicio especializado de seguridad para bodegas logísticas. Reducción de mermas, control de acceso y vigilancia 24/7."
         url="https://www.gard.cl/seguridad-bodegas-logistica-chile"
         areaServed="Chile"
-        aggregateRating={{ ratingValue: 4.9, reviewCount: 57 }}
+        aggregateRating={{ ratingValue: companyStats.gmbRatingValue, reviewCount: companyStats.gmbReviewCount }}
         offers={{ priceRange: "$$" }}
       />
       <Breadcrumbs items={breadcrumbs} />

@@ -68,7 +68,7 @@ export default function CiudadServicioGold({ copy }: CiudadServicioGoldProps) {
           { type: 'Country', name: 'Chile' },
         ]}
         audience={{ audienceType: 'Empresas B2B en Chile' }}
-        aggregateRating={{ ratingValue: 4.9, reviewCount: 57, bestRating: 5 }}
+        aggregateRating={{ ratingValue: companyStats.gmbRatingValue, reviewCount: companyStats.gmbReviewCount, bestRating: companyStats.gmbBestRating }}
         offers={{
           availability: 'https://schema.org/InStock',
           priceCurrency: 'CLP',
