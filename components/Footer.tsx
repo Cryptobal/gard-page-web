@@ -339,29 +339,16 @@ export default function Footer() {
                 <div className="mb-2">
                   <span className="font-semibold text-primary dark:text-accent text-sm block">Consultas Comerciales</span>
                 </div>
-                <div className="space-y-2">
-                  <div className="flex items-start gap-2">
-                    <Phone className="w-5 h-5 text-primary dark:text-blue-300 flex-shrink-0 mt-1" />
-                    <a 
-                      href="tel:+56968727644" 
-                      className="text-sm md:text-base text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors"
-                      aria-label="+56 9 6872 7644"
-                      itemProp="telephone"
-                    >
-                      +56 9 6872 7644
-                    </a>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <Mail className="w-5 h-5 text-primary dark:text-blue-300 flex-shrink-0 mt-1" />
-                    <a 
-                      href="mailto:comercial@gard.cl" 
-                      className="text-sm md:text-base text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors"
-                      aria-label="comercial@gard.cl"
-                      itemProp="email"
-                    >
-                      comercial@gard.cl
-                    </a>
-                  </div>
+                <div className="flex items-start gap-2">
+                  <Mail className="w-5 h-5 text-primary dark:text-blue-300 flex-shrink-0 mt-1" />
+                  <a 
+                    href="mailto:comercial@gard.cl" 
+                    className="text-sm md:text-base text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors"
+                    aria-label="comercial@gard.cl"
+                    itemProp="email"
+                  >
+                    comercial@gard.cl
+                  </a>
                 </div>
               </li>
 
