@@ -42,6 +42,8 @@ export const API_URLS = {
   POSTULACION: `${OPAI_URL}/api/public/gard/postulacion`,
   POSTULACION_UPLOAD: `${OPAI_URL}/api/public/gard/postulacion/upload`,
   POSTULACION_DOC_TYPES: `${OPAI_URL}/api/public/gard/postulacion/document-types`,
+  // Postulación express (form público web — captación con campos mínimos)
+  POSTULACION_EXPRESS: `${OPAI_URL}/api/public/gard/postulacion-express`,
 };
 
 export default API_URLS;

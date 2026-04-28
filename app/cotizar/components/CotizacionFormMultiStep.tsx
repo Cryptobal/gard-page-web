@@ -43,7 +43,7 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import { Loader } from '@googlemaps/js-api-loader';
+import { getGoogleMapsLoader } from '@/lib/googleMapsLoader';
 import {
   buildDotacion,
   createDefaultQuickPuesto,
@@ -522,12 +522,7 @@ export default function CotizacionFormMultiStep({ prefillServicio, prefillIndust
       setMapLoaded(true);
       return;
     }
-    const loader = new Loader({
-      apiKey: 'AIzaSyBHIoHJDp6StLJlUAQV_gK7woFsEYgbzHY',
-      version: 'weekly',
-      libraries: ['places'],
-    });
-    loader.load().then(() => setMapLoaded(true)).catch((error) => {
+    getGoogleMapsLoader().load().then(() => setMapLoaded(true)).catch((error) => {
       console.error('Error cargando Google Maps API:', error);
     });
   }, [mapLoaded]);

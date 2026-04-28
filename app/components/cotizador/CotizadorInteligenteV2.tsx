@@ -47,7 +47,7 @@ import {
   CONFIGURACIONES_TURNOS,
   RANGOS_SALARIALES
 } from '@/lib/calculadora-costos';
-import { Loader } from '@googlemaps/js-api-loader';
+import { getGoogleMapsLoader } from '@/lib/googleMapsLoader';
 import API_URLS from '@/app/config/api';
 import { getPaginaWebFromEmail } from '@/lib/opaiPayload';
 import { trackFormSubmission } from '@/lib/analytics/formTracking';
@@ -245,14 +245,7 @@ export default function CotizadorInteligenteV2() {
     }
 
     // Carga de la API de Google Maps
-    const loader = new Loader({
-      apiKey: 'AIzaSyBHIoHJDp6StLJlUAQV_gK7woFsEYgbzHY',
-      version: 'weekly',
-      libraries: ['places'],
-    });
-
-    loader.load().then(() => {
-      console.log('Google Maps API cargada correctamente');
+    getGoogleMapsLoader().load().then(() => {
       setMapLoaded(true);
     }).catch(error => {
       console.error('Error cargando Google Maps API:', error);

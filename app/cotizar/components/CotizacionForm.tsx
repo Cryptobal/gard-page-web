@@ -23,7 +23,7 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import { Loader } from '@googlemaps/js-api-loader';
+import { getGoogleMapsLoader } from '@/lib/googleMapsLoader';
 import { useGtmEvent } from '../../components/EventTracker';
 import API_URLS from '@/app/config/api';
 import { getPaginaWebFromEmail } from '@/lib/opaiPayload';
@@ -266,12 +266,7 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
 
   // Google Maps loader
   useEffect(() => {
-    const loader = new Loader({
-      apiKey: 'AIzaSyBHIoHJDp6StLJlUAQV_gK7woFsEYgbzHY',
-      version: 'weekly',
-      libraries: ['places'],
-    });
-    loader.load().then(() => setMapLoaded(true)).catch(error => {
+    getGoogleMapsLoader().load().then(() => setMapLoaded(true)).catch(error => {
       console.error('Error cargando Google Maps API:', error);
     });
   }, []);

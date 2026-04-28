@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { AlertCircle, Loader2, CheckCircle, ArrowRight } from 'lucide-react';
-import { Loader } from '@googlemaps/js-api-loader';
+import { getGoogleMapsLoader } from '@/lib/googleMapsLoader';
 import { trackFormSubmission } from '@/lib/analytics/formTracking';
 import { API_URLS } from '@/app/config/api';
 
@@ -64,13 +64,7 @@ export default function DynamicCotizacionForm({
   
   // Carga de la API de Google Maps
   useEffect(() => {
-    const loader = new Loader({
-      apiKey: 'AIzaSyBHIoHJDp6StLJlUAQV_gK7woFsEYgbzHY',
-      version: 'weekly',
-      libraries: ['places'],
-    });
-
-    loader.load().then(() => {
+    getGoogleMapsLoader().load().then(() => {
       setMapLoaded(true);
     }).catch(error => {
       console.error('Error cargando Google Maps API:', error);

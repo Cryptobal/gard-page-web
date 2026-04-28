@@ -21,7 +21,7 @@ import {
   formatearPrecio,
 } from '@/lib/calculadora-costos';
 import NuevoRolOperativo from './NuevoRolOperativo';
-import { Loader } from '@googlemaps/js-api-loader';
+import { getGoogleMapsLoader } from '@/lib/googleMapsLoader';
 import API_URLS from '@/app/config/api';
 
 // Declaración global para Google Maps API
@@ -117,14 +117,7 @@ export default function CotizadorFormulario() {
     }
 
     // Carga de la API de Google Maps
-    const loader = new Loader({
-      apiKey: 'AIzaSyBHIoHJDp6StLJlUAQV_gK7woFsEYgbzHY',
-      version: 'weekly',
-      libraries: ['places'],
-    });
-
-    loader.load().then(() => {
-      console.log('Google Maps API cargada correctamente');
+    getGoogleMapsLoader().load().then(() => {
       setMapLoaded(true);
     }).catch(error => {
       console.error('Error cargando Google Maps API:', error);
