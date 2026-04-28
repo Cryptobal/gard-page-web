@@ -239,27 +239,42 @@ export default function Home() {
       {/* Formulario de cotización */}
       <FormularioCotizacionSeccion />
 
-      {/* CTA dirigido a postulantes guardia (captación pasiva en home B2B) */}
-      <section className="gard-section-md bg-[hsl(var(--gard-card))] border-t border-[hsl(var(--gard-border))]">
+      {/* CTA dirigido a postulantes guardia (captación) — prominente en mobile, sutil en desktop */}
+      <section
+        id="trabaja-con-nosotros-home"
+        aria-labelledby="trabaja-cta-home-title"
+        className="py-10 md:py-14 bg-gradient-to-b from-[hsl(var(--gard-card))] to-[hsl(var(--gard-background))] border-t border-[hsl(var(--gard-border))]"
+      >
         <div className="gard-container">
-          <div className="max-w-4xl mx-auto rounded-2xl bg-gradient-to-r from-[hsl(var(--gard-accent))]/10 to-[hsl(var(--gard-accent))]/5 border border-[hsl(var(--gard-accent))]/20 p-6 md:p-8 flex flex-col md:flex-row items-center gap-6">
-            <div className="flex items-center justify-center w-14 h-14 rounded-full bg-[hsl(var(--gard-accent))]/15 flex-shrink-0">
-              <Briefcase className="h-7 w-7 text-[hsl(var(--gard-accent))]" />
+          <p className="text-center text-xs md:text-sm font-semibold uppercase tracking-widest text-[hsl(var(--gard-accent))] mb-3">
+            Para postulantes guardia
+          </p>
+
+          <Link
+            href="/reclutamiento?via=home_cta&utm_source=home&utm_medium=cta_footer"
+            className="block max-w-3xl mx-auto group"
+          >
+            <div className="rounded-2xl bg-gradient-to-br from-[hsl(var(--gard-accent))]/25 via-[hsl(var(--gard-accent))]/15 to-[hsl(var(--gard-accent))]/5 md:from-[hsl(var(--gard-accent))]/15 md:via-[hsl(var(--gard-accent))]/8 md:to-transparent border-2 border-[hsl(var(--gard-accent))]/40 md:border md:border-[hsl(var(--gard-accent))]/20 shadow-lg md:shadow-md p-6 md:p-7 flex flex-col md:flex-row items-center gap-5 md:gap-6 transition-all group-hover:shadow-xl group-hover:border-[hsl(var(--gard-accent))]/60 group-hover:scale-[1.01]">
+              <div className="flex items-center justify-center w-20 h-20 md:w-16 md:h-16 rounded-full bg-[hsl(var(--gard-accent))] text-white flex-shrink-0 shadow-md">
+                <Briefcase className="h-10 w-10 md:h-7 md:w-7" />
+              </div>
+              <div className="flex-1 text-center md:text-left">
+                <h2
+                  id="trabaja-cta-home-title"
+                  className="text-2xl md:text-xl font-bold mb-2 md:mb-1"
+                >
+                  ¿Buscas trabajo como guardia?
+                </h2>
+                <p className="text-base md:text-base text-[hsl(var(--gard-foreground))]/80 leading-snug">
+                  Postula en menos de un minuto. Con o sin OS-10. Te llamamos por WhatsApp.
+                </p>
+              </div>
+              <span className="w-full md:w-auto inline-flex items-center justify-center gap-2 h-14 md:h-12 px-8 md:px-6 rounded-full bg-[hsl(var(--gard-accent))] text-white text-base md:text-sm font-bold whitespace-nowrap shadow-lg group-hover:bg-[hsl(var(--gard-accent))]/90">
+                Postula aquí
+                <ArrowRight className="h-5 w-5 md:h-4 md:w-4" />
+              </span>
             </div>
-            <div className="flex-1 text-center md:text-left">
-              <h3 className="text-lg md:text-xl font-bold mb-1">¿Eres guardia de seguridad?</h3>
-              <p className="text-sm md:text-base text-muted-foreground">
-                Únete a Gard Security. Postula en menos de un minuto — con o sin OS-10.
-              </p>
-            </div>
-            <Link
-              href="/reclutamiento?via=home_cta&utm_source=home&utm_medium=cta_footer"
-              className="inline-flex items-center gap-2 h-12 px-6 rounded-full bg-[hsl(var(--gard-accent))] text-white font-semibold hover:bg-[hsl(var(--gard-accent))]/90 transition-colors whitespace-nowrap"
-            >
-              Trabaja con nosotros
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
+          </Link>
         </div>
       </section>
     </>

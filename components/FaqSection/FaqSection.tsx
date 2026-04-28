@@ -186,23 +186,18 @@ export default function FaqSection() {
               
               {/* Contenido de preguntas */}
               <div className="w-full">
-                {/* Contenedor con altura dinámica */}
-                <div 
+                <div
                   ref={contentRef}
-                  className="relative"
-                  style={{ 
-                    height: `${contentHeight}px`, 
-                    overflow: 'hidden',
-                    transition: 'height 0.3s ease'
-                  }}
+                  className="relative w-full"
+                  style={{ minHeight: `${contentHeight}px` }}
                 >
                   <AnimatePresence mode="wait" initial={false}>
                     {categories.map((category) => (
                       activeTab === category && (
-                        <TabsContent 
-                          key={category} 
+                        <TabsContent
+                          key={category}
                           value={category}
-                          className="mt-6 w-full absolute top-0 left-0"
+                          className="mt-6 w-full"
                         >
                           <motion.div
                             initial={{ opacity: 0 }}
