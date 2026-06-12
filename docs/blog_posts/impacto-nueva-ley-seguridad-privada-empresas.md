@@ -48,8 +48,8 @@ La ley obliga a fortalecer el área de **recursos humanos**. Las empresas deben 
 En cambio, muchas empresas están aprovechando la oportunidad para invertir en **soluciones de seguridad** más modernas. Por ejemplo, el uso de **seguridad electrónica** o **drones de seguridad** permite cubrir grandes áreas con menor personal, aumentando la eficiencia operativa.
 
 👉 Descubre cómo implementar tecnología avanzada en tu empresa:  
-[Seguridad Electrónica](https://gard.cl/seguridad-electronica/)  
-[Drones de Seguridad](https://gard.cl/drones-de-seguridad-para-empresas-e-industrias/)
+[Seguridad Electrónica](https://www.gard.cl/servicios/seguridad-electronica/)  
+[Drones de Seguridad](https://www.gard.cl/servicios/drones-seguridad/)
 
 ## Nuevas oportunidades en el mercado de seguridad
 
@@ -60,7 +60,7 @@ A pesar de los desafíos iniciales, esta ley también representa una **oportunid
 Por ejemplo, ofrecer **guardias de seguridad privada** certificados, monitoreo 24/7 y respaldo legal puede ser decisivo al momento de adjudicarse contratos con grandes clientes. En resumen, el cumplimiento normativo deja de ser una carga para convertirse en un valor agregado.
 
 👉 ¿Buscas una empresa que ya cumple con la nueva normativa?  
-Explora los servicios de [GARD Seguridad](https://gard.cl/guardias-de-seguridad-privada-para-empresas/)
+Explora los servicios de [GARD Seguridad](https://www.gard.cl/guardias-de-seguridad-privada-para-empresas/)
 
 ## ¿Qué deben hacer hoy las empresas del sector?
 
@@ -85,7 +85,7 @@ Por tanto, invertir en personal calificado y en tecnología avanzada no solo es 
 
 ### ¿Quieres que tu empresa cumpla con la nueva normativa y mejore su seguridad?
 
-**Visita [GARD Seguridad](https://gard.cl)**, expertos en **guardias de seguridad**, **seguridad electrónica** y soluciones integrales para industrias, eventos y condominios.
+**Visita [GARD Seguridad](https://www.gard.cl)**, expertos en **guardias de seguridad**, **seguridad electrónica** y soluciones integrales para industrias, eventos y condominios.
 
 ---
 

@@ -149,4 +149,4 @@ imageUrl: /images/blog/guardias-de-seguridad-en-restaurantes.jpg
 
 
 
-<p>Si buscas soluciones de <strong>seguridad privada</strong> para tu restaurante o negocio, te invitamos a conocer más sobre los <strong>servicios de seguridad</strong> que ofrece <a href="https://gard.cl/">Gard</a>.</p>
+<p>Si buscas soluciones de <strong>seguridad privada</strong> para tu restaurante o negocio, te invitamos a conocer más sobre los <strong>servicios de seguridad</strong> que ofrece <a href="https://www.gard.cl/">Gard</a>.</p>

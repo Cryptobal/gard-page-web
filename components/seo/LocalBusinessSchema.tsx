@@ -43,7 +43,7 @@ export default function LocalBusinessSchema() {
     },
     
     // Contacto
-    "telephone": "+56941137976",
+    "telephone": companyStats.contactPhoneE164,
     "email": "comercial@gard.cl",
     
     // Rango de precios

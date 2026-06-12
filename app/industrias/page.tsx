@@ -24,7 +24,14 @@ export const metadata: Metadata = {
     "vigilancia en retail",
     "empresa de seguridad privada",
     "servicios de seguridad por industria"
-  ]
+  ],
+  alternates: {
+    canonical: 'https://www.gard.cl/industrias',
+    languages: {
+      'es-CL': 'https://www.gard.cl/industrias',
+      'x-default': 'https://www.gard.cl/industrias',
+    },
+  },
 };
 
 export default function IndustriasPage() {

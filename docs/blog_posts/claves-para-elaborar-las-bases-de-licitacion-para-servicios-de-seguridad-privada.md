@@ -151,7 +151,7 @@ imageUrl: >-
 <p></p>
 <p></p>
 <p></p>
-<p>Para más información sobre cómo estructurar las bases de una licitación para servicios de seguridad privada y asegurar la protección de su empresa, visite <a href="https://gard.cl/">Gard.cl</a> y descubra nuestras soluciones de seguridad personalizadas.</p>
+<p>Para más información sobre cómo estructurar las bases de una licitación para servicios de seguridad privada y asegurar la protección de su empresa, visite <a href="https://www.gard.cl/">Gard.cl</a> y descubra nuestras soluciones de seguridad personalizadas.</p>
 <p></p>
 <p></p>
 <p></p>

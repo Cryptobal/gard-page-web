@@ -55,13 +55,11 @@ export const metadata: Metadata = {
     description: 'Empresa líder en seguridad privada para empresas e industrias en Chile.',
     images: ['/og-default.png'],
   },
-  alternates: {
-    canonical: 'https://www.gard.cl',
-    languages: {
-      'es-CL': 'https://www.gard.cl',
-      'x-default': 'https://www.gard.cl',
-    },
-  },
+  // IMPORTANTE: NO definir `alternates` aquí. Si el layout raíz declara
+  // canonical/hreflang, toda página hija que no defina los suyos hereda
+  // canonical y hreflang apuntando al HOME (conflicto hreflang↔canonical
+  // detectado por Semrush en jun-2026). El home define sus alternates en
+  // app/page.tsx; cada página indexable debe declarar los propios.
   robots: {
     index: true,
     follow: true,

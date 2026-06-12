@@ -5,6 +5,8 @@ import LatestPosts from '@/app/components/blog/LatestPosts';
 export const metadata: Metadata = {
   title: 'Últimos Artículos | Gard Security',
   description: 'Consulta los últimos artículos y noticias sobre seguridad privada publicados por Gard Security.',
+  // Página de demos internos de componentes de blog: no debe competir en el índice.
+  robots: { index: false, follow: true },
 };
 
 export default function LatestPostsDemo() {

@@ -42,7 +42,7 @@ Por esta razón, implementamos sistemas digitales para la gestión de rondas, re
 
 ### Tecnología de seguridad sustentable
 
-Además, nuestras soluciones de seguridad electrónica incorporan sistemas de bajo consumo energético, como cámaras de seguridad con eficiencia energética y sistemas de alarma optimizados. [Conoce más sobre nuestra seguridad electrónica](https://gard.cl/seguridad-electronica/).
+Además, nuestras soluciones de seguridad electrónica incorporan sistemas de bajo consumo energético, como cámaras de seguridad con eficiencia energética y sistemas de alarma optimizados. [Conoce más sobre nuestra seguridad electrónica](https://www.gard.cl/servicios/seguridad-electronica/).
 
 ## Guardias de seguridad con formación en sostenibilidad
 
@@ -52,7 +52,7 @@ Además, los **guardias de seguridad privada** son sensibilizados sobre el impac
 
 ## Drones de seguridad: vigilancia eficiente y sustentable
 
-Por consiguiente, hemos incorporado [drones de seguridad](https://gard.cl/drones-de-seguridad-para-empresas-e-industrias/) como solución sustentable. Los drones reducen la necesidad de vehículos terrestres y permiten una vigilancia aérea eficiente, con menos recursos y mayor cobertura en tiempo real.
+Por consiguiente, hemos incorporado [drones de seguridad](https://www.gard.cl/servicios/drones-seguridad/) como solución sustentable. Los drones reducen la necesidad de vehículos terrestres y permiten una vigilancia aérea eficiente, con menos recursos y mayor cobertura en tiempo real.
 
 ## Beneficios de elegir una empresa de seguridad privada comprometida con el medio ambiente
 
@@ -92,6 +92,6 @@ Mediante procesos de auditoría y evaluación continua, verificamos el cumplimie
 
 ## ¿Buscas una empresa de seguridad privada que proteja tu entorno y el medio ambiente?
 
-Si deseas proteger tu empresa con [soluciones de seguridad privada](https://gard.cl/guardias-de-seguridad-privada-para-empresas/) de alto nivel y bajo impacto ambiental, **[contáctanos aquí para asesorarte sin costo](https://gard.cl/guardias-de-seguridad-privada-para-empresas/)**.
+Si deseas proteger tu empresa con [soluciones de seguridad privada](https://www.gard.cl/guardias-de-seguridad-privada-para-empresas/) de alto nivel y bajo impacto ambiental, **[contáctanos aquí para asesorarte sin costo](https://www.gard.cl/guardias-de-seguridad-privada-para-empresas/)**.
 
 En resumen, proteger a tus colaboradores, clientes y activos no está reñido con proteger el entorno donde operas. En Gard Security lo hacemos posible.

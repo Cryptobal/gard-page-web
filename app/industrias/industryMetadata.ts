@@ -55,7 +55,7 @@ export const industriesMetadata = [
     
     statsDescription: 'Chile es el principal productor mundial de cobre y uno de los líderes en litio. La seguridad minera es crítica para mantener esta posición.',
     stats: [
-      { value: 15, suffix: '+', label: 'Años Protegiendo Mineras' },
+      { value: companyStats.leadershipYearsExperience, suffix: '+', label: 'Años Protegiendo Mineras' },
       { value: 100, suffix: '%', label: 'Personal Certificado OS10' },
       { value: 15, suffix: '+', label: 'Faenas Mineras Protegidas' },
       { value: 99.9, suffix: '%', label: 'Continuidad Operacional' }

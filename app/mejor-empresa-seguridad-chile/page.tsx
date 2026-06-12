@@ -7,7 +7,6 @@ import { FAQSection } from '@/components/seo/FAQSchema';
 import FormularioCotizacionSeccion from '@/app/components/FormularioCotizacionSeccion';
 import ServiceSchema from '@/components/seo/ServiceSchema';
 import { ArticleSchema } from '@/components/seo/SchemaMarkup';
-import ReviewSchema from '@/components/seo/ReviewSchema';
 import HowToSchema from '@/components/seo/HowToSchema';
 import { companyStats } from '@/lib/data/company-stats';
 
@@ -81,17 +80,9 @@ export default function MejorEmpresaSeguridadPage() {
         aggregateRating={{ ratingValue: companyStats.gmbRatingValue, reviewCount: companyStats.gmbReviewCount }}
         offers={{ priceRange: '$$$', availability: 'https://schema.org/InStock' }}
       />
-      <ReviewSchema
-        itemReviewed={{
-          name: 'Gard Security - Seguridad Privada B2B',
-          url: 'https://www.gard.cl/mejor-empresa-seguridad-chile',
-          type: 'LocalBusiness',
-          image: 'https://www.gard.cl/logos/gard.svg',
-          description: `Empresa #1 de seguridad privada B2B en Chile, 100% OS10 y cobertura en ${companyStats.citiesCovered} ciudades.`,
-        }}
-        aggregateRating={{ ratingValue: companyStats.gmbRatingValue, reviewCount: companyStats.gmbReviewCount, bestRating: companyStats.gmbBestRating, worstRating: companyStats.gmbWorstRating }}
-        verificationUrl={companyStats.gmbShortUrl}
-      />
+      {/* ReviewSchema removido: duplicaba el AggregateRating que ya emite
+          LocalBusinessSchema global. Reincorporar solo cuando existan
+          testimonios verificados en lib/data/testimonials.ts. */}
       <HowToSchema
         name="Cómo elegir la mejor empresa de seguridad en Chile"
         description="Pasos prácticos para seleccionar un proveedor de seguridad privada con certificación y KPIs claros."

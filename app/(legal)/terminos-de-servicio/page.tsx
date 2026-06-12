@@ -5,6 +5,13 @@ export const metadata: Metadata = {
   title: 'Términos de Servicio | Gard Security',
   description: 'Términos y condiciones de servicio de Gard Security. Conozca las normas que rigen el uso de nuestros servicios y sitio web.',
   keywords: ['términos de servicio', 'condiciones de uso', 'acuerdo legal', 'servicios de seguridad', 'contrato de seguridad'],
+  alternates: {
+    canonical: 'https://www.gard.cl/terminos-de-servicio',
+    languages: {
+      'es-CL': 'https://www.gard.cl/terminos-de-servicio',
+      'x-default': 'https://www.gard.cl/terminos-de-servicio',
+    },
+  },
 };
 
 export default function TerminosServicio() {

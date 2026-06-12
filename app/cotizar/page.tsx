@@ -1,6 +1,10 @@
 import { getCotizarVariant, type CotizarVariant } from '@/lib/ab-testing';
 import CotizarPageClient from './CotizarPageClient';
 
+// El metadata de /cotizar vive en ./metadata.ts pero nadie lo exportaba:
+// la página heredaba title/canonical del layout raíz (canonical → home).
+export { metadata } from './metadata';
+
 // El experimento A/B requiere render dinámico por usuario para leer la cookie
 // asignada por middleware. Sin esto, Next puede prerenderizar y cachear la
 // respuesta, sirviendo la misma variante a todos.

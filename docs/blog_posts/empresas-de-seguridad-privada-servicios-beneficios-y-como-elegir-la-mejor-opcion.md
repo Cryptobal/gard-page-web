@@ -343,7 +343,7 @@ imageUrl: >-
 <p>Las empresas de seguridad privada son esenciales para garantizar la protección y tranquilidad en diversos ámbitos. Al elegir una empresa, es crucial considerar su experiencia, tecnología y la personalización de sus servicios. Asegúrate de evaluar todas las opciones y seleccionar la que mejor se adapte a tus necesidades específicas. La seguridad no es algo en lo que debas escatimar; invierte en profesionales que puedan brindarte la protección y tranquilidad que mereces.</p>
 <p></p>
 <p></p>
-<p>Para obtener más información y contratar servicios de seguridad privada de calidad, visita <a href="https://gard.cl/">GARD</a> y asegúrate de contar con la mejor protección para tu empresa o propiedad.</p>
+<p>Para obtener más información y contratar servicios de seguridad privada de calidad, visita <a href="https://www.gard.cl/">GARD</a> y asegúrate de contar con la mejor protección para tu empresa o propiedad.</p>
 <p></p>
 <p></p>
 <p></p>

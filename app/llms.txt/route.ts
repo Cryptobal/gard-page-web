@@ -79,7 +79,7 @@ Gard Security fue fundada en ${foundedYear}. Su equipo fundador acumula ${years}
 
 - Sitio web: https://www.gard.cl
 - Cotización: https://www.gard.cl/cotizar
-- Teléfono: +56 9 5606 2246
+- Teléfono: ${companyStats.contactPhoneDisplay}
 - WhatsApp: https://wa.me/56956062246
 - Ubicación sede principal: Santiago, Chile
 

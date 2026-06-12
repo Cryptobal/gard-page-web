@@ -47,9 +47,9 @@ Empresa chilena líder en **soluciones integrales de seguridad privada** para em
 - Monitoreo remoto con seguridad electrónica de última generación.
 - Soluciones personalizadas para industrias críticas.
 
-👉 [Conoce más sobre nuestros guardias de seguridad privada](https://gard.cl/guardias-de-seguridad-privada-para-empresas/).  
-👉 [Descubre nuestras soluciones de seguridad electrónica](https://gard.cl/seguridad-electronica/).  
-👉 [Implementamos drones de seguridad para vigilancia perimetral](https://gard.cl/drones-de-seguridad-para-empresas-e-industrias/).
+👉 [Conoce más sobre nuestros guardias de seguridad privada](https://www.gard.cl/guardias-de-seguridad-privada-para-empresas/).  
+👉 [Descubre nuestras soluciones de seguridad electrónica](https://www.gard.cl/servicios/seguridad-electronica/).  
+👉 [Implementamos drones de seguridad para vigilancia perimetral](https://www.gard.cl/servicios/drones-seguridad/).
 
 ### 2. Prosegur Chile
 
@@ -59,7 +59,7 @@ Empresa internacional con amplia trayectoria. Ofrece vigilancia presencial, tran
 ### 3. Securitas Chile
 
 Multinacional con presencia global. Su fortaleza está en la seguridad integrada para grandes industrias y corporaciones.  
-**Sitio web externo:** [securitas.cl](https://www.securitas.cl)
+**Sitio web externo:** [securitaschile.cl](https://www.securitaschile.cl)
 
 ### 4. Brinks Chile
 
@@ -108,4 +108,4 @@ Además, siempre recomendamos solicitar una evaluación gratuita y comparar prop
 
 En resumen, Santiago cuenta con empresas de seguridad privada de alto nivel. Sin embargo, si buscas protección integral, tecnología avanzada y atención personalizada, Gard Security es una opción destacada en 2025.
 
-👉 [Solicita tu asesoría gratuita con Gard Security aquí](https://gard.cl/guardias-de-seguridad-privada-para-empresas/).
+👉 [Solicita tu asesoría gratuita con Gard Security aquí](https://www.gard.cl/guardias-de-seguridad-privada-para-empresas/).

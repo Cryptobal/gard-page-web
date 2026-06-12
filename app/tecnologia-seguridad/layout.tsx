@@ -5,6 +5,10 @@ export const metadata: Metadata = {
   description: 'Sistemas de monitoreo inteligente, control de rondas, vigilancia con IA y soluciones tecnológicas de vanguardia para la seguridad de tu empresa.',
   alternates: {
     canonical: 'https://www.gard.cl/tecnologia-seguridad',
+    languages: {
+      'es-CL': 'https://www.gard.cl/tecnologia-seguridad',
+      'x-default': 'https://www.gard.cl/tecnologia-seguridad',
+    },
   },
   openGraph: {
     title: 'Tecnología de Seguridad Avanzada | Gard Security Chile',

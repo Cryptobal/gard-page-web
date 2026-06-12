@@ -153,7 +153,7 @@ imageUrl: >-
 <ol>
 <li style="list-style-type: none;">
 <ol>
-<li><a href="https://www.onemi.cl/">Gobierno de Chile &#8211; ONEMI</a></li>
+<li><a href="https://senapred.cl/">Gobierno de Chile &#8211; SENAPRED (ex ONEMI)</a></li>
 </ol>
 </li>
 </ol>
@@ -171,7 +171,7 @@ imageUrl: >-
 <ol>
 <li style="list-style-type: none;">
 <ol>
-<li><a href="https://www.seguridadpublica.cl/">Subsecretaría de Prevención del Delito</a></li></ol></li></ol>
+<li><a href="https://seguridadpublica.gob.cl/">Subsecretaría de Prevención del Delito</a></li></ol></li></ol>
 <p></p>
 <p></p>
 <p></p>
@@ -186,7 +186,7 @@ imageUrl: >-
 <h2 id="h-conoce-a-gard-security-lideres-en-seguridad-privada" class="wp-block-heading">Conoce a Gard Security, líderes en Seguridad Privada:</h2>
 <p></p>
 <p></p>
-<p>¿Estás preparado para el próximo temporal? Contacta con nosotros en <a href="https://gard.cl/">Gard Chile</a> y descubre cómo nuestros servicios de seguridad privada pueden proteger tu propiedad y garantizar tu tranquilidad durante cualquier emergencia climática. No esperes a que ocurra una emergencia, actúa ahora y asegura la protección de tus bienes y seres queridos.</p>
+<p>¿Estás preparado para el próximo temporal? Contacta con nosotros en <a href="https://www.gard.cl/">Gard Chile</a> y descubre cómo nuestros servicios de seguridad privada pueden proteger tu propiedad y garantizar tu tranquilidad durante cualquier emergencia climática. No esperes a que ocurra una emergencia, actúa ahora y asegura la protección de tus bienes y seres queridos.</p>
 <p></p>								</div>
 				</div>
 					</div>

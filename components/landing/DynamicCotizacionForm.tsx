@@ -469,7 +469,7 @@ export default function DynamicCotizacionForm({
         
         <p className="text-center text-muted-foreground text-sm">
           Al enviar aceptas nuestra{' '}
-          <a href="/privacidad" className="underline hover:text-primary">
+          <a href="/politica-de-privacidad" className="underline hover:text-primary">
             Política de Privacidad
           </a>
         </p>

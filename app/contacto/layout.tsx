@@ -5,6 +5,10 @@ export const metadata: Metadata = {
   description: 'Comunícate directamente con nuestros especialistas en seguridad. Teléfono, email y formulario para consultas sobre servicios de guardias y seguridad privada.',
   alternates: {
     canonical: 'https://www.gard.cl/contacto',
+    languages: {
+      'es-CL': 'https://www.gard.cl/contacto',
+      'x-default': 'https://www.gard.cl/contacto',
+    },
   },
 };
 

@@ -73,6 +73,18 @@ export const companyStats = {
   operationalContinuityPct: 99.9,
 
   /**
+   * Teléfono comercial oficial (NAP). Debe ser EL MISMO en schema JSON-LD,
+   * llms.txt, Google Business Profile y cualquier cita pública. La
+   * inconsistencia de NAP (Name-Address-Phone) daña el SEO local y la
+   * citabilidad por motores de IA.
+   *
+   * Nota: el número de WhatsApp de captación de leads puede ser otro; eso es
+   * un canal de contacto, no la cita NAP.
+   */
+  contactPhoneE164: '+56941137976',
+  contactPhoneDisplay: '+56 9 4113 7976',
+
+  /**
    * URLs verificables del perfil público para cross-validación por Google
    * (evita clasificación de AggregateRating como "self-serving reviews").
    */

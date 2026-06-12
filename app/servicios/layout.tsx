@@ -5,6 +5,10 @@ export const metadata: Metadata = {
   description: 'Descubre nuestra completa gama de servicios de seguridad privada: guardias, monitoreo, seguridad electrónica y más. Soluciones adaptadas a empresas e industrias.',
   alternates: {
     canonical: 'https://www.gard.cl/servicios',
+    languages: {
+      'es-CL': 'https://www.gard.cl/servicios',
+      'x-default': 'https://www.gard.cl/servicios',
+    },
   },
 };
 

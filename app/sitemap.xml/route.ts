@@ -1,4 +1,4 @@
-import { industries } from '../data/industries';
+import { industriesMetadata } from '@/app/industrias/industryMetadata';
 import { getAllPosts, POSTS_PER_PAGE } from '@/lib/blog';
 
 // Revalidar el sitemap cada 24 horas (ISR) en lugar de regenerar por request.
@@ -105,8 +105,9 @@ async function generateSitemap() {
     { route: '/tecnologia-seguridad', priority: 0.75, changeFreq: 'monthly' as const },
     { route: '/contacto', priority: 0.85, changeFreq: 'monthly' as const },
     { route: '/blog', priority: 0.7, changeFreq: 'weekly' as const },
-    { route: '/privacidad', priority: 0.3, changeFreq: 'yearly' as const },
-    { route: '/terminos', priority: 0.3, changeFreq: 'yearly' as const },
+    // URLs legales finales (las viejas /privacidad y /terminos redirigen 308)
+    { route: '/politica-de-privacidad', priority: 0.3, changeFreq: 'yearly' as const },
+    { route: '/terminos-de-servicio', priority: 0.3, changeFreq: 'yearly' as const },
     { route: '/politica-ambiental', priority: 0.4, changeFreq: 'yearly' as const },
     { route: '/reclutamiento', priority: 0.6, changeFreq: 'monthly' as const },
   ].map(({ route, priority, changeFreq }) => ({
@@ -161,14 +162,13 @@ async function generateSitemap() {
     priority: 0.85, // Alta prioridad para páginas de servicios
   }));
 
-  // Pre-calcular slugs de industrias para evitar normalización redundante en bucles
-  const industriesWithSlugs = industries.map(industry => ({
-    ...industry,
-    slug: industry.name.toLowerCase()
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
-      .replace(/[^\w\s]/g, '')
-      .replace(/\s+/g, '-')
+  // Fuente única de industrias indexables: industriesMetadata (la misma que usan
+  // generateStaticParams de /industrias/[slug] y /servicios-por-industria/...).
+  // Antes se usaba app/data/industries.ts (solo 12) y quedaban ~10 industrias
+  // y ~80 combinaciones servicio×industria fuera del sitemap.
+  const industriesWithSlugs = industriesMetadata.map(industry => ({
+    name: industry.name,
+    slug: industry.slug,
   }));
 
   // Páginas de industrias dinámicas con prioridades diferenciadas

@@ -51,9 +51,18 @@ interface ReviewSchemaProps {
  */
 export default function ReviewSchema({ itemReviewed, aggregateRating, reviews, verificationUrl }: ReviewSchemaProps) {
   const hasVerifiedReviews = Array.isArray(reviews) && reviews.length > 0;
+  // Usar el tipo real de la entidad. Antes se forzaba @type "Product" para
+  // obtener estrellas en SERP, pero marcar a la empresa como Product es
+  // markup engañoso (riesgo de manual action). Para LocalBusiness/Organization
+  // se enlaza con @id a la entidad global de LocalBusinessSchema para que los
+  // validadores las fusionen en vez de crear una entidad duplicada.
+  const entityType = itemReviewed.type ?? 'LocalBusiness';
   const schema: Record<string, unknown> = {
     '@context': 'https://schema.org',
-    '@type': 'Product',
+    '@type': entityType,
+    ...(entityType === 'LocalBusiness' || entityType === 'Organization'
+      ? { '@id': 'https://www.gard.cl/#organization' }
+      : {}),
     name: itemReviewed.name,
     url: itemReviewed.url,
     ...(itemReviewed.image ? { image: itemReviewed.image } : {}),

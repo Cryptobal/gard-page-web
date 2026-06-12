@@ -1,5 +1,4 @@
 import React from 'react';
-import { companyStats } from '@/lib/data/company-stats';
 
 interface ServiceSchemaProps {
   name: string;
@@ -15,6 +14,11 @@ interface ServiceSchemaProps {
   audience?: {
     audienceType: string;
   };
+  /**
+   * @deprecated Ya no se emite. El AggregateRating del negocio vive solo en
+   * LocalBusinessSchema (global). Se mantiene en la interfaz para no romper
+   * los ~12 call sites existentes; eliminar en una limpieza futura.
+   */
   aggregateRating?: {
     ratingValue: number;
     reviewCount: number;
@@ -61,7 +65,6 @@ export default function ServiceSchema({
     url: 'https://www.gard.cl'
   },
   audience,
-  aggregateRating,
   offers,
   hasOfferCatalog
 }: ServiceSchemaProps) {
@@ -99,17 +102,11 @@ export default function ServiceSchema({
     };
   }
 
-  // Agregar rating si existe
-  if (aggregateRating) {
-    schema.aggregateRating = {
-      '@type': 'AggregateRating',
-      'ratingValue': aggregateRating.ratingValue,
-      'reviewCount': aggregateRating.reviewCount,
-      'bestRating': aggregateRating.bestRating || 5,
-      'worstRating': 1,
-      'url': aggregateRating.verificationUrl || companyStats.gmbShortUrl,
-    };
-  }
+  // NOTA: el prop aggregateRating se acepta pero ya NO se emite. El
+  // AggregateRating del negocio vive únicamente en LocalBusinessSchema
+  // (global, verificable vía GMB). Emitirlo también en cada Service generaba
+  // 2-3 AggregateRating por página — patrón de "review spam" según las
+  // políticas de rich results de Google (self-serving reviews, 2019+).
 
   // Agregar offers si existe
   if (offers) {

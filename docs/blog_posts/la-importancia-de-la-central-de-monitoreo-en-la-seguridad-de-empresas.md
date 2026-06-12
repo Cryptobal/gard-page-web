@@ -20,7 +20,7 @@ imageUrl: >-
 				<div class="elementor-element elementor-element-40abf4d7 elementor-widget elementor-widget-text-editor" data-id="40abf4d7" data-element_type="widget" data-widget_type="text-editor.default">
 				<div class="elementor-widget-container">
 									<p></p>
-<p>Descubre la importancia de la&nbsp;<a href="https://gard.cl/seguridad-electronica/#" target="_blank">central de monitoreo</a>&nbsp;en una empresa, sus funciones clave y cómo mejora la seguridad y eficiencia operativa.</p>
+<p>Descubre la importancia de la&nbsp;<a href="https://www.gard.cl/servicios/seguridad-electronica/#" target="_blank">central de monitoreo</a>&nbsp;en una empresa, sus funciones clave y cómo mejora la seguridad y eficiencia operativa.</p>
 <p><br></p>
 <p></p>
 <p></p>
@@ -44,7 +44,7 @@ imageUrl: >-
 <h3 class="wp-block-heading" id="h-monitoreo-en-tiempo-real">Monitoreo en Tiempo Real</h3>
 <p></p>
 <p></p>
-<p>Una de las funciones primordiales de la&nbsp;<a href="https://gard.cl/seguridad-electronica/#" target="_blank">central de monitoreo</a>&nbsp;es la vigilancia continua de las instalaciones de la empresa. Los guardias de seguridad y vigilantes privados, apoyados por tecnología de punta, supervisan imágenes de cámaras de seguridad y reciben alertas de sistemas de alarma. Esto permite una respuesta inmediata ante cualquier actividad sospechosa o emergencia, mejorando la seguridad para empresas de cualquier tamaño.</p>
+<p>Una de las funciones primordiales de la&nbsp;<a href="https://www.gard.cl/servicios/seguridad-electronica/#" target="_blank">central de monitoreo</a>&nbsp;es la vigilancia continua de las instalaciones de la empresa. Los guardias de seguridad y vigilantes privados, apoyados por tecnología de punta, supervisan imágenes de cámaras de seguridad y reciben alertas de sistemas de alarma. Esto permite una respuesta inmediata ante cualquier actividad sospechosa o emergencia, mejorando la seguridad para empresas de cualquier tamaño.</p>
 <p><br></p>
 <p></p>
 <p></p>
@@ -192,13 +192,13 @@ imageUrl: >-
 <p>Las centrales de monitoreo son un componente vital para cualquier empresa que busca proteger sus activos y garantizar la seguridad de sus empleados y clientes. Desde el monitoreo en tiempo real hasta la coordinación de recursos humanos, estas instalaciones ofrecen una gama de funciones esenciales que mejoran la seguridad y la eficiencia operativa. Si deseas implementar soluciones de seguridad efectivas, considera los servicios de una central de monitoreo profesional.</p>
 <p></p>
 <p></p>
-<p>Para más información sobre cómo puedes mejorar la seguridad de tu empresa, visita <a href="https://gard.cl">Gard</a>.</p>
+<p>Para más información sobre cómo puedes mejorar la seguridad de tu empresa, visita <a href="https://www.gard.cl">Gard</a>.</p>
 <p></p>
 <p></p>
 <hr class="wp-block-separator has-alpha-channel-opacity">
 <p></p>
 <p></p>
-<p>Descubre cómo los servicios de <a href="https://gard.cl"><b>Gard</b></a> pueden mejorar la seguridad de tu empresa con tecnología avanzada y personal altamente capacitado. ¡Contáctanos hoy mismo!</p>
+<p>Descubre cómo los servicios de <a href="https://www.gard.cl"><b>Gard</b></a> pueden mejorar la seguridad de tu empresa con tecnología avanzada y personal altamente capacitado. ¡Contáctanos hoy mismo!</p>
 <p></p>
 <p></p>
 <hr class="wp-block-separator has-alpha-channel-opacity">

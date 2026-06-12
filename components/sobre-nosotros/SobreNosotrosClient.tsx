@@ -9,7 +9,6 @@ import CtaFinal from '@/components/ui/shared/CtaFinal';
 import CanonicalUrl from '@/components/seo/CanonicalUrl';
 import SEODevPanel from '@/components/seo/SEODevPanel';
 import GardHero from '@/components/layouts/GardHero';
-import ReviewSchema from '@/components/seo/ReviewSchema';
 import { companyStats } from '@/lib/data/company-stats';
 
 export default function SobreNosotrosClient() {
@@ -22,22 +21,9 @@ export default function SobreNosotrosClient() {
       {/* Componentes SEO */}
       <CanonicalUrl />
       <SEODevPanel />
-      <ReviewSchema
-        itemReviewed={{
-          name: 'Gard Security - Empresa de Seguridad Privada B2B',
-          url: 'https://www.gard.cl/sobre-nosotros',
-          type: 'Organization',
-          image: 'https://www.gard.cl/logos/gard.svg',
-          description: `Líder B2B en seguridad privada en Chile con ${companyStats.gmbRatingValue}/5 rating y ${companyStats.os10CertifiedPct}% guardias OS10.`,
-        }}
-        aggregateRating={{
-          ratingValue: companyStats.gmbRatingValue,
-          reviewCount: companyStats.gmbReviewCount,
-          bestRating: companyStats.gmbBestRating,
-          worstRating: companyStats.gmbWorstRating,
-        }}
-        verificationUrl={companyStats.gmbShortUrl}
-      />
+      {/* ReviewSchema removido: duplicaba el AggregateRating que ya emite
+          LocalBusinessSchema global. Reincorporar solo cuando existan
+          testimonios verificados en lib/data/testimonials.ts. */}
       
       {/* Hero Section */}
       <GardHero 

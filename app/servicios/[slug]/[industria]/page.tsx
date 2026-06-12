@@ -39,6 +39,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
   
+  const pageUrl = `https://www.gard.cl/servicios/${resolvedParams.slug}/${resolvedParams.industria}`;
+
   return {
     title: `${servicio.name} para ${industry.name} | Gard Security`,
     description: `Servicio de ${servicio.name.toLowerCase()} especializado para el sector ${industry.name}. Soluciones de seguridad adaptadas a las necesidades específicas de esta industria.`,
@@ -49,7 +51,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       'seguridad especializada',
       'servicios de protección',
       `empresa de seguridad para ${industry.name}`
-    ]
+    ],
+    alternates: {
+      canonical: pageUrl,
+      languages: {
+        'es-CL': pageUrl,
+        'x-default': pageUrl,
+      },
+    },
   };
 }
 

@@ -352,6 +352,27 @@ Tarea: optimizar H1 y metadata del homepage para la keyword principal
 
 ---
 
+### Tarea 1.5 · Fixes técnicos auditoría Semrush (2026-06-12)
+
+**Origen**: auditoría Semrush "Gard Mobile Issues Jun 12 2026" + auditoría de código. Branch: `seo/1.5-semrush-fixes`.
+
+**Fixes ejecutados**:
+
+1. **Hreflang/canonical heredado del root** (crítico — 11 páginas con conflicto en Semrush): se removió `alternates` de `app/metadata.ts` (toda página sin alternates propio heredaba canonical+hreflang apuntando al home) y se agregaron `alternates` self-referenciales (canonical + es-CL + x-default) a: cotizar (además se cableó `app/cotizar/metadata.ts` que estaba huérfano — la página no exportaba metadata propia), sobre-nosotros, servicios, contacto, tecnologia-seguridad, industrias, politica-ambiental, reclutamiento, legal ×2, cotizador-inteligente, `/servicios/[slug]/[industria]`. `blog/latest` (página demo) → noindex.
+2. **Redirects 307 → 308** (74 temporary redirects en Semrush): `app/privacidad` y `app/terminos` usaban `redirect()` (307); ahora `permanentRedirect()` (308). Footer y formularios de cotización linkean directo a `/politica-de-privacidad` y `/terminos-de-servicio`. ⚠️ PENDIENTE MANUAL: el apex `gard.cl` responde 307 a nivel plataforma Vercel — ir a Vercel → Project → Settings → Domains → `gard.cl` → "Redirect to www.gard.cl" con status **308**.
+3. **Sitemap**: URLs legales finales en vez de las que redirigen; fuente de industrias cambiada de `app/data/industries.ts` (12) a `industriesMetadata` (23) — entran ~11 páginas de industria y ~80 combinaciones servicio×industria que estaban fuera.
+4. **Schema AggregateRating deduplicado** (riesgo de manual action por self-serving reviews): `ServiceSchema` ya no emite `aggregateRating` (prop deprecada); `ReviewSchema` ya no fuerza `@type: Product` (usa el tipo real + `@id` de la entidad global); removidos los `<ReviewSchema>` sin reviews verificados de las 3 landings comerciales y sobre-nosotros. El rating vive SOLO en `LocalBusinessSchema` (global, verificable vía GMB).
+5. **Links rotos del blog** (62 broken external links en Semrush): 178 reemplazos en `docs/blog_posts/*.md` — 127 links `gard.cl` sin www → `www.gard.cl`; rutas legacy WordPress → rutas actuales; `onemi.cl` (muerto) → `senapred.cl`; `seguridadpublica.cl` → `seguridadpublica.gob.cl`; `zosepcar.cl/OS10.php` (503) → `carabineros.cl`; `securitas.cl` (muerto) → `securitaschile.cl`; form HubSpot muerto → `/cotizar`. En `next.config.js`: corregido redirect roto `/automatizacion-y-domotica` (apuntaba a página inexistente) y agregados 308 para `/seguridad-electronica`, `/guardias-de-seguridad`, `/drones`, `/noticias(/:slug)`, `/mejor-empresa-de-seguridad-chile`.
+6. **NAP unificado**: nuevo `contactPhoneE164`/`contactPhoneDisplay` en `company-stats.ts` (+56 9 4113 7976, confirmado por Carlos). `llms.txt` y `LocalBusinessSchema` lo consumen. El WhatsApp de captación (`wa.me/56956062246`) se mantiene aparte a propósito. Stat "15+ Años Protegiendo Mineras" en `industryMetadata.ts` → `companyStats.leadershipYearsExperience`.
+
+**Definition of Done**:
+- [x] Fixes 1-6 implementados
+- [ ] Build verde + PR mergeado
+- [ ] Cambio manual del redirect de dominio en Vercel (308)
+- [ ] Re-crawl Semrush post-deploy: temporary redirects → 0, hreflang conflicts → 0
+
+---
+
 ## 4. Fase 2 · Rescatar páginas de ciudad (Semanas 3-6)
 
 **Meta**: convertir 80 páginas de "doorway templated" en 80 páginas genuinamente únicas.
@@ -1077,6 +1098,17 @@ Problemas detectados durante la ejecución de tareas que quedan **fuera del scop
   - `app/(landing-cotizador-inteligente)/cotizador-inteligente/page.tsx` tiene **3 testimonios inline hardcoded** (líneas 638, 644, 650).
   - Acción sugerida: vaciar esos campos y refactorizar el render igual que en `ClientCarousel.tsx` (fallback a grilla de logos) cuando se aborde Tarea 1.3.bis o similar.
 - **Tarea 1.3 · Heading "Brindamos soluciones de seguridad"**: el copy viejo del carrusel usaba esa frase. Fue reemplazado por algo más específico, pero "soluciones" está cerca de la frase prohibida "soluciones integrales". Revisar en copy review general.
+
+### Detectados durante Tarea 1.5 (2026-06-12)
+
+- **Tarea 1.5 · `metadata.ts` muertos**: `app/sobre-nosotros/metadata.ts`, `app/contacto/metadata.ts`, `app/servicios/metadata.ts` y `app/tecnologia-seguridad/metadata.ts` no se importan desde ningún lado (el metadata real vive en los `layout.tsx` de cada carpeta). Candidatos a eliminación en limpieza de repo.
+- **Tarea 1.5 · Rutas duplicadas `/ciudades/{ciudad}/{servicio}` vs `/{ciudad}/{servicio}`**: ambas existen con canonicals distintos. Decidir cuál es canónica y redirigir 308 la otra.
+- **Tarea 1.5 · `/servicios/{slug}/{industria}` vs `/servicios-por-industria/{servicio}/{industria}`**: tercera estructura de URL para el mismo contenido servicio×industria. Mismo problema que el anterior.
+- **Tarea 1.5 · `cotizador-inteligente/page.tsx` inyecta schema Product+AggregateOffer client-side** vía DOM: invisible para crawlers sin JS y semánticamente cuestionable (la empresa no es un Product). Revisar.
+- **Tarea 1.5 · Stat "15+ Faenas Mineras Protegidas"** en `industryMetadata.ts`: con 23 clientes activos totales, verificar que sea real; si no, bajar al número verdadero.
+- **Tarea 1.5 · `app/sobre-nosotros/metadata.ts` (muerto) afirma "más de 100 empresas ya confían"**: contradice `activeClients: 23`. Si el archivo se recupera algún día, corregir.
+- **Tarea 1.5 · heliboss.cl devuelve 403 a crawlers** (bloqueo anti-bot): Semrush lo cuenta como broken external link pero el sitio funciona en browser. Falso positivo, no accionar.
+- **Tarea 1.5 · Working tree tenía `CiudadServicioLanding.tsx` con 968 líneas borradas sin commitear** (cambio previo a esta sesión, no se tocó). Confirmar con Carlos si es intencional.
 
 ---
 

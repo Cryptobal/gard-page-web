@@ -188,7 +188,7 @@ imageUrl: /images/blog/mejor-empresa-de-seguridad-chile.jpg
 
 
 
-<p>Elegir la empresa adecuada de seguridad es vital para su tranquilidad. En Gard Security, estamos comprometidos a ser su socio confiable en seguridad. Visite nuestro sitio web en <a href="https://gard.cl">Gard Security</a> para descubrir cómo podemos satisfacer sus necesidades de seguridad y brindarle la protección que merece.</p>
+<p>Elegir la empresa adecuada de seguridad es vital para su tranquilidad. En Gard Security, estamos comprometidos a ser su socio confiable en seguridad. Visite nuestro sitio web en <a href="https://www.gard.cl">Gard Security</a> para descubrir cómo podemos satisfacer sus necesidades de seguridad y brindarle la protección que merece.</p>
 
 
 
@@ -201,11 +201,11 @@ imageUrl: /images/blog/mejor-empresa-de-seguridad-chile.jpg
 
 
 <ul class="wp-block-list">
-<li><a href="https://gard.cl/guardias-de-seguridad-privada-para-empresas/">Guardias de Seguridad Privada para Empresas</a></li>
+<li><a href="https://www.gard.cl/guardias-de-seguridad-privada-para-empresas/">Guardias de Seguridad Privada para Empresas</a></li>
 
 
 
-<li><a href="https://gard.cl/seguridad-electronica/">Seguridad Electrónica</a></li>
+<li><a href="https://www.gard.cl/servicios/seguridad-electronica/">Seguridad Electrónica</a></li>
 </ul>
 
 

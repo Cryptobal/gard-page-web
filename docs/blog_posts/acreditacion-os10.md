@@ -60,11 +60,11 @@ imageUrl: /images/blog/acreditacion-os10.jpg
 
 
 
-<p class="">La acreditación <a href="https://www.zosepcar.cl/OS10.php">OS10</a> no es solo un requisito, es una inversión en la calidad y seguridad de los servicios ofrecidos por empresas como Gard Security. En un entorno donde la seguridad es una prioridad máxima, estar al día con las certificaciones y aprovechar las regulaciones actuales y futuras es crucial. La nueva ley de seguridad en Chile representa tanto un desafío como una oportunidad para mejorar y destacar en el ámbito de la seguridad privada.</p>
+<p class="">La acreditación <a href="https://www.carabineros.cl/">OS10</a> no es solo un requisito, es una inversión en la calidad y seguridad de los servicios ofrecidos por empresas como Gard Security. En un entorno donde la seguridad es una prioridad máxima, estar al día con las certificaciones y aprovechar las regulaciones actuales y futuras es crucial. La nueva ley de seguridad en Chile representa tanto un desafío como una oportunidad para mejorar y destacar en el ámbito de la seguridad privada.</p>
 
 
 
-<p class="">¿Quieres conocer más sobre cómo Gard Security mantiene su liderazgo en la industria a través de la acreditación OS10 y cómo nos preparamos para la nueva ley de seguridad? Visita nuestra página <a href="https://gard.cl">Gard Security</a> para más información y descubre nuestras soluciones de seguridad que no solo cumplen con las regulaciones actuales, sino que también están preparadas para los desafíos futuros. ¡Asegura lo mejor para tu seguridad con Gard!</p>
+<p class="">¿Quieres conocer más sobre cómo Gard Security mantiene su liderazgo en la industria a través de la acreditación OS10 y cómo nos preparamos para la nueva ley de seguridad? Visita nuestra página <a href="https://www.gard.cl">Gard Security</a> para más información y descubre nuestras soluciones de seguridad que no solo cumplen con las regulaciones actuales, sino que también están preparadas para los desafíos futuros. ¡Asegura lo mejor para tu seguridad con Gard!</p>
 								</div>
 				</div>
 					</div>

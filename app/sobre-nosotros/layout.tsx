@@ -6,6 +6,13 @@ export const metadata: Metadata = {
   title: 'Sobre Nosotros - Gard Security',
   description: `Conoce quiénes somos en Gard Security. Un equipo fundador con más de ${companyStats.leadershipYearsExperience} años de experiencia protegiendo empresas con presencia en terreno y tecnología avanzada.`,
   keywords: 'empresa de seguridad privada, seguridad para empresas, expertos en protección operativa, guardias de seguridad para industria',
+  alternates: {
+    canonical: 'https://www.gard.cl/sobre-nosotros',
+    languages: {
+      'es-CL': 'https://www.gard.cl/sobre-nosotros',
+      'x-default': 'https://www.gard.cl/sobre-nosotros',
+    },
+  },
 };
 
 export default function SobreNosotrosLayout({

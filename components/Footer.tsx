@@ -259,7 +259,7 @@ export default function Footer() {
             <ul className="space-y-3">
               <li>
                 <Link 
-                  href="/privacidad" 
+                  href="/politica-de-privacidad" 
                   className="text-sm md:text-base text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors"
                   aria-label="Política de Privacidad"
                 >
@@ -268,7 +268,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link 
-                  href="/terminos" 
+                  href="/terminos-de-servicio" 
                   className="text-sm md:text-base text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors"
                   aria-label="Términos de Servicio"
                 >

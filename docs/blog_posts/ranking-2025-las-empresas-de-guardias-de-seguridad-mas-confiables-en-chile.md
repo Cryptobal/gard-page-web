@@ -41,7 +41,7 @@ imageUrl: >-
 
 
 
-<p>Por ejemplo, compañías como <a href="https://gard.cl">Gard Security</a>, <a href="https://www.securitaschile.cl/">Securitas Chile</a> y <a href="https://www.g4s.com/es-cl">G4S Chile</a> cumplen con esta normativa, lo que garantiza su legalidad y profesionalismo.</p>
+<p>Por ejemplo, compañías como <a href="https://www.gard.cl">Gard Security</a>, <a href="https://www.securitaschile.cl/">Securitas Chile</a> y <a href="https://www.g4s.com/es-cl">G4S Chile</a> cumplen con esta normativa, lo que garantiza su legalidad y profesionalismo.</p>
 
 
 
@@ -79,7 +79,7 @@ imageUrl: >-
 
 
 
-<p>A pesar de que muchas empresas ofrecen capacitación básica, algunas van más allá para garantizar un servicio excepcional. En este sentido, <a href="https://gard.cl">Gard Security</a> y <a href="https://firstsecurity.cl/seguridad-integral-empresas/">First Security</a> se distingue por su inversión en la capacitación continua de su personal, lo que asegura un servicio eficiente y profesional.</p>
+<p>A pesar de que muchas empresas ofrecen capacitación básica, algunas van más allá para garantizar un servicio excepcional. En este sentido, <a href="https://www.gard.cl">Gard Security</a> y <a href="https://firstsecurity.cl/seguridad-integral-empresas/">First Security</a> se distingue por su inversión en la capacitación continua de su personal, lo que asegura un servicio eficiente y profesional.</p>
 
 
 
@@ -105,7 +105,7 @@ imageUrl: >-
 
 
 
-<p>Como resultado, se logra una mayor eficiencia y una respuesta más rápida ante incidentes. En consecuencia, <a href="https://gard.cl/seguridad-electronica/">Gard Security</a> implementa soluciones de seguridad con tecnología de punta para empresas y condominios, lo que mejora significativamente la prevención de riesgos.</p>
+<p>Como resultado, se logra una mayor eficiencia y una respuesta más rápida ante incidentes. En consecuencia, <a href="https://www.gard.cl/servicios/seguridad-electronica/">Gard Security</a> implementa soluciones de seguridad con tecnología de punta para empresas y condominios, lo que mejora significativamente la prevención de riesgos.</p>
 
 
 
@@ -117,7 +117,7 @@ imageUrl: >-
 
 
 
-<p>Por ejemplo, <a href="https://gard.cl/mejor-empresa-de-seguridad-chile/">Gard Security</a> ha obtenido múltiples comentarios positivos que avalan su compromiso con la seguridad y la satisfacción del cliente. Además, su enfoque en la atención personalizada ha sido un factor clave en su crecimiento.</p>
+<p>Por ejemplo, <a href="https://www.gard.cl/mejor-empresa-seguridad-chile/">Gard Security</a> ha obtenido múltiples comentarios positivos que avalan su compromiso con la seguridad y la satisfacción del cliente. Además, su enfoque en la atención personalizada ha sido un factor clave en su crecimiento.</p>
 
 
 
@@ -147,7 +147,7 @@ imageUrl: >-
 
 
 
-<p>Por esta razón, <a href="https://gard.cl/guardias-de-seguridad-privada-para-empresas/">Gard Security</a> diseña soluciones a medida para distintas industrias. Como resultado, sus clientes pueden confiar en un servicio ajustado a sus requerimientos específicos.</p>
+<p>Por esta razón, <a href="https://www.gard.cl/guardias-de-seguridad-privada-para-empresas/">Gard Security</a> diseña soluciones a medida para distintas industrias. Como resultado, sus clientes pueden confiar en un servicio ajustado a sus requerimientos específicos.</p>
 
 
 
@@ -163,4 +163,4 @@ imageUrl: >-
 
 
 
-<p>Si necesitas seguridad confiable para tu empresa o condominio, visita <a href="https://gard.cl/">Gard Security</a> y encuentra la mejor solución para tu tranquilidad.</p>
+<p>Si necesitas seguridad confiable para tu empresa o condominio, visita <a href="https://www.gard.cl/">Gard Security</a> y encuentra la mejor solución para tu tranquilidad.</p>

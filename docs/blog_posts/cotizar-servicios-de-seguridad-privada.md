@@ -131,4 +131,4 @@ imageUrl: /images/blog/cotizar-servicios-de-seguridad-privada.jpg
 
 
 
-<p>Para más información sobre cómo Gard puede ayudarte a mantener la seguridad de tus instalaciones, visita nuestra <a href="https://gard.cl">página principal</a> o explora nuestros servicios especializados en <a href="https://gard.cl/guardias-de-seguridad-privada-para-empresas/">guardias de seguridad privada para empresas</a>, <a href="https://gard.cl/seguridad-electronica/">seguridad electrónica</a> y <a href="https://gard.cl/drones-de-seguridad-para-empresas-e-industrias/">drones de seguridad</a>.</p>
+<p>Para más información sobre cómo Gard puede ayudarte a mantener la seguridad de tus instalaciones, visita nuestra <a href="https://www.gard.cl">página principal</a> o explora nuestros servicios especializados en <a href="https://www.gard.cl/guardias-de-seguridad-privada-para-empresas/">guardias de seguridad privada para empresas</a>, <a href="https://www.gard.cl/servicios/seguridad-electronica/">seguridad electrónica</a> y <a href="https://www.gard.cl/servicios/drones-seguridad/">drones de seguridad</a>.</p>

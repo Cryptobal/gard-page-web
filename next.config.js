@@ -116,13 +116,47 @@ const nextConfig = {
 
       // Redirecciones de URLs antiguas manteniendo la estructura ciudad/servicio
       {
+        // El destino /servicios/automatizacion-y-domotica no existe (404).
+        // El servicio más cercano del catálogo actual es seguridad electrónica.
         source: '/automatizacion-y-domotica',
-        destination: '/servicios/automatizacion-y-domotica',
+        destination: '/servicios/seguridad-electronica',
         permanent: true,
       },
       {
         source: '/drones-de-seguridad-para-empresas-e-industrias',
         destination: '/servicios/drones-seguridad',
+        permanent: true,
+      },
+      // Rutas legacy de WordPress aún linkeadas desde posts del blog y
+      // backlinks externos — daban 404 (Semrush: broken internal links).
+      {
+        source: '/seguridad-electronica',
+        destination: '/servicios/seguridad-electronica',
+        permanent: true,
+      },
+      {
+        source: '/guardias-de-seguridad',
+        destination: '/servicios/guardias-de-seguridad',
+        permanent: true,
+      },
+      {
+        source: '/drones',
+        destination: '/servicios/drones-seguridad',
+        permanent: true,
+      },
+      {
+        source: '/noticias',
+        destination: '/blog',
+        permanent: true,
+      },
+      {
+        source: '/noticias/:slug+',
+        destination: '/blog/:slug+',
+        permanent: true,
+      },
+      {
+        source: '/mejor-empresa-de-seguridad-chile',
+        destination: '/mejor-empresa-seguridad-chile',
         permanent: true,
       },
       // Paginations del blog antiguo (WordPress) — antes daban 404 final

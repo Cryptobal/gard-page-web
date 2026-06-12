@@ -1027,7 +1027,7 @@ export default function CotizacionFormMultiStep({ prefillServicio, prefillIndust
 
                   <p className="text-center text-xs text-muted-foreground leading-relaxed">
                     Al enviar no te llamamos hasta que confirmes. Tus datos se manejan según nuestra{' '}
-                    <a href="/privacidad" className="underline hover:text-foreground">política de privacidad</a>.
+                    <a href="/politica-de-privacidad" className="underline hover:text-foreground">política de privacidad</a>.
                   </p>
                 </form>
               </Form>

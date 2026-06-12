@@ -5,7 +5,6 @@ import { ArrowRight, Shield, CheckCircle, Award, Users, Timer, Building2, BarCha
 import CloudflareImage from '@/components/CloudflareImage';
 import BreadcrumbSchema, { Breadcrumbs } from '@/components/seo/BreadcrumbSchema';
 import ServiceSchema from '@/components/seo/ServiceSchema';
-import ReviewSchema from '@/components/seo/ReviewSchema';
 import { FAQSection } from '@/components/seo/FAQSchema';
 import FormularioCotizacionSeccion from '@/app/components/FormularioCotizacionSeccion';
 import { companyStats } from '@/lib/data/company-stats';
@@ -121,17 +120,9 @@ export default function EmpresaGuardiasSeguridadPage() {
         aggregateRating={{ ratingValue: companyStats.gmbRatingValue, reviewCount: companyStats.gmbReviewCount }}
         offers={{ priceRange: '$$$' }}
       />
-      <ReviewSchema
-        itemReviewed={{
-          name: 'Gard Security - Guardias de Seguridad',
-          url: 'https://www.gard.cl/empresa-guardias-seguridad-chile',
-          type: 'LocalBusiness',
-          image: 'https://www.gard.cl/logos/gard.svg',
-          description: 'Guardias de seguridad OS10 con cobertura nacional y monitoreo 24/7.',
-        }}
-        aggregateRating={{ ratingValue: companyStats.gmbRatingValue, reviewCount: companyStats.gmbReviewCount, bestRating: companyStats.gmbBestRating, worstRating: companyStats.gmbWorstRating }}
-        verificationUrl={companyStats.gmbShortUrl}
-      />
+      {/* ReviewSchema removido: duplicaba el AggregateRating que ya emite
+          LocalBusinessSchema global. Reincorporar solo cuando existan
+          testimonios verificados en lib/data/testimonials.ts. */}
       <Breadcrumbs items={breadcrumbs} />
 
       <section className="gard-hero min-h-[70vh] flex flex-col justify-center items-center relative overflow-hidden">

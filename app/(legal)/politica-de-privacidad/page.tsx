@@ -4,6 +4,13 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Política de Privacidad | Gard Security',
   description: 'Política de privacidad de Gard Security. Cómo recopilamos, usamos y protegemos su información personal.',
+  alternates: {
+    canonical: 'https://www.gard.cl/politica-de-privacidad',
+    languages: {
+      'es-CL': 'https://www.gard.cl/politica-de-privacidad',
+      'x-default': 'https://www.gard.cl/politica-de-privacidad',
+    },
+  },
 };
 
 export default function PoliticaPrivacidad() {

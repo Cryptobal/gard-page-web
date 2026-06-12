@@ -26,7 +26,14 @@ export const metadata: Metadata = {
     "guardias con responsabilidad ambiental",
     "política ambiental de seguridad privada",
     "ODS en seguridad"
-  ]
+  ],
+  alternates: {
+    canonical: 'https://www.gard.cl/politica-ambiental',
+    languages: {
+      'es-CL': 'https://www.gard.cl/politica-ambiental',
+      'x-default': 'https://www.gard.cl/politica-ambiental',
+    },
+  },
 };
 
 export default function PoliticaAmbientalPage() {

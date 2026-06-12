@@ -66,7 +66,7 @@ imageUrl: /images/blog/listado-de-empresas-de-seguridad-en-chile.jpg
 
 
 <ol class="wp-block-list">
-<li><strong><a href="https://gard.cl">Gard Security</a></strong>
+<li><strong><a href="https://www.gard.cl">Gard Security</a></strong>
 <ul class="wp-block-list">
 <li>Conocida por su amplia gama de servicios de seguridad, incluyendo guardias, tecnología de seguridad electrónica y drones de vigilancia. Gard ofrece soluciones personalizadas para empresas, industrias y eventos masivos.</li>
 </ul>
@@ -133,4 +133,4 @@ imageUrl: /images/blog/listado-de-empresas-de-seguridad-en-chile.jpg
 
 
 
-<p>Para obtener más información sobre cómo Gard Security puede ayudarte con tus necesidades de seguridad, visita nuestra <a href="https://gard.cl">página principal</a> o explora nuestros servicios especializados en <a href="https://gard.cl/guardias-de-seguridad-privada-para-empresas/">guardias de seguridad</a>, <a href="https://gard.cl/seguridad-electronica/">seguridad electrónica</a> y <a href="https://gard.cl/drones-de-seguridad-para-empresas-e-industrias/">drones de seguridad</a>.</p>
+<p>Para obtener más información sobre cómo Gard Security puede ayudarte con tus necesidades de seguridad, visita nuestra <a href="https://www.gard.cl">página principal</a> o explora nuestros servicios especializados en <a href="https://www.gard.cl/guardias-de-seguridad-privada-para-empresas/">guardias de seguridad</a>, <a href="https://www.gard.cl/servicios/seguridad-electronica/">seguridad electrónica</a> y <a href="https://www.gard.cl/servicios/drones-seguridad/">drones de seguridad</a>.</p>

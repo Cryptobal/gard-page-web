@@ -6,6 +6,13 @@ export const metadata: Metadata = {
   keywords: ['cotizar seguridad privada', 'presupuesto guardias', 'cotización servicios de seguridad', 'cotizar empresa de guardias'],
   authors: [{ name: 'Gard Security', url: 'https://www.gard.cl' }],
   robots: 'index, follow',
+  alternates: {
+    canonical: 'https://www.gard.cl/cotizar',
+    languages: {
+      'es-CL': 'https://www.gard.cl/cotizar',
+      'x-default': 'https://www.gard.cl/cotizar',
+    },
+  },
   openGraph: {
     title: 'Cotiza Seguridad Privada | Gard Security',
     description: 'Completa nuestro cotizador online y recibe una propuesta personalizada para proteger tu empresa.',
