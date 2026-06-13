@@ -67,7 +67,15 @@ function stripLegacyWordPressMarkup(htmlContent: string): string {
 
 // Obtener datos de un post específico por slug
 export async function getPostBySlug(slug: string): Promise<BlogPost> {
+  // Sanitización anti path-traversal: solo slugs [a-zA-Z0-9-] y el path
+  // resuelto debe quedar dentro de postsDirectory.
+  if (!/^[a-zA-Z0-9-]+$/.test(slug)) {
+    throw new Error(`Slug inválido: ${slug}`);
+  }
   const fullPath = path.join(postsDirectory, `${slug}.md`);
+  if (!path.resolve(fullPath).startsWith(path.resolve(postsDirectory) + path.sep)) {
+    throw new Error(`Slug fuera del directorio permitido: ${slug}`);
+  }
   const fileContents = fs.readFileSync(fullPath, 'utf8');
   
   // Usar gray-matter para parsear la sección de metadatos

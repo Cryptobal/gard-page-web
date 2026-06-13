@@ -6,12 +6,12 @@ export const revalidate = 86400;
 
 export async function GET() {
   const years = companyStats.leadershipYearsExperience;
-  const { foundedYear, activeGuards, activeClients, citiesCovered } = companyStats;
+  const { foundedYear, activeGuards, citiesCovered } = companyStats;
 
   const content = `# Gard Security — Empresa de Seguridad Privada en Chile
 > Empresa de seguridad privada B2B en Chile con ${years} años de experiencia del equipo fundador, especializada en minería, logística, edificios corporativos, retail y construcción.
 
-Gard Security es una empresa de seguridad privada con base en Santiago, Chile, especializada en servicios B2B de seguridad para empresas e industrias. Fundada en ${foundedYear} por un equipo con ${years} años de experiencia acumulada en el rubro, cuenta con ${activeGuards} guardias certificados OS10 en operación, ${activeClients} clientes B2B activos, y presencia en ${citiesCovered} ciudades de Chile. Protegemos operaciones de alto riesgo en sectores como minería, logística, retail, corporativo e industrial.
+Gard Security es una empresa de seguridad privada con base en Santiago, Chile, especializada en servicios B2B de seguridad para empresas e industrias. Fundada en ${foundedYear} por un equipo con ${years} años de experiencia acumulada en el rubro, cuenta con ${activeGuards} guardias certificados OS10 en operación y presencia en ${citiesCovered} ciudades de Chile. Protegemos operaciones de alto riesgo en sectores como minería, logística, retail, corporativo e industrial.
 
 ## Servicios
 
@@ -42,7 +42,8 @@ Gard Security es una empresa de seguridad privada con base en Santiago, Chile, e
 
 - ${companyStats.os10CertifiedPct}% del personal con certificación OS10 vigente (obligatorio por Ley 21.659)
 - ${activeGuards} guardias activos en operación
-- ${activeClients} clientes B2B activos en todo Chile
+- Rating ${companyStats.gmbRatingValue}/${companyStats.gmbBestRating} en Google con ${companyStats.gmbReviewCount} reseñas verificables (${companyStats.gmbShortUrl})
+- Continuidad operacional ${companyStats.operationalContinuityPct}% (turnos cubiertos sobre turnos contratados)
 - Presencia física en ${citiesCovered} ciudades: Santiago, Antofagasta, Valparaíso, Concepción, Iquique, Puerto Montt, Rancagua, Chillán, Temuco, Viña del Mar
 - Tiempo de respuesta promedio ${companyStats.avgIncidentResponseMinutesSantiago} minutos ante incidentes en zona urbana de Santiago
 - Monitoreo 24/7 con operadores dedicados

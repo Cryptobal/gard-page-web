@@ -1,9 +1,9 @@
 name: site-audit
+# Audita PRODUCCIÓN (www.gard.cl), no el código de la rama: correrlo por PR
+# no mide el PR y lo bloquea con rojos ajenos. Solo main y manual (jun-2026).
 on:
   workflow_dispatch:
   push:
-    branches: [ main ]
-  pull_request:
     branches: [ main ]
 jobs:
   audit:

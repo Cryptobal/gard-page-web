@@ -15,7 +15,7 @@ import {
 } from '@/lib/postulacion-data';
 import { COMUNAS_CHILE } from '@/lib/comunas-chile';
 
-const POSTULACION_TOKEN = 'opai-postulacion-2026';
+const POSTULACION_TOKEN = process.env.NEXT_PUBLIC_POSTULACION_TOKEN ?? 'opai-postulacion-2026';
 const WHATSAPP_NUMBER = '56956062246';
 const WHATSAPP_PREFILL = encodeURIComponent(
   'Hola, postulé a guardia por la web y quiero saber el estado.'

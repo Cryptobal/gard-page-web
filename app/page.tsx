@@ -11,10 +11,10 @@ const OG_IMAGE_URL = 'https://imagedelivery.net/gGw8cfmEZedi85dYm6qcFw/4824f8b9-
 
 const yearsOfExperience = companyStats.leadershipYearsExperience;
 
-const HOME_DESCRIPTION = `Guardias de seguridad certificados OS10, monitoreo 24/7, drones y seguridad electrónica. ${yearsOfExperience}+ años protegiendo empresas en ${companyStats.citiesCovered} ciudades de Chile. Cotización en menos de 12 horas.`;
+const HOME_DESCRIPTION = `Empresa de guardias de seguridad para empresas: certificados OS10, monitoreo 24/7 y tecnología propia. ${yearsOfExperience}+ años protegiendo operaciones en todo Chile. Cotiza en 12 horas.`;
 
 export const metadata: Metadata = {
-  title: 'Empresa de Seguridad Privada en Chile | Gard Security',
+  title: 'Empresa de Guardias de Seguridad Privada en Chile | Gard Security',
   description: HOME_DESCRIPTION,
   alternates: {
     canonical: 'https://www.gard.cl',
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'Empresa de Seguridad Privada en Chile | Gard Security',
+    title: 'Empresa de Guardias de Seguridad Privada en Chile | Gard Security',
     description: HOME_DESCRIPTION,
     url: 'https://www.gard.cl',
     siteName: 'Gard Security',
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Empresa de Seguridad Privada en Chile | Gard Security',
+    title: 'Empresa de Guardias de Seguridad Privada en Chile | Gard Security',
     description: HOME_DESCRIPTION,
     images: [OG_IMAGE_URL],
   },
@@ -53,7 +53,7 @@ import {
   ShieldCheck, 
   CheckCircle,
   HelpCircle,
-  Users,
+  Star,
   Calendar,
   Activity,
   Headphones
@@ -95,8 +95,8 @@ export default function Home() {
     <>
       {/* Hero principal */}
       <GardHero
-        title="Empresa de Seguridad Privada en Chile · Guardias OS10 con Cobertura Nacional 24/7"
-        subtitle={`Protegemos ${companyStats.activeClients} empresas en ${companyStats.citiesCovered} ciudades con guardias certificados OS10, monitoreo 24/7 y tecnología propia.`}
+        title="Empresa de Guardias de Seguridad Privada en Chile · OS10 y Cobertura Nacional 24/7"
+        subtitle="Protegemos empresas en todo Chile con guardias certificados OS10, monitoreo 24/7 y tecnología propia."
         ctaTexto="Cotizar Ahora"
         ctaHref="#cotizar"
         videoId="ac93b4a10e87873748171425b9f8066d"
@@ -192,9 +192,9 @@ export default function Home() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             <div className="p-6 bg-white/5 rounded-xl backdrop-blur-sm border border-black/5 dark:border-white/10 shadow-md transform hover:scale-105 transition duration-300">
-              <Users className="h-14 w-14 mx-auto mb-4 text-primary dark:text-accent" />
-              <div className="text-5xl font-bold mb-3 text-foreground dark:text-white">{companyStats.activeClients}</div>
-              <p className="text-body-base text-muted-foreground dark:text-gray-100">Clientes B2B activos</p>
+              <Star className="h-14 w-14 mx-auto mb-4 text-primary dark:text-accent" />
+              <div className="text-5xl font-bold mb-3 text-foreground dark:text-white">{companyStats.gmbRatingValue}</div>
+              <p className="text-body-base text-muted-foreground dark:text-gray-100">Rating en Google · {companyStats.gmbReviewCount} reseñas</p>
             </div>
             
             <div className="p-6 bg-white/5 rounded-xl backdrop-blur-sm border border-black/5 dark:border-white/10 shadow-md transform hover:scale-105 transition duration-300">

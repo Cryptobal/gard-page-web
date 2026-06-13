@@ -107,12 +107,21 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link 
-                  href="/servicios" 
+                <Link
+                  href="/servicios"
                   className="text-sm md:text-base text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors"
                   aria-label="Servicios"
                 >
                   Servicios
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/empresa-guardias-seguridad-chile"
+                  className="text-sm md:text-base text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors"
+                  aria-label="Empresa de Guardias de Seguridad"
+                >
+                  Empresa de Guardias de Seguridad
                 </Link>
               </li>
               <li>

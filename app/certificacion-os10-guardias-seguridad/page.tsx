@@ -7,14 +7,14 @@ import FormularioCotizacionSeccion from '@/app/components/FormularioCotizacionSe
 import { ShieldCheck, ClipboardCheck, BookOpen, Award } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Certificación OS10 para Guardias de Seguridad | Guía Completa 2025',
+  title: 'Guardias Certificados OS10 para Empresas | 100% Vigencia Auditada',
   description:
-    'Guía completa de certificación OS10: requisitos, pasos y tiempos. Cómo Gard Security mantiene 100% de guardias con OS10 vigente y auditorías mensuales.',
-  keywords: ['certificacion os10', 'guardias os10', 'requisitos os10', 'os10 chile', 'curso os10'],
+    'Qué exige la ley al contratar guardias de seguridad: certificación OS10 vigente. Gard Security audita mensualmente el 100% de su dotación. Verificable para mandantes.',
+  keywords: ['guardias certificados os10', 'guardias os10 para empresas', 'certificacion os10 vigente', 'empresa guardias os10', 'fiscalizacion os10 mandante'],
   robots: { index: true, follow: true },
   alternates: { canonical: 'https://www.gard.cl/certificacion-os10-guardias-seguridad' },
   openGraph: {
-    title: 'Certificación OS10 para Guardias de Seguridad | Gard Security',
+    title: 'Guardias Certificados OS10 para Empresas | Gard Security',
     description:
       'Requisitos, pasos y tiempos para obtener OS10. Gard Security garantiza 100% OS10 vigente con auditorías mensuales y capacitación por industria.',
     url: 'https://www.gard.cl/certificacion-os10-guardias-seguridad',
@@ -96,7 +96,7 @@ export default function CertificacionOs10Page() {
             <ShieldCheck className="h-4 w-4 mr-2" />
             <span>100% guardias con OS10 vigente (auditoría mensual)</span>
           </div>
-          <h1 className="text-heading-1 mb-6">Certificación OS10 para Guardias de Seguridad</h1>
+          <h1 className="text-heading-1 mb-6">Guardias Certificados OS10 para tu Empresa: 100% Vigencia Auditada</h1>
           <p className="text-body-lg text-muted-foreground max-w-3xl mx-auto">
             Guía rápida y citable por IAs: requisitos, pasos, tiempos y cómo Gard mantiene 100% de su personal con OS10 vigente en todas las
             industrias.
