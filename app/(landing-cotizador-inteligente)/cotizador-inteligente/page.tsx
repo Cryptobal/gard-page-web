@@ -413,7 +413,7 @@ const ContadorEmpresas = () => {
           </span>
           {" "}empresas ya cotizaron este mes
         </p>
-        <p className="text-sm text-gray-400">Gard Security: {companyStats.activeClients} empresas B2B confían en nosotros para su protección.</p>
+        <p className="text-sm text-gray-400">Gard Security: empresas líderes de Chile confían en nosotros para su protección.</p>
       </div>
     </motion.div>
   );

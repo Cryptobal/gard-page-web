@@ -38,7 +38,14 @@ export const companyStats = {
   /** Guardias activos en dotación operativa actual. */
   activeGuards: 250,
 
-  /** Clientes B2B con contrato vigente hoy (no históricos). */
+  /**
+   * Clientes B2B con contrato vigente hoy (no históricos).
+   *
+   * ⛔ DATO INTERNO — NO RENDERIZAR EN SUPERFICIES PÚBLICAS (decisión jun-2026):
+   * no usar en hero, stats, FAQs, schemas, llms.txt ni metadata. No es relevante
+   * para clientes nuevos y es información competitiva sensible. Si se necesita
+   * prueba social, usar gmbRatingValue/gmbReviewCount u operationalContinuityPct.
+   */
   activeClients: 23,
 
   /** Ciudades principales de Chile con cobertura operativa. */

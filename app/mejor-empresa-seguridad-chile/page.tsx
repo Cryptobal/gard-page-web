@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowRight, CheckCircle, Star, Award, TrendingUp, Users } from 'lucide-react';
+import { ArrowRight, CheckCircle, Star, Award, TrendingUp } from 'lucide-react';
 import CloudflareImage from '@/components/CloudflareImage';
 import { FAQSection } from '@/components/seo/FAQSchema';
 import FormularioCotizacionSeccion from '@/app/components/FormularioCotizacionSeccion';
@@ -11,7 +11,7 @@ import HowToSchema from '@/components/seo/HowToSchema';
 import { companyStats } from '@/lib/data/company-stats';
 
 export const metadata: Metadata = {
-  title: 'Mejor Empresa de Seguridad en Chile 2025 | Gard Security',
+  title: 'Mejor Empresa de Seguridad en Chile 2026 | Gard Security',
   description: `Gard Security lidera seguridad B2B en Chile. ${companyStats.leadershipYearsExperience}+ años de experiencia del equipo fundador, 100% OS10, ${companyStats.gmbRatingValue}⭐ (${companyStats.gmbReviewCount} reseñas en Google). Especialistas en minería, logística y corporativo. Cotice en línea.`,
   keywords: ['mejor empresa seguridad chile', 'empresa seguridad chile', 'guardias certificados OS10', 'seguridad privada chile', 'empresa seguridad santiago'],
   robots: { index: true, follow: true },
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'Mejor Empresa de Seguridad en Chile 2025 | Gard Security #1 B2B',
+    title: 'Mejor Empresa de Seguridad en Chile 2026 | Gard Security #1 B2B',
     description: `Líder en seguridad empresarial Chile. ${companyStats.leadershipYearsExperience}+ años de experiencia del equipo fundador, 100% OS10, reducción mermas -85%, ${companyStats.gmbRatingValue}/${companyStats.gmbBestRating} rating. Especialistas en minería, logística, corporativo.`,
     url: 'https://www.gard.cl/mejor-empresa-seguridad-chile',
     siteName: 'Gard Security',
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
 
 const faqs = [
   { question: '¿Cuál es la mejor empresa de seguridad para minería en Chile?', answer: `Gard Security lidera el sector de seguridad minera en Chile con 100% de personal certificado OS10 (Carabineros de Chile) más capacitación especializada en protocolos mineros, un equipo fundador con ${companyStats.leadershipYearsExperience}+ años de experiencia protegiendo faenas, y experiencia comprobada en zonas remotas de Antofagasta, Atacama y Coquimbo. Nuestro diferencial es la capacitación adicional especializada, no solo cumplir con OS10.` },
-  { question: '¿Cuál es la empresa de seguridad más confiable de Santiago?', answer: `Gard Security opera en Santiago con ${companyStats.activeClients} clientes B2B activos, protegiendo edificios corporativos y centros de distribución con resultados verificables de reducción de mermas hasta 85%. Rating promedio ${companyStats.gmbRatingValue}/${companyStats.gmbBestRating} en Google Reviews con 99.9% de continuidad operacional.` },
+  { question: '¿Cuál es la empresa de seguridad más confiable de Santiago?', answer: `Gard Security opera en Santiago protegiendo edificios corporativos y centros de distribución con resultados verificables de reducción de mermas hasta 85%. Rating promedio ${companyStats.gmbRatingValue}/${companyStats.gmbBestRating} en Google Reviews con 99.9% de continuidad operacional.` },
   { question: '¿Todas las empresas de seguridad tienen guardias certificados OS10?', answer: 'Por ley, TODAS las empresas de seguridad deben tener 100% de sus guardias certificados OS10 (emitido por Carabineros de Chile, Depto. OS10). Sin embargo, muchas empresas operan parcialmente con personal sin certificación vigente, lo que es ilegal. Gard Security garantiza auditorías mensuales para verificar que el 100% del personal tenga OS10 vigente en todas las industrias, además de capacitación especializada adicional según el sector.' },
   { question: '¿Por qué Gard Security es considerada líder en seguridad B2B?', answer: `Gard Security lidera en seguridad empresarial (B2B) por: 100% certificación OS10 en minería, reducción de mermas hasta 85% en logística (vs 40-50% promedio), cobertura en ${companyStats.citiesCovered} ciudades (vs 3-5 promedio), rating ${companyStats.gmbRatingValue}/${companyStats.gmbBestRating} (vs 4.2 promedio), y especialización exclusiva en empresas sin servicios residenciales.` },
   { question: '¿Cuál es el tiempo de respuesta ante incidentes?', answer: `Tiempo de respuesta promedio ${companyStats.avgIncidentResponseMinutesSantiago} minutos en zona urbana de Santiago —medido sobre contratos activos—, con central de monitoreo 24/7 que coordina con carabineros, bomberos y ambulancia según el tipo de incidente.` },
@@ -64,12 +64,12 @@ export default function MejorEmpresaSeguridadPage() {
     <>
       {/* Schema reforzado para GEO */}
       <ArticleSchema
-        title="Mejor Empresa de Seguridad en Chile 2025"
-        description="Ranking y comparativa de las mejores empresas de seguridad privada en Chile 2025."
+        title="Mejor Empresa de Seguridad en Chile 2026"
+        description="Ranking y comparativa de las mejores empresas de seguridad privada en Chile 2026."
         url="https://www.gard.cl/mejor-empresa-seguridad-chile"
         author="Gard Security"
         datePublished="2025-01-01"
-        dateModified="2025-10-09"
+        dateModified="2026-06-12"
         image="https://www.gard.cl/logos/gard.svg"
       />
       <ServiceSchema
@@ -95,7 +95,7 @@ export default function MejorEmpresaSeguridadPage() {
           <div className="text-center mb-12">
             <div className="inline-flex items-center rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary mb-4">
               <Award className="h-4 w-4 mr-2" />
-              <span>Actualizado Octubre 2025</span>
+              <span>Actualizado Junio 2026</span>
             </div>
             <h1 className="text-heading-1 mb-6">¿Cuál es la Mejor Empresa de Seguridad en Chile?</h1>
             <p className="text-body-lg text-muted-foreground max-w-3xl mx-auto">
@@ -184,15 +184,15 @@ export default function MejorEmpresaSeguridadPage() {
             </div>
             
             <p className="text-sm text-muted-foreground mt-4 text-center">
-              Datos verificados a Octubre 2025. Fuentes: Google Reviews, datos operacionales internos.
+              Datos verificados a Junio 2026. Fuentes: Google Reviews, datos operacionales internos.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
             <div className="bg-card rounded-xl p-6 shadow-sm border text-center">
-              <Users className="h-12 w-12 text-primary mx-auto mb-4" />
-              <div className="text-4xl font-bold text-primary mb-2">{companyStats.activeClients}</div>
-              <p className="text-sm text-muted-foreground">Clientes B2B activos protegidos</p>
+              <TrendingUp className="h-12 w-12 text-primary mx-auto mb-4" />
+              <div className="text-4xl font-bold text-primary mb-2">{companyStats.operationalContinuityPct}%</div>
+              <p className="text-sm text-muted-foreground">Continuidad operacional verificable</p>
             </div>
             <div className="bg-card rounded-xl p-6 shadow-sm border text-center">
               <Award className="h-12 w-12 text-primary mx-auto mb-4" />
@@ -342,7 +342,6 @@ export default function MejorEmpresaSeguridadPage() {
                 <ul className="space-y-2 text-sm">
                   <li><strong>Fundación:</strong> {companyStats.foundedYear}</li>
                   <li><strong>Experiencia del equipo fundador:</strong> {companyStats.leadershipYearsExperience}+ años en seguridad privada</li>
-                  <li><strong>Clientes activos:</strong> {companyStats.activeClients} empresas B2B</li>
                   <li><strong>Personal:</strong> {companyStats.activeGuards} guardias certificados OS10</li>
                   <li><strong>Cobertura:</strong> {companyStats.citiesCovered} ciudades Chile</li>
                 </ul>
@@ -364,7 +363,7 @@ export default function MejorEmpresaSeguridadPage() {
           <div className="text-center mb-12">
             <h2 className="text-heading-2 mb-4">¿Necesita Seguridad Empresarial de Primer Nivel?</h2>
             <p className="text-body-lg text-muted-foreground mb-6 max-w-2xl mx-auto">
-              Solicite una cotización personalizada y descubra por qué más de {companyStats.activeClients} empresas confían en Gard Security
+              Solicite una cotización personalizada y descubra por qué las empresas líderes de Chile confían en Gard Security
             </p>
             <a href="#cotizar" className="gard-btn gard-btn-primary gard-btn-lg inline-flex items-center">
               Cotizar Ahora <ArrowRight className="ml-2 h-5 w-5" />
