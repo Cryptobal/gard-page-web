@@ -26,8 +26,9 @@ usa `node:crypto` + `fetch` nativos.
    - Role: **ninguno** (no necesita permisos IAM).
    - Done.
 
-2. **Habilitar Indexing API**
-   - [Google Cloud Console → APIs & Services → Library](https://console.cloud.google.com/apis/library) → "Indexing API" → Enable.
+2. **Habilitar APIs en Google Cloud**
+   - [Indexing API](https://console.cloud.google.com/apis/library/indexing.googleapis.com) → Enable (submit de URLs).
+   - [Google Search Console API](https://console.cloud.google.com/apis/library/searchconsole.googleapis.com) → Enable (export semanal de keywords vía `pnpm run gsc-analytics`).
 
 3. **Descargar credentials JSON**
    - En el service account recién creado → Keys → Add key → Create new key → JSON.
@@ -182,6 +183,7 @@ Priorización recomendada (el script respeta el orden del array):
 | 403 | Indexing API no habilitada | Paso 2 del setup |
 | 429 | Quota excedida (200/día por default) | Bajar `GSC_INDEXING_MAX_PER_RUN` o esperar 24h |
 | 400 | URL inválida o no pertenece al property verificado | Revisar `recently-updated.json` |
+| `DECODER routines::unsupported` | `GSC_SERVICE_ACCOUNT_KEY` mal pegada en GitHub Secrets | Regenerar secret con `jq -r .private_key credentials.json` y correr `pnpm run gsc-verify` localmente antes de guardar |
 
 ---
 
@@ -197,7 +199,40 @@ Si la indexación no mejora, el problema no es el API sino el contenido
 
 ---
 
-## Quota
+## Verificación HTML (meta tag)
+
+Si la propiedad aún no está verificada, o querés redundancia DNS + HTML:
+
+1. GSC → **Settings → Ownership verification → HTML tag**.
+2. Copiá solo el valor del atributo `content=` (sin comillas).
+3. En Vercel → **Environment Variables** → `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` (Production).
+4. Redeploy. El tag se inyecta vía `app/metadata.ts`.
+
+---
+
+## Export semanal de keywords (Search Analytics API)
+
+- Script: `scripts/automations/gsc-search-analytics-export.ts`
+- Comando: `pnpm run gsc-analytics`
+- Workflow: `.github/workflows/gsc-analytics-weekly.yml` (lunes 04:00 UTC)
+- Output: `docs/seo-baseline-latest.md` + artifact `gsc-analytics-report`
+
+Usa los mismos secrets `GSC_SERVICE_ACCOUNT_*` que el Indexing API cron.
+
+---
+
+## Checklist GSC completo (manual en dashboard)
+
+| Item | Dónde | Estado |
+|------|--------|--------|
+| Property `https://www.gard.cl/` verificada | Settings → Ownership | Manual |
+| Sitemap enviado | Sitemaps → Add `https://www.gard.cl/sitemap.xml` | Manual (ya en robots.txt) |
+| Geo-target Chile | Legacy tools → International Targeting | Manual |
+| GA4 vinculado (`G-4XJ2YKYYDH`) | Settings → Associations | Manual |
+| Indexing API cron | GitHub Actions → GSC Indexing API cron | ✅ Configurado |
+| Analytics export semanal | GitHub Actions → GSC Search Analytics export | ✅ Nuevo |
+| Meta verification tag | Vercel env `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` | Pendiente token |
+
 
 - **200 URLs/día** por defecto (ajustable vía env var `GSC_INDEXING_MAX_PER_RUN`).
 - Google recomienda oficialmente usar Indexing API solo para URLs tipo

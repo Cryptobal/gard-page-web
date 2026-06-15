@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 
+const googleSiteVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION?.trim();
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.gard.cl'),
   title: {
@@ -64,4 +66,7 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  ...(googleSiteVerification
+    ? { verification: { google: googleSiteVerification } }
+    : {}),
 }; 
