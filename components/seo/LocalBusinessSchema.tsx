@@ -60,17 +60,13 @@ export default function LocalBusinessSchema() {
       }
     ],
 
-    // Rating agregado — verificable vía url con Google Business Profile.
-    // Los valores se leen de companyStats.gmbRatingValue / gmbReviewCount
-    // (single source of truth). Última verificación manual: ver companyStats.
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": companyStats.gmbRatingValue,
-      "bestRating": companyStats.gmbBestRating,
-      "worstRating": companyStats.gmbWorstRating,
-      "reviewCount": companyStats.gmbReviewCount,
-      "url": companyStats.gmbShortUrl
-    },
+    // NOTA: NO se emite aggregateRating aquí. Un rating de la propia empresa
+    // sobre sí misma es "self-serving review" según la política de Google
+    // (2019+) y Search Console lo marca como inválido en TODAS las páginas
+    // ("Invalid object type for field parent_node" / "multiple aggregate
+    // ratings"). Las estrellas en el SERP provienen del Google Business
+    // Profile, no de este markup. Los valores reales siguen en
+    // companyStats.gmb* para uso en UI verificable (links a GMB).
 
     // Áreas de servicio
     "areaServed": [
