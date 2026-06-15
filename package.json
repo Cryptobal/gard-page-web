@@ -12,7 +12,9 @@
     "typecheck": "tsc --noEmit",
     "test": "echo 'No tests configured yet'",
     "validate-ciudad": "tsx scripts/validate-ciudad-content.ts",
-    "gsc-indexing": "tsx scripts/automations/gsc-indexing-submit.ts"
+    "gsc-indexing": "tsx scripts/automations/gsc-indexing-submit.ts",
+    "gsc-analytics": "tsx scripts/automations/gsc-search-analytics-export.ts",
+    "gsc-verify": "tsx scripts/automations/gsc-verify-credentials.ts"
   },
   "dependencies": {
     "@cloudflare/stream-react": "^1.9.3",

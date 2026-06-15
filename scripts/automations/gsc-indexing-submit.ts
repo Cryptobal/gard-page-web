@@ -80,15 +80,53 @@ function base64url(input: Buffer | string): string {
 }
 
 /**
+ * Normaliza private_key desde GitHub Secrets, .env o jq (newlines reales vs \\n).
+ */
+function normalizePrivateKey(raw: string): string {
+  let key = raw.trim();
+
+  if (key.startsWith('"') && key.endsWith('"')) {
+    try {
+      key = JSON.parse(key) as string;
+    } catch {
+      key = key.slice(1, -1).replace(/\\n/g, '\n');
+    }
+  }
+
+  key = key.replace(/\\n/g, '\n');
+
+  if (key.includes('-----BEGIN') && !key.includes('\n')) {
+    key = key
+      .replace(/-----BEGIN ([A-Z ]+)-----/, '-----BEGIN $1-----\n')
+      .replace(/-----END ([A-Z ]+)-----/, '\n-----END $1-----\n');
+  }
+
+  if (
+    !key.includes('-----BEGIN PRIVATE KEY-----') &&
+    !key.includes('-----BEGIN RSA PRIVATE KEY-----')
+  ) {
+    throw new Error(
+      'GSC_SERVICE_ACCOUNT_KEY inválida: falta header PEM. Usá: jq -r .private_key credentials.json',
+    );
+  }
+
+  return key.endsWith('\n') ? key : `${key}\n`;
+}
+
+/**
  * Crea un JWT firmado con RS256 para el Google service account flow.
  * https://developers.google.com/identity/protocols/oauth2/service-account
  */
-function signServiceAccountJwt(clientEmail: string, privateKey: string): string {
+function signServiceAccountJwt(
+  clientEmail: string,
+  privateKey: string,
+  scope: string = SCOPE,
+): string {
   const now = Math.floor(Date.now() / 1000);
   const header = { alg: 'RS256', typ: 'JWT' };
   const payload = {
     iss: clientEmail,
-    scope: SCOPE,
+    scope,
     aud: TOKEN_ENDPOINT,
     exp: now + 3600,
     iat: now,
@@ -97,7 +135,15 @@ function signServiceAccountJwt(clientEmail: string, privateKey: string): string 
   const signer = createSign('RSA-SHA256');
   signer.update(unsigned);
   signer.end();
-  const signature = signer.sign(privateKey.replace(/\\n/g, '\n'));
+  let signature: Buffer;
+  try {
+    signature = signer.sign(normalizePrivateKey(privateKey));
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err);
+    throw new Error(
+      `No se pudo firmar JWT — revisá GSC_SERVICE_ACCOUNT_KEY en GitHub Secrets: ${msg}`,
+    );
+  }
   return `${unsigned}.${base64url(signature)}`;
 }
 
@@ -306,4 +352,4 @@ if (import.meta.url === entrypointUrl) {
   });
 }
 
-export { main as runGscIndexing, publishWithRetry, signServiceAccountJwt };
+export { main as runGscIndexing, normalizePrivateKey, publishWithRetry, signServiceAccountJwt };
