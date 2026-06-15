@@ -56,6 +56,15 @@ export default function ReviewSchema({ itemReviewed, aggregateRating, reviews, v
   // markup engañoso (riesgo de manual action). Para LocalBusiness/Organization
   // se enlaza con @id a la entidad global de LocalBusinessSchema para que los
   // validadores las fusionen en vez de crear una entidad duplicada.
+  // Sin reviews verificados no hay nada que emitir: el aggregateRating de la
+  // propia empresa es "self-serving review" (política Google 2019+) y Search
+  // Console lo marca como inválido. Las estrellas en SERP vienen del Google
+  // Business Profile. Solo emitimos schema cuando hay testimonios con
+  // consentimiento explícito en lib/data/testimonials.ts.
+  if (!hasVerifiedReviews) {
+    return null;
+  }
+
   const entityType = itemReviewed.type ?? 'LocalBusiness';
   const schema: Record<string, unknown> = {
     '@context': 'https://schema.org',
@@ -67,36 +76,26 @@ export default function ReviewSchema({ itemReviewed, aggregateRating, reviews, v
     url: itemReviewed.url,
     ...(itemReviewed.image ? { image: itemReviewed.image } : {}),
     ...(itemReviewed.description ? { description: itemReviewed.description } : {}),
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: aggregateRating.ratingValue.toFixed(1),
-      reviewCount: aggregateRating.reviewCount,
-      bestRating: aggregateRating.bestRating ?? 5,
-      worstRating: aggregateRating.worstRating ?? 1,
-      ...(verificationUrl ? { url: verificationUrl } : {}),
-    },
     ...(verificationUrl ? { sameAs: [verificationUrl] } : {}),
   };
 
-  if (hasVerifiedReviews) {
-    schema.review = reviews!.map((review) => ({
-      '@type': 'Review',
-      name: review.name ?? `${itemReviewed.name} - Reseña`,
-      reviewBody: review.reviewBody,
-      datePublished: review.datePublished,
-      reviewRating: {
-        '@type': 'Rating',
-        ratingValue: review.ratingValue,
-        bestRating: aggregateRating.bestRating ?? 5,
-        worstRating: aggregateRating.worstRating ?? 1,
-      },
-      author: {
-        '@type': review.author.type ?? 'Person',
-        name: review.author.name,
-      },
-      ...(review.url ? { url: review.url } : {}),
-    }));
-  }
+  schema.review = reviews!.map((review) => ({
+    '@type': 'Review',
+    name: review.name ?? `${itemReviewed.name} - Reseña`,
+    reviewBody: review.reviewBody,
+    datePublished: review.datePublished,
+    reviewRating: {
+      '@type': 'Rating',
+      ratingValue: review.ratingValue,
+      bestRating: aggregateRating.bestRating ?? 5,
+      worstRating: aggregateRating.worstRating ?? 1,
+    },
+    author: {
+      '@type': review.author.type ?? 'Person',
+      name: review.author.name,
+    },
+    ...(review.url ? { url: review.url } : {}),
+  }));
 
   return (
     <script
