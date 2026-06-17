@@ -214,7 +214,7 @@ export default function ReclutamientoForm() {
         <a
           href={`https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_PREFILL}`}
           target="_blank"
-          rel="noreferrer"
+          rel="nofollow noreferrer"
           className="inline-flex items-center gap-2 mt-2 px-5 py-2.5 rounded-full bg-green-600 hover:bg-green-700 text-white text-sm font-medium transition-colors"
         >
           <MessageCircle className="h-4 w-4" />
@@ -428,7 +428,7 @@ export default function ReclutamientoForm() {
               <a
                 href={`https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_PREFILL}`}
                 target="_blank"
-                rel="noreferrer"
+                rel="nofollow noreferrer"
                 className="inline-flex items-center justify-center gap-2 h-11 rounded-lg bg-green-600 hover:bg-green-700 text-white text-sm font-medium transition-colors"
               >
                 <MessageCircle className="h-4 w-4" />
