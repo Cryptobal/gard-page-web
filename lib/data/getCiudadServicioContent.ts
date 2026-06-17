@@ -100,12 +100,20 @@ const generarContenidoDinamico = (
   // Crear texto introductorio personalizado
   const intro = `Gard Security ofrece servicios especializados de ${servicioBase.toLowerCase()} en ${ciudad.nombre}, con personal capacitado y soluciones adaptadas a las características únicas de la ${ciudad.region}.`;
   
-  // Crear descripción detallada combinando datos de ciudad y servicio
+  // Crear descripción detallada combinando datos de ciudad y servicio.
+  // Se apoya 100% en datos reales del dataset (población, geografía, zonas,
+  // industrias y necesidades) para generar texto único por ubicación y
+  // levantar el ratio texto/HTML de cada landing sin contenido duplicado.
+  const poblacionFmt = ciudad.poblacion.toLocaleString('es-CL');
   const descripcion = `
-    Nuestro servicio de ${servicioBase.toLowerCase()} en ${ciudad.nombre} está diseñado considerando las características geográficas y desafíos de seguridad específicos de la zona. ${ciudad.descripcion} 
-    
+    Nuestro servicio de ${servicioBase.toLowerCase()} en ${ciudad.nombre} está diseñado considerando las características geográficas y desafíos de seguridad específicos de la zona. ${ciudad.descripcion}
+
     Entendemos que ${ciudad.nombre} presenta necesidades de seguridad particulares debido a su geografía de ${ciudad.geografia.toLowerCase()} y actividades económicas centradas en ${ciudad.industriasClave.slice(0, 3).join(', ')}.
-    
+
+    Con una población cercana a ${poblacionFmt} habitantes en la región ${ciudad.region}, ${ciudad.nombre} concentra demandas concretas de seguridad como ${ciudad.necesidadesSeguridad.slice(0, 3).join(', ').toLowerCase()}. Nuestro despliegue de ${servicioBase.toLowerCase()} prioriza los sectores de mayor exposición —${ciudad.zonasCriticas.slice(0, 3).join(', ')}— sin descuidar barrios de alta actividad como ${ciudad.barriosImportantes.slice(0, 3).join(', ')}, ajustando dotación, rondas y protocolos a la realidad de cada punto.
+
+    El tejido económico de ${ciudad.nombre}, articulado en torno a ${ciudad.industriasClave.join(', ').toLowerCase()}, exige protocolos diferenciados por tipo de instalación. Coordinamos cada operación desde nuestra central de monitoreo 24/7, con personal OS10 vigente y reemplazos garantizados ante ausencias, de modo que la continuidad del servicio en ${ciudad.nombre} no dependa de terceros ni de subcontratación.
+
     Nuestro equipo local cuenta con amplio conocimiento de ${ciudad.nombre} y sus sectores, brindando una respuesta rápida y efectiva ante cualquier incidente.
   `.trim();
   
@@ -119,7 +127,7 @@ const generarContenidoDinamico = (
   const zonasCriticas = {
     titulo: `Seguridad especializada para zonas críticas de ${ciudad.nombre}`,
     descripcion: `En ${ciudad.nombre}, identificamos sectores que requieren atención especial en términos de seguridad. Nuestro servicio de ${servicioBase.toLowerCase()} se adapta a las necesidades específicas de cada zona:`,
-    zonas: ciudad.zonasCriticas.map(zona => `${zona}: Plan de seguridad personalizado con ${getRandomSecurityFeature(servicioBase)}`)
+    zonas: ciudad.zonasCriticas.map((zona, i) => `${zona}: Plan de seguridad personalizado con ${getSecurityFeature(servicioBase, i)}`)
   };
   
   // Generar preguntas frecuentes contextualmente relevantes
@@ -265,47 +273,56 @@ const generarFAQs = (ciudad: CiudadData, servicioNombre: string): { pregunta: st
     {
       pregunta: `¿Cuál es el costo de ${servicioNombre} en ${ciudad.nombre}?`,
       respuesta: `El costo varía según las necesidades específicas, dimensiones de la propiedad, nivel de riesgo y requerimientos particulares. Ofrecemos una cotización personalizada gratuita para clientes en ${ciudad.nombre}. Contáctenos para una evaluación sin compromiso.`
+    },
+    {
+      pregunta: `¿Atienden zonas de mayor exposición en ${ciudad.nombre}?`,
+      respuesta: `Sí. En ${ciudad.nombre} reforzamos la presencia en sectores con mayor demanda de seguridad como ${ciudad.zonasCriticas.slice(0, 3).join(', ')}, ajustando dotación, frecuencia de rondas y protocolos al perfil de riesgo de cada punto. El plan se diseña tras una visita técnica al sitio y se coordina desde nuestra central de monitoreo 24/7, con supervisión en terreno y reportería periódica al cliente.`
+    },
+    {
+      pregunta: `¿Por qué elegir a Gard para ${servicioNombre} en ${ciudad.nombre}?`,
+      respuesta: `Combinamos personal OS10 vigente con conocimiento local de ${ciudad.nombre} —una ciudad de cerca de ${ciudad.poblacion.toLocaleString('es-CL')} habitantes en la región ${ciudad.region}— y experiencia en sus industrias clave como ${ciudad.industriasClave.slice(0, 3).join(', ').toLowerCase()}. Operamos sin subcontratación, con reemplazos garantizados ante ausencias y una central propia que asegura la continuidad del servicio. Entregamos cotización cerrada en 24 horas hábiles, sin costos ocultos.`
     }
   ];
 };
 
 /**
- * Retorna una característica aleatoria de seguridad según el tipo de servicio
+ * Retorna una característica de seguridad según el tipo de servicio.
+ * Determinístico por índice (no usa Math.random) para que el HTML generado
+ * en el servidor sea estable entre renders y rastreos —evita mismatches de
+ * hidratación y que los crawlers vean contenido distinto en cada visita.
  */
-const getRandomSecurityFeature = (servicioNombre: string): string => {
+const getSecurityFeature = (servicioNombre: string, index: number): string => {
+  let features: string[];
   if (servicioNombre.includes('Guardias')) {
-    const features = [
+    features = [
       'patrullaje constante',
       'control de acceso especializado',
       'personal capacitado en situaciones de riesgo',
       'protocolos de emergencia específicos'
     ];
-    return features[Math.floor(Math.random() * features.length)];
   } else if (servicioNombre.includes('Electrónica')) {
-    const features = [
+    features = [
       'cámaras de alta definición',
       'sistemas de detección temprana',
       'analítica de video inteligente',
       'reconocimiento facial'
     ];
-    return features[Math.floor(Math.random() * features.length)];
   } else if (servicioNombre.includes('Monitoreo')) {
-    const features = [
+    features = [
       'monitoreo 24/7',
       'respuesta coordinada con autoridades',
       'alertas en tiempo real',
       'verificación remota de alarmas'
     ];
-    return features[Math.floor(Math.random() * features.length)];
   } else {
-    const features = [
+    features = [
       'protocolos de seguridad avanzados',
       'tecnología de última generación',
       'personal especializado',
       'soluciones adaptadas al sector'
     ];
-    return features[Math.floor(Math.random() * features.length)];
   }
+  return features[index % features.length];
 };
 
 /**
