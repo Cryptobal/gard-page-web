@@ -59,7 +59,6 @@ export const CLIENTES: ClienteLogo[] = [
   {
     nombre: 'GL Events',
     industria: 'Turismo',
-    link: 'https://gl-events.cl',
     imageId: '62c92cfb-7c18-4699-2433-552682479a00',
   },
   {
