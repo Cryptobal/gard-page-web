@@ -74,17 +74,39 @@ Cuerpo: 1.200-1.800 palabras, español de Chile, tono consultor B2B. Keyword obj
 
 ## FASE 4 — Imagen única
 
+4.0 **Preflight de red (diagnóstico, no bloqueante):** probar conectividad real y dejar constancia en el reporte/PR de qué dominio respondió y cuál bloqueó el proxy:
+```bash
+for d in api.cloudflare.com api.openai.com; do
+  code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 10 "https://$d" || echo "BLOQUEADO")
+  echo "$d → $code"
+done
+```
+(Cualquier código HTTP = dominio alcanzable; fallo de CONNECT/timeout = bloqueado por la política de red del entorno.)
+
 4.1 Seguir `ESPECIFICACIONES_IMAGENES_BLOG.md`. Por defecto: 1200×630, estética corporativa sobria (Gard Blue `#002992`, contexto industrial chileno), sin texto incrustado, sin rostros reconocibles, sin logos de terceros.
-4.2 Generar por una de estas vías (en orden de preferencia):
-   - **A)** API de OpenAI Images con `$OPENAI_API_KEY` (generar horizontal y recortar/redimensionar a 1200×630 con ImageMagick o sharp).
-   - **B)** Conector Hugging Face → Space de texto-a-imagen.
-4.3 Subir a Cloudflare Images:
+
+4.2 Generar por la primera vía disponible, en este orden:
+   - **A) Cloudflare Workers AI (vía principal — mismo dominio y mismo token que la subida):**
+```bash
+curl -s -X POST "https://api.cloudflare.com/client/v4/accounts/e56e6231ebbfb3edd31e85df0a7092bc/ai/run/@cf/black-forest-labs/flux-1-schnell" \
+  -H "Authorization: Bearer $CF_IMAGES_TOKEN" -H "Content-Type: application/json" \
+  -d '{"prompt":"<prompt descriptivo en inglés, estética corporativa>","steps":6}' \
+  | python3 -c 'import sys,json,base64; open("raw.png","wb").write(base64.b64decode(json.load(sys.stdin)["result"]["image"]))'
+convert raw.png -resize 1200x630^ -gravity center -extent 1200x630 imagen.png   # si falta ImageMagick: pip install pillow y hacerlo con PIL
+```
+     Requiere que el token tenga además el permiso **Workers AI: Read**. Si la respuesta es error de permisos, reportarlo textual en el PR (es 1 clic de Carlos en el dashboard).
+   - **B)** API de OpenAI Images con `$OPENAI_API_KEY` — solo si el preflight mostró `api.openai.com` alcanzable.
+   - **C)** Conector Hugging Face — solo si expone una herramienta de generación de imagen (si la invocación está deshabilitada por configuración `gradio=none`, saltar sin insistir).
+   - **D)** Banco local: si existe `docs/automations/image-bank.md` (mapa categoría → UUID de Cloudflare ya subido), usar el UUID de la categoría más afín al tema y anotarlo en el PR como "imagen de banco".
+
+4.3 (Solo vías A/B/C) Subir a Cloudflare Images:
 ```bash
 curl -s -X POST "https://api.cloudflare.com/client/v4/accounts/e56e6231ebbfb3edd31e85df0a7092bc/images/v1" \
   -H "Authorization: Bearer $CF_IMAGES_TOKEN" -F "file=@imagen.png"
 ```
 Capturar el UUID de la respuesta INMEDIATAMENTE y validarlo contra `^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$` antes de escribirlo en el frontmatter.
-4.4 **Fallbacks honestos:** si no hay vía de generación o falta `CF_IMAGES_TOKEN`, OMITIR el campo `imageId` (el sitio usa la imagen de sección por defecto) y anotar en el PR: "PENDIENTE: imagen única". **Prohibido inventar un UUID o reutilizar `5eea1064-8a2d-4e8b-5606-d28775467a00`.**
+
+4.4 **Fallback final honesto:** si ninguna vía funcionó, OMITIR el campo `imageId` (el sitio usa la imagen de sección por defecto), anotar en el PR "PENDIENTE: imagen única" junto al diagnóstico del preflight 4.0. **Prohibido inventar un UUID o reutilizar `5eea1064-8a2d-4e8b-5606-d28775467a00`.**
 
 ## FASE 5 — Validación y Pull Request
 
