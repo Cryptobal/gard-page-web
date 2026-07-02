@@ -37,7 +37,7 @@ const INDUSTRIAS_VALIDAS = [
 
 // Mapeo de slugs antiguos (URLs WordPress/Elementor) a slugs nuevos.
 // Usado por la redirección de /landing-dinamico/{industria}/{servicio}
-// hacia /servicios-por-industria/{servicio}/{industria}.
+// hacia /servicios/{servicio}/{industria} (o el servicio padre).
 const MAPEO_SERVICIOS_ANTIGUOS: Record<string, string> = {
   'guardias-privados': 'guardias-de-seguridad',
   'camaras-seguridad': 'seguridad-electronica',
