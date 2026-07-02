@@ -7,8 +7,8 @@
 
 ## Variables de entorno esperadas (configuradas en el entorno cloud "Gard Web")
 
-- `CF_IMAGES_TOKEN` — token de Cloudflare Images (subida de imagen del post)
-- `OPENAI_API_KEY` — opcional, para generación de imagen vía API
+- `CF_IMAGES_TOKEN` — token de Cloudflare con permisos **Workers AI: Read** (generación de imagen) e **Images: Edit** (subida)
+- `OPENAI_API_KEY` — opcional, vía B de imagen (solo útil si el preflight muestra api.openai.com alcanzable)
 - Credencial GSC — opcional en modo PR (la indexación se hace post-merge)
 
 Si una variable falta, no falles la corrida completa: aplica el fallback documentado en cada fase y déjalo anotado en el PR.
@@ -108,6 +108,8 @@ Capturar el UUID de la respuesta INMEDIATAMENTE y validarlo contra `^[0-9a-f]{8}
 
 4.4 **Fallback final honesto:** si ninguna vía funcionó, OMITIR el campo `imageId` (el sitio usa la imagen de sección por defecto), anotar en el PR "PENDIENTE: imagen única" junto al diagnóstico del preflight 4.0. **Prohibido inventar un UUID o reutilizar `5eea1064-8a2d-4e8b-5606-d28775467a00`.**
 
+4.5 **Backfill de auto-reparación:** si la vía A funcionó en esta corrida, revisar en `main` los posts de los últimos 14 días SIN campo `imageId` (los que salieron con "PENDIENTE" en corridas anteriores). Generar y subir imagen para hasta 2 de ellos y agregar su `imageId` en el mismo commit/PR de esta corrida, listándolos en la descripción como "🔧 Backfill de imagen: <slugs>".
+
 ## FASE 5 — Validación y Pull Request
 
 ```bash
@@ -123,24 +125,19 @@ git add docs/blog_posts/<slug>.md docs/seo/blog-topic-queue.md
 git commit -m "content(blog): <slug>"
 git push -u origin content/blog-<slug>
 ```
-Abrir **Pull Request** hacia `main` con: tema y score, keyword objetivo y volumen, enlaces internos usados, fuentes citadas, UUID de imagen (o "PENDIENTE"), y este checklist post-merge para Carlos:
+Abrir **Pull Request normal (NO draft)** hacia `main` con: tema y score, keyword objetivo y volumen, enlaces internos usados, fuentes citadas, UUID de imagen (o "PENDIENTE"), y este checklist post-merge para Carlos:
 - [ ] Verificar `https://www.gard.cl/blog/<slug>` responde 200 tras el deploy de Vercel
 - [ ] Enviar la URL a la GSC Indexing API (o Inspección de URL → Solicitar indexación)
 
-**Link directo al post renderizado:** tras abrir el PR, usar el conector de Vercel para obtener el Preview Deployment de la rama `content/blog-<slug>` (polling hasta ~5 min esperando estado READY). Construir el link de lectura: `<url_del_preview>/blog/<slug>`. Si el preview tiene protección de acceso, generar un link compartible con la herramienta de acceso de Vercel. Agregar este link al inicio de la descripción del PR como "📖 Leer el post".
+**Link directo al post renderizado (con tope duro de espera):** tras abrir el PR, usar el conector de Vercel para obtener el Preview Deployment de la rama `content/blog-<slug>`. Polling secuencial cada 60-90 s con **tope máximo de 10 minutos** — prohibido dejar múltiples sleeps en background. Construir el link de lectura: `<url_del_preview>/blog/<slug>` (si el preview tiene protección, generar link compartible con la herramienta de Vercel) y agregarlo al inicio de la descripción del PR como "📖 Leer el post". **Si a los 10 minutos el build no está READY:** no seguir esperando — dejar el link con la nota "(se activa cuando termine el build de Vercel)", programar UN ÚNICO self check-in a ~60 minutos que verifique el estado, actualice el PR y reenvíe la notificación si cambió, y terminar la corrida.
 
 **NO hacer merge. Terminar la corrida después de abrir el PR y notificar (Fase 6).**
 
 ## FASE 6 — Notificación a Carlos
 
-- **Vía principal (genera notificación push):** si existe `$SLACK_WEBHOOK_URL`, enviar:
-```bash
-curl -s -X POST "$SLACK_WEBHOOK_URL" -H 'Content-type: application/json' \
-  --data "{\"text\":\"📝 Nuevo post listo para revisar: *<título>*\n📖 Leer el post: <link_preview_directo>\n✅ Aprobar (PR): <link_PR>\n🖼️ Imagen: <ok con UUID | PENDIENTE>\"}"
-```
-- Si la corrida NO publicó, enviar por la misma vía el motivo exacto (guardrail o umbral de score).
-- **Fallback** si el webhook no está configurado: mensaje directo a Carlos por el conector de Slack (advertencia conocida: los mensajes propios no generan notificación push).
-- Prohibido escribir a cualquier otra persona, canal o destino distinto del webhook/DM de Carlos.
+- Enviar la notificación push nativa de la sesión con el resumen, y un **mensaje directo a Carlos por el conector de Slack** con: título del post, 📖 link de lectura (preview), ✅ link del PR, 🖼️ estado de la imagen (UUID o PENDIENTE).
+- Si la corrida NO publicó, enviar por las mismas vías el motivo exacto (guardrail, tope de backlog o umbral de score).
+- Prohibido escribir a cualquier otra persona o canal distinto del DM de Carlos.
 
 ## FASE 7 — Reporte
 
