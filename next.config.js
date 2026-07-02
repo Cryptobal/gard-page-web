@@ -74,6 +74,19 @@ const nextConfig = {
   // Redirecciones para evitar errores 404 y contenido duplicado
   async redirects() {
     return [
+      // Árbol B (legacy) → Árbol A: conserva equity de las ~184 URLs históricas.
+      // Los combos sin contenido único siguen en 301 al servicio padre vía middleware.
+      {
+        source: '/servicios-por-industria/:servicio/:industria',
+        destination: '/servicios/:servicio/:industria',
+        permanent: true,
+      },
+      {
+        source: '/servicios-por-industria/:servicio',
+        destination: '/servicios/:servicio',
+        permanent: true,
+      },
+      { source: '/servicios-por-industria', destination: '/servicios', permanent: true },
       // Redirección canónica del apex (gard.cl) al subdominio www, en 308
       // (permanente). Antes vivía en middleware.ts pero Vercel respondía 307
       // a nivel platform — un 307 dispersa señales de canónica entre Google.
