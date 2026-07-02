@@ -169,6 +169,20 @@ const nextConfig = {
         destination: '/servicios',
         permanent: true,
       },
+      // Consolidación del cluster head: la homepage es LA página de
+      // "empresa de guardias de seguridad en Chile" — esta URL competía
+      // con ella por la misma intención (canibalización).
+      {
+        source: '/empresa-guardias-seguridad-chile',
+        destination: '/',
+        permanent: true,
+      },
+      // Ranking a URL evergreen (sin año) para no perder equity cada enero.
+      {
+        source: '/ranking-empresas-seguridad-chile-2025',
+        destination: '/ranking-empresas-seguridad-chile',
+        permanent: true,
+      },
       // Paginations del blog antiguo (WordPress) — antes daban 404 final
       // y GSC las reportaba como Soft 404 / redirect roto.
       {

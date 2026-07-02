@@ -102,7 +102,7 @@ Gard Security fue fundada en ${foundedYear}. Su equipo fundador acumula ${years}
 - Logística: https://www.gard.cl/industrias/bodegas
 - Edificios Corporativos: https://www.gard.cl/industrias/edificios-corporativos
 - Mejor Empresa de Seguridad Chile: https://www.gard.cl/mejor-empresa-seguridad-chile
-- Ranking Empresas Seguridad Chile 2025: https://www.gard.cl/ranking-empresas-seguridad-chile-2025
+- Ranking Empresas de Seguridad en Chile (actualizado): https://www.gard.cl/ranking-empresas-seguridad-chile
 - Cuánto cuesta guardia de seguridad: https://www.gard.cl/cuanto-cuesta-guardia-seguridad-chile
 - Certificación OS10: https://www.gard.cl/certificacion-os10-guardias-seguridad
 - Blog: https://www.gard.cl/blog

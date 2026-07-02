@@ -122,8 +122,7 @@ async function generateSitemap() {
     // Top commercial intent - nacionales
     { route: '/mejor-empresa-seguridad-chile', priority: 0.99, changeFreq: 'weekly' as const },
     { route: '/empresa-seguridad-privada-chile', priority: 0.99, changeFreq: 'weekly' as const },
-    { route: '/empresa-guardias-seguridad-chile', priority: 0.99, changeFreq: 'weekly' as const },
-    { route: '/ranking-empresas-seguridad-chile-2025', priority: 0.98, changeFreq: 'weekly' as const },
+    { route: '/ranking-empresas-seguridad-chile', priority: 0.98, changeFreq: 'weekly' as const },
 
     // Landing por vertical de industria
     { route: '/guardias-seguridad-mineria-chile', priority: 0.98, changeFreq: 'weekly' as const },

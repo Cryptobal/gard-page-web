@@ -21,8 +21,8 @@
   },
   {
     "url": "https://www.gard.cl/empresa-guardias-seguridad-chile",
-    "type": "URL_UPDATED",
-    "reason": "Fase 1.1/1.2 — metadata + ReviewSchema.verificationUrl + copy"
+    "type": "URL_DELETED",
+    "reason": "SEO P0 — canibalización: la página muere con 301 a la homepage"
   },
   {
     "url": "https://www.gard.cl/sobre-nosotros",
