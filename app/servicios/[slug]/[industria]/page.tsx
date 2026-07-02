@@ -1,12 +1,13 @@
 import React from 'react';
 import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import CloudflareImage from '@/components/CloudflareImage';
 import { ArrowRight, CheckCircle, Shield, BarChart3, TrendingUp, LightbulbIcon } from 'lucide-react';
 import CtaFinal from '@/components/ui/shared/CtaFinal';
 import { servicios } from '@/app/data/servicios';
 import { industries } from '@/app/data/industries';
-import { getServicioIndustriaData } from '@/app/data/servicios-por-industria';
+import { getServicioIndustriaData, esCombinacionValida } from '@/app/data/servicios-por-industria';
 import LinkParamsAware from '@/app/components/LinkParamsAware';
 import FormularioCotizacionSeccion from '@/app/components/FormularioCotizacionSeccion';
 
@@ -32,11 +33,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const servicio = servicios.find(s => normalizeName(s.name) === resolvedParams.slug);
   const industry = industries.find(i => normalizeName(i.name) === resolvedParams.industria);
   
-  if (!servicio || !industry) {
-    return {
-      title: 'Servicio no encontrado',
-      description: 'La combinación de servicio e industria que busca no está disponible.',
-    };
+  if (!servicio || !industry || !esCombinacionValida(resolvedParams.slug, resolvedParams.industria)) {
+    notFound();
   }
   
   const pageUrl = `https://www.gard.cl/servicios/${resolvedParams.slug}/${resolvedParams.industria}`;
@@ -67,17 +65,8 @@ export default async function ServicioIndustriaPage({ params }: PageProps) {
   const servicio = servicios.find(s => normalizeName(s.name) === resolvedParams.slug);
   const industry = industries.find(i => normalizeName(i.name) === resolvedParams.industria);
   
-  if (!servicio || !industry) {
-    return (
-      <div className="gard-container py-24 text-center">
-        <h1 className="text-heading-2 mb-6">Servicio no encontrado</h1>
-        <p className="text-body-lg mb-8">La combinación de servicio e industria que busca no está disponible.</p>
-        <Link href="/servicios" className="gard-btn gard-btn-primary">
-          Ver todos los servicios
-          <ArrowRight className="ml-2 h-5 w-5" />
-        </Link>
-      </div>
-    );
+  if (!servicio || !industry || !esCombinacionValida(resolvedParams.slug, resolvedParams.industria)) {
+    notFound();
   }
   
   // Obtener datos específicos para esta combinación de servicio e industria

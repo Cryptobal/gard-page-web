@@ -162,6 +162,13 @@ const nextConfig = {
         destination: '/mejor-empresa-seguridad-chile',
         permanent: true,
       },
+      // URL legacy externa (sin enlaces internos) que devolvía 404 y sigue
+      // recibiendo crawls — se redirige para cosechar el equity.
+      {
+        source: '/servicios-de-seguridad-privada',
+        destination: '/servicios',
+        permanent: true,
+      },
       // Paginations del blog antiguo (WordPress) — antes daban 404 final
       // y GSC las reportaba como Soft 404 / redirect roto.
       {
