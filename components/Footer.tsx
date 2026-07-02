@@ -117,11 +117,11 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/empresa-guardias-seguridad-chile"
+                  href="/empresa-seguridad-privada-chile"
                   className="text-sm md:text-base text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors"
-                  aria-label="Empresa de Guardias de Seguridad"
+                  aria-label="Empresa de Seguridad Privada en Chile"
                 >
-                  Empresa de Guardias de Seguridad
+                  Empresa de Seguridad Privada
                 </Link>
               </li>
               <li>

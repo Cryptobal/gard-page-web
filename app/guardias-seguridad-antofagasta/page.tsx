@@ -103,7 +103,7 @@ export default function GuardiasAntofagastaPage() {
       <section className="gard-section-md bg-white dark:bg-gray-900">
         <div className="gard-container max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-heading-2 mb-4">¿Por Qué Somos #1 en Seguridad en Antofagasta?</h2>
+            <h2 className="text-heading-2 mb-4">¿Por Qué las Empresas de Antofagasta Eligen a Gard?</h2>
             <p className="text-body-lg text-muted-foreground max-w-3xl mx-auto">
               Protegemos operaciones mineras, puertos y zonas industriales en Antofagasta y la región con guardias certificados OS10 y un equipo con experiencia comprobada en minería del norte de Chile
             </p>

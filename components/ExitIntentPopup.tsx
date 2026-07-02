@@ -120,7 +120,8 @@ export default function ExitIntentPopup() {
 
             <div className="flex flex-col gap-2 mb-5">
               <Link
-                href="/cotizar?v=multistep&utm_source=exit_intent"
+                href="/cotizar?v=multistep"
+                data-cta="exit_intent"
                 onClick={convert}
                 className="inline-flex items-center justify-center w-full rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3 px-4 text-base transition-colors"
               >

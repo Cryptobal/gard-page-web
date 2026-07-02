@@ -4,6 +4,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import CloudflareImage from '@/components/CloudflareImage';
 import { industries } from '@/app/data/industries';
+import { esCombinacionValida } from '@/app/data/servicios-por-industria';
 import { 
   Mountain, 
   ShoppingCart, 
@@ -120,8 +121,8 @@ export default function IndustriasGridPage({ servicioSlug }: IndustriasGridPageP
   if (isMobile) {
     const industria = industries[currentIndex];
     const slug = generateIndustrySlug(industria.name);
-    const href = servicioSlug 
-      ? `/servicios/${servicioSlug}/${slug}` 
+    const href = servicioSlug && esCombinacionValida(servicioSlug, slug)
+      ? `/servicios/${servicioSlug}/${slug}`
       : `/industrias/${slug}`;
 
     return (
@@ -206,7 +207,7 @@ export default function IndustriasGridPage({ servicioSlug }: IndustriasGridPageP
         const slug = generateIndustrySlug(industria.name);
         
         // Determinar el enlace según el contexto
-        const href = servicioSlug 
+        const href = servicioSlug && esCombinacionValida(servicioSlug, slug)
           ? `/servicios/${servicioSlug}/${slug}` // Para página de servicios
           : `/industrias/${slug}`; // Para página de industrias normal
         

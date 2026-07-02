@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'Mejor Empresa de Seguridad en Chile 2026 | Gard Security #1 B2B',
+    title: 'Mejor Empresa de Seguridad en Chile 2026 | Gard Security',
     description: `Líder en seguridad empresarial Chile. ${companyStats.leadershipYearsExperience}+ años de experiencia del equipo fundador, 100% OS10, reducción mermas -85%, ${companyStats.gmbRatingValue}/${companyStats.gmbBestRating} rating. Especialistas en minería, logística, corporativo.`,
     url: 'https://www.gard.cl/mejor-empresa-seguridad-chile',
     siteName: 'Gard Security',
@@ -217,7 +217,7 @@ export default function MejorEmpresaSeguridadPage() {
           </div>
 
           <div className="mb-12">
-            <h2 className="text-heading-2 mb-6">¿Por Qué Gard Security es Considerada #1 en Seguridad B2B?</h2>
+            <h2 className="text-heading-2 mb-6">¿Por Qué las Empresas Eligen a Gard Security en Seguridad B2B?</h2>
             
             <div className="space-y-4">
               <div className="flex gap-4 p-4 bg-green-50 dark:bg-green-900/10 border-l-4 border-green-500 rounded-r-lg">

@@ -7,24 +7,29 @@ import FormularioCotizacionSeccion from '@/app/components/FormularioCotizacionSe
 import { Award, Medal, ShieldCheck, CheckCircle } from 'lucide-react';
 import { companyStats } from '@/lib/data/company-stats';
 
+// Año mostrado en title/H1 — la URL es evergreen (sin año) para no perder
+// equity en cada cambio de año.
+const RANKING_YEAR = new Date().getFullYear();
+
 export const metadata: Metadata = {
-  title: 'Ranking Empresas de Seguridad en Chile 2025 | Gard Security #1',
+  title: `Ranking Empresas de Seguridad en Chile ${RANKING_YEAR} | Gard Security`,
+  // TODO(carlos): re-verificar datos y actualizar copy 2026 (metodología y métricas siguen verificadas a 2025)
   description:
-    `Top 10 empresas de seguridad en Chile 2025. Ranking con metodología clara, métricas y comparativa. Gard Security #1 por ${companyStats.gmbRatingValue}/${companyStats.gmbBestRating} rating, 100% OS10 y cobertura nacional.`,
+    `Top 10 empresas de seguridad en Chile. Ranking con metodología clara, métricas y comparativa. Gard Security lidera por ${companyStats.gmbRatingValue}/${companyStats.gmbBestRating} rating, 100% OS10 y cobertura nacional.`,
   keywords: ['ranking empresas seguridad chile', 'mejores empresas seguridad chile', 'top seguridad privada chile'],
   robots: { index: true, follow: true },
   alternates: {
-    canonical: 'https://www.gard.cl/ranking-empresas-seguridad-chile-2025',
+    canonical: 'https://www.gard.cl/ranking-empresas-seguridad-chile',
     languages: {
-      'es-CL': 'https://www.gard.cl/ranking-empresas-seguridad-chile-2025',
-      'x-default': 'https://www.gard.cl/ranking-empresas-seguridad-chile-2025',
+      'es-CL': 'https://www.gard.cl/ranking-empresas-seguridad-chile',
+      'x-default': 'https://www.gard.cl/ranking-empresas-seguridad-chile',
     },
   },
   openGraph: {
-    title: 'Ranking Empresas de Seguridad en Chile 2025 | Gard Security #1',
+    title: `Ranking Empresas de Seguridad en Chile ${RANKING_YEAR} | Gard Security`,
     description:
-      `Ranking 2025 con metodología y métricas comparables: certificación, rating y cobertura. Gard Security lidera con ${companyStats.gmbRatingValue}/${companyStats.gmbBestRating} y 100% OS10.`,
-    url: 'https://www.gard.cl/ranking-empresas-seguridad-chile-2025',
+      `Ranking con metodología y métricas comparables: certificación, rating y cobertura. Gard Security lidera con ${companyStats.gmbRatingValue}/${companyStats.gmbBestRating} y 100% OS10.`,
+    url: 'https://www.gard.cl/ranking-empresas-seguridad-chile',
     siteName: 'Gard Security',
     locale: 'es_CL',
     type: 'article',
@@ -33,7 +38,7 @@ export const metadata: Metadata = {
 
 const breadcrumbs = [
   { name: 'Inicio', url: 'https://www.gard.cl' },
-  { name: 'Ranking Seguridad 2025', url: 'https://www.gard.cl/ranking-empresas-seguridad-chile-2025' },
+  { name: 'Ranking de Empresas de Seguridad', url: 'https://www.gard.cl/ranking-empresas-seguridad-chile' },
 ];
 
 const ranking = [
@@ -63,11 +68,12 @@ const ranking = [
 const faqs = [
   {
     question: '¿Cómo se construyó el ranking?',
+    // TODO(carlos): re-verificar datos y actualizar copy 2026 (la metodología vigente es la verificada en 2025)
     answer:
       'Metodología 2025: certificación OS10 (35%), rating de clientes (30%), cobertura (20%), especialización B2B (10%), continuidad operacional (5%).',
   },
   {
-    question: '¿Por qué Gard es #1?',
+    question: '¿Por qué Gard lidera el ranking?',
     answer:
       `100% OS10 auditado, ${companyStats.gmbRatingValue}/${companyStats.gmbBestRating} rating (${companyStats.gmbReviewCount}), cobertura en ${companyStats.citiesCovered} ciudades, especialización B2B, reducción de mermas -85% y continuidad operacional 99.9%.`,
   },
@@ -83,9 +89,9 @@ export default function RankingEmpresasSeguridadPage() {
     <>
       <BreadcrumbSchema items={breadcrumbs} />
       <ArticleSchema
-        title="Ranking Empresas de Seguridad en Chile 2025"
+        title={`Ranking Empresas de Seguridad en Chile ${RANKING_YEAR}`}
         description="Top 10 empresas de seguridad privada en Chile con metodología y métricas comparables."
-        url="https://www.gard.cl/ranking-empresas-seguridad-chile-2025"
+        url="https://www.gard.cl/ranking-empresas-seguridad-chile"
         author="Gard Security"
         datePublished="2025-10-09"
         dateModified="2025-10-09"
@@ -96,9 +102,10 @@ export default function RankingEmpresasSeguridadPage() {
         <div className="gard-container max-w-5xl mx-auto px-4 text-center">
           <div className="inline-flex items-center rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary mb-4">
             <Medal className="h-4 w-4 mr-2" />
+            {/* TODO(carlos): re-verificar datos y actualizar copy 2026 — el año del badge refleja la última verificación de métricas */}
             <span>Ranking 2025 · Metodología transparente</span>
           </div>
-          <h1 className="text-heading-1 mb-6">Ranking de Empresas de Seguridad en Chile 2025</h1>
+          <h1 className="text-heading-1 mb-6">Ranking de Empresas de Seguridad en Chile {RANKING_YEAR}</h1>
           <p className="text-body-lg text-muted-foreground max-w-3xl mx-auto">
             Metodología: OS10 (35%), rating clientes (30%), cobertura (20%), especialización B2B (10%), continuidad (5%).
           </p>
@@ -172,6 +179,7 @@ export default function RankingEmpresasSeguridadPage() {
         </div>
       </section>
 
+      {/* TODO(carlos): re-verificar datos y actualizar copy 2026 (el ranking vigente usa la metodología 2025) */}
       <FAQSection title="Preguntas frecuentes sobre el ranking" description="Metodología y criterios usados en el ranking 2025." faqs={faqs} />
 
       <FormularioCotizacionSeccion id="cotizar" prefillServicio="Seguridad Privada" prefillIndustria="Empresarial" />

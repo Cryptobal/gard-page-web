@@ -251,7 +251,8 @@ export default function Home() {
           </p>
 
           <Link
-            href="/reclutamiento?via=home_cta&utm_source=home&utm_medium=cta_footer"
+            href="/reclutamiento"
+            data-cta="home_cta_footer"
             className="block max-w-3xl mx-auto group"
           >
             <div className="rounded-2xl bg-gradient-to-br from-[hsl(var(--gard-accent))]/25 via-[hsl(var(--gard-accent))]/15 to-[hsl(var(--gard-accent))]/5 md:from-[hsl(var(--gard-accent))]/15 md:via-[hsl(var(--gard-accent))]/8 md:to-transparent border-2 border-[hsl(var(--gard-accent))]/40 md:border md:border-[hsl(var(--gard-accent))]/20 shadow-lg md:shadow-md p-6 md:p-7 flex flex-col md:flex-row items-center gap-5 md:gap-6 transition-all group-hover:shadow-xl group-hover:border-[hsl(var(--gard-accent))]/60 group-hover:scale-[1.01]">

@@ -49,7 +49,7 @@ interface ServiceSchemaProps {
  *   description="Servicio profesional de guardias..."
  *   url="https://www.gard.cl/servicios/guardias-de-seguridad"
  *   areaServed="Chile"
- *   aggregateRating={{ ratingValue: 4.9, reviewCount: 57 }} // verificable vía provider.@id
+ *   aggregateRating={{ ratingValue: companyStats.gmbRatingValue, reviewCount: companyStats.gmbReviewCount }} // verificable vía provider.@id
  *   offers={{ priceRange: "$$$" }}
  * />
  */
