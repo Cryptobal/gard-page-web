@@ -3,6 +3,8 @@
  * Este archivo permite filtrar qué servicios están disponibles para cada industria
  */
 
+import { esComboIndexable } from '@/lib/data/combosIndexables';
+
 type IndustriaServicios = {
   industria: string; // Slug de la industria
   servicios: string[]; // Array de slugs de servicios disponibles para esta industria
@@ -241,16 +243,8 @@ export const serviciosPorIndustria: IndustriaServicios[] = [
  * @returns true si la combinación es válida, false en caso contrario
  */
 export function esCombinacionValida(servicioSlug: string, industriaSlug: string): boolean {
-  // Buscamos la industria en nuestro mapa de servicios por industria
-  const industriaConfig = serviciosPorIndustria.find(item => item.industria === industriaSlug);
-
-  // Si la industria no tiene configuración explícita, permitimos todos los servicios
-  if (!industriaConfig) {
-    return true;
-  }
-
-  // Si hay configuración para la industria, verificamos si el servicio está en la lista
-  return industriaConfig.servicios.includes(servicioSlug);
+  // Estricto: solo son válidas las combinaciones con contenido único publicado.
+  return esComboIndexable(servicioSlug, industriaSlug);
 }
 
 /**
@@ -307,6 +301,28 @@ const servicioIndustriaDataMap: Record<string, ServicioIndustriaData> = {
   
   // NUEVAS COMBINACIONES ESPECÍFICAS
   
+  // Guardias de seguridad para eventos y espectáculos
+  "guardias-de-seguridad__eventos-y-espectaculos": {
+    description: "Nuestro servicio de guardias de seguridad para eventos y espectáculos cubre todo el ciclo del evento: planificación previa con evaluación del recinto, operación durante la jornada y desmontaje. Coordinamos control de accesos con validación de entradas, gestión de aforos por sector, anillos de seguridad para artistas y autoridades, y equipos de respuesta ante emergencias, en coordinación con productoras, recintos y autoridades. Dimensionamos la dotación según el tipo de público, el formato del espectáculo y los requisitos de la autorización municipal y de Carabineros.",
+    desafios: [
+      "Control simultáneo de múltiples accesos con validación de entradas y detección de elementos prohibidos en horarios punta de ingreso",
+      "Gestión de aforos por sector y prevención de aglomeraciones en escenarios, pasillos y vías de evacuación durante el espectáculo",
+      "Coordinación en tiempo real con productoras, personal del recinto, servicios médicos y autoridades ante incidentes o evacuaciones"
+    ],
+    soluciones: [
+      "Planificación operativa previa al evento: evaluación del recinto, definición de puntos de control, dotación por sector y protocolos de emergencia",
+      "Equipos diferenciados por función: control de accesos, seguridad de escenario y backstage, patrullaje de perímetro y respuesta a incidentes",
+      "Puesto de mando con comunicación radial permanente entre supervisores, productora y servicios de emergencia durante toda la jornada"
+    ],
+    casoExito: "Cubrimos la seguridad de un festival de música de dos jornadas en la Región Metropolitana, con control de accesos por sectores, gestión de aforo en tiempo real y evacuación preventiva parcial por condiciones climáticas ejecutada sin incidentes, coordinada con la productora y las autoridades del recinto.",
+    beneficios: [
+      "Ingreso más rápido del público gracias a puntos de control dimensionados según el flujo esperado",
+      "Cumplimiento de los requisitos de seguridad exigidos en autorizaciones municipales y planes de emergencia del recinto",
+      "Menor exposición a incidentes en zonas críticas: escenario, backstage, camarines y estacionamientos",
+      "Un solo interlocutor de seguridad para la productora durante planificación, evento y desmontaje"
+    ]
+  },
+
   // Guardias de seguridad para sector financiero
   "guardias-de-seguridad__sector-financiero": {
     description: "Nuestro servicio de guardias de seguridad para instituciones financieras ofrece protección de máximo nivel con personal altamente capacitado en la detección de amenazas específicas del sector bancario. Garantizamos la protección de clientes, empleados y activos de valor con estrictos protocolos de seguridad.",
