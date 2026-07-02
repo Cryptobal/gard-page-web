@@ -32,6 +32,7 @@ Si una variable falta, no falles la corrida completa: aplica el fallback documen
 0.2 Leer: `docs/seo/estrategia-keywords.md`, `ESPECIFICACIONES_IMAGENES_BLOG.md`, `lib/data/company-stats.ts` y, si existe, `docs/seo/blog-topic-queue.md` (cola editorial).
 0.3 Listar los slugs existentes: `ls docs/blog_posts/`.
 0.4 Descargar rutas vigentes: `curl -s https://www.gard.cl/sitemap.xml` → lista para el interlinking.
+0.5 **Trabajo en vuelo (anti-duplicados):** listar las ramas y PRs de blog NO mergeados: `git ls-remote origin 'refs/heads/content/blog-*'` y los PRs abiertos vía `gh pr list --state open` o la API de GitHub. Sus temas y slugs cuentan como YA CUBIERTOS, exactamente igual que los posts en `main` — un post esperando revisión sigue siendo un post existente. **Tope de backlog:** si hay 2 o más PRs de blog abiertos sin mergear, NO publicar otro: notificar por la Fase 6 que la revisión está atascada (con los links pendientes) y terminar la corrida.
 
 ## FASE 1 — Investigación
 
@@ -40,12 +41,14 @@ Si una variable falta, no falles la corrida completa: aplica el fallback documen
    - `phrase_questions` sobre la semilla del día → candidatos a FAQ y títulos informacionales.
    - `domain_organic` de 2 competidores rotativos (`securitaschile.cl`, `firstsecurity.cl`, `sicseguridad.cl`, `grupovsm.cl`, `sseguridad.cl`, `federalseguridad.cl`, `akaseguridad.cl`) → gaps informacionales donde ellos rankean y gard.cl no.
 1.2 **Frescura:** revisar los blogs de 2 competidores + noticias de seguridad privada en Chile de los últimos 7 días (Ley 21.659, estadísticas de delitos, incidentes con ángulo B2B). Lo noticioso-B2B puntúa alto.
-1.3 Actualizar `docs/seo/blog-topic-queue.md`: candidatos nuevos con score, máximo 20 temas.
+1.3 Mantener `docs/seo/blog-topic-queue.md` como **libro de estados**, no una lista simple. Cada tema lleva: `estado: pendiente | en-PR (rama, fecha) | publicado (slug, fecha) | descartado (motivo)`. Al iniciar cada corrida, reconciliar la cola contra `docs/blog_posts/` y contra los PRs del paso 0.5: un tema cuyo slug ya existe en `main` pasa a `publicado`; uno con PR abierto queda `en-PR`. Agregar los candidatos nuevos con su score; máximo 20 en estado `pendiente`.
 
 ## FASE 2 — Selección del tema
 
 Score (0-10): intención B2B (0-3, eliminatorio en 0) + demanda/momentum (0-3) + gap competitivo (0-2) + no-duplicación (0-2, eliminatorio si duplica).
 **Umbral: ≥ 6.** Si nada llega, terminar reportando "sin tema publicable hoy" sin abrir PR.
+
+**Dedup semántico (no solo por slug):** extraer `title` y `keywords` del frontmatter de todos los posts (`grep -h -E '^(title|keywords):' docs/blog_posts/*.md`) más los títulos de los PRs abiertos del 0.5. Un candidato ES duplicado si comparte la keyword objetivo o la entidad principal (misma ley, misma tecnología, mismo servicio×industria) con algo `publicado` o `en-PR` — aunque el slug propuesto sea distinto. Ejemplo: si existe `ley-21719-videovigilancia`, entonces "protección de datos en cámaras de seguridad" es DUPLICADO. Duplicado = eliminatorio. Solo se admite volver a una entidad ya cubierta con una intención de búsqueda claramente distinta (p. ej. guía normativa vs. checklist de implementación) y enlazando al post original. En el mismo commit del post, el tema elegido queda marcado `en-PR` en la cola.
 
 ## FASE 3 — Redacción
 
