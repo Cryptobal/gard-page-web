@@ -76,7 +76,14 @@ export default function RecruitFloatingCTA() {
   return (
     <div className="md:hidden fixed bottom-4 right-4 z-40 animate-fade-in">
       <Link
-        href="/reclutamiento?via=fab&utm_source=fab&utm_medium=floating_cta"
+        href="/reclutamiento"
+        data-cta="fab_floating"
+        onClick={() => {
+          // Atribución del CTA vía GA4: antes viajaba en via/utm_* de la URL,
+          // pero eso generaba URLs duplicadas indexables y auto-atribución.
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({ event: 'recruit_cta_click', cta: 'fab_floating' });
+        }}
         className="group flex items-center gap-2 pl-4 pr-2 py-3 rounded-full shadow-lg bg-[hsl(var(--gard-accent,222_84%_47%))] text-white text-sm font-semibold hover:scale-[1.02] active:scale-95 transition-transform"
         aria-label="Postula a guardia de seguridad"
       >
