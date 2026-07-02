@@ -102,8 +102,21 @@ Abrir **Pull Request** hacia `main` con: tema y score, keyword objetivo y volume
 - [ ] Verificar `https://www.gard.cl/blog/<slug>` responde 200 tras el deploy de Vercel
 - [ ] Enviar la URL a la GSC Indexing API (o Inspección de URL → Solicitar indexación)
 
-**NO hacer merge. Terminar la corrida después de abrir el PR.**
+**Link directo al post renderizado:** tras abrir el PR, usar el conector de Vercel para obtener el Preview Deployment de la rama `content/blog-<slug>` (polling hasta ~5 min esperando estado READY). Construir el link de lectura: `<url_del_preview>/blog/<slug>`. Si el preview tiene protección de acceso, generar un link compartible con la herramienta de acceso de Vercel. Agregar este link al inicio de la descripción del PR como "📖 Leer el post".
 
-## FASE 6 — Reporte
+**NO hacer merge. Terminar la corrida después de abrir el PR y notificar (Fase 6).**
 
-Cerrar con un resumen: tema y score, slug, PR abierto (link), estado de la imagen, y los 3 próximos temas en cola. Si no se publicó: motivo exacto.
+## FASE 6 — Notificación a Carlos
+
+- **Vía principal (genera notificación push):** si existe `$SLACK_WEBHOOK_URL`, enviar:
+```bash
+curl -s -X POST "$SLACK_WEBHOOK_URL" -H 'Content-type: application/json' \
+  --data "{\"text\":\"📝 Nuevo post listo para revisar: *<título>*\n📖 Leer el post: <link_preview_directo>\n✅ Aprobar (PR): <link_PR>\n🖼️ Imagen: <ok con UUID | PENDIENTE>\"}"
+```
+- Si la corrida NO publicó, enviar por la misma vía el motivo exacto (guardrail o umbral de score).
+- **Fallback** si el webhook no está configurado: mensaje directo a Carlos por el conector de Slack (advertencia conocida: los mensajes propios no generan notificación push).
+- Prohibido escribir a cualquier otra persona, canal o destino distinto del webhook/DM de Carlos.
+
+## FASE 7 — Reporte
+
+Cerrar con un resumen: tema y score, slug, PR abierto (link), link de lectura del preview, estado de la imagen, y los 3 próximos temas en cola. Si no se publicó: motivo exacto.
