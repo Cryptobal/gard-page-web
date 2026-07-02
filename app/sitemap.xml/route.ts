@@ -7,7 +7,7 @@ import { getAllPosts, POSTS_PER_PAGE } from '@/lib/blog';
 export const revalidate = 86400;
 import { ciudades } from '@/lib/data/ciudad-data';
 import { servicesMetadata } from '@/app/servicios/serviceMetadata';
-import { serviciosPorIndustria, esCombinacionValida } from '../data/servicios-por-industria';
+import { COMBOS_INDEXABLES } from '@/lib/data/combosIndexables';
 
 const STATIC_LASTMOD = process.env.SITE_LASTMOD ?? '2026-04-21T00:00:00.000Z';
 
@@ -161,10 +161,9 @@ async function generateSitemap() {
     priority: 0.85, // Alta prioridad para páginas de servicios
   }));
 
-  // Fuente única de industrias indexables: industriesMetadata (la misma que usan
-  // generateStaticParams de /industrias/[slug] y /servicios-por-industria/...).
-  // Antes se usaba app/data/industries.ts (solo 12) y quedaban ~10 industrias
-  // y ~80 combinaciones servicio×industria fuera del sitemap.
+  // Fuente única de industrias indexables: industriesMetadata (la misma que usa
+  // generateStaticParams de /industrias/[slug]). Antes se usaba
+  // app/data/industries.ts (solo 12) y quedaban ~10 industrias fuera del sitemap.
   const industriesWithSlugs = industriesMetadata.map(industry => ({
     name: industry.name,
     slug: industry.slug,
@@ -182,25 +181,18 @@ async function generateSitemap() {
     };
   });
   
-  // URLs de servicio-por-industria con prioridades diferenciadas por industria
-  const servicioIndustriaPages = [];
-  
-  for (const servicio of servicesMetadata) {
-    for (const industria of industriesWithSlugs) {
-      if (esCombinacionValida(servicio.slug, industria.slug)) {
-        const { priority: basePriority, changeFrequency } = getIndustriaPriority(industria.slug);
-        // Las páginas servicio+industria tienen +0.05 de prioridad sobre las páginas de industria sola
-        const priority = Math.min(basePriority + 0.05, 1.0);
-        
-        servicioIndustriaPages.push({
-          url: `${baseUrl}/servicios-por-industria/${servicio.slug}/${industria.slug}`,
-          lastModified: STATIC_LASTMOD,
-          changeFrequency,
-          priority,
-        });
-      }
-    }
-  }
+  // Combos servicio×industria públicos: SOLO los de la allowlist (contenido único),
+  // bajo el árbol único /servicios/{slug}/{industria}. El árbol legacy
+  // /servicios-por-industria/ redirige 301 y no se emite jamás en el sitemap.
+  const servicioIndustriaPages = COMBOS_INDEXABLES.map((combo) => {
+    const [servicioSlug, industriaSlug] = combo.split('__');
+    return {
+      url: `${baseUrl}/servicios/${servicioSlug}/${industriaSlug}`,
+      lastModified: STATIC_LASTMOD,
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    };
+  });
   
   // Páginas de blog dinámicas (posts individuales)
   const blogPosts = await getAllPosts();
@@ -327,7 +319,7 @@ async function generateSitemap() {
     ...staticPages,
     ...landingPagesEspecificas,    // Landing pages de conversión (máxima prioridad)
     ...servicePages,               // /servicios/{slug}
-    ...servicioIndustriaPages,     // /servicios-por-industria/{servicio}/{industria}
+    ...servicioIndustriaPages,     // /servicios/{servicio}/{industria} — solo combos indexables
     ...ciudadServicioPages,        // /{ciudad}/{servicio} — matriz 10×8
     ...industryPages,              // /industrias/{slug}
     ...blogPostPages,              // /blog/{slug}
