@@ -10,16 +10,16 @@ faqSchema:
   - question: "¿Qué es la jornada excepcional para guardias de seguridad en Chile?"
     answer: "Es un sistema especial de distribución de jornada y descansos, autorizado por la Dirección del Trabajo, que permite ciclos como el 4x4x12 (4 días de trabajo, 4 de descanso, hasta 12 horas diarias). Se calcula como promedio semanal en todo el ciclo, no como un límite diario fijo."
   - question: "¿En cuánto quedó el límite de horas semanales tras la Ley 21.561?"
-    answer: "Bajó de 44 a 42 horas semanales promedio desde el 26 de abril de 2026, según la implementación gradual de la Ley 21.561. La siguiente rebaja, a 40 horas, entra en vigencia el 26 de abril de 2028."
+    answer: "Bajó de 44 a 42 horas semanales promedio desde el 26 de abril de 2026, según la implementación gradual de la Ley 21.561. La siguiente rebaja, a 40 horas, entra en vigencia el 26 de abril de 2028. Las resoluciones de jornada excepcional autorizadas antes de esa fecha mantienen su vigencia original hasta su vencimiento, salvo que el proveedor solicite ajustarlas antes."
   - question: "¿Mi empresa puede ser responsable si el proveedor de guardias no ajustó la jornada?"
     answer: "Sí. Bajo el régimen de subcontratación del Código del Trabajo, la empresa mandante responde solidaria o subsidiariamente por las obligaciones laborales del proveedor si no ejerce sus derechos de información y retención. El servicio de guardias es uno de los rubros más subcontratados y fiscalizados."
   - question: "¿Cómo verifico que la jornada excepcional de mi proveedor está autorizada?"
-    answer: "Solicita la resolución vigente de la Dirección del Trabajo que autoriza el sistema excepcional del proveedor, su fecha de emisión y vigencia (máximo 3 años), y evidencia de que el ciclo declarado promedia 42 horas semanales o menos desde abril de 2026."
+    answer: "Solicita la resolución vigente de la Dirección del Trabajo que autoriza el sistema excepcional del proveedor, su fecha de emisión y vencimiento (máximo 3 años). Si es nueva, renovada o fue ajustada después del 26 de abril de 2026, además pide evidencia de que el ciclo promedia 42 horas semanales o menos; si es anterior y sigue vigente, sigue siendo válida bajo su propio límite hasta que venza."
   - question: "¿Qué debe pedir el área de compras antes de firmar o renovar un contrato de guardias?"
     answer: "Copia de la resolución de jornada excepcional de la DT, el detalle del ciclo de turnos ofertado, y una cláusula contractual que traspase al proveedor la obligación de mantenerse ajustado a los topes legales vigentes durante toda la vigencia del contrato."
 ---
 
-Si tu empresa contrata guardias de seguridad bajo un ciclo de turnos como el 4x4x12, la **jornada excepcional de guardias de seguridad** que tenía autorizada tu proveedor cambió de referencia legal el 26 de abril de 2026: ese día entró en vigencia la segunda rebaja de la Ley 21.561 ("ley de 40 horas"), que bajó el límite semanal ordinario de 44 a **42 horas**. La pregunta que debería estar en la mesa de cualquier gerente de operaciones, administrador de contratos o jefe de compras que gestiona un servicio de guardias no es solo "¿mi proveedor ya se ajustó?", sino "¿qué pasa con mi empresa si no lo hizo?".
+Si tu empresa contrata guardias de seguridad bajo un ciclo de turnos como el 4x4x12, la **jornada excepcional de guardias de seguridad** que tiene autorizada tu proveedor puede verse afectada por la referencia legal que cambió el 26 de abril de 2026: ese día entró en vigencia la segunda rebaja de la Ley 21.561 ("ley de 40 horas"), que bajó el límite semanal ordinario de 44 a **42 horas**. La pregunta que debería estar en la mesa de cualquier gerente de operaciones, administrador de contratos o jefe de compras que gestiona un servicio de guardias no es solo "¿mi proveedor ya se ajustó?", sino "¿qué pasa con mi empresa si no lo hizo, y a qué está realmente obligado según la resolución que tiene vigente?".
 
 ## Qué cambió exactamente con la Ley 21.561
 
@@ -32,7 +32,9 @@ La Ley 21.561 no es una norma exclusiva para seguridad privada: reduce gradualme
 | Segunda rebaja | 42 horas | 26 de abril de 2026 |
 | Rebaja final | 40 horas | 26 de abril de 2028 |
 
-Para la mayoría de las empresas, la rebaja se traduce en unos minutos menos de jornada diaria. Para los servicios que operan bajo **sistemas excepcionales de distribución de jornada** —como los guardias de seguridad en ciclos 4x4x12, autorizados caso a caso por la Dirección del Trabajo (DT)—, el efecto es distinto: el ciclo completo debe recalcularse para que el promedio semanal no supere el nuevo tope. La propia DT precisó los criterios de implementación de la rebaja mediante el ORD. N°253/21 ([dt.gob.cl](https://www.dt.gob.cl/legislacion/1624/w3-article-129189.html)), estableciendo que la reducción debe reflejarse en una disminución efectiva y operativa del tiempo de trabajo, no solo en el papel.
+Para la mayoría de las empresas, la rebaja se traduce en unos minutos menos de jornada diaria. Para los servicios que operan bajo **sistemas excepcionales de distribución de jornada** —como los guardias de seguridad en ciclos 4x4x12, autorizados caso a caso por la Dirección del Trabajo (DT) bajo el artículo 38 del Código del Trabajo—, el efecto no es automático ni parejo para todos los proveedores. La propia DT precisó los criterios de implementación de la rebaja mediante el ORD. N°253/21 ([dt.gob.cl](https://www.dt.gob.cl/legislacion/1624/w3-article-129189.html)), estableciendo que la reducción debe reflejarse en una disminución efectiva y operativa del tiempo de trabajo, no solo en el papel.
+
+**Matiz importante:** el artículo cuarto transitorio de la Ley 21.561 mantiene vigentes las resoluciones de jornada excepcional autorizadas antes de la rebaja **hasta su fecha de vencimiento** (máximo 3 años desde su emisión), sin obligar a un ajuste inmediato. El proveedor puede pedir el ajuste antes de ese vencimiento, pero no está obligado a hacerlo mientras la resolución original siga vigente. En la práctica, esto significa que no todo ciclo 4x4x12 debe promediar 42 horas desde el 26 de abril de 2026: eso aplica a las resoluciones nuevas, renovadas o ajustadas voluntariamente después de esa fecha. Lo que sí debe pedir tu empresa es la fecha de vencimiento de la resolución vigente de su proveedor, para saber bajo qué régimen horario está operando hoy y cuándo deberá actualizarse.
 
 ## Por qué esto no es (solo) un problema del proveedor
 
@@ -50,7 +52,7 @@ Guardias y control es, según la propia Dirección del Trabajo, uno de los rubro
 Antes de firmar o renovar un contrato de guardias de seguridad, o de auditar uno vigente, el área de operaciones o de compras debería exigir cuatro cosas concretas:
 
 1. **La resolución de jornada excepcional vigente**, emitida por la Dirección del Trabajo a nombre del proveedor (no un modelo genérico de la industria). La autorización tiene una vigencia máxima de 3 años y debe estar al día.
-2. **El detalle del ciclo de turnos ofertado** para tu instalación (por ejemplo, 4x4x12) y el cálculo de su promedio semanal, que desde el 26 de abril de 2026 no puede superar las 42 horas.
+2. **El detalle del ciclo de turnos ofertado** para tu instalación (por ejemplo, 4x4x12), el cálculo de su promedio semanal y la fecha de vencimiento de la resolución que lo autoriza. Si la resolución es nueva, fue renovada o fue ajustada voluntariamente después del 26 de abril de 2026, el promedio no puede superar las 42 horas; si es una resolución anterior aún vigente, sigue siendo válida bajo su propio límite hasta que venza.
 3. **Evidencia de que el ajuste ya se aplicó operativamente** —turnos, dotación y planillas— y no solo en un documento interno del proveedor.
 4. **Una cláusula contractual explícita** que traspase al proveedor la obligación de mantenerse dentro de los topes legales vigentes durante toda la relación contractual, y que te habilite a pedir esta evidencia periódicamente sin renegociar el contrato completo.
 
@@ -65,7 +67,7 @@ Para industrias con operación continua —[minería](/industrias/mineria) y [co
 ## Checklist rápido para tu próxima revisión de contrato
 
 - [ ] Solicitar la resolución de jornada excepcional vigente del proveedor, con fecha de emisión y vencimiento.
-- [ ] Confirmar por escrito que el ciclo de turnos promedia 42 horas semanales o menos desde el 26 de abril de 2026.
+- [ ] Si la resolución es nueva, fue renovada o fue ajustada después del 26 de abril de 2026, confirmar por escrito que el ciclo promedia 42 horas semanales o menos; si es anterior y sigue vigente, registrar su fecha de vencimiento para hacer seguimiento.
 - [ ] Ejercer el derecho de información: pedir certificados de cumplimiento laboral y previsional (F30-1) de forma periódica.
 - [ ] Incluir en el contrato una cláusula de ajuste automático a futuras rebajas legales (la siguiente, a 40 horas, ya tiene fecha: 26 de abril de 2028).
 - [ ] Revisar si tu proveedor actual ya fue auditado por la DT tras el cambio de abril de 2026, o si el ajuste sigue pendiente.
