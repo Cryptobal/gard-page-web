@@ -9,6 +9,7 @@
 
 - `CF_IMAGES_TOKEN` — token de Cloudflare con permisos **Workers AI: Read** (generación de imagen) e **Images: Edit** (subida)
 - `OPENAI_API_KEY` — opcional, vía B de imagen (solo útil si el preflight muestra api.openai.com alcanzable)
+- `SLACK_WEBHOOK_URL` — webhook entrante de Slack del canal `#gard-web-blog` (notificaciones con push real)
 - Credencial GSC — opcional en modo PR (la indexación se hace post-merge)
 
 Si una variable falta, no falles la corrida completa: aplica el fallback documentado en cada fase y déjalo anotado en el PR.
@@ -76,7 +77,7 @@ Cuerpo: 1.200-1.800 palabras, español de Chile, tono consultor B2B. Keyword obj
 
 4.0 **Preflight de red (diagnóstico, no bloqueante):** probar conectividad real y dejar constancia en el reporte/PR de qué dominio respondió y cuál bloqueó el proxy:
 ```bash
-for d in api.cloudflare.com api.openai.com; do
+for d in api.cloudflare.com api.openai.com hooks.slack.com; do
   code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 10 "https://$d" || echo "BLOQUEADO")
   echo "$d → $code"
 done
@@ -135,9 +136,16 @@ Abrir **Pull Request normal (NO draft)** hacia `main` con: tema y score, keyword
 
 ## FASE 6 — Notificación a Carlos
 
-- Enviar la notificación push nativa de la sesión con el resumen, y un **mensaje directo a Carlos por el conector de Slack** con: título del post, 📖 link de lectura (preview), ✅ link del PR, 🖼️ estado de la imagen (UUID o PENDIENTE).
-- Si la corrida NO publicó, enviar por las mismas vías el motivo exacto (guardrail, tope de backlog o umbral de score).
-- Prohibido escribir a cualquier otra persona o canal distinto del DM de Carlos.
+- **Vía principal — webhook de Slack al canal `#gard-web-blog`** (mensaje de bot: genera badge y push en el celular, a diferencia de un DM propio):
+```bash
+curl -s -X POST "$SLACK_WEBHOOK_URL" -H 'Content-type: application/json' \
+  --data "{\"text\":\"📝 Nuevo post listo para revisar: *<título>*\n📖 Leer: <link_preview_directo>\n✅ Aprobar (PR): <link_PR>\n🖼️ Imagen: <UUID | PENDIENTE | backfill: slugs>\"}"
+```
+  La respuesta del POST debe ser exactamente `ok`; cualquier otra cosa se trata como fallo de vía → usar el fallback y anotarlo en el reporte.
+- Enviar también la notificación push nativa de la sesión con el resumen.
+- Si la corrida NO publicó: mismo canal, motivo exacto (guardrail, tope de backlog o umbral de score).
+- **Fallback** si `$SLACK_WEBHOOK_URL` no existe o el POST falla: mensaje directo a Carlos por el conector de Slack si está disponible (limitación conocida: los mensajes propios no generan push).
+- Prohibido escribir a cualquier otro canal, webhook o persona.
 
 ## FASE 7 — Reporte
 
