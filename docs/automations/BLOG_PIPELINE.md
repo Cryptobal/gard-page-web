@@ -77,7 +77,7 @@ Cuerpo: 1.200-1.800 palabras, español de Chile, tono consultor B2B. Keyword obj
 
 4.0 **Preflight de red (diagnóstico, no bloqueante):** probar conectividad real y dejar constancia en el reporte/PR de qué dominio respondió y cuál bloqueó el proxy:
 ```bash
-for d in api.cloudflare.com api.openai.com hooks.slack.com; do
+for d in api.cloudflare.com api.openai.com hooks.slack.com www.gard.cl; do
   code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 10 "https://$d" || echo "BLOQUEADO")
   echo "$d → $code"
 done
@@ -126,7 +126,7 @@ git add docs/blog_posts/<slug>.md docs/seo/blog-topic-queue.md
 git commit -m "content(blog): <slug>"
 git push -u origin content/blog-<slug>
 ```
-Abrir **Pull Request normal (NO draft)** hacia `main` con: tema y score, keyword objetivo y volumen, enlaces internos usados, fuentes citadas, UUID de imagen (o "PENDIENTE"), y este checklist post-merge para Carlos:
+Abrir **Pull Request normal (NO draft — crear con `gh pr create` SIN `--draft`, o vía API con `"draft": false`)** hacia `main` con: tema y score, keyword objetivo y volumen, enlaces internos usados, fuentes citadas, UUID de imagen (o "PENDIENTE"), y este checklist post-merge para Carlos:
 - [ ] Verificar `https://www.gard.cl/blog/<slug>` responde 200 tras el deploy de Vercel
 - [ ] Enviar la URL a la GSC Indexing API (o Inspección de URL → Solicitar indexación)
 
@@ -145,6 +145,7 @@ curl -s -X POST "$SLACK_WEBHOOK_URL" -H 'Content-type: application/json' \
 - Enviar también la notificación push nativa de la sesión con el resumen.
 - Si la corrida NO publicó: mismo canal, motivo exacto (guardrail, tope de backlog o umbral de score).
 - **Fallback** si `$SLACK_WEBHOOK_URL` no existe o el POST falla: mensaje directo a Carlos por el conector de Slack si está disponible (limitación conocida: los mensajes propios no generan push).
+- Si el preflight 4.0 mostró dominios BLOQUEADOS, la notificación DEBE incluir la línea: "⚠️ Red del entorno bloquea: <dominios> → revisar Acceso a la red del entorno Gard Web".
 - Prohibido escribir a cualquier otro canal, webhook o persona.
 
 ## FASE 7 — Reporte
