@@ -74,6 +74,14 @@ const nextConfig = {
   // Redirecciones para evitar errores 404 y contenido duplicado
   async redirects() {
     return [
+      // Árbol B (legacy) → Árbol A: conserva equity de las ~184 URLs históricas.
+      // NOTA: las rutas /servicios-por-industria/:servicio y :servicio/:industria
+      // NO van aquí — las maneja el middleware, que además normaliza slugs
+      // antiguos (camaras-seguridad→seguridad-electronica, hospitales→salud) y
+      // redirige en UN solo salto al destino final (árbol A si el combo es
+      // indexable, servicio padre si no). Los redirects de next.config corren
+      // ANTES que el middleware y le robarían el path sin mapear los slugs.
+      { source: '/servicios-por-industria', destination: '/servicios', permanent: true },
       // Redirección canónica del apex (gard.cl) al subdominio www, en 308
       // (permanente). Antes vivía en middleware.ts pero Vercel respondía 307
       // a nivel platform — un 307 dispersa señales de canónica entre Google.

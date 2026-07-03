@@ -7,6 +7,7 @@ import { Search, MapPin } from 'lucide-react';
 import { getAllCiudades } from '@/lib/data/ciudad-data';
 import { servicios } from '@/app/data/servicios';
 import { industries } from '@/app/data/industries';
+import { esComboIndexable } from '@/lib/data/combosIndexables';
 
 // Función para normalizar nombres a slugs (quitando acentos y caracteres especiales)
 function normalizeName(name: string): string {
@@ -46,11 +47,14 @@ const ServiciosBuscador = () => {
 
     // Construir la URL según las selecciones
     try {
-      if (industriaSeleccionada && industriaSeleccionada !== "todas") {
-        // Si hay una industria seleccionada, redirigir a la página de servicios por industria
-        // Usar slugs ya normalizados del industriesMetadata en vez de normalizar los nombres
-        const slugIndustria = industriaSeleccionada;
-        router.push(`/servicios-por-industria/${servicioSeleccionado}/${slugIndustria}`);
+      if (
+        industriaSeleccionada &&
+        industriaSeleccionada !== "todas" &&
+        esComboIndexable(servicioSeleccionado, industriaSeleccionada)
+      ) {
+        // Solo los combos con contenido único publicado tienen página propia;
+        // el resto cae a la landing ciudad/servicio (nunca a una URL redirigida).
+        router.push(`/servicios/${servicioSeleccionado}/${industriaSeleccionada}`);
       } else {
         // Si solo hay ciudad y servicio, redirigir a la página de ciudad/servicio
         router.push(`/ciudades/${ciudadSeleccionada}/${servicioSeleccionado}`);
