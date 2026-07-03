@@ -10,7 +10,7 @@
 - `CF_IMAGES_TOKEN` — token de Cloudflare con permisos **Workers AI: Read** (generación de imagen) e **Images: Edit** (subida)
 - `OPENAI_API_KEY` — opcional, vía B de imagen (solo útil si el preflight muestra api.openai.com alcanzable)
 - `SLACK_WEBHOOK_URL` — webhook entrante de Slack del canal `#gard-web-blog` (notificaciones con push real)
-- Credencial GSC — opcional en modo PR (la indexación se hace post-merge)
+- `GSC_SERVICE_ACCOUNT_JSON` — service account de Google con acceso de lectura a la propiedad en Search Console; habilita la fase 1.0 (Search Analytics) y la indexación post-merge. Sin ella, ambas se saltan sin fallar.
 
 Si una variable falta, no falles la corrida completa: aplica el fallback documentado en cada fase y déjalo anotado en el PR.
 
@@ -37,16 +37,21 @@ Si una variable falta, no falles la corrida completa: aplica el fallback documen
 
 ## FASE 1 — Investigación
 
+1.0 **Google Search Console (si existe credencial GSC en el entorno — la fuente de mayor ROI):** consultar la Search Analytics API de la propiedad de gard.cl: queries de los últimos 28 días con impresiones ≥ 20 y posición promedio entre 8 y 25 que NO tengan una URL dedicada en el sitemap. Cada una es un candidato "quick win" — Google ya nos considera relevantes, falta la página que capture el clic — y entra a la cola con demanda = 3. Si la credencial no existe, saltar esta fase sin fallar y anotarlo en el reporte.
+
 1.1 **Semrush (conector MCP disponible; base de datos siempre `'cl'`):**
    - `phrase_related` sobre 2-3 semillas rotativas B2B: `guardias de seguridad para empresas`, `seguridad privada empresas`, `monitoreo cámaras empresas`, `seguridad {industria}` — volumen ≥ 10, descartando intención job-seeker.
    - `phrase_questions` sobre la semilla del día → candidatos a FAQ y títulos informacionales.
    - `domain_organic` de 2 competidores rotativos (`securitaschile.cl`, `firstsecurity.cl`, `sicseguridad.cl`, `grupovsm.cl`, `sseguridad.cl`, `federalseguridad.cl`, `akaseguridad.cl`) → gaps informacionales donde ellos rankean y gard.cl no.
 1.2 **Frescura:** revisar los blogs de 2 competidores + noticias de seguridad privada en Chile de los últimos 7 días (Ley 21.659, estadísticas de delitos, incidentes con ángulo B2B). Lo noticioso-B2B puntúa alto.
 1.3 Mantener `docs/seo/blog-topic-queue.md` como **libro de estados**, no una lista simple. Cada tema lleva: `estado: pendiente | en-PR (rama, fecha) | publicado (slug, fecha) | descartado (motivo)`. Al iniciar cada corrida, reconciliar la cola contra `docs/blog_posts/` y contra los PRs del paso 0.5: un tema cuyo slug ya existe en `main` pasa a `publicado`; uno con PR abierto queda `en-PR`. Agregar los candidatos nuevos con su score; máximo 20 en estado `pendiente`.
+1.4 **PAA y autosuggest reales (solo lunes):** con las herramientas web de la sesión, revisar las SERPs de Google Chile de las 5 keywords núcleo (`empresas de guardias de seguridad`, `empresa de seguridad privada`, `guardias de seguridad para empresas`, `monitoreo de cámaras empresas`, `cuánto cuesta un guardia de seguridad`) y cosechar los "Otras preguntas de los usuarios" (PAA) y autosuggest no cubiertos — Semrush tarda meses en indexar estas preguntas frescas.
+1.5 **Estacionalidad chilena:** la cola mantiene una sección `## Estacionales` con ventana de publicación 3-4 semanas ANTES del pico (para alcanzar a indexar): Fiestas Patrias y eventos masivos (publicar en agosto), vacaciones colectivas y robos a empresas cerradas (publicar en diciembre-enero), Cyber y retail (según calendario CCS), temporales de invierno y continuidad operativa (publicar abril-mayo), cierre logístico de fin de año (publicar octubre-noviembre). Cada corrida revisa si hay un estacional dentro de su ventana: si lo hay, compite con demanda = 3.
 
 ## FASE 2 — Selección del tema
 
-Score (0-10): intención B2B (0-3, eliminatorio en 0) + demanda/momentum (0-3) + gap competitivo (0-2) + no-duplicación (0-2, eliminatorio si duplica).
+Score (0-10): intención B2B (0-3, eliminatorio en 0) + demanda/momentum (0-3) + gap competitivo (0-2) + **pilar (0-2)**. Los 5 pilares del blog: 1) Normativa y cumplimiento (leyes 21.659/21.719, OS10, fiscalización) · 2) Costos y contratación · 3) Seguridad por industria · 4) Tecnología (monitoreo, drones, IA) · 5) Operación (turnos, protocolos, continuidad). El candidato suma 2 si densifica el pilar con MENOS posts publicados, 1 si pertenece a cualquier otro pilar, 0 si es huérfano. La duplicación (dedup semántico de abajo) sigue siendo eliminatoria.
+**Regla de mix editorial (anti-sesgo):** de cada 3 posts publicados consecutivos, máximo 1 del pilar Normativa, y al menos 1 debe atacar intención de dinero (Costos y contratación o Seguridad por industria). Verificar contra los últimos 3 `publicado` de la cola; si el ganador viola el mix, elegir el siguiente mejor que lo cumpla.
 **Umbral: ≥ 6.** Si nada llega, terminar reportando "sin tema publicable hoy" sin abrir PR.
 
 **Dedup semántico (no solo por slug):** extraer `title` y `keywords` del frontmatter de todos los posts (`grep -h -E '^(title|keywords):' docs/blog_posts/*.md`) más los títulos de los PRs abiertos del 0.5. Un candidato ES duplicado si comparte la keyword objetivo o la entidad principal (misma ley, misma tecnología, mismo servicio×industria) con algo `publicado` o `en-PR` — aunque el slug propuesto sea distinto. Ejemplo: si existe `ley-21719-videovigilancia`, entonces "protección de datos en cámaras de seguridad" es DUPLICADO. Duplicado = eliminatorio. Solo se admite volver a una entidad ya cubierta con una intención de búsqueda claramente distinta (p. ej. guía normativa vs. checklist de implementación) y enlazando al post original. En el mismo commit del post, el tema elegido queda marcado `en-PR` en la cola.
