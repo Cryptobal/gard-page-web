@@ -10,7 +10,7 @@
 - `CF_IMAGES_TOKEN` — token de Cloudflare con permisos **Workers AI: Read** (generación de imagen) e **Images: Edit** (subida)
 - `OPENAI_API_KEY` — opcional, vía B de imagen (solo útil si el preflight muestra api.openai.com alcanzable)
 - `SLACK_WEBHOOK_URL` — webhook entrante de Slack del canal `#gard-web-blog` (notificaciones con push real)
-- `GSC_SERVICE_ACCOUNT_JSON` — service account de Google con acceso de lectura a la propiedad en Search Console; habilita la fase 1.0 (Search Analytics) y la indexación post-merge. Sin ella, ambas se saltan sin fallar.
+- `GSC_SERVICE_ACCOUNT_EMAIL` y `GSC_SERVICE_ACCOUNT_KEY` — credenciales de la service account (campos `client_email` y `private_key` del credentials.json; la SA debe ser Owner/Full de la propiedad en Search Console). Habilitan la fase 1.0 y la indexación post-merge vía los scripts existentes del repo. Sin ellas, ambas se saltan sin fallar.
 
 Si una variable falta, no falles la corrida completa: aplica el fallback documentado en cada fase y déjalo anotado en el PR.
 
@@ -37,7 +37,7 @@ Si una variable falta, no falles la corrida completa: aplica el fallback documen
 
 ## FASE 1 — Investigación
 
-1.0 **Google Search Console (si existe credencial GSC en el entorno — la fuente de mayor ROI):** consultar la Search Analytics API de la propiedad de gard.cl: queries de los últimos 28 días con impresiones ≥ 20 y posición promedio entre 8 y 25 que NO tengan una URL dedicada en el sitemap. Cada una es un candidato "quick win" — Google ya nos considera relevantes, falta la página que capture el clic — y entra a la cola con demanda = 3. Si la credencial no existe, saltar esta fase sin fallar y anotarlo en el reporte.
+1.0 **Google Search Console (si existen `GSC_SERVICE_ACCOUNT_EMAIL`/`KEY` — la fuente de mayor ROI):** ejecutar el script existente del repo `GSC_ANALYTICS_ROW_LIMIT=300 pnpm run gsc-analytics` (escribe `docs/seo-baseline-latest.md` + JSON en `cowork-logs/`; NO commitear estos archivos en el PR del post). Del output, filtrar queries con impresiones ≥ 20 y posición promedio 8-25 que NO tengan URL dedicada en el sitemap: cada una es un "quick win" — Google ya nos considera relevantes, falta la página que capture el clic — y entra a la cola con demanda = 3. Si las variables no existen, saltar sin fallar y anotarlo en el reporte.
 
 1.1 **Semrush (conector MCP disponible; base de datos siempre `'cl'`):**
    - `phrase_related` sobre 2-3 semillas rotativas B2B: `guardias de seguridad para empresas`, `seguridad privada empresas`, `monitoreo cámaras empresas`, `seguridad {industria}` — volumen ≥ 10, descartando intención job-seeker.
@@ -82,7 +82,9 @@ Cuerpo: 1.200-1.800 palabras, español de Chile, tono consultor B2B. Keyword obj
 
 4.0 **Preflight de red (diagnóstico, no bloqueante):** probar conectividad real y dejar constancia en el reporte/PR de qué dominio respondió y cuál bloqueó el proxy:
 ```bash
-for d in api.cloudflare.com api.openai.com hooks.slack.com www.gard.cl; do
+DOMS="api.cloudflare.com api.openai.com hooks.slack.com www.gard.cl"
+[ -n "$GSC_SERVICE_ACCOUNT_EMAIL" ] && DOMS="$DOMS oauth2.googleapis.com www.googleapis.com searchconsole.googleapis.com indexing.googleapis.com"
+for d in $DOMS; do
   code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 10 "https://$d" || echo "BLOQUEADO")
   echo "$d → $code"
 done
