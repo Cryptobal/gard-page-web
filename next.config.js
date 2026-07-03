@@ -76,11 +76,11 @@ const nextConfig = {
     return [
       // Árbol B (legacy) → Árbol A: conserva equity de las ~184 URLs históricas.
       // Los combos sin contenido único siguen en 301 al servicio padre vía middleware.
-      // NOTA: la ruta de 2 segmentos /servicios-por-industria/:servicio/:industria
-      // NO va aquí — la maneja el middleware con la allowlist para redirigir en UN
-      // solo salto al destino final (árbol A si es indexable, servicio padre si no).
-      // Los redirects de next.config corren ANTES que el middleware y le robarían
-      // el path, generando cadena B→A→padre.
+      {
+        source: '/servicios-por-industria/:servicio/:industria',
+        destination: '/servicios/:servicio/:industria',
+        permanent: true,
+      },
       {
         source: '/servicios-por-industria/:servicio',
         destination: '/servicios/:servicio',
