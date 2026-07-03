@@ -71,7 +71,7 @@ faqSchema:
   # 3 a 5 pares — alimenta el schema FAQ, crítico para GEO
 ---
 ```
-Cuerpo: 1.200-1.800 palabras, español de Chile, tono consultor B2B. Keyword objetivo en el primer párrafo. H2/H3 descriptivos. 3-5 enlaces internos SIEMPRE en formato relativo (`](/ruta)`, nunca `https://www.gard.cl/...`) a rutas verificadas en 0.4 — el gate de la Fase 5 los valida en ese formato (prioridad: landing de servicio/ciudad afín + `/cotizar`). Mínimo 2 fuentes externas enlazadas. Una tabla o lista comparativa si el tema lo permite (citabilidad IA). CTA final a cotización sin promesas fuera de company-stats.
+Cuerpo: 1.200-1.800 palabras, español de Chile, tono consultor B2B. Keyword objetivo en el primer párrafo. H2/H3 descriptivos. 3-5 enlaces internos SIEMPRE en formato relativo (`](/ruta)`, nunca `https://www.gard.cl/...`) a rutas verificadas en 0.4 — el gate de la Fase 5 los valida en ese formato (prioridad: landing de servicio/ciudad afín + `/cotizar`). Mínimo 2 fuentes externas enlazadas — verificadas con las herramientas web de la sesión, NUNCA con curl del sandbox (la red del entorno es una allowlist mínima; los intentos aparecen como "dominio bloqueado" en el diagnóstico sin ser un error real). Una tabla o lista comparativa si el tema lo permite (citabilidad IA). CTA final a cotización sin promesas fuera de company-stats.
 
 ## FASE 4 — Imagen única
 
