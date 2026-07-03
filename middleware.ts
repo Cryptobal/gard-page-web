@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import { esComboIndexable } from '@/lib/data/combosIndexables';
 
 // ── A/B test cotizar form (Sprint 3) ──
 const AB_COOKIE_NAME = 'gard_ab_cotizar_form';
@@ -36,7 +37,7 @@ const INDUSTRIAS_VALIDAS = [
 
 // Mapeo de slugs antiguos (URLs WordPress/Elementor) a slugs nuevos.
 // Usado por la redirección de /landing-dinamico/{industria}/{servicio}
-// hacia /servicios-por-industria/{servicio}/{industria}.
+// hacia /servicios/{servicio}/{industria} (o el servicio padre).
 const MAPEO_SERVICIOS_ANTIGUOS: Record<string, string> = {
   'guardias-privados': 'guardias-de-seguridad',
   'camaras-seguridad': 'seguridad-electronica',
@@ -79,9 +80,27 @@ export function middleware(request: NextRequest) {
     const servicio = MAPEO_SERVICIOS_ANTIGUOS[servicioRaw] ?? servicioRaw;
 
     if (INDUSTRIAS_VALIDAS.includes(industria) && SERVICIOS_VALIDOS.includes(servicio)) {
-      url.pathname = `/servicios-por-industria/${servicio}/${industria}`;
+      // Directo al destino final (árbol A si el combo es público, si no el
+      // servicio padre) para no encadenar redirects vía /servicios-por-industria.
+      url.pathname = esComboIndexable(servicio, industria)
+        ? `/servicios/${servicio}/${industria}`
+        : `/servicios/${servicio}`;
       return NextResponse.redirect(url, 308);
     }
+  }
+
+  // Combos servicio×industria del árbol A sin contenido único publicado:
+  // 308 permanente al servicio padre (nunca 200 con plantilla ni soft-404).
+  // Cubre URLs históricas del árbol B (que llegan por el redirect de
+  // next.config) y enlaces externos antiguos.
+  if (
+    segments[0] === 'servicios' &&
+    segments.length === 3 &&
+    !segments[2].includes('.') &&
+    !esComboIndexable(segments[1], segments[2])
+  ) {
+    url.pathname = `/servicios/${segments[1]}`;
+    return NextResponse.redirect(url, 308);
   }
 
   // ── A/B test: asignar cookie 50/50 en primera visita a paths relevantes ──

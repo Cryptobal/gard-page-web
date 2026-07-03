@@ -7,9 +7,22 @@ import { ArrowRight, CheckCircle, Shield, BarChart3, TrendingUp, LightbulbIcon }
 import CtaFinal from '@/components/ui/shared/CtaFinal';
 import { servicios } from '@/app/data/servicios';
 import { industries } from '@/app/data/industries';
+import { industriesMetadata } from '@/app/industrias/industryMetadata';
 import { getServicioIndustriaData, esCombinacionValida } from '@/app/data/servicios-por-industria';
+import { COMBOS_INDEXABLES } from '@/lib/data/combosIndexables';
 import LinkParamsAware from '@/app/components/LinkParamsAware';
 import FormularioCotizacionSeccion from '@/app/components/FormularioCotizacionSeccion';
+
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return COMBOS_INDEXABLES
+    .filter((c) => c !== 'prevencion-intrusiones__parques-industriales') // esa ruta es estática dedicada
+    .map((c) => {
+      const [slug, industria] = c.split('__');
+      return { slug, industria };
+    });
+}
 
 // Next.js 15: params es ahora una Promise
 type PageProps = {
@@ -28,10 +41,24 @@ function normalizeName(name: string): string {
     .replace(/\s+/g, '-');
 }
 
+// Mismo fallback que usa /industrias/[slug] para industrias sin entrada en app/data/industries.ts
+const DEFAULT_INDUSTRY_IMAGE_ID = '4a46b63d-0e1b-4640-b95c-7f040a288c00';
+
+// Resuelve nombre e imagen de la industria. app/data/industries.ts solo cubre 12
+// industrias; el resto de los combos indexables (sector-financiero, centros-comerciales,
+// centros-de-datos, sector-energetico) vive en industriesMetadata (sin imageId).
+function resolveIndustria(industriaSlug: string): { name: string; imageId: string } | undefined {
+  const industria = industries.find(i => normalizeName(i.name) === industriaSlug);
+  if (industria) return { name: industria.name, imageId: industria.imageId };
+  const meta = industriesMetadata.find(i => i.slug === industriaSlug);
+  if (meta) return { name: meta.name, imageId: DEFAULT_INDUSTRY_IMAGE_ID };
+  return undefined;
+}
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const resolvedParams = await params;
   const servicio = servicios.find(s => normalizeName(s.name) === resolvedParams.slug);
-  const industry = industries.find(i => normalizeName(i.name) === resolvedParams.industria);
+  const industry = resolveIndustria(resolvedParams.industria);
   
   if (!servicio || !industry || !esCombinacionValida(resolvedParams.slug, resolvedParams.industria)) {
     notFound();
@@ -63,7 +90,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function ServicioIndustriaPage({ params }: PageProps) {
   const resolvedParams = await params;
   const servicio = servicios.find(s => normalizeName(s.name) === resolvedParams.slug);
-  const industry = industries.find(i => normalizeName(i.name) === resolvedParams.industria);
+  const industry = resolveIndustria(resolvedParams.industria);
   
   if (!servicio || !industry || !esCombinacionValida(resolvedParams.slug, resolvedParams.industria)) {
     notFound();
