@@ -13,7 +13,7 @@ faqSchema:
   - question: "¿Qué diferencia hay entre televigilancia y grabación CCTV tradicional?"
     answer: "La grabación tradicional almacena imágenes para revisarlas después del incidente: sirve como evidencia, no como prevención. La televigilancia agrega supervisión humana remota en tiempo real, analítica de video y protocolos de reacción, de modo que una intrusión genera una respuesta en minutos y no un video que alguien revisa al día siguiente."
   - question: "¿Qué exige la Ley 21.659 a las empresas que prestan monitoreo de cámaras?"
-    answer: "La Ley 21.659 exige que las empresas de seguridad privada estén autorizadas por la Subsecretaría de Prevención del Delito e inscritas en el Registro de Seguridad Privada, y que acrediten periódicamente recursos humanos, técnicos y financieros adecuados. Contratar un proveedor fuera de ese registro traslada el riesgo operacional al mandante."
+    answer: "La Ley 21.659 exige que las empresas de seguridad privada estén autorizadas por la Subsecretaría de Prevención del Delito y acrediten periódicamente recursos humanos, técnicos y financieros adecuados. La inscripción en el Registro de Seguridad Privada se sumará cuando el registro esté operativo (está en implementación durante 2026). Contratar un proveedor sin autorización traslada el riesgo operacional al mandante."
   - question: "¿El monitoreo de cámaras reemplaza a los guardias de seguridad?"
     answer: "No en la mayoría de las operaciones. El monitoreo remoto reduce la dotación necesaria en horarios de baja actividad y cubre zonas donde un guardia no llega, pero la respuesta física ante un incidente sigue requiriendo presencia en sitio. El estándar actual en empresas es un modelo híbrido: cámaras monitoreadas 24/7 más guardias en los puntos críticos."
   - question: "¿Qué debo revisar antes de firmar un contrato de televigilancia?"
@@ -52,7 +52,7 @@ La grabación pasiva no es inútil —toda instalación la necesita como respald
 
 La [Ley N° 21.659](https://www.bcn.cl/leychile/navegar?idNorma=1202067), vigente desde el 28 de noviembre de 2025, reordenó completo el sistema de seguridad privada chileno y alcanza de lleno a los servicios de monitoreo:
 
-- **Autorización y registro obligatorios.** Las empresas de seguridad privada —incluidas las que prestan vigilancia mediante recursos tecnológicos— deben estar autorizadas por la SPD e inscritas en el Registro de Seguridad Privada ([Subsecretaría de Prevención del Delito](https://subprevenciondeldelito.gob.cl/noticia/a-partir-de-hoy-chile-tiene-nueva-ley-de-seguridad-privada/)).
+- **Autorización y registro obligatorios.** Las empresas de seguridad privada —incluidas las que prestan vigilancia mediante recursos tecnológicos— deben estar autorizadas por la SPD e inscribirse en el Registro de Seguridad Privada, cuya plataforma tiene plazo de un año desde la entrada en vigencia de la ley para quedar operativa ([Subsecretaría de Prevención del Delito](https://subprevenciondeldelito.gob.cl/noticia/a-partir-de-hoy-chile-tiene-nueva-ley-de-seguridad-privada/)).
 - **Acreditación periódica de recursos.** El proveedor debe demostrar ante la autoridad que cuenta con recursos humanos, técnicos, materiales y financieros adecuados para el servicio que ofrece, según el reglamento de la ley publicado en el [Diario Oficial](https://www.diariooficial.interior.gob.cl/publicaciones/2025/05/27/44158/01/2649270.pdf).
 - **Régimen de sanciones.** Las infracciones se clasifican en leves, graves y gravísimas, con multas que escalan hasta 13.500 UTM y facultades de la SPD para suspender o revocar autorizaciones.
 
@@ -62,7 +62,7 @@ Para el mandante, la consecuencia práctica es directa: si el proveedor de telev
 
 Antes de firmar —o de renovar— un contrato de monitoreo de cámaras de seguridad, pide evidencia de estos 10 puntos:
 
-1. **Registro y autorización vigentes ante la SPD.** Es la puerta de entrada. Sin esto, lo demás no importa: pide el número de inscripción y verifícalo.
+1. **Autorización vigente ante la SPD.** Es la puerta de entrada: sin esto, lo demás no importa. Pide la resolución de autorización o la acreditación transitoria del proveedor. Ten en cuenta que el Registro de Seguridad Privada está en implementación durante 2026 (la ley dio un año desde noviembre de 2025 para crearlo), así que durante la transición la evidencia exigible es la autorización, no un número de inscripción en el registro.
 2. **Central de monitoreo propia, no tercerizada.** Si el proveedor revende el monitoreo de un tercero, la cadena de responsabilidad ante un incidente se diluye. Pregunta dónde está la central y quién la opera.
 3. **Operación 24/7 real, con dotación por turno.** Solicita la estructura de turnos de operadores. Una central "24/7" con un solo operador para cientos de clientes no puede verificar eventos simultáneos.
 4. **Protocolo de respuesta escrito y con tiempos comprometidos.** Qué pasa exactamente cuando se detecta una intrusión: verificación, llamada al contacto designado, despacho de apoyo en sitio si corresponde y coordinación con Carabineros. Debe quedar en el contrato, con tiempos medibles.
@@ -78,7 +78,7 @@ Antes de firmar —o de renovar— un contrato de monitoreo de cámaras de segur
 - **Precio muy por debajo del mercado sin explicar la dotación de la central.** Generalmente significa monitoreo por excepción (solo alarmas, sin verificación) vendido como supervisión continua.
 - **"Monitoreo con IA" sin operadores humanos detrás.** La analítica sola genera alertas; sin verificación, esas alertas terminan silenciadas.
 - **Contratos sin tiempos de respuesta.** Si el documento no compromete plazos medibles, no hay nada que exigir después.
-- **Evasivas ante la pregunta por el registro SPD.** Un proveedor serio responde con el dato en la primera reunión.
+- **Evasivas ante la pregunta por la autorización SPD.** Un proveedor serio responde con el dato en la primera reunión.
 
 ## Monitoreo y guardias: complemento, no reemplazo
 
