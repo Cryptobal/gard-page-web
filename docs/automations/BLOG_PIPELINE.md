@@ -71,7 +71,7 @@ faqSchema:
   # 3 a 5 pares — alimenta el schema FAQ, crítico para GEO
 ---
 ```
-Cuerpo: 1.200-1.800 palabras, español de Chile, tono consultor B2B. Keyword objetivo en el primer párrafo. H2/H3 descriptivos. 3-5 enlaces internos a rutas verificadas en 0.4 (prioridad: landing de servicio/ciudad afín + `/cotizar`). Mínimo 2 fuentes externas enlazadas. Una tabla o lista comparativa si el tema lo permite (citabilidad IA). CTA final a cotización sin promesas fuera de company-stats.
+Cuerpo: 1.200-1.800 palabras, español de Chile, tono consultor B2B. Keyword objetivo en el primer párrafo. H2/H3 descriptivos. 3-5 enlaces internos SIEMPRE en formato relativo (`](/ruta)`, nunca `https://www.gard.cl/...`) a rutas verificadas en 0.4 — el gate de la Fase 5 los valida en ese formato (prioridad: landing de servicio/ciudad afín + `/cotizar`). Mínimo 2 fuentes externas enlazadas. Una tabla o lista comparativa si el tema lo permite (citabilidad IA). CTA final a cotización sin promesas fuera de company-stats.
 
 ## FASE 4 — Imagen única
 
@@ -130,7 +130,7 @@ Abrir **Pull Request normal (NO draft — crear con `gh pr create` SIN `--draft`
 - [ ] Verificar `https://www.gard.cl/blog/<slug>` responde 200 tras el deploy de Vercel
 - [ ] Enviar la URL a la GSC Indexing API (o Inspección de URL → Solicitar indexación)
 
-**Link directo al post renderizado (con tope duro de espera):** tras abrir el PR, usar el conector de Vercel para obtener el Preview Deployment de la rama `content/blog-<slug>`. Polling secuencial cada 60-90 s con **tope máximo de 10 minutos** — prohibido dejar múltiples sleeps en background. Construir el link de lectura: `<url_del_preview>/blog/<slug>` (si el preview tiene protección, generar link compartible con la herramienta de Vercel) y agregarlo al inicio de la descripción del PR como "📖 Leer el post". **Si a los 10 minutos el build no está READY:** no seguir esperando — dejar el link con la nota "(se activa cuando termine el build de Vercel)", programar UN ÚNICO self check-in a ~60 minutos que verifique el estado, actualice el PR y reenvíe la notificación si cambió, y terminar la corrida.
+**Link directo al post renderizado (con tope duro de espera):** tras abrir el PR, usar el conector de Vercel para obtener el Preview Deployment de la rama `content/blog-<slug>`. Polling secuencial cada 60-90 s con **tope máximo de 10 minutos** — prohibido dejar múltiples sleeps en background. Construir el link de lectura: `<url_del_preview>/blog/<slug>` (si el preview tiene protección, generar link compartible con la herramienta de Vercel — el link se obtiene por el CONECTOR, no requiere abrir *.vercel.app en la red) y agregarlo al inicio de la descripción del PR como "📖 Leer el post". **Si a los 10 minutos el build no está READY:** no seguir esperando — dejar el link con la nota "(se activa cuando termine el build de Vercel)", programar UN ÚNICO self check-in a ~60 minutos que verifique el estado, actualice el PR y reenvíe la notificación si cambió, y terminar la corrida.
 
 **NO hacer merge. Terminar la corrida después de abrir el PR y notificar (Fase 6).**
 
