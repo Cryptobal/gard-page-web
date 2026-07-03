@@ -89,6 +89,26 @@ export function middleware(request: NextRequest) {
     }
   }
 
+  // URLs históricas del árbol B (/servicios-por-industria/servicio/industria):
+  // redirigir en UN solo salto al destino final — árbol A si el combo tiene
+  // contenido único publicado, servicio padre si no. La regla de 2 segmentos
+  // se quitó de next.config para que este handler reciba el path (los
+  // redirects de next.config corren ANTES que el middleware y encadenaban
+  // B→A→padre). Normaliza también slugs antiguos de servicio e industria.
+  if (segments[0] === 'servicios-por-industria' && segments.length >= 2) {
+    const servicio = MAPEO_SERVICIOS_ANTIGUOS[segments[1]] ?? segments[1];
+    const industriaRaw = segments[2];
+    if (industriaRaw && !industriaRaw.includes('.')) {
+      const industria = MAPEO_INDUSTRIAS_ANTIGUAS[industriaRaw] ?? industriaRaw;
+      url.pathname = esComboIndexable(servicio, industria)
+        ? `/servicios/${servicio}/${industria}`
+        : `/servicios/${servicio}`;
+    } else {
+      url.pathname = `/servicios/${servicio}`;
+    }
+    return NextResponse.redirect(url, 308);
+  }
+
   // Combos servicio×industria del árbol A sin contenido único publicado:
   // 308 permanente al servicio padre (nunca 200 con plantilla ni soft-404).
   // Cubre URLs históricas del árbol B (que llegan por el redirect de
