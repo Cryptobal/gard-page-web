@@ -7,6 +7,7 @@ author: "Gard Security"
 keywords: ["fiscalización os10", "quién fiscaliza a los guardias de seguridad", "fiscalización seguridad privada chile", "SPD seguridad privada", "ley 21.659 fiscalización"]
 tags: ["OS10", "Ley 21.659", "cumplimiento normativo", "fiscalización"]
 category: "Normativa"
+imageId: "835ba575-01ca-454a-a308-f7a48f6f3c00"
 faqSchema:
   - question: "¿Quién fiscaliza a los guardias de seguridad en Chile?"
     answer: "Dos organismos, con roles distintos. Carabineros de Chile (Departamento OS10) fiscaliza en terreno la vigencia de las credenciales OS10 del personal. La Subsecretaría de Prevención del Delito (SPD), como nuevo órgano rector desde la Ley 21.659, autoriza, registra y sanciona a las empresas y sus sistemas de vigilancia."

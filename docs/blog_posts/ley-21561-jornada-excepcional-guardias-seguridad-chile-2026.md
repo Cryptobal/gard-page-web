@@ -6,6 +6,7 @@ author: "Gard Security"
 keywords: ["ley 21.561 guardias de seguridad", "jornada excepcional guardias de seguridad", "42 horas seguridad privada", "responsabilidad subsidiaria empresa de seguridad"]
 tags: ["Ley 21.561", "Jornada Laboral", "Cumplimiento Normativo"]
 category: "Normativa"
+imageId: "590454fc-7155-4213-af4d-bfb697249300"
 faqSchema:
   - question: "¿Qué es la jornada excepcional para guardias de seguridad en Chile?"
     answer: "Es un sistema especial de distribución de jornada y descansos, autorizado por la Dirección del Trabajo, que permite ciclos como el 4x4x12 (4 días de trabajo, 4 de descanso, hasta 12 horas diarias). Se calcula como promedio semanal en todo el ciclo, no como un límite diario fijo."

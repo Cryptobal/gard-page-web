@@ -15,6 +15,7 @@ tags:
   - "normativa"
   - "responsabilidad legal"
 category: "Normativa"
+imageId: "9e4d1879-af59-47e1-f429-1e7f750cbe00"
 faqSchema:
   - question: "¿Puede un guardia de seguridad detener a una persona en Chile?"
     answer: "Solo en caso de delito flagrante, bajo la figura de detención ciudadana del artículo 129 del Código Procesal Penal. El guardia no tiene facultades policiales: puede reducir y retener a quien sorprenda cometiendo un delito, pero debe entregarlo de inmediato a Carabineros. Fuera de flagrancia, no existe facultad legal para detener a nadie."

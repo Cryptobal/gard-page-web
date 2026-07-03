@@ -15,6 +15,7 @@ tags:
   - "protección de datos"
   - "videovigilancia"
 category: "Normativa"
+imageId: "5b13ce2a-0db8-478f-77cc-54bf274ffd00"
 faqSchema:
   - question: "¿Las cámaras de seguridad de mi empresa quedan sujetas a la Ley 21.719?"
     answer: "Sí. Las imágenes que capturan personas identificables son datos personales bajo la ley, y en contextos de control de acceso o reconocimiento pueden calificar como datos biométricos, con exigencias de tratamiento reforzadas."

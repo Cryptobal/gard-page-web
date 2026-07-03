@@ -7,6 +7,7 @@ author: "Gard Security"
 keywords: ["monitoreo de cámaras de seguridad", "televigilancia", "central de monitoreo cctv", "empresas de cctv", "monitoreo de cámaras para empresas"]
 tags: ["televigilancia", "CCTV", "central de monitoreo"]
 category: "Tecnología"
+imageId: "127b1bf8-8f74-4e62-7d63-32db4ac86000"
 faqSchema:
   - question: "¿Qué es el monitoreo de cámaras de seguridad?"
     answer: "Es el servicio en que operadores humanos, apoyados por software, supervisan en tiempo real las cámaras de una instalación desde una central de monitoreo. A diferencia de la simple grabación, el monitoreo activo detecta el incidente mientras ocurre y activa un protocolo de respuesta: verificación, aviso al cliente y coordinación con Carabineros."
