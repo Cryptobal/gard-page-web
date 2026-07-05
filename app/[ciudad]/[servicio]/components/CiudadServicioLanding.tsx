@@ -429,7 +429,8 @@ export default function CiudadServicioLanding({ content, params }: CiudadServici
           <div className="gard-hero-content gard-container z-20 py-16 md:py-24">
             <div className="max-w-3xl">
               <motion.div
-                initial="hidden"
+                {/* LCP: initial={false} monta el hero ya visible en SSR; con initial="hidden" el H1 quedaba en opacity:0 hasta hidratar ~1MB de JS (LCP 5-7s vs FCP 1.3s) */}
+                initial={false}
                 animate="visible"
                 variants={{
                   hidden: { opacity: 0 },
