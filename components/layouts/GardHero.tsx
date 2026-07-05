@@ -187,7 +187,6 @@ export default function GardHero({
         <div className={`gard-hero-content z-20 py-16 md:py-24 ${variant === "home" ? "w-full px-4 md:px-6 lg:px-8" : "gard-container"}`}>
           <div className={`${variant === "home" ? "max-w-5xl mx-auto" : "max-w-3xl"}`}>
             <motion.div
-              {/* LCP: initial={false} monta el hero ya visible en SSR; con initial="hidden" el H1 quedaba en opacity:0 hasta hidratar ~1MB de JS (LCP 5-7s vs FCP 1.3s) */}
               initial={false}
               animate="visible"
               variants={{
