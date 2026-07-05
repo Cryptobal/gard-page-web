@@ -235,7 +235,8 @@ export default function CotizadorInteligenteV2() {
     autocompleteInputRef.current = element;
   };
 
-  // Cargar la API de Google Maps
+  // Cargar la API de Google Maps — diferido con requestIdleCallback.
+  // Ver nota en CotizacionForm.tsx.
   useEffect(() => {
     // Solo cargar la API si no está ya cargada
     if (window.google?.maps?.places) {
@@ -244,12 +245,19 @@ export default function CotizadorInteligenteV2() {
       return;
     }
 
-    // Carga de la API de Google Maps
-    getGoogleMapsLoader().load().then(() => {
-      setMapLoaded(true);
-    }).catch(error => {
-      console.error('Error cargando Google Maps API:', error);
-    });
+    const load = () => {
+      getGoogleMapsLoader().load().then(() => {
+        setMapLoaded(true);
+      }).catch(error => {
+        console.error('Error cargando Google Maps API:', error);
+      });
+    };
+    if (typeof window.requestIdleCallback === 'function') {
+      const id = window.requestIdleCallback(load, { timeout: 4000 });
+      return () => window.cancelIdleCallback?.(id);
+    }
+    const id = window.setTimeout(load, 1500);
+    return () => window.clearTimeout(id);
   }, []);
 
   // Solo inicializar el autocompletado cuando el modal esté visible

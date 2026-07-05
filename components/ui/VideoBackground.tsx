@@ -78,7 +78,7 @@ export default function VideoBackground({
         loop={true}
         autoplay={true}
         className="w-full h-full absolute inset-0 object-cover"
-        preload="auto"
+        preload="metadata"
         title={title}
         onPlay={handlePlay}
         onError={handleVideoError}

@@ -107,8 +107,14 @@ export default function CotizadorFormulario() {
     autocompleteInputRef.current = element;
   };
 
-  // Cargar la API de Google Maps de la misma manera que CotizacionForm.tsx
+  // Cargar la API de Google Maps solo cuando el modal se abre, no al montar.
+  // Antes corría en mount sin importar showForm: cargaba ~170KB de JS
+  // (places+controls+util+main) en cada visita a la home aunque el usuario
+  // nunca abriera el cotizador. Gatear a showForm difiere la carga hasta
+  // la interacción real (mismo patrón que el efecto de autocompletado abajo).
   useEffect(() => {
+    if (!showForm || mapLoaded) return;
+
     // Solo cargar la API si no está ya cargada
     if (window.google?.maps?.places) {
       console.log('Google Maps API ya está cargada');
@@ -122,7 +128,7 @@ export default function CotizadorFormulario() {
     }).catch(error => {
       console.error('Error cargando Google Maps API:', error);
     });
-  }, []);
+  }, [showForm, mapLoaded]);
 
   // Solo inicializar el autocompletado cuando el modal esté visible
   useEffect(() => {
