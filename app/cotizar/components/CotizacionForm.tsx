@@ -264,11 +264,24 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
     sessionStorage.setItem('landing_page', landing);
   }, [setValue, prefillServicio, prefillIndustria]);
 
-  // Google Maps loader
+  // Google Maps loader — diferido con requestIdleCallback.
+  // Antes cargaba sincrónicamente en el mount, compitiendo por el hilo
+  // principal justo cuando la home está pintando el LCP (medido: 3.5s de
+  // bootup time solo del bundle de Maps, TBT 2900ms). Con requestIdleCallback
+  // el navegador lo baja de prioridad hasta que el hilo principal esté libre;
+  // el fallback setTimeout cubre Safari, que no implementa la API.
   useEffect(() => {
-    getGoogleMapsLoader().load().then(() => setMapLoaded(true)).catch(error => {
-      console.error('Error cargando Google Maps API:', error);
-    });
+    const load = () => {
+      getGoogleMapsLoader().load().then(() => setMapLoaded(true)).catch(error => {
+        console.error('Error cargando Google Maps API:', error);
+      });
+    };
+    if (typeof window.requestIdleCallback === 'function') {
+      const id = window.requestIdleCallback(load, { timeout: 4000 });
+      return () => window.cancelIdleCallback?.(id);
+    }
+    const id = window.setTimeout(load, 1500);
+    return () => window.clearTimeout(id);
   }, []);
 
   // Google Maps autocomplete

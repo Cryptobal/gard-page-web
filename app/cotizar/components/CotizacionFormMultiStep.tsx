@@ -522,9 +522,18 @@ export default function CotizacionFormMultiStep({ prefillServicio, prefillIndust
       setMapLoaded(true);
       return;
     }
-    getGoogleMapsLoader().load().then(() => setMapLoaded(true)).catch((error) => {
-      console.error('Error cargando Google Maps API:', error);
-    });
+    // Diferido con requestIdleCallback: ver nota en CotizacionForm.tsx.
+    const load = () => {
+      getGoogleMapsLoader().load().then(() => setMapLoaded(true)).catch((error) => {
+        console.error('Error cargando Google Maps API:', error);
+      });
+    };
+    if (typeof window.requestIdleCallback === 'function') {
+      const id = window.requestIdleCallback(load, { timeout: 4000 });
+      return () => window.cancelIdleCallback?.(id);
+    }
+    const id = window.setTimeout(load, 1500);
+    return () => window.clearTimeout(id);
   }, [mapLoaded]);
 
   // Cuando Maps termina de cargar y el input ya está en el DOM (caso: usuario
