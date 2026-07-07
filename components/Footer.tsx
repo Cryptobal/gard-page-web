@@ -320,6 +320,11 @@ export default function Footer() {
                       Programa de Cumplimiento y Política Anticorrupción
                     </Link>
                   </li>
+                  <li>
+                    <Link href="/politica-derechos-humanos" className="text-sm text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-accent transition-colors" aria-label="Política de Derechos Humanos">
+                      Política de Derechos Humanos
+                    </Link>
+                  </li>
                 </ul>
               </li>
             </ul>
