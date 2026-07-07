@@ -28,6 +28,7 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
   }
   
   /* Optimización de imágenes para mobile */
@@ -401,13 +402,15 @@
 
 /* Ajustes para secciones hero y primera sección de cada página */
 /* Esta regla evita que las secciones hero se superpongan con el header fijo en dispositivos móviles */
-main > section:first-child:not(.gard-hero) {
-  padding-top: 4rem; /* 64px, espacio para el header en móviles */
+main > section:first-child:not(.gard-hero),
+main#main-content > main:first-child:not(.gard-hero) {
+  padding-top: 6.25rem; /* 100px, espacio para el header en móviles */
 }
 
 @media (min-width: 768px) {
-  main > section:first-child:not(.gard-hero) {
-    padding-top: 5rem; /* 80px, espacio para el header en desktop */
+  main > section:first-child:not(.gard-hero),
+  main#main-content > main:first-child:not(.gard-hero) {
+    padding-top: 7.5rem; /* 120px, espacio para el header en desktop */
   }
 }
 

@@ -1,8 +1,7 @@
 import React from 'react';
-import Link from 'next/link';
 import type { Metadata } from 'next';
-import { Button } from '@/components/ui/button';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
+import LeyKarinDenunciaForm from '@/components/legal/LeyKarinDenunciaForm';
 
 export const metadata: Metadata = {
   title: 'Política de Derechos Humanos — Gard Security',
@@ -59,23 +58,23 @@ const breadcrumbs = [
 
 export default function PoliticaDerechosHumanosPage() {
   return (
-    <main className="gard-section bg-gray-50 dark:bg-gray-900 min-h-screen py-16 md:py-24">
+    <main className="bg-gray-50 dark:bg-gray-900 min-h-screen pb-16 md:pb-24">
       <BreadcrumbSchema items={breadcrumbs} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }}
       />
 
-      <div className="gard-container max-w-4xl mx-auto px-4">
-        <h1 className="text-heading-2 md:text-heading-1 text-center mb-4 text-primary dark:text-accent font-title">
+      <div className="gard-container max-w-4xl mx-auto px-4 overflow-x-hidden">
+        <h1 className="text-heading-3 sm:text-heading-2 md:text-heading-1 text-center mb-4 text-primary dark:text-accent font-title break-words px-1">
           Política de Derechos Humanos
         </h1>
-        <p className="text-center text-sm text-gray-500 dark:text-gray-400 mb-10">
+        <p className="text-center text-sm text-gray-500 dark:text-gray-400 mb-10 break-words">
           <strong>Vigente desde:</strong> 1 de julio de 2026 · <strong>Versión:</strong> 1.0 ·{' '}
           <strong>Próxima revisión:</strong> julio de 2027
         </p>
 
-        <section className="prose dark:prose-invert max-w-none mb-12">
+        <section className="prose dark:prose-invert max-w-none mb-12 break-words">
           <p className="text-body-base text-gray-700 dark:text-gray-300 mb-4">
             En Gard Security reconocemos que la actividad de seguridad privada, por su naturaleza y
             contexto, tiene el potencial de impactar los derechos humanos de trabajadores, clientes,
@@ -285,22 +284,24 @@ export default function PoliticaDerechosHumanosPage() {
           </p>
         </section>
 
-        {/* Bloque destacado: Canal de Denuncias */}
-        <div className="gard-card bg-white dark:bg-gray-800 rounded-2xl shadow-sm p-8 max-w-2xl mx-auto mb-12 text-center">
+        <div className="gard-card bg-white dark:bg-gray-800 rounded-2xl shadow-sm p-6 sm:p-8 max-w-2xl mx-auto mb-12 text-center">
           <h2 className="text-heading-4 mb-3">Canal de Denuncias</h2>
-          <p className="text-body-base text-gray-700 dark:text-gray-300 mb-6">
+          <p className="text-body-base text-gray-700 dark:text-gray-300 mb-2">
             Reporta de forma confidencial y sin represalias cualquier posible vulneración a derechos
             humanos en operaciones de Gard.
           </p>
-          <Link href="/ley-karin">
-            <Button variant="default" className="rounded-2xl py-3 px-6 text-lg">
-              Acceder al Canal de Denuncias (Ley Karin)
-            </Button>
-          </Link>
+          <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">
+            El formulario utiliza el mismo canal de recepción y correo que el sitio Ley Karin de Gard Security.
+          </p>
         </div>
 
-        {/* Firma */}
-        <div className="max-w-md mx-auto text-center border border-gray-200 dark:border-gray-700 rounded-2xl bg-white dark:bg-gray-800 p-6 mb-10">
+        <LeyKarinDenunciaForm
+          origen="politica-derechos-humanos"
+          heading="Formulario de Denuncia — Derechos Humanos"
+          description="Tu denuncia se envía al mismo buzón confidencial que el Canal Ley Karin de Gard Security."
+        />
+
+        <div className="max-w-md mx-auto text-center border border-gray-200 dark:border-gray-700 rounded-2xl bg-white dark:bg-gray-800 p-6 mb-10 mt-12">
           <p className="text-body-base font-semibold text-primary dark:text-white mb-1">
             Jorge Andrés Montenegro Fuenzalida
           </p>
@@ -310,7 +311,6 @@ export default function PoliticaDerechosHumanosPage() {
           <p className="text-sm text-gray-500 dark:text-gray-500 mt-1">Julio 2026</p>
         </div>
 
-        {/* Metadatos del documento */}
         <footer className="text-center text-xs text-gray-500 dark:text-gray-400 leading-relaxed border-t border-gray-200 dark:border-gray-700 pt-6">
           <p>Documento: Política de Derechos Humanos · Gard Security SpA</p>
           <p>Versión: 1.0 · Vigente desde: 1 de julio de 2026</p>
