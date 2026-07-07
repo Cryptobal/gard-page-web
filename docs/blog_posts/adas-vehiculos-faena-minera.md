@@ -7,7 +7,7 @@ author: "Gard Security"
 keywords: ["ADAS minería Chile", "ADAS camioneta minería", "sistema alerta conductor faena", "camioneta minera NCAP 5"]
 tags: ["minería", "seguridad vehicular", "gestión de fatiga"]
 category: "Tecnología"
-imageId: "7f4be657-41ba-4915-52bc-ce87861bfa00"
+imageId: "600a653b-446c-483b-e8e1-06fe23160000"
 faqSchema:
   - question: "¿Qué es un sistema ADAS en un vehículo de faena minera?"
     answer: "ADAS (Advanced Driver Assistance Systems) es un conjunto de tecnologías que asisten al conductor para prevenir accidentes: alerta de somnolencia y distracción, frenado autónomo de emergencia, detección de punto ciego y aviso de abandono de carril. En faena minera se instala en camionetas y vehículos livianos que comparten caminos con equipo pesado."
