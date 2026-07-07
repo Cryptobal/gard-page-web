@@ -381,6 +381,21 @@
   .gard-dark-grid {
     @apply dark:bg-[hsl(var(--gard-background-darkest))] dark:bg-[linear-gradient(90deg,rgba(15,15,15,0.03)_1px,transparent_1px),linear-gradient(0deg,rgba(15,15,15,0.03)_1px,transparent_1px)] dark:bg-[size:20px_20px];
   }
+
+  /* Páginas legales: espacio explícito bajo el header fijo (+ safe area iOS) */
+  .legal-page-shell {
+    padding-top: calc(7.25rem + env(safe-area-inset-top, 0px));
+  }
+
+  @screen md {
+    .legal-page-shell {
+      padding-top: calc(8.5rem + env(safe-area-inset-top, 0px));
+    }
+  }
+
+  .legal-page-title {
+    scroll-margin-top: calc(7.25rem + env(safe-area-inset-top, 0px));
+  }
   
   /* Cards mejoradas para modo dark */
   .gard-card-dark {

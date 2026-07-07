@@ -2,6 +2,7 @@ import React from 'react';
 import type { Metadata } from 'next';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 import LeyKarinDenunciaForm from '@/components/legal/LeyKarinDenunciaForm';
+import { LegalPageShell, LegalPageTitle } from '@/components/legal/LegalPageShell';
 
 export const metadata: Metadata = {
   title: 'Política de Derechos Humanos — Gard Security',
@@ -58,21 +59,23 @@ const breadcrumbs = [
 
 export default function PoliticaDerechosHumanosPage() {
   return (
-    <main className="bg-gray-50 dark:bg-gray-900 min-h-screen pb-16 md:pb-24">
+    <>
       <BreadcrumbSchema items={breadcrumbs} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }}
       />
 
-      <div className="gard-container max-w-4xl mx-auto px-4 overflow-x-hidden">
-        <h1 className="text-heading-3 sm:text-heading-2 md:text-heading-1 text-center mb-4 text-primary dark:text-accent font-title break-words px-1">
-          Política de Derechos Humanos
-        </h1>
-        <p className="text-center text-sm text-gray-500 dark:text-gray-400 mb-10 break-words">
-          <strong>Vigente desde:</strong> 1 de julio de 2026 · <strong>Versión:</strong> 1.0 ·{' '}
-          <strong>Próxima revisión:</strong> julio de 2027
-        </p>
+      <LegalPageShell>
+        <LegalPageTitle
+          title="Política de Derechos Humanos"
+          subtitle={
+            <>
+              <strong>Vigente desde:</strong> 1 de julio de 2026 · <strong>Versión:</strong> 1.0 ·{' '}
+              <strong>Próxima revisión:</strong> julio de 2027
+            </>
+          }
+        />
 
         <section className="prose dark:prose-invert max-w-none mb-12 break-words">
           <p className="text-body-base text-gray-700 dark:text-gray-300 mb-4">
@@ -325,7 +328,7 @@ export default function PoliticaDerechosHumanosPage() {
             </a>
           </p>
         </footer>
-      </div>
-    </main>
+      </LegalPageShell>
+    </>
   );
 }

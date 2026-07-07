@@ -8,6 +8,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Form, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
 import { Check } from "lucide-react";
 import { API_URLS } from "@/app/config/api";
+import { LegalPageShell, LegalPageTitle } from "@/components/legal/LegalPageShell";
 
 export default function ProgramaCumplimiento() {
   const [form, setForm] = useState({
@@ -60,10 +61,9 @@ export default function ProgramaCumplimiento() {
   };
 
   return (
-    <main className="gard-section bg-gray-50 dark:bg-gray-900 min-h-screen py-16 md:py-24">
-      <div className="gard-container max-w-4xl mx-auto px-4">
-        <h1 className="text-heading-2 md:text-heading-1 text-center mb-10 text-primary dark:text-accent font-title">Programa de Cumplimiento y Política Anticorrupción</h1>
-        <section className="prose dark:prose-invert max-w-none mb-12">
+    <LegalPageShell>
+      <LegalPageTitle title="Programa de Cumplimiento y Política Anticorrupción" />
+      <section className="prose dark:prose-invert max-w-none mb-12 break-words">
           <h2 className="text-heading-4 mb-4">Compromiso con la Ley N° 20.393</h2>
           <p className="text-body-base text-gray-700 dark:text-gray-300 mb-4">
             La <strong>Ley N° 20.393</strong> establece la responsabilidad penal de las personas jurídicas en Chile por delitos de lavado de activos, financiamiento del terrorismo, cohecho y otros ilícitos. Desde su promulgación, las empresas están obligadas a implementar modelos de prevención y sistemas de cumplimiento (compliance) que permitan detectar, prevenir y sancionar conductas ilícitas dentro de la organización.
@@ -192,7 +192,6 @@ export default function ProgramaCumplimiento() {
         <footer className="mt-12 text-center text-xs text-gray-500 dark:text-gray-400">
           <p>Privacidad y cumplimiento legal garantizados. Gard Security © {new Date().getFullYear()}</p>
         </footer>
-      </div>
-    </main>
+    </LegalPageShell>
   );
 } 
