@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { API_URLS } from "@/app/config/api";
+import { LegalPageShell, LegalPageTitle } from "@/components/legal/LegalPageShell";
 
 export default function CodigoEtica() {
   const [form, setForm] = useState({
@@ -56,10 +57,9 @@ export default function CodigoEtica() {
   };
 
   return (
-    <main className="gard-section bg-gray-50 dark:bg-gray-900 min-h-screen py-16 md:py-24">
-      <div className="gard-container max-w-4xl mx-auto px-4">
-        <h1 className="text-heading-2 md:text-heading-1 text-center mb-10 text-primary dark:text-accent font-title">Código de Ética y Conducta</h1>
-        <section className="prose dark:prose-invert max-w-none mb-12">
+    <LegalPageShell>
+      <LegalPageTitle title="Código de Ética y Conducta" />
+      <section className="prose dark:prose-invert max-w-none mb-12 break-words">
           <h2 className="text-heading-4 mb-4">¿Por qué un Código de Ética?</h2>
           <p className="text-body-base text-gray-700 dark:text-gray-300 mb-4">
             El <strong>Código de Ética y Conducta</strong> es el pilar fundamental para construir una cultura organizacional sólida, transparente y responsable. En el contexto chileno, la adopción de códigos éticos responde tanto a exigencias legales como a la necesidad de fortalecer la confianza de clientes, colaboradores y la sociedad en general. Gard Security se compromete a mantener los más altos estándares éticos, alineados con la legislación nacional y las mejores prácticas internacionales.
@@ -154,7 +154,6 @@ export default function CodigoEtica() {
         <footer className="mt-12 text-center text-xs text-gray-500 dark:text-gray-400">
           <p>Privacidad y cumplimiento legal garantizados. Gard Security © {new Date().getFullYear()}</p>
         </footer>
-      </div>
-    </main>
+    </LegalPageShell>
   );
 } 

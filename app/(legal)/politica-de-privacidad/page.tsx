@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Metadata } from 'next';
+import { LegalPageShell, LegalPageTitle } from '@/components/legal/LegalPageShell';
 
 export const metadata: Metadata = {
   title: 'Política de Privacidad | Gard Security',
@@ -15,14 +16,10 @@ export const metadata: Metadata = {
 
 export default function PoliticaPrivacidad() {
   return (
-    <main className="gard-section bg-white gard-dark-bg">
-      <div className="gard-container">
-        <div className="max-w-3xl mx-auto">
-          <h1 className="text-heading-2 md:text-heading-1 text-center mb-12 text-primary dark:text-[hsl(var(--gard-accent))]">
-            Política de Privacidad
-          </h1>
+    <LegalPageShell className="bg-white gard-dark-bg" containerClassName="max-w-3xl">
+      <LegalPageTitle title="Política de Privacidad" />
 
-          <div className="prose prose-lg dark:prose-invert max-w-none">
+      <div className="prose prose-lg dark:prose-invert max-w-none break-words">
             <section>
               <h2 className="text-heading-3 mb-4 text-gray-900 dark:text-white">Introducción</h2>
               <p className="text-body-base text-gray-700 dark:text-gray-300 mb-6">
@@ -143,9 +140,7 @@ export default function PoliticaPrivacidad() {
             <div className="mt-12 border-t border-gray-200 dark:border-[hsl(var(--gard-border))] pt-6 text-sm text-gray-500 dark:text-gray-400">
               <p>Última actualización: Mayo 2024</p>
             </div>
-          </div>
-        </div>
       </div>
-    </main>
+    </LegalPageShell>
   );
 } 

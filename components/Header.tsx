@@ -95,6 +95,22 @@ export default function Header() {
     setHoveredLink(null);
   }, [pathname]);
 
+  useEffect(() => {
+    if (!isOpen) {
+      document.body.style.overflow = '';
+      document.body.style.touchAction = '';
+      return;
+    }
+
+    document.body.style.overflow = 'hidden';
+    document.body.style.touchAction = 'none';
+
+    return () => {
+      document.body.style.overflow = '';
+      document.body.style.touchAction = '';
+    };
+  }, [isOpen]);
+
   // Determinar si estamos en un contexto oscuro
   const isDarkMode = !mounted ? false : theme === 'dark';
   
@@ -229,15 +245,15 @@ export default function Header() {
         {/* Menú móvil - CSS transitions instead of framer-motion */}
         {isOpen && (
           <div
-            className={`fixed inset-0 z-40 md:hidden pt-20 h-screen mobile-menu ${isOpen ? 'active' : ''} ${
+            className={`fixed inset-0 z-40 md:hidden pt-20 h-[100dvh] mobile-menu overscroll-contain touch-pan-y ${isOpen ? 'active' : ''} ${
               isDarkMode 
                 ? 'bg-[hsl(var(--gard-header-bg))]/95 backdrop-blur-md' 
                 : 'bg-white/95 backdrop-blur-md shadow-lg'
             }`}
             style={{
-              height: '100vh', 
-              maxHeight: '100vh',
-              overflow: 'auto'
+              maxHeight: '100dvh',
+              overflowY: 'auto',
+              WebkitOverflowScrolling: 'touch',
             }}
           >
             <nav className="flex flex-col items-center space-y-6 p-8 mt-4">
