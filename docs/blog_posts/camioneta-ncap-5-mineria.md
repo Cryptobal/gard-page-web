@@ -14,7 +14,7 @@ faqSchema:
   - question: "¿Por qué las grandes mineras exigen camionetas NCAP 5 en faena?"
     answer: "Porque la interacción de vehículos es una de las principales causas de fatalidad en minería y un vehículo de 5 estrellas reduce de forma medible el riesgo de lesión fatal frente a uno de menor calificación. Mineras que adhieren al marco del ICMM, como Codelco, BHP o Anglo American, incorporan la calificación NCAP 5 a sus estándares de vehículos livianos como control crítico."
   - question: "¿Qué modelos de camioneta cumplen 5 estrellas Latin NCAP en Chile?"
-    answer: "Bajo el protocolo vigente de Latin NCAP, muy pocas pickups medianas alcanzan las cinco estrellas: la Ford Ranger y la Mitsubishi L200/Triton están entre ellas. Modelos con calificaciones antiguas obtenidas bajo protocolos menos exigentes ya no equivalen a 5 estrellas actuales. Lo que exige el mandante es la calificación vigente, no un modelo puntual."
+    answer: "En Latin NCAP, muy pocas pickups medianas alcanzan las cinco estrellas: la Ford Ranger y la Mitsubishi L200/Triton, ambas evaluadas en 2024, están entre los resultados más recientes. Latin NCAP estrenó en 2026 un protocolo más exigente, así que conviene verificar año y protocolo del ensayo: una calificación de un ciclo anterior sigue siendo válida como referente, pero no equivale automáticamente a un re-ensayo bajo el estándar 2026. Lo que exige el mandante es la calificación, no un modelo puntual."
   - question: "¿NCAP 5 es lo mismo que tener ADAS?"
     answer: "No. NCAP 5 es la calificación global de seguridad del vehículo, que combina protección pasiva (estructura, airbags) y activa. ADAS son las tecnologías de asistencia al conductor (frenado de emergencia, alerta de fatiga). Un contrato minero suele exigir ambas cosas: alta calificación NCAP más sistemas ADAS específicos, porque miden dimensiones distintas del riesgo."
   - question: "¿Una camioneta puede perder sus 5 estrellas por accesorios?"
@@ -45,13 +45,13 @@ Aquí es donde entran los nombres. Anglo American, BHP y Codelco son [miembros d
 
 ## Modelos disponibles en Chile que cumplen NCAP 5
 
-La consecuencia práctica de un protocolo exigente es que la lista de camionetas medianas con cinco estrellas vigentes es corta. Bajo el protocolo actual de Latin NCAP, entre las pickups doble cabina que alcanzaron la máxima calificación están la **Ford Ranger** y la **Mitsubishi L200/Triton**. La Ford Ranger, por ejemplo, obtuvo cinco estrellas equipada con siete airbags y control electrónico de estabilidad de serie.
+La consecuencia práctica de un protocolo exigente es que la lista de camionetas medianas con cinco estrellas es corta. Entre las pickups doble cabina con los resultados de cinco estrellas más recientes publicados por Latin NCAP están la **Ford Ranger** y la **Mitsubishi L200/Triton**, ambas evaluadas en 2024. La Ford Ranger, por ejemplo, obtuvo cinco estrellas equipada con siete airbags y control electrónico de estabilidad de serie. Conviene tener presente un matiz que un contrato serio verifica: esos resultados corresponden al ciclo de evaluación anterior, y Latin NCAP estrenó en 2026 un protocolo más exigente (vigente hasta 2029). Una calificación de cinco estrellas obtenida bajo el ciclo previo sigue siendo el mejor referente publicado del modelo, pero no equivale automáticamente a un re-ensayo bajo el protocolo 2026: por eso importa mirar el año y el protocolo del resultado, no solo el número de estrellas.
 
 Mencionamos las marcas como referencia técnica, no como recomendación comercial: lo que el mandante exige es la calificación y el equipamiento, no un modelo puntual. Modelos históricamente populares en faena, como algunas versiones de la Toyota Hilux o la Nissan Navara, obtuvieron sus notas bajo protocolos anteriores menos exigentes, por lo que esas calificaciones antiguas no equivalen a cinco estrellas actuales hasta que se re-ensayen. La regla operativa es simple: no basta con "es una camioneta segura"; hay que verificar la ficha vigente del modelo y año específico contra el resultado publicado.
 
 | Concepto | Qué verificar antes de sumar la camioneta a la flota |
 |---|---|
-| Calificación | 5 estrellas Latin NCAP bajo el **protocolo vigente**, no un resultado histórico |
+| Calificación | 5 estrellas Latin NCAP verificando **año y protocolo** del ensayo (el protocolo 2026 es más exigente que el anterior) |
 | Modelo y año | La calificación aplica a una versión y año específicos; confirmar la ficha exacta |
 | Equipamiento de serie | Airbags y control de estabilidad (ESC) con los que el modelo obtuvo la nota |
 | Accesorios | Que defensas, barras u otras modificaciones no comprometan la calificación de fábrica |
