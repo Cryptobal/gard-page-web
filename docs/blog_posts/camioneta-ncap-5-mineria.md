@@ -7,7 +7,7 @@ author: "Gard Security"
 keywords: ["NCAP 5 minería", "camioneta 5 estrellas faena", "vehículo minería estándar", "Latin NCAP camioneta", "seguridad vehicular faena"]
 tags: ["minería", "seguridad vehicular", "Latin NCAP"]
 category: "Industrias"
-imageId: "582f060e-85de-40cb-784b-3a0340454c00"
+imageId: "9e163547-2f24-4b47-e7b8-559d4f011500"
 faqSchema:
   - question: "¿Qué significa que una camioneta tenga 5 estrellas Latin NCAP?"
     answer: "Significa que el modelo obtuvo la máxima calificación en el ensayo de choque regional, con alto desempeño en protección de ocupantes adultos e infantiles, protección de peatones y sistemas de asistencia a la seguridad. Es una medida verificable del nivel de protección del vehículo ante un accidente, no una opinión comercial del fabricante."
