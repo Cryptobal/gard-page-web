@@ -10,7 +10,7 @@ category: "Normativa"
 imageId: "9202983a-3f4e-4657-3f55-1390cf615b00"
 faqSchema:
   - question: "¿El curso OS-10 incluye capacitación en derechos humanos?"
-    answer: "El curso de formación OS-10 (D.S. 1.773) incorpora un módulo de valores y ética y menciones a derechos humanos y perspectiva de género, pero de forma general. No cubre en profundidad los marcos que exige una minera signataria: Principios Voluntarios (VPSHR), uso proporcional de la fuerza aplicado, relacionamiento con comunidades ni el mecanismo de denuncia. Esa capacitación específica es adicional a la credencial OS-10."
+    answer: "El curso de formación OS-10 —hoy enmarcado en la Ley 21.659 y su reglamento (Decreto Supremo 209), con programas aprobados por la Subsecretaría de Prevención del Delito y examen ante Carabineros— incorpora un módulo de valores y ética y menciones a derechos humanos y perspectiva de género, pero de forma general. No cubre en profundidad los marcos que exige una minera signataria: Principios Voluntarios (VPSHR), uso proporcional de la fuerza aplicado, relacionamiento con comunidades ni el mecanismo de denuncia. Esa capacitación específica es adicional a la credencial OS-10."
   - question: "¿Qué capacitación en DD.HH. exigen las mineras a los guardias?"
     answer: "Una minera Tier 1 pide formación documentada en los Principios Rectores de la ONU y los Principios Voluntarios sobre Seguridad y Derechos Humanos (VPSHR), uso excepcional y proporcional de la fuerza con técnicas de de-escalada, relacionamiento respetuoso con comunidades y pueblos indígenas, y uso del canal de denuncia sin represalias. Exige además evidencia auditable de horas, contenidos y evaluación."
   - question: "¿Cuántas horas de capacitación en derechos humanos necesita un guardia de faena minera?"
@@ -31,7 +31,7 @@ La consecuencia práctica es directa: en una evaluación de proveedores, no pode
 
 ## Qué NO cubre el curso OS-10 estándar en materia de DD.HH.
 
-El curso de formación OS-10, regulado por el D.S. 1.773 y supervisado por Carabineros, entrega entre 90 y 120 horas que incluyen legislación, prevención de riesgos, primeros auxilios, defensa personal y un módulo de valores y ética, con menciones a derechos humanos y perspectiva de género. Es una base sólida y obligatoria, pero es una base **general**.
+El curso de formación OS-10 —hoy enmarcado en la Ley 21.659 y su reglamento (Decreto Supremo 209, vigente desde el 28 de noviembre de 2025), con programas de capacitación aprobados por la Subsecretaría de Prevención del Delito y evaluación ante Carabineros— cubre legislación, prevención de riesgos, primeros auxilios, defensa personal y un módulo de valores y ética, con menciones a derechos humanos y perspectiva de género. Es una base sólida y obligatoria, pero es una base **general**.
 
 Lo que el curso estándar no desarrolla en profundidad es exactamente lo que una faena signataria evalúa:
 
