@@ -110,7 +110,7 @@ No está justificado, en cambio:
 
 - Usar fuerza como **castigo o represalia** una vez que la amenaza cesó.
 - Emplear una intensidad **mayor que la necesaria** para controlar la situación.
-- Perseguir, registrar o interrogar a una persona: son facultades policiales que el guardia no tiene.
+- **Registrar o interrogar** a una persona, o emprender una persecución extendida fuera de la instalación: son facultades policiales que el guardia no tiene. Distinto es la retención en flagrancia, que el [artículo 129 del Código Procesal Penal](https://www.bcn.cl/leychile/navegar?idNorma=176595) permite a cualquier persona —incluso si el sorprendido intenta huir en el acto— siempre para entregarlo de inmediato a Carabineros.
 - Retener a alguien **más tiempo del indispensable** para entregarlo a la autoridad.
 - Intervenir físicamente ante una conducta que solo es molesta o incívica, pero no una agresión.
 
