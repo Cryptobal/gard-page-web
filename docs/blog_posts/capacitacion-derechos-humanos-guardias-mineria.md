@@ -82,7 +82,7 @@ Para el contratista, eso se traduce en un expediente trazable por guardia:
 | Recertificación | Fecha de la última formación y periodicidad de refresco |
 | Uso de fuerza | Registro de incidentes y su relación con lo capacitado |
 
-Este expediente es lo que convierte una promesa en un control auditable. Una [auditoría de seguridad](/servicios/consultoria) previa a la licitación permite detectar los vacíos antes de que los encuentre el mandante.
+Este expediente es lo que convierte una promesa en un control auditable. Una [auditoría de seguridad](/servicios/auditoria-seguridad) previa a la licitación permite detectar los vacíos antes de que los encuentre el mandante.
 
 ## Programa Gard: los módulos base y su trazabilidad
 
