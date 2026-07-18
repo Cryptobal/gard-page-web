@@ -57,7 +57,10 @@ function resolveIndustria(industriaSlug: string): { name: string; imageId: strin
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const resolvedParams = await params;
-  const servicio = servicios.find(s => normalizeName(s.name) === resolvedParams.slug);
+  // Resolver por slug explícito (no por normalizeName(name)): "Drones de Seguridad"
+  // normaliza a "drones-de-seguridad" pero la URL canónica es "drones-seguridad",
+  // lo que causaba 404 en /servicios/drones-seguridad/sector-energetico (GSC).
+  const servicio = servicios.find(s => s.slug === resolvedParams.slug);
   const industry = resolveIndustria(resolvedParams.industria);
   
   if (!servicio || !industry || !esCombinacionValida(resolvedParams.slug, resolvedParams.industria)) {
@@ -89,7 +92,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function ServicioIndustriaPage({ params }: PageProps) {
   const resolvedParams = await params;
-  const servicio = servicios.find(s => normalizeName(s.name) === resolvedParams.slug);
+  // Resolver por slug explícito — ver comentario en generateMetadata.
+  const servicio = servicios.find(s => s.slug === resolvedParams.slug);
   const industry = resolveIndustria(resolvedParams.industria);
   
   if (!servicio || !industry || !esCombinacionValida(resolvedParams.slug, resolvedParams.industria)) {
@@ -99,9 +103,10 @@ export default async function ServicioIndustriaPage({ params }: PageProps) {
   // Obtener datos específicos para esta combinación de servicio e industria
   const servicioIndustriaData = getServicioIndustriaData(resolvedParams.slug, resolvedParams.industria);
   
-  // Obtener slugs normalizados para pasar a los componentes
-  const servicioSlug = normalizeName(servicio.name);
-  const industriaSlug = normalizeName(industry.name);
+  // Slugs canónicos de la URL (los mismos de COMBOS_INDEXABLES); no re-derivar
+  // desde el nombre para no romper links internos de componentes hijos.
+  const servicioSlug = servicio.slug;
+  const industriaSlug = resolvedParams.industria;
   
   return (
     <main>
