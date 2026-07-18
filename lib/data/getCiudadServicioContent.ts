@@ -88,8 +88,11 @@ const generarContenidoDinamico = (
   const nombreServicio = servicio.title.split('|')[0].trim();
   const servicioBase = servicioSlugToNombre(servicio.slug);
 
-  // Crear título único SEO-friendly
-  const title = `${servicioBase} en ${ciudad.nombre} ${ciudad.region} | Gard Security`;
+  // Crear título único SEO-friendly. Si la ciudad se llama igual que su región
+  // (Valparaíso, Antofagasta) no repetir la palabra: "en Valparaíso Valparaíso"
+  // se ve spam en la SERP y degrada CTR.
+  const regionSuffix = ciudad.nombre === ciudad.region ? '' : ` ${ciudad.region}`;
+  const title = `${servicioBase} en ${ciudad.nombre}${regionSuffix} | Gard Security`;
   
   // Crear meta description con contexto local
   const metaDescription = `Servicio profesional de ${servicioBase.toLowerCase()} en ${ciudad.nombre}. Soluciones de seguridad adaptadas a las necesidades específicas de ${ciudad.nombre} y sus sectores como ${ciudad.barriosImportantes.slice(0, 3).join(', ')}.`;

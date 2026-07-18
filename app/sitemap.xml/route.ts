@@ -203,10 +203,13 @@ async function generateSitemap() {
     priority: 0.6,
   }));
   
-  // Páginas de paginación del blog — TODAS las páginas, no solo page 2
+  // Páginas de paginación del blog — SOLO page/2. Las páginas 3+ llevan
+  // `noindex, follow` (app/blog/page/[page]) y un sitemap jamás debe listar
+  // URLs noindexadas: la contradicción genera reportes de "Excluida/Duplicada"
+  // en Search Console y degrada la señal de calidad del sitemap.
   const totalBlogPages = Math.ceil(blogPosts.length / POSTS_PER_PAGE);
   const blogPaginationPages = Array.from(
-    { length: Math.max(0, totalBlogPages - 1) },
+    { length: Math.min(1, Math.max(0, totalBlogPages - 1)) },
     (_, i) => ({
       url: `${baseUrl}/blog/page/${i + 2}`,
       lastModified: stableLastMod(blogPosts[i]?.date ?? blogPosts[0]?.date),
@@ -235,11 +238,12 @@ async function generateSitemap() {
     priority: number;
   }> = [];
 
+  // Igual que la paginación general: SOLO page/2 por tag (3+ son noindex).
   for (const tag of allBlogTags) {
     const countForTag = blogPosts.filter((p) => p.tags?.includes(tag)).length;
     const tagTotalPages = Math.ceil(countForTag / POSTS_PER_PAGE);
     if (tagTotalPages > 1) {
-      for (let i = 0; i < tagTotalPages - 1; i++) {
+      for (let i = 0; i < Math.min(1, tagTotalPages - 1); i++) {
         blogTagPaginationPages.push({
           url: `${baseUrl}/blog/tag/${encodeURIComponent(tag)}/page/${i + 2}`,
           lastModified: STATIC_LASTMOD,
