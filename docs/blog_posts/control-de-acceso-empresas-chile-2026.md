@@ -14,7 +14,7 @@ faqSchema:
   - question: "¿Para qué sirve el control de acceso en una empresa?"
     answer: "Sirve para saber quién entra, cuándo y a qué zonas, disuadir intrusiones, restringir áreas críticas y dejar evidencia auditable de cada ingreso. Reduce el riesgo de robo interno y aporta trazabilidad ante incidentes o fiscalizaciones."
   - question: "¿Es legal el control de acceso con huella dactilar en Chile?"
-    answer: "Sí, pero desde diciembre de 2026 la Ley 21.719 clasifica la huella como dato biométrico sensible. Exige consentimiento explícito e informado, ofrecer siempre una alternativa no biométrica (tarjeta, PIN o app), cifrar los datos y restringir su acceso."
+    answer: "Sí, pero desde diciembre de 2026 la Ley 21.719 clasifica la huella como dato biométrico sensible: exige consentimiento explícito e informado, cifrado y acceso restringido. Como la ley presume que el consentimiento no es libre cuando existe una alternativa menos invasiva, en el control de asistencia laboral se debe ofrecer una opción no biométrica (tarjeta, PIN o app); en los demás accesos, ofrecerla es el resguardo más seguro de un consentimiento válido."
   - question: "¿Qué tecnología de control de acceso conviene a una empresa?"
     answer: "Depende del riesgo y el flujo de personas. La tarjeta de proximidad y la credencial móvil cubren la mayoría de las oficinas; la biometría se reserva para zonas de alta criticidad y siempre con alternativa. Lo decisivo es la integración con CCTV, guardias y monitoreo 24/7."
   - question: "¿El control de acceso reemplaza a los guardias de seguridad?"
@@ -49,7 +49,7 @@ Aquí está la novedad que ningún proveedor debería omitir. La [Ley 21.719](ht
 Los deberes concretos que introduce la ley para el tratamiento de datos biométricos son:
 
 - **Consentimiento explícito e informado.** El consentimiento genérico incluido en el contrato de trabajo no basta; debe otorgarse de forma separada, indicando el sistema utilizado, la finalidad específica, el plazo de conservación y cómo ejercer los derechos.
-- **Alternativa no biométrica obligatoria.** La ley presume que el consentimiento no es libre cuando existe una alternativa menos invasiva para el mismo fin. En control de acceso y asistencia esa alternativa siempre existe —tarjeta, PIN o app—, de modo que el sistema debe ofrecerla a quien no quiera entregar su huella.
+- **Alternativa no biométrica según el contexto.** La ley presume que el consentimiento no es libre cuando existe una alternativa menos invasiva y el tratamiento no es necesario para el vínculo contractual. En el control de asistencia laboral —donde el trabajador está en subordinación y casi siempre hay alternativa— eso obliga a ofrecer tarjeta, PIN o app a quien no quiera entregar su huella. En accesos de visitantes, contratistas o zonas de alta seguridad la exigencia depende de la proporcionalidad y necesidad del tratamiento, pero ofrecer la alternativa sigue siendo el resguardo más seguro para que el consentimiento sea válido.
 - **Cifrado y acceso restringido.** El dato sensible debe cifrarse al almacenarlo y al transmitirlo, y solo pueden acceder a él las personas que lo necesitan para la finalidad declarada.
 - **Sanciones reales.** La ley crea la Agencia de Protección de Datos Personales, con facultad fiscalizadora, y eleva las multas hasta 20.000 UTM, con reincidencias que pueden llegar al 4% de los ingresos anuales.
 
