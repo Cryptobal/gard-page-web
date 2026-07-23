@@ -165,7 +165,8 @@ export default function Header() {
             alt="Gard Security Logo"
             width={scrolled ? 120 : 140}
             height={scrolled ? 34 : 40}
-            priority
+            loading="eager"
+            sizes="140px"
             className="transition-all duration-300 ease-in-out"
           />
         </Link>
