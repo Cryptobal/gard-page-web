@@ -37,18 +37,18 @@ Con esos dos números, el piso teórico es simple:
 
 **168 horas del puesto ÷ 42 horas por guardia = 4,0 guardias.**
 
-Es decir, incluso en el mejor de los casos, un puesto 24/7 necesita **cuatro guardias** solo para cubrir las horas, sin que nadie exceda su jornada legal. Cualquier cotización que le ofrezca cubrir un puesto continuo con tres personas está, o infringiendo la jornada, o dejando horas descubiertas.
+Es decir, incluso en el mejor de los casos, un puesto 24/7 necesita **cuatro guardias como piso** solo para cubrir las horas, sin que nadie exceda su jornada legal. Cualquier cotización que le ofrezca cubrir un puesto continuo con tres personas está, o infringiendo la jornada, o dejando horas descubiertas. Y ese "cuatro" es un piso teórico de horas: al bajar a turnos concretos, muchas veces son cinco.
 
-## Por qué los patrones de turno dan siempre el mismo resultado
+## Cuántos guardias según el patrón de turno
 
-No importa cómo se organicen los turnos: el aritmética de las 168 horas manda. Los dos esquemas más comunes en Chile llegan al mismo piso.
+La división 168 ÷ 42 entrega el piso en horas, pero la dotación **agendable** depende de cómo se corten los turnos, porque cada turno completo lo tiene que trabajar una sola persona de principio a fin.
 
-| Sistema de turnos | Cómo se arma | Guardias por puesto 24/7 (piso legal) |
+| Sistema de turnos | Cómo se arma | Guardias por puesto 24/7 |
 |---|---|---|
-| 3 turnos de 8 horas | Mañana, tarde y noche rotativos | 4 |
-| 2 turnos de 12 horas | Sistema excepcional tipo 4x4x12 (día/noche) | 4 |
+| 2 turnos de 12 h | Sistema excepcional 4x4x12 (día/noche), autorizado por la Dirección del Trabajo | 4 |
+| 3 turnos de 8 h | Jornada ordinaria: mañana, tarde y noche rotativos | 5 |
 
-En el esquema de 8 horas hay tres turnos diarios; a lo largo de la semana son 21 turnos, y un guardia a 42 horas cubre poco más de cinco turnos, así que se necesitan cuatro personas. En el esquema de 12 horas, un ciclo como el 4x4x12 —autorizado por la Dirección del Trabajo como jornada excepcional— promedia también 42 horas semanales, y vuelve a requerir cuatro. El resultado no cambia porque el divisor es siempre el mismo: las horas legales por trabajador.
+En el esquema de **8 horas** hay 21 turnos completos por semana (tres al día). Con jornada ordinaria, un guardia puede tomar como máximo cinco turnos completos —40 horas— sin pasar del tope de 42; cuatro guardias cubren así 20 turnos, y el turno número 21 obliga a sumar un quinto guardia (o a pagar horas extra). Por eso, en jornada ordinaria, el piso agendable del 3×8 es **cinco**, no cuatro. El esquema de **12 horas** sí llega a cuatro, pero solo porque se arma como **sistema excepcional 4x4x12** —autorizado por la Dirección del Trabajo—, en el que cada guardia trabaja 48 horas dentro del ciclo de cuatro días y descansa los cuatro siguientes, promediando las 42 horas semanales. La lección para presupuestar es la misma: el piso real ronda las cuatro a cinco personas por puesto, incluso antes de sumar los reemplazos.
 
 ## El "4" es un piso, no la dotación real
 
