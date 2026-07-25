@@ -109,7 +109,8 @@ async function generateSitemap() {
     { route: '/politica-de-privacidad', priority: 0.3, changeFreq: 'yearly' as const },
     { route: '/terminos-de-servicio', priority: 0.3, changeFreq: 'yearly' as const },
     { route: '/politica-ambiental', priority: 0.4, changeFreq: 'yearly' as const },
-    { route: '/reclutamiento', priority: 0.6, changeFreq: 'monthly' as const },
+    // /reclutamiento se EXCLUYE del sitemap: es intención de empleo (noindex).
+    // El sitemap solo lista URLs comerciales B2B indexables.
   ].map(({ route, priority, changeFreq }) => ({
     url: `${baseUrl}${route}`,
     lastModified: STATIC_LASTMOD,
@@ -194,14 +195,23 @@ async function generateSitemap() {
     };
   });
   
+  // Slugs de intención de EMPLEO/postulante: no se listan en el sitemap comercial.
+  // Se usa un patrón (no solo slugs literales) para que el pipeline automatizado de
+  // blog no reintroduzca la fuga si genera un post nuevo con intención de empleo.
+  // (Ver también la regla editorial en docs/seo/estrategia-keywords.md.)
+  const EMPLEO_SLUG_PATTERN =
+    /(?:^|-)(?:trabajo|trabaja|empleo|empleos|postula|postular|postulacion|reclutamiento|vacante|vacantes|sueldo|sueldos)(?:-|$)/i;
+
   // Páginas de blog dinámicas (posts individuales)
   const blogPosts = await getAllPosts();
-  const blogPostPages = blogPosts.map((post) => ({
-    url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: stableLastMod(post.date),
-    changeFrequency: 'weekly' as const,
-    priority: 0.6,
-  }));
+  const blogPostPages = blogPosts
+    .filter((post) => !EMPLEO_SLUG_PATTERN.test(post.slug))
+    .map((post) => ({
+      url: `${baseUrl}/blog/${post.slug}`,
+      lastModified: stableLastMod(post.date),
+      changeFrequency: 'weekly' as const,
+      priority: 0.6,
+    }));
   
   // Páginas de paginación del blog — SOLO page/2. Las páginas 3+ llevan
   // `noindex, follow` (app/blog/page/[page]) y un sitemap jamás debe listar
@@ -218,42 +228,11 @@ async function generateSitemap() {
     })
   );
 
-  // Páginas de etiquetas del blog (computar desde blogPosts en memoria, evita N+1)
-  const allBlogTags = Array.from(
-    new Set(blogPosts.flatMap((p) => p.tags ?? []))
-  );
+  // Páginas de etiquetas del blog (/blog/tag/*): EXCLUIDAS del sitemap.
+  // Ahora emiten `noindex, follow` (listados thin + duplicados por
+  // capitalización/acento), y un sitemap jamás debe listar URLs noindexadas.
+  // Ver app/blog/tag/[tag]/page.tsx y app/blog/tag/[tag]/page/[page]/page.tsx.
 
-  const blogTagPages = allBlogTags.map((tag) => ({
-    url: `${baseUrl}/blog/tag/${encodeURIComponent(tag)}`,
-    lastModified: STATIC_LASTMOD,
-    changeFrequency: 'monthly' as const,
-    priority: 0.6,
-  }));
-
-  // Páginas de paginación por etiqueta
-  const blogTagPaginationPages: Array<{
-    url: string;
-    lastModified: string;
-    changeFrequency: 'weekly' | 'monthly' | 'yearly';
-    priority: number;
-  }> = [];
-
-  // Igual que la paginación general: SOLO page/2 por tag (3+ son noindex).
-  for (const tag of allBlogTags) {
-    const countForTag = blogPosts.filter((p) => p.tags?.includes(tag)).length;
-    const tagTotalPages = Math.ceil(countForTag / POSTS_PER_PAGE);
-    if (tagTotalPages > 1) {
-      for (let i = 0; i < Math.min(1, tagTotalPages - 1); i++) {
-        blogTagPaginationPages.push({
-          url: `${baseUrl}/blog/tag/${encodeURIComponent(tag)}/page/${i + 2}`,
-          lastModified: STATIC_LASTMOD,
-          changeFrequency: 'weekly',
-          priority: 0.5,
-        });
-      }
-    }
-  }
-  
   // Landing pages dinámicas de ciudad/servicio - MATRIZ COMPLETA 10×8 = 80 URLs
   const ciudadServicioPages = [];
 
@@ -327,9 +306,8 @@ async function generateSitemap() {
     ...ciudadServicioPages,        // /{ciudad}/{servicio} — matriz 10×8
     ...industryPages,              // /industrias/{slug}
     ...blogPostPages,              // /blog/{slug}
-    ...blogPaginationPages,        // /blog/page/2, /3, ... (todas)
-    ...blogTagPages,               // /blog/tag/{tag}
-    ...blogTagPaginationPages,     // /blog/tag/{tag}/page/2, /3, ...
+    ...blogPaginationPages,        // /blog/page/2 (solo page/2; 3+ son noindex)
+    // Los tag pages (/blog/tag/*) se excluyen: son noindex (ver arriba).
   ];
 }
 
