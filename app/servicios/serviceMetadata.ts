@@ -1,12 +1,18 @@
 export const servicesMetadata = [
   {
     slug: 'guardias-de-seguridad',
-    title: 'Guardias de Seguridad | Gard Security',
-    description: 'Servicio de guardias profesionales con supervisión 24/7 y control en tiempo real. Seguridad confiable para tu empresa.',
+    // Calificador de intención B2B explícito ("para Empresas" + "OS10") para
+    // desambiguar la consulta genérica "guardias de seguridad" (que hacen tanto
+    // compradores como postulantes) hacia el cluster comercial de contratación.
+    title: 'Guardias de Seguridad para Empresas | OS10 Certificados | Gard Security',
+    description: 'Servicio de guardias de seguridad para empresas: personal 100% certificado OS10, supervisión en terreno y monitoreo 24/7. Cobertura en 10 ciudades de Chile.',
     keywords: [
-      'guardias de seguridad',
-      'servicio de seguridad privada',
-      'empresa de guardias',
+      'guardias de seguridad para empresas',
+      'contratar guardias de seguridad',
+      'empresa de guardias de seguridad',
+      'servicio de guardias OS10',
+      'guardias de seguridad Chile',
+      'cotizar guardias de seguridad',
     ],
   },
   {

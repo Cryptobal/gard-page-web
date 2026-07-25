@@ -15,6 +15,19 @@ export type Servicio = {
   heroImageId: string
   gallery: string[]
   keywords: string[]
+  /**
+   * H1 alternativo (opcional) para la portada del servicio. Cuando existe,
+   * reemplaza a `name` SOLO en el H1 del hero, sin afectar breadcrumbs, schema,
+   * cards de servicios relacionados ni títulos de sección. Se usa para inyectar
+   * un calificador de intención comercial B2B (p. ej. "para Empresas") sin
+   * romper el nombre canónico del servicio en el resto de la UI.
+   */
+  seoH1?: string
+  /**
+   * Subtítulo alternativo (opcional) del hero. Cuando existe, reemplaza a
+   * `description` SOLO en el subtítulo del hero del servicio.
+   */
+  seoSubtitle?: string
 }
 
 /**
@@ -26,7 +39,9 @@ export const servicios: Servicio[] = [
     name: "Guardias de Seguridad",
     slug: "guardias-de-seguridad",
     icon: "ShieldCheck",
-    description: "Guardias profesionales, entrenados y certificados para proteger personas, activos e instalaciones.",
+    description: "Servicio de guardias de seguridad para empresas: personal 100% certificado OS10, supervisión en terreno y monitoreo 24/7. Cobertura en 10 ciudades de Chile.",
+    seoH1: "Guardias de Seguridad para Empresas en Chile",
+    seoSubtitle: "Dotación certificada OS10, supervisión en terreno y monitoreo 24/7 para operaciones industriales, logísticas y corporativas.",
     heroImageId: "4613e018-4925-4fb0-1fee-ed8ede43cd00",
     gallery: [
       "57d32c87-0757-48e9-747f-2f7e66737100",
@@ -38,15 +53,15 @@ export const servicios: Servicio[] = [
       "2539041c-4815-4194-1656-fa6993014200"
     ],
     keywords: [
-      "guardias de seguridad",
-      "guardias para empresas",
-      "vigilancia 24/7",
-      "guardias certificados",
-      "servicio de seguridad presencial",
-      "seguridad para edificios"
+      "guardias de seguridad para empresas",
+      "contratar guardias de seguridad",
+      "empresa de guardias de seguridad",
+      "servicio de guardias OS10",
+      "guardias de seguridad Chile",
+      "cotizar guardias de seguridad"
     ]
   },
-  
+
   // Servicio de Seguridad Electrónica
   {
     name: "Seguridad Electrónica",
