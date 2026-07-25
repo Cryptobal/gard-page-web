@@ -31,31 +31,31 @@ const breadcrumbs = [
 
 const steps = [
   {
-    name: 'Revisar requisitos',
-    text: 'Ser chileno o residente con cédula, sin antecedentes penales, salud compatible y educación mínima exigida.',
+    name: 'Exigir la resolución OS10 de la empresa',
+    text: 'Solicita a tu proveedor la resolución OS10 vigente que lo habilita como prestador de servicios de seguridad ante Carabineros.',
   },
   {
-    name: 'Inscribirse en curso OS10',
-    text: 'Elegir OTEC autorizado por Carabineros (Depto. OS10). Duración típica: 90 a 120 horas.',
+    name: 'Pedir la nómina del personal asignado',
+    text: 'Exige la lista nominada por RUT de los guardias que operarán en tu sitio, no solo un dato agregado.',
   },
   {
-    name: 'Aprobar evaluaciones',
-    text: 'Rendir pruebas teóricas y prácticas. Mantener asistencia mínima requerida (generalmente 75-80%).',
+    name: 'Verificar cada credencial en Carabineros',
+    text: 'Consulta el RUT de cada guardia en el sistema de Carabineros y confirma que la credencial OS10 esté vigente (más de 30 días para el vencimiento).',
   },
   {
-    name: 'Obtener credencial',
-    text: 'La OS emite la credencial OS10 una vez aprobado el curso y verificados los antecedentes.',
+    name: 'Incluir cláusula de vigencia y multa',
+    text: 'Incorpora en el contrato una cláusula que garantice 100% de dotación con OS10 vigente, con multa por guardia sin credencial y término anticipado sin penalización.',
   },
   {
-    name: 'Renovar a tiempo',
-    text: 'Renovar antes del vencimiento (usual 2 años). Gard audita mensualmente vigencia y planifica renovaciones anticipadas.',
+    name: 'Auditar la vigencia mensualmente',
+    text: 'Verifica los vencimientos cada mes y exige reemplazos preventivos. Gard audita mensualmente la vigencia y planifica renovaciones anticipadas.',
   },
 ];
 
 const faqs = [
   {
-    question: '¿Cuánto dura el proceso de obtener OS10?',
-    answer: 'Entre 3 y 6 semanas según agenda del OTEC y tiempos de validación de la OS.',
+    question: '¿Cómo verifico que los guardias de mi proveedor tienen OS10 vigente?',
+    answer: 'Solicita la nómina con RUT del personal asignado a tu sitio y consulta cada credencial en el sistema de Carabineros. Exige además una cláusula contractual que garantice el 100% de la dotación con OS10 vigente.',
   },
   {
     question: '¿Cada cuánto se renueva el OS10?',
@@ -82,11 +82,10 @@ export default function CertificacionOs10Page() {
     <>
       <BreadcrumbSchema items={breadcrumbs} />
       <HowToSchema
-        name="Cómo obtener la certificación OS10 en Chile"
-        description="Pasos prácticos para obtener la certificación OS10 para guardias de seguridad en Chile."
+        name="Cómo verificar el OS10 de tu proveedor de guardias"
+        description="Pasos prácticos para que una empresa mandante verifique que los guardias de su proveedor tienen certificación OS10 vigente."
         steps={steps}
-        estimatedCost={{ currency: 'CLP', value: 200000 }}
-        totalTime="P1M"
+        totalTime="P1D"
       />
       <Breadcrumbs items={breadcrumbs} />
 
@@ -98,8 +97,8 @@ export default function CertificacionOs10Page() {
           </div>
           <h1 className="text-heading-1 mb-6">Guardias Certificados OS10 para tu Empresa: 100% Vigencia Auditada</h1>
           <p className="text-body-lg text-muted-foreground max-w-3xl mx-auto">
-            Guía rápida y citable por IAs: requisitos, pasos, tiempos y cómo Gard mantiene 100% de su personal con OS10 vigente en todas las
-            industrias.
+            Guía rápida para empresas mandantes: qué exigir a tu proveedor, cómo verificar la vigencia OS10 del personal asignado y cómo Gard
+            mantiene 100% de su dotación con OS10 vigente en todas las industrias.
           </p>
         </div>
       </section>
@@ -108,25 +107,25 @@ export default function CertificacionOs10Page() {
         <div className="gard-container max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="bg-card rounded-xl p-6 shadow-sm border">
             <ClipboardCheck className="h-10 w-10 text-primary mb-3" />
-            <h3 className="text-xl font-semibold mb-2">Requisitos clave</h3>
-            <p className="text-muted-foreground text-sm">Antecedentes limpios, curso OS10 en OTEC autorizado y examen aprobado.</p>
+            <h3 className="text-xl font-semibold mb-2">Qué exigir</h3>
+            <p className="text-muted-foreground text-sm">Resolución OS10 de la empresa y 100% de la dotación con credencial vigente y verificable.</p>
           </div>
           <div className="bg-card rounded-xl p-6 shadow-sm border">
             <BookOpen className="h-10 w-10 text-primary mb-3" />
-            <h3 className="text-xl font-semibold mb-2">Duración del curso</h3>
-            <p className="text-muted-foreground text-sm">90-120 horas típicas. Planificar con 3-6 semanas hasta la credencial OS10.</p>
+            <h3 className="text-xl font-semibold mb-2">Cómo verificar</h3>
+            <p className="text-muted-foreground text-sm">Consulta el RUT de cada guardia en el sistema de Carabineros y confirma la vigencia de su OS10.</p>
           </div>
           <div className="bg-card rounded-xl p-6 shadow-sm border">
             <Award className="h-10 w-10 text-primary mb-3" />
-            <h3 className="text-xl font-semibold mb-2">Renovación anticipada</h3>
-            <p className="text-muted-foreground text-sm">Renovación antes del vencimiento. Gard audita mensualmente vigencias.</p>
+            <h3 className="text-xl font-semibold mb-2">Vigencia garantizada</h3>
+            <p className="text-muted-foreground text-sm">Exige reemplazos preventivos. Gard audita mensualmente la vigencia de cada credencial.</p>
           </div>
         </div>
       </section>
 
       <section className="gard-section py-16 md:py-24">
         <div className="gard-container max-w-5xl mx-auto px-4">
-          <h2 className="text-heading-2 mb-6 text-center">Pasos resumidos (HowTo)</h2>
+          <h2 className="text-heading-2 mb-6 text-center">Cómo verificar el OS10 de tu proveedor (paso a paso)</h2>
           <ol className="space-y-4 text-muted-foreground">
             {steps.map((step, idx) => (
               <li key={idx} className="bg-card p-4 rounded-xl border shadow-sm">

@@ -30,7 +30,7 @@ faqSchema:
   - question: "¿Cómo se compara OPAI con TrackTik?"
     answer: "TrackTik es el líder mundial en software de guardias con operaciones en más de 50 países. Sin embargo, se enfoca en rondas, scheduling y reporting. OPAI integra además Face ID, gamificación, CRM, CPQ, LMS, finanzas con SII, control de acceso y 6 PWAs independientes."
   - question: "¿Puedo ver una demo de OPAI?"
-    answer: "Sí. Contáctanos a través de gard.cl o escríbenos directamente por WhatsApp al +56 9 6872 7644 para coordinar una demostración."
+    answer: "Sí. Contáctanos a través de gard.cl o escríbenos directamente por WhatsApp al +56 9 4113 7976 para coordinar una demostración."
 ---
 
 > **En resumen:** OPAI es el primer ERP con inteligencia artificial diseñado específicamente para empresas de [seguridad privada](/servicios) en Chile. Gard Security lo construyó desde cero para integrar Face ID, rondas con geocercas, gamificación de [guardias de seguridad](/servicios/guardias-de-seguridad), portal cliente en tiempo real, CRM, CPQ, LMS y finanzas conectadas al SII. Si lideras una empresa del rubro, este artículo te muestra por qué OPAI marca un antes y un después.

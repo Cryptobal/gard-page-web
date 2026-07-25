@@ -1,7 +1,8 @@
 'use client';
 
-import React, { useRef, Suspense } from 'react';
+import React, { useRef, useEffect, Suspense } from 'react';
 import { motion } from 'framer-motion';
+import { trackIntencionEmpleo, getOrigenPaginaFromReferrer } from '@/lib/analytics/intentTracking';
 import {
   ArrowRight, Shield, BadgeCheck, User, CheckCircle,
   Calendar, Briefcase, Users, FileCheck, GraduationCap,
@@ -14,6 +15,12 @@ import ReclutamientoForm from './ReclutamientoForm';
 
 export default function ReclutamientoPage() {
   const formRef = useRef<HTMLDivElement>(null);
+
+  // Segmentación de intención de empleo (GA4): marca el pageview de /reclutamiento
+  // para poder excluir la audiencia de postulantes en Google Ads. Sin PII.
+  useEffect(() => {
+    trackIntencionEmpleo('pageview_reclutamiento', getOrigenPaginaFromReferrer());
+  }, []);
 
   const scrollToForm = () => {
     formRef.current?.scrollIntoView({ behavior: 'smooth' });

@@ -463,7 +463,7 @@ Costo Base = (N° guardias) × (Costo guardia/mes según turno) × (Factor regi�
 - ✅ Cotización sin compromiso en 24-48h
 
 **Contacto:**
-- 📞 Teléfono: +56 9 6872 7644
+- 📞 Teléfono: +56 9 4113 7976
 - 📧 Email: comercial@gard.cl
 - 🌐 Web: www.gard.cl/cotizar
 

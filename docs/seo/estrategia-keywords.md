@@ -23,3 +23,12 @@ Si una página rankea para estas keywords y pierde posiciones: NO recuperar.
 ## Regla para agentes (Cursor / Claude Code / Cowork)
 Antes de crear o editar contenido SEO, verificar contra este archivo. Ante
 conflicto entre una keyword de alto volumen y esta estrategia, gana la estrategia.
+
+## Salvaguarda técnica (pipeline automatizado de blog)
+Como red de seguridad ante posts generados con intención de empleo, el sitemap
+(`app/sitemap.xml/route.ts`) EXCLUYE automáticamente cualquier slug de blog que
+matchee un patrón de empleo (`trabajo|trabaja|empleo|postula|postular|postulacion|
+reclutamiento|vacante|sueldo`, ver `EMPLEO_SLUG_PATTERN`). Aun así, el pipeline NO
+debe generar estos posts: la exclusión del sitemap es defensa en profundidad, no un
+permiso para publicarlos. Un post de intención de empleo debe redirigir 301 a
+`trabajo.gard.cl` (ver `next.config.js`).

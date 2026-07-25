@@ -77,6 +77,7 @@ export default async function MapaDelSitioPage() {
                 <li key={page.href}>
                   <Link
                     href={page.href}
+                    rel={page.href === '/reclutamiento' ? 'nofollow' : undefined}
                     className="flex items-center text-foreground hover:text-primary dark:hover:text-accent transition-colors group"
                   >
                     <page.icon className="h-4 w-4 mr-2 text-muted-foreground group-hover:text-primary dark:group-hover:text-accent" />

@@ -134,7 +134,7 @@ export default function BlogPost({ post }: { post: BlogPost }) {
           addressRegion: 'Santiago',
           addressCountry: 'CL',
         },
-        telephone: '+56968727644',
+        telephone: '+56941137976',
         email: 'comercial@gard.cl',
       }
     : null;

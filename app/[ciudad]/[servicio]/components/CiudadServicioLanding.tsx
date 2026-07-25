@@ -363,7 +363,7 @@ export default function CiudadServicioLanding({ content, params }: CiudadServici
                   variant="outline-orange" 
                   size="icon"
                   className="rounded-full"
-                  onClick={() => window.location.href = 'tel:+56229872380'}
+                  onClick={() => window.location.href = 'tel:+56941137976'}
                 >
                   <Phone className="h-5 w-5 text-accent" />
                 </Button>
@@ -509,7 +509,7 @@ export default function CiudadServicioLanding({ content, params }: CiudadServici
                     variant="outline-orange" 
                     size="lg" 
                     className="rounded-xl backdrop-blur-sm w-full sm:w-auto"
-                    onClick={() => window.location.href = 'tel:+56229872380'}
+                    onClick={() => window.location.href = 'tel:+56941137976'}
                   >
                     <Phone className="mr-2 h-5 w-5" />
                     Llamar ahora

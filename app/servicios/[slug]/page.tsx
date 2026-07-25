@@ -242,10 +242,10 @@ export default async function ServicioPage({ params }: { params: Promise<{ slug:
         <div className="absolute inset-0 bg-black/50 z-10"></div>
         <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-4">
           <h1 className="text-white text-4xl md:text-5xl font-bold mb-4">
-            {servicio.name}
+            {servicio.seoH1 ?? servicio.name}
           </h1>
           <p className="text-white text-lg md:text-xl opacity-90 max-w-3xl mb-8">
-            {servicio.description}
+            {servicio.seoSubtitle ?? servicio.description}
           </p>
           <Button asChild variant="default" size="lg" className="inline-flex items-center">
             <a href="#cotizar">

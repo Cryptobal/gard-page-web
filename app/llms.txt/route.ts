@@ -108,7 +108,6 @@ Gard Security fue fundada en ${foundedYear}. Su equipo fundador acumula ${years}
 - Blog: https://www.gard.cl/blog
 - Cotizar: https://www.gard.cl/cotizar
 - Sobre Nosotros: https://www.gard.cl/sobre-nosotros
-- Trabaja con Nosotros: https://www.gard.cl/reclutamiento
 
 ## Última actualización
 

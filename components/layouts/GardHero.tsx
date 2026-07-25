@@ -77,7 +77,7 @@ interface GardHeroProps {
   
   /**
    * Número de teléfono para el botón de llamada
-   * @default "+56229872380"
+   * @default "+56941137976"
    */
   phoneNumber?: string;
 }
@@ -94,7 +94,7 @@ export default function GardHero({
   variant = "standard",
   onScrollToForm,
   showCallButton = false,
-  phoneNumber = "+56229872380"
+  phoneNumber = "+56941137976"
 }: GardHeroProps) {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);

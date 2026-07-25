@@ -6,6 +6,7 @@ import { cloudflareImages } from '@/lib/images';
 import { Mail, MapPin, Phone, Linkedin, Instagram, Facebook, MessageCircle } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { X, MessageSquare } from 'lucide-react';
+import { trackIntencionEmpleo } from '@/lib/analytics/intentTracking';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -152,8 +153,9 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link 
-                  href="/reclutamiento" 
+                <Link
+                  href="/reclutamiento"
+                  rel="nofollow"
                   className="text-sm md:text-base text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors"
                   aria-label="Trabaja con Nosotros"
                 >
@@ -170,10 +172,16 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <a 
-                  href="https://trabajo.gard.cl/jobs/Careers" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
+                <a
+                  href="https://trabajo.gard.cl/jobs/Careers"
+                  target="_blank"
+                  rel="noopener noreferrer nofollow"
+                  onClick={() =>
+                    trackIntencionEmpleo(
+                      'click_trabajo_externo',
+                      typeof window !== 'undefined' ? window.location.pathname : '',
+                    )
+                  }
                   className="text-sm md:text-base text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors"
                   aria-label="Ofertas de trabajo disponibles"
                 >

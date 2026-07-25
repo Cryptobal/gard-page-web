@@ -89,7 +89,7 @@ Evaluamos cada empresa según 5 criterios principales:
 **Contacto:**
 - Web: [www.gard.cl](https://www.gard.cl)
 - Email: comercial@gard.cl
-- Teléfono: +56 9 6872 7644
+- Teléfono: +56 9 4113 7976
 
 **Cotizar:** [gard.cl/cotizar](https://www.gard.cl/cotizar)
 

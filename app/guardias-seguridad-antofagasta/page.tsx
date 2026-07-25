@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { ArrowRight, CheckCircle, Shield, Clock, MapPin, Award } from 'lucide-react';
 import CloudflareImage from '@/components/CloudflareImage';
 import { FAQSection } from '@/components/seo/FAQSchema';
@@ -105,7 +106,10 @@ export default function GuardiasAntofagastaPage() {
           <div className="text-center mb-12">
             <h2 className="text-heading-2 mb-4">¿Por Qué las Empresas de Antofagasta Eligen a Gard?</h2>
             <p className="text-body-lg text-muted-foreground max-w-3xl mx-auto">
-              Protegemos operaciones mineras, puertos y zonas industriales en Antofagasta y la región con guardias certificados OS10 y un equipo con experiencia comprobada en minería del norte de Chile
+              Protegemos operaciones mineras, puertos y zonas industriales en Antofagasta y la región con guardias certificados OS10 y un equipo con experiencia comprobada en minería del norte de Chile. Conoce nuestro{' '}
+              <Link href="/servicios/guardias-de-seguridad" className="text-primary hover:underline font-medium">servicio de guardias de seguridad para empresas</Link>{' '}
+              o revisa la cobertura en{' '}
+              <Link href="/antofagasta/guardias-de-seguridad" className="text-primary hover:underline font-medium">guardias de seguridad en Antofagasta</Link>.
             </p>
           </div>
 

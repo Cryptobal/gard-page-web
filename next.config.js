@@ -208,7 +208,31 @@ const nextConfig = {
         destination: '/blog',
         permanent: true,
       },
-      
+      // Segregación de intención: el post de intención postulante ("trabajo de
+      // guardia de seguridad") se retira del dominio comercial y se redirige al
+      // portal de empleo trabajo.gard.cl. Redirect permanente (308) para preservar
+      // el equity de los backlinks entrantes hacia esta URL histórica. NO bloquear
+      // esta ruta en robots.txt: debe quedar rastreable para procesar el redirect.
+      {
+        source: '/blog/trabajo-de-guarida-de-seguridad',
+        destination: 'https://trabajo.gard.cl/jobs/Careers',
+        permanent: true,
+      },
+      // Consolidación del cluster OS10: dos posts legacy delgados y de intención
+      // postulante (requisitos personales, costo de curso, OTEC) se colapsan en la
+      // landing OS10 comercial (buyer intent), evitando canibalización y contenido
+      // duplicado. 308 permanente para preservar el equity hacia la URL canónica.
+      {
+        source: '/blog/guia-certificacion-os10-guardias',
+        destination: '/certificacion-os10-guardias-seguridad',
+        permanent: true,
+      },
+      {
+        source: '/blog/acreditacion-os10',
+        destination: '/certificacion-os10-guardias-seguridad',
+        permanent: true,
+      },
+
       // Redireccionar parámetros UTM y tracking a URLs limpias
       {
         source: '/:path*\\?trk=:trk*',
