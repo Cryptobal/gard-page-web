@@ -26,7 +26,9 @@ const navLinks = [
     label: 'Tecnologías',
     hasMegaMenu: true,
   },
-  { href: '/reclutamiento', label: 'Trabaja con Nosotros' },
+  // rel="nofollow": intención de empleo. La postulación sigue accesible para el
+  // usuario, pero no transfiere autoridad SEO desde el dominio comercial.
+  { href: '/reclutamiento', label: 'Trabaja con Nosotros', rel: 'nofollow' },
   { href: '/blog', label: 'Blog' },
   { href: '/cotizar', label: 'Cotizar', isCTA: true },
 ];
@@ -172,7 +174,7 @@ export default function Header() {
 
         {/* Navegación de escritorio */}
         <nav className="hidden md:flex items-center space-x-6 lg:space-x-8 h-full">
-          {navLinks.map(({ href, label, isCTA, hasMegaMenu }) => {
+          {navLinks.map(({ href, label, isCTA, hasMegaMenu, rel }) => {
             const isActive =
               pathname === href ||
               (label === 'Tecnologías' && TECNOLOGIAS_ACTIVE_PATHS.includes(pathname ?? ''));
@@ -180,6 +182,7 @@ export default function Header() {
               <div key={href} className="relative h-full flex items-center" onMouseEnter={() => hasMegaMenu && setHoveredLink(label)}>
                 <Link
                   href={href}
+                  rel={rel}
                   className={getNavLinkClasses(isActive, isCTA)}
                 >
                   {label}
@@ -257,7 +260,7 @@ export default function Header() {
             }}
           >
             <nav className="flex flex-col items-center space-y-6 p-8 mt-4">
-              {navLinks.map(({ href, label, isCTA, hasMegaMenu }) => {
+              {navLinks.map(({ href, label, isCTA, hasMegaMenu, rel }) => {
                 const subItems = hasMegaMenu ? megaMenuData[label as keyof typeof megaMenuData] : undefined;
                 const isActive =
                   pathname === href ||
@@ -266,6 +269,7 @@ export default function Header() {
                   <div key={href} className="flex flex-col items-center space-y-3">
                     <Link
                       href={href}
+                      rel={rel}
                       className={isCTA
                         ? 'bg-primary text-white px-6 py-2 rounded-xl hover:bg-accent transition text-lg font-semibold'
                         : `

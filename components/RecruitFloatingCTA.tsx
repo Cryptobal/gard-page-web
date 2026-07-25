@@ -77,6 +77,7 @@ export default function RecruitFloatingCTA() {
     <div className="md:hidden fixed bottom-4 right-4 z-40 animate-fade-in">
       <Link
         href="/reclutamiento"
+        rel="nofollow"
         data-cta="fab_floating"
         onClick={() => {
           // Atribución del CTA vía GA4: antes viajaba en via/utm_* de la URL,

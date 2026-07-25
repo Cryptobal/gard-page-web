@@ -252,6 +252,7 @@ export default function Home() {
 
           <Link
             href="/reclutamiento"
+            rel="nofollow"
             data-cta="home_cta_footer"
             className="block max-w-3xl mx-auto group"
           >
