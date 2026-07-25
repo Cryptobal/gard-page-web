@@ -918,7 +918,7 @@ Gard Security ofrece servicios integrales de seguridad con especialización en g
 
 ### Contacto
 
-- 📞 Teléfono: +56 9 6872 7644
+- 📞 Teléfono: +56 9 4113 7976
 - 📧 Email: comercial@gard.cl
 - 🌐 Web: www.gard.cl/protocolo-emergencias
 - 📋 Cotización: www.gard.cl/cotizar

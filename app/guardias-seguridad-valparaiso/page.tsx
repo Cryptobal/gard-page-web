@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { ArrowRight, CheckCircle, Shield, Clock, MapPin, Award, Anchor } from 'lucide-react';
 import CloudflareImage from '@/components/CloudflareImage';
 import { FAQSection } from '@/components/seo/FAQSchema';
@@ -105,7 +106,10 @@ export default function GuardiasValparaisoPage() {
           <div className="text-center mb-12">
             <h2 className="text-heading-2 mb-4">Líderes en Seguridad en Valparaíso</h2>
             <p className="text-body-lg text-muted-foreground max-w-3xl mx-auto">
-              Experiencia única protegiendo el principal puerto de Chile y zonas patrimoniales UNESCO
+              Experiencia única protegiendo el principal puerto de Chile y zonas patrimoniales UNESCO. Conoce nuestro{' '}
+              <Link href="/servicios/guardias-de-seguridad" className="text-primary hover:underline font-medium">servicio de guardias de seguridad para empresas</Link>{' '}
+              o revisa la cobertura en{' '}
+              <Link href="/valparaiso/guardias-de-seguridad" className="text-primary hover:underline font-medium">guardias de seguridad en Valparaíso</Link>.
             </p>
           </div>
 

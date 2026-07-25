@@ -89,7 +89,9 @@ export async function generateMetadata({
     });
   }
 
-  const robots = pageNumber >= 3 ? { index: false, follow: true } : { index: true, follow: true };
+  // Todos los tag pages son listados thin y se desindexan (igual que la primera
+  // página en /blog/tag/[tag]). `follow` mantiene el rastreo de los posts.
+  const robots = { index: false, follow: true };
 
   return {
     title: `${capitalizedTag} (${pageNumber}) | Gard Security`,

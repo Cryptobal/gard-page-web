@@ -630,7 +630,7 @@ Gard Security certifica a su personal en especialidades según tipo de evento.
 - ✅ Reportería post-evento detallada
 
 **Contacto:**
-- 📞 Teléfono: +56 9 6872 7644
+- 📞 Teléfono: +56 9 4113 7976
 - 📧 Email: comercial@gard.cl
 - 🌐 Web: www.gard.cl/seguridad-eventos
 - 📋 Cotización online: www.gard.cl/cotizar

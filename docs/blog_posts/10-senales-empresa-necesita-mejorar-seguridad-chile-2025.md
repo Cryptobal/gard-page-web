@@ -838,7 +838,7 @@ Si tu empresa tiene **3+ señales**, necesitas una auditoría profesional para i
 
 ### Contacto
 
-- 📞 Teléfono: +56 9 6872 7644
+- 📞 Teléfono: +56 9 4113 7976
 - 📧 Email: comercial@gard.cl
 - 🌐 Web: www.gard.cl/auditoria-gratuita
 - 📋 Formulario: www.gard.cl/cotizar

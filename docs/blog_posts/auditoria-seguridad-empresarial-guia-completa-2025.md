@@ -888,7 +888,7 @@ Una **auditoría de seguridad física** es una evaluación sistemática y docume
 
 ### Contacto
 
-- 📞 Teléfono: +56 9 6872 7644
+- 📞 Teléfono: +56 9 4113 7976
 - 📧 Email: comercial@gard.cl
 - 🌐 Web: www.gard.cl/auditoria-seguridad
 - 📋 Cotización: www.gard.cl/cotizar

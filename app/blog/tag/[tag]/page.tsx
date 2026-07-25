@@ -51,6 +51,12 @@ export async function generateMetadata({ params }: { params: Promise<{ tag: stri
   return {
     title: `${capitalizedTag} | Blog Gard Security`,
     description: `Explora artículos del blog relacionados con ${capitalizedTag}. Conoce tendencias, consejos y novedades sobre seguridad privada en Chile.`,
+    // Los tag pages son listados thin (y con duplicados por capitalización/acento:
+    // "OS10" vs "os10", "certificación OS10" vs "certificación os10"). Se desindexan
+    // para no diluir señales ni competir por intención de empleo desde el dominio
+    // comercial. `follow` mantiene el rastreo de los posts enlazados. Al ser noindex,
+    // NO se listan en el sitemap (ver app/sitemap.xml/route.ts).
+    robots: { index: false, follow: true },
     openGraph: {
       title: `Artículos sobre ${capitalizedTag} | Blog de Seguridad Gard`,
       description: `Explora artículos del blog relacionados con ${capitalizedTag}. Información clave sobre seguridad privada para empresas.`,
