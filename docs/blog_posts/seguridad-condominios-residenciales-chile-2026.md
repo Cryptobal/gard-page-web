@@ -16,7 +16,7 @@ faqSchema:
   - question: "¿Quién es responsable de contratar la seguridad en un condominio?"
     answer: "El administrador, según la Ley 21.442 de Copropiedad Inmobiliaria, ejecutando los acuerdos del comité de administración y la asamblea. El administrador debe verificar que el proveedor esté registrado y que su personal esté acreditado; esa diligencia forma parte de su responsabilidad."
   - question: "¿Es legal instalar cámaras de seguridad en un condominio?"
-    answer: "Sí, pero las imágenes son datos personales bajo la Ley 21.719. El condominio debe informar la videovigilancia, limitar el registro a los espacios comunes justificados, definir plazos de conservación y resguardar el acceso a las grabaciones. No se pueden enfocar espacios privados de las unidades."
+    answer: "Sí, pero las imágenes de personas son datos personales. Hoy su tratamiento se rige por la Ley 19.628; además, la Ley 21.719, con vigencia plena desde el 1 de diciembre de 2026, eleva el estándar. En ambos casos el condominio debe informar la videovigilancia, limitar el registro a los espacios comunes justificados, definir plazos de conservación y resguardar el acceso a las grabaciones. No se pueden enfocar espacios privados de las unidades."
   - question: "¿Cuánto cuesta la seguridad de un condominio?"
     answer: "Depende de la dotación (turnos y cobertura horaria), del mix con tecnología (cámaras, control de acceso, monitoreo) y del tamaño del condominio. Un puesto 24/7 exige más de un guardia por la jornada legal. Lo más eficiente suele ser combinar guardia presencial con monitoreo remoto; puedes cotizarlo según tu caso."
 ---
@@ -27,7 +27,7 @@ Esta guía resume, para quien administra o preside un condominio en Chile, qué 
 
 ## Qué cambió: el condominio ahora contrata seguridad regulada
 
-La Ley 21.659 entró en plena vigencia el 28 de noviembre de 2025 y trasladó la fiscalización de la seguridad privada desde Carabineros (la antigua unidad OS10) a la **Subsecretaría de Prevención del Delito**, que hoy autoriza a las empresas, administra el registro nacional y sanciona incumplimientos ([Subsecretaría de Prevención del Delito](https://subprevenciondeldelito.gob.cl/noticia/a-partir-de-hoy-chile-tiene-nueva-ley-de-seguridad-privada/)).
+La Ley 21.659 entró en plena vigencia el 28 de noviembre de 2025 y reorganizó la institucionalidad de la seguridad privada. Hoy la **Subsecretaría de Prevención del Delito** es el órgano rector: autoriza a las empresas, administra el registro nacional y sanciona los incumplimientos; mientras que **Carabineros**, a través de OS10, mantiene la fiscalización en terreno de credenciales y del cumplimiento operativo ([Subsecretaría de Prevención del Delito](https://subprevenciondeldelito.gob.cl/noticia/a-partir-de-hoy-chile-tiene-nueva-ley-de-seguridad-privada/)).
 
 Para los condominios el efecto práctico es directo: el servicio de guardias o de monitoreo debe prestarlo una **empresa inscrita en el registro oficial**, con personal **acreditado** y credencial vigente. Contratar seguridad "por fuera" de ese sistema deja al condominio expuesto y, sobre todo, deja al administrador respondiendo por una contratación que no cumple la ley. La adecuación de plazos y niveles de riesgo de la Ley 21.659 la revisamos en detalle en nuestra [guía práctica de la Ley 21.659](/blog/ley-21659-seguridad-privada-chile); aquí nos enfocamos en cómo aterriza en la realidad de una comunidad residencial.
 
@@ -85,7 +85,7 @@ Este enfoque híbrido permite mantener el estándar de seguridad y, muchas veces
 
 ## Cámaras en el condominio y datos personales
 
-La videovigilancia es casi universal en los condominios, pero desde la plena vigencia de la Ley 21.719 las imágenes de personas son **datos personales** y su tratamiento tiene reglas. En términos prácticos, el condominio debe informar que existe videovigilancia, grabar solo los espacios comunes que lo justifiquen (sin enfocar el interior de las unidades), definir plazos de conservación y resguardar quién accede a las grabaciones. Tratamos este punto con más detalle en la [guía de videovigilancia y Ley 21.719](/blog/ley-21719-videovigilancia-empresas-chile). Cumplir esta normativa evita conflictos entre vecinos y protege a la administración frente a reclamos.
+La videovigilancia es casi universal en los condominios, y las imágenes de personas son **datos personales**. Hoy su tratamiento se rige por la Ley 19.628; a partir del 1 de diciembre de 2026, la Ley 21.719 eleva el estándar (consentimiento, proporcionalidad y sanciones más estrictas). En términos prácticos, el condominio debe informar que existe videovigilancia, grabar solo los espacios comunes que lo justifiquen (sin enfocar el interior de las unidades), definir plazos de conservación y resguardar quién accede a las grabaciones. Tratamos este punto con más detalle en la [guía de videovigilancia y Ley 21.719](/blog/ley-21719-videovigilancia-empresas-chile). Cumplir esta normativa evita conflictos entre vecinos y protege a la administración frente a reclamos.
 
 ## Cómo dimensionar y cotizar la seguridad del condominio
 
