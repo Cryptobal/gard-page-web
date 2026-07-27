@@ -2,10 +2,22 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
+import Link from 'next/link';
+import {
+  serviciosNav,
+  industriasNav,
+  ciudadesNav,
+} from '@/lib/data/navigation';
 import MobileTopBar from './MobileTopBar';
 import MobileOpsStrip from './MobileOpsStrip';
 import MobileTabBar from './MobileTabBar';
 import MobileNavSheet, { type SheetKey } from './MobileNavSheet';
+
+// Enlaces profundos de los sheets, expuestos en el HTML para rastreo (SEO §13):
+// no dependen de la interacción del usuario. La versión visible e interactiva
+// son la tab bar y el sheet; esta lista queda display:none (no en el árbol de
+// accesibilidad ni en el orden de tabulación).
+const CRAWL_LINKS = [...serviciosNav, ...industriasNav, ...ciudadesNav];
 
 // Rutas donde el shell NO debe renderizarse:
 //  • grupo (landing-cotizador-inteligente): usePathname() devuelve la ruta sin
@@ -58,6 +70,16 @@ export default function MobileShell() {
 
   return (
     <div className="md:hidden">
+      {/* Enlaces del sheet presentes en el HTML para rastreo (no solo tras
+          interacción). Ocultos visualmente y fuera del árbol de accesibilidad. */}
+      <nav aria-hidden="true" className="hidden" data-shell-crawl-links>
+        {CRAWL_LINKS.map((item) => (
+          <Link key={item.href} href={item.href}>
+            {item.title}
+          </Link>
+        ))}
+      </nav>
+
       <MobileTopBar onOpenMenu={(el) => openSheetFrom('menu', el)} />
       <MobileOpsStrip />
       <MobileTabBar
