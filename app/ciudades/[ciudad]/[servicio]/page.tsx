@@ -672,7 +672,6 @@ export default function CiudadServicioPage() {
         </div>
       </section>
       
-      {/* Botón flotante para móviles */}
     </>
   );
 } 

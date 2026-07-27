@@ -21,7 +21,6 @@ import {
   BadgeCheck,
   Building
 } from 'lucide-react';
-import { cn } from '@/lib/utils';
 import CountUp from 'react-countup';
 import Script from 'next/script';
 import { companyStats } from '@/lib/data/company-stats';
@@ -416,45 +415,6 @@ const ContadorEmpresas = () => {
         <p className="text-sm text-gray-400">Gard Security: empresas líderes de Chile confían en nosotros para su protección.</p>
       </div>
     </motion.div>
-  );
-};
-
-// Componente de botón sticky para móvil
-const StickyMobileButton = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 500);
-      
-      // Detectar si el footer está visible o cerca para ocultar el CTA flotante
-      const footer = document.querySelector('footer');
-      if (footer) {
-        const footerRect = footer.getBoundingClientRect();
-        // Añadir margen de seguridad (100px) para que desaparezca antes de llegar al footer
-        const isNearFooter = footerRect.top < window.innerHeight + 100;
-        if (isNearFooter) {
-          setIsScrolled(false);
-        }
-      }
-    };
-    
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-  
-  return (
-    <div className={cn(
-      "fixed bottom-4 left-0 right-0 z-50 px-4 md:hidden transition-all duration-300",
-      isScrolled ? "opacity-100" : "opacity-0 pointer-events-none"
-    )}>
-      <a 
-        href="#cotizador" 
-        className="w-full flex items-center justify-center gap-2 px-5 py-4 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-bold shadow-xl transition-colors"
-      >
-        Simular Cotización <Calculator className="w-5 h-5" />
-      </a>
-    </div>
   );
 };
 
