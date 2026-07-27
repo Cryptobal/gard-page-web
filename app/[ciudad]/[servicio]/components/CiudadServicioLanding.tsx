@@ -26,7 +26,7 @@ import CloudflareImage from '@/components/CloudflareImage';
 import ClientesCarrusel from '@/components/ClientesCarrusel';
 import { cn } from '@/lib/utils';
 import { Stream } from '@cloudflare/stream-react';
-import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
+import BreadcrumbSchema, { Breadcrumbs } from '@/components/seo/BreadcrumbSchema';
 import ServiceSchema from '@/components/seo/ServiceSchema';
 
 // Mapeo de servicios a ID de videos de Cloudflare Stream
@@ -496,8 +496,13 @@ export default function CiudadServicioLanding({ content, params }: CiudadServici
           </motion.div>
         </section>
         
+        {/* Breadcrumb visual (coincide con el BreadcrumbList estructurado) */}
+        <div className="gard-container pt-8">
+          <Breadcrumbs items={breadcrumbItems} />
+        </div>
+
         {/* Descripción Section con Diseño Moderno */}
-        <section 
+        <section
           data-section="descripcion"
           className="gard-section bg-white dark:bg-gray-900"
         >
