@@ -1,5 +1,5 @@
 import React from 'react';
-import { inter, poppins } from './fonts';
+import { inter, poppins, chivo, jetbrainsMono } from './fonts';
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -61,7 +61,7 @@ export default function RootLayout({
           }
         }) }} />
       </head>
-      <body className={`${inter.variable} ${poppins.variable} min-h-screen flex flex-col`}>
+      <body className={`${inter.variable} ${poppins.variable} ${chivo.variable} ${jetbrainsMono.variable} min-h-screen flex flex-col`}>
         {/* Skip to content link for keyboard navigation */}
         <a 
           href="#main-content" 
