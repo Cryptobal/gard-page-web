@@ -2,14 +2,18 @@
 
 import Link from 'next/link';
 import type { LucideIcon } from 'lucide-react';
-import { ShieldCheck, Building2, MapPin, Phone, FileText } from 'lucide-react';
-import { companyStats } from '@/lib/data/company-stats';
+import { ShieldCheck, Building2, MapPin, MessageCircle, FileText } from 'lucide-react';
 import { ciudadesNav } from '@/lib/data/navigation';
 import { useGtmEvent } from '@/app/components/EventTracker';
 import type { SheetKey } from './MobileNavSheet';
 
 // Slugs de ciudad para detectar rutas ciudad×servicio (`/[ciudad]/[servicio]`).
 const CIUDAD_SLUGS = new Set(ciudadesNav.map((c) => c.href.split('/')[1]));
+
+// WhatsApp comercial (línea de ventas, distinta de la NAP y de la de RRHH).
+// Número confirmado explícitamente por el usuario para el shell móvil.
+const WHATSAPP_COMERCIAL = '56968727644';
+const WHATSAPP_MSG = 'Hola, quiero cotizar un servicio de seguridad para mi empresa.';
 
 function isCoberturaActive(pathname: string): boolean {
   if (pathname === '/ciudades' || pathname.startsWith('/ciudades/')) return true;
@@ -89,20 +93,23 @@ export default function MobileTabBar({
 
       {sheetSlot('cobertura', 'Cobertura', MapPin, coberturaActive)}
 
-      {/* Slot 5 — Llamar */}
+      {/* Slot 5 — WhatsApp comercial (reemplaza a «Llamar»: evita exponer la
+          línea telefónica a llamados de postulantes; el texto es filtrable). */}
       <a
-        href={`tel:${companyStats.contactPhoneE164}`}
-        aria-label="Llamar a Gard Security"
+        href={`https://wa.me/${WHATSAPP_COMERCIAL}?text=${encodeURIComponent(WHATSAPP_MSG)}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Escríbenos por WhatsApp"
         onClick={() =>
           pushEvent({
-            name: 'click_phone',
+            name: 'click_whatsapp',
             params: { cta_location: 'mobile_tabbar' },
           })
         }
         className={`${SLOT_BASE} text-white/70`}
       >
-        <Phone className="h-5 w-5" aria-hidden="true" />
-        <span>Llamar</span>
+        <MessageCircle className="h-5 w-5" aria-hidden="true" />
+        <span>WhatsApp</span>
       </a>
     </nav>
   );

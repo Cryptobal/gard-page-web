@@ -2,11 +2,9 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { Search, Phone, Menu } from 'lucide-react';
+import { Search, Menu } from 'lucide-react';
 import CloudflareImage from '@/components/CloudflareImage';
 import { cloudflareImages } from '@/lib/images';
-import { companyStats } from '@/lib/data/company-stats';
-import { useGtmEvent } from '@/app/components/EventTracker';
 
 const SCROLL_THRESHOLD = 18;
 
@@ -19,7 +17,6 @@ interface MobileTopBarProps {
 
 export default function MobileTopBar({ onOpenMenu }: MobileTopBarProps) {
   const [scrolled, setScrolled] = useState(false);
-  const { pushEvent } = useGtmEvent();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > SCROLL_THRESHOLD);
@@ -52,19 +49,6 @@ export default function MobileTopBar({ onOpenMenu }: MobileTopBarProps) {
         <Link href="/blog" aria-label="Buscar en el blog" className={ICON_BTN}>
           <Search className="h-5 w-5" />
         </Link>
-        <a
-          href={`tel:${companyStats.contactPhoneE164}`}
-          aria-label="Llamar a Gard Security"
-          className={ICON_BTN}
-          onClick={() =>
-            pushEvent({
-              name: 'click_phone',
-              params: { cta_location: 'mobile_topbar' },
-            })
-          }
-        >
-          <Phone className="h-5 w-5" />
-        </a>
         <button
           type="button"
           aria-label="Abrir menú"
