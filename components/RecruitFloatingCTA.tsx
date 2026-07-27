@@ -74,7 +74,7 @@ export default function RecruitFloatingCTA() {
   };
 
   return (
-    <div className="md:hidden fixed bottom-4 right-4 z-40 animate-fade-in">
+    <div className="md:hidden fixed right-4 bottom-[calc(var(--gard-tab-h)_+_env(safe-area-inset-bottom,0px)_+_0.75rem)] z-40 animate-fade-in">
       <Link
         href="/reclutamiento"
         rel="nofollow"

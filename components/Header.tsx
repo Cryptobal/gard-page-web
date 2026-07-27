@@ -93,8 +93,11 @@ export default function Header() {
   const isDarkMode = !mounted ? false : theme === 'dark';
   
   // Determinar las clases y estilos condicionales
+  // hidden md:block — en móvil (<768px) gobierna el shell de consola
+  // (components/shell/MobileShell). En escritorio el header no cambia.
   const headerClasses = `
-    fixed top-0 left-0 right-0 z-50 w-full 
+    hidden md:block
+    fixed top-0 left-0 right-0 z-50 w-full
     transition-all duration-500 ease-out
     ${scrolled 
       ? `py-2 md:py-3 shadow-xl backdrop-blur-xl ${isDarkMode ? 'bg-[hsl(var(--gard-header-bg))]/95' : 'bg-white/95'} border-b border-gray-200/20`
