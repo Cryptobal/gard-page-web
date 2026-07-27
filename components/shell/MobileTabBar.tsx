@@ -73,9 +73,10 @@ export default function MobileTabBar({
       {sheetSlot('servicios', 'Servicios', ShieldCheck, serviciosActive)}
       {sheetSlot('industrias', 'Industrias', Building2, industriasActive)}
 
-      {/* Slot 3 — Cotizar (acción principal, botón elevado naranja) */}
+      {/* Slot 3 — Cotizar (acción principal, botón elevado naranja).
+          Enlaza directo al formulario para minimizar la navegación. */}
       <Link
-        href="/cotizar"
+        href="/cotizar#formulario-cotizacion"
         aria-current={cotizarActive ? 'page' : undefined}
         onClick={() =>
           pushEvent({

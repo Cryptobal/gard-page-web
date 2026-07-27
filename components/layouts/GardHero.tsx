@@ -311,10 +311,11 @@ export default function GardHero({
           </div>
         </div>
         
-        {/* Indicador de scroll - Posición absoluta en la parte inferior del hero */}
-        <div 
-          className="absolute left-0 right-0 bottom-8 md:bottom-10 w-full flex justify-center items-center z-50"
-          style={{ 
+        {/* Indicador de scroll - Posición absoluta en la parte inferior del hero.
+            Oculto en móvil: se encimaba con la tab bar fija del shell. */}
+        <div
+          className="absolute left-0 right-0 bottom-8 md:bottom-10 w-full hidden md:flex justify-center items-center z-50"
+          style={{
             pointerEvents: 'none'
           }}
         >

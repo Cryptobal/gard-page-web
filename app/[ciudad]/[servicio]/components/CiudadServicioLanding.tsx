@@ -464,11 +464,12 @@ export default function CiudadServicioLanding({ content, params }: CiudadServici
             </div>
           </div>
           
-          {/* Indicador de scroll */}
-          <motion.div 
+          {/* Indicador de scroll (oculto en móvil: se encimaba con la tab bar) */}
+          <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.5 }}
+            className="hidden md:block"
             style={{
               position: "absolute",
               bottom: "2rem",
