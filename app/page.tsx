@@ -2,7 +2,6 @@ import React, { Suspense } from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
-import { Briefcase } from 'lucide-react';
 import CloudflareImage from '@/components/CloudflareImage';
 import { cloudflareImages } from '@/lib/images';
 import { companyStats } from '@/lib/data/company-stats';
@@ -238,47 +237,6 @@ export default function Home() {
 
       {/* Formulario de cotización */}
       <FormularioCotizacionSeccion />
-
-      {/* CTA dirigido a postulantes guardia (captación) — prominente en mobile, sutil en desktop */}
-      <section
-        id="trabaja-con-nosotros-home"
-        aria-labelledby="trabaja-cta-home-title"
-        className="py-10 md:py-14 bg-gradient-to-b from-[hsl(var(--gard-card))] to-[hsl(var(--gard-background))] border-t border-[hsl(var(--gard-border))]"
-      >
-        <div className="gard-container">
-          <p className="text-center text-xs md:text-sm font-semibold uppercase tracking-widest text-[hsl(var(--gard-accent))] mb-3">
-            Para postulantes guardia
-          </p>
-
-          <Link
-            href="/reclutamiento"
-            rel="nofollow"
-            data-cta="home_cta_footer"
-            className="block max-w-3xl mx-auto group"
-          >
-            <div className="rounded-2xl bg-gradient-to-br from-[hsl(var(--gard-accent))]/25 via-[hsl(var(--gard-accent))]/15 to-[hsl(var(--gard-accent))]/5 md:from-[hsl(var(--gard-accent))]/15 md:via-[hsl(var(--gard-accent))]/8 md:to-transparent border-2 border-[hsl(var(--gard-accent))]/40 md:border md:border-[hsl(var(--gard-accent))]/20 shadow-lg md:shadow-md p-6 md:p-7 flex flex-col md:flex-row items-center gap-5 md:gap-6 transition-all group-hover:shadow-xl group-hover:border-[hsl(var(--gard-accent))]/60 group-hover:scale-[1.01]">
-              <div className="flex items-center justify-center w-20 h-20 md:w-16 md:h-16 rounded-full bg-[hsl(var(--gard-accent))] text-white flex-shrink-0 shadow-md">
-                <Briefcase className="h-10 w-10 md:h-7 md:w-7" />
-              </div>
-              <div className="flex-1 text-center md:text-left">
-                <h2
-                  id="trabaja-cta-home-title"
-                  className="text-2xl md:text-xl font-bold mb-2 md:mb-1"
-                >
-                  ¿Buscas trabajo como guardia?
-                </h2>
-                <p className="text-base md:text-base text-[hsl(var(--gard-foreground))]/80 leading-snug">
-                  Postula en menos de un minuto. Te llamamos por WhatsApp.
-                </p>
-              </div>
-              <span className="w-full md:w-auto inline-flex items-center justify-center gap-2 h-14 md:h-12 px-8 md:px-6 rounded-full bg-[hsl(var(--gard-accent))] text-white text-base md:text-sm font-bold whitespace-nowrap shadow-lg group-hover:bg-[hsl(var(--gard-accent))]/90">
-                Postula aquí
-                <ArrowRight className="h-5 w-5 md:h-4 md:w-4" />
-              </span>
-            </div>
-          </Link>
-        </div>
-      </section>
     </>
   );
 } 
