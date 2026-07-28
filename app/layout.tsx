@@ -11,7 +11,6 @@ import ClientWrapper from './ClientWrapper';
 import { metadata } from './metadata';
 import LocalBusinessSchema from '@/components/seo/LocalBusinessSchema';
 import ExitIntentPopup from '@/components/ExitIntentPopup';
-import RecruitFloatingCTA from '@/components/RecruitFloatingCTA';
 import MobileShell from '@/components/shell/MobileShell';
 
 // Obtener GTM ID desde variables de entorno
@@ -83,7 +82,6 @@ export default function RootLayout({
               {children}
             </main>
             <ExitIntentPopup />
-            <RecruitFloatingCTA />
             <Footer />
             {/* Shell móvil de consola: solo <768px, se auto-excluye por ruta */}
             <MobileShell />
