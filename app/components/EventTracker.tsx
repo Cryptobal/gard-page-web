@@ -10,7 +10,7 @@ function getQueryParam(param: string) {
 }
 
 // Tipos para los eventos
-type EventName = 
+type EventName =
   | 'click_cta_primary'
   | 'click_cta_secondary'
   | 'click_whatsapp'
@@ -23,7 +23,10 @@ type EventName =
   | 'view_case_study'
   | 'file_download'
   | 'scroll_depth'
-  | 'time_on_page';
+  | 'time_on_page'
+  // Shell móvil de consola
+  | 'open_nav_sheet'
+  | 'click_nav_sheet_item';
 
 // Interfaz para el evento
 interface EventProps {

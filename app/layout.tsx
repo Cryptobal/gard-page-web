@@ -1,5 +1,5 @@
 import React from 'react';
-import { inter, poppins } from './fonts';
+import { inter, poppins, chivo, jetbrainsMono } from './fonts';
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -11,7 +11,7 @@ import ClientWrapper from './ClientWrapper';
 import { metadata } from './metadata';
 import LocalBusinessSchema from '@/components/seo/LocalBusinessSchema';
 import ExitIntentPopup from '@/components/ExitIntentPopup';
-import RecruitFloatingCTA from '@/components/RecruitFloatingCTA';
+import MobileShell from '@/components/shell/MobileShell';
 
 // Obtener GTM ID desde variables de entorno
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || '';
@@ -61,7 +61,7 @@ export default function RootLayout({
           }
         }) }} />
       </head>
-      <body className={`${inter.variable} ${poppins.variable} min-h-screen flex flex-col`}>
+      <body className={`${inter.variable} ${poppins.variable} ${chivo.variable} ${jetbrainsMono.variable} min-h-screen flex flex-col`}>
         {/* Skip to content link for keyboard navigation */}
         <a 
           href="#main-content" 
@@ -75,12 +75,16 @@ export default function RootLayout({
             <ClientScripts gtmId={GTM_ID} gaId={GA_ID} />
             
             <Header />
-            <main id="main-content" className="flex-grow">
+            <main
+              id="main-content"
+              className="flex-grow pb-[calc(var(--gard-tab-h)_+_env(safe-area-inset-bottom,0px))] md:pb-0"
+            >
               {children}
             </main>
             <ExitIntentPopup />
-            <RecruitFloatingCTA />
             <Footer />
+            {/* Shell móvil de consola: solo <768px, se auto-excluye por ruta */}
+            <MobileShell />
             <SpeedInsights />
             <Analytics />
           </CookieConsent>

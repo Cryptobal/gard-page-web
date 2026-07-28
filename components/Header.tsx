@@ -9,15 +9,20 @@ import CloudflareImage from './CloudflareImage';
 import { cloudflareImages } from '@/lib/images';
 // framer-motion removed for performance - using CSS transitions instead
 import { useTheme } from 'next-themes';
+// Taxonomía de navegación desde la fuente única compartida (§ lib/data/navigation.ts).
+import { megaMenuData } from '@/lib/data/navigation';
 
+// Nota SEO: `/reclutamiento` se retiró de la navegación primaria de forma
+// intencional. El dominio comercial deja de emitir enlaces internos hacia la
+// rama laboral; la postulación sigue accesible desde el footer y el FAB de RRHH.
 const navLinks = [
-  { 
-    href: '/servicios', 
+  {
+    href: '/servicios',
     label: 'Servicios',
     hasMegaMenu: true
   },
-  { 
-    href: '/industrias', 
+  {
+    href: '/industrias',
     label: 'Industrias',
     hasMegaMenu: true
   },
@@ -26,38 +31,9 @@ const navLinks = [
     label: 'Tecnologías',
     hasMegaMenu: true,
   },
-  // rel="nofollow": intención de empleo. La postulación sigue accesible para el
-  // usuario, pero no transfiere autoridad SEO desde el dominio comercial.
-  { href: '/reclutamiento', label: 'Trabaja con Nosotros', rel: 'nofollow' },
   { href: '/blog', label: 'Blog' },
   { href: '/cotizar', label: 'Cotizar', isCTA: true },
 ];
-
-// Mega Menu Data
-const megaMenuData = {
-  Servicios: [
-    { title: 'Seguridad para Empresas', href: '/guardias-de-seguridad-privada-para-empresas', desc: 'Casos reales, comparativa de servicios y cotización rápida.' },
-    { title: 'Guardias de Seguridad', href: '/servicios/guardias-de-seguridad', desc: 'Personal certificado OS10 para protección física.' },
-    { title: 'Seguridad Electrónica', href: '/servicios/seguridad-electronica', desc: 'CCTV, alarmas y control de acceso avanzado.' },
-    { title: 'Central de Monitoreo', href: '/servicios/central-monitoreo', desc: 'Vigilancia remota 24/7 con respuesta inmediata.' },
-    { title: 'Drones de Seguridad', href: '/servicios/drones-seguridad', desc: 'Vigilancia aérea para grandes extensiones.' },
-    { title: 'Auditoría de Seguridad', href: '/servicios/auditoria-seguridad', desc: 'Evaluación de riesgos y vulnerabilidades.' },
-    { title: 'Consultoría', href: '/servicios/consultoria', desc: 'Asesoría estratégica en seguridad corporativa.' },
-  ],
-  Industrias: [
-    { title: 'Minería', href: '/industrias/mineria', desc: 'Seguridad especializada para faenas mineras.' },
-    { title: 'Retail', href: '/industrias/retail', desc: 'Protección de activos y control de pérdidas.' },
-    { title: 'Logística', href: '/industrias/bodegas', desc: 'Seguridad para centros de distribución.' },
-    { title: 'Corporativo', href: '/industrias/edificios-corporativos', desc: 'Vigilancia para oficinas y edificios.' },
-    { title: 'Construcción', href: '/industrias/construccion', desc: 'Protección de obras y maquinaria.' },
-    { title: 'Educación', href: '/industrias/educacion', desc: 'Seguridad para colegios y universidades.' },
-  ],
-  Tecnologías: [
-    { title: 'OPAI · Plataforma completa', href: '/tecnologia-seguridad', desc: 'ERP propio de Gard Security: pauta, rondas, payroll, cumplimiento e IA.' },
-    { title: 'Portal Cliente', href: '/portal-cliente', desc: 'Dashboard 24/7 con KPIs, Trust Score y actividad del equipo en sitio.' },
-    { title: 'Control de Rondas GPS', href: '/control-rondas-gps', desc: 'Verificación GPS de checkpoints, timeline de marcaciones y Trust Score auditable.' },
-  ]
-};
 
 // Rutas que deben marcar "Tecnologías" como activo en la nav
 const TECNOLOGIAS_ACTIVE_PATHS = [
@@ -117,8 +93,11 @@ export default function Header() {
   const isDarkMode = !mounted ? false : theme === 'dark';
   
   // Determinar las clases y estilos condicionales
+  // hidden md:block — en móvil (<768px) gobierna el shell de consola
+  // (components/shell/MobileShell). En escritorio el header no cambia.
   const headerClasses = `
-    fixed top-0 left-0 right-0 z-50 w-full 
+    hidden md:block
+    fixed top-0 left-0 right-0 z-50 w-full
     transition-all duration-500 ease-out
     ${scrolled 
       ? `py-2 md:py-3 shadow-xl backdrop-blur-xl ${isDarkMode ? 'bg-[hsl(var(--gard-header-bg))]/95' : 'bg-white/95'} border-b border-gray-200/20`
@@ -174,7 +153,7 @@ export default function Header() {
 
         {/* Navegación de escritorio */}
         <nav className="hidden md:flex items-center space-x-6 lg:space-x-8 h-full">
-          {navLinks.map(({ href, label, isCTA, hasMegaMenu, rel }) => {
+          {navLinks.map(({ href, label, isCTA, hasMegaMenu }) => {
             const isActive =
               pathname === href ||
               (label === 'Tecnologías' && TECNOLOGIAS_ACTIVE_PATHS.includes(pathname ?? ''));
@@ -182,7 +161,6 @@ export default function Header() {
               <div key={href} className="relative h-full flex items-center" onMouseEnter={() => hasMegaMenu && setHoveredLink(label)}>
                 <Link
                   href={href}
-                  rel={rel}
                   className={getNavLinkClasses(isActive, isCTA)}
                 >
                   {label}
@@ -260,7 +238,7 @@ export default function Header() {
             }}
           >
             <nav className="flex flex-col items-center space-y-6 p-8 mt-4">
-              {navLinks.map(({ href, label, isCTA, hasMegaMenu, rel }) => {
+              {navLinks.map(({ href, label, isCTA, hasMegaMenu }) => {
                 const subItems = hasMegaMenu ? megaMenuData[label as keyof typeof megaMenuData] : undefined;
                 const isActive =
                   pathname === href ||
@@ -269,8 +247,7 @@ export default function Header() {
                   <div key={href} className="flex flex-col items-center space-y-3">
                     <Link
                       href={href}
-                      rel={rel}
-                      className={isCTA
+                          className={isCTA
                         ? 'bg-primary text-white px-6 py-2 rounded-xl hover:bg-accent transition text-lg font-semibold'
                         : `
                           text-lg font-semibold transition-colors

@@ -11,7 +11,7 @@ import {
   BarChart3,
 } from 'lucide-react';
 import CloudflareImage from '@/components/CloudflareImage';
-import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
+import BreadcrumbSchema, { Breadcrumbs } from '@/components/seo/BreadcrumbSchema';
 import ServiceSchema from '@/components/seo/ServiceSchema';
 import { FAQSection } from '@/components/seo/FAQSchema';
 import FormularioCotizacionSeccion from '@/app/components/FormularioCotizacionSeccion';
@@ -121,6 +121,11 @@ export default function CiudadServicioGold({ copy }: CiudadServicioGoldProps) {
           </div>
         </div>
       </section>
+
+      {/* Breadcrumb visual (coincide con el BreadcrumbList estructurado) */}
+      <div className="gard-container pt-8">
+        <Breadcrumbs items={breadcrumbs} />
+      </div>
 
       {/* Panorama de seguridad */}
       <section id="panorama" className="gard-section py-16 md:py-24 bg-gray-50 dark:bg-gray-900">

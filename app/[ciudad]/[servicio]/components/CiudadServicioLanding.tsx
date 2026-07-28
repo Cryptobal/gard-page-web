@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { 
   Shield, 
   MapPin, 
@@ -16,7 +16,7 @@ import {
   ListChecks,
   PlayCircle
 } from 'lucide-react';
-import { motion, AnimatePresence, LazyMotion, domAnimation } from 'framer-motion';
+import { motion, LazyMotion, domAnimation } from 'framer-motion';
 import { CiudadServicioContent } from '@/lib/data/getCiudadServicioContent';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -26,7 +26,7 @@ import CloudflareImage from '@/components/CloudflareImage';
 import ClientesCarrusel from '@/components/ClientesCarrusel';
 import { cn } from '@/lib/utils';
 import { Stream } from '@cloudflare/stream-react';
-import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
+import BreadcrumbSchema, { Breadcrumbs } from '@/components/seo/BreadcrumbSchema';
 import ServiceSchema from '@/components/seo/ServiceSchema';
 
 // Mapeo de servicios a ID de videos de Cloudflare Stream
@@ -247,41 +247,9 @@ const FAQSection = ({ faqs, ciudad }: { faqs: { pregunta: string; respuesta: str
 };
 
 export default function CiudadServicioLanding({ content, params }: CiudadServicioLandingProps) {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState('hero');
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
-  
-  // Rastrear el desplazamiento para animaciones y CTA flotante
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 200);
-      
-      // Detectar sección activa para animaciones
-      const sections = document.querySelectorAll('[data-section]');
-      sections.forEach(section => {
-        const rect = section.getBoundingClientRect();
-        if (rect.top <= 100 && rect.bottom >= 100) {
-          setActiveSection(section.getAttribute('data-section') || 'hero');
-        }
-      });
-      
-      // Detectar si el footer está visible o cerca para ocultar el CTA flotante
-      const footer = document.querySelector('footer');
-      if (footer) {
-        const footerRect = footer.getBoundingClientRect();
-        // Añadir margen de seguridad (100px) para que desaparezca antes de llegar al footer
-        const isNearFooter = footerRect.top < window.innerHeight + 100;
-        if (isNearFooter) {
-          setIsScrolled(false);
-        }
-      }
-    };
-    
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-  
+
   // Reproducir/pausar video (mantener para compatibilidad con videos que no sean de Cloudflare)
   const toggleVideo = () => {
     if (videoRef.current) {
@@ -332,46 +300,8 @@ export default function CiudadServicioLanding({ content, params }: CiudadServici
         areaServed={[{ type: 'City', name: ciudadCapitalizada }]}
       />
       <div className="flex flex-col min-h-screen relative">
-        {/* CTA Flotante en móvil (solo aparece al hacer scroll) */}
-        <AnimatePresence>
-          {isScrolled && (
-            <motion.div
-              initial={{ y: 100, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: 100, opacity: 0 }}
-              style={{ 
-                position: "fixed",
-                bottom: 0,
-                left: 0,
-                right: 0,
-                zIndex: 50
-              }}
-              className="md:hidden bg-white dark:bg-gray-900 shadow-lg border-t border-gray-100 dark:border-gray-800 p-4"
-            >
-              <div className="flex items-center justify-between gap-3">
-                <div className="flex-1">
-                  <Button 
-                    variant="accent" 
-                    size="lg" 
-                    className="w-full rounded-xl"
-                    onClick={scrollToForm}
-                  >
-                    {content.ctaTexto}
-                  </Button>
-                </div>
-                <Button 
-                  variant="outline-orange" 
-                  size="icon"
-                  className="rounded-full"
-                  onClick={() => window.location.href = 'tel:+56941137976'}
-                >
-                  <Phone className="h-5 w-5 text-accent" />
-                </Button>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-        
+        {/* CTA persistente ahora lo provee el shell móvil global (MobileTabBar). */}
+
         {/* Hero Section - Fullscreen con video/imagen de fondo */}
         <section 
           data-section="hero"
@@ -534,11 +464,12 @@ export default function CiudadServicioLanding({ content, params }: CiudadServici
             </div>
           </div>
           
-          {/* Indicador de scroll */}
-          <motion.div 
+          {/* Indicador de scroll (oculto en móvil: se encimaba con la tab bar) */}
+          <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.5 }}
+            className="hidden md:block"
             style={{
               position: "absolute",
               bottom: "2rem",
@@ -566,8 +497,13 @@ export default function CiudadServicioLanding({ content, params }: CiudadServici
           </motion.div>
         </section>
         
+        {/* Breadcrumb visual (coincide con el BreadcrumbList estructurado) */}
+        <div className="gard-container pt-8">
+          <Breadcrumbs items={breadcrumbItems} />
+        </div>
+
         {/* Descripción Section con Diseño Moderno */}
-        <section 
+        <section
           data-section="descripcion"
           className="gard-section bg-white dark:bg-gray-900"
         >

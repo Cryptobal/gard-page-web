@@ -76,7 +76,14 @@ export default function CotizarPageClient({ variant }: CotizarPageClientProps) {
               </div>
             </div>
 
-            <div className="md:col-span-7">
+            {/* Ancla del formulario: la tab bar móvil (Cotizar) enlaza a
+                /cotizar#formulario-cotizacion para aterrizar directo en los
+                campos. scroll-mt reserva el alto del shell (móvil) / header
+                (escritorio) para que el título no quede tapado. */}
+            <div
+              id="formulario-cotizacion"
+              className="md:col-span-7 scroll-mt-[calc(var(--gard-shell-top)_+_var(--gard-ops-h)_+_env(safe-area-inset-top,0px)_+_1rem)] md:scroll-mt-32"
+            >
               {variant === 'multistep' ? <CotizacionFormMultiStep /> : <CotizacionForm />}
             </div>
           </div>

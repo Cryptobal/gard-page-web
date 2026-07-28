@@ -23,7 +23,7 @@ export default function ConsentBanner() {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 20 }}
         transition={{ duration: 0.3, ease: 'easeOut' }}
-        className="fixed bottom-0 left-0 right-0 z-50 p-4 md:p-6"
+        className="fixed bottom-[calc(var(--gard-tab-h)_+_env(safe-area-inset-bottom,0px))] left-0 right-0 z-50 p-4 md:bottom-0 md:p-6"
         aria-live="polite"
         role="dialog"
         aria-modal="true"

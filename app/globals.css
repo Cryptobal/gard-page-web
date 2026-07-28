@@ -55,6 +55,20 @@
     --gard-border: 220 15% 90%;          /* Subtle border */
     --gard-muted: 220 20% 97%;           /* Light gray for sections */
     --gard-muted-foreground: 220 15% 40%;/* Medium gray for secondary text */
+
+    /* ── Shell móvil de consola ─────────────────────────────────────────
+       Tokens compartidos por top bar, ops strip, tab bar y sheet. El shell
+       es una superficie oscura de marca en ambos temas (contenido siempre
+       blanco), por lo que los colores de marca viven en :root; solo el tinte
+       del vidrio se refuerza en modo oscuro. */
+    --gard-brand: 223 100% 29%;          /* Azul del shield (#002992) */
+    --gard-brand-lift: 224 76% 44%;      /* Azul de marca elevado */
+    --gard-accent-bright: 16 100% 56%;   /* Naranja para superficies oscuras (botón Cotizar) */
+    --gard-glass-tint: 223 90% 14%;      /* Tinte de vidrio sobre fondo claro */
+    --gard-glass-edge: 223 100% 78%;     /* Borde especular del vidrio */
+    --gard-shell-top: 56px;              /* Altura de la top bar (sin safe-area) */
+    --gard-ops-h: 25px;                  /* Altura de la ops strip */
+    --gard-tab-h: 76px;                  /* Altura de la tab bar (sin safe-area) */
   }
 
   .dark {
@@ -87,6 +101,9 @@
     /* Backgrounds específicos para componentes */
     --gard-header-bg: 220 14% 6%;            /* Reemplaza #0b1120 */
     --gard-footer-bg: 220 20% 4%;            /* Reemplaza #050a15 */
+
+    /* Shell móvil: tinte de vidrio reforzado sobre fondo oscuro */
+    --gard-glass-tint: 223 100% 10%;
   }
 
   body {
@@ -95,7 +112,7 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-poppins);
+    font-family: var(--font-chivo);
   }
 }
 
@@ -410,6 +427,122 @@
   .gard-pattern-dots {
     background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.4' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
     background-repeat: repeat;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   Shell móvil de consola (top bar · ops strip · tab bar · sheet)
+   El vidrio se aplica EXCLUSIVAMENTE a estas cuatro superficies.
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* Vidrio de marca. Respaldo sólido donde no hay backdrop-filter. */
+.gard-glass {
+  background: hsl(var(--gard-glass-tint) / 0.62);
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
+  backdrop-filter: blur(22px) saturate(180%);
+  box-shadow: inset 0 1px 0 hsl(var(--gard-glass-edge) / 0.34);
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .gard-glass {
+    background: hsl(var(--gard-glass-tint) / 0.97);
+  }
+}
+
+/* Fuente mono para etiquetas de datos del shell. */
+.gard-mono {
+  font-family: var(--font-mono);
+}
+
+/* Posicionamiento fijo con alturas reservadas por token (cero CLS). */
+.gard-shell-topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 40;
+  height: calc(var(--gard-shell-top) + env(safe-area-inset-top, 0px));
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+.gard-shell-ops {
+  position: fixed;
+  top: calc(var(--gard-shell-top) + env(safe-area-inset-top, 0px));
+  left: 0;
+  right: 0;
+  z-index: 40;
+  height: var(--gard-ops-h);
+}
+
+.gard-shell-tabbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 40;
+  height: calc(var(--gard-tab-h) + env(safe-area-inset-bottom, 0px));
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Estado "flotante" de la top bar (scrollTop <= 18): transparente con
+   degradado de marca que garantiza contraste del contenido blanco. */
+.gard-shell-topbar--float {
+  background: linear-gradient(
+    180deg,
+    hsl(var(--gard-brand) / 0.72) 0%,
+    hsl(var(--gard-brand) / 0.12) 68%,
+    transparent 100%
+  );
+}
+
+/* Marquesina de la ops strip. */
+.gard-ops-viewport {
+  overflow: hidden;
+}
+
+.gard-ops-track {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  will-change: transform;
+  animation: gard-ops-marquee 34s linear infinite;
+}
+
+@keyframes gard-ops-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gard-ops-track {
+    animation: none;
+  }
+  .gard-ops-viewport {
+    overflow-x: auto;
+  }
+}
+
+/* Sheet: entrada desde abajo. */
+.gard-sheet-panel {
+  animation: gard-sheet-in 0.24s cubic-bezier(0.22, 0.8, 0.28, 1);
+}
+
+@keyframes gard-sheet-in {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gard-sheet-panel {
+    animation: none;
   }
 }
 
