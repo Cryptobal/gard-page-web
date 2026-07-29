@@ -18,7 +18,7 @@ faqSchema:
   - question: "¿Las cámaras de un edificio de oficinas tienen restricciones legales?"
     answer: "Sí. Las imágenes de personas son datos personales. Hoy su tratamiento se rige por la Ley 19.628 y, con vigencia plena desde el 1 de diciembre de 2026, la Ley 21.719 eleva el estándar: el edificio debe informar la videovigilancia, limitar el registro a áreas comunes justificadas, fijar plazos de conservación y resguardar el acceso a las grabaciones."
   - question: "¿Un edificio con varias empresas debe coordinar su plan de emergencia?"
-    answer: "Sí. El Decreto Supremo 44, vigente desde febrero de 2025, exige gestión preventiva de riesgos e incluye la coordinación entre empleadores que comparten un mismo lugar de trabajo. En un edificio multi-tenant, el administrador articula el plan de evacuación común, la señalización y los simulacros con los distintos ocupantes."
+    answer: "Sí. El Decreto Supremo 44, vigente desde febrero de 2025, exige a los empleadores coordinar la prevención cuando comparten un mismo lugar de trabajo. Esa obligación recae en cada empresa ocupante, no en el administrador por sí solo; en la práctica, la administración suele coordinar el plan de evacuación común, la señalización y los simulacros cuando así se pacta en el contrato de administración y el reglamento del edificio."
 ---
 
 La **seguridad para edificios corporativos** no se resuelve con un guardia en la puerta y una cámara en la recepción. Un edificio de oficinas concentra, cada día, a cientos de personas que no se conocen entre sí: trabajadores de varias empresas, visitas de negocios, proveedores, técnicos y clientes. Para quien administra ese inmueble —el administrador del edificio, el facility manager o el property manager corporativo— el desafío es controlar ese flujo sin frenar la operación, y hacerlo cumpliendo una normativa que en 2026 dejó de ser opcional.
@@ -27,7 +27,7 @@ Esta guía ordena, para el responsable de un edificio de oficinas en Chile, cóm
 
 ## Qué hace distinta la seguridad de un edificio corporativo
 
-Un edificio corporativo es un espacio **multi-tenant**: distintas empresas ocupan pisos u oficinas dentro de un mismo inmueble, con horarios extendidos y un tránsito permanente de personas ajenas a la organización. Eso lo separa tanto de una casa matriz de un solo dueño como de un [edificio residencial, donde la lógica es distinta](/blog/seguridad-condominios-residenciales-chile-2026): allí el foco es el residente y la copropiedad; aquí, el visitante de negocios y la continuidad operativa de varias empresas a la vez.
+La [seguridad de un edificio corporativo](/industrias/edificios-corporativos) parte de una realidad propia: es un espacio **multi-tenant**, donde distintas empresas ocupan pisos u oficinas dentro de un mismo inmueble, con horarios extendidos y un tránsito permanente de personas ajenas a la organización. Eso lo separa tanto de una casa matriz de un solo dueño como de un [edificio residencial, donde la lógica es distinta](/blog/seguridad-condominios-residenciales-chile-2026): allí el foco es el residente y la copropiedad; aquí, el visitante de negocios y la continuidad operativa de varias empresas a la vez.
 
 De esa naturaleza surgen tres exigencias propias:
 
@@ -61,7 +61,7 @@ Las imágenes de personas captadas por el CCTV son datos personales. Su tratamie
 
 ### DS 44: plan de emergencia y coordinación multi-tenant
 
-La seguridad no es solo antidelictual. El **Decreto Supremo N° 44**, publicado el 27 de julio de 2024 y vigente desde el 1 de febrero de 2025, reemplazó a los antiguos DS 40 y 54 y exige a las organizaciones una gestión preventiva de riesgos que incluye la preparación ante emergencias y —clave para un edificio de oficinas— la **coordinación entre empleadores que comparten un mismo lugar de trabajo** ([SUSESO](https://www.suseso.gob.cl/612/w3-article-760528.html)). En un edificio multi-tenant, el administrador es quien articula el plan de evacuación común, la señalización, los puntos de encuentro y los simulacros con los distintos ocupantes.
+La seguridad no es solo antidelictual. El **Decreto Supremo N° 44**, publicado el 27 de julio de 2024 y vigente desde el 1 de febrero de 2025, reemplazó a los antiguos DS 40 y 54 y exige a los empleadores una gestión preventiva de riesgos que incluye la preparación ante emergencias y —clave para un edificio de oficinas— la **coordinación entre los empleadores que comparten un mismo lugar de trabajo** ([SUSESO](https://www.suseso.gob.cl/612/w3-article-760528.html)). Ojo con quién responde: esa obligación legal recae en cada empleador (las empresas que ocupan el edificio), no en el administrador por el solo hecho de administrar. Lo habitual en un edificio multi-tenant es que la administración **coordine** el plan de evacuación común, la señalización, los puntos de encuentro y los simulacros —articulando a los distintos ocupantes—, pero ese rol nace del contrato de administración y del reglamento del edificio, no de una designación directa del DS 44. Conviene dejarlo explícito en los contratos para que ningún ocupante asuma que el cumplimiento es de otro.
 
 ## Control de acceso y gestión de visitas: el punto crítico
 
