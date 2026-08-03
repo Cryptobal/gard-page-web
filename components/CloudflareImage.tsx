@@ -11,6 +11,7 @@ interface CloudflareImageProps {
   variant?: string;
   className?: string;
   priority?: boolean;
+  loading?: 'eager' | 'lazy';
   fill?: boolean;
   sizes?: string;
   quality?: number;
@@ -28,6 +29,7 @@ export default function CloudflareImage({
   variant = 'public',
   className = '',
   priority = false,
+  loading,
   fill = false,
   sizes,
   quality = 85, // Reducido para mobile-first
@@ -44,11 +46,17 @@ export default function CloudflareImage({
   // - Con `fill`: el contenedor suele ser full-bleed (heroes, cards a ancho de viewport),
   //   por lo que pedimos 100vw para evitar pixelación al estirar versiones pequeñas.
   //   Los grids/tarjetas chicas deben pasar `sizes` explícito.
-  // - Sin `fill`: mantenemos el default mobile-first para grids genéricos.
+  // - Sin `fill` y con `width` conocido: usar el width fijo en px. Esto es CRÍTICO para
+  //   logos y thumbnails: un logo de 140px con el default anterior (25vw en desktop)
+  //   pedía la variante 640w y, si además llevaba `priority`, Next emitía un
+  //   `<link rel="preload" as="image">` que competía con el LCP real del hero.
+  // - Sin `fill` y sin `width`: fallback mobile-first para grids genéricos.
   const resolvedSizes =
     sizes ?? (fill
       ? '100vw'
-      : '(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw');
+      : width
+        ? `${width}px`
+        : '(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw');
 
   const imageProps = {
     loader: imageLoader,
@@ -56,6 +64,8 @@ export default function CloudflareImage({
     alt,
     className: `${className} ${fill ? 'object-' + objectFit + ' object-' + objectPosition.replace(' ', '-') : ''}`,
     priority,
+    // Solo pasamos `loading` cuando no hay `priority` (Next lo ignora si priority=true).
+    ...(loading && !priority ? { loading } : {}),
     quality,
     sizes: resolvedSizes,
     placeholder,
