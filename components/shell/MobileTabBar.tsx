@@ -2,18 +2,13 @@
 
 import Link from 'next/link';
 import type { LucideIcon } from 'lucide-react';
-import { ShieldCheck, Building2, MapPin, MessageCircle, FileText } from 'lucide-react';
+import { ShieldCheck, Building2, MapPin, Briefcase, FileText } from 'lucide-react';
 import { ciudadesNav } from '@/lib/data/navigation';
 import { useGtmEvent } from '@/app/components/EventTracker';
 import type { SheetKey } from './MobileNavSheet';
 
 // Slugs de ciudad para detectar rutas ciudad×servicio (`/[ciudad]/[servicio]`).
 const CIUDAD_SLUGS = new Set(ciudadesNav.map((c) => c.href.split('/')[1]));
-
-// WhatsApp comercial (línea de ventas, distinta de la NAP y de la de RRHH).
-// Número confirmado explícitamente por el usuario para el shell móvil.
-const WHATSAPP_COMERCIAL = '56968727644';
-const WHATSAPP_MSG = 'Hola, quiero cotizar un servicio de seguridad para mi empresa.';
 
 function isCoberturaActive(pathname: string): boolean {
   if (pathname === '/ciudades' || pathname.startsWith('/ciudades/')) return true;
@@ -42,6 +37,8 @@ export default function MobileTabBar({
   const cotizarActive =
     pathname === '/cotizar' || pathname.startsWith('/cotizar/');
   const coberturaActive = isCoberturaActive(pathname);
+  const trabajoActive =
+    pathname === '/reclutamiento' || pathname.startsWith('/reclutamiento/');
 
   const sheetSlot = (
     key: Exclude<SheetKey, 'menu'>,
@@ -94,24 +91,27 @@ export default function MobileTabBar({
 
       {sheetSlot('cobertura', 'Cobertura', MapPin, coberturaActive)}
 
-      {/* Slot 5 — WhatsApp comercial (reemplaza a «Llamar»: evita exponer la
-          línea telefónica a llamados de postulantes; el texto es filtrable). */}
-      <a
-        href={`https://wa.me/${WHATSAPP_COMERCIAL}?text=${encodeURIComponent(WHATSAPP_MSG)}`}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Escríbenos por WhatsApp"
+      {/* Slot 5 — Trabajo: desvía postulantes al formulario de reclutamiento
+          (evita que escriban al canal comercial por WhatsApp). */}
+      <Link
+        href="/reclutamiento"
+        rel="nofollow"
+        aria-current={trabajoActive ? 'page' : undefined}
+        aria-label="Postular como guardia de seguridad"
         onClick={() =>
           pushEvent({
-            name: 'click_whatsapp',
-            params: { cta_location: 'mobile_tabbar' },
+            name: 'click_cta_secondary',
+            params: {
+              cta_text: 'Trabajo',
+              cta_location: 'mobile_tabbar',
+            },
           })
         }
-        className={`${SLOT_BASE} text-white/70`}
+        className={`${SLOT_BASE} ${trabajoActive ? 'text-white' : 'text-white/70'}`}
       >
-        <MessageCircle className="h-5 w-5" aria-hidden="true" />
-        <span>WhatsApp</span>
-      </a>
+        <Briefcase className="h-5 w-5" aria-hidden="true" />
+        <span>Trabajo</span>
+      </Link>
     </nav>
   );
 }
