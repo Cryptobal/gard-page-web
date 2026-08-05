@@ -26,7 +26,7 @@ Esta guía aborda las Fiestas Patrias desde la perspectiva de quien protege una 
 
 ## Por qué el "18" es un punto ciego para las empresas
 
-Durante Fiestas Patrias, el esfuerzo de seguridad del Estado se concentra donde está la gente. En su balance de Fiestas Patrias, la [Subsecretaría de Prevención del Delito](https://www.seguridadpublica.cl/noticia/gobierno-da-a-conocer-balance-de-seguridad-y-transito-durante-los-dias-de-fiestas-patrias/) ha reportado despliegues del orden de 9.800 carabineros a nivel nacional y una decena de cuarteles temporales, dedicados principalmente a fondas, ramadas y zonas de alta afluencia. Es la respuesta correcta para el riesgo masivo, pero tiene una contracara para el mundo empresarial: mientras se refuerzan los espacios públicos, las instalaciones cerradas quedan comparativamente más expuestas.
+Durante Fiestas Patrias, el esfuerzo de seguridad del Estado se concentra donde está la gente. Según la [Subsecretaría de Prevención del Delito](https://subprevenciondeldelito.gob.cl/noticia/gobierno-anuncia-despliegue-preventivo-de-diferentes-instituciones-del-estado-para-unas-fiestas-patrias-mas-seguras/), cada 18 el Estado refuerza su despliegue preventivo en fondas, ramadas y zonas de alta afluencia, y en años recientes ha informado despliegues del orden de 9.800 carabineros a nivel nacional y una decena de cuarteles temporales dedicados a estas celebraciones. Es la respuesta correcta para el riesgo masivo, pero tiene una contracara para el mundo empresarial: mientras se refuerzan los espacios públicos, las instalaciones cerradas quedan comparativamente más expuestas.
 
 A eso se suman tres factores propios del feriado largo:
 
