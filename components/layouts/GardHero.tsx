@@ -12,6 +12,7 @@ const VideoBackground = dynamic(() => import('@/components/ui/VideoBackground'),
 });
 import { getCloudflareImageUrl } from '@/lib/images';
 import Link from 'next/link';
+import { companyStats } from '@/lib/data/company-stats';
 
 interface GardHeroProps {
   /**
@@ -77,7 +78,7 @@ interface GardHeroProps {
   
   /**
    * Número de teléfono para el botón de llamada
-   * @default "+56941137976"
+   * @default companyStats.contactPhoneE164
    */
   phoneNumber?: string;
 }
@@ -94,7 +95,7 @@ export default function GardHero({
   variant = "standard",
   onScrollToForm,
   showCallButton = false,
-  phoneNumber = "+56941137976"
+  phoneNumber = companyStats.contactPhoneE164
 }: GardHeroProps) {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -305,7 +306,7 @@ export default function GardHero({
                 className="flex items-center gap-3 text-gray-300 pt-6"
               >
                 <Clock className="h-5 w-5 text-primary" />
-                <span className="text-sm font-medium">Respuesta en menos de 12 horas</span>
+                <span className="text-sm font-medium">Respuesta en {companyStats.commercialResponseSla}</span>
               </motion.div>
             </motion.div>
           </div>

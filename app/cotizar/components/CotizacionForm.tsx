@@ -29,6 +29,7 @@ import API_URLS from '@/app/config/api';
 import { getPaginaWebFromEmail } from '@/lib/opaiPayload';
 import { trackFormSubmission } from '@/lib/analytics/formTracking';
 import { getABVariantClient } from '@/lib/ab-testing-client';
+import { companyStats } from '@/lib/data/company-stats';
 
 // Declaración para Google Maps API
 declare global {
@@ -609,10 +610,10 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
             </svg>
           </div>
           <h2 className="text-heading-4 text-primary mb-4">¡Tu solicitud ha sido enviada correctamente!</h2>
-          <p className="text-body-base mb-6">Nuestro equipo comercial revisará tu requerimiento y te contactará en menos de 1 hora en horario hábil.</p>
+          <p className="text-body-base mb-6">Nuestro equipo comercial revisará tu requerimiento y te contactará en {companyStats.commercialResponseSla}.</p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center items-center mb-6">
             <a
-              href={`https://wa.me/56982307771?text=${encodeURIComponent(
+              href={`https://wa.me/${companyStats.commercialWhatsAppWaMe}?text=${encodeURIComponent(
                 lastSuccessData
                   ? buildWhatsAppCotizacionMessage(lastSuccessData.nombre, lastSuccessData.apellido, lastSuccessData.empresa, lastSuccessData.cotizacion)
                   : 'Hola. Te envío una cotización y el detalle de la cotización.'
@@ -1025,7 +1026,7 @@ export default function CotizacionForm({ prefillServicio, prefillIndustria }: Co
               </span>
               <span className="inline-flex items-center gap-1.5">
                 <Zap className="h-4 w-4 text-amber-500" />
-                <span>Respuesta en menos de 1 hora</span>
+                <span>Respuesta en {companyStats.commercialResponseSla}</span>
               </span>
               <span className="inline-flex items-center gap-1.5">
                 <Lock className="h-4 w-4 text-blue-600" />

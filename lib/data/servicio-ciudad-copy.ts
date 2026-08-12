@@ -214,7 +214,7 @@ export const servicioCiudadCopy: ServicioCiudadCopy[] = [
         pregunta:
           '¿Cuánto cuesta contratar un guardia de seguridad en Santiago?',
         respuesta:
-          'El costo depende del tipo de turno (12 o 24 horas), cantidad de puestos, comuna específica y nivel de riesgo del sitio. Entregamos cotización cerrada sin compromiso en 24 horas hábiles, con precio mensual todo incluido (uniforme, equipamiento, reemplazos por ausencia y supervisión). Solicitá la cotización para tu sitio específico y recibís un presupuesto en línea con el mercado de Santiago.',
+          'El costo depende del tipo de turno (12 o 24 horas), cantidad de puestos, comuna específica y nivel de riesgo del sitio. Entregamos cotización cerrada sin compromiso en menos de 12 horas hábiles, con precio mensual todo incluido (uniforme, equipamiento, reemplazos por ausencia y supervisión). Solicitá la cotización para tu sitio específico y recibís un presupuesto en línea con el mercado de Santiago.',
       },
       {
         pregunta:

@@ -19,6 +19,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { ShieldCheck, Zap, Lock, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { companyStats } from '@/lib/data/company-stats';
 
 const SESSION_KEY = 'gard_exit_popup_shown';
 const MIN_TIME_ON_PAGE_MS = 15_000;
@@ -139,7 +140,7 @@ export default function ExitIntentPopup() {
               </span>
               <span className="inline-flex items-center gap-1.5">
                 <Zap className="h-4 w-4 text-amber-500" />
-                <span>Respuesta en menos de 1 hora</span>
+                <span>Respuesta en {companyStats.commercialResponseSla}</span>
               </span>
               <span className="inline-flex items-center gap-1.5">
                 <Lock className="h-4 w-4 text-blue-600" />

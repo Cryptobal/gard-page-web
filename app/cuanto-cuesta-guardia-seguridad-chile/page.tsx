@@ -10,7 +10,7 @@ import FormularioCotizacionSeccion from '@/app/components/FormularioCotizacionSe
 export const metadata: Metadata = {
   title: 'Guardias de seguridad en Chile | Cotización rápida sin publicar precios',
   description:
-    'Solicita una cotización cerrada en 24h para guardias OS10 en Chile. Sin precios genéricos: entregamos valor según turnos, puestos y riesgo, con supervisión 24/7 incluida.',
+    'Solicita una cotización cerrada en menos de 12 horas hábiles para guardias OS10 en Chile. Sin precios genéricos: entregamos valor según turnos, puestos y riesgo, con supervisión 24/7 incluida.',
   keywords: [
     'guardias de seguridad chile',
     'guardias os10',
@@ -38,7 +38,7 @@ const breadcrumbs = [
 const faqs = [
   {
     question: '¿Cuál es el precio de un guardia de seguridad en Santiago?',
-    answer: 'No publicamos precios genéricos. Cotizamos en 24h con valor cerrado según puestos, turnos y riesgo, incluyendo OS10 y supervisión.',
+    answer: 'No publicamos precios genéricos. Cotizamos en menos de 12 horas hábiles con valor cerrado según puestos, turnos y riesgo, incluyendo OS10 y supervisión.',
   },
   {
     question: '¿Por qué varía el costo entre industrias o ubicaciones?',
@@ -60,7 +60,7 @@ const faqs = [
   },
   {
     question: '¿Puedo cotizar rápidamente?',
-    answer: 'Sí. Complete el formulario y en menos de 24h enviamos una propuesta con precio cerrado y SLA claros.',
+    answer: 'Sí. Complete el formulario y en menos de 12 horas hábiles enviamos una propuesta con precio cerrado y SLA claros.',
   },
 ];
 
@@ -109,7 +109,7 @@ export default function CuantoCuestaGuardiaPage() {
           </div>
           <h1 className="text-heading-1 mb-6">Guardias de seguridad en Chile</h1>
           <p className="text-body-lg text-muted-foreground max-w-3xl mx-auto mb-8">
-            No publicamos precios genéricos: cotizamos en 24h según puestos, turnos y riesgo, con supervisión 24/7 incluida.
+            No publicamos precios genéricos: cotizamos en menos de 12 horas hábiles según puestos, turnos y riesgo, con supervisión 24/7 incluida.
           </p>
           <div className="flex justify-center">
             <a href="#cotizar" className="gard-btn gard-btn-primary gard-btn-lg inline-flex items-center">
@@ -151,7 +151,7 @@ export default function CuantoCuestaGuardiaPage() {
             <div className="bg-card rounded-xl p-6 shadow-sm border">
               <Wallet className="h-10 w-10 text-primary mb-3" />
               <h3 className="text-xl font-semibold mb-2">Precio cerrado</h3>
-              <p className="text-muted-foreground text-sm">Cotización en 24h con SLA y costos transparentes (sin cargos ocultos).</p>
+              <p className="text-muted-foreground text-sm">Cotización en menos de 12 horas hábiles con SLA y costos transparentes (sin cargos ocultos).</p>
             </div>
             <div className="bg-card rounded-xl p-6 shadow-sm border">
               <CheckCircle className="h-10 w-10 text-primary mb-3" />

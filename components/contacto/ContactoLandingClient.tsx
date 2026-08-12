@@ -6,6 +6,7 @@ import Link from 'next/link';
 import ContactForm from './ContactForm';
 import CanonicalUrl from '@/components/seo/CanonicalUrl';
 import SEODevPanel from '@/components/seo/SEODevPanel';
+import { companyStats } from '@/lib/data/company-stats';
 
 export default function ContactoLandingClient() {
   return (
@@ -32,8 +33,8 @@ export default function ContactoLandingClient() {
                   <Phone className="h-6 w-6 text-[hsl(var(--gard-accent))] mr-4 mt-1 flex-shrink-0" />
                   <div>
                     <h3 className="font-semibold mb-1">Consultas Comerciales</h3>
-                    <p className="text-[hsl(var(--gard-muted-foreground))] mb-1">Respuesta inmediata en horario laboral</p>
-                    <a href="tel:+56941137976" className="text-[hsl(var(--gard-accent))] hover:underline">+56 9 4113 7976</a>
+                    <p className="text-[hsl(var(--gard-muted-foreground))] mb-1">Respuesta en {companyStats.commercialResponseSla}</p>
+                    <a href={`tel:${companyStats.contactPhoneE164}`} className="text-[hsl(var(--gard-accent))] hover:underline">{companyStats.contactPhoneDisplay}</a>
                   </div>
                 </div>
                 
@@ -42,7 +43,7 @@ export default function ContactoLandingClient() {
                   <div>
                     <h3 className="font-semibold mb-1">Trabaja con nosotros</h3>
                     <p className="text-[hsl(var(--gard-muted-foreground))] mb-1">Oportunidades laborales para guardias de seguridad</p>
-                    <a href="tel:+56956062246" className="text-[hsl(var(--gard-accent))] hover:underline">+56 9 5606 2246</a>
+                    <Link href="/reclutamiento" className="text-[hsl(var(--gard-accent))] hover:underline">Postula en /reclutamiento →</Link>
                   </div>
                 </div>
                 
@@ -50,7 +51,7 @@ export default function ContactoLandingClient() {
                   <Mail className="h-6 w-6 text-[hsl(var(--gard-accent))] mr-4 mt-1 flex-shrink-0" />
                   <div>
                     <h3 className="font-semibold mb-1">Correo electrónico</h3>
-                    <p className="text-[hsl(var(--gard-muted-foreground))] mb-1">Respuesta en menos de 24 horas</p>
+                    <p className="text-[hsl(var(--gard-muted-foreground))] mb-1">Respuesta en {companyStats.commercialResponseSla}</p>
                     <a href="mailto:comercial@gard.cl" className="text-[hsl(var(--gard-accent))] hover:underline">comercial@gard.cl</a>
                   </div>
                 </div>
@@ -106,7 +107,7 @@ export default function ContactoLandingClient() {
                   ¿Cuánto tiempo tardarán en responder a mi consulta?
                 </h3>
                 <p className="text-[hsl(var(--gard-muted-foreground))] ml-11">
-                  Nos comprometemos a responder todas las consultas por correo electrónico en un plazo máximo de 24 horas hábiles.
+                  Nos comprometemos a responder todas las consultas por correo electrónico en un plazo máximo de {companyStats.commercialResponseSla}.
                   Para consultas telefónicas, la atención es inmediata durante nuestro horario laboral.
                 </p>
               </div>
@@ -143,7 +144,7 @@ export default function ContactoLandingClient() {
                 <div className="flex-grow">
                   <h3 className="font-semibold text-lg mb-2">¿Prefiere una respuesta inmediata?</h3>
                   <p className="text-[hsl(var(--gard-muted-foreground))] mb-4 md:mb-0">
-                    Solicite una cotización online y obtenga una respuesta personalizada en menos de 24 horas.
+                    Solicite una cotización online y obtenga una respuesta personalizada en {companyStats.commercialResponseSla}.
                   </p>
                 </div>
                 <div className="flex-shrink-0">

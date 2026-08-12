@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 };
 
 const faqs = [
-  { question: '¿Cuánto cuesta el servicio de seguridad para un edificio corporativo en Santiago?', answer: 'El valor depende de turnos, cantidad de puestos y protocolos (recepción ejecutiva, rondas, control de accesos). Entregamos cotización cerrada en 24h sin publicar montos genéricos.' },
+  { question: '¿Cuánto cuesta el servicio de seguridad para un edificio corporativo en Santiago?', answer: 'El valor depende de turnos, cantidad de puestos y protocolos (recepción ejecutiva, rondas, control de accesos). Entregamos cotización cerrada en menos de 12 horas hábiles sin publicar montos genéricos.' },
   { question: '¿Sus guardias pueden hacer funciones de recepción corporativa?', answer: 'Sí, nuestros guardias para edificios corporativos están capacitados en protocolo ejecutivo: atención profesional de visitas, gestión de credenciales temporales, manejo de paquetería y correspondencia, coordinación con empresas arrendatarias, y uso de sistemas de control de acceso.' },
   { question: '¿Cómo manejan el control de acceso fuera del horario de oficina?', answer: 'Implementamos sistema diferenciado: durante horario laboral, acceso fluido con validación en recepción; fuera de horario, acceso solo con tarjeta/código + validación de identidad con guardia. Mantenemos bitácora digital de todas las entradas.' },
   { question: '¿Están capacitados para evacuaciones de emergencia?', answer: 'Sí, todos nuestros guardias están certificados en evacuación de edificios corporativos: conocen plan de evacuación específico, coordinan con brigadistas internos, guían personas hacia zonas seguras, y coordinan con Bomberos.' },

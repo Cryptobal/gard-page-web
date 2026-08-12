@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 };
 
 const faqs = [
-  { question: '¿Cuánto cuesta contratar guardias de seguridad para una mina en Chile?', answer: 'Los valores dependen de puestos, turnos, ubicación y logística remota. Entregamos cotización cerrada en 24h con personal OS10 y supervisión 24/7.' },
+  { question: '¿Cuánto cuesta contratar guardias de seguridad para una mina en Chile?', answer: 'Los valores dependen de puestos, turnos, ubicación y logística remota. Entregamos cotización cerrada en menos de 12 horas hábiles con personal OS10 y supervisión 24/7.' },
   { question: '¿Todos sus guardias tienen certificación OS10?', answer: 'Sí, el 100% de nuestros guardias cuenta con certificación OS10 vigente emitida por SERNAGEOMIN (obligatoria por ley para todos los guardias en Chile). Además, los guardias desplegados en minería reciben capacitación especializada adicional en protocolos mineros, primeros auxilios en altura y emergencias en zonas remotas según las exigencias específicas de SERNAGEOMIN.' },
   { question: '¿Cuánto tiempo toma implementar el servicio en una faena minera?', answer: 'Podemos iniciar operaciones en 5-7 días hábiles. Esto incluye: evaluación de la faena, selección de personal certificado OS10, capacitación específica en los protocolos de su operación, y despliegue en terreno. Para casos urgentes, tenemos capacidad de respuesta express en 48 horas.' },
   { question: '¿Qué áreas de la faena minera pueden cubrir?', answer: 'Cubrimos todas las áreas críticas: accesos principales y secundarios, casetas de control, zonas de maquinaria y equipos, bodegas de suministros, oficinas administrativas, comedores y campamentos, y zonas de extracción. Adaptamos el despliegue según layout específico de cada faena.' },

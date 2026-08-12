@@ -10,6 +10,7 @@ import BlogSidebar from '@/components/blog/BlogSidebar';
 import { CLOUDFLARE_ACCOUNT_HASH } from '@/lib/images';
 import BlogPostClient from '@/app/blog/[slug]/BlogPostClient';
 import { addInternalLinks } from '@/lib/internal-linking';
+import { companyStats } from '@/lib/data/company-stats';
 
 // Tipo BlogPost sin importar de lib/blog
 interface BlogPost {
@@ -134,7 +135,7 @@ export default function BlogPost({ post }: { post: BlogPost }) {
           addressRegion: 'Santiago',
           addressCountry: 'CL',
         },
-        telephone: '+56941137976',
+        telephone: companyStats.contactPhoneE164,
         email: 'comercial@gard.cl',
       }
     : null;
