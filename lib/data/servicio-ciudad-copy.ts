@@ -85,6 +85,13 @@ export type FaqItem = {
   respuesta: string;
 };
 
+/** Enlace interno de conversión o contenido relacionado. */
+export type EnlaceInterno = {
+  titulo: string;
+  href: string;
+  descripcion: string;
+};
+
 /** Copy único de una combinación ciudad × servicio. */
 export type ServicioCiudadCopy = {
   /** Slug de ciudad (debe existir en `ciudad-data.ts` y `ciudades-dataset.ts`). */
@@ -122,6 +129,15 @@ export type ServicioCiudadCopy = {
 
   /** FAQ mínimo 4 items; ≥2 específicas a la ciudad. */
   faq: FaqItem[];
+
+  /**
+   * FAQ orientado a objeciones comerciales (subcontratación, reemplazos, OS10).
+   * Opcional: si existe, se renderiza como bloque separado con schema propio.
+   */
+  faqObjeciones?: FaqItem[];
+
+  /** Enlaces internos hacia páginas de conversión, servicio o blog relacionado. */
+  enlacesInternos?: EnlaceInterno[];
 };
 
 /**
@@ -239,6 +255,62 @@ export const servicioCiudadCopy: ServicioCiudadCopy[] = [
           '¿Qué tan rápido pueden iniciar el servicio en un sitio nuevo en Santiago?',
         respuesta:
           'Onboarding estándar en 5 días hábiles: día 1 visita técnica y diseño de protocolo, día 2 selección y capacitación específica del guardia asignado, días 3-4 validación de credenciales OS10 y cobertura de ausencias, día 5 inicio con supervisión reforzada. Para contingencias urgentes activamos modalidad express con personal OS10 de contingencia dentro de 48 horas, aunque la puesta completa con protocolos a medida requiere los 5 días hábiles.',
+      },
+    ],
+    faqObjeciones: [
+      {
+        pregunta: '¿Gard Security subcontrata guardias a terceros en Santiago?',
+        respuesta:
+          'No subcontratamos personal de vigilancia. Los guardias que operan en Santiago son parte de nuestra dotación directa en la RM, con contrato laboral con Gard Security SpA y certificación OS10 auditada mensualmente. Usted contrata a Gard y Gard responde por el servicio, la supervisión 24/7 desde nuestra central propia y el cumplimiento normativo. Esto evita la cadena de responsabilidad difusa que genera la subcontratación en el rubro y alinea con la Ley 20.123 sobre responsabilidad solidaria del mandante.',
+      },
+      {
+        pregunta:
+          '¿Qué pasa si un guardia falta o se enferma? ¿Hay reemplazo garantizado?',
+        respuesta:
+          'Mantenemos un pool de guardias OS10 de contingencia en Santiago para cubrir ausencias planificadas e imprevistas. La continuidad operacional del 99,9% de turnos cubiertos se mide trimestralmente sobre contratos activos: cuando un guardia no puede presentarse, la central de monitoreo activa un reemplazo según protocolo sin costo adicional en la modalidad estándar. Supervisores verifican credenciales y entrega de turno antes de cada relevo, con registro digital en OPAI.',
+      },
+      {
+        pregunta: '¿Todos los guardias asignados tienen certificación OS10 vigente?',
+        respuesta:
+          'Sí: el 100% del plantel tiene credencial OS10 vigente con auditoría mensual de vencimientos. Antes de asignar un guardia a un sitio en Santiago verificamos certificado, capacitación específica al protocolo del cliente y antecedentes según normativa de Carabineros. Si un guardia pierde la certificación, no opera hasta renovarla; en ese intervalo asignamos reemplazo desde el pool de contingencia para no dejar el puesto descubierto.',
+      },
+      {
+        pregunta:
+          '¿En cuánto tiempo recibo una cotización y cuándo puede arrancar el servicio?',
+        respuesta:
+          'Entregamos cotización cerrada sin compromiso en menos de 12 horas hábiles desde que recibimos los datos del sitio. El plazo de inicio operativo estándar es de 5 días hábiles desde la firma del contrato hasta guardia OS10 activo con protocolo validado. Para urgencias evaluamos modalidad express con personal de contingencia dentro de 48 horas, aunque la puesta completa con protocolos a medida requiere el onboarding estándar de 5 días.',
+      },
+    ],
+    enlacesInternos: [
+      {
+        titulo: 'Cotizar guardias de seguridad',
+        href: '/cotizar',
+        descripcion:
+          'Formulario comercial con respuesta en menos de 12 horas hábiles y propuesta cerrada para su sitio.',
+      },
+      {
+        titulo: 'Servicio de guardias para empresas',
+        href: '/servicios/guardias-de-seguridad',
+        descripcion:
+          'Alcance del servicio, modalidades de turno, supervisión y tecnología OPAI incluida.',
+      },
+      {
+        titulo: 'Empresa de seguridad privada en Chile',
+        href: '/empresa-seguridad-privada-chile',
+        descripcion:
+          'Trayectoria, cobertura nacional, cumplimiento normativo y diferenciadores operativos de Gard.',
+      },
+      {
+        titulo: 'Cómo elegir empresa de seguridad privada',
+        href: '/blog/como-elegir-empresa-seguridad-privada',
+        descripcion:
+          'Criterios B2B para evaluar proveedores: OS10, continuidad, subcontratación y SLA.',
+      },
+      {
+        titulo: 'Subcontratación y responsabilidad solidaria',
+        href: '/blog/responsabilidad-solidaria-subcontratacion-seguridad-chile',
+        descripcion:
+          'Qué exige la Ley 20.123 al contratar servicios de vigilancia y por qué importa el empleador directo.',
       },
     ],
   },
