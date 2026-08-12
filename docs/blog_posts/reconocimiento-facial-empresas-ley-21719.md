@@ -11,7 +11,7 @@ faqSchema:
   - question: "¿Es legal usar reconocimiento facial en una empresa en Chile?"
     answer: "Sí, pero con condiciones. El rostro es un dato biométrico y, bajo la Ley 21.719, se trata como dato sensible con protección especial. Su uso exige una base de licitud válida —normalmente consentimiento explícito—, información previa al titular y que la medida sea necesaria y proporcional a un riesgo real."
   - question: "¿Necesito consentimiento para aplicar reconocimiento facial a mis trabajadores?"
-    answer: "En la mayoría de los casos, sí. La ley exige consentimiento explícito y otorgado por separado para datos sensibles; no basta una cláusula genérica en el contrato de trabajo. El trabajador debe saber qué se trata y para qué, y poder revocarlo. Por eso conviene evaluar alternativas menos invasivas antes de imponerlo."
+    answer: "En la mayoría de los casos, sí, y explícito y por separado: no basta una cláusula genérica del contrato. La ley presume que el consentimiento no es libre cuando existe una alternativa menos invasiva, así que en control de asistencia o acceso ordinario debes ofrecer siempre una vía no biométrica (tarjeta, PIN o app) a quien lo rechace o revoque. Sin ella, el consentimiento no es válido."
   - question: "¿El rostro es un dato sensible según la Ley 21.719?"
     answer: "Sí. La Ley 21.719 clasifica los datos biométricos —rostro, huella dactilar, iris y voz— como datos personales sensibles. Esto activa un estándar reforzado: base de licitud más estricta, deberes de información, medidas de seguridad mayores y principios de necesidad, proporcionalidad y minimización de los datos."
   - question: "¿Desde cuándo rige la obligación de la Ley 21.719 sobre datos biométricos?"
@@ -51,9 +51,10 @@ Antes de firmar con un proveedor, conviene tener resueltos estos puntos. Cada un
 | **Necesidad y proporcionalidad** | El reconocimiento facial debe ser la vía adecuada para un riesgo real, no un "porque se puede". Si una credencial resuelve el problema, la biometría puede ser desproporcionada. |
 | **Minimización y plazo de retención** | Guardar solo lo indispensable y por el tiempo justificado. No acumular plantillas faciales indefinidamente ni para finalidades distintas a la declarada. |
 | **Seguridad reforzada** | Cifrado, control de accesos a la base biométrica y trazabilidad. Una filtración de datos biométricos es especialmente grave e irreversible. |
+| **Evaluación de impacto (EIPD)** | Cuando el uso implica vigilancia biométrica sistemática de zonas de acceso público o masivo —una lista de atención en retail, un acceso multitudinario—, corresponde una Evaluación de Impacto en Protección de Datos (EIPD) documentada **antes** de implementar. |
 | **Derechos del titular** | Habilitar acceso, rectificación, supresión y oposición, y responderlos en los plazos que fija la ley. |
 
-El caso más delicado es el del **personal propio**: usar reconocimiento facial para control de asistencia o acceso de trabajadores exige consentimiento explícito y separado, y evaluar seriamente si existe una alternativa menos invasiva. Imponerlo como condición sin más suele ser terreno de conflicto.
+El caso más delicado es el del **personal propio**: usar reconocimiento facial para control de asistencia o acceso de trabajadores exige consentimiento explícito y separado. Y como la ley presume que ese consentimiento no es libre cuando existe una alternativa menos invasiva, en la práctica hay que ofrecer siempre una vía no biométrica —tarjeta, PIN o app— a quien no consienta o revoque; sin esa opción, el consentimiento no se considera válido. Imponerlo como condición sin más suele ser terreno de conflicto.
 
 ## ¿Cuándo se justifica y cuándo es sobredimensionado?
 
