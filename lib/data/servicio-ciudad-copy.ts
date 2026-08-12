@@ -454,6 +454,12 @@ export const servicioCiudadCopy: ServicioCiudadCopy[] = [
           'Formulario comercial con respuesta en menos de 12 horas hábiles y propuesta cerrada para su sitio en el norte.',
       },
       {
+        titulo: 'Guía de factores de costo',
+        href: '/cuanto-cuesta-guardia-seguridad-chile',
+        descripcion:
+          'Qué variables definen el valor de la dotación en Chile —sin montos genéricos que no apliquen a su operación.',
+      },
+      {
         titulo: 'Seguridad para minería',
         href: '/industrias/mineria',
         descripcion:
