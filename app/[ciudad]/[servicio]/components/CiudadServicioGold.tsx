@@ -496,7 +496,7 @@ export default function CiudadServicioGold({ copy }: CiudadServicioGoldProps) {
               <p className="text-body-base text-muted-foreground mb-6">
                 Publicamos casos con nombre de cliente solo con consentimiento escrito. Mientras
                 tanto, estos indicadores —medidos sobre contratos activos— respaldan la operación
-                en la RM:
+                en {ciudadNombre}:
               </p>
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
                 {copy.kpisOperativos.slice(0, 4).map((kpi) => (
