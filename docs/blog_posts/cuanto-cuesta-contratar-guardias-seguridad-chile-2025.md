@@ -1,5 +1,7 @@
 ---
 title: "Cuánto Cuesta Contratar Guardias de Seguridad en Chile 2025 | Precios Reales"
+slug: cuanto-cuesta-contratar-guardias-seguridad-chile-2025
+redirected: true
 description: "Guía completa con precios actualizados 2025 para contratar guardias de seguridad en Chile. Tarifas por industria, región y tipo de servicio. Calculadora incluida."
 date: "2025-01-15"
 author: "Gard Security"
