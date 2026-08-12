@@ -9,6 +9,11 @@ import {
   ArrowRight,
   AlertTriangle,
   BarChart3,
+  MessageCircle,
+  Star,
+  Calculator,
+  Users,
+  BookOpen,
 } from 'lucide-react';
 import CloudflareImage from '@/components/CloudflareImage';
 import BreadcrumbSchema, { Breadcrumbs } from '@/components/seo/BreadcrumbSchema';
@@ -53,6 +58,11 @@ export default function CiudadServicioGold({ copy }: CiudadServicioGoldProps) {
   ];
 
   const serviceSchemaDescription = copy.introParagraph.slice(0, 300);
+
+  const whatsAppPrefill = encodeURIComponent(
+    `Hola, quiero cotizar ${servicioNombre.toLowerCase()} en ${ciudadNombre} para mi empresa.`,
+  );
+  const whatsAppUrl = `https://wa.me/${companyStats.commercialWhatsAppWaMe}?text=${whatsAppPrefill}`;
 
   return (
     <>
@@ -109,16 +119,27 @@ export default function CiudadServicioGold({ copy }: CiudadServicioGoldProps) {
               href="#cotizar"
               className="gard-btn gard-btn-primary gard-btn-lg inline-flex items-center"
             >
-              Cotizar {servicioNombre} en {ciudadNombre}
+              Cotizar ahora
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
-            <Link
-              href="#panorama"
+            <a
+              href={whatsAppUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className="gard-btn bg-white/10 text-white backdrop-blur-sm border border-white/30 hover:bg-white/20 gard-btn-lg inline-flex items-center"
             >
-              Ver panorama de seguridad
-            </Link>
+              <MessageCircle className="mr-2 h-5 w-5" aria-hidden="true" />
+              WhatsApp comercial
+            </a>
           </div>
+          <p className="text-sm text-white/80 mt-5 max-w-xl mx-auto">
+            Respuesta comercial en {companyStats.commercialResponseSla}. Sin compromiso.
+          </p>
+          <p className="text-sm text-white/60 mt-3">
+            <a href="#panorama" className="underline hover:text-white/90">
+              Ver panorama de seguridad en {ciudadNombre}
+            </a>
+          </p>
         </div>
       </section>
 
@@ -126,6 +147,67 @@ export default function CiudadServicioGold({ copy }: CiudadServicioGoldProps) {
       <div className="gard-container pt-8">
         <Breadcrumbs items={breadcrumbs} />
       </div>
+
+      {/* Prueba social verificable (métricas aprobadas, sin casos inventados) */}
+      <section className="gard-section py-12 md:py-16 bg-gray-50 dark:bg-gray-900 border-y border-gray-100 dark:border-gray-800">
+        <div className="gard-container max-w-6xl mx-auto px-4">
+          <div className="text-center mb-8">
+            <h2 className="text-heading-3 mb-2 font-title">
+              Confianza verificable en {ciudadNombre}
+            </h2>
+            <p className="text-body-base text-muted-foreground max-w-2xl mx-auto">
+              Métricas operativas y reseñas públicas — sin testimonios inventados ni casos sin
+              consentimiento del cliente.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+            <article className="bg-background rounded-2xl p-5 shadow-sm border border-gray-100 dark:border-gray-800 text-center">
+              <div className="flex items-center justify-center gap-1 text-primary mb-2">
+                <Star className="h-5 w-5 fill-primary" aria-hidden="true" />
+                <span className="text-2xl font-bold font-title">{companyStats.gmbRatingValue}</span>
+                <span className="text-sm text-muted-foreground">/ {companyStats.gmbBestRating}</span>
+              </div>
+              <p className="text-sm font-semibold text-foreground mb-1">Google Business</p>
+              <p className="text-xs text-muted-foreground mb-2">
+                {companyStats.gmbReviewCount} reseñas verificadas
+              </p>
+              <a
+                href={companyStats.gmbShortUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs text-primary underline hover:no-underline"
+              >
+                Ver perfil público
+              </a>
+            </article>
+            <article className="bg-background rounded-2xl p-5 shadow-sm border border-gray-100 dark:border-gray-800 text-center">
+              <div className="text-2xl font-bold text-primary mb-2 font-title">
+                {companyStats.os10CertifiedPct}%
+              </div>
+              <p className="text-sm font-semibold text-foreground mb-1">OS10 vigente</p>
+              <p className="text-xs text-muted-foreground">Auditoría mensual del plantel</p>
+            </article>
+            <article className="bg-background rounded-2xl p-5 shadow-sm border border-gray-100 dark:border-gray-800 text-center">
+              <div className="text-2xl font-bold text-primary mb-2 font-title">
+                {companyStats.operationalContinuityPct}%
+              </div>
+              <p className="text-sm font-semibold text-foreground mb-1">Continuidad</p>
+              <p className="text-xs text-muted-foreground">Turnos cubiertos vs contratados</p>
+            </article>
+            <article className="bg-background rounded-2xl p-5 shadow-sm border border-gray-100 dark:border-gray-800 text-center">
+              <div className="flex items-center justify-center mb-2">
+                <Users className="h-6 w-6 text-primary" aria-hidden="true" />
+              </div>
+              <p className="text-sm font-semibold text-foreground mb-1">
+                +{companyStats.leadershipYearsExperience} años
+              </p>
+              <p className="text-xs text-muted-foreground">
+                Experiencia del equipo en seguridad privada B2B
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
 
       {/* Panorama de seguridad */}
       <section id="panorama" className="gard-section py-16 md:py-24 bg-gray-50 dark:bg-gray-900">
@@ -287,6 +369,74 @@ export default function CiudadServicioGold({ copy }: CiudadServicioGoldProps) {
         </div>
       </section>
 
+      {/* Qué define el valor (sin precios inventados) */}
+      <section className="gard-section py-16 md:py-24 bg-gray-50 dark:bg-gray-900">
+        <div className="gard-container max-w-6xl mx-auto px-4">
+          <div className="flex items-start gap-4 mb-10">
+            <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+              <Calculator className="h-6 w-6 text-primary" aria-hidden="true" />
+            </div>
+            <div>
+              <h2 className="text-heading-2 mb-2 font-title">
+                Qué define el valor de su dotación en {ciudadNombre}
+              </h2>
+              <p className="text-body-lg text-muted-foreground">
+                No publicamos precios genéricos: cada sitio se cotiza según estos factores
+                verificables en visita técnica.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+            {[
+              {
+                title: 'Puestos y turnos',
+                body: 'Cantidad de guardias, esquema 12h o 24h y cobertura fines de semana o feriados.',
+              },
+              {
+                title: 'Nivel de riesgo',
+                body: 'Tipo de activo, flujo de personas, carga/descarga y protocolos especiales del sitio.',
+              },
+              {
+                title: 'Comuna y zona',
+                body: 'Desplazamiento de supervisores, pool de reemplazos y tiempos de respuesta en su sector.',
+              },
+              {
+                title: 'Supervisión y tecnología',
+                body: 'Rondas GPS, central 24/7, reportes OPAI y equipamiento adicional si lo requiere.',
+              },
+            ].map((factor) => (
+              <article
+                key={factor.title}
+                className="bg-background rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-800"
+              >
+                <h3 className="text-lg font-semibold text-foreground mb-2 font-title">
+                  {factor.title}
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{factor.body}</p>
+              </article>
+            ))}
+          </div>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link href="/cotizar" className="gard-btn gard-btn-primary gard-btn-lg inline-flex items-center">
+              Solicitar cotización cerrada
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Link>
+            <Link
+              href="/cuanto-cuesta-guardia-seguridad-chile"
+              className="gard-btn gard-btn-secondary gard-btn-lg inline-flex items-center"
+            >
+              Guía de factores de costo
+            </Link>
+          </div>
+          <p className="text-sm text-muted-foreground text-center mt-4">
+            Propuesta comercial en {companyStats.commercialResponseSla}, sin montos de referencia
+            que no apliquen a su operación.
+          </p>
+        </div>
+      </section>
+
       {/* Caso de estudio (solo si existe) */}
       {copy.casoEstudio && (
         <section className="gard-section py-16 md:py-24 bg-gray-50 dark:bg-gray-900">
@@ -335,12 +485,90 @@ export default function CiudadServicioGold({ copy }: CiudadServicioGoldProps) {
         </section>
       )}
 
-      {/* FAQ con schema */}
+      {/* Placeholder estructurado cuando no hay caso de estudio con consentimiento */}
+      {!copy.casoEstudio && (
+        <section className="gard-section py-16 md:py-24">
+          <div className="gard-container max-w-5xl mx-auto px-4">
+            <div className="bg-card rounded-2xl p-8 md:p-10 shadow-sm border border-gray-100 dark:border-gray-800">
+              <h2 className="text-heading-3 mb-3 font-title">
+                Resultados operativos agregados en {ciudadNombre}
+              </h2>
+              <p className="text-body-base text-muted-foreground mb-6">
+                Publicamos casos con nombre de cliente solo con consentimiento escrito. Mientras
+                tanto, estos indicadores —medidos sobre contratos activos— respaldan la operación
+                en la RM:
+              </p>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+                {copy.kpisOperativos.slice(0, 4).map((kpi) => (
+                  <li key={kpi.label} className="flex items-start gap-2 text-sm text-foreground">
+                    <CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" aria-hidden="true" />
+                    <span>
+                      <strong>{kpi.value}</strong> — {kpi.label.toLowerCase()}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              <p className="text-sm text-muted-foreground">
+                ¿Necesita referencias de su industria?{' '}
+                <Link href="/cotizar" className="text-primary underline hover:no-underline">
+                  Solicite cotización
+                </Link>{' '}
+                y coordinamos una conversación comercial con datos aplicables a su sector.
+              </p>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* FAQ general */}
       <FAQSection
         title={`Preguntas frecuentes sobre ${servicioNombre.toLowerCase()} en ${ciudadNombre}`}
         description={`Respuestas verificables sobre cómo opera Gard Security en ${ciudadNombre}.`}
         faqs={copy.faq.map((f) => ({ question: f.pregunta, answer: f.respuesta }))}
       />
+
+      {/* FAQ objeciones comerciales */}
+      {copy.faqObjeciones && copy.faqObjeciones.length > 0 && (
+        <FAQSection
+          title="Resolvemos sus dudas antes de cotizar"
+          description={`Subcontratación, reemplazos, OS10, plazos y cobertura en ${ciudadNombre}.`}
+          faqs={copy.faqObjeciones.map((f) => ({ question: f.pregunta, answer: f.respuesta }))}
+        />
+      )}
+
+      {/* Enlaces internos */}
+      {copy.enlacesInternos && copy.enlacesInternos.length > 0 && (
+        <section className="gard-section py-16 md:py-24 bg-gray-50 dark:bg-gray-900">
+          <div className="gard-container max-w-6xl mx-auto px-4">
+            <div className="flex items-start gap-4 mb-8">
+              <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+                <BookOpen className="h-6 w-6 text-primary" aria-hidden="true" />
+              </div>
+              <div>
+                <h2 className="text-heading-2 mb-2 font-title">Recursos relacionados</h2>
+                <p className="text-body-lg text-muted-foreground">
+                  Más información para evaluar y contratar guardias en {ciudadNombre}.
+                </p>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {copy.enlacesInternos.map((enlace) => (
+                <Link
+                  key={enlace.href}
+                  href={enlace.href}
+                  className="group bg-background rounded-2xl p-5 shadow-sm border border-gray-100 dark:border-gray-800 hover:border-primary/30 hover:shadow-md transition-all"
+                >
+                  <h3 className="text-lg font-semibold text-foreground group-hover:text-primary mb-2 font-title flex items-center gap-2">
+                    {enlace.titulo}
+                    <ArrowRight className="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true" />
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{enlace.descripcion}</p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* CTA · Cotización */}
       <section className="gard-section py-16 bg-primary text-white">
@@ -357,12 +585,23 @@ export default function CiudadServicioGold({ copy }: CiudadServicioGoldProps) {
             monitoreo propia y {companyStats.citiesCovered} ciudades operativas. Cotización cerrada
             sin compromiso.
           </p>
-          <Link
-            href="#cotizar"
-            className="gard-btn bg-white text-primary hover:bg-white/90 gard-btn-lg inline-flex items-center"
-          >
-            Solicitar cotización <ArrowRight className="ml-2 h-5 w-5" />
-          </Link>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link
+              href="#cotizar"
+              className="gard-btn bg-white text-primary hover:bg-white/90 gard-btn-lg inline-flex items-center"
+            >
+              Solicitar cotización <ArrowRight className="ml-2 h-5 w-5" />
+            </Link>
+            <a
+              href={whatsAppUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="gard-btn bg-white/10 text-white border border-white/30 hover:bg-white/20 gard-btn-lg inline-flex items-center"
+            >
+              <MessageCircle className="mr-2 h-5 w-5" aria-hidden="true" />
+              WhatsApp comercial
+            </a>
+          </div>
         </div>
       </section>
 
