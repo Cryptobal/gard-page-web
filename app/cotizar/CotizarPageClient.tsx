@@ -7,6 +7,7 @@ import { ArrowRight, Clipboard } from 'lucide-react';
 import GardHero from '@/components/layouts/GardHero';
 import { Suspense } from 'react';
 import type { CotizarVariant } from '@/lib/ab-testing';
+import { companyStats } from '@/lib/data/company-stats';
 
 interface CotizarPageClientProps {
   variant: CotizarVariant;
@@ -50,7 +51,7 @@ export default function CotizarPageClient({ variant }: CotizarPageClientProps) {
             <div className="md:col-span-5">
               <h2 className="text-heading-2 mb-6">Solicita tu cotización personalizada</h2>
               <p className="text-body-lg text-muted-foreground mb-8">
-                En Gard Security te ofrecemos soluciones adaptadas específicamente a tus necesidades de seguridad. Completa el formulario y nuestro equipo te contactará en menos de 1 hora en horario hábil.
+                En Gard Security te ofrecemos soluciones adaptadas específicamente a tus necesidades de seguridad. Completa el formulario y nuestro equipo te contactará en {companyStats.commercialResponseSla}.
               </p>
 
               <div className="bg-muted/20 p-6 rounded-xl mb-8">

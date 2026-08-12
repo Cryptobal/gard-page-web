@@ -347,7 +347,7 @@ export default function CiudadServicioGold({ copy }: CiudadServicioGoldProps) {
         <div className="gard-container max-w-4xl mx-auto px-4 text-center">
           <div className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-2 text-sm font-medium mb-6">
             <Clock className="h-4 w-4" aria-hidden="true" />
-            <span>Cotización en menos de 24 horas hábiles</span>
+            <span>Cotización en {companyStats.commercialResponseSla}</span>
           </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-4 font-title">
             Proteja su operación en {ciudadNombre}

@@ -637,7 +637,7 @@ export default function CiudadServicioPage() {
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
                   <CheckCircle2 className="text-accent" size={20} />
-                  <p>Respuesta en menos de 24 horas</p>
+                  <p>Respuesta en menos de 12 horas hábiles</p>
                 </div>
                 <div className="flex items-center gap-3">
                   <CheckCircle2 className="text-accent" size={20} />

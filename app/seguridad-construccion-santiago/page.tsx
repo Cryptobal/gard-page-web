@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 const faqs = [
   { question: '¿Por qué necesito seguridad en mi obra de construcción?', answer: 'Los robos de maquinaria, herramientas, materiales y cables de cobre pueden significar pérdidas millonarias y retrasos en plazos de entrega. Además, el vandalismo y acceso de terceros no autorizados generan responsabilidades legales. Nuestro servicio reduce el riesgo de robos en 90% y protege su inversión 24/7.' },
   { question: '¿Qué incluye el servicio de seguridad para construcción?', answer: 'Guardias capacitados en seguridad de obras (1-2 guardias turnos 12h o 24h), control de ingreso de trabajadores y proveedores con registro digital, rondas programadas en zonas críticas, vigilancia de maquinaria pesada y herramientas, protección de materiales (fierros, cables, cementos), y reportes diarios de novedades e incidentes.' },
-  { question: '¿Cuánto cuesta la seguridad para una obra en Santiago?', answer: 'Se calcula según turnos, número de puestos, tamaño y riesgo de la obra. Enviamos propuesta cerrada en 24h; no publicamos montos genéricos.' },
+  { question: '¿Cuánto cuesta la seguridad para una obra en Santiago?', answer: 'Se calcula según turnos, número de puestos, tamaño y riesgo de la obra. Enviamos propuesta cerrada en menos de 12 horas hábiles; no publicamos montos genéricos.' },
   { question: '¿Cuánto tiempo toma implementar el servicio?', answer: 'Podemos desplegar guardias en su obra en 24-48 horas desde la aprobación de la cotización. Realizamos visita de evaluación, diseñamos plan de seguridad específico y coordinamos inicio de servicio según su calendario de obra.' }
 ];
 

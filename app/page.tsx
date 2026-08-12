@@ -10,7 +10,7 @@ const OG_IMAGE_URL = 'https://imagedelivery.net/gGw8cfmEZedi85dYm6qcFw/4824f8b9-
 
 const yearsOfExperience = companyStats.leadershipYearsExperience;
 
-const HOME_DESCRIPTION = `Empresa de guardias de seguridad para empresas: certificados OS10, monitoreo 24/7 y tecnología propia. ${yearsOfExperience}+ años protegiendo operaciones en todo Chile. Cotiza en 12 horas.`;
+const HOME_DESCRIPTION = `Empresa de guardias de seguridad para empresas: certificados OS10, monitoreo 24/7 y tecnología propia. ${yearsOfExperience}+ años protegiendo operaciones en todo Chile. Cotización en menos de 12 horas hábiles.`;
 
 export const metadata: Metadata = {
   title: 'Empresa de Guardias de Seguridad Privada en Chile | Gard Security',

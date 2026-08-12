@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import { LegalPageShell, LegalPageTitle } from '@/components/legal/LegalPageShell';
+import { companyStats } from '@/lib/data/company-stats';
 
 export const metadata: Metadata = {
   title: 'Política de Privacidad | Gard Security',
@@ -133,7 +134,7 @@ export default function PoliticaPrivacidad() {
               <div className="border-l-4 border-primary dark:border-[hsl(var(--gard-accent))] pl-4 py-2 text-gray-700 dark:text-gray-300">
                 <p className="mb-2"><strong>Gard Security</strong></p>
                 <p className="mb-2">Email: privacidad@gard.cl</p>
-                <p className="mb-0">Teléfono: +56 9 4113 7976</p>
+                <p className="mb-0">Teléfono: {companyStats.contactPhoneDisplay}</p>
               </div>
             </section>
 

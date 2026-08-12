@@ -52,14 +52,13 @@ import API_URLS from '@/app/config/api';
 import { getPaginaWebFromEmail } from '@/lib/opaiPayload';
 import { trackFormSubmission } from '@/lib/analytics/formTracking';
 import { Button } from '@/components/ui/button';
+import { companyStats } from '@/lib/data/company-stats';
 
 // Opciones predefinidas para los controles de selección
 const OPCIONES_TIPO_TURNO: TipoTurno[] = ['2x5', '5x2', '4x4', '7x7', '14x14'];
 const OPCIONES_HORARIO: TipoHorario[] = ['Día', 'Noche', '24 horas'];
 
 // WhatsApp comercial (link en email al cliente y en modal de éxito)
-const WHATSAPP_COMERCIAL = '56982307771';
-
 function buildWhatsAppClienteMessage(nombre: string, apellido: string, empresa: string, detalle: string): string {
   const base = `Hola, ${nombre}. Soy ${nombre} ${apellido} de ${empresa}. Te envío una cotización y el detalle de la cotización.`;
   return detalle?.trim() ? `${base}\n\n${detalle.trim()}` : base;
@@ -782,7 +781,7 @@ export default function CotizadorInteligenteV2() {
                 <Send className="h-4 w-4" />
                 <span>Solicitar Cotización</span>
               </button>
-              <p className="text-xs text-muted-foreground mt-3">Te contactaremos en menos de 1 hora en horario hábil.</p>
+              <p className="text-xs text-muted-foreground mt-3">Te contactaremos en {companyStats.commercialResponseSla}.</p>
             </div>
           </motion.div>
           
@@ -832,7 +831,7 @@ export default function CotizadorInteligenteV2() {
                     </p>
                     <div className="flex flex-col sm:flex-row gap-3 justify-center items-center mb-6">
                       <a
-                        href={`https://wa.me/${WHATSAPP_COMERCIAL}?text=${encodeURIComponent(
+                        href={`https://wa.me/${companyStats.commercialWhatsAppWaMe}?text=${encodeURIComponent(
                           lastSuccessData
                             ? buildWhatsAppClienteMessage(lastSuccessData.nombre, lastSuccessData.apellido, lastSuccessData.empresa, lastSuccessData.detalle)
                             : 'Hola. Te envío una cotización y el detalle de la cotización.'
@@ -1009,7 +1008,7 @@ export default function CotizadorInteligenteV2() {
                       </span>
                       <span className="inline-flex items-center gap-1.5">
                         <Zap className="h-4 w-4 text-amber-500" />
-                        <span>Respuesta en menos de 1 hora</span>
+                        <span>Respuesta en {companyStats.commercialResponseSla}</span>
                       </span>
                       <span className="inline-flex items-center gap-1.5">
                         <Lock className="h-4 w-4 text-blue-600" />

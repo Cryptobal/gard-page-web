@@ -84,12 +84,24 @@ export const companyStats = {
    * llms.txt, Google Business Profile y cualquier cita pública. La
    * inconsistencia de NAP (Name-Address-Phone) daña el SEO local y la
    * citabilidad por motores de IA.
-   *
-   * Nota: el número de WhatsApp de captación de leads puede ser otro; eso es
-   * un canal de contacto, no la cita NAP.
    */
-  contactPhoneE164: '+56941137976',
-  contactPhoneDisplay: '+56 9 4113 7976',
+  contactPhoneE164: '+56968727644',
+  contactPhoneDisplay: '+56 9 6872 7644',
+
+  /** WhatsApp comercial (B2B / cotización). Sin prefijo + para wa.me. */
+  commercialWhatsAppWaMe: '56968727644',
+
+  /**
+   * Teléfono RRHH / postulaciones de guardias. SOLO en /reclutamiento y UI
+   * de empleo asociada — nunca en schema, footer comercial ni CTAs de venta.
+   */
+  hrPhoneE164: '+56956062246',
+  hrPhoneDisplay: '+56 9 5606 2246',
+  hrWhatsAppWaMe: '56956062246',
+
+  /** SLA comercial autorizado para promesas de respuesta en CTAs B2B. */
+  commercialResponseSla: 'menos de 12 horas hábiles',
+  commercialResponseSlaShort: 'menos de 12 horas',
 
   /**
    * URLs verificables del perfil público para cross-validación por Google
