@@ -1,6 +1,7 @@
 ---
 title: 'Innovación en Seguridad Privada: Drones en Seguridad'
 slug: innovacion-en-seguridad-privada-drones-en-seguridad
+redirected: true
 date: '2024-11-15'
 description: >-
   La Tecnología con Drones Llega a la Seguridad Privada  El avance de la
