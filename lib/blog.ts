@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { cloudflareImages } from './images';
+import { isRedirectedBlogSlug } from '@/lib/data/blog-redirected-slugs';
 import { remark } from 'remark';
 import html from 'remark-html';
 import remarkGfm from 'remark-gfm';
@@ -44,9 +45,9 @@ export function getAllPostSlugs(): Array<{ slug: string }> {
   const fileNames = fs.readdirSync(postsDirectory);
   return fileNames
     .filter((fileName) => fileName.endsWith('.md'))
-    .map((fileName) => ({
-      slug: fileName.replace(/\.md$/, ''),
-    }));
+    .map((fileName) => fileName.replace(/\.md$/, ''))
+    .filter((slug) => !isRedirectedBlogSlug(slug))
+    .map((slug) => ({ slug }));
 }
 
 // Limpia residuos legacy de WordPress/Elementor que llegaron junto al
@@ -135,13 +136,15 @@ export async function getAllPosts(): Promise<BlogPost[]> {
   );
   
   // Ordenar posts por fecha, del más reciente al más antiguo
-  return allPostsData.sort((a, b) => {
-    if (a.date < b.date) {
-      return 1;
-    } else {
-      return -1;
-    }
-  });
+  return allPostsData
+    .filter((post) => !isRedirectedBlogSlug(post.slug))
+    .sort((a, b) => {
+      if (a.date < b.date) {
+        return 1;
+      } else {
+        return -1;
+      }
+    });
 }
 
 // Obtener posts paginados
