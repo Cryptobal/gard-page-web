@@ -252,6 +252,11 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/temuco',
+        destination: '/temuco/guardias-de-seguridad',
+        permanent: true,
+      },
+      {
         source: '/testimonios',
         destination: '/sobre-nosotros',
         permanent: true,
