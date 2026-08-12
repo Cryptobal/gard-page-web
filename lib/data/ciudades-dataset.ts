@@ -202,7 +202,47 @@ export const ciudadesDataset: Record<string, CiudadDataset> = {
     regulacionesLocalesRelevantes:
       'Ordenanzas municipales específicas por comuna para control de acceso a edificios corporativos y uso de CCTV en espacios semi-públicos. Las 52 comunas del Gran Santiago tienen normativa diferenciada que impacta el despliegue de guardias en locales comerciales y edificios residenciales de uso mixto.',
   },
-  valparaiso: emptyDataset('valparaiso', 'Valparaíso'),
+  valparaiso: {
+    ciudad: 'valparaiso',
+    region: 'Valparaíso',
+    // INE Censo 2024: 284.938 habitantes en la comuna de Valparaíso (-3,9% vs 2017).
+    // La Región de Valparaíso alcanzó 1.896.053 habitantes en el mismo censo.
+    poblacion: 284_938,
+    poblacionAnio: 2024,
+    poblacionFuenteUrl: 'https://censo2024.ine.gob.cl/resultados/',
+    delitos2024: {
+      // ENUSC 2024 (INE + Subsecretaría de Prevención del Delito): en la Región de
+      // Valparaíso el 7,6% de los hogares urbanos fue víctima de delitos violentos
+      // (estable vs 7,6% en 2023). El 37,6% declaró haber sufrido algún delito.
+      roboLugarHabitadoTasa100k: null,
+      roboConViolenciaTasa100k: null,
+      hurtoTasa100k: null,
+      comunaMasAfectada: null,
+      fuenteUrl:
+        'https://www.ine.gob.cl/docs/default-source/seguridad-ciudadana/publicaciones-y-anuarios/2024/sintesis-valparaiso---enusc-2024.pdf',
+    },
+    industriasPredominantes: [
+      'Logística portuaria y comercio exterior',
+      'Turismo y servicios patrimoniales',
+      'Retail y comercio regional',
+      'Industria ligera y construcción',
+    ],
+    empresasGrandesEnLaZona: [],
+    proyectosConstruccionActivos: null,
+    proyectosConstruccionFuente: null,
+    puntosInteresSeguridad: [
+      'Puerto de Valparaíso (Terminal de Contenedores)',
+      'Puerto de San Antonio',
+      'Congreso Nacional (Plaza Sotomayor)',
+      'Terminal de buses Terminal Rodoviario',
+      'Zona portuaria Barón–Echaurren',
+      'Corredor turístico Cerro Alegre–Cerro Concepción',
+    ],
+    particularidadesGeograficas:
+      'Ciudad costera construida sobre 42 cerros que descienden al Pacífico, con un estrecho plan (Almendral) donde concentra el puerto y el comercio. La topografía en pendiente dificulta desplazamientos de refuerzos móviles entre cerros y plan, y exige protocolos diferenciados para recintos patrimoniales en altura versus accesos portuarios en el plan.',
+    regulacionesLocalesRelevantes:
+      'Normativa portuaria de la Empresa Portuaria de Valparaíso para control de accesos en recintos aduaneros y zonas primarias. Ordenanzas municipales de Valparaíso y Viña del Mar para uso de CCTV en espacios semi-públicos y edificios patrimoniales de la Zona Típica.',
+  },
   'vina-del-mar': emptyDataset('vina-del-mar', 'Valparaíso'),
   concepcion: emptyDataset('concepcion', 'Biobío'),
   antofagasta: {

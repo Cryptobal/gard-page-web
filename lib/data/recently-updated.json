@@ -1,5 +1,10 @@
 [
   {
+    "url": "https://www.gard.cl/valparaiso/guardias-de-seguridad",
+    "type": "URL_UPDATED",
+    "reason": "Fase 2.2 gold-standard template live (ENUSC 2024, puerto/logística/turismo, KPIs reales)"
+  },
+  {
     "url": "https://www.gard.cl/santiago/guardias-de-seguridad",
     "type": "URL_UPDATED",
     "reason": "Fase 2.2 gold-standard template live (new H1, ENUSC data, KPIs reales)"
