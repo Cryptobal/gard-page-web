@@ -291,7 +291,49 @@ export const ciudadesDataset: Record<string, CiudadDataset> = {
   'puerto-montt': emptyDataset('puerto-montt', 'Los Lagos'),
   rancagua: emptyDataset('rancagua', "O'Higgins"),
   chillan: emptyDataset('chillan', 'Ñuble'),
-  temuco: emptyDataset('temuco', 'La Araucanía'),
+  temuco: {
+    ciudad: 'temuco',
+    region: 'La Araucanía',
+    // INE Censo 2024: 292.518 habitantes en la comuna de Temuco (+3,6% vs 2017).
+    // La Región de La Araucanía alcanzó 1.010.423 habitantes en el mismo censo.
+    poblacion: 292_518,
+    poblacionAnio: 2024,
+    poblacionFuenteUrl: 'https://censo2024.ine.gob.cl/resultados/',
+    delitos2024: {
+      // ENUSC 2024 (INE + Subsecretaría de Prevención del Delito): en la Región de
+      // La Araucanía el 6,6% de los hogares urbanos fue víctima de delitos violentos
+      // (al alza desde 5,0% en 2023, sin diferencia estadísticamente significativa).
+      // El 35,7% declaró haber sufrido algún delito consultado.
+      roboLugarHabitadoTasa100k: null,
+      roboConViolenciaTasa100k: null,
+      hurtoTasa100k: null,
+      comunaMasAfectada: null,
+      fuenteUrl:
+        'https://www.ine.gob.cl/docs/default-source/seguridad-ciudadana/publicaciones-y-anuarios/2024/sintesis-la-araucania---enusc-2024.pdf',
+    },
+    industriasPredominantes: [
+      'Agroindustria y procesamiento alimentario',
+      'Sector forestal y celulosa',
+      'Retail y comercio regional',
+      'Salud y servicios hospitalarios',
+      'Logística y transporte de carga',
+    ],
+    empresasGrandesEnLaZona: [],
+    proyectosConstruccionActivos: null,
+    proyectosConstruccionFuente: null,
+    puntosInteresSeguridad: [
+      'Aeropuerto La Araucanía (ZCO)',
+      'Mall Portal Araucanía',
+      'Hospital Regional Dr. Hernán Henríquez Quezada',
+      'Zona industrial Padre Las Casas',
+      'Universidad de La Frontera (sector universitario)',
+      'Corredor logístico Ruta 5 Sur',
+    ],
+    particularidadesGeograficas:
+      'Capital regional en el valle central junto al río Cautín, con el cerro Ñielol como referente paisajístico y una expansión urbana hacia Padre Las Casas y el sector poniente. La actividad agroindustrial y forestal se extiende hacia comunas cercanas (Victoria, Lautaro, Nueva Imperial), lo que exige protocolos para plantas de procesamiento, bodegas periféricas y control de accesos en sitios con flujo de camiones y personal contratista.',
+    regulacionesLocalesRelevantes:
+      'Ordenanzas municipales de Temuco y Padre Las Casas para uso de CCTV en edificios de uso mixto y locales comerciales. Plantas agroindustriales y forestales pueden exigir protocolos de acceso, registro de visitas y coordinación con mandantes según normativa sanitaria o de bioseguridad del sector.',
+  },
 };
 
 /**

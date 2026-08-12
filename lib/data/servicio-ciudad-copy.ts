@@ -668,6 +668,183 @@ export const servicioCiudadCopy: ServicioCiudadCopy[] = [
       },
     ],
   },
+  {
+    ciudad: 'temuco',
+    servicio: 'guardias-de-seguridad',
+    heroH1:
+      'Guardias de Seguridad en Temuco · Empresa OS10 para Agroindustria, Salud y Comercio en La Araucanía',
+    introParagraph:
+      'Temuco concentra la actividad económica de La Araucanía: 292.518 habitantes en la comuna y 1.010.423 en la región según el Censo 2024 del INE, con un tejido productivo ligado a agroindustria, forestal y servicios que abastecen al sur de Chile. La ENUSC 2024 (INE + Subsecretaría de Prevención del Delito) reporta que el 6,6% de los hogares urbanos de La Araucanía fue víctima de delitos violentos en los últimos doce meses —al alza desde el 5,0% de 2023, sin diferencia estadísticamente significativa— y que el 35,7% declaró haber sufrido algún delito consultado. Gard Security ofrece guardias de seguridad para empresas en Temuco con personal certificado OS10, empleador directo sin subcontratación y supervisión desde central propia 24/7. El servicio se dimensiona por riesgo real del sitio: plantas de procesamiento agroindustrial, bodegas forestales en Padre Las Casas, clínicas y centros de salud, edificios corporativos en el centro o locales comerciales con flujo regional. Indicadores operativos auditables: 100% del plantel con OS10 vigente, 99,9% de continuidad en turnos cubiertos y propuesta comercial en menos de 12 horas hábiles desde el primer contacto.',
+    panoramaSeguridad:
+      'La Región de La Araucanía combina presión delictual urbana en el Gran Temuco con riesgos propios de la economía agroindustrial y forestal: control de accesos en plantas de procesamiento, bodegaje de insumos y madera aserrada, flujo de camiones en Ruta 5 Sur y rotación de personal contratista en faenas periféricas. Los datos oficiales de la ENUSC 2024 muestran que el 6,6% de los hogares urbanos de la región fue víctima de delitos violentos durante el último año —frente al 5,0% de 2023, sin variación estadísticamente significativa— y que el 35,7% de los hogares declaró haber sufrido algún delito consultado. Los robos no violentos alcanzan el 7,9% de los hogares, el hurto el 6,6% y los delitos económicos el 10,3%, con solo el 31,1% de los hogares victimizados presentando denuncia formal. Para empresas, el desafío no es solo el índice urbano: centros de salud con acceso público, malls con alta afluencia regional, bodegas logísticas en Padre Las Casas y edificios de servicios en el centro exigen protocolos de recepción, rondas y registro de visitas distintos entre sí. Nuestra operación en Temuco se estructura alrededor de estos contextos, con despliegue ajustado al tipo de activo y no a plantillas genéricas importadas de otras regiones.',
+    industriasRelevantes: [
+      {
+        nombre: 'Agroindustria y sector forestal',
+        porQueImporta:
+          'La Araucanía concentra plantas de procesamiento lácteo, frutícola y forestal que mueven insumos de alto valor y personal contratista con rotación frecuente. Los recintos agroindustriales y bodegas de madera aserrada exigen control de acceso por credencial, registro de transportistas, rondas perimetrales y coordinación con mandantes —protocolos distintos al de un edificio de oficinas urbano.',
+      },
+      {
+        nombre: 'Salud: hospitales y clínicas',
+        porQueImporta:
+          'Temuco es referente asistencial del sur: el Hospital Regional y clínicas privadas reciben flujo de pacientes, visitantes y proveedores con horarios extendidos. Aquí priorizamos recepción con trato respetuoso, control de accesos en áreas restringidas, rondas en estacionamientos y reportes trazables para incidentes en turnos nocturnos.',
+      },
+      {
+        nombre: 'Retail y centros comerciales',
+        porQueImporta:
+          'El Mall Portal Araucanía y el comercio del eje Alemania–Barros Arana concentran afluencia de toda la región, con picos en fines de semana y temporadas escolares. Los protocolos incluyen control en accesos, prevención de hurtos en salas y coordinación con administraciones para cumplir normativa de CCTV en espacios semi-públicos.',
+      },
+    ],
+    zonasCobertura: [
+      {
+        nombre: 'Centro de Temuco y eje Alemania',
+        descripcion:
+          'Edificios corporativos, oficinas de servicios y locales comerciales con recepción, control de visitas y protocolos adaptados al flujo peatonal del centro urbano y avenida Alemania.',
+      },
+      {
+        nombre: 'Padre Las Casas y sector industrial',
+        descripcion:
+          'Plantas agroindustriales, bodegas forestales y polígonos logísticos con garitas, control de carga/descarga, rondas perimetrales y coordinación con transportistas en horarios extendidos.',
+      },
+      {
+        nombre: 'Sector poniente y Labranza',
+        descripcion:
+          'Zonas mixtas residencia-comercio con clínicas, locales de servicios y bodegas de menor escala. Vigilancia adaptada a accesos vehiculares, estacionamientos y rotación de proveedores.',
+      },
+      {
+        nombre: 'Corredor Ruta 5 Sur y comunas vecinas',
+        descripcion:
+          'Despliegue coordinado hacia sitios logísticos y plantas en Lautaro, Nueva Imperial o Victoria, con logística de reemplazos y supervisión remota desde central propia cuando el sitio lo requiere.',
+      },
+    ],
+    kpisOperativos: [
+      {
+        label: 'Certificación OS10 vigente',
+        value: '100%',
+        detail: 'Auditoría mensual de credenciales del plantel asignado a sitios en La Araucanía',
+      },
+      {
+        label: 'Continuidad operacional',
+        value: '99.9%',
+        detail: 'Turnos cubiertos vs contratados, medido trimestralmente sobre contratos activos',
+      },
+      {
+        label: 'Propuesta comercial',
+        value: '12 horas',
+        detail: 'Cotización cerrada sin compromiso desde recepción de datos del sitio',
+      },
+      {
+        label: 'Onboarding de sitio nuevo',
+        value: '5 días hábiles',
+        detail: 'Desde firma de contrato hasta guardia OS10 activo con protocolo validado',
+      },
+      {
+        label: 'Activación de alerta en sitio',
+        value: '2 min',
+        detail: 'Tiempo máximo para alertar a central de monitoreo ante incidente en el puesto',
+      },
+    ],
+    faq: [
+      {
+        pregunta:
+          '¿Cuánto cuesta contratar guardias de seguridad en Temuco?',
+        respuesta:
+          'El costo depende de puestos, turnos (12 o 24 horas), comuna o sector específico y nivel de riesgo del sitio —una planta agroindustrial en Padre Las Casas no se cotiza igual que una recepción corporativa en el centro de Temuco. Entregamos propuesta cerrada sin compromiso en menos de 12 horas hábiles, con precio mensual todo incluido: uniforme, equipamiento, reemplazos por ausencia y supervisión. Solicite cotización con la ubicación y dotación requerida para recibir un presupuesto alineado al mercado de La Araucanía.',
+      },
+      {
+        pregunta:
+          '¿En qué zonas de Temuco y La Araucanía tienen operaciones activas hoy?',
+        respuesta:
+          'Operamos en el Gran Temuco y corredores productivos de la región: edificios y oficinas en el centro urbano y eje Alemania, plantas agroindustriales y bodegas en Padre Las Casas, clínicas y centros de salud en sector poniente, retail en Portal Araucanía y sitios logísticos en el corredor Ruta 5 Sur hacia Lautaro y Nueva Imperial. La central propia coordina despliegues, reemplazos y supervisión remota sin subcontratar el personal de vigilancia a terceros.',
+      },
+      {
+        pregunta:
+          '¿Cómo se adapta el servicio a plantas agroindustriales, clínicas y comercio en Temuco?',
+        respuesta:
+          'Diseñamos protocolos según el tipo de activo: control de credenciales y registro de contratistas en plantas de procesamiento, recepción y rondas en clínicas con flujo de visitantes, garitas y vigilancia perimetral en bodegas forestales, y control de accesos en centros comerciales con afluencia regional. El 100% del plantel asignado cuenta con OS10 vigente y capacitación específica al protocolo del sitio antes del primer turno, con auditoría mensual de vencimientos.',
+      },
+      {
+        pregunta:
+          '¿Qué tan rápido pueden iniciar el servicio en un sitio nuevo en Temuco?',
+        respuesta:
+          'El onboarding estándar es de 5 días hábiles: visita técnica y diseño de protocolo, selección del guardia, validación OS10 y cobertura de ausencias, e inicio con supervisión reforzada. Para contingencias urgentes evaluamos modalidad express con personal OS10 de contingencia, aunque la puesta completa con protocolos a medida —especialmente en plantas agroindustriales o clínicas con requisitos del mandante— requiere el plazo estándar de 5 días hábiles.',
+      },
+      {
+        pregunta:
+          '¿Por qué contratar una empresa de seguridad en Temuco y no traer personal desde Santiago?',
+        respuesta:
+          'Temuco tiene dinámica operativa propia: turnos en plantas periféricas, logística de reemplazos en comunas vecinas, normativas de mandantes agroindustriales y flujo comercial regional que un proveedor sin presencia local no resuelve bien. Gard Security opera en 10 ciudades de Chile —incluida Temuco— con empleador directo, central de monitoreo propia y SLA comercial de respuesta en menos de 12 horas hábiles, evitando la cadena de subcontratación que diluye responsabilidad ante incidentes.',
+      },
+    ],
+    faqObjeciones: [
+      {
+        pregunta: '¿Gard Security subcontrata guardias a terceros en Temuco?',
+        respuesta:
+          'No subcontratamos personal de vigilancia. Los guardias que operan en Temuco son parte de nuestra dotación directa, con contrato laboral con Gard Security SpA y certificación OS10 auditada mensualmente. Usted contrata a Gard y Gard responde por el servicio, la supervisión 24/7 desde nuestra central propia y el cumplimiento normativo. Esto evita la cadena de responsabilidad difusa que genera la subcontratación en el rubro y alinea con la Ley 20.123 sobre responsabilidad solidaria del mandante.',
+      },
+      {
+        pregunta:
+          '¿Qué pasa si un guardia falta en un turno en una planta o clínica?',
+        respuesta:
+          'Mantenemos pool de guardias OS10 de contingencia para cubrir ausencias planificadas e imprevistas en la región. La continuidad operacional del 99,9% de turnos cubiertos se mide trimestralmente: cuando un guardia no puede presentarse, la central activa reemplazo según protocolo sin costo adicional en la modalidad estándar. Supervisores verifican credenciales y entrega de turno antes de cada relevo, con registro digital en OPAI.',
+      },
+      {
+        pregunta:
+          '¿Todos los guardias asignados en La Araucanía tienen certificación OS10 vigente?',
+        respuesta:
+          'Sí: el 100% del plantel tiene credencial OS10 vigente con auditoría mensual de vencimientos. Antes de asignar un guardia a un sitio en Temuco verificamos certificado, capacitación al protocolo del cliente y antecedentes según normativa de Carabineros. Si un guardia pierde la certificación, no opera hasta renovarla; en ese intervalo asignamos reemplazo desde el pool de contingencia para no dejar el puesto descubierto.',
+      },
+      {
+        pregunta:
+          '¿En cuánto tiempo recibo cotización y cuándo puede arrancar el servicio?',
+        respuesta:
+          'Entregamos cotización cerrada sin compromiso en menos de 12 horas hábiles desde que recibimos los datos del sitio. El plazo de inicio operativo estándar es de 5 días hábiles desde la firma del contrato hasta guardia OS10 activo con protocolo validado. Para urgencias evaluamos modalidad express con personal de contingencia, aunque plantas agroindustriales o clínicas con requisitos específicos suelen requerir el onboarding completo de 5 días.',
+      },
+    ],
+    enlacesInternos: [
+      {
+        titulo: 'Cotizar guardias de seguridad',
+        href: '/cotizar',
+        descripcion:
+          'Formulario comercial con respuesta en menos de 12 horas hábiles y propuesta cerrada para su sitio en La Araucanía.',
+      },
+      {
+        titulo: 'Guía de factores de costo',
+        href: '/cuanto-cuesta-guardia-seguridad-chile',
+        descripcion:
+          'Qué variables definen el valor de la dotación en Chile —sin montos genéricos que no apliquen a su operación.',
+      },
+      {
+        titulo: 'Servicio de guardias para empresas',
+        href: '/servicios/guardias-de-seguridad',
+        descripcion:
+          'Alcance del servicio, modalidades de turno, supervisión y tecnología OPAI incluida.',
+      },
+      {
+        titulo: 'Seguridad para agroindustria',
+        href: '/industrias/agroindustria',
+        descripcion:
+          'Protocolos de acceso, rondas y supervisión para plantas de procesamiento y fundos en áreas extensas.',
+      },
+      {
+        titulo: 'Guardias de seguridad en Santiago',
+        href: '/santiago/guardias-de-seguridad',
+        descripcion:
+          'Referencia de la misma operación Gard en la Región Metropolitana: cobertura, KPIs y FAQs comparables.',
+      },
+      {
+        titulo: 'Guardias de seguridad en Valparaíso',
+        href: '/valparaiso/guardias-de-seguridad',
+        descripcion:
+          'Modelo gold equivalente en el Gran Valparaíso: puerto, logística y protocolos OS10 con empleador directo.',
+      },
+      {
+        titulo: 'Empresa de seguridad privada en Chile',
+        href: '/empresa-seguridad-privada-chile',
+        descripcion:
+          'Trayectoria, cobertura en 10 ciudades, cumplimiento normativo y diferenciadores operativos de Gard.',
+      },
+    ],
+  },
 ];
 
 /** Busca el copy de una combinación ciudad + servicio. `null` si no existe. */
