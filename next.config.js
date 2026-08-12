@@ -233,6 +233,53 @@ const nextConfig = {
         permanent: true,
       },
 
+      // GSC hard 404 / legacy WordPress root slugs (ago-2026).
+      // URLs que Google sigue rastreando tras normalización de host/slash
+      // pero que no existen en el App Router — 308 permanente al destino canónico.
+      {
+        source: '/santiago',
+        destination: '/santiago/guardias-de-seguridad',
+        permanent: true,
+      },
+      {
+        source: '/testimonios',
+        destination: '/sobre-nosotros',
+        permanent: true,
+      },
+      {
+        source: '/cotizar-servicios-de-seguridad-privada',
+        destination: '/cotizar',
+        permanent: true,
+      },
+      {
+        // Typo histórico "guarida" — mismo destino que la variante /blog/… ya mapeada arriba.
+        source: '/trabajo-de-guarida-de-seguridad',
+        destination: 'https://trabajo.gard.cl/jobs/Careers',
+        permanent: true,
+      },
+      // Posts WordPress publicados en raíz (sin /blog/) — equity hacia el slug canónico.
+      {
+        source: '/comparativa-entre-g4s-y-securitas-cual-es-la-mejor-opcion-y-por-que-gard-se-destaca-en-chile',
+        destination: '/blog/comparativa-entre-g4s-y-securitas-cual-es-la-mejor-opcion-y-por-que-gard-se-destaca-en-chile',
+        permanent: true,
+      },
+      {
+        source: '/claves-para-elaborar-las-bases-de-licitacion-para-servicios-de-seguridad-privada',
+        destination: '/blog/claves-para-elaborar-las-bases-de-licitacion-para-servicios-de-seguridad-privada',
+        permanent: true,
+      },
+      {
+        source: '/la-importancia-de-la-central-de-monitoreo-en-la-seguridad-de-empresas',
+        destination: '/blog/la-importancia-de-la-central-de-monitoreo-en-la-seguridad-de-empresas',
+        permanent: true,
+      },
+      // Soft 404 en GSC: post legacy de drones duplicado — consolidar en el artículo 2026.
+      {
+        source: '/blog/innovacion-en-seguridad-privada-drones-en-seguridad',
+        destination: '/blog/drones-seguridad-privada-chile',
+        permanent: true,
+      },
+
       // Redireccionar parámetros UTM y tracking a URLs limpias
       {
         source: '/:path*\\?trk=:trk*',
