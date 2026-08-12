@@ -205,7 +205,48 @@ export const ciudadesDataset: Record<string, CiudadDataset> = {
   valparaiso: emptyDataset('valparaiso', 'Valparaíso'),
   'vina-del-mar': emptyDataset('vina-del-mar', 'Valparaíso'),
   concepcion: emptyDataset('concepcion', 'Biobío'),
-  antofagasta: emptyDataset('antofagasta', 'Antofagasta'),
+  antofagasta: {
+    ciudad: 'antofagasta',
+    region: 'Antofagasta',
+    // INE Censo 2024: 401.096 habitantes en la comuna de Antofagasta (+10,8% vs 2017).
+    // La Región de Antofagasta alcanzó 635.416 habitantes en el mismo censo.
+    poblacion: 401_096,
+    poblacionAnio: 2024,
+    poblacionFuenteUrl: 'https://censo2024.ine.gob.cl/resultados/',
+    delitos2024: {
+      // ENUSC 2024 (INE + Subsecretaría de Prevención del Delito): en la Región de
+      // Antofagasta el 4,7% de los hogares urbanos fue víctima de delitos violentos
+      // (baja desde 8,1% en 2023). El 33,0% declaró haber sufrido algún delito.
+      // Tasas por 100k detalladas pendientes de extracción del portal CEAD.
+      roboLugarHabitadoTasa100k: null,
+      roboConViolenciaTasa100k: null,
+      hurtoTasa100k: null,
+      comunaMasAfectada: null,
+      fuenteUrl:
+        'https://subprevenciondeldelito.gob.cl/noticia/enusc-2024-victimizacion-por-delitos-violentos-se-mantiene-estable-a-nivel-nacional-como-tambien-en-14-de-las-16-regiones-del-pais/',
+    },
+    industriasPredominantes: [
+      'Minería del cobre y metales',
+      'Logística portuaria y comercio exterior',
+      'Energía y servicios industriales',
+      'Construcción e infraestructura minera',
+    ],
+    empresasGrandesEnLaZona: [],
+    proyectosConstruccionActivos: null,
+    proyectosConstruccionFuente: null,
+    puntosInteresSeguridad: [
+      'Puerto Antofagasta (Terminal Multioperado)',
+      'Aeropuerto Andrés Sabella Gálvez (ANF)',
+      'Zona Industrial La Negra–Mejillones',
+      'Parque Industrial La Negra',
+      'Sector costero Caleta Coloso',
+      'Corredor minero hacia Calama y Sierra Gorda',
+    ],
+    particularidadesGeograficas:
+      'Ciudad costera desértica que se extiende linealmente entre el Pacífico y el cerro Moreno, con clima árido, vientos costeros y amplitud térmica marcada. La operación minera e industrial se concentra en polígonos alejados del centro urbano (La Negra, Mejillones, faenas en altura), lo que exige logística de desplazamiento, comunicación en zonas con cobertura variable y protocolos para turnos en sitios de alto riesgo.',
+    regulacionesLocalesRelevantes:
+      'Normativa minera (DS 132 OS10 para guardias), protocolos portuarios de acceso y control de carga, y ordenanzas municipales para edificios de uso mixto en el centro urbano de Antofagasta. Faenas mineras pueden exigir credenciales adicionales y capacitación específica del mandante.',
+  },
   iquique: emptyDataset('iquique', 'Tarapacá'),
   'puerto-montt': emptyDataset('puerto-montt', 'Los Lagos'),
   rancagua: emptyDataset('rancagua', "O'Higgins"),

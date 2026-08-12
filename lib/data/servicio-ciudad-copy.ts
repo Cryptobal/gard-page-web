@@ -314,6 +314,183 @@ export const servicioCiudadCopy: ServicioCiudadCopy[] = [
       },
     ],
   },
+  {
+    ciudad: 'antofagasta',
+    servicio: 'guardias-de-seguridad',
+    heroH1:
+      'Guardias de Seguridad en Antofagasta · Empresa OS10 para Minería, Puerto e Industria Norte',
+    introParagraph:
+      'Antofagasta concentra la economía minera e industrial del norte grande: 401.096 habitantes en la comuna y 635.416 en la Región de Antofagasta según el Censo 2024 del INE, con puerto comercial, parques industriales en La Negra y faenas de cobre en el desierto circundante. La ENUSC 2024 (INE + Subsecretaría de Prevención del Delito) reporta que el 4,7% de los hogares urbanos de la región fue víctima de delitos violentos en los últimos doce meses —cifra inferior al 8,5% nacional— y que un 33,0% declaró haber sufrido algún delito. Gard Security ofrece guardias de seguridad para empresas en Antofagasta con personal certificado OS10, empleador directo sin subcontratación y supervisión desde central propia 24/7. El servicio se dimensiona por riesgo real del sitio: accesos portuarios, bodegas de insumos, oficinas corporativas en el centro urbano o recintos con rotación de contratistas. Indicadores operativos auditables: 100% del plantel con OS10 vigente, 99,9% de continuidad en turnos cubiertos y propuesta comercial en menos de 12 horas hábiles desde el primer contacto.',
+    panoramaSeguridad:
+      'La Región de Antofagasta combina presión delictual urbana en el Gran Antofagasta con riesgos propios de la industria extractiva: control de accesos en faenas alejadas, flujo de carga en el puerto, bodegaje de insumos de alto valor y rotación de personal contratista. Los datos oficiales de la ENUSC 2024 muestran que el 4,7% de los hogares urbanos de la región fue víctima de delitos violentos durante el último año —disminución desde el 8,1% de 2023— y que el 33,0% de los hogares declaró haber sufrido algún delito consultado. La victimización personal en la región alcanzó el 3,6%, por debajo del promedio nacional de 5,8%. Para empresas, el desafío no es solo el índice urbano: sitios industriales en La Negra, Mejillones y corredores mineros exigen protocolos de acceso, registro de visitas y coordinación con mandantes que difieren del modelo residencial o retail. Nuestra operación en Antofagasta se estructura alrededor de estos contextos, con despliegue ajustado al tipo de activo y no a plantillas genéricas importadas del centro del país.',
+    industriasRelevantes: [
+      {
+        nombre: 'Minería del cobre y faenas industriales',
+        porQueImporta:
+          'La Región de Antofagasta concentra operaciones de extracción y procesamiento de cobre que abastecen la cadena exportadora del país. Los recintos mineros e industrializadores exigen control de acceso por credencial, registro de contratistas, rondas en perímetro y coordinación con mandantes —protocolos distintos al de un edificio de oficinas urbano.',
+      },
+      {
+        nombre: 'Logística portuaria y comercio exterior',
+        porQueImporta:
+          'El Puerto de Antofagasta y los accesos en Mejillones mueven carga de insumos mineros y contenedores con ventanas horarias comprimidas. Aquí priorizamos control de muelles y patios, registro de transportistas, vigilancia perimetral y reportes trazables para detectar mermas o accesos no autorizados.',
+      },
+      {
+        nombre: 'Parques industriales y energía',
+        porQueImporta:
+          'La Zona Industrial La Negra–Mejillones agrupa plantas de servicios, energía y proveedores mineros con alto flujo de camiones y personal externo. Los protocolos incluyen control en garitas, rondas programadas, verificación de credenciales OS10 y respuesta coordinada con central de monitoreo ante incidentes en turnos nocturnos.',
+      },
+    ],
+    zonasCobertura: [
+      {
+        nombre: 'Centro urbano y eje Gran Vía',
+        descripcion:
+          'Edificios corporativos, oficinas de servicios y locales comerciales con recepción, control de visitas y protocolos adaptados al flujo peatonal del centro de Antofagasta.',
+      },
+      {
+        nombre: 'La Negra y parques industriales',
+        descripcion:
+          'Bodegas, plantas de servicios mineros y centros logísticos con garitas, control de carga/descarga, rondas perimetrales y coordinación con transportistas en horarios extendidos.',
+      },
+      {
+        nombre: 'Mejillones y accesos portuarios',
+        descripcion:
+          'Recintos vinculados al comercio exterior y logística marítima: vigilancia de patios, accesos restringidos y registro de ingresos alineado a normativa portuaria.',
+      },
+      {
+        nombre: 'Corredor regional (Calama, Tocopilla)',
+        descripcion:
+          'Despliegue coordinado hacia sitios industriales y faenas en el interior regional, con logística de reemplazos y supervisión remota desde central propia cuando el sitio lo requiere.',
+      },
+    ],
+    kpisOperativos: [
+      {
+        label: 'Certificación OS10 vigente',
+        value: '100%',
+        detail: 'Auditoría mensual de credenciales del plantel asignado a sitios en el norte',
+      },
+      {
+        label: 'Continuidad operacional',
+        value: '99.9%',
+        detail: 'Turnos cubiertos vs contratados, medido trimestralmente sobre contratos activos',
+      },
+      {
+        label: 'Propuesta comercial',
+        value: '12 horas',
+        detail: 'Cotización cerrada sin compromiso desde recepción de datos del sitio',
+      },
+      {
+        label: 'Onboarding de sitio nuevo',
+        value: '5 días hábiles',
+        detail: 'Desde firma de contrato hasta guardia OS10 activo con protocolo validado',
+      },
+      {
+        label: 'Activación de alerta en sitio',
+        value: '2 min',
+        detail: 'Tiempo máximo para alertar a central de monitoreo ante incidente en el puesto',
+      },
+    ],
+    faq: [
+      {
+        pregunta:
+          '¿Cuánto cuesta contratar guardias de seguridad en Antofagasta?',
+        respuesta:
+          'El costo depende de puestos, turnos (12 o 24 horas), comuna o sector específico y nivel de riesgo del sitio —un acceso portuario en Mejillones no se cotiza igual que una recepción corporativa en el centro de Antofagasta. Entregamos propuesta cerrada sin compromiso en menos de 12 horas hábiles, con precio mensual todo incluido: uniforme, equipamiento, reemplazos por ausencia y supervisión. Solicite cotización con la ubicación y dotación requerida para recibir un presupuesto alineado al mercado del norte grande.',
+      },
+      {
+        pregunta:
+          '¿En qué zonas de Antofagasta tienen operaciones activas hoy?',
+        respuesta:
+          'Operamos en el Gran Antofagasta y corredores industriales del norte: edificios y oficinas en el centro urbano y eje Gran Vía, parques industriales de La Negra, accesos y recintos logísticos en Mejillones, y sitios vinculados al corredor minero hacia Calama y Tocopilla. La central propia coordina despliegues, reemplazos y supervisión remota sin subcontratar el personal de vigilancia a terceros.',
+      },
+      {
+        pregunta:
+          '¿Cómo se adapta el servicio a faenas mineras e industriales en Antofagasta?',
+        respuesta:
+          'Diseñamos protocolos según el mandante y el tipo de activo: control de credenciales y registro de contratistas en faenas, garitas y rondas perimetrales en parques industriales, recepción ejecutiva en oficinas corporativas y coordinación con transportistas en accesos portuarios. El 100% del plantel asignado cuenta con OS10 vigente y capacitación específica al protocolo del sitio antes del primer turno, con auditoría mensual de vencimientos.',
+      },
+      {
+        pregunta:
+          '¿Qué tan rápido pueden iniciar el servicio en un sitio nuevo en Antofagasta?',
+        respuesta:
+          'El onboarding estándar es de 5 días hábiles: visita técnica y diseño de protocolo, selección del guardia, validación OS10 y cobertura de ausencias, e inicio con supervisión reforzada. Para contingencias urgentes evaluamos modalidad express con personal OS10 de contingencia, aunque la puesta completa con protocolos a medida —especialmente en sitios industriales o portuarios— requiere el plazo estándar de 5 días hábiles.',
+      },
+      {
+        pregunta:
+          '¿Por qué contratar una empresa de seguridad en Antofagasta y no traer personal desde Santiago?',
+        respuesta:
+          'Antofagasta tiene dinámica operativa propia: turnos en zonas industriales alejadas, logística de reemplazos en el desierto, normativas de mandantes mineros y ventanas horarias portuarias que un proveedor sin presencia regional no resuelve bien. Gard Security opera en 10 ciudades de Chile —incluida Antofagasta— con empleador directo, central de monitoreo propia y SLA comercial de respuesta en menos de 12 horas hábiles, evitando la cadena de subcontratación que diluye responsabilidad ante incidentes.',
+      },
+    ],
+    faqObjeciones: [
+      {
+        pregunta: '¿Gard Security subcontrata guardias a terceros en Antofagasta?',
+        respuesta:
+          'No subcontratamos personal de vigilancia. Los guardias que operan en Antofagasta son parte de nuestra dotación directa, con contrato laboral con Gard Security SpA y certificación OS10 auditada mensualmente. Usted contrata a Gard y Gard responde por el servicio, la supervisión 24/7 desde nuestra central propia y el cumplimiento normativo. Esto evita la cadena de responsabilidad difusa que genera la subcontratación en el rubro y alinea con la Ley 20.123 sobre responsabilidad solidaria del mandante.',
+      },
+      {
+        pregunta:
+          '¿Qué pasa si un guardia falta en un turno nocturno en zona industrial?',
+        respuesta:
+          'Mantenemos pool de guardias OS10 de contingencia para cubrir ausencias planificadas e imprevistas en la región. La continuidad operacional del 99,9% de turnos cubiertos se mide trimestralmente: cuando un guardia no puede presentarse, la central activa reemplazo según protocolo sin costo adicional en la modalidad estándar. Supervisores verifican credenciales y entrega de turno antes de cada relevo, con registro digital en OPAI.',
+      },
+      {
+        pregunta:
+          '¿Todos los guardias asignados en el norte tienen certificación OS10 vigente?',
+        respuesta:
+          'Sí: el 100% del plantel tiene credencial OS10 vigente con auditoría mensual de vencimientos. Antes de asignar un guardia a un sitio en Antofagasta verificamos certificado, capacitación al protocolo del cliente y antecedentes según normativa de Carabineros. Si un guardia pierde la certificación, no opera hasta renovarla; en ese intervalo asignamos reemplazo desde el pool de contingencia para no dejar el puesto descubierto.',
+      },
+      {
+        pregunta:
+          '¿En cuánto tiempo recibo cotización y cuándo puede arrancar el servicio?',
+        respuesta:
+          'Entregamos cotización cerrada sin compromiso en menos de 12 horas hábiles desde que recibimos los datos del sitio. El plazo de inicio operativo estándar es de 5 días hábiles desde la firma del contrato hasta guardia OS10 activo con protocolo validado. Para urgencias evaluamos modalidad express con personal de contingencia, aunque sitios portuarios o mineros con requisitos del mandante suelen requerir el onboarding completo de 5 días.',
+      },
+    ],
+    enlacesInternos: [
+      {
+        titulo: 'Cotizar guardias de seguridad',
+        href: '/cotizar',
+        descripcion:
+          'Formulario comercial con respuesta en menos de 12 horas hábiles y propuesta cerrada para su sitio en el norte.',
+      },
+      {
+        titulo: 'Guía de factores de costo',
+        href: '/cuanto-cuesta-guardia-seguridad-chile',
+        descripcion:
+          'Qué variables definen el valor de la dotación en Chile —sin montos genéricos que no apliquen a su operación.',
+      },
+      {
+        titulo: 'Seguridad para minería',
+        href: '/industrias/mineria',
+        descripcion:
+          'Protocolos de acceso, rondas y supervisión para faenas e instalaciones del sector extractivo.',
+      },
+      {
+        titulo: 'Servicio de guardias para empresas',
+        href: '/servicios/guardias-de-seguridad',
+        descripcion:
+          'Alcance del servicio, modalidades de turno, supervisión y tecnología OPAI incluida.',
+      },
+      {
+        titulo: 'Guardias de seguridad en Santiago',
+        href: '/santiago/guardias-de-seguridad',
+        descripcion:
+          'Referencia de la misma operación Gard en la Región Metropolitana: cobertura, KPIs y FAQs comparables.',
+      },
+      {
+        titulo: 'Empresa de seguridad privada en Chile',
+        href: '/empresa-seguridad-privada-chile',
+        descripcion:
+          'Trayectoria, cobertura en 10 ciudades, cumplimiento normativo y diferenciadores operativos de Gard.',
+      },
+      {
+        titulo: 'Seguridad privada para minería (guía)',
+        href: '/blog/seguridad-privada-para-mineria',
+        descripcion:
+          'Criterios B2B para evaluar dotación de guardias en operaciones mineras e industriales del norte.',
+      },
+    ],
+  },
 ];
 
 /** Busca el copy de una combinación ciudad + servicio. `null` si no existe. */

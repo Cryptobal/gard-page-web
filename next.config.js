@@ -242,6 +242,11 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/antofagasta',
+        destination: '/antofagasta/guardias-de-seguridad',
+        permanent: true,
+      },
+      {
         source: '/testimonios',
         destination: '/sobre-nosotros',
         permanent: true,
