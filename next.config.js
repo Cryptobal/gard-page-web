@@ -279,6 +279,12 @@ const nextConfig = {
         destination: '/blog/drones-seguridad-privada-chile',
         permanent: true,
       },
+      // Post 2025 con tablas CLP inventadas y NAP obsoleto — money page sin precios genéricos.
+      {
+        source: '/blog/cuanto-cuesta-contratar-guardias-seguridad-chile-2025',
+        destination: '/cuanto-cuesta-guardia-seguridad-chile',
+        permanent: true,
+      },
 
       // Redireccionar parámetros UTM y tracking a URLs limpias
       {

@@ -7,6 +7,8 @@
 export const REDIRECTED_BLOG_SLUGS = [
   // Consolidado en /blog/drones-seguridad-privada-chile (GSC soft 404, PR #87).
   'innovacion-en-seguridad-privada-drones-en-seguridad',
+  // Precios CLP inventados + teléfono NAP obsoleto — consolidado en money page comercial.
+  'cuanto-cuesta-contratar-guardias-seguridad-chile-2025',
 ] as const;
 
 export type RedirectedBlogSlug = (typeof REDIRECTED_BLOG_SLUGS)[number];
