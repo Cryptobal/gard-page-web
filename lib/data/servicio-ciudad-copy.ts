@@ -491,6 +491,183 @@ export const servicioCiudadCopy: ServicioCiudadCopy[] = [
       },
     ],
   },
+  {
+    ciudad: 'valparaiso',
+    servicio: 'guardias-de-seguridad',
+    heroH1:
+      'Guardias de Seguridad en Valparaíso · Empresa OS10 para Puerto, Logística y Gran Valparaíso',
+    introParagraph:
+      'Valparaíso concentra el corazón portuario del Gran Valparaíso: 284.938 habitantes en la comuna y 1.896.053 en la Región de Valparaíso según el Censo 2024 del INE, con Viña del Mar, Quilpué y el puerto de San Antonio completando un eje logístico y turístico de primer orden. La ENUSC 2024 (INE + Subsecretaría de Prevención del Delito) reporta que el 7,6% de los hogares urbanos de la región fue víctima de delitos violentos en los últimos doce meses —estable respecto al 7,6% de 2023— y que el 37,6% declaró haber sufrido algún delito consultado. Gard Security ofrece guardias de seguridad para empresas en Valparaíso con personal certificado OS10, empleador directo sin subcontratación y supervisión desde central propia 24/7. El servicio se dimensiona por riesgo real del sitio: accesos portuarios en el plan y sector Barón, bodegas logísticas hacia San Antonio, edificios corporativos en el plan, recintos turísticos en cerros patrimoniales o locales comerciales con flujo estacional. Indicadores operativos auditables: 100% del plantel con OS10 vigente, 99,9% de continuidad en turnos cubiertos y propuesta comercial en menos de 12 horas hábiles desde el primer contacto.',
+    panoramaSeguridad:
+      'La Región de Valparaíso combina presión delictual urbana en el Gran Valparaíso con riesgos propios de la actividad portuaria y turística: control de accesos en recintos aduaneros, flujo de carga en Valparaíso y San Antonio, bodegaje de mercadería de alto valor y estacionalidad de visitantes en cerros patrimoniales y Viña del Mar. Los datos oficiales de la ENUSC 2024 muestran que el 7,6% de los hogares urbanos de la región fue víctima de delitos violentos durante el último año —sin variación estadísticamente significativa respecto al 7,6% de 2023— y que el 37,6% de los hogares declaró haber sufrido algún delito consultado. Los robos no violentos alcanzan el 12,7% de los hogares y el hurto el 8,8%, con vandalismo en el 7,9%. Para empresas, el desafío no es solo el índice urbano: terminales portuarias, centros de distribución en San Antonio, edificios con recepción en el plan de Valparaíso y locales comerciales en Viña del Mar exigen protocolos de acceso, registro de visitas y rondas distintos entre sí. Nuestra operación en Valparaíso se estructura alrededor de estos contextos, con despliegue ajustado al tipo de activo y no a plantillas genéricas importadas de otras regiones.',
+    industriasRelevantes: [
+      {
+        nombre: 'Logística portuaria y comercio exterior',
+        porQueImporta:
+          'El Puerto de Valparaíso y el de San Antonio mueven contenedores, carga general e insumos con ventanas horarias comprimidas y normativa aduanera estricta. Aquí priorizamos control de accesos en muelles y patios, registro de transportistas, vigilancia perimetral y reportes trazables para detectar mermas o ingresos no autorizados.',
+      },
+      {
+        nombre: 'Turismo, eventos y patrimonio',
+        porQueImporta:
+          'Valparaíso es Patrimonio de la Humanidad y comparte con Viña del Mar un corredor turístico con alta estacionalidad: cerros patrimoniales, hoteles, restaurantes y recintos de eventos requieren protocolos de recepción, control de visitas y rondas en horarios extendidos distintos al modelo industrial.',
+      },
+      {
+        nombre: 'Retail y edificios corporativos',
+        porQueImporta:
+          'El plan de Valparaíso, Viña del Mar y Quilpué concentran oficinas, locales comerciales y centros de servicios con flujo peatonal constante. Los protocolos incluyen recepción ejecutiva, control de acceso en edificios mixtos y coordinación con administraciones para cumplir normativa de CCTV en espacios semi-públicos.',
+      },
+    ],
+    zonasCobertura: [
+      {
+        nombre: 'Plan de Valparaíso y sector portuario',
+        descripcion:
+          'Almendral, Barón y accesos al puerto: edificios corporativos, bodegas de comercio exterior y recintos aduaneros con garitas, control de credenciales y rondas alineadas a normativa portuaria.',
+      },
+      {
+        nombre: 'Cerros patrimoniales',
+        descripcion:
+          'Cerro Alegre, Concepción, Cordillera y La Cruz: hoteles, restaurantes y inmuebles patrimoniales con vigilancia adaptada a topografía en pendiente y flujo turístico estacional.',
+      },
+      {
+        nombre: 'Viña del Mar y Reñaca',
+        descripcion:
+          'Edificios de oficinas, retail de alto flujo y recintos de eventos en el corredor costero: recepción, control de visitas y protocolos para temporadas de mayor afluencia.',
+      },
+      {
+        nombre: 'San Antonio y corredor logístico',
+        descripcion:
+          'Terminales portuarias, centros de distribución y bodegas industriales con control de carga/descarga, vigilancia perimetral y coordinación con transportistas en horarios extendidos.',
+      },
+    ],
+    kpisOperativos: [
+      {
+        label: 'Certificación OS10 vigente',
+        value: '100%',
+        detail: 'Auditoría mensual de credenciales del plantel asignado a sitios en la Quinta Región',
+      },
+      {
+        label: 'Continuidad operacional',
+        value: '99.9%',
+        detail: 'Turnos cubiertos vs contratados, medido trimestralmente sobre contratos activos',
+      },
+      {
+        label: 'Propuesta comercial',
+        value: '12 horas',
+        detail: 'Cotización cerrada sin compromiso desde recepción de datos del sitio',
+      },
+      {
+        label: 'Onboarding de sitio nuevo',
+        value: '5 días hábiles',
+        detail: 'Desde firma de contrato hasta guardia OS10 activo con protocolo validado',
+      },
+      {
+        label: 'Activación de alerta en sitio',
+        value: '2 min',
+        detail: 'Tiempo máximo para alertar a central de monitoreo ante incidente en el puesto',
+      },
+    ],
+    faq: [
+      {
+        pregunta:
+          '¿Cuánto cuesta contratar guardias de seguridad en Valparaíso?',
+        respuesta:
+          'El costo depende de puestos, turnos (12 o 24 horas), comuna o sector específico y nivel de riesgo del sitio —un acceso portuario en Barón no se cotiza igual que una recepción corporativa en Viña del Mar. Entregamos propuesta cerrada sin compromiso en menos de 12 horas hábiles, con precio mensual todo incluido: uniforme, equipamiento, reemplazos por ausencia y supervisión. Solicite cotización con la ubicación y dotación requerida para recibir un presupuesto alineado al mercado del Gran Valparaíso.',
+      },
+      {
+        pregunta:
+          '¿En qué zonas de Valparaíso y el Gran Valparaíso tienen operaciones activas hoy?',
+        respuesta:
+          'Operamos en el plan de Valparaíso, cerros patrimoniales, Viña del Mar, Quilpué y el corredor logístico hacia San Antonio: edificios y oficinas en el plan, recintos turísticos en cerros, retail y eventos en la costa de Viña del Mar, y bodegas o accesos portuarios en Barón y San Antonio. La central propia coordina despliegues, reemplazos y supervisión remota sin subcontratar el personal de vigilancia a terceros.',
+      },
+      {
+        pregunta:
+          '¿Cómo se adapta el servicio a puertos, turismo y edificios en Valparaíso?',
+        respuesta:
+          'Diseñamos protocolos según el tipo de activo: control de credenciales y registro de transportistas en recintos portuarios, recepción y rondas en hoteles y cerros patrimoniales, garitas y vigilancia perimetral en bodegas logísticas, y control de visitas en edificios corporativos del plan. El 100% del plantel asignado cuenta con OS10 vigente y capacitación específica al protocolo del sitio antes del primer turno, con auditoría mensual de vencimientos.',
+      },
+      {
+        pregunta:
+          '¿Qué tan rápido pueden iniciar el servicio en un sitio nuevo en Valparaíso?',
+        respuesta:
+          'El onboarding estándar es de 5 días hábiles: visita técnica y diseño de protocolo, selección del guardia, validación OS10 y cobertura de ausencias, e inicio con supervisión reforzada. Para contingencias urgentes evaluamos modalidad express con personal OS10 de contingencia, aunque la puesta completa con protocolos a medida —especialmente en sitios portuarios o patrimoniales— requiere el plazo estándar de 5 días hábiles.',
+      },
+      {
+        pregunta:
+          '¿Por qué contratar una empresa de seguridad en Valparaíso y no traer personal desde Santiago?',
+        respuesta:
+          'Valparaíso tiene dinámica operativa propia: topografía en cerros que complica refuerzos móviles, normativa portuaria en accesos aduaneros, estacionalidad turística en Viña del Mar y ventanas logísticas en San Antonio que un proveedor sin presencia regional no resuelve bien. Gard Security opera en 10 ciudades de Chile —incluida Valparaíso— con empleador directo, central de monitoreo propia y SLA comercial de respuesta en menos de 12 horas hábiles, evitando la cadena de subcontratación que diluye responsabilidad ante incidentes.',
+      },
+    ],
+    faqObjeciones: [
+      {
+        pregunta: '¿Gard Security subcontrata guardias a terceros en Valparaíso?',
+        respuesta:
+          'No subcontratamos personal de vigilancia. Los guardias que operan en Valparaíso son parte de nuestra dotación directa, con contrato laboral con Gard Security SpA y certificación OS10 auditada mensualmente. Usted contrata a Gard y Gard responde por el servicio, la supervisión 24/7 desde nuestra central propia y el cumplimiento normativo. Esto evita la cadena de responsabilidad difusa que genera la subcontratación en el rubro y alinea con la Ley 20.123 sobre responsabilidad solidaria del mandante.',
+      },
+      {
+        pregunta:
+          '¿Qué pasa si un guardia falta en un turno en un recinto portuario o turístico?',
+        respuesta:
+          'Mantenemos pool de guardias OS10 de contingencia para cubrir ausencias planificadas e imprevistas en la región. La continuidad operacional del 99,9% de turnos cubiertos se mide trimestralmente: cuando un guardia no puede presentarse, la central activa reemplazo según protocolo sin costo adicional en la modalidad estándar. Supervisores verifican credenciales y entrega de turno antes de cada relevo, con registro digital en OPAI.',
+      },
+      {
+        pregunta:
+          '¿Todos los guardias asignados en Valparaíso tienen certificación OS10 vigente?',
+        respuesta:
+          'Sí: el 100% del plantel tiene credencial OS10 vigente con auditoría mensual de vencimientos. Antes de asignar un guardia a un sitio en Valparaíso verificamos certificado, capacitación al protocolo del cliente y antecedentes según normativa de Carabineros. Si un guardia pierde la certificación, no opera hasta renovarla; en ese intervalo asignamos reemplazo desde el pool de contingencia para no dejar el puesto descubierto.',
+      },
+      {
+        pregunta:
+          '¿En cuánto tiempo recibo cotización y cuándo puede arrancar el servicio?',
+        respuesta:
+          'Entregamos cotización cerrada sin compromiso en menos de 12 horas hábiles desde que recibimos los datos del sitio. El plazo de inicio operativo estándar es de 5 días hábiles desde la firma del contrato hasta guardia OS10 activo con protocolo validado. Para urgencias evaluamos modalidad express con personal de contingencia, aunque sitios portuarios o patrimoniales con requisitos específicos suelen requerir el onboarding completo de 5 días.',
+      },
+    ],
+    enlacesInternos: [
+      {
+        titulo: 'Cotizar guardias de seguridad',
+        href: '/cotizar',
+        descripcion:
+          'Formulario comercial con respuesta en menos de 12 horas hábiles y propuesta cerrada para su sitio en el Gran Valparaíso.',
+      },
+      {
+        titulo: 'Guía de factores de costo',
+        href: '/cuanto-cuesta-guardia-seguridad-chile',
+        descripcion:
+          'Qué variables definen el valor de la dotación en Chile —sin montos genéricos que no apliquen a su operación.',
+      },
+      {
+        titulo: 'Servicio de guardias para empresas',
+        href: '/servicios/guardias-de-seguridad',
+        descripcion:
+          'Alcance del servicio, modalidades de turno, supervisión y tecnología OPAI incluida.',
+      },
+      {
+        titulo: 'Guardias de seguridad en Santiago',
+        href: '/santiago/guardias-de-seguridad',
+        descripcion:
+          'Referencia de la misma operación Gard en la Región Metropolitana: cobertura, KPIs y FAQs comparables.',
+      },
+      {
+        titulo: 'Guardias de seguridad en Antofagasta',
+        href: '/antofagasta/guardias-de-seguridad',
+        descripcion:
+          'Modelo gold equivalente en el norte grande: puerto, industria y protocolos OS10 con empleador directo.',
+      },
+      {
+        titulo: 'Empresa de seguridad privada en Chile',
+        href: '/empresa-seguridad-privada-chile',
+        descripcion:
+          'Trayectoria, cobertura en 10 ciudades, cumplimiento normativo y diferenciadores operativos de Gard.',
+      },
+      {
+        titulo: 'Cómo elegir empresa de seguridad privada',
+        href: '/blog/como-elegir-empresa-seguridad-privada',
+        descripcion:
+          'Criterios B2B para evaluar proveedores: OS10, continuidad, subcontratación y SLA.',
+      },
+    ],
+  },
 ];
 
 /** Busca el copy de una combinación ciudad + servicio. `null` si no existe. */

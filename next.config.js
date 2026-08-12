@@ -247,6 +247,11 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/valparaiso',
+        destination: '/valparaiso/guardias-de-seguridad',
+        permanent: true,
+      },
+      {
         source: '/testimonios',
         destination: '/sobre-nosotros',
         permanent: true,
