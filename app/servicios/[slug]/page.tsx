@@ -33,6 +33,7 @@ import FormularioCotizacionSeccion from '@/app/components/FormularioCotizacionSe
 import BreadcrumbSchema, { Breadcrumbs } from '@/components/seo/BreadcrumbSchema';
 import ServiceSchema from '@/components/seo/ServiceSchema';
 import { Button } from '@/components/ui/button';
+import ServicioGuardiasGold from './components/ServicioGuardiasGold';
 
 // Importar el componente CloudflareVideo de manera dinámica
 // Next.js 15: Removido ssr: false
@@ -203,6 +204,10 @@ export default async function ServicioPage({ params }: { params: Promise<{ slug:
   // Si no existe el servicio, mostrar 404
   if (!servicio) {
     return notFound();
+  }
+
+  if (resolvedParams.slug === 'guardias-de-seguridad') {
+    return <ServicioGuardiasGold />;
   }
 
   // Obtener beneficios y descripción larga para este servicio
