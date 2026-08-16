@@ -104,6 +104,16 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/contact',
+        destination: '/contacto',
+        permanent: true,
+      },
+      {
+        source: '/cotizador/inteligente',
+        destination: '/cotizador-inteligente',
+        permanent: true,
+      },
+      {
         source: '/mejor-empresa-de-seguridad',
         destination: '/sobre-nosotros',
         permanent: true,
