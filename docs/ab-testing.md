@@ -45,7 +45,7 @@ El override **no modifica la cookie** — solo afecta el render de esa request.
 |---|---|---|
 | `cotizar_exposure` | Al montar cualquiera de los dos forms | `ab_variant`, `variant_rendered` |
 | `cotizacion_submit` | Al envío exitoso del formulario | `ab_variant`, `form_variant` |
-| `form_submission` (existente) | Al envío exitoso (vía `trackFormSubmission`) | `ab_variant` agregado al payload |
+| `submit_form_submission` (vía `trackFormSubmission`) | Al envío exitoso | `ab_variant` agregado al payload; evento canónico de conversión GA4/Ads |
 | `cotiz_step_completed` | (multistep only) Al avanzar de paso | `step_number`, `variant: 'multistep'` |
 
 **Métrica primaria del experimento:**

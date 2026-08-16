@@ -1,52 +1,86 @@
 /**
  * Helper centralizado para seguimiento de eventos de formularios
  * Implementa un estándar para todos los formularios de Gard Security
+ *
+ * Google Ads conversion action "Gard (web) submit_form_submission" (GA4 property
+ * Gard) listens for the dataLayer/GA4 event `submit_form_submission`. The previous
+ * name `form_submission` was retired in GA4, so conversions stopped arriving.
  */
 
-interface FormSubmissionData {
+/** Canonical GA4/Ads conversion event for commercial forms (contacto, cotizar). */
+export const FORM_CONVERSION_EVENT = 'submit_form_submission' as const;
+
+/** RRHH postulaciones — must not share the Ads conversion event. */
+export const FORM_RECRUITMENT_EVENT = 'submit_form_reclutamiento' as const;
+
+const NON_COMMERCIAL_FORM_TYPES = new Set(['reclutamiento']);
+
+export interface FormSubmissionData {
   formType: string;               // Tipo de formulario (contacto, cotizacion, etc.)
   formLocation?: string;          // Ubicación del formulario si es relevante
   industria?: string;             // Para forms específicos por industria
   servicio?: string;              // Para forms específicos por servicio
-  additionalData?: Record<string, any>; // Datos opcionales específicos
+  additionalData?: Record<string, string | number | boolean | undefined>;
+}
+
+export interface FormSubmissionUtm {
+  utm_source: string;
+  utm_medium: string;
+  utm_campaign: string;
+  utm_term: string;
+  utm_content: string;
+  gclid: string;
+}
+
+export function getFormDataLayerEventName(formType: string): string {
+  return NON_COMMERCIAL_FORM_TYPES.has(formType)
+    ? FORM_RECRUITMENT_EVENT
+    : FORM_CONVERSION_EVENT;
 }
 
 /**
- * Envía un evento de conversión de formulario estandarizado
+ * Payload de dataLayer sin side effects (testeable).
+ * `event`, `form_id` y `page_path` se fijan al final para que additionalData no los pise.
+ */
+export function buildFormSubmissionPayload(
+  data: FormSubmissionData,
+  pathname: string,
+  utm: FormSubmissionUtm,
+): Record<string, unknown> {
+  return {
+    form_type: data.formType,
+    form_location: data.formLocation || pathname,
+    industry: data.industria || '',
+    service: data.servicio || '',
+    ...utm,
+    ...data.additionalData,
+    event: getFormDataLayerEventName(data.formType),
+    form_id: data.formType,
+    page_path: pathname,
+  };
+}
+
+/**
+ * Envía el evento de conversión de formulario al dataLayer (GTM → GA4).
+ * Solo debe llamarse tras un submit exitoso (HTTP OK), nunca en fallo de validación.
  */
 export function trackFormSubmission(data: FormSubmissionData): void {
   if (typeof window === 'undefined') return;
-  
-  // Obtener parámetros UTM de sessionStorage
-  const utmSource = sessionStorage.getItem('utm_source') || '';
-  const utmMedium = sessionStorage.getItem('utm_medium') || '';
-  const utmCampaign = sessionStorage.getItem('utm_campaign') || '';
-  const utmTerm = sessionStorage.getItem('utm_term') || '';
-  const utmContent = sessionStorage.getItem('utm_content') || '';
-  const gclid = sessionStorage.getItem('gclid') || '';
-  
-  // Crear payload estandarizado
-  const eventPayload = {
-    event: "form_submission",
-    form_type: data.formType,
-    form_location: data.formLocation || window.location.pathname,
-    page_path: window.location.pathname,
-    industry: data.industria || '',
-    service: data.servicio || '',
-    utm_source: utmSource,
-    utm_medium: utmMedium,
-    utm_campaign: utmCampaign,
-    utm_term: utmTerm,
-    utm_content: utmContent,
-    gclid: gclid,
-    ...data.additionalData
+
+  const utm: FormSubmissionUtm = {
+    utm_source: sessionStorage.getItem('utm_source') || '',
+    utm_medium: sessionStorage.getItem('utm_medium') || '',
+    utm_campaign: sessionStorage.getItem('utm_campaign') || '',
+    utm_term: sessionStorage.getItem('utm_term') || '',
+    utm_content: sessionStorage.getItem('utm_content') || '',
+    gclid: sessionStorage.getItem('gclid') || '',
   };
-  
-  // Enviar a dataLayer (método principal)
+
+  const eventPayload = buildFormSubmissionPayload(data, window.location.pathname, utm);
+
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push(eventPayload);
-  
-  // Log de depuración en desarrollo
+
   if (process.env.NODE_ENV === 'development') {
     console.log('Form submission tracked:', eventPayload);
   }
