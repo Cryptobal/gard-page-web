@@ -6,6 +6,7 @@ author: "Gard Security"
 keywords: ["seguridad en centros comerciales", "seguridad para centros comerciales", "guardias para mall", "seguridad mall Chile", "administrador centro comercial"]
 tags: ["centros comerciales", "facility management", "prevención de pérdidas"]
 category: "Industrias"
+imageId: "c4669ed7-1aea-4643-c5a1-5991b0873400"
 faqSchema:
   - question: "¿La seguridad del mall reemplaza a la de cada tienda?"
     answer: "No. El mall cubre áreas comunes, accesos, food court, patios de servicio y el perímetro compartido. Cada locatario responde por su sala, bodega y merma. Si esas dos capas no se coordinan —protocolo de incidente, radio, CCTV y quién llama a Carabineros— el hueco queda en la frontera entre el pasillo y la tienda."
