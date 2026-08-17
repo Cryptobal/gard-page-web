@@ -10,7 +10,7 @@ category: "Normativa"
 imageId: "2d67efa6-f5ea-465e-57a9-ea94ce671d00"
 faqSchema:
   - question: "¿Las bodycams son obligatorias para los guardias de seguridad en Chile?"
-    answer: "Depende de la entidad. La Ley 21.659 y el DS 209 fijan el estándar de los sistemas de grabación en primera persona, y su exigencia concreta se define según la categoría de la entidad: las declaradas obligadas por ley —venta de combustibles, transporte de valores, banca— y las que la Subsecretaría califique según su nivel de riesgo."
+    answer: "Depende de la función, no de la empresa en general. La Ley 21.659 contempla la cámara corporal como equipamiento de los vigilantes privados y como protección mínima del guardia cuando cumple funciones calificadas de alto riesgo. El DS 209 fija el estándar técnico de esa grabación en primera persona, y el estudio de seguridad de cada entidad define dónde aplica."
   - question: "¿Qué exige el DS 209 a una bodycam de seguridad privada?"
     answer: "El artículo 39 del DS 209 exige que el sistema de grabación audiovisual vaya adosado a la vestimenta o al equipamiento del guardia, registrando en primera persona. Las grabaciones deben resguardar la fidelidad e integridad de archivos y metadatos, y conservarse al menos 120 días corridos, o hasta el cierre del proceso si hay causa judicial."
   - question: "¿Cuánto tiempo deben almacenarse las grabaciones de una bodycam?"
@@ -18,7 +18,7 @@ faqSchema:
   - question: "¿Una bodycam puede grabar a trabajadores y clientes según la Ley 21.719?"
     answer: "Sí, pero con deberes. Las imágenes y audio de personas identificables son datos personales, así que la empresa responsable debe informar la captación, definir finalidad y plazos, limitar el acceso a las grabaciones y aplicar medidas de seguridad. Con la vigencia plena de la Ley 21.719 el 1 de diciembre de 2026, ese estándar se vuelve fiscalizable."
   - question: "¿Qué debo pedirle a mi proveedor de guardias respecto de bodycams?"
-    answer: "Tres cosas: que esté inscrito en el Registro de Seguridad Privada, que el equipamiento cumpla el estándar técnico del DS 209 —primera persona, integridad de metadatos, retención de 120 días— y que exista un procedimiento escrito de acceso, custodia y entrega de grabaciones ante incidentes o requerimientos de fiscalía."
+    answer: "Tres cosas: que cuente con resolución de autorización vigente de la Subsecretaría —durante 2026 el Registro Nacional sigue en implementación—, que el equipamiento cumpla el estándar técnico del DS 209 —primera persona, integridad de metadatos, retención de 120 días— y que exista un procedimiento escrito de acceso, custodia y entrega de grabaciones ante incidentes o requerimientos de fiscalía."
 ---
 
 La **bodycam** —la cámara corporal que el guardia lleva adosada al uniforme y graba en primera persona— pasó en pocos años de ser un accesorio de nicho a un requisito regulado en Chile. La razón es la **Ley 21.659 de Seguridad Privada**, vigente desde el 28 de noviembre de 2025, y su reglamento, el **Decreto Supremo 209**, que fija por primera vez un estándar técnico explícito para los sistemas de grabación en primera persona. Si gestionas la seguridad de un servicentro, una institución financiera, una empresa de logística o cualquier operación con dotación de guardias, la pregunta ya no es si la tecnología sirve, sino qué exige la norma, a quién aplica y cómo se verifica que el proveedor cumpla.
@@ -39,11 +39,12 @@ El punto central para este tema está en el **artículo 39 del DS 209**: el sist
 
 ## Quiénes están obligados y quiénes deberían adoptarla igual
 
-Aquí conviene ser preciso, porque en el mercado circulan afirmaciones exageradas. La exigencia concreta de sistemas de grabación no es universal: se define según la categoría de cada entidad.
+Aquí conviene ser preciso, porque en el mercado circulan afirmaciones exageradas. La exigencia de la cámara corporal no es universal: el gatillo es la **función que cumple la persona**, no el rubro de la empresa a secas.
 
-- **Entidades obligadas por la propia ley**: la Ley 21.659 nombra directamente a las empresas de venta de combustibles, las de transporte de valores y las instituciones bancarias y financieras. Para ellas el estándar es el más exigente, incluida la relación con vigilantes privados.
-- **Entidades declaradas obligadas por resolución**: la Subsecretaría de Prevención del Delito puede declarar obligada a cualquier organización cuya actividad genere riesgo para la seguridad pública, asignándole nivel de riesgo bajo, medio o alto. Las medidas concretas —incluidos los sistemas de grabación— quedan definidas en su estudio de seguridad, cuyo primer plazo de presentación venció en mayo de 2026, como revisamos en la guía de [plazos de la Ley 21.659](/blog/ley-21659-seguridad-privada-plazos-2026).
-- **El resto de las empresas**: no tienen la obligación directa, pero nada impide —y mucho recomienda— exigir el mismo estándar técnico del DS 209 en el contrato con su proveedor de guardias. Si la grabación existe, más vale que tenga valor probatorio.
+- **Vigilantes privados**: en el régimen especial armado —el de las entidades obligadas de riesgo alto, como bancos, instituciones financieras y transporte de valores—, la cámara corporal es parte del equipamiento del vigilante, junto con los elementos defensivos y el seguro de vida.
+- **Guardias en funciones calificadas de alto riesgo**: para el guardia común la ley fija protecciones mínimas —chaleco anticorte, seguro de vida— y agrega la cámara corporal **cuando cumple funciones calificadas de alto riesgo**. Un mismo contrato puede tener puestos con y sin esa exigencia.
+- **Entidades obligadas y su estudio de seguridad**: la Subsecretaría de Prevención del Delito puede declarar obligada a cualquier organización cuya actividad genere riesgo para la seguridad pública, asignándole nivel bajo, medio o alto. Qué puestos quedan con grabación se define en su estudio de seguridad, cuyo primer plazo de presentación venció en mayo de 2026, como revisamos en la guía de [plazos de la Ley 21.659](/blog/ley-21659-seguridad-privada-plazos-2026).
+- **El resto de las empresas**: sin obligación directa, pero nada impide —y mucho recomienda— exigir el mismo estándar técnico del DS 209 en el contrato con su proveedor de guardias. Si la grabación existe, más vale que tenga valor probatorio.
 
 ## Requisitos técnicos del DS 209: qué significan para tu operación
 
@@ -55,7 +56,7 @@ La tabla siguiente traduce los requisitos normativos a lo que debes verificar en
 | Fidelidad e integridad de archivos y metadatos | Cada archivo conserva fecha, hora e identificación del dispositivo, sin posibilidad de edición posterior |
 | Conservación mínima de 120 días consecutivos | El almacenamiento contratado cubre al menos 4 meses de grabaciones; ante causa judicial, se conserva hasta el cierre del proceso |
 | Conexión del sistema de grabación de imágenes con una central de monitoreo | La central es propia de la entidad o de una empresa externa contratada, con autorización de la Subsecretaría |
-| Personal y empresa inscritos en el Registro de Seguridad Privada | Guardias acreditados con credencial OS10 vigente y proveedor registrado, verificable ante fiscalización |
+| Empresa autorizada y personal acreditado ante la SPD | Resolución de autorización vigente del proveedor —durante 2026 el Registro Nacional sigue en implementación— y credencial OS10 de cada guardia, verificables ante fiscalización |
 
 Ese último punto conecta con algo que ya cubrimos en detalle: la [fiscalización de la SPD y el rol del OS10](/blog/fiscalizacion-os10-spd-seguridad-privada-chile-2026) alcanzan también al equipamiento declarado en el estudio de seguridad. Una bodycam que no cumple el estándar no es neutra: es un hallazgo.
 
@@ -74,7 +75,7 @@ En la práctica, la empresa responsable debe dejar resuelto:
 
 Si vas a incorporar bodycams al contrato —por obligación o por decisión propia—, este checklist ordena la conversación con el proveedor de [guardias de seguridad](/servicios/guardias-de-seguridad):
 
-1. **Registro y acreditación**: empresa inscrita en el Registro de Seguridad Privada y guardias con credencial vigente.
+1. **Autorización y acreditación**: resolución de autorización vigente de la Subsecretaría —durante 2026 el Registro Nacional sigue en implementación, así que esa resolución es la evidencia exigible— y guardias con credencial vigente.
 2. **Equipamiento conforme al DS 209**: grabación en primera persona, integridad de metadatos, retención de 120 días. Pide la ficha técnica, no la promesa comercial.
 3. **Central de monitoreo detrás del dispositivo**: una grabación que nadie supervisa pierde la mitad de su valor preventivo. La conexión con una [central de monitoreo](/servicios/central-monitoreo) convierte el registro en capacidad de respuesta.
 4. **Procedimiento de custodia**: protocolo escrito de descarga, resguardo y entrega de grabaciones ante incidentes, fiscalización o requerimiento de fiscalía.
