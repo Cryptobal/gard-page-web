@@ -11,7 +11,7 @@ faqSchema:
   - question: "¿Qué es la conserjería virtual y cómo funciona?"
     answer: "Es un servicio de portería operado a distancia: operadores en una central atienden accesos, visitas y encomiendas mediante citofonía IP, cámaras y apertura remota de puertas y portones, en horario definido o 24/7. Reemplaza o complementa al conserje presencial del edificio o condominio."
   - question: "¿La conserjería virtual reemplaza a un guardia de seguridad?"
-    answer: "No. El operador remoto cumple funciones de conserjería y control de acceso, no de vigilancia y protección. Si la comunidad o empresa necesita seguridad privada, esa función corresponde a guardias con credencial OS10 provistos por una empresa autorizada bajo la Ley 21.659."
+    answer: "No. El operador remoto cumple funciones de conserjería; la vigilancia y protección corresponden a guardias OS10 de una empresa autorizada bajo la Ley 21.659. Y si el servicio remoto incluye monitoreo con respuesta o control activo de accesos, el proveedor también debe estar registrado."
   - question: "¿Cuánto se ahorra con una conserjería remota?"
     answer: "El ahorro proviene de reducir dotación presencial: cubrir un puesto 24/7 con personas exige contratar a 4 o 5 trabajadores con la jornada de 42 horas, mientras el servicio remoto se comparte entre varias comunidades. El monto final depende del edificio, el horario cubierto y el equipamiento requerido."
   - question: "¿Qué pasa con las cámaras y los datos de los residentes?"
@@ -48,7 +48,7 @@ El conserje es **personal de servicio** de la comunidad. La [Ley 21.442 de Copro
 
 El guardia de seguridad, en cambio, es un rol regulado por la **Ley 21.659 de Seguridad Privada**: exige credencial OS10 vigente y que el servicio lo preste una empresa autorizada e inscrita en el Registro de Seguridad Privada. Su función es la vigilancia y protección de personas y bienes.
 
-El operador de conserjería remota ocupa el primer casillero, no el segundo. Puede observar cámaras y dar aviso, pero no es un servicio de seguridad privada: no patrulla, no disuade con presencia y no ejecuta protocolos frente a un intruso dentro del recinto. Si la comunidad tiene un problema de seguridad —robos en estacionamientos, portonazos en el acceso, intrusiones por la reja posterior—, contratar portería remota como respuesta es comprar el producto equivocado. Lo tratamos en detalle en nuestra guía de [seguridad para condominios](/blog/seguridad-condominios-residenciales-chile-2026).
+El operador de conserjería remota ocupa, como regla, el primer casillero: la Ley 21.659 (art. 55) permite que conserjes y porteros se acrediten de forma voluntaria cuando desempeñan funciones de seguridad. Pero la clasificación depende de las **funciones contratadas**, no del nombre del servicio: si el paquete incluye monitoreo de cámaras con respuesta ante incidentes, control activo de accesos o protocolos de reacción, esas funciones entran en el terreno de la seguridad privada regulada, y el administrador debe verificar que el proveedor esté **autorizado e inscrito en el Registro de Seguridad Privada**. Y aun con un proveedor autorizado, un operador remoto no patrulla ni disuade con presencia física: si la comunidad tiene un problema de seguridad —robos en estacionamientos, portonazos en el acceso, intrusiones por la reja posterior—, contratar portería remota como única respuesta es comprar el producto equivocado. Lo tratamos en detalle en nuestra guía de [seguridad para condominios](/blog/seguridad-condominios-residenciales-chile-2026).
 
 ## Comparativa: qué entrega cada modelo
 
@@ -56,7 +56,7 @@ El operador de conserjería remota ocupa el primer casillero, no el segundo. Pue
 |---|---|---|---|
 | Presencia física en el edificio | Sí | No | Sí |
 | Atención de visitas y encomiendas | Sí | Sí, mediada por tecnología | No es su función principal |
-| Vigilancia y protección (seguridad privada) | No | No | Sí, bajo Ley 21.659 |
+| Vigilancia y protección (seguridad privada) | No | No como regla; el monitoreo regulado exige proveedor registrado | Sí, bajo Ley 21.659 |
 | Cobertura 24/7 sin multiplicar dotación | No (4-5 personas por puesto) | Sí (central compartida) | No (misma aritmética de turnos) |
 | Respuesta ante intrusión en curso | Limitada (aviso) | Aviso remoto a Carabineros/central | Disuasión y protocolo en sitio |
 | Costo relativo mensual | Alto | Bajo a medio | Alto |
@@ -66,7 +66,7 @@ La lectura correcta de la tabla no es "cuál gana", sino qué combinación cubre
 
 ## El punto ciego: datos personales y cámaras
 
-Una conserjería virtual funciona sobre un flujo permanente de datos personales: streaming de video hacia una central externa, grabaciones, registro de visitas con nombre y RUT, patentes vehiculares. Con la entrada en régimen de la **Ley 21.719 de protección de datos personales**, ese flujo deja de ser un detalle técnico y pasa a ser una obligación de cumplimiento para la comunidad, como explicamos en nuestra guía sobre [videovigilancia y Ley 21.719](/blog/ley-21719-videovigilancia-empresas-chile). Antes de contratar, el administrador debe exigir al proveedor:
+Una conserjería virtual funciona sobre un flujo permanente de datos personales: streaming de video hacia una central externa, grabaciones, registro de visitas con nombre y RUT, patentes vehiculares. Hoy ese tratamiento se rige por la Ley 19.628, pero la **Ley 21.719 de protección de datos personales entra en plena vigencia el 1 de diciembre de 2026** —con multas y una agencia fiscalizadora—, por lo que un contrato de conserjería remota firmado ahora debe nacer cumpliendo el estándar nuevo, como explicamos en nuestra guía sobre [videovigilancia y Ley 21.719](/blog/ley-21719-videovigilancia-empresas-chile). Antes de contratar, el administrador debe exigir al proveedor:
 
 - **Señalética e información**: los residentes y visitas deben saber que hay captación de imagen y atención remota.
 - **Plazos de retención definidos** para grabaciones y registros, y acceso restringido a personal autorizado.
