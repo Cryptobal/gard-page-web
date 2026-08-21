@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { Loader2, Send, CheckCircle, MessageCircle, X } from 'lucide-react';
 import { useSearchParams } from 'next/navigation';
 import { API_URLS } from '@/app/config/api';
+import { companyStats } from '@/lib/data/company-stats';
 import { trackFormSubmission } from '@/lib/analytics/formTracking';
 import {
   completeRutWithDv,
@@ -16,7 +17,7 @@ import {
 import { COMUNAS_CHILE } from '@/lib/comunas-chile';
 
 const POSTULACION_TOKEN = process.env.NEXT_PUBLIC_POSTULACION_TOKEN ?? 'opai-postulacion-2026';
-const WHATSAPP_NUMBER = '56956062246';
+const WHATSAPP_NUMBER = companyStats.hrWhatsAppWaMe;
 const WHATSAPP_PREFILL = encodeURIComponent(
   'Hola, postulé a guardia por la web y quiero saber el estado.'
 );

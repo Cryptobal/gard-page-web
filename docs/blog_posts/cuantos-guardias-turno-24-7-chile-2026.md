@@ -63,7 +63,7 @@ Por eso, en la práctica, un puesto vigilado 24/7 se dimensiona habitualmente co
 
 Un ejemplo concreto lo deja claro. Suponga un solo punto de acceso que debe estar vigilado día y noche todo el año. Los cuatro guardias del piso cubren la operación normal, pero cuando el primero entra a sus 15 días hábiles de vacaciones, quedan tres para 168 horas: matemáticamente imposible sin exceder la jornada. Si además coincide una licencia médica, el puesto se queda con dos personas y la única salida "rápida" es pagar horas extra o dejar el turno de noche sin cubrir. El quinto guardia —o el volante compartido— existe precisamente para que esa semana no dependa de la suerte. Presupuestar sin él no ahorra dinero: solo posterga el problema hasta la primera ausencia.
 
-Este es también el motivo por el que el precio de un puesto continuo no equivale a "una remuneración × 4". Si quiere entender cómo se compone realmente el valor mensual de un servicio, revise [cuánto cuesta contratar guardias de seguridad en Chile](/blog/cuanto-cuesta-contratar-guardias-seguridad-chile-2025) y cómo la [jornada de 42 horas de la Ley 21.561](/blog/ley-21561-jornada-excepcional-guardias-seguridad-chile-2026) impacta directamente en la dotación que debe pagar.
+Este es también el motivo por el que el precio de un puesto continuo no equivale a "una remuneración × 4". Si quiere entender cómo se compone realmente el valor mensual de un servicio, revise [cuánto cuesta un guardia de seguridad en Chile](/cuanto-cuesta-guardia-seguridad-chile) y cómo la [jornada de 42 horas de la Ley 21.561](/blog/ley-21561-jornada-excepcional-guardias-seguridad-chile-2026) impacta directamente en la dotación que debe pagar.
 
 ## Cómo reducir la dotación sin dejar el sitio descubierto
 

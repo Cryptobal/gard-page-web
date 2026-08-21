@@ -104,6 +104,16 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/contact',
+        destination: '/contacto',
+        permanent: true,
+      },
+      {
+        source: '/cotizador/inteligente',
+        destination: '/cotizador-inteligente',
+        permanent: true,
+      },
+      {
         source: '/mejor-empresa-de-seguridad',
         destination: '/sobre-nosotros',
         permanent: true,
@@ -230,6 +240,74 @@ const nextConfig = {
       {
         source: '/blog/acreditacion-os10',
         destination: '/certificacion-os10-guardias-seguridad',
+        permanent: true,
+      },
+
+      // GSC hard 404 / legacy WordPress root slugs (ago-2026).
+      // URLs que Google sigue rastreando tras normalización de host/slash
+      // pero que no existen en el App Router — 308 permanente al destino canónico.
+      {
+        source: '/santiago',
+        destination: '/santiago/guardias-de-seguridad',
+        permanent: true,
+      },
+      {
+        source: '/antofagasta',
+        destination: '/antofagasta/guardias-de-seguridad',
+        permanent: true,
+      },
+      {
+        source: '/valparaiso',
+        destination: '/valparaiso/guardias-de-seguridad',
+        permanent: true,
+      },
+      {
+        source: '/temuco',
+        destination: '/temuco/guardias-de-seguridad',
+        permanent: true,
+      },
+      {
+        source: '/testimonios',
+        destination: '/sobre-nosotros',
+        permanent: true,
+      },
+      {
+        source: '/cotizar-servicios-de-seguridad-privada',
+        destination: '/cotizar',
+        permanent: true,
+      },
+      {
+        // Typo histórico "guarida" — mismo destino que la variante /blog/… ya mapeada arriba.
+        source: '/trabajo-de-guarida-de-seguridad',
+        destination: 'https://trabajo.gard.cl/jobs/Careers',
+        permanent: true,
+      },
+      // Posts WordPress publicados en raíz (sin /blog/) — equity hacia el slug canónico.
+      {
+        source: '/comparativa-entre-g4s-y-securitas-cual-es-la-mejor-opcion-y-por-que-gard-se-destaca-en-chile',
+        destination: '/blog/comparativa-entre-g4s-y-securitas-cual-es-la-mejor-opcion-y-por-que-gard-se-destaca-en-chile',
+        permanent: true,
+      },
+      {
+        source: '/claves-para-elaborar-las-bases-de-licitacion-para-servicios-de-seguridad-privada',
+        destination: '/blog/claves-para-elaborar-las-bases-de-licitacion-para-servicios-de-seguridad-privada',
+        permanent: true,
+      },
+      {
+        source: '/la-importancia-de-la-central-de-monitoreo-en-la-seguridad-de-empresas',
+        destination: '/blog/la-importancia-de-la-central-de-monitoreo-en-la-seguridad-de-empresas',
+        permanent: true,
+      },
+      // Soft 404 en GSC: post legacy de drones duplicado — consolidar en el artículo 2026.
+      {
+        source: '/blog/innovacion-en-seguridad-privada-drones-en-seguridad',
+        destination: '/blog/drones-seguridad-privada-chile',
+        permanent: true,
+      },
+      // Post 2025 con tablas CLP inventadas y NAP obsoleto — money page sin precios genéricos.
+      {
+        source: '/blog/cuanto-cuesta-contratar-guardias-seguridad-chile-2025',
+        destination: '/cuanto-cuesta-guardia-seguridad-chile',
         permanent: true,
       },
 

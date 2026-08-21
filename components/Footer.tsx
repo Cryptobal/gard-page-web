@@ -7,6 +7,7 @@ import { Mail, MapPin, Phone, Linkedin, Instagram, Facebook, MessageCircle } fro
 import { useTheme } from 'next-themes';
 import { X, MessageSquare } from 'lucide-react';
 import { trackIntencionEmpleo } from '@/lib/analytics/intentTracking';
+import { companyStats } from '@/lib/data/company-stats';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -83,7 +84,7 @@ export default function Footer() {
                 <Facebook className="w-6 h-6" />
               </a>
               <a 
-                href="https://wa.me/56956062246"
+                href={`https://wa.me/${companyStats.commercialWhatsAppWaMe}`}
                 target="_blank"
                 rel="nofollow noopener noreferrer"
                 aria-label="WhatsApp - Contáctanos por WhatsApp"
@@ -361,6 +362,17 @@ export default function Footer() {
                 <div className="mb-2">
                   <span className="font-semibold text-primary dark:text-accent text-sm block">Consultas Comerciales</span>
                 </div>
+                <div className="flex items-start gap-2 mb-2">
+                  <Phone className="w-5 h-5 text-primary dark:text-blue-300 flex-shrink-0 mt-1" />
+                  <a 
+                    href={`tel:${companyStats.contactPhoneE164}`}
+                    className="text-sm md:text-base text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors"
+                    aria-label={companyStats.contactPhoneDisplay}
+                    itemProp="telephone"
+                  >
+                    {companyStats.contactPhoneDisplay}
+                  </a>
+                </div>
                 <div className="flex items-start gap-2">
                   <Mail className="w-5 h-5 text-primary dark:text-blue-300 flex-shrink-0 mt-1" />
                   <a 
@@ -374,21 +386,17 @@ export default function Footer() {
                 </div>
               </li>
 
-              {/* Contacto para Guardias */}
+              {/* Empleo: enlace a reclutamiento (teléfono RRHH solo en /reclutamiento) */}
               <li className="pt-4 border-t border-gray-200 dark:border-gray-700">
                 <div className="mb-2">
                   <span className="font-semibold text-primary dark:text-accent text-sm block">Trabaja con nosotros</span>
                 </div>
-                <div className="flex items-start gap-2">
-                  <Phone className="w-5 h-5 text-primary dark:text-blue-300 flex-shrink-0 mt-1" />
-                  <a 
-                    href="tel:+56956062246" 
-                    className="text-sm md:text-base text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors"
-                    aria-label="+56 9 5606 2246"
-                  >
-                    +56 9 5606 2246
-                  </a>
-                </div>
+                <Link
+                  href="/reclutamiento"
+                  className="text-sm md:text-base text-gray-700 dark:text-blue-100 hover:text-primary dark:hover:text-white transition-colors"
+                >
+                  Postula como guardia →
+                </Link>
               </li>
             </ul>
           </div>

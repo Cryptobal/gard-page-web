@@ -1110,6 +1110,12 @@ Problemas detectados durante la ejecución de tareas que quedan **fuera del scop
 - **Tarea 1.5 · heliboss.cl devuelve 403 a crawlers** (bloqueo anti-bot): Semrush lo cuenta como broken external link pero el sitio funciona en browser. Falso positivo, no accionar.
 - **Tarea 1.5 · Working tree tenía `CiudadServicioLanding.tsx` con 968 líneas borradas sin commitear** (cambio previo a esta sesión, no se tocó). Confirmar con Carlos si es intencional.
 
+### Detectados durante fix GA4 form conversions (2026-08-16)
+
+- **GA4 conversions · `CotizadorFormulario.tsx` es código muerto**: no se importa en ninguna página; el cotizador vivo es `CotizadorInteligenteV2`. El archivo muerto empuja `submit_form_cotizacion_inteligente` (nombre distinto al canónico Ads). Eliminar o alinear si se reutiliza.
+- **GA4 conversions · GTM solo carga tras consentimiento de analítica** (`GoogleTagManager.tsx` + `consent.analytics`). Si el usuario rechaza cookies, `submit_form_submission` queda en dataLayer pero GTM/GA4 no lo envían. Esperado; no es la causa de 7+ días en cero (el sitio disparaba el evento retirado `form_submission`).
+- **GA4 conversions · `/cotizador/inteligente` era 404**: se añadió redirect 308 a `/cotizador-inteligente`. Confirmar en Ads si algún sitelink aún usa esa URL.
+
 ---
 
 **Última actualización**: 2026-04-23

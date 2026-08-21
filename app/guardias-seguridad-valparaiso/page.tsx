@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 const faqs = [
   { question: '¿Por qué contratar guardias de seguridad en Valparaíso?', answer: 'Valparaíso, como principal puerto de Chile y Patrimonio de la Humanidad UNESCO, requiere seguridad especializada para proteger operaciones portuarias, zonas turísticas patrimoniales y edificios gubernamentales (Congreso Nacional). Nuestros guardias tienen experiencia en protocolos portuarios, vigilancia turística y protección patrimonial.' },
   { question: '¿Qué experiencia tienen en seguridad portuaria?', answer: 'Protegemos operaciones portuarias en Valparaíso: terminales de carga, recintos portuarios, bodegas de importación/exportación y zonas de embarque. Nuestros guardias conocen protocolos marítimos, coordinación con Capitanía de Puerto y normativas de seguridad portuaria, respaldados por un equipo fundador con amplia experiencia en el sector.' },
-  { question: '¿Cuánto cuesta contratar guardias en Valparaíso?', answer: 'Se cotiza según turnos, puestos y riesgo (portuario, patrimonial, corporativo). Enviamos propuesta cerrada en 24h sin cifras genéricas.' },
+  { question: '¿Cuánto cuesta contratar guardias en Valparaíso?', answer: 'Se cotiza según turnos, puestos y riesgo (portuario, patrimonial, corporativo). Enviamos propuesta cerrada en menos de 12 horas hábiles sin cifras genéricas.' },
   { question: '¿Cubren Viña del Mar además de Valparaíso?', answer: 'Sí, cubrimos toda la región de Valparaíso incluyendo Viña del Mar, Con Con, Quilpué y Villa Alemana. Tenemos equipos especializados para zonas turísticas, balnearios, edificios corporativos y centros comerciales en toda el área metropolitana.' }
 ];
 

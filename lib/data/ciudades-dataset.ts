@@ -202,15 +202,138 @@ export const ciudadesDataset: Record<string, CiudadDataset> = {
     regulacionesLocalesRelevantes:
       'Ordenanzas municipales específicas por comuna para control de acceso a edificios corporativos y uso de CCTV en espacios semi-públicos. Las 52 comunas del Gran Santiago tienen normativa diferenciada que impacta el despliegue de guardias en locales comerciales y edificios residenciales de uso mixto.',
   },
-  valparaiso: emptyDataset('valparaiso', 'Valparaíso'),
+  valparaiso: {
+    ciudad: 'valparaiso',
+    region: 'Valparaíso',
+    // INE Censo 2024: 284.938 habitantes en la comuna de Valparaíso (-3,9% vs 2017).
+    // La Región de Valparaíso alcanzó 1.896.053 habitantes en el mismo censo.
+    poblacion: 284_938,
+    poblacionAnio: 2024,
+    poblacionFuenteUrl: 'https://censo2024.ine.gob.cl/resultados/',
+    delitos2024: {
+      // ENUSC 2024 (INE + Subsecretaría de Prevención del Delito): en la Región de
+      // Valparaíso el 7,6% de los hogares urbanos fue víctima de delitos violentos
+      // (estable vs 7,6% en 2023). El 37,6% declaró haber sufrido algún delito.
+      roboLugarHabitadoTasa100k: null,
+      roboConViolenciaTasa100k: null,
+      hurtoTasa100k: null,
+      comunaMasAfectada: null,
+      fuenteUrl:
+        'https://www.ine.gob.cl/docs/default-source/seguridad-ciudadana/publicaciones-y-anuarios/2024/sintesis-valparaiso---enusc-2024.pdf',
+    },
+    industriasPredominantes: [
+      'Logística portuaria y comercio exterior',
+      'Turismo y servicios patrimoniales',
+      'Retail y comercio regional',
+      'Industria ligera y construcción',
+    ],
+    empresasGrandesEnLaZona: [],
+    proyectosConstruccionActivos: null,
+    proyectosConstruccionFuente: null,
+    puntosInteresSeguridad: [
+      'Puerto de Valparaíso (Terminal de Contenedores)',
+      'Puerto de San Antonio',
+      'Congreso Nacional (Plaza Sotomayor)',
+      'Terminal de buses Terminal Rodoviario',
+      'Zona portuaria Barón–Echaurren',
+      'Corredor turístico Cerro Alegre–Cerro Concepción',
+    ],
+    particularidadesGeograficas:
+      'Ciudad costera construida sobre 42 cerros que descienden al Pacífico, con un estrecho plan (Almendral) donde concentra el puerto y el comercio. La topografía en pendiente dificulta desplazamientos de refuerzos móviles entre cerros y plan, y exige protocolos diferenciados para recintos patrimoniales en altura versus accesos portuarios en el plan.',
+    regulacionesLocalesRelevantes:
+      'Normativa portuaria de la Empresa Portuaria de Valparaíso para control de accesos en recintos aduaneros y zonas primarias. Ordenanzas municipales de Valparaíso y Viña del Mar para uso de CCTV en espacios semi-públicos y edificios patrimoniales de la Zona Típica.',
+  },
   'vina-del-mar': emptyDataset('vina-del-mar', 'Valparaíso'),
   concepcion: emptyDataset('concepcion', 'Biobío'),
-  antofagasta: emptyDataset('antofagasta', 'Antofagasta'),
+  antofagasta: {
+    ciudad: 'antofagasta',
+    region: 'Antofagasta',
+    // INE Censo 2024: 401.096 habitantes en la comuna de Antofagasta (+10,8% vs 2017).
+    // La Región de Antofagasta alcanzó 635.416 habitantes en el mismo censo.
+    poblacion: 401_096,
+    poblacionAnio: 2024,
+    poblacionFuenteUrl: 'https://censo2024.ine.gob.cl/resultados/',
+    delitos2024: {
+      // ENUSC 2024 (INE + Subsecretaría de Prevención del Delito): en la Región de
+      // Antofagasta el 4,7% de los hogares urbanos fue víctima de delitos violentos
+      // (baja desde 8,1% en 2023). El 33,0% declaró haber sufrido algún delito.
+      // Tasas por 100k detalladas pendientes de extracción del portal CEAD.
+      roboLugarHabitadoTasa100k: null,
+      roboConViolenciaTasa100k: null,
+      hurtoTasa100k: null,
+      comunaMasAfectada: null,
+      fuenteUrl:
+        'https://subprevenciondeldelito.gob.cl/noticia/enusc-2024-victimizacion-por-delitos-violentos-se-mantiene-estable-a-nivel-nacional-como-tambien-en-14-de-las-16-regiones-del-pais/',
+    },
+    industriasPredominantes: [
+      'Minería del cobre y metales',
+      'Logística portuaria y comercio exterior',
+      'Energía y servicios industriales',
+      'Construcción e infraestructura minera',
+    ],
+    empresasGrandesEnLaZona: [],
+    proyectosConstruccionActivos: null,
+    proyectosConstruccionFuente: null,
+    puntosInteresSeguridad: [
+      'Puerto Antofagasta (Terminal Multioperado)',
+      'Aeropuerto Andrés Sabella Gálvez (ANF)',
+      'Zona Industrial La Negra–Mejillones',
+      'Parque Industrial La Negra',
+      'Sector costero Caleta Coloso',
+      'Corredor minero hacia Calama y Sierra Gorda',
+    ],
+    particularidadesGeograficas:
+      'Ciudad costera desértica que se extiende linealmente entre el Pacífico y el cerro Moreno, con clima árido, vientos costeros y amplitud térmica marcada. La operación minera e industrial se concentra en polígonos alejados del centro urbano (La Negra, Mejillones, faenas en altura), lo que exige logística de desplazamiento, comunicación en zonas con cobertura variable y protocolos para turnos en sitios de alto riesgo.',
+    regulacionesLocalesRelevantes:
+      'Normativa minera (DS 132 OS10 para guardias), protocolos portuarios de acceso y control de carga, y ordenanzas municipales para edificios de uso mixto en el centro urbano de Antofagasta. Faenas mineras pueden exigir credenciales adicionales y capacitación específica del mandante.',
+  },
   iquique: emptyDataset('iquique', 'Tarapacá'),
   'puerto-montt': emptyDataset('puerto-montt', 'Los Lagos'),
   rancagua: emptyDataset('rancagua', "O'Higgins"),
   chillan: emptyDataset('chillan', 'Ñuble'),
-  temuco: emptyDataset('temuco', 'La Araucanía'),
+  temuco: {
+    ciudad: 'temuco',
+    region: 'La Araucanía',
+    // INE Censo 2024: 292.518 habitantes en la comuna de Temuco (+3,6% vs 2017).
+    // La Región de La Araucanía alcanzó 1.010.423 habitantes en el mismo censo.
+    poblacion: 292_518,
+    poblacionAnio: 2024,
+    poblacionFuenteUrl: 'https://censo2024.ine.gob.cl/resultados/',
+    delitos2024: {
+      // ENUSC 2024 (INE + Subsecretaría de Prevención del Delito): en la Región de
+      // La Araucanía el 6,6% de los hogares urbanos fue víctima de delitos violentos
+      // (al alza desde 5,0% en 2023, sin diferencia estadísticamente significativa).
+      // El 35,7% declaró haber sufrido algún delito consultado.
+      roboLugarHabitadoTasa100k: null,
+      roboConViolenciaTasa100k: null,
+      hurtoTasa100k: null,
+      comunaMasAfectada: null,
+      fuenteUrl:
+        'https://www.ine.gob.cl/docs/default-source/seguridad-ciudadana/publicaciones-y-anuarios/2024/sintesis-la-araucania---enusc-2024.pdf',
+    },
+    industriasPredominantes: [
+      'Agroindustria y procesamiento alimentario',
+      'Sector forestal y celulosa',
+      'Retail y comercio regional',
+      'Salud y servicios hospitalarios',
+      'Logística y transporte de carga',
+    ],
+    empresasGrandesEnLaZona: [],
+    proyectosConstruccionActivos: null,
+    proyectosConstruccionFuente: null,
+    puntosInteresSeguridad: [
+      'Aeropuerto La Araucanía (ZCO)',
+      'Mall Portal Araucanía',
+      'Hospital Regional Dr. Hernán Henríquez Quezada',
+      'Zona industrial Padre Las Casas',
+      'Universidad de La Frontera (sector universitario)',
+      'Corredor logístico Ruta 5 Sur',
+    ],
+    particularidadesGeograficas:
+      'Capital regional en el valle central junto al río Cautín, con el cerro Ñielol como referente paisajístico y una expansión urbana hacia Padre Las Casas y el sector poniente. La actividad agroindustrial y forestal se extiende hacia comunas cercanas (Victoria, Lautaro, Nueva Imperial), lo que exige protocolos para plantas de procesamiento, bodegas periféricas y control de accesos en sitios con flujo de camiones y personal contratista.',
+    regulacionesLocalesRelevantes:
+      'Ordenanzas municipales de Temuco y Padre Las Casas para uso de CCTV en edificios de uso mixto y locales comerciales. Plantas agroindustriales y forestales pueden exigir protocolos de acceso, registro de visitas y coordinación con mandantes según normativa sanitaria o de bioseguridad del sector.',
+  },
 };
 
 /**

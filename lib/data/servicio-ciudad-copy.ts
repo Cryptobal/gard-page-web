@@ -85,6 +85,13 @@ export type FaqItem = {
   respuesta: string;
 };
 
+/** Enlace interno de conversión o contenido relacionado. */
+export type EnlaceInterno = {
+  titulo: string;
+  href: string;
+  descripcion: string;
+};
+
 /** Copy único de una combinación ciudad × servicio. */
 export type ServicioCiudadCopy = {
   /** Slug de ciudad (debe existir en `ciudad-data.ts` y `ciudades-dataset.ts`). */
@@ -122,6 +129,15 @@ export type ServicioCiudadCopy = {
 
   /** FAQ mínimo 4 items; ≥2 específicas a la ciudad. */
   faq: FaqItem[];
+
+  /**
+   * FAQ orientado a objeciones comerciales (subcontratación, reemplazos, OS10).
+   * Opcional: si existe, se renderiza como bloque separado con schema propio.
+   */
+  faqObjeciones?: FaqItem[];
+
+  /** Enlaces internos hacia páginas de conversión, servicio o blog relacionado. */
+  enlacesInternos?: EnlaceInterno[];
 };
 
 /**
@@ -214,7 +230,7 @@ export const servicioCiudadCopy: ServicioCiudadCopy[] = [
         pregunta:
           '¿Cuánto cuesta contratar un guardia de seguridad en Santiago?',
         respuesta:
-          'El costo depende del tipo de turno (12 o 24 horas), cantidad de puestos, comuna específica y nivel de riesgo del sitio. Entregamos cotización cerrada sin compromiso en 24 horas hábiles, con precio mensual todo incluido (uniforme, equipamiento, reemplazos por ausencia y supervisión). Solicitá la cotización para tu sitio específico y recibís un presupuesto en línea con el mercado de Santiago.',
+          'El costo depende del tipo de turno (12 o 24 horas), cantidad de puestos, comuna específica y nivel de riesgo del sitio. Entregamos cotización cerrada sin compromiso en menos de 12 horas hábiles, con precio mensual todo incluido (uniforme, equipamiento, reemplazos por ausencia y supervisión). Solicitá la cotización para tu sitio específico y recibís un presupuesto en línea con el mercado de Santiago.',
       },
       {
         pregunta:
@@ -239,6 +255,593 @@ export const servicioCiudadCopy: ServicioCiudadCopy[] = [
           '¿Qué tan rápido pueden iniciar el servicio en un sitio nuevo en Santiago?',
         respuesta:
           'Onboarding estándar en 5 días hábiles: día 1 visita técnica y diseño de protocolo, día 2 selección y capacitación específica del guardia asignado, días 3-4 validación de credenciales OS10 y cobertura de ausencias, día 5 inicio con supervisión reforzada. Para contingencias urgentes activamos modalidad express con personal OS10 de contingencia dentro de 48 horas, aunque la puesta completa con protocolos a medida requiere los 5 días hábiles.',
+      },
+    ],
+    faqObjeciones: [
+      {
+        pregunta: '¿Gard Security subcontrata guardias a terceros en Santiago?',
+        respuesta:
+          'No subcontratamos personal de vigilancia. Los guardias que operan en Santiago son parte de nuestra dotación directa en la RM, con contrato laboral con Gard Security SpA y certificación OS10 auditada mensualmente. Usted contrata a Gard y Gard responde por el servicio, la supervisión 24/7 desde nuestra central propia y el cumplimiento normativo. Esto evita la cadena de responsabilidad difusa que genera la subcontratación en el rubro y alinea con la Ley 20.123 sobre responsabilidad solidaria del mandante.',
+      },
+      {
+        pregunta:
+          '¿Qué pasa si un guardia falta o se enferma? ¿Hay reemplazo garantizado?',
+        respuesta:
+          'Mantenemos un pool de guardias OS10 de contingencia en Santiago para cubrir ausencias planificadas e imprevistas. La continuidad operacional del 99,9% de turnos cubiertos se mide trimestralmente sobre contratos activos: cuando un guardia no puede presentarse, la central de monitoreo activa un reemplazo según protocolo sin costo adicional en la modalidad estándar. Supervisores verifican credenciales y entrega de turno antes de cada relevo, con registro digital en OPAI.',
+      },
+      {
+        pregunta: '¿Todos los guardias asignados tienen certificación OS10 vigente?',
+        respuesta:
+          'Sí: el 100% del plantel tiene credencial OS10 vigente con auditoría mensual de vencimientos. Antes de asignar un guardia a un sitio en Santiago verificamos certificado, capacitación específica al protocolo del cliente y antecedentes según normativa de Carabineros. Si un guardia pierde la certificación, no opera hasta renovarla; en ese intervalo asignamos reemplazo desde el pool de contingencia para no dejar el puesto descubierto.',
+      },
+      {
+        pregunta:
+          '¿En cuánto tiempo recibo una cotización y cuándo puede arrancar el servicio?',
+        respuesta:
+          'Entregamos cotización cerrada sin compromiso en menos de 12 horas hábiles desde que recibimos los datos del sitio. El plazo de inicio operativo estándar es de 5 días hábiles desde la firma del contrato hasta guardia OS10 activo con protocolo validado. Para urgencias evaluamos modalidad express con personal de contingencia dentro de 48 horas, aunque la puesta completa con protocolos a medida requiere el onboarding estándar de 5 días.',
+      },
+    ],
+    enlacesInternos: [
+      {
+        titulo: 'Cotizar guardias de seguridad',
+        href: '/cotizar',
+        descripcion:
+          'Formulario comercial con respuesta en menos de 12 horas hábiles y propuesta cerrada para su sitio.',
+      },
+      {
+        titulo: 'Servicio de guardias para empresas',
+        href: '/servicios/guardias-de-seguridad',
+        descripcion:
+          'Alcance del servicio, modalidades de turno, supervisión y tecnología OPAI incluida.',
+      },
+      {
+        titulo: 'Empresa de seguridad privada en Chile',
+        href: '/empresa-seguridad-privada-chile',
+        descripcion:
+          'Trayectoria, cobertura nacional, cumplimiento normativo y diferenciadores operativos de Gard.',
+      },
+      {
+        titulo: 'Cómo elegir empresa de seguridad privada',
+        href: '/blog/como-elegir-empresa-seguridad-privada',
+        descripcion:
+          'Criterios B2B para evaluar proveedores: OS10, continuidad, subcontratación y SLA.',
+      },
+      {
+        titulo: 'Subcontratación y responsabilidad solidaria',
+        href: '/blog/responsabilidad-solidaria-subcontratacion-seguridad-chile',
+        descripcion:
+          'Qué exige la Ley 20.123 al contratar servicios de vigilancia y por qué importa el empleador directo.',
+      },
+    ],
+  },
+  {
+    ciudad: 'antofagasta',
+    servicio: 'guardias-de-seguridad',
+    heroH1:
+      'Guardias de Seguridad en Antofagasta · Empresa OS10 para Minería, Puerto e Industria Norte',
+    introParagraph:
+      'Antofagasta concentra la economía minera e industrial del norte grande: 401.096 habitantes en la comuna y 635.416 en la Región de Antofagasta según el Censo 2024 del INE, con puerto comercial, parques industriales en La Negra y faenas de cobre en el desierto circundante. La ENUSC 2024 (INE + Subsecretaría de Prevención del Delito) reporta que el 4,7% de los hogares urbanos de la región fue víctima de delitos violentos en los últimos doce meses —cifra inferior al 8,5% nacional— y que un 33,0% declaró haber sufrido algún delito. Gard Security ofrece guardias de seguridad para empresas en Antofagasta con personal certificado OS10, empleador directo sin subcontratación y supervisión desde central propia 24/7. El servicio se dimensiona por riesgo real del sitio: accesos portuarios, bodegas de insumos, oficinas corporativas en el centro urbano o recintos con rotación de contratistas. Indicadores operativos auditables: 100% del plantel con OS10 vigente, 99,9% de continuidad en turnos cubiertos y propuesta comercial en menos de 12 horas hábiles desde el primer contacto.',
+    panoramaSeguridad:
+      'La Región de Antofagasta combina presión delictual urbana en el Gran Antofagasta con riesgos propios de la industria extractiva: control de accesos en faenas alejadas, flujo de carga en el puerto, bodegaje de insumos de alto valor y rotación de personal contratista. Los datos oficiales de la ENUSC 2024 muestran que el 4,7% de los hogares urbanos de la región fue víctima de delitos violentos durante el último año —disminución desde el 8,1% de 2023— y que el 33,0% de los hogares declaró haber sufrido algún delito consultado. La victimización personal en la región alcanzó el 3,6%, por debajo del promedio nacional de 5,8%. Para empresas, el desafío no es solo el índice urbano: sitios industriales en La Negra, Mejillones y corredores mineros exigen protocolos de acceso, registro de visitas y coordinación con mandantes que difieren del modelo residencial o retail. Nuestra operación en Antofagasta se estructura alrededor de estos contextos, con despliegue ajustado al tipo de activo y no a plantillas genéricas importadas del centro del país.',
+    industriasRelevantes: [
+      {
+        nombre: 'Minería del cobre y faenas industriales',
+        porQueImporta:
+          'La Región de Antofagasta concentra operaciones de extracción y procesamiento de cobre que abastecen la cadena exportadora del país. Los recintos mineros e industrializadores exigen control de acceso por credencial, registro de contratistas, rondas en perímetro y coordinación con mandantes —protocolos distintos al de un edificio de oficinas urbano.',
+      },
+      {
+        nombre: 'Logística portuaria y comercio exterior',
+        porQueImporta:
+          'El Puerto de Antofagasta y los accesos en Mejillones mueven carga de insumos mineros y contenedores con ventanas horarias comprimidas. Aquí priorizamos control de muelles y patios, registro de transportistas, vigilancia perimetral y reportes trazables para detectar mermas o accesos no autorizados.',
+      },
+      {
+        nombre: 'Parques industriales y energía',
+        porQueImporta:
+          'La Zona Industrial La Negra–Mejillones agrupa plantas de servicios, energía y proveedores mineros con alto flujo de camiones y personal externo. Los protocolos incluyen control en garitas, rondas programadas, verificación de credenciales OS10 y respuesta coordinada con central de monitoreo ante incidentes en turnos nocturnos.',
+      },
+    ],
+    zonasCobertura: [
+      {
+        nombre: 'Centro urbano y eje Gran Vía',
+        descripcion:
+          'Edificios corporativos, oficinas de servicios y locales comerciales con recepción, control de visitas y protocolos adaptados al flujo peatonal del centro de Antofagasta.',
+      },
+      {
+        nombre: 'La Negra y parques industriales',
+        descripcion:
+          'Bodegas, plantas de servicios mineros y centros logísticos con garitas, control de carga/descarga, rondas perimetrales y coordinación con transportistas en horarios extendidos.',
+      },
+      {
+        nombre: 'Mejillones y accesos portuarios',
+        descripcion:
+          'Recintos vinculados al comercio exterior y logística marítima: vigilancia de patios, accesos restringidos y registro de ingresos alineado a normativa portuaria.',
+      },
+      {
+        nombre: 'Corredor regional (Calama, Tocopilla)',
+        descripcion:
+          'Despliegue coordinado hacia sitios industriales y faenas en el interior regional, con logística de reemplazos y supervisión remota desde central propia cuando el sitio lo requiere.',
+      },
+    ],
+    kpisOperativos: [
+      {
+        label: 'Certificación OS10 vigente',
+        value: '100%',
+        detail: 'Auditoría mensual de credenciales del plantel asignado a sitios en el norte',
+      },
+      {
+        label: 'Continuidad operacional',
+        value: '99.9%',
+        detail: 'Turnos cubiertos vs contratados, medido trimestralmente sobre contratos activos',
+      },
+      {
+        label: 'Propuesta comercial',
+        value: '12 horas',
+        detail: 'Cotización cerrada sin compromiso desde recepción de datos del sitio',
+      },
+      {
+        label: 'Onboarding de sitio nuevo',
+        value: '5 días hábiles',
+        detail: 'Desde firma de contrato hasta guardia OS10 activo con protocolo validado',
+      },
+      {
+        label: 'Activación de alerta en sitio',
+        value: '2 min',
+        detail: 'Tiempo máximo para alertar a central de monitoreo ante incidente en el puesto',
+      },
+    ],
+    faq: [
+      {
+        pregunta:
+          '¿Cuánto cuesta contratar guardias de seguridad en Antofagasta?',
+        respuesta:
+          'El costo depende de puestos, turnos (12 o 24 horas), comuna o sector específico y nivel de riesgo del sitio —un acceso portuario en Mejillones no se cotiza igual que una recepción corporativa en el centro de Antofagasta. Entregamos propuesta cerrada sin compromiso en menos de 12 horas hábiles, con precio mensual todo incluido: uniforme, equipamiento, reemplazos por ausencia y supervisión. Solicite cotización con la ubicación y dotación requerida para recibir un presupuesto alineado al mercado del norte grande.',
+      },
+      {
+        pregunta:
+          '¿En qué zonas de Antofagasta tienen operaciones activas hoy?',
+        respuesta:
+          'Operamos en el Gran Antofagasta y corredores industriales del norte: edificios y oficinas en el centro urbano y eje Gran Vía, parques industriales de La Negra, accesos y recintos logísticos en Mejillones, y sitios vinculados al corredor minero hacia Calama y Tocopilla. La central propia coordina despliegues, reemplazos y supervisión remota sin subcontratar el personal de vigilancia a terceros.',
+      },
+      {
+        pregunta:
+          '¿Cómo se adapta el servicio a faenas mineras e industriales en Antofagasta?',
+        respuesta:
+          'Diseñamos protocolos según el mandante y el tipo de activo: control de credenciales y registro de contratistas en faenas, garitas y rondas perimetrales en parques industriales, recepción ejecutiva en oficinas corporativas y coordinación con transportistas en accesos portuarios. El 100% del plantel asignado cuenta con OS10 vigente y capacitación específica al protocolo del sitio antes del primer turno, con auditoría mensual de vencimientos.',
+      },
+      {
+        pregunta:
+          '¿Qué tan rápido pueden iniciar el servicio en un sitio nuevo en Antofagasta?',
+        respuesta:
+          'El onboarding estándar es de 5 días hábiles: visita técnica y diseño de protocolo, selección del guardia, validación OS10 y cobertura de ausencias, e inicio con supervisión reforzada. Para contingencias urgentes evaluamos modalidad express con personal OS10 de contingencia, aunque la puesta completa con protocolos a medida —especialmente en sitios industriales o portuarios— requiere el plazo estándar de 5 días hábiles.',
+      },
+      {
+        pregunta:
+          '¿Por qué contratar una empresa de seguridad en Antofagasta y no traer personal desde Santiago?',
+        respuesta:
+          'Antofagasta tiene dinámica operativa propia: turnos en zonas industriales alejadas, logística de reemplazos en el desierto, normativas de mandantes mineros y ventanas horarias portuarias que un proveedor sin presencia regional no resuelve bien. Gard Security opera en 10 ciudades de Chile —incluida Antofagasta— con empleador directo, central de monitoreo propia y SLA comercial de respuesta en menos de 12 horas hábiles, evitando la cadena de subcontratación que diluye responsabilidad ante incidentes.',
+      },
+    ],
+    faqObjeciones: [
+      {
+        pregunta: '¿Gard Security subcontrata guardias a terceros en Antofagasta?',
+        respuesta:
+          'No subcontratamos personal de vigilancia. Los guardias que operan en Antofagasta son parte de nuestra dotación directa, con contrato laboral con Gard Security SpA y certificación OS10 auditada mensualmente. Usted contrata a Gard y Gard responde por el servicio, la supervisión 24/7 desde nuestra central propia y el cumplimiento normativo. Esto evita la cadena de responsabilidad difusa que genera la subcontratación en el rubro y alinea con la Ley 20.123 sobre responsabilidad solidaria del mandante.',
+      },
+      {
+        pregunta:
+          '¿Qué pasa si un guardia falta en un turno nocturno en zona industrial?',
+        respuesta:
+          'Mantenemos pool de guardias OS10 de contingencia para cubrir ausencias planificadas e imprevistas en la región. La continuidad operacional del 99,9% de turnos cubiertos se mide trimestralmente: cuando un guardia no puede presentarse, la central activa reemplazo según protocolo sin costo adicional en la modalidad estándar. Supervisores verifican credenciales y entrega de turno antes de cada relevo, con registro digital en OPAI.',
+      },
+      {
+        pregunta:
+          '¿Todos los guardias asignados en el norte tienen certificación OS10 vigente?',
+        respuesta:
+          'Sí: el 100% del plantel tiene credencial OS10 vigente con auditoría mensual de vencimientos. Antes de asignar un guardia a un sitio en Antofagasta verificamos certificado, capacitación al protocolo del cliente y antecedentes según normativa de Carabineros. Si un guardia pierde la certificación, no opera hasta renovarla; en ese intervalo asignamos reemplazo desde el pool de contingencia para no dejar el puesto descubierto.',
+      },
+      {
+        pregunta:
+          '¿En cuánto tiempo recibo cotización y cuándo puede arrancar el servicio?',
+        respuesta:
+          'Entregamos cotización cerrada sin compromiso en menos de 12 horas hábiles desde que recibimos los datos del sitio. El plazo de inicio operativo estándar es de 5 días hábiles desde la firma del contrato hasta guardia OS10 activo con protocolo validado. Para urgencias evaluamos modalidad express con personal de contingencia, aunque sitios portuarios o mineros con requisitos del mandante suelen requerir el onboarding completo de 5 días.',
+      },
+    ],
+    enlacesInternos: [
+      {
+        titulo: 'Cotizar guardias de seguridad',
+        href: '/cotizar',
+        descripcion:
+          'Formulario comercial con respuesta en menos de 12 horas hábiles y propuesta cerrada para su sitio en el norte.',
+      },
+      {
+        titulo: 'Guía de factores de costo',
+        href: '/cuanto-cuesta-guardia-seguridad-chile',
+        descripcion:
+          'Qué variables definen el valor de la dotación en Chile —sin montos genéricos que no apliquen a su operación.',
+      },
+      {
+        titulo: 'Seguridad para minería',
+        href: '/industrias/mineria',
+        descripcion:
+          'Protocolos de acceso, rondas y supervisión para faenas e instalaciones del sector extractivo.',
+      },
+      {
+        titulo: 'Servicio de guardias para empresas',
+        href: '/servicios/guardias-de-seguridad',
+        descripcion:
+          'Alcance del servicio, modalidades de turno, supervisión y tecnología OPAI incluida.',
+      },
+      {
+        titulo: 'Guardias de seguridad en Santiago',
+        href: '/santiago/guardias-de-seguridad',
+        descripcion:
+          'Referencia de la misma operación Gard en la Región Metropolitana: cobertura, KPIs y FAQs comparables.',
+      },
+      {
+        titulo: 'Empresa de seguridad privada en Chile',
+        href: '/empresa-seguridad-privada-chile',
+        descripcion:
+          'Trayectoria, cobertura en 10 ciudades, cumplimiento normativo y diferenciadores operativos de Gard.',
+      },
+      {
+        titulo: 'Seguridad privada para minería (guía)',
+        href: '/blog/seguridad-privada-para-mineria',
+        descripcion:
+          'Criterios B2B para evaluar dotación de guardias en operaciones mineras e industriales del norte.',
+      },
+    ],
+  },
+  {
+    ciudad: 'valparaiso',
+    servicio: 'guardias-de-seguridad',
+    heroH1:
+      'Guardias de Seguridad en Valparaíso · Empresa OS10 para Puerto, Logística y Gran Valparaíso',
+    introParagraph:
+      'Valparaíso concentra el corazón portuario del Gran Valparaíso: 284.938 habitantes en la comuna y 1.896.053 en la Región de Valparaíso según el Censo 2024 del INE, con Viña del Mar, Quilpué y el puerto de San Antonio completando un eje logístico y turístico de primer orden. La ENUSC 2024 (INE + Subsecretaría de Prevención del Delito) reporta que el 7,6% de los hogares urbanos de la región fue víctima de delitos violentos en los últimos doce meses —estable respecto al 7,6% de 2023— y que el 37,6% declaró haber sufrido algún delito consultado. Gard Security ofrece guardias de seguridad para empresas en Valparaíso con personal certificado OS10, empleador directo sin subcontratación y supervisión desde central propia 24/7. El servicio se dimensiona por riesgo real del sitio: accesos portuarios en el plan y sector Barón, bodegas logísticas hacia San Antonio, edificios corporativos en el plan, recintos turísticos en cerros patrimoniales o locales comerciales con flujo estacional. Indicadores operativos auditables: 100% del plantel con OS10 vigente, 99,9% de continuidad en turnos cubiertos y propuesta comercial en menos de 12 horas hábiles desde el primer contacto.',
+    panoramaSeguridad:
+      'La Región de Valparaíso combina presión delictual urbana en el Gran Valparaíso con riesgos propios de la actividad portuaria y turística: control de accesos en recintos aduaneros, flujo de carga en Valparaíso y San Antonio, bodegaje de mercadería de alto valor y estacionalidad de visitantes en cerros patrimoniales y Viña del Mar. Los datos oficiales de la ENUSC 2024 muestran que el 7,6% de los hogares urbanos de la región fue víctima de delitos violentos durante el último año —sin variación estadísticamente significativa respecto al 7,6% de 2023— y que el 37,6% de los hogares declaró haber sufrido algún delito consultado. Los robos no violentos alcanzan el 12,7% de los hogares y el hurto el 8,8%, con vandalismo en el 7,9%. Para empresas, el desafío no es solo el índice urbano: terminales portuarias, centros de distribución en San Antonio, edificios con recepción en el plan de Valparaíso y locales comerciales en Viña del Mar exigen protocolos de acceso, registro de visitas y rondas distintos entre sí. Nuestra operación en Valparaíso se estructura alrededor de estos contextos, con despliegue ajustado al tipo de activo y no a plantillas genéricas importadas de otras regiones.',
+    industriasRelevantes: [
+      {
+        nombre: 'Logística portuaria y comercio exterior',
+        porQueImporta:
+          'El Puerto de Valparaíso y el de San Antonio mueven contenedores, carga general e insumos con ventanas horarias comprimidas y normativa aduanera estricta. Aquí priorizamos control de accesos en muelles y patios, registro de transportistas, vigilancia perimetral y reportes trazables para detectar mermas o ingresos no autorizados.',
+      },
+      {
+        nombre: 'Turismo, eventos y patrimonio',
+        porQueImporta:
+          'Valparaíso es Patrimonio de la Humanidad y comparte con Viña del Mar un corredor turístico con alta estacionalidad: cerros patrimoniales, hoteles, restaurantes y recintos de eventos requieren protocolos de recepción, control de visitas y rondas en horarios extendidos distintos al modelo industrial.',
+      },
+      {
+        nombre: 'Retail y edificios corporativos',
+        porQueImporta:
+          'El plan de Valparaíso, Viña del Mar y Quilpué concentran oficinas, locales comerciales y centros de servicios con flujo peatonal constante. Los protocolos incluyen recepción ejecutiva, control de acceso en edificios mixtos y coordinación con administraciones para cumplir normativa de CCTV en espacios semi-públicos.',
+      },
+    ],
+    zonasCobertura: [
+      {
+        nombre: 'Plan de Valparaíso y sector portuario',
+        descripcion:
+          'Almendral, Barón y accesos al puerto: edificios corporativos, bodegas de comercio exterior y recintos aduaneros con garitas, control de credenciales y rondas alineadas a normativa portuaria.',
+      },
+      {
+        nombre: 'Cerros patrimoniales',
+        descripcion:
+          'Cerro Alegre, Concepción, Cordillera y La Cruz: hoteles, restaurantes y inmuebles patrimoniales con vigilancia adaptada a topografía en pendiente y flujo turístico estacional.',
+      },
+      {
+        nombre: 'Viña del Mar y Reñaca',
+        descripcion:
+          'Edificios de oficinas, retail de alto flujo y recintos de eventos en el corredor costero: recepción, control de visitas y protocolos para temporadas de mayor afluencia.',
+      },
+      {
+        nombre: 'San Antonio y corredor logístico',
+        descripcion:
+          'Terminales portuarias, centros de distribución y bodegas industriales con control de carga/descarga, vigilancia perimetral y coordinación con transportistas en horarios extendidos.',
+      },
+    ],
+    kpisOperativos: [
+      {
+        label: 'Certificación OS10 vigente',
+        value: '100%',
+        detail: 'Auditoría mensual de credenciales del plantel asignado a sitios en la Quinta Región',
+      },
+      {
+        label: 'Continuidad operacional',
+        value: '99.9%',
+        detail: 'Turnos cubiertos vs contratados, medido trimestralmente sobre contratos activos',
+      },
+      {
+        label: 'Propuesta comercial',
+        value: '12 horas',
+        detail: 'Cotización cerrada sin compromiso desde recepción de datos del sitio',
+      },
+      {
+        label: 'Onboarding de sitio nuevo',
+        value: '5 días hábiles',
+        detail: 'Desde firma de contrato hasta guardia OS10 activo con protocolo validado',
+      },
+      {
+        label: 'Activación de alerta en sitio',
+        value: '2 min',
+        detail: 'Tiempo máximo para alertar a central de monitoreo ante incidente en el puesto',
+      },
+    ],
+    faq: [
+      {
+        pregunta:
+          '¿Cuánto cuesta contratar guardias de seguridad en Valparaíso?',
+        respuesta:
+          'El costo depende de puestos, turnos (12 o 24 horas), comuna o sector específico y nivel de riesgo del sitio —un acceso portuario en Barón no se cotiza igual que una recepción corporativa en Viña del Mar. Entregamos propuesta cerrada sin compromiso en menos de 12 horas hábiles, con precio mensual todo incluido: uniforme, equipamiento, reemplazos por ausencia y supervisión. Solicite cotización con la ubicación y dotación requerida para recibir un presupuesto alineado al mercado del Gran Valparaíso.',
+      },
+      {
+        pregunta:
+          '¿En qué zonas de Valparaíso y el Gran Valparaíso tienen operaciones activas hoy?',
+        respuesta:
+          'Operamos en el plan de Valparaíso, cerros patrimoniales, Viña del Mar, Quilpué y el corredor logístico hacia San Antonio: edificios y oficinas en el plan, recintos turísticos en cerros, retail y eventos en la costa de Viña del Mar, y bodegas o accesos portuarios en Barón y San Antonio. La central propia coordina despliegues, reemplazos y supervisión remota sin subcontratar el personal de vigilancia a terceros.',
+      },
+      {
+        pregunta:
+          '¿Cómo se adapta el servicio a puertos, turismo y edificios en Valparaíso?',
+        respuesta:
+          'Diseñamos protocolos según el tipo de activo: control de credenciales y registro de transportistas en recintos portuarios, recepción y rondas en hoteles y cerros patrimoniales, garitas y vigilancia perimetral en bodegas logísticas, y control de visitas en edificios corporativos del plan. El 100% del plantel asignado cuenta con OS10 vigente y capacitación específica al protocolo del sitio antes del primer turno, con auditoría mensual de vencimientos.',
+      },
+      {
+        pregunta:
+          '¿Qué tan rápido pueden iniciar el servicio en un sitio nuevo en Valparaíso?',
+        respuesta:
+          'El onboarding estándar es de 5 días hábiles: visita técnica y diseño de protocolo, selección del guardia, validación OS10 y cobertura de ausencias, e inicio con supervisión reforzada. Para contingencias urgentes evaluamos modalidad express con personal OS10 de contingencia, aunque la puesta completa con protocolos a medida —especialmente en sitios portuarios o patrimoniales— requiere el plazo estándar de 5 días hábiles.',
+      },
+      {
+        pregunta:
+          '¿Por qué contratar una empresa de seguridad en Valparaíso y no traer personal desde Santiago?',
+        respuesta:
+          'Valparaíso tiene dinámica operativa propia: topografía en cerros que complica refuerzos móviles, normativa portuaria en accesos aduaneros, estacionalidad turística en Viña del Mar y ventanas logísticas en San Antonio que un proveedor sin presencia regional no resuelve bien. Gard Security opera en 10 ciudades de Chile —incluida Valparaíso— con empleador directo, central de monitoreo propia y SLA comercial de respuesta en menos de 12 horas hábiles, evitando la cadena de subcontratación que diluye responsabilidad ante incidentes.',
+      },
+    ],
+    faqObjeciones: [
+      {
+        pregunta: '¿Gard Security subcontrata guardias a terceros en Valparaíso?',
+        respuesta:
+          'No subcontratamos personal de vigilancia. Los guardias que operan en Valparaíso son parte de nuestra dotación directa, con contrato laboral con Gard Security SpA y certificación OS10 auditada mensualmente. Usted contrata a Gard y Gard responde por el servicio, la supervisión 24/7 desde nuestra central propia y el cumplimiento normativo. Esto evita la cadena de responsabilidad difusa que genera la subcontratación en el rubro y alinea con la Ley 20.123 sobre responsabilidad solidaria del mandante.',
+      },
+      {
+        pregunta:
+          '¿Qué pasa si un guardia falta en un turno en un recinto portuario o turístico?',
+        respuesta:
+          'Mantenemos pool de guardias OS10 de contingencia para cubrir ausencias planificadas e imprevistas en la región. La continuidad operacional del 99,9% de turnos cubiertos se mide trimestralmente: cuando un guardia no puede presentarse, la central activa reemplazo según protocolo sin costo adicional en la modalidad estándar. Supervisores verifican credenciales y entrega de turno antes de cada relevo, con registro digital en OPAI.',
+      },
+      {
+        pregunta:
+          '¿Todos los guardias asignados en Valparaíso tienen certificación OS10 vigente?',
+        respuesta:
+          'Sí: el 100% del plantel tiene credencial OS10 vigente con auditoría mensual de vencimientos. Antes de asignar un guardia a un sitio en Valparaíso verificamos certificado, capacitación al protocolo del cliente y antecedentes según normativa de Carabineros. Si un guardia pierde la certificación, no opera hasta renovarla; en ese intervalo asignamos reemplazo desde el pool de contingencia para no dejar el puesto descubierto.',
+      },
+      {
+        pregunta:
+          '¿En cuánto tiempo recibo cotización y cuándo puede arrancar el servicio?',
+        respuesta:
+          'Entregamos cotización cerrada sin compromiso en menos de 12 horas hábiles desde que recibimos los datos del sitio. El plazo de inicio operativo estándar es de 5 días hábiles desde la firma del contrato hasta guardia OS10 activo con protocolo validado. Para urgencias evaluamos modalidad express con personal de contingencia, aunque sitios portuarios o patrimoniales con requisitos específicos suelen requerir el onboarding completo de 5 días.',
+      },
+    ],
+    enlacesInternos: [
+      {
+        titulo: 'Cotizar guardias de seguridad',
+        href: '/cotizar',
+        descripcion:
+          'Formulario comercial con respuesta en menos de 12 horas hábiles y propuesta cerrada para su sitio en el Gran Valparaíso.',
+      },
+      {
+        titulo: 'Guía de factores de costo',
+        href: '/cuanto-cuesta-guardia-seguridad-chile',
+        descripcion:
+          'Qué variables definen el valor de la dotación en Chile —sin montos genéricos que no apliquen a su operación.',
+      },
+      {
+        titulo: 'Servicio de guardias para empresas',
+        href: '/servicios/guardias-de-seguridad',
+        descripcion:
+          'Alcance del servicio, modalidades de turno, supervisión y tecnología OPAI incluida.',
+      },
+      {
+        titulo: 'Guardias de seguridad en Santiago',
+        href: '/santiago/guardias-de-seguridad',
+        descripcion:
+          'Referencia de la misma operación Gard en la Región Metropolitana: cobertura, KPIs y FAQs comparables.',
+      },
+      {
+        titulo: 'Guardias de seguridad en Antofagasta',
+        href: '/antofagasta/guardias-de-seguridad',
+        descripcion:
+          'Modelo gold equivalente en el norte grande: puerto, industria y protocolos OS10 con empleador directo.',
+      },
+      {
+        titulo: 'Empresa de seguridad privada en Chile',
+        href: '/empresa-seguridad-privada-chile',
+        descripcion:
+          'Trayectoria, cobertura en 10 ciudades, cumplimiento normativo y diferenciadores operativos de Gard.',
+      },
+      {
+        titulo: 'Cómo elegir empresa de seguridad privada',
+        href: '/blog/como-elegir-empresa-seguridad-privada',
+        descripcion:
+          'Criterios B2B para evaluar proveedores: OS10, continuidad, subcontratación y SLA.',
+      },
+    ],
+  },
+  {
+    ciudad: 'temuco',
+    servicio: 'guardias-de-seguridad',
+    heroH1:
+      'Guardias de Seguridad en Temuco · Empresa OS10 para Agroindustria, Salud y Comercio en La Araucanía',
+    introParagraph:
+      'Temuco concentra la actividad económica de La Araucanía: 292.518 habitantes en la comuna y 1.010.423 en la región según el Censo 2024 del INE, con un tejido productivo ligado a agroindustria, forestal y servicios que abastecen al sur de Chile. La ENUSC 2024 (INE + Subsecretaría de Prevención del Delito) reporta que el 6,6% de los hogares urbanos de La Araucanía fue víctima de delitos violentos en los últimos doce meses —al alza desde el 5,0% de 2023, sin diferencia estadísticamente significativa— y que el 35,7% declaró haber sufrido algún delito consultado. Gard Security ofrece guardias de seguridad para empresas en Temuco con personal certificado OS10, empleador directo sin subcontratación y supervisión desde central propia 24/7. El servicio se dimensiona por riesgo real del sitio: plantas de procesamiento agroindustrial, bodegas forestales en Padre Las Casas, clínicas y centros de salud, edificios corporativos en el centro o locales comerciales con flujo regional. Indicadores operativos auditables: 100% del plantel con OS10 vigente, 99,9% de continuidad en turnos cubiertos y propuesta comercial en menos de 12 horas hábiles desde el primer contacto.',
+    panoramaSeguridad:
+      'La Región de La Araucanía combina presión delictual urbana en el Gran Temuco con riesgos propios de la economía agroindustrial y forestal: control de accesos en plantas de procesamiento, bodegaje de insumos y madera aserrada, flujo de camiones en Ruta 5 Sur y rotación de personal contratista en faenas periféricas. Los datos oficiales de la ENUSC 2024 muestran que el 6,6% de los hogares urbanos de la región fue víctima de delitos violentos durante el último año —frente al 5,0% de 2023, sin variación estadísticamente significativa— y que el 35,7% de los hogares declaró haber sufrido algún delito consultado. Los robos no violentos alcanzan el 7,9% de los hogares, el hurto el 6,6% y los delitos económicos el 10,3%, con solo el 31,1% de los hogares victimizados presentando denuncia formal. Para empresas, el desafío no es solo el índice urbano: centros de salud con acceso público, malls con alta afluencia regional, bodegas logísticas en Padre Las Casas y edificios de servicios en el centro exigen protocolos de recepción, rondas y registro de visitas distintos entre sí. Nuestra operación en Temuco se estructura alrededor de estos contextos, con despliegue ajustado al tipo de activo y no a plantillas genéricas importadas de otras regiones.',
+    industriasRelevantes: [
+      {
+        nombre: 'Agroindustria y sector forestal',
+        porQueImporta:
+          'La Araucanía concentra plantas de procesamiento lácteo, frutícola y forestal que mueven insumos de alto valor y personal contratista con rotación frecuente. Los recintos agroindustriales y bodegas de madera aserrada exigen control de acceso por credencial, registro de transportistas, rondas perimetrales y coordinación con mandantes —protocolos distintos al de un edificio de oficinas urbano.',
+      },
+      {
+        nombre: 'Salud: hospitales y clínicas',
+        porQueImporta:
+          'Temuco es referente asistencial del sur: el Hospital Regional y clínicas privadas reciben flujo de pacientes, visitantes y proveedores con horarios extendidos. Aquí priorizamos recepción con trato respetuoso, control de accesos en áreas restringidas, rondas en estacionamientos y reportes trazables para incidentes en turnos nocturnos.',
+      },
+      {
+        nombre: 'Retail y centros comerciales',
+        porQueImporta:
+          'El Mall Portal Araucanía y el comercio del eje Alemania–Barros Arana concentran afluencia de toda la región, con picos en fines de semana y temporadas escolares. Los protocolos incluyen control en accesos, prevención de hurtos en salas y coordinación con administraciones para cumplir normativa de CCTV en espacios semi-públicos.',
+      },
+    ],
+    zonasCobertura: [
+      {
+        nombre: 'Centro de Temuco y eje Alemania',
+        descripcion:
+          'Edificios corporativos, oficinas de servicios y locales comerciales con recepción, control de visitas y protocolos adaptados al flujo peatonal del centro urbano y avenida Alemania.',
+      },
+      {
+        nombre: 'Padre Las Casas y sector industrial',
+        descripcion:
+          'Plantas agroindustriales, bodegas forestales y polígonos logísticos con garitas, control de carga/descarga, rondas perimetrales y coordinación con transportistas en horarios extendidos.',
+      },
+      {
+        nombre: 'Sector poniente y Labranza',
+        descripcion:
+          'Zonas mixtas residencia-comercio con clínicas, locales de servicios y bodegas de menor escala. Vigilancia adaptada a accesos vehiculares, estacionamientos y rotación de proveedores.',
+      },
+      {
+        nombre: 'Corredor Ruta 5 Sur y comunas vecinas',
+        descripcion:
+          'Despliegue coordinado hacia sitios logísticos y plantas en Lautaro, Nueva Imperial o Victoria, con logística de reemplazos y supervisión remota desde central propia cuando el sitio lo requiere.',
+      },
+    ],
+    kpisOperativos: [
+      {
+        label: 'Certificación OS10 vigente',
+        value: '100%',
+        detail: 'Auditoría mensual de credenciales del plantel asignado a sitios en La Araucanía',
+      },
+      {
+        label: 'Continuidad operacional',
+        value: '99.9%',
+        detail: 'Turnos cubiertos vs contratados, medido trimestralmente sobre contratos activos',
+      },
+      {
+        label: 'Propuesta comercial',
+        value: '12 horas',
+        detail: 'Cotización cerrada sin compromiso desde recepción de datos del sitio',
+      },
+      {
+        label: 'Onboarding de sitio nuevo',
+        value: '5 días hábiles',
+        detail: 'Desde firma de contrato hasta guardia OS10 activo con protocolo validado',
+      },
+      {
+        label: 'Activación de alerta en sitio',
+        value: '2 min',
+        detail: 'Tiempo máximo para alertar a central de monitoreo ante incidente en el puesto',
+      },
+    ],
+    faq: [
+      {
+        pregunta:
+          '¿Cuánto cuesta contratar guardias de seguridad en Temuco?',
+        respuesta:
+          'El costo depende de puestos, turnos (12 o 24 horas), comuna o sector específico y nivel de riesgo del sitio —una planta agroindustrial en Padre Las Casas no se cotiza igual que una recepción corporativa en el centro de Temuco. Entregamos propuesta cerrada sin compromiso en menos de 12 horas hábiles, con precio mensual todo incluido: uniforme, equipamiento, reemplazos por ausencia y supervisión. Solicite cotización con la ubicación y dotación requerida para recibir un presupuesto alineado al mercado de La Araucanía.',
+      },
+      {
+        pregunta:
+          '¿En qué zonas de Temuco y La Araucanía tienen operaciones activas hoy?',
+        respuesta:
+          'Operamos en el Gran Temuco y corredores productivos de la región: edificios y oficinas en el centro urbano y eje Alemania, plantas agroindustriales y bodegas en Padre Las Casas, clínicas y centros de salud en sector poniente, retail en Portal Araucanía y sitios logísticos en el corredor Ruta 5 Sur hacia Lautaro y Nueva Imperial. La central propia coordina despliegues, reemplazos y supervisión remota sin subcontratar el personal de vigilancia a terceros.',
+      },
+      {
+        pregunta:
+          '¿Cómo se adapta el servicio a plantas agroindustriales, clínicas y comercio en Temuco?',
+        respuesta:
+          'Diseñamos protocolos según el tipo de activo: control de credenciales y registro de contratistas en plantas de procesamiento, recepción y rondas en clínicas con flujo de visitantes, garitas y vigilancia perimetral en bodegas forestales, y control de accesos en centros comerciales con afluencia regional. El 100% del plantel asignado cuenta con OS10 vigente y capacitación específica al protocolo del sitio antes del primer turno, con auditoría mensual de vencimientos.',
+      },
+      {
+        pregunta:
+          '¿Qué tan rápido pueden iniciar el servicio en un sitio nuevo en Temuco?',
+        respuesta:
+          'El onboarding estándar es de 5 días hábiles: visita técnica y diseño de protocolo, selección del guardia, validación OS10 y cobertura de ausencias, e inicio con supervisión reforzada. Para contingencias urgentes evaluamos modalidad express con personal OS10 de contingencia, aunque la puesta completa con protocolos a medida —especialmente en plantas agroindustriales o clínicas con requisitos del mandante— requiere el plazo estándar de 5 días hábiles.',
+      },
+      {
+        pregunta:
+          '¿Por qué contratar una empresa de seguridad en Temuco y no traer personal desde Santiago?',
+        respuesta:
+          'Temuco tiene dinámica operativa propia: turnos en plantas periféricas, logística de reemplazos en comunas vecinas, normativas de mandantes agroindustriales y flujo comercial regional que un proveedor sin presencia local no resuelve bien. Gard Security opera en 10 ciudades de Chile —incluida Temuco— con empleador directo, central de monitoreo propia y SLA comercial de respuesta en menos de 12 horas hábiles, evitando la cadena de subcontratación que diluye responsabilidad ante incidentes.',
+      },
+    ],
+    faqObjeciones: [
+      {
+        pregunta: '¿Gard Security subcontrata guardias a terceros en Temuco?',
+        respuesta:
+          'No subcontratamos personal de vigilancia. Los guardias que operan en Temuco son parte de nuestra dotación directa, con contrato laboral con Gard Security SpA y certificación OS10 auditada mensualmente. Usted contrata a Gard y Gard responde por el servicio, la supervisión 24/7 desde nuestra central propia y el cumplimiento normativo. Esto evita la cadena de responsabilidad difusa que genera la subcontratación en el rubro y alinea con la Ley 20.123 sobre responsabilidad solidaria del mandante.',
+      },
+      {
+        pregunta:
+          '¿Qué pasa si un guardia falta en un turno en una planta o clínica?',
+        respuesta:
+          'Mantenemos pool de guardias OS10 de contingencia para cubrir ausencias planificadas e imprevistas en la región. La continuidad operacional del 99,9% de turnos cubiertos se mide trimestralmente: cuando un guardia no puede presentarse, la central activa reemplazo según protocolo sin costo adicional en la modalidad estándar. Supervisores verifican credenciales y entrega de turno antes de cada relevo, con registro digital en OPAI.',
+      },
+      {
+        pregunta:
+          '¿Todos los guardias asignados en La Araucanía tienen certificación OS10 vigente?',
+        respuesta:
+          'Sí: el 100% del plantel tiene credencial OS10 vigente con auditoría mensual de vencimientos. Antes de asignar un guardia a un sitio en Temuco verificamos certificado, capacitación al protocolo del cliente y antecedentes según normativa de Carabineros. Si un guardia pierde la certificación, no opera hasta renovarla; en ese intervalo asignamos reemplazo desde el pool de contingencia para no dejar el puesto descubierto.',
+      },
+      {
+        pregunta:
+          '¿En cuánto tiempo recibo cotización y cuándo puede arrancar el servicio?',
+        respuesta:
+          'Entregamos cotización cerrada sin compromiso en menos de 12 horas hábiles desde que recibimos los datos del sitio. El plazo de inicio operativo estándar es de 5 días hábiles desde la firma del contrato hasta guardia OS10 activo con protocolo validado. Para urgencias evaluamos modalidad express con personal de contingencia, aunque plantas agroindustriales o clínicas con requisitos específicos suelen requerir el onboarding completo de 5 días.',
+      },
+    ],
+    enlacesInternos: [
+      {
+        titulo: 'Cotizar guardias de seguridad',
+        href: '/cotizar',
+        descripcion:
+          'Formulario comercial con respuesta en menos de 12 horas hábiles y propuesta cerrada para su sitio en La Araucanía.',
+      },
+      {
+        titulo: 'Guía de factores de costo',
+        href: '/cuanto-cuesta-guardia-seguridad-chile',
+        descripcion:
+          'Qué variables definen el valor de la dotación en Chile —sin montos genéricos que no apliquen a su operación.',
+      },
+      {
+        titulo: 'Servicio de guardias para empresas',
+        href: '/servicios/guardias-de-seguridad',
+        descripcion:
+          'Alcance del servicio, modalidades de turno, supervisión y tecnología OPAI incluida.',
+      },
+      {
+        titulo: 'Seguridad para agroindustria',
+        href: '/industrias/agroindustria',
+        descripcion:
+          'Protocolos de acceso, rondas y supervisión para plantas de procesamiento y fundos en áreas extensas.',
+      },
+      {
+        titulo: 'Guardias de seguridad en Santiago',
+        href: '/santiago/guardias-de-seguridad',
+        descripcion:
+          'Referencia de la misma operación Gard en la Región Metropolitana: cobertura, KPIs y FAQs comparables.',
+      },
+      {
+        titulo: 'Guardias de seguridad en Valparaíso',
+        href: '/valparaiso/guardias-de-seguridad',
+        descripcion:
+          'Modelo gold equivalente en el Gran Valparaíso: puerto, logística y protocolos OS10 con empleador directo.',
+      },
+      {
+        titulo: 'Empresa de seguridad privada en Chile',
+        href: '/empresa-seguridad-privada-chile',
+        descripcion:
+          'Trayectoria, cobertura en 10 ciudades, cumplimiento normativo y diferenciadores operativos de Gard.',
       },
     ],
   },

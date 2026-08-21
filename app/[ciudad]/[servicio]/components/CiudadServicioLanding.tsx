@@ -28,6 +28,7 @@ import { cn } from '@/lib/utils';
 import { Stream } from '@cloudflare/stream-react';
 import BreadcrumbSchema, { Breadcrumbs } from '@/components/seo/BreadcrumbSchema';
 import ServiceSchema from '@/components/seo/ServiceSchema';
+import { companyStats } from '@/lib/data/company-stats';
 
 // Mapeo de servicios a ID de videos de Cloudflare Stream
 const videosPorServicio = {
@@ -439,7 +440,7 @@ export default function CiudadServicioLanding({ content, params }: CiudadServici
                     variant="outline-orange" 
                     size="lg" 
                     className="rounded-xl backdrop-blur-sm w-full sm:w-auto"
-                    onClick={() => window.location.href = 'tel:+56941137976'}
+                    onClick={() => window.location.href = `tel:${companyStats.contactPhoneE164}`}
                   >
                     <Phone className="mr-2 h-5 w-5" />
                     Llamar ahora
@@ -458,7 +459,7 @@ export default function CiudadServicioLanding({ content, params }: CiudadServici
                   className="flex items-center gap-3 text-gray-300 pt-6"
                 >
                   <Clock className="h-5 w-5 text-primary" />
-                  <span className="text-sm font-medium">Respuesta en menos de 12 horas</span>
+                  <span className="text-sm font-medium">Respuesta en {companyStats.commercialResponseSla}</span>
                 </motion.div>
               </motion.div>
             </div>
