@@ -7,6 +7,7 @@ author: "Gard Security"
 keywords: ["continuidad operacional", "reemplazo de guardias", "huelga de contratistas", "cierre temporal de faena", "cobertura del puesto de seguridad"]
 tags: ["continuidad operacional", "reemplazos de guardias", "operación de faena"]
 category: "Seguridad Privada"
+imageId: "e8a43d7d-e1e6-4a84-3fe5-99e774851800"
 faqSchema:
   - question: "¿Qué es la continuidad operacional en un contrato de guardias?"
     answer: "Es la capacidad de mantener cubierto cada puesto contratado aunque el día a día cambie: un guardia no llega, hay una licencia o el sitio altera su ritmo. No es un plan de recuperación de servidores. Se mide como turnos cubiertos sobre turnos contratados, con reemplazo acreditado OS10 y evidencia, no con una promesa verbal."
