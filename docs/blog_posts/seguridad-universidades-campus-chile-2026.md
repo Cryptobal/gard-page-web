@@ -7,6 +7,7 @@ author: "Gard Security"
 keywords: ["seguridad en universidades", "seguridad universitaria", "seguridad campus universitario", "guardias para universidades", "seguridad educación superior"]
 tags: ["Seguridad universitaria", "Campus", "Educación superior"]
 category: "Industrias"
+imageId: "ecf240af-923f-471f-c153-11cb5321df00"
 faqSchema:
   - question: "¿Qué incluye un servicio de seguridad en universidades?"
     answer: "Combina personal en terreno (accesos, perímetro y rondas), control de ingreso a edificios internos, videovigilancia con monitoreo y protocolos para eventos, laboratorios y horario nocturno. El diseño depende del tamaño del campus, si es abierto o cerrado, y de si opera residencias, clínicas o estacionamientos propios."
