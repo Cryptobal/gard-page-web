@@ -14,7 +14,7 @@ faqSchema:
   - question: "¿Quién puede instalar un cerco eléctrico?"
     answer: "Solo un instalador eléctrico con licencia SEC vigente o un profesional habilitado para declarar ante la Superintendencia. La empresa que contrates debe acreditar esa autorización antes de ejecutar la obra, porque es quien firma la comunicación de puesta en servicio del cerco."
   - question: "¿Cuál es el voltaje de un cerco eléctrico?"
-    answer: "Los energizadores certificados emiten pulsos breves de alta tensión —del orden de miles de volts— pero con energía muy limitada por la norma IEC 60335-2-76. Por eso el contacto disuade y no lesiona: el riesgo aparece con equipos artesanales o conectados fuera de norma, que además son ilegales."
+    answer: "Los energizadores certificados emiten pulsos breves de alta tensión —del orden de miles de volts— pero con energía muy limitada por la norma IEC 60335-2-76. Eso reduce fuertemente el riesgo de lesiones graves ante un contacto breve, aunque no lo elimina; el peligro mayor está en equipos artesanales o conectados fuera de norma, que además son ilegales."
   - question: "¿Cómo se inscribe un cerco eléctrico ante la SEC?"
     answer: "El instalador autorizado ingresa la comunicación de puesta en servicio en la plataforma digital de la SEC, adjuntando esquema unilineal del circuito, plano de planta con el perímetro protegido, elevación de los muros con la altura de montaje y el detalle del cerco y sus protecciones."
   - question: "¿Un cerco eléctrico reemplaza a los guardias de seguridad?"
