@@ -16,7 +16,7 @@ faqSchema:
   - question: "¿Quién aprueba la directiva de funcionamiento en Chile?"
     answer: "Históricamente la tramitaba y aprobaba Carabineros a través de las oficinas OS10. Con la Ley 21.659, vigente desde noviembre de 2025, la Subsecretaría de Prevención del Delito pasó a ser el órgano rector del sistema y Carabineros mantiene su rol de autoridad fiscalizadora."
   - question: "¿Qué diferencia hay entre directiva de funcionamiento y estudio de seguridad?"
-    answer: "La directiva de funcionamiento regula el servicio de guardias de una instalación cualquiera. El estudio de seguridad es un instrumento más exigente, reservado a las entidades declaradas obligadas por la autoridad (bancos, transporte de valores y otras), y según el Decreto 209 tiene vigencia de 4 años, o 2 si incluye vigilantes privados."
+    answer: "La directiva de funcionamiento regula el servicio de guardias de una instalación. El estudio de seguridad es un instrumento adicional de nivel entidad, exigido a las entidades declaradas obligadas por la autoridad (bancos, transporte de valores y otras); según el Decreto 209 tiene vigencia de 4 años, o 2 si incluye vigilantes privados."
   - question: "¿Qué pasa si mi empresa opera guardias sin directiva de funcionamiento?"
     answer: "El servicio queda fuera del marco regulatorio: la instalación se expone a observaciones y sanciones en fiscalizaciones, que desde la entrada en vigencia de la Ley 21.659 son más frecuentes. Además debilita la posición del mandante ante incidentes, seguros y auditorías de clientes."
 ---
@@ -41,12 +41,12 @@ La regla general: **toda persona natural o jurídica que implemente un servicio 
 | Empresa con guardias contratados directamente | Sí, y además debe cumplir como empleador del guardia |
 | Condominio o edificio con guardias de seguridad | Sí (los conserjes sin funciones de seguridad se rigen por otras reglas) |
 | Local comercial con guardia en sala | Sí |
-| Entidad declarada obligada (banca, transporte de valores y otras) | Corresponde un instrumento distinto: el estudio de seguridad |
+| Entidad declarada obligada (banca, transporte de valores y otras) | Sí para su servicio de guardias, y además un estudio de seguridad a nivel de entidad |
 
 Dos matices importantes:
 
-- **En condominios y edificios**, la obligación depende de la función real del personal: un conserje que solo recibe encomiendas no es guardia; uno que controla accesos o monitorea cámaras ejerce funciones de seguridad y entra al sistema regulado. Revisamos ese límite en detalle en la [guía de seguridad para condominios](/blog/seguridad-condominios-residenciales-chile-2026).
-- **Las entidades obligadas** —aquellas que la autoridad declara sujetas a exigencias reforzadas, como instituciones financieras o transporte de valores— no se rigen por la directiva común sino por un **estudio de seguridad** aprobado por la Subsecretaría de Prevención del Delito. Los plazos y categorías de ese régimen los tratamos en la [guía de plazos de la Ley 21.659](/blog/ley-21659-seguridad-privada-plazos-2026).
+- **En condominios y edificios**, la obligación depende de cómo esté estructurado el servicio, no del nombre del cargo: un conserje o portero que realiza labores operativas —recepción, encomiendas, control de acceso cotidiano— no es guardia, y su acreditación es **voluntaria** (artículo 55 de la Ley 21.659). Lo que exige el sistema regulado —y una directiva de funcionamiento— es la **seguridad activa**: vigilancia, rondas y respuesta ante incidentes con guardias acreditados de una empresa registrada. Revisamos ese límite en detalle en la [guía de seguridad para condominios](/blog/seguridad-condominios-residenciales-chile-2026).
+- **Las entidades obligadas** —aquellas que la autoridad declara sujetas a exigencias reforzadas, como instituciones financieras o transporte de valores— deben contar **además** con un **estudio de seguridad** aprobado por la Subsecretaría de Prevención del Delito: un instrumento de nivel entidad que se suma a las exigencias del servicio de guardias, no las reemplaza. Los plazos y categorías de ese régimen los tratamos en la [guía de plazos de la Ley 21.659](/blog/ley-21659-seguridad-privada-plazos-2026).
 
 ## Qué contiene una directiva de funcionamiento
 
@@ -86,7 +86,7 @@ Es común confundir ambos instrumentos. La tabla resume las diferencias:
 | Vigencia | Sujeta a actualización ante cambios del servicio | 4 años; 2 si incluye sistema de vigilantes privados |
 | Quién lo aprueba | Autoridad del sistema (régimen de transición OS10 → SPD) | Subsecretaría de Prevención del Delito |
 
-Si tu empresa fue notificada como entidad obligada, el instrumento que te aplica es el estudio de seguridad y los plazos corren desde la notificación. Si no, tu obligación al implementar guardias es la directiva de funcionamiento de cada instalación.
+Si tu empresa fue notificada como entidad obligada, se suma el estudio de seguridad y sus plazos corren desde la notificación — sin eximir las exigencias propias del servicio de guardias que operes. Si no, tu obligación al implementar guardias es la directiva de funcionamiento de cada instalación.
 
 ## Checklist para el mandante: qué revisar hoy
 
