@@ -7,6 +7,7 @@ author: "Gard Security"
 keywords: ["guardias para eventos", "guardias de seguridad para eventos", "plan de seguridad evento", "aforo evento masivo", "seguridad para eventos de empresa"]
 tags: ["Eventos", "Guardias de seguridad", "Industrias"]
 category: "Industrias"
+imageId: "ac9f3649-110d-4a98-d6a5-369a9b5e5c00"
 faqSchema:
   - question: "¿Los guardias para un evento de empresa deben tener OS10?"
     answer: "Sí, si prestas un servicio de vigilancia. La empresa proveedora debe estar autorizada por la Subsecretaría de Prevención del Delito y el personal acreditado. Contratar a un particular sin esa habilitación deja al mandante expuesto ante una fiscalización y ante un incidente. Pide la resolución de autorización y las credenciales de la dotación asignada al evento."
