@@ -331,11 +331,44 @@ export default function BlogPost({ post }: { post: BlogPost }) {
         {/* Contenido principal del artículo */}
         <div className="lg:col-span-8">
           <article className="prose prose-lg dark:prose-invert max-w-none">
-            <div 
+            <div
               className="blog-content"
-              dangerouslySetInnerHTML={{ __html: processHtml(post.content) }} 
+              dangerouslySetInnerHTML={{ __html: processHtml(post.content) }}
             />
           </article>
+
+          {/* Preguntas frecuentes visibles: el FAQPage JSON-LD de arriba exige que el contenido sea accesible en la página */}
+          {post.faqSchema && post.faqSchema.length > 0 && (
+            <section className="mt-12" aria-labelledby="faq-heading">
+              <h2
+                id="faq-heading"
+                className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-6"
+              >
+                Preguntas frecuentes
+              </h2>
+              <div className="space-y-4">
+                {post.faqSchema.map((faq) => (
+                  <details
+                    key={faq.question}
+                    className="group bg-gray-50 dark:bg-gray-800/60 rounded-xl p-5"
+                  >
+                    <summary className="cursor-pointer font-semibold text-gray-900 dark:text-white flex items-start justify-between gap-4">
+                      <span>{faq.question}</span>
+                      <span
+                        aria-hidden="true"
+                        className="shrink-0 text-primary dark:text-accent transition-transform group-open:rotate-45"
+                      >
+                        +
+                      </span>
+                    </summary>
+                    <p className="mt-3 text-gray-600 dark:text-gray-300 leading-relaxed">
+                      {faq.answer}
+                    </p>
+                  </details>
+                ))}
+              </div>
+            </section>
+          )}
         </div>
 
         {/* Sidebar */}
