@@ -1116,6 +1116,10 @@ Problemas detectados durante la ejecución de tareas que quedan **fuera del scop
 - **GA4 conversions · GTM solo carga tras consentimiento de analítica** (`GoogleTagManager.tsx` + `consent.analytics`). Si el usuario rechaza cookies, `submit_form_submission` queda en dataLayer pero GTM/GA4 no lo envían. Esperado; no es la causa de 7+ días en cero (el sitio disparaba el evento retirado `form_submission`).
 - **GA4 conversions · `/cotizador/inteligente` era 404**: se añadió redirect 308 a `/cotizador-inteligente`. Confirmar en Ads si algún sitelink aún usa esa URL.
 
+### Detectados durante corrida blog 2026-08-31 (estaciones de servicio)
+
+- **Blog pipeline · `ley-21659-seguridad-privada-plazos-2026` desactualizado**: el cuerpo y el `seoTitle` siguen anclados a “plazos que vencen en mayo 2026”. La Ley 21.825 (BCN idNorma 1224572, DO 28-may-2026) extendió a dieciocho meses el art. 2° y 3° transitorios: nuevo vencimiento **28-may-2027** y 90 días hábiles de pronunciamiento de la SPD. Acción sugerida: tarea editorial dedicada de update (no es post nuevo; misma entidad “plazos Ley 21.659”) + reindexar.
+
 ---
 
 **Última actualización**: 2026-04-23
