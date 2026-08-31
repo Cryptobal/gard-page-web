@@ -36,6 +36,13 @@ export const POSTS_PER_PAGE = 6;
 
 const postsDirectory = path.join(process.cwd(), 'docs/blog_posts');
 
+/** Archivos .md publicables: slug [a-zA-Z0-9-]. Excluye recortes (p. ej. `<slug>.linkedin.md`). */
+function isPublishableBlogMarkdown(fileName: string): boolean {
+  if (!fileName.endsWith('.md')) return false;
+  const slug = fileName.slice(0, -3);
+  return /^[a-zA-Z0-9-]+$/.test(slug);
+}
+
 // Obtener todos los slugs de los posts
 // App Router (Next.js 15): generateStaticParams espera [{ slug: '...' }],
 // no el formato legacy [{ params: { slug: '...' } }] del Pages Router.
@@ -44,7 +51,7 @@ const postsDirectory = path.join(process.cwd(), 'docs/blog_posts');
 export function getAllPostSlugs(): Array<{ slug: string }> {
   const fileNames = fs.readdirSync(postsDirectory);
   return fileNames
-    .filter((fileName) => fileName.endsWith('.md'))
+    .filter(isPublishableBlogMarkdown)
     .map((fileName) => fileName.replace(/\.md$/, ''))
     .filter((slug) => !isRedirectedBlogSlug(slug))
     .map((slug) => ({ slug }));
@@ -127,7 +134,7 @@ export async function getPostBySlug(slug: string): Promise<BlogPost> {
 
 // Obtener todos los posts ordenados por fecha
 export async function getAllPosts(): Promise<BlogPost[]> {
-  const fileNames = fs.readdirSync(postsDirectory);
+  const fileNames = fs.readdirSync(postsDirectory).filter(isPublishableBlogMarkdown);
   const allPostsData = await Promise.all(
     fileNames.map(async (fileName) => {
       const slug = fileName.replace(/\.md$/, '');
