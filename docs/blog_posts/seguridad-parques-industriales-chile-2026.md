@@ -7,6 +7,7 @@ author: "Gard Security"
 keywords: ["seguridad para parques industriales", "seguridad parques industriales", "control de acceso camiones parque industrial", "seguridad condominio industrial", "portería parque industrial"]
 tags: ["Parques industriales", "Facility management", "Control de acceso"]
 category: "Industrias"
+imageId: "173012d5-def6-42d3-c5f3-35deb167e700"
 faqSchema:
   - question: "¿La seguridad del parque reemplaza a la de cada nave?"
     answer: "No. El parque cubre el perímetro del condominio, la portería, la calle interior y el flujo de camiones del recinto. Cada inquilino responde por el acceso de su nave, el patio y el muelle. Si esas dos capas no se coordinan —radio, CCTV y quién llama a Carabineros— el hueco queda en la reja del andén."
