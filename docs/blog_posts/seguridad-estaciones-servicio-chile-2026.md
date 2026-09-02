@@ -7,6 +7,7 @@ author: "Gard Security"
 keywords: ["seguridad para estaciones de servicio", "seguridad en bencineras", "seguridad servicentros Chile", "guardias estaciones de servicio", "seguridad venta de combustible"]
 tags: ["Estaciones de servicio", "Retail", "Prevención de asaltos"]
 category: "Industrias"
+imageId: "f4df2ff9-a1fc-4177-410e-86197ac08b00"
 faqSchema:
   - question: "¿Una estación de servicio es entidad obligada bajo la Ley 21.659?"
     answer: "Sí, si opera venta de combustible. El artículo 8 de la ley dice que esas empresas están siempre obligadas a tener medidas de seguridad. Eso no significa, por sí solo, vigilante privado en cada isla: el reglamento clasifica el riesgo y el estudio de seguridad fija las medidas concretas de cada sitio."

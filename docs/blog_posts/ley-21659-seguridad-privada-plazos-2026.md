@@ -1,8 +1,8 @@
 ---
-title: "Ley 21.659 de Seguridad Privada: Plazos Críticos y Qué Debe Hacer Tu Empresa Antes de Mayo 2026"
+title: "Ley 21.659 de Seguridad Privada: Plazos Críticos y Qué Debe Hacer Tu Empresa Antes de Mayo 2027"
 seoTitle: "Ley 21.659 Seguridad Privada Chile 2026 | Plazos y Obligaciones para Empresas"
 date: "2026-03-25"
-description: "La Ley de Seguridad Privada en Chile ya está vigente. Conoce los plazos que vencen en mayo 2026, los niveles de riesgo y qué necesita tu empresa para cumplir. Guía completa."
+description: "La Ley de Seguridad Privada ya rige en Chile. Conoce los plazos —extendidos a mayo 2027 por la Ley 21.825—, los niveles de riesgo y cómo cumplir."
 author: "Gard Security"
 keywords:
   - "Ley 21.659 Chile"
@@ -24,7 +24,7 @@ cardImage: "/blog/gard-ley-thumb.png"
 
 ## El reloj ya está corriendo: lo que tu empresa necesita saber ahora
 
-La Ley N° 21.659 de Seguridad Privada no es un proyecto futuro — es una realidad vigente desde el 28 de noviembre de 2025. Y el primer deadline duro está a semanas de cumplirse: **las entidades obligadas tienen hasta mayo de 2026 para presentar su primer estudio de seguridad** ante la Subsecretaría de Prevención del Delito.
+La Ley N° 21.659 de Seguridad Privada no es un proyecto futuro — es una realidad vigente desde el 28 de noviembre de 2025. El primer deadline duro estaba fijado originalmente para mayo de 2026, pero la [Ley 21.825](https://www.bcn.cl/leychile/navegar?idNorma=1224572), publicada el 28 de mayo de 2026, amplió el plazo de seis a dieciocho meses: **las entidades obligadas tienen hasta el 28 de mayo de 2027 para presentar su primer estudio de seguridad** ante la Subsecretaría de Prevención del Delito. La prórroga se aprobó porque, a semanas del vencimiento original, casi ninguna entidad había logrado regularizarse — no porque el requisito se haya relajado.
 
 Si tu empresa opera en sectores como retail, banca, transporte de valores, minería, centros comerciales o cualquier actividad que genere riesgo para la seguridad pública, este artículo es para ti. Te explicamos qué cambió, qué se exige y cómo prepararte.
 
@@ -56,11 +56,11 @@ Cualquier entidad, independientemente de su nivel de riesgo, puede contratar gua
 
 | Plazo | Obligación | ¿A quién aplica? |
 |-------|-----------|-------------------|
-| **Mayo 2026** | Presentar primer estudio de seguridad | Entidades obligadas |
+| **28 de mayo de 2027** (originalmente mayo 2026; prorrogado por la Ley 21.825) | Presentar primer estudio de seguridad | Entidades obligadas |
 | **Noviembre 2026** | Registro de Seguridad Privada operativo con todos sus subregistros | Industria completa |
 | **Noviembre 2027** | Evaluación completa de entidades obligadas según su riesgo | Subsecretaría de Prevención del Delito |
 
-El plazo de mayo 2026 es el más inmediato y el que genera mayor urgencia. Si tu empresa es declarada como entidad obligada y no presenta su estudio de seguridad a tiempo, se expone a las sanciones que la ley establece.
+El plazo de mayo de 2027 parece lejano, pero es el que genera mayor urgencia: un estudio de seguridad serio toma meses de levantamiento y la ventana ya se movió una vez. Si tu empresa es declarada como entidad obligada y no presenta su estudio de seguridad a tiempo, se expone a las sanciones que la ley establece.
 
 ## ¿Qué es un estudio de seguridad y qué debe contener?
 
@@ -124,6 +124,6 @@ No es que nos estemos adaptando a la nueva ley. La nueva ley se está poniendo a
 
 ## Conclusión
 
-La Ley 21.659 no es opcional y los plazos no se van a extender. Mayo de 2026 es el primer hito real, y las empresas que no estén preparadas enfrentarán sanciones. Pero más allá del cumplimiento, esta ley es una oportunidad: las empresas que profesionalicen su seguridad privada con tecnología y procesos claros van a operar mejor, proteger mejor a su gente y diferenciarse en el mercado.
+La Ley 21.659 no es opcional. Los plazos ya se extendieron una vez —de mayo de 2026 al 28 de mayo de 2027, vía Ley 21.825— y nada garantiza una segunda prórroga. Ese es el primer hito real, y las empresas que no estén preparadas enfrentarán sanciones. Pero más allá del cumplimiento, esta ley es una oportunidad: las empresas que profesionalicen su seguridad privada con tecnología y procesos claros van a operar mejor, proteger mejor a su gente y diferenciarse en el mercado.
 
 Si necesitas evaluar tu situación o quieres conocer cómo una empresa de seguridad que ya cumple estos estándares puede ayudarte, **[conversemos](https://www.gard.cl/cotizar)**.
