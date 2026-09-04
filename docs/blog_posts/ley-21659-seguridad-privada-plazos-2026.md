@@ -18,6 +18,7 @@ tags:
   - "estudio de seguridad"
   - "regulación"
 category: "Regulación y Cumplimiento"
+imageId: "eac61328-667f-49ee-ded3-d9e418743300"
 heroImage: "/blog/gard-ley-hero.png"
 cardImage: "/blog/gard-ley-thumb.png"
 ---

@@ -7,6 +7,7 @@ author: "Gard Security"
 keywords: ["seguridad para plantas de manufactura", "guardias plantas industriales", "seguridad manufactura chile", "control de acceso planta industrial", "seguridad fábrica Chile"]
 tags: ["Manufactura", "Plantas industriales", "Control de acceso"]
 category: "Industrias"
+imageId: "e99373ff-9cf1-4248-53af-58a5e1340600"
 faqSchema:
   - question: "¿La seguridad del parque industrial cubre mi planta?"
     answer: "No. El parque cubre la portería del condominio, el cerco compartido y la calle interior. Tu planta responde por el portón, el patio, la nave de proceso y el despacho. Coordiná radio y bitácora con la administradora, pero no asumas que la garita del parque vigila tu línea."
