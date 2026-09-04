@@ -1,10 +1,10 @@
 ---
-title: "Seguridad portuaria en Chile: guía 2026 para terminales"
-seoTitle: "Seguridad portuaria en Chile: código PBIP, OPIP y Ley 21.659 (2026)"
+title: "Código PBIP (ISPS): guía 2026 para terminales en Chile"
+seoTitle: "Código PBIP (ISPS) en Chile: OPIP, Ley 21.659 y seguridad del terminal"
 date: "2026-09-04"
-description: "Guía B2B de seguridad portuaria en Chile: código PBIP/ISPS, rol del OPIP, Ley 21.659 y robo de contenedores. Qué exigir al proveedor del terminal en 2026."
+description: "Guía B2B del código PBIP (ISPS) en Chile: rol del OPIP, DIRECTEMAR, Ley 21.659 y robo de contenedores. Qué exigir al proveedor de seguridad del terminal."
 author: "Gard Security"
-keywords: ["seguridad portuaria", "código ISPS", "código PBIP", "seguridad en puertos", "robo de contenedores"]
+keywords: ["código PBIP", "código ISPS", "OPIP", "robo de contenedores", "seguridad en terminales portuarias"]
 tags: ["Puertos", "Código PBIP", "Crimen organizado"]
 category: "Industrias"
 imageId: "8cc49e64-e363-4903-37f0-3ffb97cb6c00"
@@ -21,7 +21,7 @@ faqSchema:
     answer: "El boletín 18.420-25, aprobado en general por el Senado en agosto de 2026, suma trazabilidad de la carga, reconoce los puertos como recintos de especial riesgo logístico y endurece la sanción penal cuando se usan credenciales o infraestructura portuaria para fines criminales. Conviene seguir su discusión particular."
 ---
 
-La **seguridad portuaria** dejó de ser un tema reservado a la Armada y a Aduanas. En 2026 el crimen organizado opera sobre la cadena logística completa —contenedor, camión, patio, credencial— y el Congreso discute una ley específica para blindar los puertos chilenos. Para el gerente de operaciones de un terminal, el administrador de un almacén extraportuario o el OPIP que firma el plan de protección, la pregunta ya no es si reforzar la capa física, sino cómo estructurarla para que resista una auditoría PBIP y, al mismo tiempo, cumpla la Ley 21.659 de seguridad privada.
+El **código PBIP** (ISPS, por su sigla en inglés) definió durante dos décadas lo que significa proteger un terminal portuario. En 2026 ya no basta con aprobarlo: el crimen organizado opera sobre la cadena logística completa —contenedor, camión, patio, credencial— y el Congreso discute una ley específica para blindar los puertos chilenos. Para el gerente de operaciones de un terminal, el administrador de un almacén extraportuario o el OPIP que firma el plan de protección, la pregunta ya no es si reforzar la capa física, sino cómo estructurarla para que resista una auditoría PBIP y, al mismo tiempo, cumpla la Ley 21.659 de seguridad privada.
 
 Esta guía es para quien contrata y gobierna esa capa. Complementa la página de [seguridad para puertos y terminales](/industrias/puertos-terminales): allá está la oferta de servicio; aquí, el marco normativo y qué exigir antes de firmar. La ruta del camión fuera del recinto tiene su propia guía de [seguridad en transporte de carga](/blog/seguridad-transporte-carga-robo-camiones-chile-2026), y el centro de distribución la suya de [bodegas y centros logísticos](/blog/seguridad-bodegas-centros-logisticos). El objeto de este texto es el **recinto portuario y su extraportuario**.
 
@@ -93,7 +93,7 @@ Gard Security opera con personal 100% acreditado OS10, central de monitoreo prop
 
 ## El puerto se gobierna por capas, no por garitas
 
-La seguridad portuaria en 2026 exige leer el recinto completo: el marco PBIP que fija el plan, la Ley 21.659 que habilita a quien lo ejecuta, y la ley en trámite que endurecerá la trazabilidad y el reproche penal. El mandante que separa las capas —perímetro, personas, camiones, patio, noche—, exige los dos cumplimientos y audita la reportería, le quita al crimen organizado su activo favorito: la puerta que se abre desde adentro.
+Proteger un terminal en 2026 exige leer el recinto completo: el código PBIP que fija el plan, la Ley 21.659 que habilita a quien lo ejecuta, y la ley en trámite que endurecerá la trazabilidad y el reproche penal. El mandante que separa las capas —perímetro, personas, camiones, patio, noche—, exige los dos cumplimientos y audita la reportería, le quita al crimen organizado su activo favorito: la puerta que se abre desde adentro.
 
 Si operas un terminal, un almacén extraportuario o un contrato logístico con exposición portuaria, [cotiza con Gard Security](/cotizar). Levantamos el recinto y proponemos una dotación por capas coherente con tu plan de protección, con respuesta comercial en menos de 12 horas hábiles.
 
