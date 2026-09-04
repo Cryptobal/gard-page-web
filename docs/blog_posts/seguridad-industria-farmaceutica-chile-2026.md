@@ -1,10 +1,10 @@
 ---
-title: "Seguridad industria farmacéutica: planta, lab y CD 2026"
-seoTitle: "Seguridad industria farmacéutica en Chile: planta, laboratorio y CD"
+title: "Cadena de frío farmacéutica: planta, lab y CD 2026"
+seoTitle: "Cadena de frío farmacéutica en Chile: planta, laboratorio y CD"
 date: "2026-09-04"
-description: "Seguridad industria farmacéutica en Chile: planta, laboratorio y CD de medicamentos. Guía B2B de zonas, cadena de frío ISP y qué exigir al proveedor en 2026."
+description: "Cadena de frío farmacéutica y control de acceso por zona en planta, laboratorio y CD de medicamentos en Chile. Guía B2B de qué exigir al proveedor en 2026."
 author: "Gard Security"
-keywords: ["seguridad industria farmacéutica", "seguridad planta farmacéutica Chile", "seguridad laboratorio farmacéutico", "cadena de frío medicamentos", "control de acceso planta farmacéutica"]
+keywords: ["cadena de frío farmacéutica", "control de acceso planta farmacéutica", "NT 208 medicamentos", "cadena de frío medicamentos Chile", "acceso zonas clasificadas farmacéutica"]
 tags: ["Industria farmacéutica", "Cadena de frío", "Control de acceso"]
 category: "Industrias"
 faqSchema:
@@ -20,13 +20,13 @@ faqSchema:
     answer: "Resolución de autorización vigente, acreditación de la dotación de ese recinto, mapa de zonas (perímetro, producción, QC, almacén, laboratorio, cámara de frío, andén), dos flujos de acceso, protocolo de incidente y de apertura de cámara, reportería auditable y política de imágenes. Sin caminar la planta, se compran horas, no un esquema."
 ---
 
-Una planta que fabrica, un laboratorio que libera lote y un centro de distribución de medicamentos no se protegen como una fábrica genérica, ni como un CD de consumo masivo, ni como una clínica. El objeto es el **medicamento** —y a veces la cadena de frío— en un recinto con zonas que el ISP sí mira. Por eso la **seguridad industria farmacéutica** se diseña por capa: perímetro, acceso a producción y control de calidad, laboratorio, almacén o CD, y el flujo de visitas y contratistas.
+Una planta que fabrica, un laboratorio que libera lote y un centro de distribución de medicamentos no se protegen como una fábrica genérica, ni como un CD de consumo masivo, ni como una clínica. El objeto es el medicamento en un recinto con zonas que el ISP sí mira. Por eso la **cadena de frío farmacéutica** y el control de acceso por zona se diseñan juntos: perímetro, producción y control de calidad, laboratorio, almacén o CD, y el flujo de visitas y contratistas.
 
 Esta guía es para el gerente de operaciones, de compliance o de seguridad de ese recinto. Complementa la [oferta de servicio para industria farmacéutica](/industrias/farmaceutica): allá, qué se contrata; aquí, qué exigir antes de firmar. No cubre la [clínica u hospital](/blog/seguridad-clinicas-hospitales-chile) ni la farmacia de barrio. Tampoco copia la [planta de manufactura](/blog/seguridad-plantas-manufactura-chile-2026) ni el [CD genérico](/blog/seguridad-bodegas-centros-logisticos).
 
 ## Planta, laboratorio y CD: tres mandatos
 
-Si cotizás “seguridad farmacéutica” y el proveedor te manda la misma propuesta que usó en una nave de Pudahuel, estás comprando el recinto equivocado.
+Si cotizás “un guardia para la planta” y el proveedor te manda la misma propuesta que usó en una nave de Pudahuel, estás comprando el recinto equivocado.
 
 | | Planta de producción | Laboratorio (QC / control) | CD o depósito de medicamentos |
 |---|---|---|---|
@@ -119,7 +119,7 @@ Gard Security opera con personal 100% acreditado OS10, central de monitoreo prop
 
 ## El medicamento se gobierna por zonas
 
-La seguridad industria farmacéutica se juega en el mapa del recinto: quién entra al turno, quién pisa producción, quién abre el laboratorio, quién carga el camión y quién responde cuando la cámara de frío alarma de madrugada. Quien separa esas capas, contrata una empresa autorizada y exige protocolo, evidencia y recambio reduce el hueco donde hoy se pierde el lote —o la primera hora de una fiscalización.
+La cadena de frío farmacéutica se juega en el mapa del recinto: quién entra al turno, quién pisa producción, quién abre el laboratorio, quién carga el camión y quién responde cuando la cámara alarma de madrugada. Quien separa esas capas, contrata una empresa autorizada y exige protocolo, evidencia y recambio reduce el hueco donde hoy se pierde el lote —o la primera hora de una fiscalización.
 
 Si operas una planta, un laboratorio o un CD de medicamentos y quieres mirar el esquema con criterio de operaciones, [cotiza con Gard Security](/cotizar). Revisamos el recinto y proponemos una dotación acorde al mapa de zonas, con respuesta comercial en menos de 12 horas hábiles.
 

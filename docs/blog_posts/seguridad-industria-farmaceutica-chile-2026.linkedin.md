@@ -8,7 +8,7 @@ Una planta farmacéutica no se protege como una fábrica cualquiera, ni como un 
 
 El objeto es el medicamento —a veces con cadena de frío— en un recinto con zonas que el ISP sí mira. El error típico de quien contrata es pedir “un guardia para el laboratorio” y recibir la misma propuesta que el proveedor usó en una nave de Pudahuel.
 
-Tres distinciones que importan si gerenciás operaciones, compliance o seguridad de planta / lab / CD:
+Tres distinciones si gerenciás operaciones, compliance o la cadena de frío de planta / lab / CD:
 
 1. El ISP no acredita guardias. OS10 no califica una cámara de frío. Son dos fiscalizaciones: calidad farmacéutica y vigilancia privada.
 2. La NT 208 de cadena de frío aplica a laboratorios, droguerías y depósitos —no a la farmacia de barrio. Si tu recinto mueve refrigerados, el puesto tiene que saber quién abre la cámara a las 03:00.
