@@ -4,22 +4,20 @@ No publicar URL hasta que el artículo esté en línea (HTTP 200). Hoy: sin enla
 
 ## Copy (nativo LinkedIn)
 
-Un parque solar no se protege como una subestación urbana ni como una nave en Pudahuel. El recinto es un perímetro remoto, filas de paneles, una subestación de evacuación y kilómetros de cobre.
+En el norte y en los PMGD del centro, el riesgo ya no es solo el clima: bandas organizadas entran de noche a parques solares, cortan cerco y se llevan cable, paneles y electrónica. Una hora basta para dejar un proyecto sin generación.
 
-En mayo la prensa (Bloomberg, Emol, ACESOL vía pv magazine) describió el salto: bandas de madrugada, cámaras desactivadas, sala de control y camionetas sin patente. Los PMGD —predios chicos, a menudo sin ojos a las 03:00— concentran la mayoría de los reportes del gremio. La encuesta de socios no es un censo; sí alcanza para dejar de cotizar “un guardia en el portón”.
+Si operás una planta solar o un parque eólico, la pregunta útil no es “¿cuántos guardias?”, sino cómo se articulan perímetro, subestación, cobre expuesto y respuesta remota cuando el sitio está a horas de la ciudad.
 
-Tres distinciones si gerenciás operaciones o el asset de un parque:
+Armamos una guía B2B para gerentes de operaciones y asset managers: capas que sí funcionan en recintos remotos, qué exigir al proveedor y cómo encaja con la prevención del robo de cobre.
 
-1. El cobre del string no es un tema aparte: es la capa que más rápido paga. El módulo se carga de a palets; el conductor se enrolla y sale.
-2. Un PMGD no se cubre con el esquema de una planta utility. Menos ojos, mismo modus.
-3. Generar energía no te convierte en entidad obligada de la Ley 21.659. El piso al contratar sigue siendo empresa autorizada, personal acreditado y directiva si hay guardias.
+¿Querés mirar el esquema de tu parque con criterio de operaciones? Escribinos a comercial@gard.cl.
 
-El parque se gobierna por capas, no por un portón. Si operas planta solar, PMGD o parque eólico y quieres mirar el esquema con criterio de operaciones —no de catálogo—, conversemos.
+## Imagen (1200 × 627)
 
-## Prompt de imagen (1200 × 627)
+Archivo junto a este recorte: `seguridad-plantas-solares-parques-eolicos-chile-2026.linkedin.png`
 
-Photorealistic blue-hour aerial-oblique of a Chilean solar farm in a dry valley, empty of people, no readable logos or text. Long rows of dark photovoltaic panels receding toward a small fenced substation and empty guard booth at the perimeter gate. Distant Andes foothills, cool corporate lighting with Gard Blue #002992 in the sky wash, gravel roads, chain-link fence, no faces, no uniforms, no superimposed typography, not a rooftop residential install, not a wind-only shot (one distant turbine optional on the horizon). Horizontal 1200x627 crop, sober B2B security mood, industrial Chile energy asset.
+Photorealistic blue-hour aerial-oblique of a Chilean solar farm in a dry valley, empty of people, no readable logos or text. Long rows of dark photovoltaic panels receding toward a small fenced substation and empty guard booth at the perimeter gate. Distant Andes foothills, cool corporate lighting with Gard Blue #002992 in the sky wash, gravel roads, chain-link fence, no faces, no uniforms, no superimposed typography, not a rooftop residential install. Horizontal 1200×627 crop, sober B2B security mood.
 
 ## Estado imagen LinkedIn
 
-PENDIENTE — esta corrida no tiene token de Cloudflare Images en el entorno; no se genera ni se sube creativo. Usar el prompt de arriba en el diseñador o en Workers AI cuando el token esté disponible. No adjuntar captura del artículo ni mockup con URL.
+PNG 1200×627 junto a este recorte. El hero del artículo en Cloudflare Images sigue pendiente (sin token). No adjuntar captura del artículo ni mockup con URL.
