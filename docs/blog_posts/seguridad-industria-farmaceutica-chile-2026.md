@@ -7,6 +7,7 @@ author: "Gard Security"
 keywords: ["cadena de frío farmacéutica", "control de acceso planta farmacéutica", "NT 208 medicamentos", "cadena de frío medicamentos Chile", "acceso zonas clasificadas farmacéutica"]
 tags: ["Industria farmacéutica", "Cadena de frío", "Control de acceso"]
 category: "Industrias"
+imageId: "b84ef96d-752d-4329-cbca-4b85d906cb00"
 faqSchema:
   - question: "¿Una planta farmacéutica es entidad obligada por la Ley 21.659?"
     answer: "No por fabricar o almacenar medicamentos. La ley obliga siempre a la venta de combustible, al transporte de valores y a bancos y financieras que reciben o mantienen dinero. El resto lo declara la Subsecretaría de Prevención del Delito según riesgo. Mientras no haya resolución, el piso es empresa autorizada, personal acreditado y directiva si hay guardias."
