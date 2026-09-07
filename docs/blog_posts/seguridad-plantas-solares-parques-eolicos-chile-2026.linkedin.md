@@ -1,6 +1,6 @@
 # Recorte LinkedIn — seguridad plantas solares y parques eólicos
 
-No publicar URL hasta que el artículo esté en línea (HTTP 200). Hoy: sin enlace.
+LIVE (HTTP 200). URL pública habilitada para publicar.
 
 ## Copy (nativo LinkedIn)
 
@@ -11,6 +11,8 @@ Si operás una planta solar o un parque eólico, la pregunta útil no es “¿cu
 Armamos una guía B2B para gerentes de operaciones y asset managers: capas que sí funcionan en recintos remotos, qué exigir al proveedor y cómo encaja con la prevención del robo de cobre.
 
 ¿Querés mirar el esquema de tu parque con criterio de operaciones? Escribinos a comercial@gard.cl.
+
+https://www.gard.cl/blog/seguridad-plantas-solares-parques-eolicos-chile-2026
 
 ## Imagen (1200 × 627)
 
