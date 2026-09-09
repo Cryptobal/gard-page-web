@@ -55,7 +55,7 @@ El cambio operativo más visible de la temporada 2026 es la identidad biométric
 Para el administrador del recinto esto tiene tres consecuencias prácticas:
 
 1. **El torniquete dejó de ser solo un conteo de aforo**: ahora es un punto de verificación de identidad, con hardware, conectividad y personal que debe saber operar excepciones (menores, visitas, prensa, proveedores).
-2. **El dato biométrico es dato personal sensible**: quien capta y trata rostros queda bajo el estándar de la Ley 21.719. Ya analizamos ese marco en nuestra guía de [reconocimiento facial en empresas](/blog/reconocimiento-facial-empresas-ley-21719) — aplica íntegro a un estadio.
+2. **El dato biométrico es dato personal sensible**: su tratamiento se rige hoy por la Ley 19.628 y, desde el 1 de diciembre de 2026, por el estándar reforzado de la Ley 21.719 — la ventana actual es de preparación, no de espera. Ya analizamos ese marco en nuestra guía de [reconocimiento facial en empresas](/blog/reconocimiento-facial-empresas-ley-21719); todo lo que exige a una empresa aplica también a un estadio.
 3. **La tecnología no reemplaza la capa humana**: la validación biométrica identifica; la gestión del flujo, la detección de conducta de riesgo y la respuesta ante incidentes siguen siendo de guardias entrenados en evento, como detallamos en [guardias para eventos de empresa](/blog/guardias-para-eventos-empresa-chile-2026).
 
 ## Las dos operaciones del recinto: día de evento y día normal
