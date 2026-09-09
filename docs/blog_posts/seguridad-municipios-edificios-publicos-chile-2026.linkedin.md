@@ -14,4 +14,6 @@ Armamos una guía para DAF, SECPLA y administradores de contrato: el deslinde co
 
 ## Imagen (1200 × 627)
 
-Photorealistic dusk exterior of a Chilean municipal consistorial on an empty civic plaza, no people, no readable logos or text. Stone or concrete civic architecture, a single lit entrance canopy, closed glass doors, CCTV dome under the eave, cool Gard Blue #002992 sky wash, dry Chilean evening light, no flags with readable emblems, no uniforms, no faces, no superimposed typography. Horizontal 1200×627 crop, sober B2B security mood.
+Archivo junto a este recorte: `seguridad-municipios-edificios-publicos-chile-2026.linkedin.jpg`
+
+Photorealistic dusk exterior of a Chilean municipal consistorial on an empty civic plaza, no people, no readable logos or text. Glass and light-grey concrete civic architecture, a single lit entrance canopy, closed glass doors, cool Gard Blue #002992 sky wash, dry Chilean evening light, no flags, no emblems, no uniforms, no faces, no superimposed typography. Horizontal 1200×627 crop, sober B2B security mood.

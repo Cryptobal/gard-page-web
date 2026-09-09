@@ -15,6 +15,8 @@ tags:
   - "Edificios públicos"
   - "Compras públicas"
 category: "Industrias"
+heroImage: "/blog/seguridad-municipios-edificios-publicos-chile-2026-hero.jpg"
+cardImage: "/blog/seguridad-municipios-edificios-publicos-chile-2026-hero.jpg"
 faqSchema:
   - question: "¿Puede un municipio contratar seguridad privada para sus edificios?"
     answer: "Sí. La seguridad privada cubre las dependencias de la institución —consistorial, tesorería, archivos y recintos de atención— y no reemplaza a Carabineros ni a los inspectores de la Ley 21.802. El contrato se rige por la Ley 19.886 y Mercado Público; el proveedor debe estar autorizado bajo la Ley 21.659, con personal acreditado."
