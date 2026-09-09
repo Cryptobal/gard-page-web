@@ -7,6 +7,7 @@ author: "Gard Security"
 keywords: ["seguridad plantas solares", "seguridad parques eólicos", "robo paneles solares Chile", "robo cobre parque solar", "PMGD seguridad"]
 tags: ["Energía renovable", "Plantas solares", "Parques eólicos"]
 category: "Industrias"
+imageId: "b0a4ba8c-c9cc-45ce-b1ef-85a9b6e91900"
 faqSchema:
   - question: "¿Una planta solar o un parque eólico es entidad obligada por la Ley 21.659?"
     answer: "No por generar energía. La ley obliga siempre a la venta de combustible, al transporte de valores y a bancos y financieras que reciben o mantienen dinero. El resto lo declara la Subsecretaría de Prevención del Delito según riesgo. Mientras no haya resolución sobre tu parque, el piso es empresa autorizada, personal acreditado y directiva si hay guardias."
