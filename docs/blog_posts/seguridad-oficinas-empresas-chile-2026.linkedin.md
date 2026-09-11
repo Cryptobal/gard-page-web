@@ -2,24 +2,20 @@
 
 ## Copy (nativo LinkedIn)
 
-El edificio tiene un lobby. Tu empresa tiene una puerta en el piso 8.
+En un edificio corporativo la seguridad del hall no alcanza para proteger tu piso.
 
-Esa diferencia se nota cuando alguien ya pasó la recepción —o el estacionamiento— y el incidente ocurre adentro: la suite, la sala de directorio, los notebooks de gerencia. El administrador cubre el inmueble. Tú cubres la operación que arriendas.
+Si tu empresa ocupa una o varias oficinas dentro de un inmueble compartido, el riesgo real suele estar en lo que controlas tú: quién entra a tu suite, cómo se gestionan las visitas fuera de horario, qué pasa con notebooks y salas de reunión confidenciales, y cómo se coordina un incidente con la administración del edificio.
 
-En Las Condes, un ingreso por el -2 terminó en cinco computadores de gerencia sacados de un piso en dieciocho minutos. El hall puede estar impecable. El hueco está en quién abre tu puerta, a qué hora y con qué registro.
+Tres preguntas que todo facility o administrador de contrato debería poder responder hoy:
 
-Si eres facility o administras el contrato de un piso, tres preguntas bastan:
+1. ¿Quién autoriza el acceso a tu piso después de las 19:00?
+2. ¿Tu proveedor (o el del edificio) deja trazabilidad auditable de visitas y proveedores?
+3. ¿Tenés un protocolo claro cuando el edificio responde distinto a lo que tu operación necesita?
 
-1. ¿Quién autoriza las visitas que llegan a tu suite, no al edificio?
-2. ¿Qué pasa con tu piso cuando el lobby cierra?
-3. ¿Las salas confidenciales y los equipos tienen un perímetro propio, o “todo el piso abre con la misma tarjeta”?
+La seguridad de oficinas no es “poner un guardia en la puerta”. Es diseñar la capa de la empresa ocupante encima de la capa del edificio, con personal acreditado y monitoreo que reaccione de verdad.
 
-Armamos una guía para el ocupante: qué controlas tú, qué debes exigir por escrito a la administración y cuándo el edificio alcanza versus cuándo necesitas monitoreo o un puesto en tu puerta.
-
-¿Quieres mirar el deslinde de tu sede con criterio de operaciones? Escríbenos a comercial@gard.cl.
+Si estás revisando el servicio de tu sede o piso, conversemos.
 
 ## Imagen (1200 × 627)
 
 Archivo junto a este recorte: `seguridad-oficinas-empresas-chile-2026.linkedin.jpg`
-
-Photorealistic after-hours interior of a vacant Chilean Class-A office suite, glass door with card reader, empty desks, frosted meeting room, cool Gard Blue #002992 wash, no people, no logos, no superimposed text. Horizontal 1200×627 crop for LinkedIn feed.
