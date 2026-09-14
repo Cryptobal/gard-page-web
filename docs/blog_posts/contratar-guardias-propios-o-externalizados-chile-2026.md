@@ -16,7 +16,7 @@ faqSchema:
   - question: "¿Cuánto cuesta contratar un guardia de seguridad privada?"
     answer: "Depende del formato del turno y de la dotación: un puesto 24/7 exige 4 a 5 guardias para cumplir la jornada legal de 42 horas. Al comparar modelos, el costo relevante no es la remuneración de una persona sino el costo total del puesto, incluyendo reemplazos, supervisión y equipamiento."
   - question: "¿Qué es la responsabilidad solidaria al subcontratar guardias?"
-    answer: "Bajo la Ley 20.123, la empresa mandante responde por las obligaciones laborales y previsionales del personal subcontratado si no ejerce sus derechos de información y retención. Por eso, al externalizar, debes exigir certificados F30-1 y verificar mensualmente el cumplimiento laboral de tu proveedor."
+    answer: "Bajo la Ley 20.123, la empresa mandante responde solidariamente por las obligaciones laborales y previsionales del personal subcontratado. Ejercer los derechos de información y retención atenúa esa responsabilidad a subsidiaria, pero no la elimina. Por eso, al externalizar, exige certificados F30-1 y verifica mensualmente el cumplimiento laboral de tu proveedor."
   - question: "¿Los vigilantes privados pueden ser subcontratados?"
     answer: "No en el caso general. El vigilante privado es una figura reservada a las entidades declaradas obligadas por la autoridad —como bancos o transporte de valores— y forma parte del organismo de seguridad interno de esa entidad. La mayoría de las empresas chilenas opera con guardias de seguridad, propios o externalizados."
 ---
