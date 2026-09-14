@@ -1,123 +1,118 @@
 ---
-title: "Cierre logístico de fin de año: seguridad Chile 2026"
-seoTitle: "Seguridad cierre logístico fin de año Chile 2026: inventario y última milla"
+title: "Cierre logístico: vacaciones en el CD Chile 2026"
+seoTitle: "Cierre logístico: vacaciones de personal en el CD Chile 2026"
 date: "2026-09-14"
-description: "Guía B2B de seguridad para el cierre logístico de fin de año en Chile: inventario, última milla navideña, turnos extra y conteos. Qué preparar desde octubre."
+description: "El CD no cierra entre Navidad y Año Nuevo: el personal de bodega se va de vacaciones y el inventario sigue alto. Cómo reforzar el puesto de guardia en 2026."
 author: "Gard Security"
 keywords:
   - "cierre logístico"
-  - "seguridad cierre logístico"
-  - "seguridad peak navideño"
-  - "última milla navideña"
-  - "inventario de cierre de año"
+  - "vacaciones personal bodega"
+  - "refuerzo puesto de guardia"
+  - "inventario alto fin de año"
+  - "seguridad centro de distribución diciembre"
 tags:
   - "Logística"
   - "Operación"
-  - "Prevención de pérdidas"
+  - "Vacaciones"
 category: "Seguridad Privada"
 heroImage: "/blog/seguridad-cierre-logistico-fin-de-ano-chile-2026-hero.jpg"
 cardImage: "/blog/seguridad-cierre-logistico-fin-de-ano-chile-2026-hero.jpg"
 faqSchema:
-  - question: "¿Cuándo empieza el peak logístico de fin de año en Chile?"
-    answer: "No es un fin de semana: corre desde el CyberMonday (5 al 7 de octubre de 2026) hasta las devoluciones de enero. El tramo más largo es noviembre y diciembre, con inventario de cierre, última milla navideña y turnos extra. Quien recién refuerza a mediados de diciembre llega tarde a contratar, acreditar y levantar el sitio."
-  - question: "¿En qué se diferencia el cierre logístico del CyberMonday?"
-    answer: "El CyberMonday comprime 72 horas de e-commerce. El cierre logístico de fin de año se estira semanas: despacho navideño, conteos de inventario, tercer turno y logística inversa de enero. El evento de octubre ya tiene su propia guía; esta cubre la temporada que viene después y dura más."
-  - question: "¿Por qué el inventario de cierre es un riesgo de seguridad?"
-    answer: "Porque coinciden SKU de alto valor, más gente dentro de la bodega, puertas abiertas más horas y un conteo que mueve producto fuera de su ubicación habitual. Sin control de quién entra al pasillo de inventario, el conteo deja de ser un proceso financiero y se convierte en una ventana de pérdida."
-  - question: "¿Hay que reforzar guardias en diciembre?"
-    answer: "Si el patio, el andén o la portería van a operar más horas o con más terceros, sí. El refuerzo debe estar acreditado OS10, conocer el sitio y tener relevo escrito. Un puesto extra sin protocolo de andén solo agrega una persona; no cierra el hueco de camiones y sellos."
-  - question: "¿Qué pasa con las devoluciones de enero?"
-    answer: "Reingresan producto al centro de distribución con menos control que la salida de diciembre. Hay que mantener registro de bulto, conciliación contra la guía de despacho y un punto único de recepción. La merma de enero suele nacer en una devolución mal recepcionada, no en un asalto espectacular."
+  - question: "¿El centro de distribución cierra el 25 de diciembre y el 1 de enero?"
+    answer: "No de forma automática. Los feriados irrenunciables del 25 de diciembre y el 1 de enero aplican a trabajadores del comercio, según la Dirección del Trabajo. Un CD suele seguir abierto: despacho, inventario y portería no se detienen porque la tienda cierre. El mandante confirma su convenio y el calendario real de bodega."
+  - question: "¿En qué se diferencia este cierre de las vacaciones colectivas de una oficina?"
+    answer: "Las vacaciones colectivas dejan el recinto vacío: oficinas o plantas detenidas, sin flujo de camiones. En el cierre logístico el CD sigue abierto, con menos personal de bodega, inventario todavía alto y terceros que no conocen el turno. El riesgo no es el sitio muerto; es el recinto en esqueleto con stock a la vista."
+  - question: "¿Hay que reforzar el puesto de guardia si baja el picking?"
+    answer: "Sí, si el recinto queda con menos ojos internos y el inventario no bajó. El puesto de guardia cubre portería, andén y perímetro cuando el supervisor de bodega no está. Bajar picking no autoriza a descubrir el acceso. El refuerzo debe estar acreditado OS10, conocer el sitio y tener relevo escrito."
+  - question: "¿Cuándo hay que planificar el refuerzo del cierre logístico?"
+    answer: "En octubre o a más tardar principios de noviembre. Quien espera al 20 de diciembre llega tarde a acreditar, inducir y cubrir relevos. Un sitio nuevo en Santiago se activa, de referencia, en unos 5 días hábiles desde la firma; el plan del cierre necesita semanas, no un llamado de última hora."
+  - question: "¿El reemplazo de temporada puede entrar sin credencial OS10?"
+    answer: "No. La Ley 21.659 no contempla una excepción de temporada alta. El reemplazo que cubre portería o andén necesita credencial OS10 vigente, igual que el titular. Un auxiliar de bodega o un transitorio sin acreditar no es un guardia. El peak no habilita a alguien sin registro."
 ---
 
-El **cierre logístico** de fin de año no es el CyberMonday con otro nombre. El evento de octubre comprime 72 horas de e-commerce; entre noviembre y enero la operación se estira: inventario de cierre, última milla navideña, tercer turno y un patio de camiones que no vuelve al ritmo de marzo. Esta guía está escrita para el gerente de logística, el jefe de bodega y quien administra prevención de pérdidas — el mandante que tiene que sostener despachos y conteos sin regalar merma.
+El **cierre logístico** de fin de año no es el CyberMonday con otro nombre ni un recinto que se apaga. Entre Navidad y Año Nuevo el centro de distribución suele seguir abierto: salen camiones, el inventario todavía está alto y, al mismo tiempo, el personal de bodega se toma vacaciones. La ventana que muchas operaciones usan —hacia el 20 de diciembre y hasta los primeros días de enero— no es una fecha legal; es el tramo en que el recinto queda en esqueleto. Esta guía está escrita para el gerente de logística, el jefe de bodega y quien administra prevención de pérdidas: el mandante que tiene que **reforzar el puesto de guardia**, no reescribir el picking.
 
-Complementa, no reemplaza, las páginas permanentes de [transporte y logística](/industrias/transporte-y-logistica), [bodegas](/industrias/bodegas) y [retail](/industrias/retail), ni la guía del [peak del CyberMonday 2026](/blog/seguridad-cyber-monday-logistica-chile-2026). Aquí el ángulo es la temporada larga: qué cambia cuando el calendario comercial se pone pesado y el año contable se cierra al mismo tiempo.
+Complementa, no reemplaza, las páginas permanentes de [bodegas](/industrias/bodegas) y [transporte y logística](/industrias/transporte-y-logistica), ni la guía del [peak del CyberMonday 2026](/blog/seguridad-cyber-monday-logistica-chile-2026). Tampoco cubre la empresa que cierra del todo —oficinas o plantas en vacaciones colectivas: recinto vacío, no recinto en esqueleto—. Aquí el ángulo es uno: CD abierto, menos gente de operación, stock a la vista.
 
-La magnitud del canal lo justifica. La Cámara de Comercio de Santiago estimó que las ventas minoristas de 2025 —sin automóviles— alcanzaron los [$75 billones, con un alza real levemente superior al 5%](https://www.ccs.cl/2026/01/29/ventas-del-comercio-alcanzaron-maximo-historico-despues-de-4-anos/), empujadas por electrónicos, hogar y tecnología a tasas de dos dígitos, y proyectó para 2026 unos $78 billones (crecimiento real en torno al 3,3%). Ese volumen no “pasa” por la tienda: pasa por un centro de distribución, un andén y una ruta.
+El volumen lo sostiene. La Cámara de Comercio de Santiago estimó que las ventas minoristas de 2025 —sin automóviles— alcanzaron los [$75 billones, con un alza real levemente superior al 5%](https://www.ccs.cl/2026/01/29/ventas-del-comercio-alcanzaron-maximo-historico-despues-de-4-anos/), empujadas por electrónicos, hogar y tecnología, y proyectó para 2026 unos $78 billones (crecimiento real en torno al 3,3%). Ese stock no desaparece el 24 de diciembre. Pasa las fiestas en un CD que, a diferencia de la tienda, no necesariamente cierra.
 
-## El CyberMonday no es el cierre de año
+## El recinto sigue abierto cuando la bodega se va de vacaciones
 
-| | CyberMonday | Cierre logístico de fin de año |
-|---|---|---|
-| Ventana | 5 al 7 de octubre de 2026 (72 horas) | Noviembre a enero, con peak navideño en diciembre |
-| Motor | Campaña CCS de e-commerce | Demanda navideña + inventario de cierre + devoluciones |
-| Duración del riesgo | Días, con cola de despachos | Semanas de turno extra y patio abierto |
-| Frente dominante | Picking y corte de hora | Conteo, última milla y logística inversa |
-| Error típico | Reforzar la semana del evento | Tratar diciembre como un mes más del contrato |
+La Dirección del Trabajo fija feriados obligatorios e irrenunciables para **trabajadores del comercio** el [25 de diciembre y el 1 de enero](https://www.dt.gob.cl/portal/1628/w3-article-95017.html), y limita la jornada de ese mismo universo a las [20:00 del 24 y del 31 de diciembre](https://www.dt.gob.cl/portal/1628/w3-article-95015.html). Eso describe la tienda, no el convenio de cada centro de distribución. El personal de bodega, patio y portería suele seguir en régimen, o con una malla recortada que no equivale a cierre.
 
-El 14 de diciembre de 2025 —penúltimo domingo antes de Navidad— el comercio presencial se detuvo por la segunda vuelta electoral y las ventas en tiendas físicas cayeron cerca de [47% real respecto del domingo equivalente](https://www.ccs.cl/2025/12/18/ventas-de-tiendas-fisicas-cayeron-un-47-el-domingo-de-elecciones/), según la CCS. El canal online, en cambio, subió 130% ese día, hasta US$ 40 millones. No es un dato de delincuencia: es la prueba de que el peak navideño no perdona. Si la tienda cierra, la bodega y la última milla absorben el golpe. En 2026 no hay elección en esa fecha; el flujo vuelve a la calle y al andén a la vez.
+Lo que sí se concentra en esas dos semanas es otra cosa: el feriado legal de quienes sí pueden tomarse días. El supervisor de turno, el encargado de andén y buena parte del equipo de inventario salen. Quedan menos testigos internos, las mismas llaves y un patio que sigue recibiendo transportistas. El recinto no está “de vacaciones”; está **operando con menos ojos**.
 
-## Calendario operativo: octubre a enero
+Eso no es el escenario de [continuidad operacional cuando la faena cierra](/blog/continuidad-operacional-guardias-reemplazos-chile-2026). Allí el problema es un sitio detenido. Aquí el CD despacha, cuenta o recibe, con menos jefatura presente. Tratarlo como “un mes más liviano del contrato” deja la portería y el andén con la dotación de marzo y la exposición de diciembre.
 
-**Octubre.** El CyberMonday (5 al 7) es el primer pulso. Sirve también para dejar escrita la dotación de diciembre: andén, portería nocturna y relevos. Un refuerzo de temporada se coordina con semanas; un sitio nuevo en Santiago, de referencia, se activa en unos 5 días hábiles desde la firma.
+Quien planifica recién el 20 de diciembre llega tarde. Incluso en el mercado de personal transitorio se recomienda [empezar en octubre o a inicios de noviembre](https://www.atcom.cl/prepara-tu-empresa-fin-anio-vacaciones-servicios-transitorios) si el rubro es logística. El dato sirve como calendario, no como receta de contratación: el puesto de guardia no se cubre con un reemplazo genérico de bodega.
 
-**Noviembre.** Entra inventario de alto valor (electrónicos, línea blanca, vestuario) y se alargan los turnos. Es el mes para fijar línea base de existencias, credenciales temporales con vencimiento y prueba de cámaras en horario nocturno. El [checklist de monitoreo](/blog/monitoreo-camaras-seguridad-empresas-checklist-2026) aplica igual que en un mes normal; lo que cambia es la carga.
+## Tres temporadas que no se gestionan igual
 
-**Diciembre.** Despacho navideño, conteos de cierre y patio a toda hora. El robo en ruta no es un fenómeno de “diciembre mágico”: las [zonas rojas y el modus operandi en la Región Metropolitana](https://www.revistalogistec.com/logistica/freight-management-2/2460-robos-de-camiones-en-ruta-evolucion-de-las-zonas-rojas-y-el-modus-operandi-en-la-region-metropolitana) están documentados por Revista Logistec. Un camión con tecnología o bebidas de fin de año es, para quien datea la carga, el mismo blanco de siempre con más volumen.
+| | CyberMonday | Este cierre (CD abierto, bodega de vacaciones) | Empresa cerrada (vacaciones colectivas) |
+|---|---|---|---|
+| Ventana | 5 al 7 de octubre de 2026 (72 horas) | Operativa típica ~20-dic a ~5-ene (no es fecha legal) | Diciembre–enero, recinto detenido |
+| Qué hay dentro | Peak de picking, personal temporal, patio saturado | Inventario todavía alto, menos personal de bodega | Activos sin testigos de operación |
+| Flujo | Máximo | Bajo o irregular, pero no cero | Cero o visitas de mantención |
+| Error típico | Reforzar la semana del evento | Bajar la portería “porque hay menos camiones” | Apagar la vigilancia “porque no hay producción” |
+| Dónde está la guía | [Peak CyberMonday](/blog/seguridad-cyber-monday-logistica-chile-2026) | Este artículo | No es este artículo: recinto vacío ≠ CD en esqueleto |
 
-**Enero.** Devoluciones y cambios. El peak no termina en Nochebuena. Quien baja la guardia el 2 de enero deja abierto el hueco más silencioso del año: bultos que reingresan sin el mismo control con el que salieron.
+El [diseño permanente de una bodega](/blog/seguridad-bodegas-centros-logisticos) sigue valiendo los 365 días. El CyberMonday tensiona picking, personal temporal y corte de hora. Este **cierre logístico** tensiona otra variable: **quién cubre el puesto cuando el que conoce el sitio no está**. Mezclar las tres temporadas en un solo “plan de diciembre” produce la cotización equivocada.
 
-Este calendario no cubre la empresa que **cierra** en vacaciones colectivas —oficinas o plantas detenidas—. Ese es otro problema (sitio vacío, no sitio saturado) y no se resuelve con la misma dotación de andén.
+## Qué cambia en el puesto (no en el picking)
 
-## Dónde se concentra el riesgo en el cierre
+El picking extra es operación logística. El mandante de seguridad no rediseña el WMS. Rediseña **portería, andén y perímetro** para un recinto más quieto, no más vacío.
 
-La guía permanente de [seguridad para bodegas y centros logísticos](/blog/seguridad-bodegas-centros-logisticos) describe el recinto en régimen. En el **cierre logístico** los mismos cuatro frentes se tensan a la vez.
+Tres cambios concretos:
 
-| Frente | Qué cambia en nov–ene | Medida que sí mueve el riesgo |
-|---|---|---|
-| Bodega / CD | Más SKU de alto valor, más gente, conteo que desordena ubicaciones | Acceso por turno al pasillo de inventario; revisiones aleatorias de salida |
-| Patio y andenes | Tercer turno, transportistas spot, sellos a deshora | Lista dura de patente, conductor y sello; guardia de andén en horario de despacho |
-| Ruta y última milla | Más viajes, más ventanas nocturnas, más dateo de contenido | Coordinación con el transportista y la guía de [transporte de carga](/blog/seguridad-transporte-carga-robo-camiones-chile-2026) |
-| Tienda y trastienda | Aglomeración, retiro en tienda, devoluciones | Control de trastienda y [prevención de pérdidas en retail](/blog/prevencion-perdidas-retail-chile) |
+1. **Menos supervisión natural.** El jefe de bodega que “pasa por la garita” a cada rato está de vacaciones. El guardia deja de tener un contrapeso interno. Si el protocolo de visitas y de camiones vivía en la cabeza de esa jefatura, hay que dejarlo escrito y en la inducción del reemplazo.
+2. **Inventario a la vista con menos movimiento.** Pallets que en noviembre rotaban ahora esperan enero. Un recinto lento con stock de electrónicos o línea blanca es más tentador que un recinto saturado donde nadie puede detenerse. El riesgo no es el camión de última milla; es el acceso de un tercero que la portería no reconoce.
+3. **Turnos irregulares, no turnos peak.** Pueden salir dos camiones a deshora o ninguno en seis horas. El puesto se aburre y se relaja. El relevo escrito y la ronda con trazabilidad importan más que “agregar un auxiliar en el andén”.
 
-El [robo hormiga](/blog/robo-hormiga) crece cuando el volumen tapa el conteo diario. En cierre de año el hormigueo no es “un par de unidades”: es la diferencia entre un inventario que cuadra y uno que se explica después, mal, al directorio.
+Nada de esto exige inventar una tasa nacional de robos a CD en Navidad. El riesgo se diseña con el proceso: menos gente conocida adentro, mismas llaves, mismo stock.
 
-## El conteo de inventario es un evento de seguridad
+## Cómo pedir el refuerzo del puesto
 
-El cierre contable mueve producto. Gente de finanzas, de bodega y, a veces, auditores externos caminan pasillos que el resto del año están restringidos. Se abren jaulas, se bajan pallets, se dejan puertas de muelle abiertas “un rato más”. Si el protocolo de seguridad no entra a esa reunión, el conteo es un día de puertas abiertas con inventario a la vista.
+La cuenta de [cuántos guardias necesita un puesto 24/7](/blog/cuantos-guardias-turno-24-7-chile-2026) sigue valiendo; lo que cambia es si ese puesto se mantiene, se refuerza o se descubre. Un CD en esqueleto no autoriza a pasar de dos puestos a medio. Si el andén sigue vivo, el andén sigue cubierto.
 
-Tres reglas prácticas para el mandante:
+El refuerzo temporal tiene las mismas reglas que el permanente:
 
-1. **Nominar quién entra al conteo.** Credencial distinta, lista del día, baja al terminar. El auditor externo no hereda el acceso del jefe de bodega.
-2. **No mezclar despacho y conteo en el mismo muelle.** Un andén para salida de camiones y otro —o otra ventana— para el movimiento interno del inventario. Si no hay segundo muelle, hay segundo horario.
-3. **Conciliar el mismo día.** Sin línea base previa (noviembre) y sin cierre diario, el “faltante de diciembre” se vuelve una discusión, no un hallazgo.
+- **Credencial OS10 vigente.** La [Ley 21.659](https://www.bcn.cl/leychile/navegar?idNorma=1202067) no tiene cláusula de temporada alta. Un auxiliar de bodega, un familiar o un transitorio sin acreditar no es un guardia.
+- **Relevo escrito.** Un puesto de portería descubierto un 26 de diciembre es exactamente el hueco que se quiso evitar. La [continuidad del puesto](/blog/continuidad-operacional-guardias-reemplazos-chile-2026) se exige en el contrato, no en un WhatsApp a las 21:00.
+- **Inducción al sitio.** El reemplazo tiene que saber qué patentes entran, quién autoriza una visita y qué muelle se usa. Un volante que no conoce el CD solo cubre la foto.
+- **Jornada.** Si el refuerzo implica turnos excepcionales, el marco está en la guía de la [Ley 21.561 y la jornada excepcional](/blog/ley-21561-jornada-excepcional-guardias-seguridad-chile-2026). No se improvisa un 4×4 en Nochebuena.
 
-Nada de esto exige una tasa nacional de robos a CD que no vamos a inventar. El riesgo se diseña con el proceso: más manos sobre el mismo SKU, más horas de muelle abierto.
+Antes de contratar [guardias de seguridad](/servicios/guardias-de-seguridad) o una [central de monitoreo](/servicios/central-monitoreo) para esas dos semanas, pide por escrito:
 
-## Turnos extra: el contrato de marzo no cubre diciembre
+- Calendario real de bodega (quién está, quién no, qué muelles siguen vivos), no una copia del contrato de marzo.
+- Dotación nominada y acreditada, con fecha de término. La credencial que sigue viva en febrero es un hallazgo clásico.
+- Protocolo de portería y de andén acordado con la jefatura que **sí** estará. El guardia no reemplaza al supervisor de despacho; cubre el hueco que ese supervisor deja al ausentarse.
+- Reportería diaria (novedades, ingresos rechazados, rondas). Un consolidado el 15 de enero no sirve para el seguro.
+- Monitoreo en el turno lento. Un recinto quieto de madrugada necesita alguien que mire las cámaras, no un DVR en una oficina cerrada. La trazabilidad de rondas vive en la [plataforma tecnológica](/tecnologia-seguridad).
 
-Un puesto de portería dimensionado para el flujo de abril no alcanza cuando el patio opera de noche y el andén no para. La cuenta de [cuántos guardias necesita un puesto 24/7](/blog/cuantos-guardias-turno-24-7-chile-2026) sigue valiendo; lo que cambia es cuántos puestos se prenden. El refuerzo temporal tiene las mismas reglas que el permanente:
+Gard Security opera con personal 100% certificado OS10, central 24/7 y cobertura en 10 ciudades. El refuerzo de estas dos semanas se estructura sobre el mismo estándar del servicio permanente. Un sitio nuevo en Santiago, de referencia, se activa en unos 5 días hábiles desde la firma; el plan del cierre, no.
 
-- Personal con credencial OS10 vigente. La [Ley 21.659](https://www.bcn.cl/leychile/navegar?idNorma=1202067) no tiene una cláusula de “temporada alta”. El peak no habilita a alguien sin acreditar.
-- Relevo escrito. Un puesto de andén descubierto un 23 de diciembre es exactamente el escenario que se quiso evitar. La [continuidad del puesto](/blog/continuidad-operacional-guardias-reemplazos-chile-2026) se exige en el contrato, no en un WhatsApp a las 21:00.
-- Jornada. Si el refuerzo implica turnos excepcionales, el marco está en la guía de la [Ley 21.561 y la jornada excepcional](/blog/ley-21561-jornada-excepcional-guardias-seguridad-chile-2026). No se improvisa un 4×4 en la segunda quincena.
+## Checklist: octubre y noviembre, no el 20 de diciembre
 
-El picking extra es operación logística. El mandante de seguridad controla que esa gente entre, salga y no se lleve inventario.
+- **Nombrar al dueño del calendario.** Operaciones entrega a seguridad la lista de ausencias de bodega (quién sale, desde cuándo, qué puesto interno queda sin titular). Sin esa lista el proveedor improvisa.
+- **Fijar qué puestos no se apagan.** Portería vehicular, andén que sigue despachando, perímetro nocturno. Lo que se puede bajar son puertas internas que ya no se usan, no el acceso único.
+- **Acreditar e inducir al reemplazo con semanas.** OS10 vigente, recorrido del sitio, lista de patentes y de personas autorizadas a firmar una guía.
+- **Probar el turno lento.** Una noche de noviembre con poco flujo sirve para ver si la ronda se hace o se finge. Corregir en noviembre es barato; corregir el 27 de diciembre no.
+- **Cerrar credenciales al terminar.** El transitorio de enero no hereda el acceso de diciembre.
 
-## Qué exigir al proveedor para el cierre
+Si tu operación todavía está en el peak de octubre, usa la guía del [CyberMonday](/blog/seguridad-cyber-monday-logistica-chile-2026) para esas 72 horas y deja este checklist para el tramo siguiente. Son dos planes, no un PowerPoint.
 
-Antes de contratar [guardias de seguridad](/servicios/guardias-de-seguridad) o una [central de monitoreo](/servicios/central-monitoreo) para noviembre–enero, pide por escrito:
+## El cierre se arma antes de que se vayan
 
-- **Levantamiento del sitio en modo cierre**, no una copia del contrato de marzo: horarios reales de despacho, muelles que se usarán en el conteo, puntos ciegos del patio de noche.
-- **Dotación de refuerzo nominada y acreditada**, con fecha de término. La credencial que sigue viva en febrero es un hallazgo clásico.
-- **Protocolo de andén y de salida de personal**, acordado con jefatura logística. El guardia no reemplaza al supervisor de despacho; se complementan.
-- **Reportería diaria** (novedades, ingresos rechazados, incidentes de inventario). Un consolidado el 15 de enero no sirve para el seguro ni para el directorio.
-- **Monitoreo en el turno que de verdad se alarga.** Si diciembre es nocturno, alguien mira las cámaras a las 02:00. Eso es central de monitoreo o un puesto despierto; no un DVR en la oficina. La trazabilidad de rondas vive en la [plataforma tecnológica](/tecnologia-seguridad), no en un cuaderno del lunes.
+El **cierre logístico** de 2026, en un CD que no cierra, se juega cuando el personal de bodega se toma vacaciones y el inventario sigue alto. Quien trata esas dos semanas como un mes liviano deja la portería y el andén con menos testigos y las mismas llaves.
 
-Gard Security opera con personal 100% certificado OS10, central 24/7 y cobertura en 10 ciudades. El refuerzo de temporada se estructura sobre el mismo estándar del servicio permanente, no sobre una “dotación de diciembre” de menor rango.
-
-## Conclusión: el cierre se arma en septiembre y octubre
-
-El **cierre logístico** de 2026 se juega después del CyberMonday y dura más. Ese flujo pasa por bodega, patio y ruta. Quien trata diciembre como un mes más del contrato deja el conteo, el andén nocturno y las devoluciones de enero sin dueño.
-
-Si tu CD, flota o cadena necesita dimensionar la seguridad de noviembre a enero —puestos, monitoreo y protocolo de andén— [cotiza con Gard Security](/cotizar). Levantamos el sitio, proponemos la dotación del cierre y respondemos en menos de 12 horas hábiles.
+Si tu centro de distribución necesita dimensionar el puesto para ese tramo —dotación, relevo y monitoreo—, [cotiza con Gard Security](/cotizar). Levantamos el sitio, proponemos la cobertura del cierre y respondemos en menos de 12 horas hábiles.
 
 ---
 
 **Fuentes:**
 
 - Cámara de Comercio de Santiago — [Ventas del comercio alcanzaron máximo histórico después de 4 años](https://www.ccs.cl/2026/01/29/ventas-del-comercio-alcanzaron-maximo-historico-despues-de-4-anos/) (29-ene-2026): minorista 2025, $75 billones, +5% real; proyección 2026 $78 billones y +3,3% real.
-- Cámara de Comercio de Santiago — [Ventas de tiendas físicas cayeron un 47% el domingo de elecciones](https://www.ccs.cl/2025/12/18/ventas-de-tiendas-fisicas-cayeron-un-47-el-domingo-de-elecciones/) (18-dic-2025): 14-dic-2025, penúltimo domingo antes de Navidad; online +130% hasta US$ 40 millones.
-- Revista Logistec — [Robos de camiones en ruta: evolución de las zonas rojas y el modus operandi en la Región Metropolitana](https://www.revistalogistec.com/logistica/freight-management-2/2460-robos-de-camiones-en-ruta-evolucion-de-las-zonas-rojas-y-el-modus-operandi-en-la-region-metropolitana).
+- Dirección del Trabajo — [Feriados obligatorios e irrenunciables para trabajadores del comercio](https://www.dt.gob.cl/portal/1628/w3-article-95017.html) (Ley 19.973): 25 de diciembre y 1 de enero, con las excepciones que publica la DT. No equivale a cierre automático de un CD.
+- Dirección del Trabajo — [Jornada de trabajadores del comercio el 24 y el 31 de diciembre](https://www.dt.gob.cl/portal/1628/w3-article-95015.html): tope a las 20:00 para ese universo laboral.
+- ATCOM — [Prepara tu empresa para fin de año y vacaciones](https://www.atcom.cl/prepara-tu-empresa-fin-anio-vacaciones-servicios-transitorios) (27-oct-2025): recomienda planificar reemplazos de logística en octubre o inicios de noviembre. Se cita como calendario de mercado, no como aval de un modelo de personal transitorio.
 - BCN — [Ley 21.659](https://www.bcn.cl/leychile/navegar?idNorma=1202067).

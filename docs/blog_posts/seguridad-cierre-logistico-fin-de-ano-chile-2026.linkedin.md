@@ -1,23 +1,23 @@
-# Recorte LinkedIn — cierre logístico de fin de año
+# Recorte LinkedIn — cierre logístico: vacaciones en el CD
 
 ## Copy (nativo LinkedIn)
 
-El CyberMonday no es el último peak del año.
+El CyberMonday ya tiene fecha. El tramo que viene después es otro problema.
 
-Entre noviembre y enero la operación logística se juega otra temporada: inventario de cierre, última milla navideña, turnos extra y un patio de camiones que no vuelve al ritmo de marzo. Octubre comprime 72 horas. El cierre se estira semanas.
+Entre Navidad y Año Nuevo el centro de distribución suele seguir abierto. Lo que se va no es el inventario: se va el personal de bodega. Quedan menos testigos, las mismas llaves y un patio que todavía recibe camiones.
 
-Tres preguntas que gerencia de operaciones y prevención de pérdidas deberían poder responder ahora, no el 20 de diciembre:
+Tres preguntas que gerencia de operaciones debería poder responder ahora, no el 20 de diciembre:
 
-1. ¿Quién cubre el andén cuando el tercer turno se vuelve rutinario?
-2. ¿El conteo de inventario tiene el mismo control de acceso que un día de marzo?
-3. ¿Las devoluciones de enero reingresan con el mismo rigor con el que salieron los despachos?
+1. ¿Quién cubre el puesto si el supervisor de bodega está de vacaciones?
+2. ¿El inventario sigue alto con el recinto más quieto — y quién entra al andén a deshora?
+3. ¿El reemplazo de portería está acreditado OS10 e inducido al sitio, o es “el que había”?
 
-La seguridad del cierre logístico no es “poner más gente en la portería”. Es dimensionar bodega, patio, ruta y trastienda con personal acreditado, monitoreo que mire de noche y un protocolo de andén escrito.
+Reforzar el puesto no es rearmar el picking ni copiar el plan de las 72 horas de octubre. Es sostener portería, andén y perímetro cuando el recinto opera en esqueleto.
 
-Si estás armando el plan de noviembre a enero, conversemos.
+Si estás armando el calendario de esas dos semanas, conversemos.
 
 ## Imagen (1200 × 627)
 
 Archivo junto a este recorte: `seguridad-cierre-logistico-fin-de-ano-chile-2026.linkedin.jpg`
 
-Composición propia para el feed (andenes y garita de noche), distinta del hero del artículo (interior de bodega).
+Composición propia para el feed (andenes y garita de noche), distinta del hero del artículo (interior de CD). Sin URL: el slug aún no está LIVE.
