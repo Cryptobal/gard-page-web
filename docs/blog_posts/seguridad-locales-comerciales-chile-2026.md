@@ -18,13 +18,13 @@ category: "Industrias"
 imageId: "629953e9-5305-41cc-4f16-18d724889800"
 faqSchema:
   - question: "¿Es legal tener cámaras con audio en un local comercial?"
-    answer: "Las cámaras de video son legales si se informan con señalética visible y se usan con un fin declarado. El audio es distinto: grabar conversaciones puede vulnerar la inviolabilidad de las comunicaciones y expone a sanciones. La práctica recomendada en Chile es video sin audio, con acceso restringido a las grabaciones."
+    answer: "Grabar video puede ser lícito si se informa con señalética, responde a un fin legítimo declarado y el tratamiento es proporcional: datos mínimos, retención justificada y acceso restringido a las grabaciones. El audio es distinto: grabar conversaciones puede vulnerar la inviolabilidad de las comunicaciones y expone a sanciones. La práctica recomendada en Chile es video sin audio."
   - question: "¿Cuándo conviene un guardia presencial en un local comercial?"
     answer: "Cuando el local maneja efectivo o mercadería de alto valor, cuando ya sufrió robos reiterados, cuando la dotación es pequeña y queda sola en horarios extremos, o cuando la aseguradora lo exige. Para formatos chicos, la alternativa intermedia es alarma monitoreada más rondas; el guardia dedicado se justifica por riesgo, no por metros cuadrados."
   - question: "¿En un strip center la seguridad la pone el administrador o cada local?"
     answer: "Son dos capas. El administrador cubre estacionamiento, circulaciones y perímetro común, muchas veces con un guardia compartido cuyo costo se prorratea. Cada local sigue siendo responsable de su cortina, su caja, su alarma y su trastienda. Conviene dejar por escrito qué cubre el contrato común y qué queda a cargo de cada operador."
   - question: "¿Qué exige la Ley 21.659 a un local comercial que contrata seguridad?"
-    answer: "Que el servicio se contrate con una empresa autorizada e inscrita en el registro de la Subsecretaría de Prevención del Delito, con guardias acreditados y directiva de funcionamiento al día. El mandante responde por contratar proveedores formales; exigir esos antecedentes antes de firmar es parte de la diligencia mínima."
+    answer: "Que el servicio se contrate con una empresa autorizada por la Subsecretaría de Prevención del Delito, con guardias acreditados y directiva de funcionamiento al día. Mientras el Registro de Seguridad Privada termina de entrar en operación, la evidencia exigible es la resolución de autorización vigente. Verificar esos antecedentes antes de firmar es parte de la diligencia mínima del mandante."
   - question: "¿Sirve una alarma sin servicio de monitoreo?"
     answer: "Poco. Una sirena local depende de que un vecino reaccione y los delincuentes lo saben. La alarma aporta cuando llega a una central de monitoreo que verifica el evento, avisa al responsable del local y coordina la respuesta. Sin ese eslabón, el sistema solo documenta el robo después de ocurrido."
 ---
@@ -79,7 +79,7 @@ Sensores de apertura y movimiento, sirena y —lo que realmente cambia el result
 
 ### 6. CCTV y datos personales
 
-Cámaras en accesos, caja y trastienda, con grabación respaldada fuera del alcance del intruso —un DVR a la vista se lo llevan junto con la recaudación—. Desde el 1 de diciembre de 2026 rige además la Ley 21.719: la videovigilancia debe informarse con señalética, limitarse a un fin declarado y proteger el acceso a las grabaciones. Video sí; audio, mejor no: grabar conversaciones expone a un flanco legal que el comercio no necesita.
+Cámaras en accesos, caja y trastienda, con grabación respaldada fuera del alcance del intruso —un DVR a la vista se lo llevan junto con la recaudación—. Desde el 1 de diciembre de 2026 rige además la Ley 21.719: la videovigilancia debe informarse con señalética, limitarse a un fin declarado, ser proporcional —datos mínimos, retención justificada— y proteger el acceso a las grabaciones; los requisitos completos están en la [guía de videovigilancia y Ley 21.719](/blog/ley-21719-videovigilancia-empresas-chile). Video sí; audio, mejor no: grabar conversaciones expone a un flanco legal que el comercio no necesita.
 
 ### 7. Trastienda y recepción de mercadería
 
@@ -93,11 +93,11 @@ En un strip center, el guardia que ronda el estacionamiento suele contratarse po
 
 No todos los locales necesitan un puesto dedicado, y un proveedor serio lo dice. Los criterios que lo justifican: efectivo o mercadería de alto valor por metro cuadrado —farmacia, telefonía, joyería, botillería—, robos reiterados ya materializados, dotación pequeña que queda sola en horarios extremos, o exigencia de la aseguradora. Si la respuesta es sí, el servicio debe venir de una empresa autorizada bajo la [Ley 21.659](https://www.bcn.cl/leychile/navegar?idNorma=1202067), con [guardias de seguridad](/servicios/guardias-de-seguridad) acreditados; los plazos y obligaciones de esa ley para los mandantes están resumidos en [esta guía](/blog/ley-21659-seguridad-privada-plazos-2026). Y si el puesto es continuo, dimensiónalo bien: [un 24/7 no se cubre con dos personas](/blog/cuantos-guardias-turno-24-7-chile-2026).
 
-Para cadenas con varias sucursales, la combinación típica no es un guardia por local: es alarma monitoreada en todos, [seguridad electrónica](/servicios/seguridad-electronica) estandarizada, apertura asistida en los locales de mayor riesgo y guardia dedicado solo donde las cifras lo exigen. La encuesta CNC muestra que el 74% del comercio ya mantiene gasto permanente en seguridad; la diferencia está en gastarlo por diseño y no por reacción.
+Para cadenas con varias sucursales, la combinación típica no es un guardia por local: es alarma monitoreada en todos, [seguridad electrónica](/servicios/seguridad-electronica) estandarizada, apertura asistida en los locales de mayor riesgo y guardia dedicado solo donde las cifras lo exigen — el mismo enfoque por capas de la [seguridad para retail](/industrias/retail). La encuesta CNC muestra que el 74% del comercio ya mantiene gasto permanente en seguridad; la diferencia está en gastarlo por diseño y no por reacción.
 
 ## Checklist para contratar seguridad para tu local
 
-1. Empresa inscrita y autorizada en el registro de seguridad privada, con antecedentes verificables.
+1. Empresa autorizada por la Subsecretaría de Prevención del Delito: mientras el Registro de Seguridad Privada termina de entrar en operación, la evidencia exigible es la resolución de autorización vigente.
 2. Guardias con credencial vigente y acreditación al día — 100% del plantel, no "la mayoría".
 3. Central de monitoreo 24/7 propia o formalizada por contrato, con protocolo de escalamiento escrito.
 4. Cobertura real en tu ciudad y tiempos de respuesta comprometidos por escrito.
