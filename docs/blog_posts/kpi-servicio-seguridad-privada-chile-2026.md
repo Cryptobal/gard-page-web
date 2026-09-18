@@ -38,7 +38,7 @@ Esta guía es para quien compra el servicio, no para quien lo ejecuta. No reempl
 
 ## Laboral y operativo son dos tableros distintos
 
-Un error frecuente es tratar el certificado F30-1 como si midiera la calidad del puesto. El F30-1 acredita cotizaciones y obligaciones laborales del contratista. Es indispensable —sin él la empresa principal hereda solidaridad—, pero no dice si el andén tuvo guardia el sábado a las 03:00, si la ronda del perímetro se hizo o si la alarma se verificó en doce minutos o en dos horas.
+Un error frecuente es tratar el certificado F30-1 como si midiera la calidad del puesto. El F30-1 —u otros medios idóneos— sirve para ejercer el derecho de información de la Ley 20.123. La [responsabilidad laboral del mandante](/blog/responsabilidad-solidaria-subcontratacion-seguridad-chile) parte solidaria y se atenúa a subsidiaria solo si además retiene cuando hay deudas: pedir el papel y no actuar no basta. Ninguno de esos documentos dice si el andén tuvo guardia el sábado a las 03:00, ni si la ronda o la alarma se verificaron a tiempo.
 
 La DT fiscaliza el régimen de subcontratación y el cumplimiento entre las partes; “guardia y control” aparece, de hecho, entre los rubros que más se externalizan. Eso cubre el flanco laboral. El flanco del servicio —dotación efectiva, rondas, respuesta, reportería— solo existe si el mandante lo define, lo mide y lo cobra cuando falla.
 
@@ -46,7 +46,7 @@ En la práctica hacen falta dos carpetas:
 
 | Carpeta | Qué responde | Evidencia típica |
 |---|---|---|
-| Laboral y previsional | ¿El contratista paga y acredita a su gente? | F30-1, contratos, OS10 vigente, autorización de la empresa |
+| Laboral y previsional | ¿El contratista paga y acredita a su gente? | F30-1 u otro medio idóneo, contratos, OS10 vigente, autorización de la empresa |
 | Operativa del servicio | ¿El puesto contratado se ejecutó? | Malla real, rondas con timestamp, bitácora de incidentes, reportes a tiempo |
 
 Mezclarlas produce una falsa sensación de control: el F30-1 al día y el recinto descubierto dos noches.
