@@ -14,7 +14,7 @@ faqSchema:
   - question: "¿Qué es una cámara lectora de patentes (LPR) y cómo funciona?"
     answer: "Es una cámara con software de reconocimiento óptico que lee la patente del vehículo al aproximarse a la portería. El sistema la compara contra listas de vehículos autorizados o visitas anunciadas y, si corresponde, abre la barrera y registra el evento con imagen, fecha y hora, sin credenciales físicas."
   - question: "¿Es legal registrar las patentes de los vehículos que ingresan a un recinto privado en Chile?"
-    answer: "Sí, pero con resguardos: la patente permite identificar al titular del vehículo, por lo que su registro queda alcanzado por la Ley 21.719 de protección de datos. La empresa debe informar el tratamiento, definir una finalidad y un plazo de conservación, y restringir quién accede a esos registros."
+    answer: "Sí, pero con resguardos: la patente permite identificar al titular del vehículo, por lo que su registro queda alcanzado por la Ley 21.719 de protección de datos. La empresa debe contar con una base de licitud documentada, informar el tratamiento, definir finalidad y plazo de conservación, y restringir quién accede a esos registros."
   - question: "¿La barrera con lectura de patentes reemplaza al guardia de portería?"
     answer: "No. La tecnología resuelve el flujo repetitivo de vehículos autorizados, pero las excepciones —camiones sin agendar, visitas, rechazos de lista, fallas de lectura— requieren criterio humano. El esquema que funciona combina barrera y LPR con un guardia acreditado que gestiona excepciones y verifica documentación."
 ---
@@ -48,18 +48,19 @@ Dos precisiones que evitan compras equivocadas. Primero, la **barrera vehicular*
 
 Registrar patentes con LPR es tratamiento de datos personales: la patente permite identificar al titular del vehículo y, en el caso de colaboradores y visitas frecuentes, se asocia directamente a una persona. Desde diciembre de 2026, la [Ley 21.719](https://www.bcn.cl/leychile/navegar?idNorma=1209272) sube el estándar de ese tratamiento, con una Agencia de Protección de Datos con facultades de fiscalización y multa.
 
-En la práctica, el mandante que instala lectura de patentes debe dejar resueltas cuatro cosas:
+En la práctica, el mandante que instala lectura de patentes debe dejar resueltas cinco cosas:
 
-1. **Informar el tratamiento**: señalética en el acceso y cláusulas en contratos con transportistas y contratistas que indiquen qué se registra y para qué.
-2. **Finalidad y proporcionalidad**: el registro se justifica por seguridad y control de acceso; usarlo para otros fines exige base legal propia.
-3. **Plazo de conservación**: definir cuánto tiempo se guardan los registros y eliminarlos cumplido el plazo, igual que con la videovigilancia.
-4. **Acceso restringido**: definir quién puede consultar los registros y dejar traza de esas consultas.
+1. **Base de licitud documentada**: la finalidad de seguridad no basta por sí sola; el tratamiento debe apoyarse en una base que la ley reconozca —típicamente el interés legítimo del responsable, con su evaluación de ponderación documentada, o la relación contractual con transportistas y contratistas, o el consentimiento— antes de empezar a capturar patentes.
+2. **Informar el tratamiento**: señalética en el acceso y cláusulas en contratos con transportistas y contratistas que indiquen qué se registra y para qué.
+3. **Finalidad y proporcionalidad**: el registro se justifica por seguridad y control de acceso; usarlo para otros fines exige base legal propia.
+4. **Plazo de conservación**: definir cuánto tiempo se guardan los registros y eliminarlos cumplido el plazo, igual que con la videovigilancia.
+5. **Acceso restringido**: definir quién puede consultar los registros y dejar traza de esas consultas.
 
 El detalle del nuevo régimen —derechos de los titulares, bases de licitud, sanciones— está en nuestra [guía de videovigilancia y Ley 21.719](/blog/ley-21719-videovigilancia-empresas-chile). La regla simple: si el sistema registra patentes, trátelo con la misma disciplina que las cámaras.
 
 ## Tecnología más portería: cómo se arma el puesto
 
-La automatización resuelve el 80% repetitivo del flujo; el valor del guardia está en el 20% restante, que es donde ocurren los incidentes. Un puesto de portería vehicular bien diseñado separa tres carriles lógicos:
+La automatización resuelve el flujo repetitivo de vehículos ya autorizados; el valor del guardia está en las excepciones, que es justamente donde ocurren los incidentes. Un puesto de portería vehicular bien diseñado separa tres carriles lógicos:
 
 - **Autorizados permanentes** (flota, colaboradores): entran por LPR o TAG sin intervención del guardia. El sistema registra; el guardia supervisa.
 - **Agendados** (camiones, contratistas, visitas): el agendamiento previo genera un QR o deja la patente en lista temporal. El guardia verifica lo que la tecnología no puede: guía de despacho, sello del camión, identidad de quien conduce cuando corresponde.
